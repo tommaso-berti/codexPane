@@ -42,9 +42,9 @@ Content lives in **MDX** files (Markdown + React components). UI is styled with 
 /src
   /assets
   /components
-    Header.tsx
-    Sidebar.tsx
-    DocPage.tsx
+    Header.jsx
+    Sidebar.jsx
+    DocPage.jsx
   /content
     react/
       useState.mdx
@@ -53,13 +53,13 @@ Content lives in **MDX** files (Markdown + React components). UI is styled with 
       grep.mdx
       chmod.mdx
   /redux
-    uiSlice.ts
-    store.ts
+    uiSlice.js
+    store.js
   /routes
-    Home.tsx
-    Docs.tsx
-  App.tsx
-  main.tsx
+    Home.jsx
+    Docs.jsx
+  App.jsx
+  main.jsx
 tailwind.config.js
 vite.config.ts
 ```
