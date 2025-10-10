@@ -1,3 +1,3 @@
 export default function DocPage() {
-    return (<div></div>);
+    return (<h1>Doc Page</h1>);
 }

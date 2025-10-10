@@ -10,7 +10,7 @@ import List from "@mui/material/List";
 import StarBorder from "@mui/icons-material/StarBorder";
 
 export default function SectMenuItem() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const handleClick = () => {
         setOpen(!open);
     };
