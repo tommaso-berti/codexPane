@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import {Route, BrowserRouter, Routes} from "react-router-dom";
+import {Route, BrowserRouter, Routes, Navigate} from "react-router-dom";
 import './App.css'
 import Layout from "./components/Layout.jsx";
 import DocPage from "./components/DocPage.jsx";
@@ -14,7 +13,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="docs" element={<DocPage />} />
                     <Route path="docs/:section/:slug" element={<SectPage />} />
-                    <Route path="*" element={<div>Not found</div>} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
             </Routes>
         </BrowserRouter>
