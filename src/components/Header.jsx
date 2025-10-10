@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <header className="content-center">
-            <h1 className="text-black">CodexPane</h1>
+        <header className="border-b-1 border-black h-20 p-6 top-0 fixed w-full">
+            <h1 className="text-black text-4xl font-bold">CodexPane</h1>
         </header>
     );
 }
