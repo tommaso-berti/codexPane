@@ -1,0 +1,26 @@
+{
+  "doc": "html",
+  "title": "HTML",
+  "icon": "HtmlIcon",
+  "items": [
+    {
+      "type": "section",
+      "title": "Document structure",
+      "slug": "html/document-structure",
+      "order": 1,
+      "items": [
+        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
+        { "type": "sub", "title": "header", "slug": "html/document-structure/header", "order": 2 }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Accessibility",
+      "slug": "html/accessibility",
+      "order": 1,
+      "items": [
+        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 }
+      ]
+    }
+  ]
+}

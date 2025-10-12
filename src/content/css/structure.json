@@ -1,0 +1,16 @@
+{
+  "doc": "css",
+  "title": "CSS",
+  "icon": "CssIcon",
+  "items": [
+    {
+      "type": "section",
+      "title": "Document structure",
+      "slug": "html/document-structure",
+      "order": 1,
+      "items": [
+        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 }
+      ]
+    }
+  ]
+}
