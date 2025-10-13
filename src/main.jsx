@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { DocsProvider } from "./constexts/DocsContext.jsx"
+import { DocsProvider } from "./contexts/DocsContext.jsx"
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'

@@ -9,15 +9,17 @@ export function DocsProvider({ children }) {
         const raw = import.meta.glob('../content/**/structure.json', { eager: true });
         const entries = Object.values(raw);
         const metadata = entries.map((value) => ({
-            doc: value.doc,
+            id: value.id,
             title: value.title,
             icon: value.icon,
             sections: (value.items || []).map((section) => ({
+                id: section.id,
                 title: section.title,
                 slug: section.slug,
-                sub: (section.items || []).map((sub) => ({
-                    title: sub.title,
-                    slug: sub.slug
+                subSections: (section.items || []).map((subSection) => ({
+                    id: subSection.id,
+                    title: subSection.title,
+                    slug: subSection.slug
                 }))
             }))
         }));
@@ -30,6 +32,6 @@ export function DocsProvider({ children }) {
 
 export function useDocs() {
     const ctx = useContext(DocsContext);
-    if (ctx === null) throw new Error('useDocs must be used within DocsProvider');
+    if (ctx === null) return {docs: []};
     return ctx;
 }

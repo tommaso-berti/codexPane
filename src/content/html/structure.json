@@ -1,25 +1,27 @@
 {
-  "doc": "html",
+  "id": "html",
   "title": "HTML",
   "icon": "HtmlIcon",
   "items": [
     {
+      "id": "document-structure",
       "type": "section",
       "title": "Document structure",
       "slug": "html/document-structure",
       "order": 1,
       "items": [
-        { "type": "sub", "title": "Semantic naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
-        { "type": "sub", "title": "Header", "slug": "html/document-structure/header", "order": 2 }
+        { "id": "semantic-naming", "type": "subSection", "title": "Semantic naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
+        { "id": "header", "type": "subSection", "title": "Header", "slug": "html/document-structure/header", "order": 2 }
       ]
     },
     {
+      "id": "accessibility",
       "type": "section",
       "title": "Accessibility",
       "slug": "html/accessibility",
       "order": 1,
       "items": [
-        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 }
+        { "id": "seo", "type": "subSection", "title": "Seo", "slug": "html/accessibility/seo", "order": 1 }
       ]
     }
   ]
