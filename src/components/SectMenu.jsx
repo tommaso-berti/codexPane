@@ -20,7 +20,7 @@ export default function SectMenu() {
                         sectionid={section.id}
                         sectionTitle={section.title}
                         subsections={currentSubsections}
-                        params={params.docs}
+                        doc={params.docs}
                     />
                 );
             })}

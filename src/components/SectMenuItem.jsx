@@ -11,7 +11,7 @@ import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import StarBorder from "@mui/icons-material/StarBorder";
 
-export default function SectMenuItem({sectionid, sectionTitle, subsections, params}) {
+export default function SectMenuItem({sectionid, sectionTitle, subsections, doc}) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const handleClick = () => {
@@ -19,7 +19,7 @@ export default function SectMenuItem({sectionid, sectionTitle, subsections, para
     };
 
     const handleSelect = (id) => {
-        navigate(`/${params}/${sectionid}/${id}`);
+        navigate(`/${doc}/${sectionid}/${id}`);
     };
 
     return (

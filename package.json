@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@mdx-js/react": "^3.1.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@reduxjs/toolkit": "^2.9.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@mdx-js/rollup": "^3.1.1",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
