@@ -11,8 +11,8 @@ function App() {
             <Routes>
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="docs" element={<DocPage />} />
-                    <Route path="docs/:section/:slug" element={<SectPage />} />
+                    <Route path=":docs" element={<DocPage />} />
+                    <Route path=":docs/:section/:slug" element={<SectPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
             </Routes>

@@ -3,6 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
@@ -21,7 +22,7 @@ export default function SectMenuItem() {
                 <ListItemIcon>
                     <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" primaryTypographyProps={{ noWrap: true }}/>
+                <ListItemText primary={<Typography noWrap>Inbox</Typography>} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -30,7 +31,7 @@ export default function SectMenuItem() {
                         <ListItemIcon>
                             <StarBorder />
                         </ListItemIcon>
-                        <ListItemText primary="StarredStarredStarredStarredStarredStarredStarredStarred" primaryTypographyProps={{ noWrap: true }} />
+                        <ListItemText primary={<Typography noWrap>StarredStarredStarredStarredStarredStarredStarredStarred</Typography>} />
                     </ListItemButton>
                 </List>
             </Collapse>

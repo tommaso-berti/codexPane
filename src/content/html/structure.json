@@ -9,8 +9,8 @@
       "slug": "html/document-structure",
       "order": 1,
       "items": [
-        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
-        { "type": "sub", "title": "header", "slug": "html/document-structure/header", "order": 2 }
+        { "type": "sub", "title": "Semantic naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
+        { "type": "sub", "title": "Header", "slug": "html/document-structure/header", "order": 2 }
       ]
     },
     {
