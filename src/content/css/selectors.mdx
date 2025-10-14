@@ -1,0 +1,157 @@
+# Selectors
+
+## Tag selector
+
+Selects all elements of a given tag.
+
+~~~css
+p {
+  font-family: Verdana;
+}
+~~~
+
+## Universal selector
+
+Matches **every** element. Use carefully as it’s broad.
+
+~~~css
+* {
+  font-family: Verdana;
+}
+~~~
+
+## Class selector
+
+Use a dot `.` followed by the class name. Class beats tag selector (higher specificity).
+
+~~~css
+.brand {
+  /* ... */
+}
+~~~
+
+**Tip**
+- Reuse classes to avoid repetition and keep HTML semantic.
+
+## ID selector
+
+Unique per page; beats class selector in specificity.
+
+~~~css
+#large-title {
+  /* ... */
+}
+~~~
+
+**Attention**
+- Prefer classes for styling. Use IDs for unique anchors or JS hooks when needed.
+
+## Attribute selector
+
+Basic syntax: `[attr]` targets elements **having** the attribute.
+
+~~~css
+/* All elements with an href attribute */
+[href] {
+  color: magenta;
+}
+~~~
+
+More granular matching using operators like `*=` (contains):
+
+~~~html
+<img src="/images/seasons/cold/winter.jpg" alt="">
+<img src="/images/seasons/warm/summer.jpg" alt="">
+~~~
+
+~~~css
+img[src*="winter"] { filter: hue-rotate(60deg); } /* example style */
+img[src*="summer"] { filter: hue-rotate(200deg); }
+~~~
+
+**Note**
+- In the original example, `color` on `img` has no visible effect; use properties that affect images (e.g., `filter`, `border`, `height`, etc.).
+
+## Pseudo-class
+
+Stateful selectors like `:hover`, `:focus`, `:visited`, `:disabled`, `:active`.
+
+~~~css
+p:hover {
+  background-color: lime;
+}
+
+/* Link hover color */
+a { color: blue; }
+a:hover { color: orange; }
+
+/* Pointer cursor on links */
+a { cursor: pointer; }
+~~~
+
+**Order for link states (LVHA):**
+1. `:link`
+2. `:visited`
+3. `:hover`
+4. `:active`
+
+**Tip**
+- Place `:focus-visible` styles for accessibility (keyboard users).
+
+## Chained selector
+
+Combine selectors to narrow the match.
+
+~~~css
+p { color: blue; }
+
+.main p {  /* <p> inside an element with class="main" */
+  color: red; /* wins over the generic p rule */
+}
+~~~
+
+## Multiple selector
+
+Group selectors with a comma to share declarations.
+
+~~~css
+h1,
+.menu {
+  font-family: Georgia;
+}
+~~~
+
+## Direct child
+
+Use the child combinator `>` to select **only direct** children.
+
+~~~css
+/* Descendant: any img inside a div */
+div img { /* ... */ }
+
+/* Direct child: img that is an immediate child of div */
+div > img { /* ... */ }
+~~~
+
+**Mini-scheme**
+div
+├─ img ← matches: div img, div > img
+└─ section
+└─ img ← matches: div img (NOT div > img)
+
+## Pseudo-element
+
+Create/select virtual elements like `::before`/`::after`.
+
+~~~css
+.breadcrumb li + li::before {
+  padding: 10px;
+  content: ">";
+}
+~~~
+
+- `+` is the **adjacent sibling combinator**: selects an `li` that comes **immediately after** another `li` with the same parent.
+- `::before` inserts generated content **before** the selected element’s content.
+
+**Tip**
+- Pseudo-elements are great for decorative separators, icons, and accessible embellishments (pair with `aria-hidden="true"` when purely decorative).

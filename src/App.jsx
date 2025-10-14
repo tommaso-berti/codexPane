@@ -12,7 +12,7 @@ function App() {
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path=":docs" element={<DocPage />} />
-                    <Route path=":docs/:section/:subSection" element={<SectPage />} />
+                    <Route path=":docs/:section/" element={<SectPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
             </Routes>

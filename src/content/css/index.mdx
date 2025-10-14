@@ -1,0 +1,52 @@
+## Inline styling
+
+> **Note:** The text below actually describes an **internal stylesheet** (using a `<style>` tag inside `<head>`), which is different from true *inline styles* (e.g., `style="color:red"` on an element). Internal styles are sometimes useful for small demos or page-specific overrides, but not a best practice for larger projects.
+
+**Internal stylesheet basics**
+- Place a `<style>` element inside the `<head>` element.
+- CSS inside applies to the entire document.
+
+~~~html
+<head>
+  <style>
+    p {
+      color: red;
+      font-size: 20px;
+    }
+  </style>
+</head>
+~~~
+
+**Tip**
+- Prefer **external stylesheets** for maintainability and caching.
+
+## External stylesheet
+
+### Linking the stylesheet
+Use the self-closing `<link>` element **inside `<head>`** with:
+- `href` — path or URL to the `.css` file.
+- `rel` — set to `stylesheet`.
+
+~~~html
+<head>
+  <link href="path/to/file.css" rel="stylesheet" />
+</head>
+~~~
+
+### Link via URL
+Point `href` to an absolute URL.
+
+~~~html
+<link href="https://www.codecademy.com/stylesheets/style.css" rel="stylesheet" />
+~~~
+
+### Link via folder path
+Use a relative path. Example: CSS file in the **same folder** as `index.html`.
+
+~~~html
+<link href="./style.css" rel="stylesheet" />
+~~~
+
+**Attention**
+- Ensure the `href` path is correct relative to the HTML file location.
+- Keep external CSS in a dedicated `/css` folder when projects grow (e.g., `href="/css/style.css"`).

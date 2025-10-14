@@ -11,30 +11,32 @@ import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import StarBorder from "@mui/icons-material/StarBorder";
 
-export default function SectMenuItem({sectionid, sectionTitle, subsections, doc}) {
+export default function SectMenuItem({section, subsections}) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+
     const handleClick = () => {
         setOpen(!open);
+        navigate(`${section.slug}`)
     };
 
-    const handleSelect = (id) => {
-        navigate(`/${doc}/${sectionid}/${id}`);
+    const handleSelect = (slug) => {
+        navigate(`${slug}`);
     };
 
     return (
         <>
-            <ListItemButton key={sectionid} onClick={handleClick}>
+            <ListItemButton key={section.id} onClick={handleClick}>
                 <ListItemIcon>
                     <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={<Typography noWrap>{sectionTitle}</Typography>} />
+                <ListItemText primary={<Typography noWrap>{section.title}</Typography>} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {subsections.map((subsection) => (
-                        <ListItemButton key={subsection.id} onClick={() => handleSelect(subsection.id)} sx={{ pl: 4 }}>
+                        <ListItemButton key={subsection.id} onClick={() => handleSelect(subsection.slug)} sx={{ pl: 4 }}>
                             <ListItemIcon>
                                 <StarBorder />
                             </ListItemIcon>

@@ -12,6 +12,7 @@ export function DocsProvider({ children }) {
             id: value.id,
             title: value.title,
             icon: value.icon,
+            slug: value.slug,
             sections: (value.items || []).map((section) => ({
                 id: section.id,
                 title: section.title,

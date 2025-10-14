@@ -7,7 +7,7 @@ import ICONS from '../../icons.js'
 export default function DocMenu() {
     const { docs } = useDocs();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [buttonMenuName, setButtonMenuName] = useState('');
+    const [buttonMenuName, setButtonMenuName] = useState('Choose argument');
     const navigate = useNavigate();
     const params = useParams();
 
@@ -24,7 +24,7 @@ export default function DocMenu() {
     const handleSelect = (id, title) => {
         setAnchorEl(null);
         if(title) setButtonMenuName(title);
-        navigate(`/${id}`);
+        navigate(`/${docs.find(d => d.id === id).slug}`);
     };
 
     return (

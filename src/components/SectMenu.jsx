@@ -8,19 +8,17 @@ export default function SectMenu() {
     const { docs = [] } = useDocs();
     const params = useParams();
     const currentDoc = docs.find(d => d.id === params.docs);
-    const currentSections = currentDoc ? currentDoc.sections : null;
+    const currentSections = currentDoc ? currentDoc.sections : [];
 
     return (
         <List className="">
-            {(currentSections || []).map(section => {
+            {(currentSections).map(section => {
                 const currentSubsections = section?.subSections ?? [];
                 return (
                     <SectionMenuItem
                         key={section.id}
-                        sectionid={section.id}
-                        sectionTitle={section.title}
+                        section={section}
                         subsections={currentSubsections}
-                        doc={params.docs}
                     />
                 );
             })}

@@ -1,15 +1,37 @@
 {
-  "doc": "css",
+  "id": "css",
   "title": "CSS",
   "icon": "CssIcon",
+  "slug": "css",
   "items": [
     {
+      "id": "styling",
       "type": "section",
-      "title": "Document structure",
-      "slug": "html/document-structure",
+      "title": "Styling",
+      "slug": "css/styling",
       "order": 1,
       "items": [
-        { "type": "sub", "title": "semantic-naming", "slug": "html/document-structure/semantic-naming", "order": 1 }
+        { "id": "inline-styling", "type": "subSection", "title": "Inline styling", "slug": "css/styling#inline-styling", "order": 1 },
+        { "id": "external-stylesheet", "type": "subSection", "title": "External stylesheet", "slug": "css/styling#external-stylesheet", "order": 2 }
+      ]
+    },
+    {
+      "id": "selectors",
+      "type": "section",
+      "title": "Selectors",
+      "slug": "css/selectors",
+      "order": 2,
+      "items": [
+        { "id": "tag-selector", "type": "subSection", "title": "Tag selector", "slug": "css/selectors#tag-selector", "order": 1 },
+        { "id": "universal-selector", "type": "subSection", "title": "Universal selector", "slug": "css/selectors#universal-selector", "order": 2 },
+        { "id": "class-selector", "type": "subSection", "title": "Class selector", "slug": "css/selectors#class-selector", "order": 3 },
+        { "id": "id-selector", "type": "subSection", "title": "ID selector", "slug": "css/selectors#id-selector", "order": 4 },
+        { "id": "attribute-selector", "type": "subSection", "title": "Attribute selector", "slug": "css/selectors#attribute-selector", "order": 5 },
+        { "id": "pseudo-class", "type": "subSection", "title": "Pseudo-class", "slug": "css/selectors#pseudo-class", "order": 6 },
+        { "id": "chained-selector", "type": "subSection", "title": "Chained selector", "slug": "css/selectors#chained-selector", "order": 7 },
+        { "id": "multiple-selector", "type": "subSection", "title": "Multiple selector", "slug": "css/selectors#multiple-selector", "order": 8 },
+        { "id": "direct-child", "type": "subSection", "title": "Direct child", "slug": "css/selectors#direct-child", "order": 9 },
+        { "id": "pseudo-element", "type": "subSection", "title": "Pseudo-element", "slug": "css/selectors#pseudo-element", "order": 10 }
       ]
     }
   ]

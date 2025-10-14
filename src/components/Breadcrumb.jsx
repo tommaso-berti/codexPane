@@ -1,3 +1,3 @@
 export default function Breadcrumb() {
-    return (<div>test</div>);
+    return (<div>breadcrumb</div>);
 }
