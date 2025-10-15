@@ -19,18 +19,25 @@ Content lives in **MDX** files (Markdown + React components). UI is styled with 
 
 ## Tech Stack
 
-| Area                       | Technology                                              | Why                                                                          |
-| -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **Framework**              | **React + Vite**                                        | React is the base; Vite is an ultra-fast dev server for a clean React setup. |
-| **Styling**                | **Tailwind CSS**                                        | Modern and modular for docs layouts (sidebar, dark mode, typography).        |
-| **Content**                | **MDX** (`@mdx-js/react`)                               | Write pages in Markdown **+** React components. Readable, scalable, modern.  |
-| **Routing**                | **React Router DOM**                                    | Perfect for a Vite SPA (routes like `/docs`, `/linux`, `/git`).              |
-| **UI Components**          | **Material UI (MUI)**                                   | Ready-made, accessible components (Dialog, Tabs, DataGrid, Drawer).          |
-| **State Management**       | **Redux Toolkit**                                       | For global UI state (theme, search, sidebar). Not for static content.        |
-| **Markdown/MDX Rendering** | `@mdx-js/react` (or `react-markdown` if using plain MD) | Render MDX/MD inside React.                                                  |
-| **Code Highlighting**      | `rehype-prism-plus` or `react-syntax-highlighter`       | Pretty code blocks for cheatsheets.                                          |
-| **Local persistence**      | `localStorage`                                          | Remember theme, last visited page, etc.                                      |
-| **Build/Hosting**          | Vite → static build                                     | Output is pure static assets. Deploy on Netlify, GitHub Pages, Vercel, etc.  |
+| Technology / Type | NPM package (example) | Purpose | Where used (file / folder) |
+|---|---:|---|---|
+| Language | JavaScript | App development with React | `src/` |
+| UI framework | React / ReactDOM | UI library and rendering | `src/main.jsx`, `src/App.jsx`, `src/components/` |
+| Bundler / dev server | Vite (`vite`) | Build and dev server | `vite.config.js`, project root |
+| Vite React plugin | `@vitejs/plugin-react` | JSX support / fast refresh | `vite.config.js` |
+| Tailwind integration | `@tailwindcss/vite` or `tailwindcss` | Tailwind + Vite integration / utility CSS | `vite.config.js`, `src/index.css`, classes in `src/components/` |
+| MDX / markdown (build) | `@mdx-js/rollup` | Load `.mdx` as components at build time | `vite.config.js`, `content/*.mdx` |
+| MDX runtime | `@mdx-js/react` | Runtime provider / MDX component rendering (`MDXProvider`) | `src/components/DocPage.jsx`, components that render MDX |
+| Remark plugin | `remark-gfm` | GitHub Flavored Markdown support | `vite.config.js` |
+| Rehype plugin | `rehype-slug` | Generate slugs for anchors in MDX | `vite.config.js` |
+| Routing | `react-router-dom` | Client-side routing | `src/App.jsx`, `src/components/*` |
+| UI components | `@mui/material` | Material UI components (Breadcrumbs, Typography, Link, List...) | `src/components/Breadcrumb.jsx`, other components |
+| MUI icons | `@mui/icons-material` | Icons (e.g. `NavigateNextIcon`) | `src/components/Breadcrumb.jsx` |
+| State management | `@reduxjs/toolkit`, `react-redux` (likely) | Global state / slices | `store/store.js`, `store/sectMenuListSlice.js` |
+| GitHub-style Markdown CSS | `github-markdown-css` | GitHub-like Markdown styles for rendered MDX content | `src/components/SectPage.jsx`, `src/styles/github-markdown.css` |
+| Linting | ESLint | Code quality rules | `eslint.config.js` |
+| Package manager / runtime | Node.js / npm | Run scripts, manage deps | `package.json` |
+| Content / docs | MDX / Markdown | Documentation and lesson content | `content/*.mdx`, `content/*/structure.json` |
 
 > **Why no DB?** The content is static and versionable. Git gives you history, diffs, and easy backups. Keep it simple.
 
