@@ -47,7 +47,9 @@ export default function SectMenuItem({section, subsections, selected, setSelecte
         section.id,
         selected?.type,
         selected?.value,
-        setSelected
+        setSelected,
+        isSectionInPath,
+        isSectionParamMatch
     ]);
 
 
