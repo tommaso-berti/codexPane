@@ -12,12 +12,9 @@ export default function Breadcrumb() {
     const anchor = hash ? decodeURIComponent(hash.slice(1)) : null;
 
     const { docs } = useDocs() || [];
-    console.log({ docs });
     const doc = docs.find(d => d.id === params.docs) || null;
     const docSection = doc?.sections?.find(s => s.id === params.section) || null;
     const subsection = docSection?.subSections?.find(sub => sub.id === anchor) || null;
-
-    console.log({ params, anchor, doc, docSection, subsection });
 
     const crumbs = useMemo(() => {
         const items = [{ label: 'Home', href: '/' }];

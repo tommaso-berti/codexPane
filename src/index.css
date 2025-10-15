@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-    font-family: "Roboto Light", Avenir, Helvetica, Arial, sans-serif;
+    --font-family: "Roboto Light", Avenir, Helvetica, Arial, sans-serif;
+    font-family: var(--font-family), serif;
     line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;

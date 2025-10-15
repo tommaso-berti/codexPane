@@ -9,13 +9,16 @@ function useScrollToHash(deps = []) {
     const { hash } = useLocation();
 
     useEffect(() => {
-        if (!hash) return;
-        const id = decodeURIComponent(hash.slice(1));
         const t = setTimeout(() => {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-                el.focus?.();
+            if (hash) {
+                const id = decodeURIComponent(hash.slice(1));
+                const el = document.getElementById(id);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                    el.focus?.();
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }, 0);
         return () => clearTimeout(t);
