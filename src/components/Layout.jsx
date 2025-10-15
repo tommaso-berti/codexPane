@@ -7,13 +7,13 @@ export default function Layout() {
     return (
         <div className="flex flex-col min-h-screen w-full">
             <Header />
-            <div className="flex flex-row flex-1 mt-20 w-full h-[calc(100dvh-5rem)] min-h-0">
+            <div className="flex flex-row flex-1 mt-18 w-full h-[calc(100dvh-5rem)] min-h-0">
                 <div className="w-75  border-r fixed h-full">
                     <Sidebar />
                 </div>
                 <main
                     data-scroller="content"
-                    className="flex-1 pl-5 pt-3 min-h-0 overflow-auto ml-76"
+                    className="flex-1 pl-5 pr-5 pt-3 min-h-0 overflow-auto ml-76"
                 >
                     <Outlet />
                 </main>

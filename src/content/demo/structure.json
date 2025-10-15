@@ -1,0 +1,29 @@
+{
+  "id": "demo",
+  "title": "Demo",
+  "slug": "demo",
+  "items": [
+    {
+      "id": "style-showcase",
+      "type": "section",
+      "title": "MDX Style Guide (Demo)",
+      "slug": "demo/style-showcase",
+      "order": 1,
+      "items": [
+        { "id": "text-and-emphasis",         "type": "subSection", "title": "Text and emphasis",          "slug": "demo/style-showcase#text-and-emphasis",         "order": 1  },
+        { "id": "lists",                      "type": "subSection", "title": "Lists",                      "slug": "demo/style-showcase#lists",                      "order": 2  },
+        { "id": "headings",                   "type": "subSection", "title": "Headings",                   "slug": "demo/style-showcase#headings",                   "order": 3  },
+        { "id": "links-and-images",           "type": "subSection", "title": "Links and images",           "slug": "demo/style-showcase#links-and-images",           "order": 4  },
+        { "id": "tables",                     "type": "subSection", "title": "Tables",                     "slug": "demo/style-showcase#tables",                     "order": 5  },
+        { "id": "code-blocks",                "type": "subSection", "title": "Code blocks",                "slug": "demo/style-showcase#code-blocks",                "order": 6  },
+        { "id": "collapsible-details",        "type": "subSection", "title": "Collapsible details",        "slug": "demo/style-showcase#collapsible-details",        "order": 7  },
+        { "id": "inline-html",                "type": "subSection", "title": "Inline HTML",                "slug": "demo/style-showcase#inline-html",                "order": 8  },
+        { "id": "footnotes",                  "type": "subSection", "title": "Footnotes",                  "slug": "demo/style-showcase#footnotes",                  "order": 9  },
+        { "id": "horizontal-rule",            "type": "subSection", "title": "Horizontal rule",            "slug": "demo/style-showcase#horizontal-rule",            "order": 10 },
+        { "id": "ascii-diagrams",             "type": "subSection", "title": "ASCII diagrams",             "slug": "demo/style-showcase#ascii-diagrams",             "order": 11 },
+        { "id": "callout-patterns",           "type": "subSection", "title": "Callout patterns",           "slug": "demo/style-showcase#callout-patterns",           "order": 12 },
+        { "id": "minimal-section-skeleton",   "type": "subSection", "title": "Minimal section skeleton",   "slug": "demo/style-showcase#minimal-section-skeleton",   "order": 13 }
+      ]
+    }
+  ]
+}

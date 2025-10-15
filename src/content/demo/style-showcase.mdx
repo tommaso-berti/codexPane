@@ -1,0 +1,230 @@
+# MDX Style Guide (Demo)
+
+This file demonstrates the common style components supported by our GitHub-flavored Markdown renderer in the webapp. Use it as a reference when writing new sections.
+
+---
+
+## Text and emphasis
+
+Regular paragraph with **bold**, *italic*, and ~~strikethrough~~, plus `inline code`.
+
+Escaping special characters: `\*not bold\*`, `\_not italic\_`, `` \`literal backticks\` ``.
+
+> Blockquote for short callouts or quotations.
+
+**Tip:** Prefer short, scannable sentences.
+**Note:** Keep code semantics intact.
+**Attention:** Avoid breaking changes and unsafe patterns.
+
+---
+
+## Lists
+
+### Unordered list
+- Item one
+- Item two
+  - Nested item A
+  - Nested item B
+
+### Ordered list
+1. First
+2. Second
+3. Third
+
+### Task list
+- [x] Explain purpose
+- [x] Show examples
+- [ ] Add more real content later
+
+---
+
+## Headings
+
+# H1 — Section title (use once per file)
+## H2 — Subsection title (recognized as a subSection)
+### H3 — Optional deeper grouping
+#### H4 — Rarely needed
+
+---
+
+## Links and images
+
+Inline link: [MDN CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+Autolink (plain text allowed inside code block): https://example.com
+
+Image with alt text:
+
+![Sample diagram](./images/sample-diagram.png)
+
+> **Note:** If your renderer restricts relative assets, ensure your build copies `./images/` into the final public path.
+
+---
+
+## Tables
+
+| Feature        | Supported | Notes                          |
+|----------------|-----------|--------------------------------|
+| Bold/Italic    | Yes       | Standard Markdown              |
+| Task lists     | Yes       | GFM extension                  |
+| Tables         | Yes       | GFM extension                  |
+| Footnotes      | Yes       | GFM extension                  |
+
+---
+
+## Code blocks
+
+JavaScript:
+~~~js
+export function sum(a, b) {
+  return a + b;
+}
+console.log(sum(2, 3));
+~~~
+
+TypeScript / TSX:
+~~~tsx
+type ButtonProps = { label: string; onClick?: () => void };
+
+export default function Button({ label, onClick }: ButtonProps) {
+  return <button onClick={onClick}>{label}</button>;
+}
+~~~
+
+HTML:
+~~~html
+<section class="card">
+  <h2>Title</h2>
+  <p>Content</p>
+</section>
+~~~
+
+CSS:
+~~~css
+.card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+.card h2 { font-size: 1.25rem; }
+~~~
+
+Shell:
+~~~bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+~~~
+
+JSON:
+~~~json
+{
+  "name": "demo",
+  "private": true,
+  "scripts": { "dev": "vite" }
+}
+~~~
+
+---
+
+## Collapsible details
+
+<details>
+  <summary>Click to expand advanced tips</summary>
+
+  **Tip:** Keep sections small and focused.
+  **Note:** Use H2 (`##`) for subSections so the sidebar can index them.
+
+</details>
+
+---
+
+## Inline HTML
+
+Keyboard keys: <kbd>Ctrl</kbd> + <kbd>K</kbd>
+<abbr title="Cascading Style Sheets">CSS</abbr> facts are welcome.
+
+> **Attention:** The renderer may sanitize dangerous HTML. Keep it simple.
+
+---
+
+## Footnotes
+
+Footnote marker in text[^1] and another[^about].
+
+[^1]: This is a simple footnote for extra context.
+[^about]: Use sparingly to avoid distracting readers.
+
+---
+
+## Horizontal rule
+
+Above and below this block you see `---` used to separate content sections.
+
+---
+
+## ASCII diagrams
+
+Flexbox mental model (very simplified):
+
+~~~txt
+.container (display: flex)
+┌───────────────────────────────┐
+│ [item1] [item2] [item3] ...   │  ← row direction
+└───────────────────────────────┘
+justify-content: main axis
+align-items: cross axis
+~~~
+
+Grid area sketch:
+
+~~~txt
+grid-template-areas:
+  "hd  hd"
+  "sb  main"
+  "ft  ft"
+
+┌───────────┬───────────────────┐
+│   header  │      header       │
+├───────────┼───────────────────┤
+│ sidebar   │       main        │
+├───────────┴───────────────────┤
+│                 footer        │
+└───────────────────────────────┘
+~~~
+
+---
+
+## Callout patterns
+
+> **Tip:** Prefer examples aligned to your project’s conventions.
+>
+> **Note:** Keep headings stable; they drive navigation.
+>
+> **Attention:** Do not rename `id` or `slug` without updating references.
+
+---
+
+## Minimal section skeleton
+
+~~~md
+# Section title
+
+One-sentence purpose statement.
+
+## Subsection A
+Short explanation.
+~~~js
+// minimal example
+~~~
+
+## Subsection B
+Key rules.
+- Bullet 1
+- Bullet 2
+
+**Tip:** Keep it concise.
+~~~
+
+---
