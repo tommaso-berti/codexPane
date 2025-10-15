@@ -13,5 +13,6 @@ export default defineConfig({
           rehypePlugins: [rehypeSlug]
       }),
       react(),
-      tailwindcss()],
+      tailwindcss()
+  ],
 })

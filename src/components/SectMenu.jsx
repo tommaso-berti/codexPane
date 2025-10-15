@@ -11,7 +11,7 @@ export default function SectMenu() {
     const currentSections = currentDoc ? currentDoc.sections : [];
 
     return (
-        <List className="">
+        <List className="flex-1 min-h-0 overflow-y-auto">
             {(currentSections).map(section => {
                 const currentSubsections = section?.subSections ?? [];
                 return (

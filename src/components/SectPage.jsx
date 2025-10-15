@@ -1,6 +1,9 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react'
+
 const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
+import 'github-markdown-css/github-markdown.css';
+import '../styles/mdx.css';
 
 function useScrollToHash(deps = []) {
     const { hash } = useLocation();
@@ -11,7 +14,7 @@ function useScrollToHash(deps = []) {
         const t = setTimeout(() => {
             const el = document.getElementById(id);
             if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.scrollIntoView({ behavior: 'smooth' });
                 el.focus?.();
             }
         }, 0);
@@ -28,8 +31,8 @@ export default function SectPage() {
     useScrollToHash([key]);
 
     return (
-        <main className="p-6">
+        <div className="markdown-body">
             <Content />
-        </main>
+        </div>
     );
 }
