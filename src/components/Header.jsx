@@ -1,6 +1,10 @@
 import DocMenu from "./DocMenu.jsx";
 import Breadcrumb from "./Breadcrumb.jsx";
-import SearchBar from "./SearchBar.jsx";
+import SearchModal from "./SearchModal.jsx";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function Header() {
     return (
@@ -10,10 +14,11 @@ export default function Header() {
                 <DocMenu />
                 <Breadcrumb />
             </div>
-            <div className="flex-1 max-w-md ml-5">
-                <div>
-                    <SearchBar />
-                </div>
+            <div className="max-w ml-5">
+                <SearchModal />
+                <IconButton aria-label="github" size="large" href="https://github.com/tommaso-berti/codexPane" target="_blank">
+                    <GitHubIcon fontSize="inherit"/>
+                </IconButton>
             </div>
         </header>
     );
