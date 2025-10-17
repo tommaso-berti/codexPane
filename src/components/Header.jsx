@@ -1,6 +1,6 @@
 import DocMenu from "./DocMenu.jsx";
 import Breadcrumb from "./Breadcrumb.jsx";
-import SearchModal from "./SearchModal.jsx";
+import SearchModal from "../features/search/SearchModal.jsx";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,6 +19,7 @@ export default function Header() {
                 <IconButton aria-label="github" size="large" href="https://github.com/tommaso-berti/codexPane" target="_blank">
                     <GitHubIcon fontSize="inherit"/>
                 </IconButton>
+                
             </div>
         </header>
     );

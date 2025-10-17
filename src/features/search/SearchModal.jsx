@@ -8,10 +8,12 @@ import TextField from "@mui/material/TextField";
 
 const style = {
     position: 'absolute',
-    top: '20%',
+    top: '10%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translateX(-50%)',
     maxWidth: '40%',
+    height: '50%',
+    overflow: 'auto',
     bgcolor: 'background.paper',
     border: '1px solid #000',
     borderRadius: '10px',
@@ -38,7 +40,14 @@ export default function SearchModal() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="search-bar" variant="h12" component="header">
+                    <Box
+                        sx={{
+                            position: 'sticky',
+                            bgcolor: 'background.paper',
+                            zIndex: 1,
+                            mb: 2,
+                        }}
+                    >
                         <TextField
                             fullWidth
                             label={
@@ -49,17 +58,23 @@ export default function SearchModal() {
                             }
                             id="search"
                             size="small"
-                            variant="filled"
+                            variant="outlined"
                             autoComplete="off"
                             value={searchString}
                             onChange={(e) => setSearchString(e.target.value)}
                             onBlur={handleBlur}
                         />
-                    </Typography>
+                    </Box>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Text in a modal
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                     </Typography>

@@ -1,8 +1,7 @@
-import {configureStore} from '@reduxjs/toolkit';
-import sectMenuListSlice from "./sectMenuListSlice.js";
+import { configureStore } from '@reduxjs/toolkit';
 
-export default configureStore({
+export const store = configureStore({
     reducer: {
-        sectMenuList: sectMenuListSlice
-    }
-})
+
+    },
+});
