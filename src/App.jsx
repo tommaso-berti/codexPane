@@ -3,10 +3,9 @@ import './App.css'
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from './styles/theme.js'
 import Layout from "./components/Layout.jsx";
-import DocPage from "./components/DocPage.jsx";
+import TopicPage from "./components/TopicPage.jsx";
 import SectPage from "./components/SectPage.jsx";
 import Home from "./components/Home.jsx";
-
 
 function App() {
     return (
@@ -16,7 +15,7 @@ function App() {
                 <Routes>
                     <Route element={<Layout />}>
                         <Route index element={<Home />} />
-                        <Route path=":docs" element={<DocPage />} />
+                        <Route path=":docs" element={<TopicPage />} />
                         <Route path=":docs/:section" element={<SectPage />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>

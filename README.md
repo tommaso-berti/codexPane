@@ -19,25 +19,25 @@ Content lives in **MDX** files (Markdown + React components). UI is styled with 
 
 ## Tech Stack
 
-| Technology / Type | NPM package (example) | Purpose | Where used (file / folder) |
-|---|---:|---|---|
-| Language | JavaScript | App development with React | `src/` |
-| UI framework | React / ReactDOM | UI library and rendering | `src/main.jsx`, `src/App.jsx`, `src/components/` |
-| Bundler / dev server | Vite (`vite`) | Build and dev server | `vite.config.js`, project root |
-| Vite React plugin | `@vitejs/plugin-react` | JSX support / fast refresh | `vite.config.js` |
+| Technology / Type | NPM package (example) | Purpose | Where used (file / folder)                                      |
+|---|---:|---|-----------------------------------------------------------------|
+| Language | JavaScript | App development with React | `src/`                                                          |
+| UI framework | React / ReactDOM | UI library and rendering | `src/main.jsx`, `src/App.jsx`, `src/components/`                |
+| Bundler / dev server | Vite (`vite`) | Build and dev server | `vite.config.js`, project root                                  |
+| Vite React plugin | `@vitejs/plugin-react` | JSX support / fast refresh | `vite.config.js`                                                |
 | Tailwind integration | `@tailwindcss/vite` or `tailwindcss` | Tailwind + Vite integration / utility CSS | `vite.config.js`, `src/index.css`, classes in `src/components/` |
-| MDX / markdown (build) | `@mdx-js/rollup` | Load `.mdx` as components at build time | `vite.config.js`, `content/*.mdx` |
-| MDX runtime | `@mdx-js/react` | Runtime provider / MDX component rendering (`MDXProvider`) | `src/components/DocPage.jsx`, components that render MDX |
-| Remark plugin | `remark-gfm` | GitHub Flavored Markdown support | `vite.config.js` |
-| Rehype plugin | `rehype-slug` | Generate slugs for anchors in MDX | `vite.config.js` |
-| Routing | `react-router-dom` | Client-side routing | `src/App.jsx`, `src/components/*` |
-| UI components | `@mui/material` | Material UI components (Breadcrumbs, Typography, Link, List...) | `src/components/Breadcrumb.jsx`, other components |
-| MUI icons | `@mui/icons-material` | Icons (e.g. `NavigateNextIcon`) | `src/components/Breadcrumb.jsx` |
-| State management | `@reduxjs/toolkit`, `react-redux` (likely) | Global state / slices | `store/store.js`, `store/sectMenuListSlice.js` |
+| MDX / markdown (build) | `@mdx-js/rollup` | Load `.mdx` as components at build time | `vite.config.js`, `content/*.mdx`                               |
+| MDX runtime | `@mdx-js/react` | Runtime provider / MDX component rendering (`MDXProvider`) | `src/components/TopicPage.jsx`, components that render MDX      |
+| Remark plugin | `remark-gfm` | GitHub Flavored Markdown support | `vite.config.js`                                                |
+| Rehype plugin | `rehype-slug` | Generate slugs for anchors in MDX | `vite.config.js`                                                |
+| Routing | `react-router-dom` | Client-side routing | `src/App.jsx`, `src/components/*`                               |
+| UI components | `@mui/material` | Material UI components (Breadcrumbs, Typography, Link, List...) | `src/components/Breadcrumb.jsx`, other components               |
+| MUI icons | `@mui/icons-material` | Icons (e.g. `NavigateNextIcon`) | `src/components/Breadcrumb.jsx`                                 |
+| State management | `@reduxjs/toolkit`, `react-redux` (likely) | Global state / slices | `store/store.js`, `store/sectMenuListSlice.js`                  |
 | GitHub-style Markdown CSS | `github-markdown-css` | GitHub-like Markdown styles for rendered MDX content | `src/components/SectPage.jsx`, `src/styles/github-markdown.css` |
-| Linting | ESLint | Code quality rules | `eslint.config.js` |
-| Package manager / runtime | Node.js / npm | Run scripts, manage deps | `package.json` |
-| Content / docs | MDX / Markdown | Documentation and lesson content | `content/*.mdx`, `content/*/structure.json` |
+| Linting | ESLint | Code quality rules | `eslint.config.js`                                              |
+| Package manager / runtime | Node.js / npm | Run scripts, manage deps | `package.json`                                                  |
+| Content / docs | MDX / Markdown | Documentation and lesson content | `content/*.mdx`, `content/*/structure.json`                     |
 
 > **Why no DB?** The content is static and versionable. Git gives you history, diffs, and easy backups. Keep it simple.
 
@@ -51,7 +51,7 @@ Content lives in **MDX** files (Markdown + React components). UI is styled with 
   /components
     Header.jsx
     Sidebar.jsx
-    DocPage.jsx
+    TopicPage.jsx
   /content
     react/
       useState.mdx
@@ -150,10 +150,10 @@ grep -R "TODO" .
 ````
 
 ```tsx
-// src/components/DocPage.tsx
+// src/components/TopicPage.tsx
 import { MDXProvider } from "@mdx-js/react";
 
-export default function DocPage({ children }: { children: React.ReactNode }) {
+export default function TopicPage({ children }: { children: React.ReactNode }) {
   return (
     <article className="prose prose-neutral dark:prose-invert max-w-none">
       <MDXProvider>{children}</MDXProvider>

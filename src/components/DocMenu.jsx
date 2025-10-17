@@ -7,13 +7,13 @@ import ICONS from '../../icons.js'
 export default function DocMenu() {
     const { docs } = useDocs();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [buttonMenuName, setButtonMenuName] = useState('Choose argument');
+    const [buttonMenuName, setButtonMenuName] = useState('Choose topic');
     const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
         if(params.docs) {
-            setButtonMenuName(docs.find(d => d.id === params.docs)?.title || 'Choose argument');
+            setButtonMenuName(docs.find(d => d.id === params.docs)?.title || 'Choose topic');
         }
     }, [params.docs, docs]);
 

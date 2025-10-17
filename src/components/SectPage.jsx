@@ -1,9 +1,8 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react'
-
-const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
 import 'github-markdown-css/github-markdown.css';
 import '../styles/mdx.css';
+const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
 
 function useScrollToHash(deps = []) {
     const { hash } = useLocation();

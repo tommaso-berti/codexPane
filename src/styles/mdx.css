@@ -4,6 +4,7 @@
     color: inherit;
     background: transparent;
     max-width: 100%;
+    font-family: "Roboto Light", Avenir, Helvetica, Arial, sans-serif;
 }
 
 .markdown-body h1,
@@ -13,4 +14,20 @@
 .markdown-body h5,
 .markdown-body h6 {
     scroll-margin-top: 5.75rem;
+}
+
+.markdown-body table {
+    --bgColor-default: #FFFFFF;
+    --bgColor-muted: #F0F0F0;
+    color: #222;
+    border-collapse: collapse;
+}
+
+.markdown-body th,
+.markdown-body td {
+    border: 1px solid #ddd;
+}
+
+.markdown-body pre {
+    --bgColor-muted: #374151;
 }
