@@ -1,6 +1,7 @@
-import {Route, BrowserRouter, Routes, Navigate} from "react-router-dom";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
 import './App.css'
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
+import { useSelector } from "react-redux";
 import theme from './styles/theme.js'
 import Layout from "./components/Layout.jsx";
 import TopicPage from "./components/TopicPage.jsx";
@@ -8,6 +9,12 @@ import SectPage from "./components/SectPage.jsx";
 import Home from "./components/Home.jsx";
 
 function App() {
+    const mode = useSelector((state) => state.theme.mode);
+    const theme = createTheme({
+        palette: {
+            mode,
+        },
+    });
     return (
         <>
             <ThemeProvider theme={theme}>
