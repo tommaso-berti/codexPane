@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import { useMiniSearchFromDocs } from './useMiniSearchFromDocs';
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import List from "@mui/material/List";
 
 const style = {
     position: 'absolute',
     top: '10%',
     left: '50%',
     transform: 'translateX(-50%)',
-    maxWidth: '40%',
+    width: '50%',
     height: '50%',
     overflow: 'auto',
     bgcolor: 'background.paper',
@@ -24,11 +29,25 @@ const style = {
 export default function SearchModal() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [searchString, setSearchString] = useState('');
-    const handleBlur = () => {
+    const handleClose = () => {
+        setOpen(false);
         setSearchString('');
-    };
+    }
+    const [searchString, setSearchString] = useState('');
+    const [results, setResults] = useState([]);
+    const { search } = useMiniSearchFromDocs();
+    const navigate = useNavigate();
+
+    console.log(results);
+
+    useEffect(() => {
+            setResults(search(searchString));
+    }, [searchString, search]);
+
+    const handleClick = (path) => {
+        handleClose()
+        navigate(path)
+    }
 
     return (
         <>
@@ -62,22 +81,40 @@ export default function SearchModal() {
                             autoComplete="off"
                             value={searchString}
                             onChange={(e) => setSearchString(e.target.value)}
-                            onBlur={handleBlur}
                         />
                     </Box>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                    <Box>
+                        <List dense={true} component="div" disablePadding>
+                        {
+                           results.length > 0 ? (
+                                 results.map((result) => (
+                                     <ListItemButton
+                                        key={result.id}
+                                        onClick={() => handleClick(result.path)}
+                                        sx={{
+                                            border: '1px solid #ccc',
+                                            borderRadius: '5px',
+                                            p: 1,
+                                            mb: 1,
+                                            cursor: 'pointer',
+                                            flexDirection: 'column',
+                                            alignItems: 'flex-start',
+                                            width: '100%'
+                                        }}
+                                     >
+                                         <ListItemText primary={<Typography variant="h6" >{result.breadcrumb[0]}</Typography>} />
+                                         <ListItemText primary={<Typography variant="subtitle1" >{result.breadcrumb[1]}</Typography>} />
+                                         <ListItemText primary={<Typography variant="subtitle2" >{result.breadcrumb[2]}</Typography>} />
+                                     </ListItemButton>
+                                 ))
+                           ) : (
+                                 <Typography variant="subtitle1" color="text.secondary">
+                                     {searchString ? 'No results found.' : 'Type to search documentation.' }
+                                 </Typography>
+                           )
+                        }
+                        </List>
+                    </Box>
                 </Box>
             </Modal>
         </>

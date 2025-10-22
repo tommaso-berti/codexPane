@@ -2,35 +2,39 @@ import { useEffect, useMemo, useState } from 'react';
 import MiniSearch from 'minisearch';
 import { useDocs } from '../../contexts/DocsContext.jsx';
 
+function flattenDocs(docs) {
+    const out = [];
+    for (const topic of docs) {
+        const topicTitle = topic.title;
+        for (const section of (topic.sections || [])) {
+            out.push({
+                id: `${topic.id}/${section.id}`,
+                title: section.title,
+                body: '',
+                path: `/${section.slug}`,
+                breadcrumb: [topicTitle, section.title],
+                topictitle: topicTitle,
+                topic: topic.id
+            });
+            for (const sub of (section.subSections || [])) {
+                out.push({
+                    id: `${topic.id}/${section.id}#${sub.id}`,
+                    title: sub.title,
+                    body: '',
+                    path: `/${sub.slug}`,
+                    breadcrumb: [topicTitle, section.title, sub.title],
+                    topictitle: topicTitle,
+                    topic: topic.id
+                });
+            }
+        }
+    }
+    return out;
+}
+
 export function useMiniSearchFromDocs() {
     const { docs } = useDocs();
     const [mini, setMini] = useState(null);
-
-    function flattenDocs(docs) {
-        const out = [];
-        for (const topic of docs) {
-            const topicTitle = topic.title;
-            for (const section of (topic.sections || [])) {
-                out.push({
-                    id: `${topic.id}/${section.id}`,
-                    title: section.title,
-                    body: '',
-                    path: `/${section.slug}`,
-                    breadcrumb: [topicTitle, section.title],
-                });
-                for (const sub of (section.subSections || [])) {
-                    out.push({
-                        id: `${topic.id}/${section.id}#${sub.id}`,
-                        title: sub.title,
-                        body: '',
-                        path: `/${sub.slug}`,
-                        breadcrumb: [topicTitle, section.title, sub.title],
-                    });
-                }
-            }
-        }
-        return out;
-    }
 
     useEffect(() => {
         if (!docs.length) return;
@@ -39,7 +43,7 @@ export function useMiniSearchFromDocs() {
 
         const ms = new MiniSearch({
             fields: ['title', 'body'],
-            storeFields: ['title', 'path', 'breadcrumb'],
+            storeFields: ['title', 'path', 'breadcrumb', 'topictitle', 'topic'],
             searchOptions: { prefix: true, fuzzy: 0.2 },
         });
 
