@@ -2,11 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const themeSlice = createSlice({
     name: "theme",
-    initialState: {mode: localStorage.getItem('mui-mode') || 'light',},
+    initialState: {mode: localStorage.getItem('mui-mode') || 'light', fromSystem: false},
     reducers: {
-        toggleTheme (state) {
-            state.mode = state.mode === 'light' ? 'dark' : 'light';
-            localStorage.setItem('mui-mode', state.mode);
+        toggleTheme(state, action) {
+            const { mode, fromSystem = false } = action.payload;
+            if (mode === 'light' || mode === 'dark') {
+                localStorage.setItem('mui-mode', mode);
+                return { mode, fromSystem };
+            }
         }
     }
 })

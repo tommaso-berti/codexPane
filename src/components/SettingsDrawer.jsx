@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -12,14 +12,30 @@ export default function SettingsDrawer({open, onClose}) {
     const buttons = [{label: 'Light', mode: 'light', icon: <LightModeIcon /> }, {label: 'Dark', mode: 'dark', icon: <DarkModeIcon />}, {label: 'System', mode: 'system', icon: <SettingsBrightnessIcon />}];
     const [active, setActive] = useState(null)
     const dispatch = useDispatch();
-    const activeMode = useSelector((state) => state.theme);
-console.log(activeMode);
+    const { mode: activeMode, fromSystem } = useSelector(state => state.theme);
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     const handleClick = (index, mode) => {
-        setActive(index);
-        if (mode !== activeMode)
-            dispatch(toggleTheme());
+        let system = false;
+        if(mode === 'system') {
+            mode = prefersDarkMode ? 'dark' : 'light';
+            system = true;
+        }
+        if(mode === 'dark' || mode === 'light') {
+            setActive(index);
+        }
+        dispatch(toggleTheme({ mode, fromSystem: system }));
     }
+
+    useEffect(() => {
+        buttons.forEach(({mode}, index) => {
+            if(fromSystem) {
+                setActive(index);
+            }
+            if(mode === activeMode && !fromSystem) {
+                setActive(index);
+            }
+        })}, [])
 
     return (
         <SwipeableDrawer
@@ -28,7 +44,7 @@ console.log(activeMode);
             onClose={onClose}
             onOpen={() => {}}
         >
-            <ButtonGroup variant="outlined" aria-label="dark theme settings" >
+            <ButtonGroup variant="outlined" aria-label="dark theme settings" sx={{m:2, display: 'flex', flexDirection: 'row'}}>
                 {buttons.map(({label,mode, icon}, index) => {
                     return (
                         <Button

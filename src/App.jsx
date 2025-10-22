@@ -10,27 +10,26 @@ import Home from "./components/Home.jsx";
 
 function App() {
     const mode = useSelector((state) => state.theme.mode);
+    console.log("Current theme mode:", mode);
     const theme = createTheme({
         palette: {
-            mode,
+            mode
         },
     });
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <BrowserRouter>
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route index element={<Home />} />
-                            <Route path=":docs" element={<TopicPage />} />
-                            <Route path=":docs/:section" element={<SectPage />} />
-                            <Route path="*" element={<Navigate to="/" replace />} />
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<Layout />}>
+                        <Route index element={<Home />} />
+                        <Route path=":docs" element={<TopicPage />} />
+                        <Route path=":docs/:section" element={<SectPage />} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </ThemeProvider>
     )
 }
 
