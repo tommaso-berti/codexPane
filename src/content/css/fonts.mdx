@@ -1,0 +1,86 @@
+# Fonts
+
+## Web fonts using link
+Free font services (e.g., Google Fonts, Adobe Fonts) host fonts you can include via a `<link>` in your HTML.
+
+~~~html
+<head>
+  <!-- Add the link element for Google Fonts along with other metadata -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <h1 style="font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif">Hello Roboto</h1>
+</body>
+~~~
+
+> Tip: Preconnect riduce la latenza del fetch dei font.
+
+## Web fonts using font face
+You can self-host fonts from distributors (paid or free) and reference them with `@font-face`. Common formats:
+- OTF (OpenType)
+- TTF (TrueType)
+- WOFF (Web Open Font Format)
+- WOFF2 (Web Open Font Format 2) — most efficient and preferred
+
+~~~css
+/* Place @font-face rules near the top of your stylesheet */
+@font-face {
+  font-family: "MyParagraphFont";
+  src: url("fonts/Roboto.woff2") format("woff2"),
+       url("fonts/Roboto.woff") format("woff"),
+       url("fonts/Roboto.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* avoids invisible text */
+}
+
+/* Use it */
+p {
+  font-family: "MyParagraphFont", Georgia, serif;
+}
+~~~
+
+> Note: Order matters in `src`. The browser tries from top to bottom and picks the first supported format.
+
+## Fallback fonts and font stacks
+Always end your stack with a **generic family** for reliable fallback.
+
+~~~css
+h1 {
+  font-family: Caslon, Georgia, "Times New Roman";
+}
+
+/* Better with generic at the end */
+h1 {
+  font-family: Caslon, Georgia, "Times New Roman", serif;
+}
+~~~
+
+> Tip: Prefer modern system stacks for body text to reduce font loading cost:
+> `font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;`
+
+## Serif and sans serif
+Serif fonts have small decorative strokes; sans serif fonts do not. Pick based on tone and readability.
+
+~~~css
+.article-title { font-family: Georgia, "Times New Roman", serif; }
+.ui-label     { font-family: system-ui, Roboto, Arial, sans-serif; }
+~~~
+
+## Font weight
+Not all fonts provide every weight. Numeric weights map roughly as:
+`400 = normal`, `700 = bold`.
+
+~~~css
+.left-section  { font-weight: 700; }  /* numeric */
+.right-section { font-weight: bold; } /* keyword */
+~~~
+
+> Attention: Check the font family’s available weights/styles. Requesting a missing weight can cause faux-bolding/italicizing.
+
+## Font stack playground
+import FontPreview from "./components/fonts/FontPreview.jsx"
+
+<FontPreview />

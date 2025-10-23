@@ -1,0 +1,47 @@
+# Colors
+
+## hsl
+There’s another equally powerful system in CSS called the hue saturation lightness color scheme, abbreviated as HSL.
+The syntax looks like `hsl(<hue>, <saturation>, <lightness>)`.
+
+- **Hue** is an angle from 0 to 360 on the color wheel (Red 0, Green 120, Blue 240, back to Red at 360).
+- **Saturation** is a percentage of color intensity (0% gray → 100% vivid).
+- **Lightness** is a percentage of brightness (0% black, 50% normal, 100% white).
+
+HSL is convenient for adjustments: to make a color darker or lighter, change only the **lightness**.
+
+~~~css
+.element { color: hsl(120, 60%, 70%); }
+~~~
+
+> **Tip**: Build harmonious palettes by keeping saturation and lightness fixed and varying only the hue.
+
+## hsla
+To include transparency in the HSL scheme, use `hsla(h, s, l, a)` where **a** (alpha) is in the range `0`–`1`.
+
+~~~css
+.overlay { color: hsla(34, 100%, 50%, 0.1); } /* 10% opaque (90% transparent) */
+~~~
+
+- `0` → fully transparent, `1` → fully opaque, `0.5` → half transparent.
+- There is also a named keyword for zero opacity: **transparent**.
+
+~~~css
+.box { background: transparent; }
+~~~
+
+## rgba
+RGB has an alpha variant too: `rgba(r, g, b, a)`.
+
+~~~css
+.badge { background-color: rgba(234, 45, 98, 0.33); }
+~~~
+
+> **Note**: Prefer HSL/HSLA when you iterate on tints and shades; prefer RGB/RGBA when you already know channel values or work with image pixels.
+
+## HSL playground
+Play with hue, saturation, lightness, and alpha to see the resulting color and the generated CSS.
+
+import ColorHslPlayground from "./components/colors/ColorHslPlayground.jsx"
+
+<ColorHslPlayground />

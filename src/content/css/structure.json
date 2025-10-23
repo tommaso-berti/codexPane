@@ -218,6 +218,13 @@
           "title": "Box sizing border box",
           "slug": "css/box-model#box-sizing-border-box",
           "order": 11
+        },
+        {
+          "id": "box-sizing-playground",
+          "type": "subSection",
+          "title": "Box-sizing Playground",
+          "slug": "css/box-model#box-sizing-playground",
+          "order": 12
         }
       ]
     },
@@ -311,6 +318,101 @@
           "title": "Clear",
           "slug": "css/flow-of-html#clear",
           "order": 12
+        },
+        {
+          "id": "position-playground",
+          "type": "subSection",
+          "title": "Position Playground",
+          "slug": "css/flow-of-html#position-playground",
+          "order": 12
+        }
+      ]
+    },
+    {
+      "id": "fonts",
+      "type": "section",
+      "title": "Fonts",
+      "slug": "css/fonts",
+      "order": 7,
+      "items": [
+        {
+          "id": "web-fonts-using-link",
+          "type": "subSection",
+          "title": "Web fonts using link",
+          "slug": "css/fonts#web-fonts-using-link",
+          "order": 1
+        },
+        {
+          "id": "web-fonts-using-font-face",
+          "type": "subSection",
+          "title": "Web fonts using font face",
+          "slug": "css/fonts#web-fonts-using-font-face",
+          "order": 2
+        },
+        {
+          "id": "fallback-fonts-and-font-stacks",
+          "type": "subSection",
+          "title": "Fallback fonts and font stacks",
+          "slug": "css/fonts#fallback-fonts-and-font-stacks",
+          "order": 3
+        },
+        {
+          "id": "serif-and-sans-serif",
+          "type": "subSection",
+          "title": "Serif and sans serif",
+          "slug": "css/fonts#serif-and-sans-serif",
+          "order": 4
+        },
+        {
+          "id": "font-weight",
+          "type": "subSection",
+          "title": "Font weight",
+          "slug": "css/fonts#font-weight",
+          "order": 5
+        },
+        {
+          "id": "font-stack-playground",
+          "type": "subSection",
+          "title": "Font stack playground",
+          "slug": "css/fonts#font-stack-playground",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "colors",
+      "type": "section",
+      "title": "Colors",
+      "slug": "css/colors",
+      "order": 8,
+      "items": [
+        {
+          "id": "hsl",
+          "type": "subSection",
+          "title": "hsl",
+          "slug": "css/colors#hsl",
+          "order": 1
+        },
+        {
+          "id": "hsla",
+          "type": "subSection",
+          "title": "hsla",
+          "slug": "css/colors#hsla",
+          "order": 2
+        },
+        {
+          "id": "rgba",
+          "type": "subSection",
+          "title": "rgba",
+          "slug": "css/colors#rgba",
+          "order": 3
+        },
+        {
+          "id": "hsl-playground",
+          "type": "subSection",
+          "title": "HSL playground",
+          "slug": "css/colors#hsl-playground",
+          "order": 4
         }
       ]
     }
