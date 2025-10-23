@@ -1,0 +1,164 @@
+import BoxSizingDemo from "./components/box-model/BoxSizingDemo.jsx"
+
+# Box model
+
+Every element is a rectangle made of **content**, **padding**, **border**, and **margin**. Understanding how these parts add up is key to predictable layout.
+
+> **Tip:** Prefer logical properties (`margin-block`, `padding-inline`) for better RTL/LTR support.
+
+## Border
+
+Default border is `medium none currentColor`. Shorthand is `border: <width> <style> <color>`.
+
+~~~css
+.box {
+  border: 3px solid white;  /* width + style + color */
+}
+~~~
+
+> **Note:** You can target sides: `border-top`, `border-inline-start`, etc.
+
+## Border radius
+
+Rounds corners; `50%` makes perfect circles/ellipses when width = height.
+
+~~~css
+.card { border-radius: 5px; }
+.avatar { border-radius: 50%; }
+~~~
+
+## Padding
+
+Space **inside** the border around content. Shorthand accepts 1–4 values (clockwise: top, right, bottom, left).
+
+~~~css
+.pad1 { padding: 12px; }                 /* all sides */
+.pad2 { padding: 5px 10px; }             /* top/bottom, left/right */
+.pad3 { padding: 5px 10px 20px; }        /* top, left/right, bottom */
+.pad4 { padding: 5px 10px 20px 15px; }   /* top, right, bottom, left */
+~~~
+
+## Margin
+
+Space **outside** the border.
+
+Center a fixed-width block horizontally with auto side-margins:
+
+~~~css
+.container {
+  width: 600px;            /* must not be full-width */
+  margin: 0 auto;          /* top/bottom 0, left/right auto → centered */
+}
+~~~
+
+> **Tip:** For writing-mode–aware centering use `margin-inline: auto`.
+
+## Margin collapse
+
+Vertical margins of block-level elements can **collapse** into a single margin (the largest value wins).
+
+~~~html
+<section class="a"></section>
+<section class="b"></section>
+~~~
+~~~css
+.a { margin-bottom: 40px; }
+.b { margin-top: 20px; }   /* result between them is 40px, not 60px */
+~~~
+
+Avoid collapsing by introducing padding/border or a new block formatting context:
+
+~~~css
+.wrapper { padding-top: 1px; }     /* or border-top: 1px solid transparent; */
+.flow-root { display: flow-root; } /* establishes a new context */
+~~~
+
+## Min and max dimensions
+
+Constrain growth/shrink on responsive layouts.
+
+~~~css
+.panel {
+  min-width: 300px;
+  max-width: 600px;
+  min-height: 150px;
+  max-height: 300px;
+}
+~~~
+
+## Overflow
+
+Controls what happens when content exceeds the box.
+
+- `hidden` — clip overflow.
+- `scroll` — always show scrollbars.
+- `visible` — overflow can render outside (default).
+
+~~~css
+.viewport {
+  max-height: 180px;      /* needs a definite block size */
+  overflow: scroll;       /* or hidden / visible */
+}
+~~~
+
+> **Note:** `overflow: auto` shows scrollbars only when needed.
+
+## Reset defaults
+
+Browsers ship with **user agent stylesheets** (default margins/paddings). Many projects reset these:
+
+~~~css
+* {
+  margin: 0;
+  padding: 0;
+}
+~~~
+
+> **Attention:** Consider a modern “normalize” instead of a full wipe to preserve useful defaults (focus rings, etc.).
+
+## Visibility
+
+`visibility: hidden` hides the element but **keeps its space**. `display: none` removes it from layout.
+
+~~~css
+.hidden { visibility: hidden; }
+.gone { display: none; }
+~~~
+
+Also available: `visibility: collapse` (mainly for table rows/columns).
+
+## Content box
+
+The default model (`box-sizing: content-box`): width/height apply to the **content only**.
+
+Total inline size = width + padding-left + padding-right + border-left + border-right
+
+## Box sizing border box
+
+`box-sizing: border-box` keeps total size fixed; padding and border are included **inside** the declared width/height.
+
+~~~css
+.card {
+  box-sizing: border-box;
+  width: 300px;  /* total stays 300px including padding + border */
+  padding: 16px;
+  border: 4px solid #ddd;
+}
+~~~
+
+Per applicarlo a tutti gli elementi:
+
+~~~css
+* {
+  box-sizing: border-box;
+}
+~~~
+
+> **Tip:** Include pseudo-elements too:
+> ~~~css
+> *, *::before, *::after { box-sizing: border-box; }
+> ~~~
+
+### Live box-sizing demo
+
+<BoxSizingDemo />

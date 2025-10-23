@@ -1,0 +1,82 @@
+# Styling
+
+## Inline styling
+
+HTML lets you apply CSS in two ways directly within the page:
+
+- **Inline styles** — via the `style` attribute on an element.
+- **Internal stylesheet** — via a `<style>` element placed inside the `<head>`.
+
+**Inline styles** are handy for quick tests but are not best practice for maintainable projects.
+
+~~~html
+<!-- Inline style (applies only to this element) -->
+<p style="color: red; font-size: 20px;">Hello inline style</p>
+~~~
+
+**Internal stylesheet** groups CSS in one place in the document. Place the `<style>` block in the `<head>`.
+
+~~~html
+<!doctype html>
+<html>
+  <head>
+    <style>
+      p {
+        color: red;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Hello internal stylesheet</p>
+  </body>
+</html>
+~~~
+
+> **Note:** An internal stylesheet has benefits over inline styles (reuse, separation from markup), but for larger sites you’ll typically prefer an **external stylesheet**.
+
+> **Tip:** Keep selectors low-specificity (e.g., classes) even in internal styles so moving to an external file later is trivial.
+
+## External stylesheet
+
+Use the `<link>` element to connect HTML and a separate `.css` file. Place `<link>` in the `<head>`.
+
+**Required attributes**
+
+- `href` — path or URL to the CSS file.
+- `rel` — set to `stylesheet`.
+
+**Link via URL**
+
+~~~html
+<link href="https://www.codecademy.com/stylesheets/style.css" rel="stylesheet">
+~~~
+
+**Link via folder path** (relative path; example where `style.css` sits next to `index.html`)
+
+~~~html
+<link href="./style.css" rel="stylesheet">
+~~~
+
+**Typical page structure**
+
+~~~html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>External CSS example</title>
+    <!-- Load CSS early to avoid unstyled content -->
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>I am styled by style.css</p>
+  </body>
+</html>
+~~~
+
+> **Tip:** Use relative paths (`./styles/main.css`, `../css/app.css`) for portability across environments.
+
+> **Attention:** Avoid scattering many `<link>` tags for tiny files—bundle or import wisely to reduce HTTP requests and flashes of unstyled content.
+
+> **Note:** In HTML5, `<link>` is a void element—no closing tag is needed.

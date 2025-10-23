@@ -1,7 +1,6 @@
 {
   "id": "css",
-  "title": "CSS",
-  "icon": "CssIcon",
+  "title": "css",
   "slug": "css",
   "items": [
     {
@@ -11,8 +10,20 @@
       "slug": "css/styling",
       "order": 1,
       "items": [
-        { "id": "inline-styling", "type": "subSection", "title": "Inline styling", "slug": "css/styling#inline-styling", "order": 1 },
-        { "id": "external-stylesheet", "type": "subSection", "title": "External stylesheet", "slug": "css/styling#external-stylesheet", "order": 2 }
+        {
+          "id": "inline-styling",
+          "type": "subSection",
+          "title": "Inline styling",
+          "slug": "css/styling#inline-styling",
+          "order": 1
+        },
+        {
+          "id": "external-stylesheet",
+          "type": "subSection",
+          "title": "External stylesheet",
+          "slug": "css/styling#external-stylesheet",
+          "order": 2
+        }
       ]
     },
     {
@@ -22,16 +33,285 @@
       "slug": "css/selectors",
       "order": 2,
       "items": [
-        { "id": "tag-selector", "type": "subSection", "title": "Tag selector", "slug": "css/selectors#tag-selector", "order": 1 },
-        { "id": "universal-selector", "type": "subSection", "title": "Universal selector", "slug": "css/selectors#universal-selector", "order": 2 },
-        { "id": "class-selector", "type": "subSection", "title": "Class selector", "slug": "css/selectors#class-selector", "order": 3 },
-        { "id": "id-selector", "type": "subSection", "title": "ID selector", "slug": "css/selectors#id-selector", "order": 4 },
-        { "id": "attribute-selector", "type": "subSection", "title": "Attribute selector", "slug": "css/selectors#attribute-selector", "order": 5 },
-        { "id": "pseudo-class", "type": "subSection", "title": "Pseudo-class", "slug": "css/selectors#pseudo-class", "order": 6 },
-        { "id": "chained-selector", "type": "subSection", "title": "Chained selector", "slug": "css/selectors#chained-selector", "order": 7 },
-        { "id": "multiple-selector", "type": "subSection", "title": "Multiple selector", "slug": "css/selectors#multiple-selector", "order": 8 },
-        { "id": "direct-child", "type": "subSection", "title": "Direct child", "slug": "css/selectors#direct-child", "order": 9 },
-        { "id": "pseudo-element", "type": "subSection", "title": "Pseudo-element", "slug": "css/selectors#pseudo-element", "order": 10 }
+        {
+          "id": "tag-selector",
+          "type": "subSection",
+          "title": "Tag selector",
+          "slug": "css/selectors#tag-selector",
+          "order": 1
+        },
+        {
+          "id": "universal-selector",
+          "type": "subSection",
+          "title": "Universal selector",
+          "slug": "css/selectors#universal-selector",
+          "order": 2
+        },
+        {
+          "id": "class-selector",
+          "type": "subSection",
+          "title": "Class selector",
+          "slug": "css/selectors#class-selector",
+          "order": 3
+        },
+        {
+          "id": "id-selector",
+          "type": "subSection",
+          "title": "ID selector",
+          "slug": "css/selectors#id-selector",
+          "order": 4
+        },
+        {
+          "id": "attribute-selectors",
+          "type": "subSection",
+          "title": "Attribute selectors",
+          "slug": "css/selectors#attribute-selectors",
+          "order": 5
+        },
+        {
+          "id": "pseudo class selectors",
+          "type": "subSection",
+          "title": "Pseudo class selectors",
+          "slug": "css/selectors#pseudo-class-selectors",
+          "order": 6
+        },
+        {
+          "id": "descendant and child combinators",
+          "type": "subSection",
+          "title": "Descendant and child combinators",
+          "slug": "css/selectors#descendant-and-child-combinators",
+          "order": 7
+        },
+        {
+          "id": "grouping-selectors",
+          "type": "subSection",
+          "title": "Grouping selectors",
+          "slug": "css/selectors#grouping-selectors",
+          "order": 8
+        },
+        {
+          "id": "sibling combinators and pseudo elements",
+          "type": "subSection",
+          "title": "Sibling combinators and pseudo elements",
+          "slug": "css/selectors#sibling-combinators-and-pseudo-elements",
+          "order": 9
+        }
+      ]
+    },
+    {
+      "id": "specificity",
+      "type": "section",
+      "title": "Specificity",
+      "slug": "css/specificity",
+      "order": 3,
+      "items": [
+        {
+          "id": "basics",
+          "type": "subSection",
+          "title": "Basics",
+          "slug": "css/specificity#basics",
+          "order": 1
+        },
+        {
+          "id": "multiple-classes",
+          "type": "subSection",
+          "title": "Multiple classes",
+          "slug": "css/specificity#multiple-classes",
+          "order": 2
+        },
+        {
+          "id": "chaining",
+          "type": "subSection",
+          "title": "Chaining",
+          "slug": "css/specificity#chaining",
+          "order": 3
+        },
+        {
+          "id": "descendant",
+          "type": "subSection",
+          "title": "Descendant",
+          "slug": "css/specificity#descendant",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "box-model",
+      "type": "section",
+      "title": "Box model",
+      "slug": "css/box-model",
+      "order": 5,
+      "items": [
+        {
+          "id": "border",
+          "type": "subSection",
+          "title": "Border",
+          "slug": "css/box-model#border",
+          "order": 1
+        },
+        {
+          "id": "border-radius",
+          "type": "subSection",
+          "title": "Border radius",
+          "slug": "css/box-model#border-radius",
+          "order": 2
+        },
+        {
+          "id": "padding",
+          "type": "subSection",
+          "title": "Padding",
+          "slug": "css/box-model#padding",
+          "order": 3
+        },
+        {
+          "id": "margin",
+          "type": "subSection",
+          "title": "Margin",
+          "slug": "css/box-model#margin",
+          "order": 4
+        },
+        {
+          "id": "margin-collapse",
+          "type": "subSection",
+          "title": "Margin collapse",
+          "slug": "css/box-model#margin-collapse",
+          "order": 5
+        },
+        {
+          "id": "min-and-max-dimensions",
+          "type": "subSection",
+          "title": "Min and max dimensions",
+          "slug": "css/box-model#min-and-max-dimensions",
+          "order": 6
+        },
+        {
+          "id": "overflow",
+          "type": "subSection",
+          "title": "Overflow",
+          "slug": "css/box-model#overflow",
+          "order": 7
+        },
+        {
+          "id": "reset-defaults",
+          "type": "subSection",
+          "title": "Reset defaults",
+          "slug": "css/box-model#reset-defaults",
+          "order": 8
+        },
+        {
+          "id": "visibility",
+          "type": "subSection",
+          "title": "Visibility",
+          "slug": "css/box-model#visibility",
+          "order": 9
+        },
+        {
+          "id": "content-box",
+          "type": "subSection",
+          "title": "Content box",
+          "slug": "css/box-model#content-box",
+          "order": 10
+        },
+        {
+          "id": "box-sizing-border-box",
+          "type": "subSection",
+          "title": "Box sizing border box",
+          "slug": "css/box-model#box-sizing-border-box",
+          "order": 11
+        }
+      ]
+    },
+    {
+      "id": "flow-of-html",
+      "type": "section",
+      "title": "Flow of HTML",
+      "slug": "css/flow-of-html",
+      "order": 6,
+      "items": [
+        {
+          "id": "position",
+          "type": "subSection",
+          "title": "Position",
+          "slug": "css/flow-of-html#position",
+          "order": 1
+        },
+        {
+          "id": "relative",
+          "type": "subSection",
+          "title": "Relative",
+          "slug": "css/flow-of-html#relative",
+          "order": 2
+        },
+        {
+          "id": "absolute",
+          "type": "subSection",
+          "title": "Absolute",
+          "slug": "css/flow-of-html#absolute",
+          "order": 3
+        },
+        {
+          "id": "fixed",
+          "type": "subSection",
+          "title": "Fixed",
+          "slug": "css/flow-of-html#fixed",
+          "order": 4
+        },
+        {
+          "id": "sticky",
+          "type": "subSection",
+          "title": "Sticky",
+          "slug": "css/flow-of-html#sticky",
+          "order": 5
+        },
+        {
+          "id": "z-index",
+          "type": "subSection",
+          "title": "Z index",
+          "slug": "css/flow-of-html#z-index",
+          "order": 6
+        },
+        {
+          "id": "display",
+          "type": "subSection",
+          "title": "Display",
+          "slug": "css/flow-of-html#display",
+          "order": 7
+        },
+        {
+          "id": "inline",
+          "type": "subSection",
+          "title": "Inline",
+          "slug": "css/flow-of-html#inline",
+          "order": 8
+        },
+        {
+          "id": "block",
+          "type": "subSection",
+          "title": "Block",
+          "slug": "css/flow-of-html#block",
+          "order": 9
+        },
+        {
+          "id": "inline-block",
+          "type": "subSection",
+          "title": "Inline block",
+          "slug": "css/flow-of-html#inline-block",
+          "order": 10
+        },
+        {
+          "id": "float",
+          "type": "subSection",
+          "title": "Float",
+          "slug": "css/flow-of-html#float",
+          "order": 11
+        },
+        {
+          "id": "clear",
+          "type": "subSection",
+          "title": "Clear",
+          "slug": "css/flow-of-html#clear",
+          "order": 12
+        }
       ]
     }
   ]

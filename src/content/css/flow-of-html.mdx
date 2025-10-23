@@ -1,0 +1,139 @@
+import PositionPlayground from "./components/flow-of-html/PositionPlayground.jsx"
+
+# Flow of HTML
+
+In **normal flow**, block elements stack vertically and take the full inline size; inline content flows within the line box. You can change this behavior with `position`, `display`, floats, and stacking (`z-index`).
+
+## Position
+
+`position` controls how an element is laid out and how offsets (`top`, `right`, `bottom`, `left`) are applied.
+
+- `static` — default, participates in normal flow (offsets ignored).
+- `relative` — keeps its place in flow, then shifts visually by offsets.
+- `absolute` — removed from flow; positioned relative to the **nearest positioned ancestor** (non-`static`). If none exists, it uses the initial containing block.
+- `fixed` — removed from flow; positioned relative to the viewport (stays put on scroll).
+- `sticky` — acts `relative` until a threshold, then “sticks” like `fixed`.
+
+> **Tip:** Start with normal flow; switch to positioning only when you need overlapping or precise pinning.
+
+## Relative
+
+Shifts the element from its original spot without affecting siblings’ layout.
+
+~~~css
+.green-box {
+  background: green;
+  position: relative;
+  top: 50px;   /* move down */
+  left: 120px; /* move right */
+}
+~~~
+
+## Absolute
+
+Taken out of flow; other elements lay out as if it’s not there.
+
+~~~css
+.container { position: relative; } /* anchor */
+.badge {
+  position: absolute; top: -8px; right: -8px;
+}
+~~~
+
+> **Note:** Without a positioned ancestor, `absolute` positions relative to the page’s initial containing block.
+
+## Fixed
+
+Pinned to the viewport; content may scroll underneath.
+
+~~~css
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 64px; background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+main { padding-top: 64px; } /* prevent overlap */
+~~~
+
+## Sticky
+
+Stays in flow, then sticks after crossing a threshold.
+
+~~~css
+.subnav {
+  position: sticky;
+  top: 0;             /* stick point */
+  background: #fff;
+}
+~~~
+
+> **Attention:** `sticky` needs a scrollable ancestor and space to stick (no `overflow: hidden` on ancestor).
+
+## Z index
+
+Controls stacking order when elements overlap.
+
+~~~css
+.modal { position: fixed; z-index: 1000; }
+.backdrop { position: fixed; z-index: 900; }
+~~~
+
+> **Note:** `z-index` applies to **positioned** elements (non-`static`). Transforms, opacity, and other properties can create new stacking contexts—keep layers simple.
+
+## Display
+
+Switch between layout modes: `block`, `inline`, `inline-block`, `flex`, `grid`, etc. (Here we focus on the first three.)
+
+~~~css
+h1 { display: inline; }     /* render as inline */
+span.blocky { display: block; }
+.tag { display: inline-block; width: 120px; height: 32px; }
+~~~
+
+## Inline
+
+Wraps tightly around content; **width/height don’t apply**.
+
+~~~html
+<a href="#">link</a> text continues…
+~~~
+
+## Block
+
+Starts on a new line, stretches to fill the row by default. Dimensions can be set.
+
+~~~css
+article { display: block; width: 60ch; }
+~~~
+
+## Inline block
+
+Flows inline **and** accepts width/height (images behave like this by default).
+
+~~~css
+.card { display: inline-block; width: 240px; }
+~~~
+
+## Float
+
+Floats push content to wrap around them.
+
+~~~css
+.figure { float: right; width: 220px; margin: 0 0 1rem 1rem; }
+~~~
+
+> **Tip:** Use Flexbox/Grid for layout; reserve floats for text wrap around small media.
+
+## Clear
+
+Prevents wrapping/bumping alongside floats.
+
+~~~css
+.box { width: 200px; float: left; }
+.box.special { clear: left; } /* move below any left floats */
+~~~
+
+### Position playground
+
+<PositionPlayground />

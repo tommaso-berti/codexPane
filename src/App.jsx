@@ -10,7 +10,6 @@ import Home from "./components/Home.jsx";
 
 function App() {
     const mode = useSelector((state) => state.theme.mode);
-    console.log("Current theme mode:", mode);
     const theme = createTheme({
         palette: {
             mode

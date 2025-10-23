@@ -37,8 +37,6 @@ export default function SearchModal() {
     const { search } = useMiniSearchFromDocs();
     const navigate = useNavigate();
 
-    console.log(results);
-
     useEffect(() => {
         const found = search(searchString);
         setResults(found);

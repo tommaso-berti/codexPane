@@ -1,0 +1,69 @@
+# Specificity
+
+Specificity is how the browser decides which rule applies when multiple selectors match the same element. Best practice: **keep specificity low** so styles are easy to override.
+
+> **Note:** Tie-breaker rules:
+> 1) Higher specificity wins.
+> 2) If equal, the rule that appears **later** in the stylesheet wins.
+
+## Basics
+
+Rough ranking from low → high: `*` (universal) < type `h1` < class/attribute/pseudo-class `.btn`, `[href]`, `:hover` < **ID** `#hero` < inline styles.
+
+~~~css
+h1 { color: red; }
+
+.headline {           /* class beats the type selector */
+  color: firebrick;
+}
+
+/* If we add an ID, it wins over both */
+#title { color: seagreen; }
+~~~
+
+> **Tip:** A useful mental model is a 3-part score: **[IDs, classes, elements]**.
+> Example scores: `#title` → [1,0,0], `.headline` → [0,1,0], `h1` → [0,0,1].
+
+## Multiple classes
+
+An element can have many classes. Declarations **merge**; on conflicts, the browser uses specificity, then source order.
+
+~~~html
+<p class="red blue">Text</p>
+~~~
+
+~~~css
+.red { color: red; }
+.blue { color: blue; }   /* same specificity, appears later → wins → blue text */
+~~~
+
+> **Note:** The **order of class names in HTML doesn’t matter**; only the order of CSS rules does.
+
+## Chaining
+
+Combining selectors increases specificity and narrows the match.
+
+~~~css
+/* Only <h1> elements that also have the "special" class */
+h1.special {
+  /* ... */
+}
+
+/* This is more specific than just ".special" */
+.special { /* ... */ }
+~~~
+
+> **Tip:** Prefer class-only selectors (e.g., `.card .title`) over tag-qualified ones (`h2.title`) to keep specificity predictable.
+
+## Descendant
+
+Descendant combinator (a space) targets elements **inside** another selector.
+
+~~~css
+/* Select all <li> that are descendants of the element with class .main-list */
+.main-list li {
+  /* ... */
+}
+~~~
+
+> **Attention:** Avoid escalating specificity with long chains. If overriding becomes hard, consider refactoring selectors or extracting utilities instead of adding `!important`.

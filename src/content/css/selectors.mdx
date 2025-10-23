@@ -1,8 +1,10 @@
 # Selectors
 
+> **Note:** Selector specificity matters. Rough guide (from low → high): universal `*` < tag `p` < class/attribute/pseudo class `.btn`, `[href]`, `:hover` < ID `#app` < inline styles. When rules tie, the later one in the stylesheet wins.
+
 ## Tag selector
 
-Selects all elements of a given tag.
+Selects all elements by tag name.
 
 ~~~css
 p {
@@ -12,7 +14,7 @@ p {
 
 ## Universal selector
 
-Matches **every** element. Use carefully as it’s broad.
+Targets every element. Useful for resets—use sparingly.
 
 ~~~css
 * {
@@ -20,9 +22,14 @@ Matches **every** element. Use carefully as it’s broad.
 }
 ~~~
 
+> **Tip:** Common reset:
+> ~~~css
+> *, *::before, *::after { box-sizing: border-box; }
+> ~~~
+
 ## Class selector
 
-Use a dot `.` followed by the class name. Class beats tag selector (higher specificity).
+Uses `.` before the class name. Class beats tag by specificity.
 
 ~~~css
 .brand {
@@ -30,12 +37,9 @@ Use a dot `.` followed by the class name. Class beats tag selector (higher speci
 }
 ~~~
 
-**Tip**
-- Reuse classes to avoid repetition and keep HTML semantic.
-
 ## ID selector
 
-Unique per page; beats class selector in specificity.
+IDs are unique per page and outrank classes.
 
 ~~~css
 #large-title {
@@ -43,76 +47,69 @@ Unique per page; beats class selector in specificity.
 }
 ~~~
 
-**Attention**
-- Prefer classes for styling. Use IDs for unique anchors or JS hooks when needed.
+## Attribute selectors
 
-## Attribute selector
+Select based on attributes and values.
 
-Basic syntax: `[attr]` targets elements **having** the attribute.
-
+- Basic presence:
 ~~~css
-/* All elements with an href attribute */
-[href] {
-  color: magenta;
-}
-~~~
-
-More granular matching using operators like `*=` (contains):
-
+[href] { color: magenta; }
+  ~~~
+- Match fragments with `*=`:
 ~~~html
 <img src="/images/seasons/cold/winter.jpg" alt="">
 <img src="/images/seasons/warm/summer.jpg" alt="">
-~~~
-
+  ~~~
 ~~~css
-img[src*="winter"] { filter: hue-rotate(60deg); } /* example style */
-img[src*="summer"] { filter: hue-rotate(200deg); }
-~~~
+img[src*="winter"] { height: 50px; }
+img[src*="summer"] { height: 100px; }
+  ~~~
 
-**Note**
-- In the original example, `color` on `img` has no visible effect; use properties that affect images (e.g., `filter`, `border`, `height`, etc.).
+> **Note:** Other operators: `^=` (starts with), `$=` (ends with), `~=` (contains word), `|=` (lang-prefix).
 
-## Pseudo-class
+## Pseudo class selectors
 
-Stateful selectors like `:hover`, `:focus`, `:visited`, `:disabled`, `:active`.
+Represent transient states like interaction, history, or position.
 
 ~~~css
 p:hover {
   background-color: lime;
 }
-
-/* Link hover color */
-a { color: blue; }
-a:hover { color: orange; }
-
-/* Pointer cursor on links */
-a { cursor: pointer; }
 ~~~
 
-**Order for link states (LVHA):**
-1. `:link`
-2. `:visited`
-3. `:hover`
-4. `:active`
+Links often use this order so interactive states override static ones:
 
-**Tip**
-- Place `:focus-visible` styles for accessibility (keyboard users).
+~~~css
+/* order: :link → :visited → :hover → :active */
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: orange; }
+a:active { color: red; }
 
-## Chained selector
+a { cursor: pointer; } /* make the pointer hand on hover */
+~~~
 
-Combine selectors to narrow the match.
+> **Tip:** Common pseudo classes: `:focus`, `:focus-visible`, `:disabled`, `:checked`, `:nth-child(n)`, `:not(...)`.
+
+## Descendant and child combinators
+
+**Chained/descendant** selectors apply to elements inside another selector:
 
 ~~~css
 p { color: blue; }
-
-.main p {  /* <p> inside an element with class="main" */
-  color: red; /* wins over the generic p rule */
-}
+.main p { color: red; }  /* only <p> inside .main are red */
 ~~~
 
-## Multiple selector
+**Direct child** uses `>` and ignores deeper descendants:
 
-Group selectors with a comma to share declarations.
+~~~css
+div img { /* any descendant <img> inside a <div> */ }
+div > img { /* only immediate child <img> of a <div> */ }
+~~~
+
+## Grouping selectors
+
+Apply the same declarations to multiple selectors by separating with commas.
 
 ~~~css
 h1,
@@ -121,21 +118,9 @@ h1,
 }
 ~~~
 
-## Direct child
+## Sibling combinators and pseudo elements
 
-Use the child combinator `>` to select **only direct** children.
-
-~~~css
-/* Descendant: any img inside a div */
-div img { /* ... */ }
-
-/* Direct child: img that is an immediate child of div */
-div > img { /* ... */ }
-~~~
-
-## Pseudo-element
-
-Create/select virtual elements like `::before`/`::after`.
+Adjacent siblings `+` select the next element that shares the same parent. Pseudo elements create generated content.
 
 ~~~css
 .breadcrumb li + li::before {
@@ -144,8 +129,7 @@ Create/select virtual elements like `::before`/`::after`.
 }
 ~~~
 
-- `+` is the **adjacent sibling combinator**: selects an `li` that comes **immediately after** another `li` with the same parent.
-- `::before` inserts generated content **before** the selected element’s content.
+- `li + li` selects an `li` that immediately follows another `li`.
+- `::before` inserts generated content before the element’s content.
 
-**Tip**
-- Pseudo-elements are great for decorative separators, icons, and accessible embellishments (pair with `aria-hidden="true"` when purely decorative).
+> **Attention:** Prefer utility classes or low-specificity selectors for scalability; avoid over-qualifying selectors (e.g., `ul.nav li a.button`) which increases specificity and coupling.
