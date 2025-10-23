@@ -2,14 +2,11 @@ import {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
 import { useMiniSearchFromDocs } from './useMiniSearchFromDocs';
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import List from "@mui/material/List";
+import SearchInput from "./SearchInput.jsx";
+import SearchResults from "./SearchResults.jsx";
 
 const style = {
     position: 'absolute',
@@ -35,13 +32,22 @@ export default function SearchModal() {
     }
     const [searchString, setSearchString] = useState('');
     const [results, setResults] = useState([]);
+    const [topics, setTopics] = useState([]);
+
     const { search } = useMiniSearchFromDocs();
     const navigate = useNavigate();
 
     console.log(results);
 
     useEffect(() => {
-            setResults(search(searchString));
+        const found = search(searchString);
+        setResults(found);
+        const uniqTopics = [
+            ...new Map(
+                found.map(r => [r.topic, { topic: r.topic, topictitle: r.topictitle }])
+            ).values()
+        ];
+        setTopics(uniqTopics);
     }, [searchString, search]);
 
     const handleClick = (path) => {
@@ -59,62 +65,8 @@ export default function SearchModal() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Box
-                        sx={{
-                            position: 'sticky',
-                            bgcolor: 'background.paper',
-                            zIndex: 1,
-                            mb: 2,
-                        }}
-                    >
-                        <TextField
-                            fullWidth
-                            label={
-                                <>
-                                    <SearchIcon sx={{ fontSize: 20, mr: 0.5, verticalAlign: 'middle' }} />
-                                    Search
-                                </>
-                            }
-                            id="search"
-                            size="small"
-                            variant="outlined"
-                            autoComplete="off"
-                            value={searchString}
-                            onChange={(e) => setSearchString(e.target.value)}
-                        />
-                    </Box>
-                    <Box>
-                        <List dense={true} component="div" disablePadding>
-                        {
-                           results.length > 0 ? (
-                                 results.map((result) => (
-                                     <ListItemButton
-                                        key={result.id}
-                                        onClick={() => handleClick(result.path)}
-                                        sx={{
-                                            border: '1px solid #ccc',
-                                            borderRadius: '5px',
-                                            p: 1,
-                                            mb: 1,
-                                            cursor: 'pointer',
-                                            flexDirection: 'column',
-                                            alignItems: 'flex-start',
-                                            width: '100%'
-                                        }}
-                                     >
-                                         <ListItemText primary={<Typography variant="h6" >{result.breadcrumb[0]}</Typography>} />
-                                         <ListItemText primary={<Typography variant="subtitle1" >{result.breadcrumb[1]}</Typography>} />
-                                         <ListItemText primary={<Typography variant="subtitle2" >{result.breadcrumb[2]}</Typography>} />
-                                     </ListItemButton>
-                                 ))
-                           ) : (
-                                 <Typography variant="subtitle1" color="text.secondary">
-                                     {searchString ? 'No results found.' : 'Type to search documentation.' }
-                                 </Typography>
-                           )
-                        }
-                        </List>
-                    </Box>
+                    <SearchInput value={searchString} onChange={(e) => setSearchString(e.target.value)} />
+                    <SearchResults topics={topics}  results={results} onItemClick={handleClick} />
                 </Box>
             </Modal>
         </>

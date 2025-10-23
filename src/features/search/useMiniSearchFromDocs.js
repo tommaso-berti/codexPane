@@ -14,7 +14,6 @@ function flattenDocs(docs) {
                 path: `/${section.slug}`,
                 breadcrumb: [topicTitle, section.title],
                 topictitle: topicTitle,
-                topic: topic.id
             });
             for (const sub of (section.subSections || [])) {
                 out.push({
@@ -24,7 +23,6 @@ function flattenDocs(docs) {
                     path: `/${sub.slug}`,
                     breadcrumb: [topicTitle, section.title, sub.title],
                     topictitle: topicTitle,
-                    topic: topic.id
                 });
             }
         }
@@ -43,7 +41,7 @@ export function useMiniSearchFromDocs() {
 
         const ms = new MiniSearch({
             fields: ['title', 'body'],
-            storeFields: ['title', 'path', 'breadcrumb', 'topictitle', 'topic'],
+            storeFields: ['title', 'path', 'breadcrumb', 'topictitle'],
             searchOptions: { prefix: true, fuzzy: 0.2 },
         });
 
