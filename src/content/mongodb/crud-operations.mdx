@@ -1,0 +1,48 @@
+# Crud operations
+
+## Syntax
+
+General call shape:
+~~~
+db.collectionName.operator()
+~~~
+
+## Find
+
+Use `.find()` on a specific collection to match documents.
+
+~~~
+.find()
+db.<collection>.find()
+~~~
+
+**Description**
+Find an element in a collection. The first parameter is the **filter**, the second is the **projection** (`1` to include, `0` to exclude).
+
+**Example**
+~~~
+db.collectionName.find({ attribute: value }, { pippo: 1, pluto: 0 })
+~~~
+
+> Tip: Projections help reduce network payload by returning only the fields you need.
+
+When called with no arguments, `.find()` matches **all** documents in the specified collection.
+
+## Cursor behavior
+
+If the query is successful, MongoDB returns a **cursor**—an object that points to the matched documents. Because result sets can be large, MongoDB returns results in **batches**.
+
+- The first batch is returned immediately.
+- To advance to the next batch in the shell, use the `it` keyword (short for *iterate*).
+
+## Example query on embedded field
+
+Find all restaurants where the **street name** (an embedded field) starts with the letter **"C"** or any alphanumeric character that comes before it.
+
+Use **dot notation** with the `$lte` operator:
+
+~~~
+db.<collection>.find(
+  { "<parent_field>.<embedded_field>": { $lte: <value> } }
+)
+~~~

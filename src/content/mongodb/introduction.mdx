@@ -1,0 +1,58 @@
+# Introduction to MongoDB
+
+MongoDB is a document-oriented NoSQL database built for flexible schemas, high availability, and horizontal scalability. Instead of rows and tables, MongoDB stores data as **BSON** documents (binary JSON), grouped into **collections** inside **databases**. This makes it easy to evolve your data model without costly migrations.
+
+## Core concepts
+
+- **Document**: A JSON-like object, e.g. `{ _id: ObjectId("..."), name: "Ada", skills: ["math","logic"] }`.
+- **Collection**: A group of documents (like a table, but schema-less).
+- **Database**: A logical container for collections.
+- **_id**: The primary key for each document (defaults to `ObjectId`).
+- **Index**: Speeds up queries (single field, compound, text, geospatial, and more).
+- **Replica set**: A group of MongoDB nodes for automatic failover and redundancy.
+- **Sharding**: Horizontal partitioning across machines for large datasets and high throughput.
+- **Aggregation**: A powerful pipeline to transform, filter, group, and analyze documents.
+
+## Quick start (shell)
+
+~~~js
+// In mongosh
+use mydb
+db.users.insertOne({ name: "Ada", email: "ada@example.com", tags: ["math","logic"] })
+db.users.find({ tags: "math" })
+db.users.updateOne({ email: "ada@example.com" }, { $set: { active: true } })
+db.users.createIndex({ email: 1 }, { unique: true })
+~~~
+
+## When to use it
+
+- You need **flexible schemas** and fast iteration.
+- Your workload benefits from **document locality** (related data stored together).
+- You plan for **global scaling** with sharding and replica sets.
+
+> Tip: Model data around **application access patterns**. Embed related data that you read together; reference when relationships are many-to-many or when documents would grow unbounded.
+
+## Aggregation teaser
+
+~~~js
+db.orders.aggregate([
+  { $match: { status: "paid" } },
+  { $group: { _id: "$customerId", total: { $sum: "$amount" } } },
+  { $sort: { total: -1 } },
+  { $limit: 5 }
+])
+~~~
+
+## Common drivers
+
+- JavaScript/Node.js, Python, Go, Java, C#, and more—each with idiomatic APIs and connection pooling.
+
+> Note: Use **connection strings** (SRV URIs) and **connection pooling** best practices in production; configure timeouts and retries for reliability.
+
+## Next steps
+
+- Data modeling strategies (embed vs reference)
+- CRUD patterns and indexes
+- Aggregation pipelines
+- Transactions and schema validation
+- Replication, sharding, and performance tuning

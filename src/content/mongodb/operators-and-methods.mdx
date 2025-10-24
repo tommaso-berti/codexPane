@@ -1,0 +1,97 @@
+# Operators and methods
+
+## Operators
+Comparison operators work with numbers, dates, and strings.
+
+- `$gt` — greater than
+- `$gte` — greater than or equal to
+- `$lt` — less than
+- `$lte` — less than or equal to
+- `$eq` — equal to
+
+~~~mongosh
+// Numbers
+db.products.find({ price: { $gt: 50 } })
+
+// Dates
+db.orders.find({ createdAt: { $gte: ISODate("2025-01-01") } })
+
+// Strings (lexicographic)
+db.users.find({ lastName: { $lt: "M" } })
+~~~
+
+> Tip: String comparisons are **lexicographic** and case sensitive by default unless using collation.
+
+## Query on arrays
+Rules for matching arrays:
+
+- **Exact array match** (same values **and order**):
+~~~mongosh
+db.posts.find({ tags: ["val1", "val2"] })
+~~~
+
+- **Contains a single value** (array **includes** element):
+~~~mongosh
+db.posts.find({ tags: "val1" }) // any array that includes "val1"
+~~~
+
+- **Contains all values, order ignored**:
+~~~mongosh
+db.posts.find({ tags: { $all: ["val1", "val2"] } })
+~~~
+
+- **Multiple criteria on the same array element** with `$elemMatch`:
+~~~mongosh
+db.products.find({
+  sizes: { $elemMatch: { type: "shoe", eu: { $gte: 40, $lte: 42 } } }
+})
+~~~
+
+> Note: Without `$elemMatch`, criteria on different fields may match **different** elements of the array.
+
+## Dot notation
+When a document has embedded documents, query nested fields with **dot notation** (wrap field paths in quotes).
+
+~~~mongosh
+// Match embedded field
+db.customers.find({ "address.city": "Milan" })
+
+// Combine with array queries
+db.orders.find({ "items.0.sku": "SKU-123" }) // first array element
+~~~
+
+## Methods
+Common helpers for shaping and inspecting query results:
+
+- `.sort()` — sort ascending `1` or descending `-1`.
+- Projection — include `1` or exclude `0` fields.
+- `.count()` — number of documents that match a query (use `countDocuments()` for accuracy on large collections).
+- `.limit(n)` — cap the number of returned documents.
+- `$exists` — match documents where a field is present (or not).
+- `$ne` — not equal to a value.
+- `$and`, `$or` — boolean logic.
+- `.pretty()` — format shell output.
+
+~~~mongosh
+// Sort newest first and project selected fields
+db.articles
+  .find({ published: true }, { title: 1, author: 1, publishedAt: 1, _id: 0 })
+  .sort({ publishedAt: -1 })
+  .limit(5)
+
+// Count matched documents
+db.articles.countDocuments({ published: true })
+
+// Field existence and not equal
+db.users.find({ phone: { $exists: true, $ne: "" } })
+
+// Combine conditions
+db.products.find({
+  $or: [
+    { category: "plants" },
+    { $and: [{ price: { $lte: 20 } }, { inStock: true }] }
+  ]
+}).pretty()
+~~~
+
+> Attention: `use <db>` creates the database **lazily**—it is created on the **first write** (e.g., an insert), not by the `use` command alone.

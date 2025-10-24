@@ -1,0 +1,57 @@
+# Commands
+
+## Show databases
+To see all databases inside a cluster:
+
+~~~mongosh
+show dbs
+~~~
+
+This outputs a list of databases in the current instance with approximate disk usage, for example:
+
+~~~
+online_plant_shop       73.7 KiB
+plant_lovers_meet       55.7 MiB
+my_portfolio_site       9.57 MiB
+admin                   340 KiB
+local                   1.37 GiB
+config                  12.00 KiB
+~~~
+
+> Note: `admin`, `config`, and `local` are system databases used by MongoDB to manage and configure the instance.
+
+## Switch database
+Navigate to a particular database:
+
+~~~mongosh
+use <database_name>
+~~~
+
+Example:
+
+~~~mongosh
+use online_plant_shop
+~~~
+
+This places you inside the `online_plant_shop` database, where you can view and manage its collections.
+
+> Tip: The prompt shows the current database before the `>` symbol. After switching, you should see it change, e.g., `test>` → `online_plant_shop>`.
+
+## Database creation behavior
+If the database you specify does not exist, MongoDB will create it **lazily** (on first write) and place you into that context immediately after `use`.
+
+## Current database
+If you lose track of your context, print the current database name:
+
+~~~mongosh
+db
+~~~
+
+This outputs the name of the database you are currently using.
+
+## Show collections
+List all collections in the current database:
+
+~~~mongosh
+show collections
+~~~
