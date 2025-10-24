@@ -1,0 +1,138 @@
+# Transitions
+
+CSS transitions control the timing of visual state changes. You can configure:
+- which properties transition
+- how long they last (duration)
+- how long to wait before starting (delay)
+- how the speed changes over time (timing function)
+
+> **Note**
+> Duration and delay are time values (`s` or `ms`). If you provide any time in the shorthand, the **first** one is always treated as **duration**.
+
+## Duration
+
+To create a transition you must set **at least** the property and the duration.
+
+~~~css
+a {
+  background-color: green;
+  font-size: 22px;
+
+  /* multiple properties, one duration */
+  transition-property: background-color, font-size;
+  transition-duration: 1s;
+}
+
+a:hover {
+  background-color: red;
+  font-size: 32px;
+}
+~~~
+
+In this example the background starts green at `22px`. On hover it transitions to red at `32px` over **1s**.
+
+> **Tip**
+> Valid time units: `3s`, `0.75s`, `500ms`. The default duration is `0s` (instantaneous).
+
+## Timing function
+
+Controls the pace of the transition.
+
+Common values:
+- `ease` (default) — slow → fast → slow
+- `ease-in` — slow start, fast end
+- `ease-out` — fast start, slow end
+- `ease-in-out` — slow → fast → slow
+- `linear` — constant speed
+
+~~~css
+.button {
+  transition-property: color;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+~~~
+
+Here the text color animates for one second, starting quickly and slowing down at the end.
+
+> **Note**
+> See MDN for the full list and custom cubic-bezier curves:
+> [CSS transition-timing-function](https://developer.mozilla.org/docs/Web/CSS/transition-timing-function)
+
+## Delay
+
+Wait before starting the transition. Default is `0s`.
+
+~~~css
+.notice {
+  transition-property: color;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  transition-delay: 400ms;
+}
+~~~
+
+## Transition
+
+Use the shorthand to set **property**, **duration**, **timing function**, and **delay** (in that order).
+
+~~~css
+.card {
+  transition: color 1.5s linear 0.5s;
+}
+~~~
+
+> **Attention**
+> If you include times, the first time value is **duration** and the second is **delay**.
+
+## Combination
+
+Multiple transitions can be comma-separated:
+
+~~~css
+.tile {
+  transition: color 1s linear, font-size 750ms ease-in 100ms;
+}
+~~~
+
+## All
+
+Apply the same timing to all animatable properties:
+
+~~~css
+.panel {
+  transition: all 1.5s linear 0.5s;
+}
+~~~
+
+> **Note**
+> Not every property is animatable. See MDN’s list:
+> [CSS properties that can be transitioned](https://developer.mozilla.org/docs/Web/CSS/CSS_animated_properties)
+
+## Animation tips
+
+**Slide-down and fade-in effect**
+
+This rule makes the element slide down from above and fade in when hovered over.
+
+~~~css
+.element {
+    position: fixed; /* or absolute, depending on your layout */
+    op: -100%; /* Start position above the visible area */
+    opacity: 0; /* Start fully transparent */
+    transition: top 0.5s ease-out, opacity 0.3s linear; /* Transition properties */
+}
+
+.element:hover {
+    top: 0; /* Move into view */
+    opacity: 1; /* Fully visible */
+}
+~~~
+
+## Transition Playground
+
+Interactively tweak properties, duration, easing, and delay.
+
+import TransitionPlayground from "./components/transitions/TransitionPlayground.jsx"
+
+<TransitionPlayground />

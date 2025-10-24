@@ -1,0 +1,93 @@
+# Favicons And Resize Images
+
+## Image formats
+
+- **JPEG** — highly compressible, good for detailed photos.
+- **PNG** — lossless, good for flat graphics and logos.
+- **SVG** — scalable vector graphics, sharp on high resolution screens and usually smaller than JPEG or PNG for simple shapes like icons and logos.
+
+> **Tip**
+> Prefer SVG for simple icons and logos. Use PNG for images that need transparency. Use JPEG for photographs.
+
+## Favicon
+
+A favicon is the small icon shown in the browser tab and bookmarks. You can generate one with tools like **favicon generator** (e.g., favicon-generator.org).
+
+> **Note**
+> A single `.ico` file can contain multiple sizes. Common sizes include 16×16 and 32×32. PNG favicons are also widely supported.
+
+## Add the favicon to your web page
+
+Place the favicon file in your project and add a `<link>` in the `<head>`:
+
+~~~html
+<!-- Classic ICO -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<!-- PNG alternatives -->
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+
+<!-- Optional apple touch icon -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+~~~
+
+> **Attention**
+> Ensure the `href` paths match your deployed file locations.
+
+## Editing images
+
+Simple browser based editors like **Pixlr** can crop, resize, and adjust images before exporting to the desired format.
+
+## Converting to scalable vector format
+
+For simple artwork you can convert raster images to SVG with online tools (e.g., online convert). Vectorization works best for logos and icons with clean edges.
+
+> **Note**
+> Converting complex photos to SVG is not recommended; keep those as JPEG or PNG.
+
+## Resizing images with css
+
+Maintain aspect ratio and make images responsive:
+
+~~~css
+img.responsive {
+  max-width: 100%;
+  height: auto;     /* keeps aspect ratio */
+  display: block;   /* removes inline gap */
+}
+~~~
+
+Crop a fixed window without distortion:
+
+~~~css
+.figure {
+  width: 320px;
+  height: 200px;
+  overflow: hidden;
+}
+.figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* fill and crop */
+  object-position: 50% 50%;
+}
+~~~
+
+## Responsive images with srcset
+
+Serve different sizes to different screens:
+
+~~~html
+<img
+  src="/images/hero-800.jpg"
+  srcset="/images/hero-400.jpg 400w,
+          /images/hero-800.jpg 800w,
+          /images/hero-1200.jpg 1200w"
+  sizes="(max-width: 600px) 100vw, 600px"
+  alt="Scenic view"
+/>
+~~~
+
+> **Tip**
+> `sizes` describes the image’s rendered width in different viewports so the browser picks the most efficient file.

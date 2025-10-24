@@ -1,0 +1,158 @@
+# Responsive design
+
+> Further reading:
+> • [Guidelines for Responsive Web Design — Smashing Magazine](https://www.smashingmagazine.com/2011/01/guidelines-for-responsive-web-design/)
+> • [You Don’t Need a Framework — Tania Rascia](https://www.taniarascia.com/you-dont-need-a-framework/)
+
+import ResponsiveUnitsDemo from "./components/responsive-design/ResponsiveUnitsDemo.jsx"
+
+<ResponsiveUnitsDemo />
+
+## Relative measurements
+Responsive design means content adapts to context: the size of *other* content and the size of the *screen*. Prefer **relative units** (em, rem, %) over hard-coded pixels so proportions stay consistent across layouts and devices.
+
+> Note: Pixels are still useful for hard limits (e.g., `max-width`), but avoid using px everywhere for scalable UIs.
+
+## em
+`em` equals the **computed font-size of the current element** (or the browser default if none is set). If the base is 16px, then:
+- `1em` → 16px
+- `2em` → 32px
+
+To keep classic heading proportions based on the browser defaults, you can use multipliers:
+- `h1: 2em`, `h2: 1.5em`, `h3: 1.17em`, `h4: 1em`, `h5: 0.83em`, `h6: 0.67em`
+
+If you set a custom base size, multiply to get scaled headings. Example (base 22px):
+- `h2: 1.5em` → `22px × 1.5 = 33px`.
+
+## rem
+`rem` stands for **root em** and references the font-size of the **root** (`html`) element. Most browsers default to `16px`, so `1rem = 16px` unless you change:
+~~~
+html { font-size: 18px; } /* now 1rem = 18px */
+~~~
+**When to use**
+- Use **rem** for consistent, site-wide sizing (type scale, spacing tied to type).
+- Use **em** when a component should scale relative to its **own** context (e.g., a button that grows with its parent text).
+
+## Percentages width and height
+Percentages size elements **relative to their parent**:
+~~~css
+.main { height: 300px; width: 500px; }
+
+.main .subsection { height: 50%; width: 50%; }
+/* -> 150px tall, 250px wide */
+~~~
+> Attention: If the parent’s dimensions are not set, percentage children can resolve unexpectedly.
+
+> Note: Because the box model includes padding, border, and margin, `width: 100%` can overflow. Use carefully or combine with `box-sizing: border-box`.
+
+## Percentages padding and margin
+For `padding` and `margin`, percentage values are calculated from the **parent’s width** (not height).
+**Rule of thumb:** use `em`/`rem` for text and spacing around text; use `%` for layout sizing.
+
+## Max width and height
+Set hard limits so elements do not become unusably small or large:
+~~~css
+.card { min-width: 240px; max-width: 72ch; }
+.img  { max-height: 60vh; }
+~~~
+> Tip: Hard limits are typically in pixels, `ch` (measure) for readable text width, or viewport units (`vh`, `vw`) for viewport-relative caps.
+
+## Scaling images and videos
+~~~css
+.container {
+  width: 50%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.container img,
+.container video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+~~~
+- Container halves the page width and clamps height with `overflow: hidden`.
+- Media scales to container width; `height: auto` preserves aspect ratio.
+
+> Note: To scale by height instead, use `max-height: 100%` and `width: auto` (horizontal overflow may occur).
+
+## Scaling background images
+~~~css
+body {
+  background-image: url("#"); /* replace with your image */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* fill while preserving aspect ratio */
+}
+~~~
+`cover` fills the box; use `contain` to fit entirely with potential letterboxing.
+
+## Viewport meta tag
+Instruct mobile browsers how to size and scale the page:
+~~~html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+~~~
+- `width=device-width`: match the device width.
+- `initial-scale=1`: set initial zoom level.
+
+## Media queries
+Adapt styles to screen characteristics (size, resolution, orientation, etc).
+
+## Media rule
+~~~css
+@media only screen and (max-width: 480px) {
+  body { font-size: 12px; }
+}
+~~~
+- `@media` starts the rule.
+- `only screen` targets screen media.
+- `(max-width: 480px)` is a **media feature** to apply styles at ≤ 480px.
+
+Range example:
+~~~css
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  /* rules for 320px - 480px */
+}
+~~~
+
+## Dots per inch dpi
+Target high-resolution displays to send sharper assets:
+~~~css
+@media only screen and (min-resolution: 300dpi) {
+  /* CSS for high-resolution screens */
+}
+~~~
+
+## and operator
+Chain multiple features; **all** must be true:
+~~~css
+@media only screen and (max-resolution: 150dpi) and (max-width: 480px) {
+  .page-description { font-size: 20px; }
+}
+~~~
+
+## comma operator
+Comma means **or**; any listed query can match:
+~~~css
+@media only screen and (min-width: 480px), (orientation: landscape) {
+  /* ruleset */
+}
+~~~
+`orientation` is `landscape` when width > height; else `portrait`.
+
+## Breakpoints
+Do not chase device lists. Instead, resize the browser and add breakpoints **where your layout naturally breaks**.
+Typical content-driven breakpoint plan:
+~~~css
+/* base (mobile-first) */
+.component { /* default styles */ }
+
+/* first break: cards need two columns */
+@media (min-width: 600px) { .component { /* adjust */ } }
+
+/* second break: layout gains sidebar */
+@media (min-width: 900px) { .component { /* adjust */ } }
+~~~
+
+> Tip: Prefer **mobile-first** queries (`min-width`) so the base CSS stays small and progressive enhancements layer on as space grows.

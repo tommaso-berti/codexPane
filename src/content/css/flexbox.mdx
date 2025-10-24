@@ -1,0 +1,228 @@
+# Flexbox
+
+There are two important components to a flexbox layout: **flex containers** and **flex items**. A flex container is an element that contains flex items. All **direct children** of a flex container are flex items.
+
+To make an element a flex container, set `display` to `flex` or `inline-flex`. Container-level properties control how **children** behave; item-level properties control how **each child** behaves.
+
+> **Note**
+> Flexbox lays out items along two axes: **main axis** and **cross axis**. By default with `flex-direction: row`, the main axis is horizontal and the cross axis is vertical.
+
+## display flex
+
+Any element can be a flex container.
+
+~~~css
+div.container {
+  display: flex;
+}
+~~~
+
+- Becomes a **block-level** flex container (takes full width).
+- Children (flex items) do **not** start on new lines by default.
+
+## gap column gap and row gap
+
+Control the spacing **between** flex items without margins.
+
+~~~css
+.container {
+  display: flex;
+  gap: 16px;          /* both axes */
+  column-gap: 8px;    /* cross axis in row-direction */
+  row-gap: 24px;      /* main axis wrap rows */
+}
+~~~
+
+> **Tip**
+> Prefer `gap` over margins between items—it avoids collapsing and odd first/last spacing.
+
+## display inline flex
+
+Creates an **inline-level** flex container.
+
+~~~css
+.container {
+  display: inline-flex;
+}
+~~~
+
+- Sits inline next to other inline/inline-block elements.
+- Items can shrink to fit the parent.
+
+## justify content
+
+Positions items **along the main axis**.
+
+Common values:
+- `flex-start` | `flex-end` | `center`
+- `space-between` | `space-around` | `space-evenly` (supported widely)
+
+~~~css
+.container { display: flex; justify-content: space-between; }
+~~~
+
+## align items
+
+Aligns items **along the cross axis** (per line).
+
+Values: `flex-start`, `flex-end`, `center`, `baseline`, `stretch` *(default; respects explicit height)*.
+
+~~~css
+.container { display: flex; align-items: baseline; }
+~~~
+
+## flex grow
+
+How much an item **expands** to fill extra space (relative to siblings).
+
+~~~css
+.container { display: flex; }
+
+.side   { width: 100px; flex-grow: 1; }
+.center { width: 100px; flex-grow: 2; }
+~~~
+
+If there are 60px extra, `.center` gets 30px; each `.side` gets 15px.
+
+> **Note**
+> `max-width` limits growth.
+
+## flex shrink
+
+How much an item **shrinks** when space is tight.
+
+- Default is `1` (items shrink).
+- `0` prevents shrinking.
+
+~~~css
+.item { flex-shrink: 0; } /* do not shrink */
+~~~
+
+> **Attention**
+> `min-width` and `max-width` take precedence over grow/shrink.
+
+## flex basis
+
+The item’s **initial size** before growing/shrinking (in main axis).
+
+~~~css
+.card { flex-basis: 200px; } /* like preferred width in row direction */
+~~~
+
+## flex shorthand
+
+Declare **grow**, **shrink**, **basis** together.
+
+~~~css
+.big   { flex: 2 1 150px; }  /* grow 2, shrink 1, basis 150px */
+.small { flex: 1 2 100px; }
+.mid   { flex: 2 1; }        /* grow 2, shrink 1, basis auto */
+.alt   { flex: 1 20px; }     /* grow 1, basis 20px (no way to set only shrink+basis) */
+~~~
+
+> **Tip**
+> `flex: 1` is shorthand for `flex: 1 1 0%` in modern browsers—great for equal columns.
+
+## flex wrap
+
+Allow items to wrap to a new line/column.
+
+~~~css
+.container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 250px;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+}
+~~~
+
+Values: `nowrap` *(default)*, `wrap`, `wrap-reverse`.
+
+## align content
+
+Spacing **between lines** when there are multiple wrapped lines (cross axis).
+
+Values: `flex-start`, `flex-end`, `center`, `space-between`, `space-around`, `stretch` *(default)*.
+
+~~~css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  height: 300px; /* required for effect to be visible */
+}
+~~~
+
+> **Note**
+> `align-content` only affects **multi-line** containers. For single lines, use `align-items`.
+
+## flex direction
+
+Sets the **main axis** direction.
+
+Values:
+- `row` *(default)*, `row-reverse`
+- `column`, `column-reverse`
+
+~~~css
+.container { display: flex; flex-direction: column; }
+~~~
+
+With `column`, main axis becomes vertical; `justify-content` acts top-to-bottom, and `align-items` left-to-right.
+
+## flex flow
+
+Shorthand for `flex-direction` **and** `flex-wrap`.
+
+~~~css
+.container {
+  display: flex;
+  flex-flow: column wrap;
+}
+~~~
+
+## Nested flexboxes
+
+Flex containers can be **children of other flex containers**. Apply container properties to parents and item properties to children as needed.
+
+~~~html
+<div class="outer">
+  <div class="sidebar">A</div>
+  <div class="main">
+    <div class="toolbar">…</div>
+    <div class="content">…</div>
+  </div>
+</div>
+~~~
+
+~~~css
+.outer   { display: flex; }
+.main    { display: flex; flex-direction: column; }
+.toolbar { display: flex; justify-content: space-between; }
+~~~
+
+## Review
+
+- `display: flex` makes an element a **flex container** (block-level).
+- `display: inline-flex` makes an **inline** flex container.
+- `justify-content` aligns items on the **main axis**.
+- `align-items` aligns items on the **cross axis**.
+- `flex-grow` controls how much extra space an item can **take**.
+- `flex-shrink` controls how much an item can **shrink**.
+- `flex-basis` sets the **initial size** of an item.
+- `flex` combines grow, shrink, and basis.
+- `flex-wrap` allows items to move to a **new line or column**.
+- `align-content` spaces **rows** on the cross axis.
+- `flex-direction` defines the **main axis**.
+- `flex-flow` combines **direction** and **wrap**.
+- Flex containers can be **nested**.
+
+## Flex Playground
+
+import FlexPlayground from "./components/flexbox/FlexPlayground.jsx"
+
+<FlexPlayground />

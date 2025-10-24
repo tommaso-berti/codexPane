@@ -1,0 +1,296 @@
+# Grid
+
+Links:
+- https://codepip.com/games/grid-garden/
+- https://css-tricks.com/snippets/css/complete-guide-grid/
+
+## Creating a grid
+
+To set up a grid you need a **grid container** and **grid items** (its children).
+
+~~~css
+.container { display: grid; }       /* block-level grid  */
+.inline   { display: inline-grid; } /* inline grid       */
+~~~
+
+## Creating columns
+
+By default a grid has one column. Define columns with `grid-template-columns`:
+
+~~~css
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 100px 200px; /* two columns */
+}
+~~~
+
+## Creating rows
+
+Specify rows with `grid-template-rows`:
+
+~~~css
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 100px 200px;
+  grid-template-rows: 100px 50% 20px;
+}
+~~~
+
+## Grid template
+
+Shorthand for rows **/** columns:
+
+~~~css
+/* rows before the slash, columns after */
+.grid { grid-template: 200px 300px / 20% 10% 70%; }
+~~~
+
+## Fraction
+
+`fr` is the **fractional unit** for free space.
+
+~~~css
+.grid { grid-template: 2fr 1fr 1fr / 1fr 3fr 1fr; }
+.grid {
+  display: grid;
+  width: 100px;
+  grid-template-columns: 1fr 60px 1fr; /* 60px fixed, rest split 1fr/1fr */
+}
+~~~
+
+> Note: `fr` shares **available** space—space left after fixed sizes (px, %, min-content, etc.).
+
+## Repeat function
+
+Duplicate track definitions with `repeat()`:
+
+~~~css
+.grid {
+  display: grid;
+  width: 300px;
+  grid-template-columns: repeat(3, 100px);
+}
+/* multiple values inside repeat() pattern */
+.grid { grid-template-columns: repeat(2, 20px 50px); }
+~~~
+
+## Minmax function
+
+Constrain track sizes with `minmax(min, max)`:
+
+~~~css
+.grid {
+  display: grid;
+  grid-template-columns: 100px minmax(100px, 500px) 100px;
+}
+~~~
+
+## Row gap and column gap
+
+Add gaps between tracks:
+
+~~~css
+.grid {
+  row-gap: 20px;
+  column-gap: 10px;
+  /* or shorthand: */
+  gap: 20px 10px; /* row col */
+}
+~~~
+
+## Multiple row items
+
+Make an item span rows:
+
+~~~css
+.item {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  /* shorthand: */
+  grid-row: 1 / 3;
+}
+~~~
+
+Row and column **lines** start at 1 and end at `tracks + 1`.
+E.g., 5 rows → lines `1..6`. To cover rows 2–4 use `grid-row: 2 / 5;`.
+Spanning respects `gap`.
+
+## Multiple column items
+
+Columns work the same way:
+
+~~~css
+.item { grid-column: 4 / span 2; } /* columns 4–5 */
+/* same as: */
+.item { grid-column: 4 / 6; }
+~~~
+
+## Grid area
+
+Set all four lines at once:
+
+~~~css
+.item { grid-area: 2 / 3 / 4 / span 5; }
+/* order: row-start / col-start / row-end / col-end */
+~~~
+
+## Grid template areas
+
+Name page regions and place items by area:
+
+~~~html
+<div class="container">
+  <header>Welcome!</header>
+  <nav>Links!</nav>
+  <section class="info">Info!</section>
+  <section class="services">Services!</section>
+  <footer>Contact us!</footer>
+</div>
+~~~
+
+~~~css
+.container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  grid-template-areas:
+    "header header"
+    "nav nav"
+    "info services"
+    "footer footer";
+  grid-template-rows: 300px 120px 800px 120px;
+  grid-template-columns: 1fr 3fr;
+}
+header   { grid-area: header; }
+nav      { grid-area: nav; }
+.info    { grid-area: info; }
+.services{ grid-area: services; }
+footer   { grid-area: footer; }
+~~~
+
+## Overlap elements
+
+Overlapping is straightforward with explicit line placement or `grid-area`. Use `z-index` to control stacking.
+
+## Justify items
+
+Positions **items within their column** (container-level):
+
+- `start` | `end` | `center` | `stretch`
+
+~~~css
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  justify-items: center;
+}
+~~~
+
+## Justify content
+
+Positions the **whole grid** along the inline (row) axis (container-level):
+
+- `start` | `end` | `center` | `stretch` | `space-around` | `space-between` | `space-evenly`
+
+~~~css
+main {
+  display: grid;
+  width: 1000px;
+  grid-template-columns: 300px 300px;
+  grid-template-areas: "left right";
+  justify-content: center;
+}
+~~~
+
+## Align items
+
+Positions **items within their row** along block (column) axis (container-level):
+
+- `start` | `end` | `center` | `stretch`
+
+~~~css
+main {
+  display: grid;
+  grid-template-rows: repeat(3, 400px);
+  align-items: center;
+}
+~~~
+
+## Align content
+
+Positions the **rows as a group** along the block axis (container-level):
+
+- `start` | `end` | `center` | `stretch` | `space-around` | `space-between` | `space-evenly`
+
+~~~css
+main {
+  display: grid;
+  height: 600px;
+  grid-template-rows: 200px 200px;
+  grid-template-areas:
+    "top"
+    "bottom";
+  align-content: center;
+}
+~~~
+
+## Justify self and align self
+
+Item-level overrides of `justify-items` / `align-items`:
+
+- `start` | `end` | `center` | `stretch` (default)
+
+~~~css
+.card:nth-child(2) {
+  justify-self: end;
+  align-self: start;
+}
+~~~
+
+## Implicit grid
+
+When items exceed the explicit grid, the **implicit grid** creates extra tracks automatically (rows by default) sized to content unless specified.
+
+## Grid auto rows and columns
+
+Control sizes of implicit tracks:
+
+~~~css
+body {
+  display: grid;
+  grid: repeat(2, 100px) / repeat(2, 150px);
+  grid-auto-rows: 50px;
+}
+/* alternate sizes for implicit rows */
+body { grid-auto-rows: 50px 100px; } /* odd=50, even=100 */
+~~~
+
+You can use `px`, `%`, `fr`, and even `repeat()`.
+
+## Grid auto flow
+
+Control how new items are placed:
+
+- `row` (default) | `column` | add `dense` to fill holes
+
+~~~css
+body {
+  display: grid;
+  gap: 5px;
+  grid: repeat(2, 100px) / repeat(2, 150px);
+  grid-auto-rows: 45px;
+  grid-auto-columns: 65px;
+  grid-auto-flow: column;
+}
+~~~
+
+> Note: With `grid-auto-flow: column`, implicit items join the explicit **rows**, inheriting their row heights.
+
+## Grid Playground
+
+import GridPlayground from "./components/grid/GridPlayground.jsx"
+
+<GridPlayground />

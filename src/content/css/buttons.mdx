@@ -1,0 +1,85 @@
+# Buttons
+
+## Skeuomorphic styling
+
+In design, skeuomorphism is helpful for lowering the learning curve for users. If users can draw a metaphor between a familiar real-life object and an interface element, they are more likely to know how to use it without training. In the example of the button, if a web button appears similar to a real-life button on a physical interface, users can reliably figure out that the way to interact with the button is to press it.
+
+Skeuomorphic button design aims to imitate the appearance and interactivity of a real-life button, often including a “raised” appearance while the button is unpressed and a “pressed” appearance when clicked.
+
+**Bare-minimum 3-D style:**
+
+~~~css
+button {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0px 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  margin-top: 5px;
+  color: black;
+  box-shadow: 0px 0px;
+}
+~~~
+
+> Tip: Add `transition: box-shadow 120ms, transform 120ms;` and use `transform: translateY(5px)` in `:active` instead of `margin-top` to avoid layout shift.
+
+## Flat design
+
+Flat design is an alternative approach that embraces the fact that computer interfaces do not necessarily need to model real-life interfaces. As users grow more familiar with digital displays and interfaces, designers have felt less need to model physical interactions and instead rely on other signifiers to indicate interactive elements. To generalize, flat design uses simplicity and lack of clutter for its UI elements.
+
+In flat designs in particular, button text is very important for clarity—the possibility of user confusion is reduced by pairing buttons with specific, descriptive labels. A button with “Click here” leaves many more open questions than a button that reads “Submit form”.
+
+**Simple flat button:**
+
+~~~css
+.button {
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: .5rem;
+  background: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: 600;
+  transition: background-color 150ms ease, transform 120ms ease;
+}
+.button:hover { background: #1d4ed8; }   /* blue-700 */
+.button:active { transform: translateY(1px); }
+.button[disabled] { opacity: .5; cursor: not-allowed; }
+~~~
+
+## Hover states
+
+Users expect buttons to be clickable. Since buttons can consist of any number of total elements (rectangular or circular body, text, images), all elements should be clickable, should display their clickability, and should result in the same behavior.
+
+> Note: Ensure the cursor is a pointer on interactive elements (`button { cursor: pointer; }`) and provide focus styles for keyboard users (e.g., `:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }`).
+
+## Affordances signifiers and clickability
+
+**Clickability.** For users on the web, the mouse click is perhaps the most fundamental human–computer interaction. The web became the web partially through the power of hypertext—text in one document that links to other documents or resources. Users still navigate largely through clicks (and taps on touch devices).
+
+**Affordances.** Objects afford the ability of users to interact with them in various ways. A bench affords sitting; if unfixed, it also affords tipping or moving. Potentials for interaction are collectively called the *affordances* of an object.
+
+**Signifiers.** Signifiers are aspects of an object that a designer uses to indicate potential and intended affordances. A teacup handle signifies that users can (and should) lift the cup to sip—an example of a common UX pattern.
+
+**UX patterns.** UX patterns establish reusable solutions to common problems. Handles are ubiquitous: they signify “grab here to act.”
+
+**On the web.** In browsers, affordances are limited (click, type, touch, voice). Because of this, signifiers are vital. Cursor feedback (pointer, I-beam, move) helps, but users shouldn’t have to hover everything—especially on mobile where hover doesn’t exist. Use CSS to make interactivity obvious: e.g., hyperlinks styled distinctly via color, underline, or weight.
+
+There is no universal “right answer,” but keep affordances and signifiers in mind when designing.
+
+**Further reading**
+
+- *Signifiers, Not Affordances* by Don Norman.
+- UI Patterns — examples of reusable solutions in web UI.
+
+## Buttons Playground
+
+import ButtonPlayground from "./components/buttons/ButtonPlayground.jsx"
+
+<ButtonPlayground />

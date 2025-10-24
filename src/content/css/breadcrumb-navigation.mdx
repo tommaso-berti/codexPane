@@ -1,0 +1,129 @@
+# Breadcrumb Navigation
+
+## Basics
+
+Breadcrumbs help users understand **where** they are and **how** they arrived there (e.g., `Fashion > Shoes`). They are typically:
+- A horizontal, left-aligned trail beneath primary navigation.
+- Minimal in height.
+- Separated with a `>` or `/`.
+- Showing the current page as highlighted or non-linked.
+
+> Note: Do not add breadcrumbs if the site is tiny or the path is already obvious via primary navigation.
+
+**Simple markup:**
+~~~html
+<nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/fashion">Fashion</a></li>
+    <li aria-current="page">Shoes</li>
+  </ol>
+</nav>
+~~~
+
+## Pseudo element
+
+Use the adjacent sibling combinator `+` with a `::before` pseudo-element to inject separators only **between** items.
+
+~~~css
+.breadcrumb li+li::before {
+  padding: 10px;
+  content: ">";
+}
+~~~
+
+- `+` selects an element that is **immediately** preceded by a sibling (the second `li` in each pair).
+- `::before` creates a pseudo-element rendered before the selected element’s content—use it with `content` to draw separators.
+
+## Arrow style
+
+Style the breadcrumb like a chain of arrows using borders and pseudo-elements:
+
+~~~css
+.breadcrumb {
+  text-align: left; /* aligns to the left */
+}
+
+.breadcrumb li {
+  float: left; /* place items in a row */
+}
+
+.breadcrumb a {
+  color: #fff;
+  background: darkcyan;
+  text-decoration: none;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 15px;
+  padding: 0 5px;
+}
+
+.breadcrumb a::before,
+.breadcrumb a::after {
+  content: "";
+  position: absolute;
+  border-color: darkcyan;
+  border-style: solid;
+  border-width: 15px 5px; /* creates the arrow geometry */
+}
+
+.breadcrumb a::before {
+  left: -10px;
+  border-left-color: transparent; /* arrow tail cutout */
+}
+
+.breadcrumb a::after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: darkcyan; /* arrow head */
+}
+
+.breadcrumb a:hover {
+  background-color: blue;
+}
+
+.breadcrumb a:hover::before {
+  border-color: blue;
+  border-left-color: transparent;
+}
+
+.breadcrumb a:hover::after {
+  border-left-color: blue;
+}
+~~~
+
+> Tip: For accessibility, ensure adequate contrast and expose the current page with `aria-current="page"`.
+
+## Abbreviated breadcrumb
+
+When paths get long, truncate the head of the trail:
+... > About > Register
+
+php-template
+Copia codice
+
+A common pattern is to collapse the first _n_ items into an ellipsis that links to a sitemap or top-level page. Keep the last 2–3 segments visible.
+
+**CSS-only visual ellipsis example (non-interactive):**
+~~~css
+.breadcrumb--abbrev li.collapse {
+  display: none;
+}
+.breadcrumb--abbrev li.collapse:last-of-type {
+  display: inline;
+}
+.breadcrumb--abbrev li.collapse:last-of-type::before {
+  content: "...";
+  padding: 0 .5ch;
+}
+~~~
+
+> Note: For true interactivity (e.g., a “show full path” control), handle truncation with JavaScript.
+
+## Breadcrumb Playground
+
+import BreadcrumbPlayground from "./components/breadcrumb-navigation/BreadcrumbPlayground.jsx"
+
+<BreadcrumbPlayground />
