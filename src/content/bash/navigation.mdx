@@ -1,0 +1,76 @@
+# Navigation
+
+## Clear terminal
+~~~bash
+$ clear
+~~~
+
+## List files
+~~~bash
+$ ls
+~~~
+
+## List all in long format
+Chain options to show all files (including hidden), in long format, ordered by modification time.
+~~~bash
+$ ls -alt
+~~~
+
+**Options**
+- **-a** lists all contents, including hidden files and directories (names starting with `.`).
+- **-l** lists in long format (permissions, links, owner, group, size, modified time, name).
+- **-t** orders by last modified time (newest first).
+
+**Result of `ls -l` example**
+~~~text
+drwxr-xr-x 5  cc  eng  4096 Jun 24 16:51  action
+drwxr-xr-x 4  cc  eng  4096 Jun 24 16:51  comedy
+drwxr-xr-x 6  cc  eng  4096 Jun 24 16:51  drama
+-rw-r--r-- 1  cc  eng     0 Jun 24 16:51  genres.txt
+~~~
+
+> Note: The first column shows access rights (permissions), then number of hard links, owner (`cc`), group (`eng`), size (bytes), modified date and time, and the name.
+
+## Print working directory
+~~~bash
+$ pwd
+~~~
+
+## Change directory
+Change the working directory to a target folder.
+~~~bash
+$ cd directory_name
+~~~
+
+## Move up directories
+Up one folder:
+    ~~~bash
+$ cd ..
+~~~
+
+    Up two or more folders:
+    ~~~bash
+$ cd ../..
+~~~
+
+## Relative paths and chaining
+Move across multiple directories with a single command using a relative path:
+    ~~~bash
+$ cd 2015/jan/memory
+~~~
+
+    Move up then into a sibling directory (chained):
+~~~bash
+$ cd ../2014
+~~~
+
+## Make directory
+Create a new directory in the current working directory:
+    ~~~bash
+$ mkdir newDirectory_name
+~~~
+
+    Create a directory using a relative path:
+    ~~~bash
+$ mkdir relative_path
+~~~

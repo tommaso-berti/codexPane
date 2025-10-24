@@ -1,0 +1,108 @@
+# Redirection
+
+## Echo and standard streams
+Through redirection you can direct the input and output of a command to and from other files and programs, and chain commands together in a pipeline.
+~~~bash
+$ echo "Hello"
+Hello
+~~~
+The `echo` command accepts the string as **standard input** and prints it to **standard output**.
+
+- **stdin** (standard input): information inputted into the terminal (keyboard or input device).
+- **stdout** (standard output): information outputted after a process runs.
+- **stderr** (standard error): error messages outputted by a failed process.
+
+## Redirect output overwrite
+`>` redirects standard output to a file and **overwrites** its contents.
+~~~bash
+$ echo "Hello" > hello.txt
+~~~
+
+## Append output
+`>>` takes the standard output of the command on the left and **appends** it to the file on the right.
+~~~bash
+$ cat forests.txt >> hello.txt
+~~~
+
+## Redirect input
+`<` takes the standard input from the file on the right and feeds it to the command on the left.
+~~~bash
+$ cat < deserts.txt
+# same as:
+$ cat deserts.txt
+~~~
+
+## Pipes and word count
+`|` is a pipe. It takes stdout from the command on the left and feeds it as stdin to the command on the right.
+~~~bash
+$ cat volcanoes.txt | wc
+~~~
+Above, the output of `cat volcanoes.txt` becomes the input of `wc`, which prints line, word, and byte counts.
+
+Pipes can be chained:
+~~~bash
+$ cat volcanoes.txt | wc | cat > count.txt
+~~~
+Here `cat volcanoes.txt` → `wc` → `cat` → redirected into `count.txt`.
+
+> Tip: Use `wc -l` to count lines only, `wc -w` for words, `wc -c` for bytes.
+
+## Sort
+`sort` takes stdin and orders it alphabetically to stdout.
+~~~bash
+$ sort continents.txt
+~~~
+Example: pipe and redirect sorted output to a file.
+~~~bash
+$ cat glaciers.txt | sort > sorted-glaciers.txt
+~~~
+
+## Uniq
+`uniq` filters out **adjacent** duplicate lines.
+~~~bash
+$ sort deserts.txt | uniq
+~~~
+> Note: `uniq` works best on **sorted** input so duplicates become adjacent.
+
+## Grep case insensitive
+`grep` searches for lines matching a pattern (case sensitive by default). Use `-i` to ignore case.
+~~~bash
+$ grep -i America continents.txt
+~~~
+> Tip: `grep` supports regular expressions for powerful pattern matching.
+
+## Grep recursive and list filenames
+Search recursively (`-R`) and show matching filenames and lines:
+~~~bash
+$ grep -R Arctic /home/ccuser/workspace/geography
+/home/ccuser/workspace/geography/deserts.txt:Arctic Desert
+/home/ccuser/workspace/geography/oceans.txt:Arctic Ocean
+~~~
+
+List only filenames with matches using `-Rl` (lowercase **L**):
+~~~bash
+$ grep -Rl Arctic /home/ccuser/workspace/geography
+/home/ccuser/workspace/geography/deserts.txt
+/home/ccuser/workspace/geography/oceans.txt
+~~~
+
+## Sed substitution
+`sed` is a stream editor. Use it like “find and replace” on streamed text.
+~~~bash
+$ sed 's/snow/rain/' forests.txt
+~~~
+- `s` = substitution
+- `snow` = search string
+- `rain` = replacement string
+
+Make substitution **global** on each line with `g`:
+~~~bash
+$ sed 's/snow/rain/g' forests.txt
+~~~
+
+## Sed in place
+By default `sed` prints the modified stream but does **not** change the file. Use `-i` to edit the file in place:
+~~~bash
+$ sed -i 's/snow/rain/g' forests.txt
+~~~
+> Attention: In-place edits are irreversible. Consider backing up first (e.g., `-i.bak` to keep a backup).

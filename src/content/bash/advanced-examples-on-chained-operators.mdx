@@ -1,0 +1,36 @@
+# Advanced examples on chained operators
+
+## Find empty txt files
+List `.txt` files (across immediate subdirectories) that are empty and save to `todo/empty_files.txt`:
+~~~bash
+wc -l */*.txt | grep 0 > todo/empty_files.txt
+~~~
+> Note: *l’opzione -l del comando wc server per contare il numero di righe* (the `-l` option of `wc` counts lines).
+
+## Why it works
+- `*/*\.txt` expands to all `.txt` files one level down (e.g., `asia/file.txt`, `europe/file.txt`).
+- `wc -l` prints the number of **lines** and the filename (e.g., `0 europe/empty.txt`).
+- Truly empty files have **0 lines**; files with a single newline count as **1** line.
+- `grep 0` keeps lines whose count contains `0`.
+- `> todo/empty_files.txt` writes the results to a file (overwriting if it exists).
+
+> Tip: If you want to **append** instead, use `>> todo/empty_files.txt`.
+
+## Safer matching
+Avoid accidental matches (e.g., counts like `10` or a `total` line) and emit **just filenames**:
+~~~bash
+# Print only files whose line-count is exactly 0
+wc -l */*.txt | awk '$1==0 {print $2}' > todo/empty_files.txt
+~~~
+Or keep the whole line but ensure the first field is exactly zero:
+~~~bash
+wc -l */*.txt | grep -E '^[[:space:]]*0[[:space:]]' > todo/empty_files.txt
+~~~
+
+## Alternative with find
+Use `find` to locate empty `.txt` files recursively (any depth):
+~~~bash
+find . -type f -name "*.txt" -size 0 -print | sed 's|^./||' > todo/empty_files.txt
+~~~
+- `-size 0` matches zero-byte files.
+- `sed 's|^./||'` strips the leading `./` for cleaner paths (optional).

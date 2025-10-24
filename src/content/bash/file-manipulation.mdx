@@ -1,0 +1,83 @@
+# File Manipulation
+
+## Create files
+The `touch` command creates a new file inside the working directory.
+~~~bash
+$ touch keyboard.txt
+~~~
+
+## View file contents
+The `cat` command outputs in the terminal the contents of a specified file.
+~~~bash
+cat hello_cli.txt
+~~~
+
+## Create file with content
+Create a new file named `hello_cli.txt` and add `Hello Command Line` to that file.
+~~~bash
+echo "Hello Command Line" >> hello_cli.txt
+~~~
+> Tip: `>>` appends to a file (creates it if missing). Use `>` to overwrite instead.
+
+## Copy files
+Make a copy of a file.
+~~~bash
+cp source.txt destination.bak
+~~~
+> Note: The `.bak` file extension is commonly used to notate a file as a backup of a file with the same name.
+
+## Copy and rename
+If we wanted to rename the file as well, we would include the name in the path of the second argument.
+~~~bash
+cp the-office.txt slapstick/the-office-us.txt
+# or
+cp biopic/cleopatra.txt historical/cleopatra.txtx
+~~~
+> Attention: The extension `cleopatra.txtx` looks intentional here; if it was a typo, use `.txt`.
+
+## Copy multiple files
+Copy multiple file to a directory.
+~~~bash
+cp file1.txt folder/file2.txt my_directory
+~~~
+
+For example, copy all files in the current working directory into another directory.
+~~~bash
+cp * my_directory
+~~~
+
+## Copy with wildcards
+To move just the “.txt” files you can use a wildcard with a suffix:
+~~~bash
+cp *.txt my_directory
+~~~
+
+In addition to suffixes, prefix text can be used with wildcards. Using `w*.txt` selects all files in the working directory starting with “w” (prefix) and ending with “.txt” (suffix), and copies them to `my_directory/`.
+~~~bash
+cp w*.txt my_directory
+~~~
+
+## Move files
+`mv` moves files from a directory to another (very similar to `cp`).
+~~~bash
+mv my_file.txt my_directory/
+~~~
+
+## Current directory dot
+The dot (`.`) is the current directory.
+~~~bash
+mv my_file.txt .
+~~~
+
+## Remove files
+The `rm` command deletes files and directories. Without `-r` it deletes only files.
+~~~bash
+rm unwanted_file.txt
+~~~
+
+## Remove directories recursively
+The `-r` (recursive) option is used to delete a directory and all of its child directories.
+~~~bash
+rm -r unwanted_directory
+~~~
+> Attention: `rm -r` is destructive. Consider adding `-i` (interactive) or double-checking the path before running.

@@ -1,0 +1,64 @@
+# Introduction to bash
+
+Bash (the **Bourne Again SHell**) is a command-line interpreter and scripting language used on Linux, macOS, WSL, and many Unix-like systems. It lets you execute programs, chain commands, automate repetitive tasks, and glue together tools using pipes and redirection. If you can type it, you can probably script it.
+
+**What makes Bash useful**
+- **Interactive shell:** run commands, navigate files, manage processes.
+- **Scripting language:** variables, conditionals, loops, functions—write repeatable automation.
+- **Composability:** small utilities + pipes (`|`) + redirection (`>`, `>>`, `<`) = powerful workflows.
+- **Portability:** scripts often run unchanged across many systems.
+
+**Core ideas, fast**
+- **Commands and args:** `grep -i "error" /var/log/syslog`
+- **Pipes:** output of one command becomes input to the next
+~~~bash
+ps aux | grep node | awk '{print $2}'
+  ~~~
+- **Redirection:** send output to files or read from files
+~~~bash
+echo "hello" > hello.txt
+sort < input.txt > output.txt
+  ~~~
+- **Globbing:** match files with wildcards
+~~~bash
+rm *.log
+  ~~~
+- **Variables:** store and reuse values
+~~~bash
+NAME="Ada"
+echo "Hi, $NAME"
+  ~~~
+- **Command substitution:** capture output
+~~~bash
+TODAY=$(date +%F)
+echo "Backup-$TODAY.tar.gz"
+  ~~~
+- **Exit status & control:**
+~~~bash
+make || echo "Build failed"
+  ~~~
+
+> **Tip:** Use `set -euo pipefail` at the top of scripts to catch errors early and make failures explicit.
+
+**A tiny script example**
+~~~bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+SRC_DIR=${1:-"src"}
+DEST="archive-$(date +%F).tar.gz"
+
+tar -czf "$DEST" "$SRC_DIR"
+echo "Created $DEST"
+~~~
+
+**Learning path**
+1. Get comfortable with navigation (`cd`, `ls`, `pwd`) and file ops (`cp`, `mv`, `rm`, `cat`, `less`).
+2. Practice pipes and filters (`grep`, `awk`, `sed`, `cut`, `sort`, `uniq`).
+3. Write small scripts with arguments, loops, and conditionals.
+4. Learn quoting rules (single vs double vs no quotes) and escaping.
+5. Explore functions, arrays, and traps for robust automation.
+
+> **Note:** Bash has sharp edges—quoting and word splitting can surprise you. Test interactively, then script.
+
+With these fundamentals, you can turn ad-hoc terminal work into reliable, shareable automation.

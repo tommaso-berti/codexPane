@@ -1,0 +1,92 @@
+# Environment (nano text editor)
+
+## Nano
+~~~bash
+$ nano hello.txt
+~~~
+`nano` is a command line text editor. It works like desktop editors (TextEdit/Notepad) but is keyboard-driven.
+
+- `nano hello.txt` opens (or creates) `hello.txt`.
+- Type your text (e.g., `Hello, I am nano`) where the cursor is.
+- Use the on-screen shortcuts to save and exit.
+
+> Tip: Common shortcuts — **Ctrl+O** write out (save), **Enter** confirm, **Ctrl+X** exit, **Ctrl+W** search.
+
+## Bash profile
+A bash profile stores environment settings for your terminal (commonly `~/.bash_profile`).
+
+Activate changes for the current session:
+~~~bash
+$ source .bash_profile
+~~~
+
+Absolute path:
+~~~bash
+~/.bash_profile
+~~~
+> Note: If it does not exist, create it (e.g., `touch ~/.bash_profile`).
+
+## Alias
+Create keyboard shortcuts for commands:
+~~~bash
+alias pd="pwd"
+~~~
+- No spaces around `=`.
+- Add the alias line to `~/.bash_profile` to persist across sessions, then:
+~~~bash
+$ source .bash_profile
+~~~
+
+## Environment variables
+Environment variables hold environment info and can be shared with child processes.
+~~~bash
+export USER="Jane Doe"
+echo $USER
+~~~
+- `USER="Jane Doe"` sets the variable for the current shell.
+- `export` makes it available to child sessions.
+- Use `$VAR` to read a value.
+
+## PS1
+`PS1` controls the prompt appearance. Include a trailing space for readability.
+~~~bash
+export PS1=">> "
+# After sourcing, the prompt changes:
+>>
+~~~
+> Tip: Add to `~/.bash_profile` and `source` it to apply immediately.
+
+## Home
+`HOME` is the home directory path:
+~~~bash
+$ echo $HOME
+~~~
+You can set it if needed, but typically it’s managed by the system.
+
+## Path
+`PATH` lists directories (colon-separated) where executables are searched.
+~~~bash
+$ echo $PATH
+/home/ccuser/.gem/ruby/2.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
+~~~
+Each directory contains executable scripts/binaries.
+
+Examples:
+~~~bash
+/bin/pwd
+/bin/ls
+
+$ /bin/pwd
+/home/ccuser/workspace/path-variable
+
+$ pwd
+/home/ccuser/workspace/path-variable
+~~~
+
+## Env
+`env` prints environment variables for the current user (e.g., `PATH`, `PWD`, `PS1`, `HOME`).
+Filter a specific variable:
+~~~bash
+env | grep PATH
+~~~
+> Tip: Combine with `sort`/`uniq` for readable listings, or `printenv VAR` to show a single value.
