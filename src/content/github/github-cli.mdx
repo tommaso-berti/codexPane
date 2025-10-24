@@ -1,0 +1,202 @@
+# GitHub CLI
+
+## Authentication
+
+Log in and choose your protocol (HTTPS or SSH):
+
+~~~
+gh auth login
+~~~
+
+Check current auth status or show the token scope:
+
+~~~
+gh auth status
+gh auth token
+~~~
+
+Logout:
+
+~~~
+gh auth logout
+~~~
+
+**Tip**: Prefer SSH for pushing (fewer credential prompts). Generate keys with `ssh-keygen` and add them via `gh auth login`.
+
+## Repositories
+
+Create a repo locally and on GitHub (interactive prompts):
+
+~~~
+gh repo create
+~~~
+
+Create from the current directory (private, no prompts):
+
+~~~
+gh repo create my-repo --private --source=. --push
+~~~
+
+Clone an existing repository:
+
+~~~
+gh repo clone owner/name
+~~~
+
+Open the repo page in a browser:
+
+~~~
+gh repo view --web
+~~~
+
+## Issues
+
+List, view, and create issues:
+
+~~~
+gh issue list
+gh issue view 123
+gh issue create -t "Bug: crash on save" -b "Steps to reproduce..."
+~~~
+
+Comment, close, and label:
+
+~~~
+gh issue comment 123 -b "Thanks! Fixed in #456."
+gh issue close 123
+gh label create "type:bug" --color FF0000 --description "Bug report"
+gh issue edit 123 --add-label "type:bug" --remove-label "needs-triage"
+~~~
+
+## Pull requests
+
+Create a pull request from the current branch:
+
+~~~
+gh pr create -t "Add login form" -b "Implements OAuth 2.0 flow." -B main -H feature/login
+~~~
+
+Check out, review, and merge PRs:
+
+~~~
+gh pr checkout 456
+gh pr review 456 --approve
+gh pr merge 456 --squash --delete-branch
+~~~
+
+Open PR in the browser:
+
+~~~
+gh pr view 456 --web
+~~~
+
+## Actions
+
+Inspect workflows and runs:
+
+~~~
+gh workflow list
+gh run list
+gh run view <run-id> --log
+~~~
+
+Dispatch a workflow (with inputs) and watch:
+
+~~~
+gh workflow run ci.yml -f env=staging -f debug=true
+gh run watch
+~~~
+
+## Releases
+
+Create and upload a release with assets:
+
+~~~
+gh release create v1.2.0 dist/app.zip dist/maps/*.map \
+  --title "v1.2.0" --notes "✨ New features and fixes"
+~~~
+
+View or delete:
+
+~~~
+gh release view v1.2.0
+gh release delete v1.1.0
+~~~
+
+## Codespaces
+
+List, create, and open Codespaces:
+
+~~~
+gh codespace list
+gh codespace create -r owner/name -b main -m "standardLinux"
+gh codespace code -c <name-or-id>
+~~~
+
+## Gists
+
+Create a public or secret gist:
+
+~~~
+gh gist create README.md notes.txt --public -d "Docs and notes"
+gh gist create secrets.txt --private
+~~~
+
+## Aliases
+
+Create short, custom commands:
+
+~~~
+gh alias set pv 'pr view --web'
+gh alias set co 'pr checkout'
+gh alias list
+~~~
+
+**Example**
+
+~~~
+gh pv 123   # opens PR 123 in the browser
+gh co 456   # checks out PR 456 locally
+~~~
+
+## Configuration
+
+Set defaults and editor:
+
+~~~
+gh config set editor "code --wait"
+gh config set prompt disabled
+gh config list
+~~~
+
+Target a specific host (useful with GitHub Enterprise):
+
+~~~
+gh config set -h github.mycorp.com git_protocol ssh
+gh auth login -h github.mycorp.com
+~~~
+
+## Tips and tricks
+
+- Use `--repo owner/name` to run commands from anywhere:
+  ~~~
+  gh pr list --repo owner/name
+  ~~~
+- Combine with Git:
+  ~~~
+  git switch -c feat/x && gh pr create -f -B main
+  ~~~
+- Filter with jq-friendly JSON:
+  ~~~
+  gh issue list --json number,title,labels --jq '.[] | {n: .number, t: .title}'
+  ~~~
+- Call REST/GraphQL directly:
+  ~~~
+  gh api repos/:owner/:repo/branches
+  gh api graphql -f query='{ viewer { login } }'
+  ~~~
+
+## Resources
+
+- GitHub CLI manual: https://cli.github.com/manual/
+- Getting started: https://cli.github.com/

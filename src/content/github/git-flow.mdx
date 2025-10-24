@@ -1,0 +1,149 @@
+# Git flow
+
+## Branching
+
+Check current branch:
+
+~~~
+git branch
+~~~
+
+Create a new branch and switch to it:
+
+~~~
+git branch new_branch
+git checkout new_branch
+# or, in modern Git: git switch -c new_branch
+~~~
+
+Merge a branch into the base (for example, `master` or `main`):
+
+~~~
+git checkout master
+git merge branch_name
+# fast-forward merges happen when master has no new commits since the branch was created
+~~~
+
+Merge conflicts occur when both branches change the same lines:
+
+~~~
+CONFLICT (content): Merge conflict in resume.txt
+Automatic merge failed; fix conflicts and then commit the result.
+~~~
+
+Delete a branch after merging:
+
+~~~
+git branch -d branch_name
+# if it was not merged:
+git branch -D branch_name
+~~~
+
+**Tip**: Prefer creating focused feature branches and merging via pull requests to enable review and CI.
+
+## Clone
+
+Clone a remote repository:
+
+~~~
+git clone <remote_location> <clone_name>
+# <remote_location> can be an HTTPS/SSH URL or a local path, e.g. /Users/you/Documents/some-remote
+# <clone_name> is the local folder to create
+~~~
+
+Inspect configured remotes:
+
+~~~
+git remote -v
+~~~
+
+Fetch remote updates without merging:
+
+~~~
+git fetch
+~~~
+
+Bring remote changes into your current branch (keep `master`/`main` aligned):
+
+~~~
+git merge origin/master
+# or: git merge origin/main
+~~~
+
+**Summary**
+
+- `git clone`: Creates a local copy of a remote.
+- `git remote -v`: Lists remotes.
+- `git fetch`: Downloads new commits to remote-tracking branches.
+- `git merge origin/master`: Integrates remote changes into your local branch.
+- `git push origin <branch_name>`: Publishes your local branch.
+
+## Rebase
+
+Use rebase to move your feature work on top of the latest base branch to keep history linear.
+
+**Scenario**: After a release on `main`, a teammate fixes a bug on `quick_fix` and merges it into `main`. Your `new_feature` branch has now diverged. Rebase applies your `new_feature` commits onto the updated `main`:
+
+~~~
+# starting on new_feature
+git fetch origin
+git rebase origin/main
+# resolve conflicts as they arise
+# continue after fixing:
+git rebase --continue
+# if needed:
+git rebase --abort
+~~~
+
+**Note**: Rebase rewrites history (creates new commits). A common rule is **do not rebase commits that are already pushed and shared** to avoid confusing others.
+
+**Merge vs rebase**
+
+- **Merge**: preserves exact history, may create merge commits.
+- **Rebase**: rewrites history to be linear, removes merge commits.
+
+**Tip**: Rebase early and often locally; squash small WIP commits to reduce conflicts.
+
+## Git log graph
+
+Visualize commit history compactly:
+
+~~~
+git log --graph --decorate --oneline --all
+~~~
+
+## Gitignore
+
+Use a `.gitignore` file to exclude files from staging and commits (one pattern per line). Examples:
+
+~~~
+# OS files
+.DS_Store
+thumbs.db
+
+# dependencies
+node_modules/
+
+# builds and logs
+dist/
+build/
+*.log
+
+# secrets
+.env
+~~~
+
+**Notes**
+
+- Blank lines are ignored; lines starting with `#` are comments.
+- `.gitignore` usually lives at the repository root; patterns are relative to its location.
+- Pattern syntax reference: https://git-scm.com/docs/gitignore#_pattern_format
+- GitHub repo creation UI offers language-specific ignore templates.
+
+## Fork
+
+Create your own copy of a GitHub repository to experiment without affecting the original. You can submit changes back via pull requests from your fork to the upstream repository.
+
+## Repository template
+
+A template repository acts as a reusable blueprint (predefined structure, files, configs) for quickly creating consistent new repos across a team or organization.

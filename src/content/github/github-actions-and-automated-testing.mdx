@@ -1,0 +1,122 @@
+# GitHub Actions and Automated Testing
+
+## Overview
+
+GitHub Actions lets you automate workflows in response to repository events (for example, a push or a pull request). Workflows run on ephemeral runners hosted by GitHub and execute jobs composed of steps and actions.
+
+**Note**: A workflow is a YAML file stored under `.github/workflows/` in your repository.
+
+## When to use github actions
+
+Common scenarios:
+
+- continuous integration and deployment
+- automated code reviews and security scans
+- notifications to chat or email
+- dependency management and update automation
+- labeling and categorizing issues or pull requests
+
+**Tip**: Start with CI on every push and PR to keep your main branch healthy.
+
+## Workflow anatomy
+
+Core elements you will see in every workflow:
+
+- **events**: triggers that start a workflow, configured under `on`
+- **jobs**: units of work that run on runners, defined under `jobs`
+- **runners**: operating systems where jobs run, set with `runs-on` (`ubuntu-latest`, `windows-latest`, `macos-latest`)
+- **steps**: ordered commands inside a job
+- **actions**: reusable steps referenced with `uses: owner/name@version`
+
+**Attention**: If you are not using a prebuilt action in a step, use `run:` to execute shell commands.
+
+## Tutorial add automated tests
+
+Create a simple Python CI that runs unit tests on every push.
+
+1. Create the directories:
+
+   ~~~
+   .github/
+   └─ workflows/
+   ~~~
+
+2. Create `.github/workflows/unittests.yaml` with:
+
+   ~~~yaml
+   name: Continuous Integration
+   on: [push]
+   jobs:
+     build:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v2
+         - name: Set up Python
+           uses: actions/setup-python@v2
+           with:
+             python-version: 3.12.0
+             architecture: x64
+         - name: Install dependencies
+           run: pip install -r requirements.txt
+         - name: Run tests
+           run: python -m pytest
+   ~~~
+
+**What this does**
+
+- checks out the current branch
+- sets up Python on the runner
+- installs dependencies from `requirements.txt`
+- runs tests with `pytest`
+
+Open the **Actions** tab to watch logs. Passing runs show a green check. If tests fail, the workflow fails and notifies you according to your GitHub settings.
+
+**Tip**: When you open a pull request, the same workflow runs as a check. Protect your `main` branch to require passing checks before merge.
+
+**Note**: Newer major versions of actions (for example, `actions/checkout@v4`) may be available. Use the version your project targets consistently.
+
+## Tutorial simple workflow
+
+A minimal template that runs on push and pull requests to `main`, allows manual runs, and executes simple shell commands:
+
+~~~yaml
+# This is a basic workflow to help you get started with Actions
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+~~~
+
+## Tips and troubleshooting
+
+- cache dependencies to speed up runs (for example, `actions/cache`)
+- pin action versions to immutable tags or SHAs for reproducibility
+- use `if:` to skip steps for specific event types or paths
+- debug with `ACTIONS_STEP_DEBUG` and `ACTIONS_RUNNER_DEBUG` secrets set to `true`
+- split jobs to run in parallel and use `needs:` to control ordering
+- prefer small, focused workflows per language or subsystem
+
+**Note**: Re-run failed jobs with “Re-run all jobs” after intermittent failures.
+
+## Resources
+
+- Actions marketplace for prebuilt actions
+- Official docs on events, runners, and workflow syntax
