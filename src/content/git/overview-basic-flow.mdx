@@ -1,0 +1,152 @@
+# Overview basic flow
+
+Git is the industry-standard version control system for web developers.
+
+> **Note**
+> Some repositories default to a branch named `main` instead of `master`. Outputs may vary slightly by Git version and environment.
+
+## Initialize a repository
+
+Create a new repository in the current folder:
+
+~~~bash
+git init
+~~~
+
+**Response**
+
+~~~text
+Initialized empty Git repository in /home/ccuser/workspace/manhattan-zoo-1/.git/
+~~~
+
+## Check changes
+
+View current local modifications and tracking status:
+
+~~~bash
+git status
+~~~
+
+**Response**
+
+~~~text
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        scene-1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+
+## Stage files
+
+Add files to the staging area so Git can include them in the next commit:
+
+~~~bash
+git add filename_you_are_editing                 # single file
+git add filename_you_are_editing other_filename  # multiple files
+git add .                                        # all modified files in the folder
+~~~
+
+Check status again:
+
+~~~bash
+git status
+~~~
+
+**Response**
+
+~~~text
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   scene-1.txt
+~~~
+
+> **Tip**
+> To unstage a file: `git restore --staged <file>` (or `git reset HEAD <file>` on older Git).
+
+## View differences
+
+See differences between the working directory and the staging area:
+
+~~~bash
+git diff
+~~~
+
+**Response**
+
+~~~diff
+diff --git a/scene-1.txt b/scene-1.txt
+index c33ce4c..1e73963 100644
+--- a/scene-1.txt
++++ b/scene-1.txt
+@@ -1 +1,2 @@
+ Harry Programmer and the Sorcerer’s Code: Scene 1
++Dumblediff: I should've known you would be here, Professor McGonagit.
+\ No newline at end of file
+~~~
+
+> **Tip**
+> `git diff --staged` (or `--cached`) shows differences between the **staging area** and the **last commit**.
+
+## Commit changes
+
+A commit permanently stores changes from the staging area inside the repository. `-m` adds a commit message.
+
+Standard conventions for commit messages:
+- Must be in quotation marks
+- Written in the present tense
+- Should be brief (≈50 characters or less) when using `-m`
+
+Create the commit:
+
+~~~bash
+git commit -m "Complete first line of dialogue"
+~~~
+
+**Response**
+
+~~~text
+[master (root-commit) a659c51] Prima riga di codice fatta
+ 1 file changed, 2 insertions(+)
+ create mode 100644 scene-1.txt
+~~~
+
+> **Note**
+> Your commit ID (SHA), author, and message will differ based on your setup.
+
+## View history
+
+Commits are stored chronologically and can be viewed with:
+
+~~~bash
+git log
+~~~
+
+**Response**
+
+~~~text
+commit a659c518f418547ce82b4557a86ffcee61ee33f4
+Author: codecademy <ccuser@codecademy.com>
+Date:   Sun Oct 27 22:00:38 2024 +0000
+
+    Prima riga di codice fatta
+~~~
+
+**Output, notice:**
+- A 40-character code (SHA) that uniquely identifies the commit
+- The commit author (you!)
+- The date and time of the commit
+- The commit message
+
+> **Tip**
+> Press `q` to exit the log pager. Use `git log --oneline --graph --decorate --all` for a compact view of history.

@@ -1,0 +1,78 @@
+# Advanced commands
+
+Quick helpers for peeking at history, fixing recent commits, and shortening common commands.
+
+## Log
+
+Show commits in a compact, one-line format:
+
+~~~bash
+git log --oneline
+~~~
+
+Search for commits where the **number of occurrences** of a string changes within at least one file (added/removed/modified):
+
+~~~bash
+git log -S "keyword"
+# example:
+git log -S "Add"
+~~~
+
+Visualize branch/merge structure; combine with `--oneline` to keep it short:
+
+~~~bash
+git log --oneline --graph
+~~~
+
+> **Tip**
+> Add `--decorate --all` for refs and other branches:
+> ~~~bash
+> git log --oneline --graph --decorate --all
+> ~~~
+
+## Commit
+
+Amend updates the **most recent** commit (actually replaces it) using what’s currently staged:
+
+~~~bash
+# edit the message in your editor
+git commit --amend
+
+# keep the same message; only update contents/metadata
+git commit --amend --no-edit
+~~~
+
+> **Attention**
+> Amending rewrites history. Avoid amending commits that were already pushed to a shared branch—use `git revert` instead.
+
+Common amend flows:
+
+~~~bash
+# forgot to add a file to the last commit
+git add missed-file.js
+git commit --amend --no-edit
+
+# fix the last commit message
+git commit --amend -m "refactor: split utils for clarity"
+~~~
+
+## Alias
+
+Save time by creating short names for frequent commands:
+
+~~~bash
+git config --global alias.co "checkout"
+git config --global alias.br "branch"
+git config --global alias.glop "log --pretty=format:%h %s --graph"
+~~~
+
+Use the alias:
+
+~~~bash
+git co example_branch
+# instead of:
+git checkout example_branch
+~~~
+
+> **Note**
+> Aliases live in your global `~/.gitconfig` (or repository `.git/config` if you omit `--global`). They behave like Git subcommands, e.g., `git glop`.

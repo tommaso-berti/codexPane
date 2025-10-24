@@ -1,0 +1,120 @@
+# Backtrack
+
+When working on a Git project, sometimes we make changes that we want to get rid of. Git offers eraser-like features to undo mistakes during project creation.
+
+> **Note**
+> The most recent commit is typically the `HEAD` commit.
+
+## Inspect head changes
+
+Show the `HEAD` commit details plus the file changes that were committed:
+
+~~~bash
+git show HEAD
+~~~
+
+**Response**
+
+~~~text
+commit fa2706aa2214a3e6b3ba1d2f62b4acbf9c04fcce
+Author: codecademy <ccuser@codecademy.com>
+Date:   Sun Oct 27 22:18:14 2024 +0000
+
+    ghost response scene 5
+
+diff --git a/scene-5.txt b/scene-5.txt
+index b12dd97..fa75b29 100644
+--- a/scene-5.txt
++++ b/scene-5.txt
+@@ -11,4 +11,7 @@ Mark me.
+ Hamlet:
+ I will.
+
+-
++Ghost:
++My hour is almost come,
++When I to sulphurous and tormenting flames
++Must render up myself.
+~~~
+
+## Checkout file
+
+Restore a file to its state in the last commit:
+
+~~~bash
+git checkout HEAD filename
+~~~
+
+> **Tip**
+> Modern alternative: `git restore --source=HEAD -- filename`.
+
+## Reset staging file
+
+Reset a file **in the staging area** to match `HEAD` (keeps your working directory changes):
+
+~~~bash
+git reset HEAD filename
+~~~
+
+**Response**
+
+~~~text
+Unstaged changes after reset:
+M       scene-2.txt
+~~~
+
+`M` is short for “modification”.
+
+> **Tip**
+> Modern alternative: `git restore --staged filename`.
+
+## Reset to commit
+
+Move the repository back to a specific commit (use the first 7 characters of the SHA if you like):
+
+~~~bash
+git reset 5d69206
+~~~
+
+Running `git reset 5d69206` moves the repository back to the state of that commit: it changes the `HEAD` pointer and removes any commits that came after it from the current branch history (depending on mode).
+
+There are three modes of `git reset`:
+
+- `--soft`: moves `HEAD` only; keeps changes staged.
+- `--mixed` *(default)*: updates `HEAD` and the index (staging area); keeps changes in the working directory.
+- `--hard`: updates `HEAD`, the index, and the working directory; **discards** changes after the specified commit.
+
+~~~bash
+git reset --soft  <commit>
+git reset --mixed <commit>   # default
+git reset --hard  <commit>   # destructive
+~~~
+
+## Checkout working directory
+
+Restore files in the **working directory** to match `HEAD`:
+
+~~~bash
+git checkout -- filename
+# same as:
+git checkout HEAD filename
+~~~
+
+Restore **all** files in the working directory to `HEAD` (discard all uncommitted changes):
+
+~~~bash
+git checkout -- .
+~~~
+
+> **Tip**
+> Modern alternatives:
+> • Restore one file: `git restore filename`
+> • Restore all files: `git restore .`
+
+## Safety notes
+
+> **Attention**
+> `git reset --hard` and `git checkout -- .` permanently discard uncommitted changes. Ensure you don’t need them before running.
+
+> **Tip**
+> If you’ve already pushed commits that you want to undo, prefer `git revert <commit>` to create a new commit that reverses the change without rewriting history.

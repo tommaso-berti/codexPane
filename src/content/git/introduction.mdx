@@ -1,0 +1,73 @@
+# Introduction to Git
+
+Git is a **distributed version control system**. It tracks changes to your files, lets you create branches to experiment safely, and enables collaboration through platforms like GitHub, GitLab, and Bitbucket.
+
+## Why Git
+
+- Work offline with a full local history.
+- Create lightweight branches for features and fixes.
+- Merge changes and resolve conflicts with clear history.
+- Collaborate via pull requests and code review.
+
+## Core Concepts
+
+- **Repository (repo):** A project folder tracked by Git.
+- **Commit:** A snapshot of changes with a message.
+- **Branch:** A movable pointer to a line of commits (e.g., `main`, `feature/login`).
+- **Remote:** A shared copy of the repo (e.g., `origin` on GitHub).
+- **Staging area (index):** Where you prepare changes before committing.
+
+## Essential Commands
+
+Initialize and inspect:
+~~~
+git init
+git status
+git log --oneline --graph --decorate --all
+~~~
+
+Stage and commit:
+~~~
+git add .          # stage all changes
+git commit -m "Explain what changed"
+~~~
+
+Branch and merge:
+~~~
+git switch -c feature/search   # create and switch
+git switch main
+git merge feature/search       # merge into main
+~~~
+
+Sync with a remote:
+~~~
+git remote add origin https://example.com/you/repo.git
+git push -u origin main
+git pull --rebase               # fetch + replay your commits
+~~~
+
+Undo safely:
+~~~
+git restore --staged <file>     # unstage
+git restore <file>              # discard unstaged changes
+git revert <commit>             # new commit that undoes another
+~~~
+
+## Typical Workflow
+
+1. Update your local `main`: `git switch main && git pull`.
+2. Create a feature branch: `git switch -c feature/my-change`.
+3. Commit small, focused changes with clear messages.
+4. Push and open a pull request for review.
+5. Merge back to `main` after approvals and CI passes.
+
+> Tip: Prefer **rebasing** your feature branch onto `main` to keep history linear; prefer **merge commits** when you need to preserve a detailed integration history.
+
+## Next Steps
+
+- Learn branching strategies (Git Flow, Trunk Based).
+- Practice resolving merge conflicts.
+- Explore interactive staging and rebasing.
+- Set up hooks and CI to automate checks.
+
+> Note: Always write descriptive commit messages—think “subject line” (imperative mood) plus a short body when needed. This makes history useful for future you.

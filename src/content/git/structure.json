@@ -1,0 +1,64 @@
+{
+  "id": "git",
+  "title": "Git",
+  "slug": "git",
+  "items": [
+    {
+      "id": "overview-basic-flow",
+      "type": "section",
+      "title": "Overview basic flow",
+      "slug": "git/overview-basic-flow",
+      "order": 1,
+      "items": [
+        { "id": "initialize-a-repository", "type": "subSection", "title": "Initialize a repository", "slug": "git/overview-basic-flow#initialize-a-repository", "order": 1 },
+        { "id": "check-changes", "type": "subSection", "title": "Check changes", "slug": "git/overview-basic-flow#check-changes", "order": 2 },
+        { "id": "stage-files", "type": "subSection", "title": "Stage files", "slug": "git/overview-basic-flow#stage-files", "order": 3 },
+        { "id": "view-differences", "type": "subSection", "title": "View differences", "slug": "git/overview-basic-flow#view-differences", "order": 4 },
+        { "id": "commit-changes", "type": "subSection", "title": "Commit changes", "slug": "git/overview-basic-flow#commit-changes", "order": 5 },
+        { "id": "view-history", "type": "subSection", "title": "View history", "slug": "git/overview-basic-flow#view-history", "order": 6 }
+      ]
+    },
+    {
+      "id": "backtrack",
+      "type": "section",
+      "title": "Backtrack",
+      "slug": "git/backtrack",
+      "order": 2,
+      "items": [
+        { "id": "inspect-head-changes", "type": "subSection", "title": "Inspect head changes", "slug": "git/backtrack#inspect-head-changes", "order": 1 },
+        { "id": "checkout-file", "type": "subSection", "title": "Checkout file", "slug": "git/backtrack#checkout-file", "order": 2 },
+        { "id": "reset-staging-file", "type": "subSection", "title": "Reset staging file", "slug": "git/backtrack#reset-staging-file", "order": 3 },
+        { "id": "reset-to-commit", "type": "subSection", "title": "Reset to commit", "slug": "git/backtrack#reset-to-commit", "order": 4 },
+        { "id": "checkout-working-directory", "type": "subSection", "title": "Checkout working directory", "slug": "git/backtrack#checkout-working-directory", "order": 5 },
+        { "id": "safety-notes", "type": "subSection", "title": "Safety notes", "slug": "git/backtrack#safety-notes", "order": 6 }
+      ]
+    },
+    {
+      "id": "stash",
+      "type": "section",
+      "title": "Stash",
+      "slug": "git/stash",
+      "order": 3,
+      "items": [
+        { "id": "save-work-in-progress", "type": "subSection", "title": "Save work in progress", "slug": "git/stash#save-work-in-progress", "order": 1 },
+        { "id": "list-stashes", "type": "subSection", "title": "List stashes", "slug": "git/stash#list-stashes", "order": 2 },
+        { "id": "apply-and-pop", "type": "subSection", "title": "Apply and pop", "slug": "git/stash#apply-and-pop", "order": 3 },
+        { "id": "partial-stash", "type": "subSection", "title": "Partial stash", "slug": "git/stash#partial-stash", "order": 4 },
+        { "id": "include-untracked-files", "type": "subSection", "title": "Include untracked files", "slug": "git/stash#include-untracked-files", "order": 5 },
+        { "id": "clean up", "type": "subSection", "title": "Clean up", "slug": "git/stash#clean-up", "order": 6 }
+      ]
+    },
+    {
+      "id": "advanced-commands",
+      "type": "section",
+      "title": "Advanced commands",
+      "slug": "git/advanced-commands",
+      "order": 4,
+      "items": [
+        { "id": "log", "type": "subSection", "title": "Log", "slug": "git/advanced-commands#log", "order": 1 },
+        { "id": "commit", "type": "subSection", "title": "Commit", "slug": "git/advanced-commands#commit", "order": 2 },
+        { "id": "alias", "type": "subSection", "title": "Alias", "slug": "git/advanced-commands#alias", "order": 3 }
+      ]
+    }
+  ]
+}

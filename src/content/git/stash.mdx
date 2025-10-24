@@ -1,0 +1,103 @@
+# Stash
+
+While working on a file, you might spot a small bug in another file from a previous commit that you need to fix first. `git stash` lets you shelve your in-progress work, switch tasks, and come back later.
+
+> **Note**
+> By default, `git stash` saves **tracked** modifications in a hidden stash and leaves your working tree clean.
+
+## Save work in progress
+
+Temporarily store your current changes for later:
+
+~~~bash
+git stash
+# same as:
+git stash push
+~~~
+
+You can add a message to remember what you stashed:
+
+~~~bash
+git stash push -m "wip fix navbar hover"
+~~~
+
+At this point, you can switch branches and do work elsewhere.
+
+## List stashes
+
+See all saved stashes:
+
+~~~bash
+git stash list
+# e.g. stash@{0}: On main: wip fix navbar hover
+~~~
+
+Inspect what a stash contains:
+
+~~~bash
+git stash show -p stash@{0}
+~~~
+
+## Apply and pop
+
+Retrieve your previously stashed work:
+
+~~~bash
+git stash pop
+~~~
+
+`pop` applies the most recent stash **and removes it** from the stash stack.
+
+Keep a stash for reuse (do not remove it) by using `apply`:
+
+~~~bash
+git stash apply          # applies stash@{0} by default
+git stash apply stash@{2}
+~~~
+
+> **Tip**
+> If conflicts occur when applying, resolve them and commit as usual. The stash will remain if you used `apply`.
+
+## Partial stash
+
+Interactively choose hunks to stash:
+
+~~~bash
+git stash push -p
+~~~
+
+Keep staged changes for a quick fix while stashing everything else:
+
+~~~bash
+git stash push --keep-index
+~~~
+
+## Include untracked files
+
+Include **untracked** files in the stash:
+
+~~~bash
+git stash push -u
+# or:
+git stash -u
+~~~
+
+Include untracked **and ignored** files:
+
+~~~bash
+git stash -a
+~~~
+
+## Clean up
+
+Remove a specific stash or clear them all:
+
+~~~bash
+git stash drop stash@{0}
+git stash clear
+~~~
+
+> **Example flow**
+> 1) Save work → `git stash`
+> 2) Fix the bug on another branch
+> 3) Return to your task → `git stash pop`
