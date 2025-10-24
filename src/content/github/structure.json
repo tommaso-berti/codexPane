@@ -74,7 +74,6 @@
         { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/github-actions-and-automated-testing#resources", "order": 7 }
       ]
     },
-
     {
       "id": "github-pages",
       "type": "section",
