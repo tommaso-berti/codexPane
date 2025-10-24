@@ -1,0 +1,149 @@
+# Digital Accessibility
+
+Accessibility is designing devices, products, and environments so people with disabilities or sensory impairments can use them. On the web, follow **Web Content Accessibility Guidelines (WCAG) 2.1** to build inclusive experiences.
+
+Common examples:
+- Screen readers parsing content for visually impaired users.
+- Closed captions for videos.
+- Images with descriptive `alt` text.
+- Full keyboard navigation (e.g., using **Tab**).
+
+> Note: Accessibility benefits everyone—clear structure, sensible focus order, and readable text improve overall UX.
+
+## Contrast
+
+Contrast helps users scan and understand hierarchy. Apply contrast thoughtfully across:
+- **Headings** (size and weight)
+- **Font choices** (clarity and weight)
+- **Color** (foreground vs background)
+
+> Tip: Ensure interactive elements (links, buttons) have sufficient contrast in all states (default, hover, focus, disabled).
+
+## Headings
+
+There are six levels, `<h1>`–`<h6>`, decreasing in priority.
+- Create structure and visual contrast.
+- Provide landmarks for assistive tech.
+- Each page should have **one `<h1>`** describing the page purpose.
+- Do not skip levels (e.g., avoid jumping from `h1` to `h3`).
+
+> Attention: Keywords in `<h1>` often carry more SEO weight than in body text.
+
+## Font Accessibility
+
+Prefer **real text** over images of text:
+- Readable by screen readers.
+- Scales cleanly and loads faster.
+- Choose high-contrast text with legible sizes.
+
+**Contrasting colors**
+Check color pairs for WCAG compliance (normal text ≥ **4.5:1**, large text ≥ **3:1**).
+Resource: https://webaim.org/resources/contrastchecker/
+
+**Font sizes**
+Default browser text is ~16px. Use smaller sizes sparingly for nonessential content.
+
+## Color Accessibility
+
+Black on white maximizes contrast but can cause glare for some users. Consider:
+- Choose colors with strong **luminance** separation.
+- Support **color vision deficiencies** (red–green is most common).
+- Use multiple cues (text, icons) rather than color alone.
+
+Practical steps:
+- Pick highly contrasting colors (often opposite on a color wheel).
+- Use multiple shades of a color to maintain contrast (think grayscale).
+- Pair color with text or icons for state and error messages.
+
+> Note: Toptal’s color-blind filter can preview designs under different deficiencies.
+
+## Best Practices
+
+**Text over images**
+Add a dark (or light) overlay behind text to meet contrast ratios.
+
+**Do not remove input labels**
+Placeholders are low-contrast and not a replacement for visible labels.
+
+**Buttons and links**
+Minimalism should not hide clickability. Use visible affordances and don’t rely on color alone.
+
+## Semantic Html Elements
+
+Use meaningful tags so assistive tech understands structure:
+- Wrap site navigation in `<header>` or `<nav>`, not a generic `<div class="header">`.
+
+## Aria Role
+
+ARIA adds semantics where native HTML is insufficient.
+
+Some roles: `button`, `navigation`, `main`, `complementary`, `presentation`.
+
+**Complementary example**
+~~~html
+<div id="code-editor" role="complementary">
+  ...
+</div>
+~~~
+
+**Presentation example**
+~~~html
+<ol role="presentation">
+  <li>List Item 1</li>
+  <li>List Item 2</li>
+</ol>
+
+<div id="container" role="presentation">
+  <p>I'm content you want to hear!</p>
+</div>
+~~~
+
+> Tip: Prefer native elements first (`<button>` over `role="button"`). Use ARIA to fill gaps, not replace semantics.
+
+## Aria Properties
+
+`aria-label` provides accessible names for elements.
+
+~~~html
+<img src="#" alt="A painting of the Shenandoah Valley" />
+<p aria-label="Artist">Armand Cabrera, 2010</p>
+~~~
+
+> Note: Use `aria-label` for elements that don’t support `alt`. Do not duplicate visible text with `aria-label` unless necessary.
+
+## Alt Attribute
+
+Describe images concisely for non-visual contexts.
+
+~~~html
+<img src="#" alt="a kitten snuggling a puppy" />
+~~~
+
+Guidelines:
+- Keep it concise and relevant to purpose.
+- If the image is a link, describe the **destination**.
+- Decorative images: use empty `alt=""`.
+- Do not duplicate nearby captions; use empty `alt` instead.
+- Aim for ≤ 150 characters.
+
+## Screen Readers
+
+Screen readers convert on-screen text to speech or braille.
+
+- **VoiceOver** (macOS): toggle with `Command`+`F5`.
+- **NVDA** (Windows): free, widely used.
+- **ChromeVox** (Chrome): built with web technologies and ARIA support.
+
+> Tip: Test keyboard-only navigation and screen reader output for critical flows.
+
+## Tools And Resources
+
+- WCAG 2.1 overview and success criteria.
+- Contrast checker: https://webaim.org/resources/contrastchecker/
+- Color-blind filter (Toptal): search “Toptal colorblind filter”.
+
+## Contrast Playground
+
+import ContrastPlayground from "./components/digital-accessibility/ContrastPlayground.jsx"
+
+<ContrastPlayground />

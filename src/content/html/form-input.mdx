@@ -1,0 +1,189 @@
+# Form Input
+
+## Form
+
+Just like a physical form, an HTML `<form>` collects information to send somewhere else.
+
+~~~html
+<form action="/example.html" method="POST">
+</form>
+~~~
+
+- `action` determines where the information is sent.
+- `method` is the HTTP verb included in the request (e.g., `GET`, `POST`).
+
+> Note: With `method="GET"`, data is appended to the URL query string. With `POST`, data is sent in the request body.
+
+## Input
+
+The `<input>` element is **self closing** and has a `type` attribute that controls its UI and accepted data. Include a `name` attribute—without it, the input’s value is **not submitted**.
+
+~~~html
+<input type="text" name="first-text-field">
+~~~
+
+## Default Value
+
+Use the `value` attribute to prefill an input.
+
+~~~html
+<form action="/example.html" method="POST">
+  <input type="text" name="first-text-field" value="already pre-filled">
+</form>
+~~~
+
+When submitted with `"important details"`, the request sends `first-text-field=important details`.
+
+## Label
+
+Associate a `<label>` with an `<input>` using `for` (label) and `id` (input):
+
+~~~html
+<form action="/example.html" method="POST">
+  <label for="meal">What do you want to eat?</label>
+  <br>
+  <input type="text" name="food" id="meal">
+</form>
+~~~
+
+> Tip: Clicking a label focuses its associated input, improving usability and accessibility.
+
+## Text
+
+~~~html
+<input type="text" name="first-text-field">
+~~~
+
+## Password
+
+Masks typed characters:
+
+~~~html
+<form>
+  <label for="user-password">Password: </label>
+  <input type="password" id="user-password" name="user-password">
+</form>
+~~~
+
+## Number
+
+Restrict to numbers and allow stepper arrows via `step`:
+
+~~~html
+<form>
+  <label for="years"> Years of experience: </label>
+  <input id="years" name="years" type="number" step="1">
+</form>
+~~~
+
+## Range
+
+Slider with `min`, `max`, and `step`:
+
+~~~html
+<form>
+  <label for="volume"> Volume Control</label>
+  <input id="volume" name="volume" type="range" min="0" max="100" step="1">
+</form>
+~~~
+
+## Checkbox
+
+Multiple selections share the same `name`, with distinct `value`s:
+
+~~~html
+<form>
+  <p>Choose your pizza toppings:</p>
+  <label for="cheese">Extra cheese</label>
+  <input id="cheese" name="topping" type="checkbox" value="cheese">
+  <br>
+  <label for="pepperoni">Pepperoni</label>
+  <input id="pepperoni" name="topping" type="checkbox" value="pepperoni">
+</form>
+~~~
+
+## Radio Buttons
+
+Use when **only one** value should be selected among options. All radios in the group share the same `name`.
+
+~~~html
+<form>
+  <p>What is sum of 1 + 1?</p>
+  <input type="radio" id="two" name="answer" value="2">
+  <label for="two">2</label>
+  <br>
+  <input type="radio" id="eleven" name="answer" value="11">
+  <label for="eleven">11</label>
+</form>
+~~~
+
+## Dropdown
+
+~~~html
+<form>
+  <label for="lunch">What's for lunch?</label>
+  <select id="lunch" name="lunch">
+    <option value="pizza">Pizza</option>
+    <option value="curry">Curry</option>
+    <option value="salad">Salad</option>
+    <option value="ramen">Ramen</option>
+    <option value="tacos">Tacos</option>
+  </select>
+</form>
+~~~
+
+If the user selects Pizza, the submitted pair is `lunch=pizza`.
+
+> Attention: `<select>` is single-choice by default. Add the boolean `multiple` attribute for multi-select.
+
+## Datalist
+
+Searchable suggestions for a text input. If no option matches, the **typed value is still submitted**.
+
+~~~html
+<form>
+  <label for="city">Ideal city to visit?</label>
+  <input type="text" list="cities" id="city" name="city">
+
+  <datalist id="cities">
+    <option value="New York City"></option>
+    <option value="Tokyo"></option>
+    <option value="Barcelona"></option>
+    <option value="Mexico City"></option>
+    <option value="Melbourne"></option>
+    <option value="Other"></option>
+  </datalist>
+</form>
+~~~
+
+## Textarea
+
+For multi-line text:
+
+~~~html
+<form>
+  <label for="blog">New Blog Post: </label>
+  <br>
+  <textarea id="blog" name="blog" rows="5" cols="30">
+    Default text
+  </textarea>
+</form>
+~~~
+
+## Submit
+
+Submit the form:
+
+~~~html
+<form>
+  <input type="submit" value="Send">
+</form>
+~~~
+
+> Tip: You can also use `<button type="submit">Send</button>` for richer content.
+
+## Form Playground
+
+import FormPlayground from "./components/form-input/FormPlayground.jsx"
+
+<FormPlayground />

@@ -1,0 +1,53 @@
+# Font Awesome
+
+## Overview
+
+Icons are small symbols that convey meaning without text (e.g., a floppy disk for “save”). **Font Awesome** provides a large, CSS-driven icon set you can drop into HTML.
+
+> Tip: Keep icons paired with accessible text (visible labels or `aria-label`) so screen readers understand intent.
+
+## Link Font Awesome
+
+Link via CDN (recommended for quick starts) or host locally.
+
+**CDN example (Bootstrap CDN):**
+~~~html
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+</head>
+~~~
+
+**Local example:**
+~~~html
+<head>
+  <link rel="stylesheet" href="resources/css/fontawesome.css">
+</head>
+~~~
+
+> Note: Ensure the path points to your downloaded Font Awesome CSS file. Different versions may use additional style sheets (e.g., `solid.css`, `regular.css`).
+
+## Add Font Awesome Icon
+
+Font Awesome icons are applied via classes on an inline element such as `<i>`.
+
+~~~html
+<i class="fa fa-save"></i>
+~~~
+
+- `fa` — required base class
+- `fa-save` — the specific icon (floppy disk)
+
+> Note: Use the Font Awesome **cheat sheet** to find icon names. If an icon doesn’t render, verify the stylesheet is loaded and the class name matches your FA version.
+
+## Icon Sizing
+
+Scale icons by adding size utility classes:
+
+~~~html
+<i class="fa fa-camera fa-lg"></i>
+<i class="fa fa-cab fa-4x"></i>
+~~~
+
+Common sizes: `fa-lg` (≈1.33×), `fa-2x`, `fa-3x`, `fa-4x`, `fa-5x`.
+
+> Tip: You can also size icons with CSS (`font-size`) if preferred, but the built-in classes are quick and consistent.

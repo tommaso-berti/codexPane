@@ -1,0 +1,68 @@
+# Form Validation
+
+> Note: See MDN’s guide for a deeper dive: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+
+## Required
+
+Sometimes fields are **not optional**. Add the boolean `required` attribute to prevent submission until a value is provided. Browsers will block submission and show an error.
+
+~~~html
+<form action="/example.html" method="POST">
+  <label for="allergies">Do you have any dietary restrictions?</label>
+  <br>
+  <input id="allergies" name="allergies" type="text" required>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+~~~
+
+## Text Length
+
+Control allowed input length with `minlength` and `maxlength`.
+
+~~~html
+<input id="username" name="username" type="text" required minlength="3" maxlength="15">
+~~~
+
+> Tip: Pair `maxlength` with helpful UI (e.g., a character counter).
+
+## Matching A Pattern
+
+Use the `pattern` attribute (regular expressions) to enforce a **format**.
+
+- Fully match any string: `[^]*`
+- Example “Hello …” (case-insensitive): `[hH]ello[^]*`
+- US-style phone (### any chars ###-####): `[^]*\d{3}[^]*\d{3}-\d{4}`
+
+~~~html
+<input id="code" name="code" type="text" required pattern="[cC]odecademy">
+
+<input id="username" name="username" type="text"
+       required minlength="3" maxlength="15" pattern="[a-zA-Z0-9]+">
+~~~
+
+> Attention: Patterns must match the **entire value**. Add `^` and `$` if needed (e.g., `^[a-zA-Z0-9]+$`).
+
+## Client Side Validation
+
+For simple sites, native HTML validation plus a lightweight library can be enough (e.g., **just-validate**). Frameworks with virtual DOMs (React, Vue) often use form helpers like **Formik** to integrate validation with component state.
+
+- Native HTML: `required`, `minlength`, `maxlength`, `pattern`, input `type`.
+- Libraries: watch for DOM manipulation compatibility with your framework.
+
+## Back End Validation
+
+Always validate on the **server**:
+
+- Front-end checks are bypassable (e.g., JS disabled or modified requests).
+- Server-side can validate against databases, secrets, or business rules.
+- Perform validation **during input** (AJAX) or **after submission**.
+- Also **sanitize/normalize** data (e.g., trim whitespace, canonicalize casing) before storing.
+
+> Note: Treat server-side validation as the **final line of defense** before persistence.
+
+## Validation Playground
+
+import ValidationPlayground from "./components/form-validation/ValidationPlayground.jsx"
+
+<ValidationPlayground />

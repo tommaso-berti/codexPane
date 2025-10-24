@@ -1,0 +1,216 @@
+# Element Tags
+
+## Images
+
+~~~html
+<img …../>
+<img src="path_to_file" />
+~~~
+
+Wrap images in links by nesting the `<img>` inside an `<a>`:
+
+~~~html
+<a href="https://en.wikipedia.org/wiki/Opuntia" target="_blank">
+  <img src="https://www.Prickly_Pear_Closeup.jpg" alt="A red prickly pear fruit"/>
+</a>
+~~~
+
+## Image Alt
+
+The `alt` attribute is used when images fail to load, for screen readers, and for SEO. If an image is purely decorative and conveys no meaningful information, leave `alt` empty.
+
+- Avoid descriptions starting with “Image of…” or “Photo of…”.
+
+~~~html
+<img src="#" alt="A field of yellow sunflowers" />
+~~~
+
+> Tip: Keep `alt` concise and specific to the image’s purpose in context.
+
+## Video
+
+~~~html
+<video></video>
+<video src="myVideo.mp4" width="320" height="240" controls>
+  Video not supported
+</video>
+~~~
+
+- The fallback text (“Video not supported”) is shown if the video cannot be rendered.
+- The `controls` attribute shows basic controls (play and pause).
+
+## Links
+
+Add links with the anchor element:
+
+~~~html
+<a href="https://en.wikipedia.org/wiki/Brown_bear" target="_blank">The Brown Bear</a>
+~~~
+
+`target` controls where the link opens:
+- `_blank` → new tab
+- `_self` → current tab
+
+Link pages in the same folder with a **relative path**:
+
+~~~html
+<a href="./contact.html">Contact</a>
+~~~
+
+HTML can turn nearly any element into a link by wrapping it with `<a>`. For images:
+
+~~~html
+<a href="https://en.wikipedia.org/wiki/Opuntia" target="_blank">
+  <img src="https://www.Prickly_Pear_Closeup.jpg" alt="A red prickly pear fruit"/>
+</a>
+~~~
+
+## Anchor Links
+
+Link to a specific section on the same page by targeting an element’s `id`:
+
+~~~html
+<p id="top">This is the top of the page!</p>
+
+<li><a href="#top">Top</a></li> <!-- clicking this link will scroll to the element with id="top" -->
+~~~
+
+## Title Attribute
+
+Use `title` to provide extra context (often shown as a tooltip on hover):
+
+~~~html
+<p>
+  <a href="https://www.codecademy.com" title="Codecademy is an online learning platform">Codecademy</a>
+  is the best place to learn to code!
+</p>
+~~~
+
+> Note: Use `title` sparingly; it’s not always accessible on touch devices.
+
+## Tables
+
+Initialize a table and use semantic cells:
+
+~~~html
+<table>
+  <tr>
+    <th></th>         <!-- empty to align columns -->
+    <th scope="col">Saturday</th>
+    <th scope="col">Sunday</th>
+  </tr>
+  <tr>
+    <th scope="row">Temperature</th>
+    <td>73</td>
+    <td>81</td>
+  </tr>
+</table>
+~~~
+
+- `<table></table>`: table container
+- `<tr></tr>`: table row
+- `<th></th>`: header cell
+  - `scope="row"` marks a row header
+  - `scope="col"` marks a column header
+- `<td></td>`: data cell
+
+## Rowspan And Colspan
+
+Use `colspan` to span *columns* and `rowspan` to span *rows*.
+
+~~~html
+<td colspan="2">Out of Town</td>
+~~~
+
+Example:
+
+~~~html
+<table>
+  <tr>
+    <th scope="col">Company Name</th>
+    <th scope="col">Number of Items to Ship</th>
+    <th scope="col">Next Action</th>
+  </tr>
+  <tr>
+    <td>Adam’s Greenworks</td>
+    <td>14</td>
+    <td rowspan="2">Package Items</td>
+  </tr>
+  <tr>
+    <td>Davie’s Burgers</td>
+    <td>2</td>
+    <td>Send Invoice</td>
+  </tr>
+  <tr>
+    <td>Baker's Bike Shop</td>
+    <td>3</td>
+    <td>Send Invoice</td>
+  </tr>
+  <tr>
+    <td>Miss Sally's Southern</td>
+    <td colspan="2">4</td>
+    <td rowspan="2">Ship</td>
+  </tr>
+  <tr>
+    <td>Summit Resort Rentals</td>
+    <td>4</td>
+    <td>Ship</td>
+    ...
+</table>
+~~~
+
+## Multiple Classes
+
+Multiple classes can be defined on a single element:
+
+~~~html
+<h1 class='green bold'> ... </h1>
+~~~
+
+> Tip: Class order doesn’t matter; specificity and the cascade determine which styles apply.
+
+## Table Sections
+
+Group table parts for semantics and styling: `thead`, `tbody`, and `tfoot`.
+
+~~~html
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Saturday</th>
+      <th scope="col">Sunday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Morning</th>
+      <td rowspan="2">Work</td>
+      <td rowspan="3">Relax</td>
+    </tr>
+    <tr>
+      <th scope="row">Afternoon</th>
+    </tr>
+    <tr>
+      <th scope="row">Evening</th>
+      <td>Dinner</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td colspan="2">Totals and notes</td>
+    </tr>
+  </tfoot>
+</table>
+~~~
+
+- `<tbody>` contains the table’s data rows.
+- `<thead>` contains column headings (still wrapped in a row).
+- `<tfoot>` is often used for totals and summary data.
+
+## Table Playground
+
+import TablePlayground from "./components/element-tags/TablePlayground.jsx"
+
+<TablePlayground />

@@ -1,0 +1,129 @@
+# Semantic Html
+
+By using **semantic HTML**, we choose elements for their **meaning**, not their presentation. Elements like `<div>` and `<span>` are non-semantic—they give no context. Using `<header>` instead of a generic `<div>` clarifies intent and structure.
+
+## Why Use Semantic Html
+
+- **Accessibility**: Screen readers and browsers can better interpret content.
+- **SEO**: Search engines can identify and prioritize important content.
+- **Easy To Understand**: Source code is clearer for developers.
+
+## Header
+
+A container for introductory content or navigation, often containing `<h1>`–`<h6>`.
+
+~~~html
+<header>
+  <h1>Site Title</h1>
+  <!-- optional nav here -->
+</header>
+~~~
+
+## Nav
+
+Defines a block of navigation links (menus, tables of contents). Can be inside `<header>` or standalone.
+
+~~~html
+<nav>
+  <a href="/">Home</a>
+  <a href="/articles">Articles</a>
+  <a href="/contact">Contact</a>
+</nav>
+~~~
+
+## Main
+
+Encapsulates the **dominant** content of a page (separate from `<header>`, `<nav>`, and `<footer>`).
+
+~~~html
+<main>
+  <h2>Welcome</h2>
+  <p>This is the primary content.</p>
+</main>
+~~~
+
+## Footer
+
+Appears at the bottom with meta information.
+
+Common items:
+- Contact information
+- Copyright
+- Terms of use
+- Sitemap
+- Back to top links
+
+~~~html
+<footer>
+  <p>© 2025 My Company · <a href="#top">Back to top</a></p>
+</footer>
+~~~
+
+## Section
+
+Groups related content (a chapter, topic, or thematic block).
+
+~~~html
+<section>
+  <h2>Cricket News</h2>
+  <article>Latest match analysis…</article>
+</section>
+~~~
+
+## Article
+
+Holds content that stands on its own (post, comment, magazine entry).
+
+~~~html
+<article>
+  <h2>Match Recap</h2>
+  <p>The first World Series was played in 1903…</p>
+</article>
+~~~
+
+## Aside
+
+Supplementary content that enhances but isn’t essential to the main flow.
+
+Common uses: bibliographies, endnotes, comments, pull quotes, sidebars, additional info.
+
+~~~html
+<article>
+  <p>The first World Series was played between Pittsburgh and Boston in 1903…</p>
+</article>
+<aside>
+  <p>Babe Ruth once stated, “Heroes get remembered, but legends never die.”</p>
+</aside>
+~~~
+
+## Figure
+
+Wraps self-contained media referenced in the document.
+
+~~~html
+<figure>
+  <img src="overwatch.jpg" alt="Overwatch characters">
+</figure>
+~~~
+
+## Figcaption
+
+Describes media in a `<figure>`. Stays associated even if the figure is moved.
+
+~~~html
+<figure>
+  <img src="overwatch.jpg" alt="Overwatch characters">
+  <figcaption>This picture shows characters from Overwatch.</figcaption>
+</figure>
+~~~
+
+## Audio
+
+Embeds audio content. Use `controls`; include a `source` with `type` for better support.
+
+~~~html
+<audio controls>
+  <source src="iAmAnAudioFile.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+~~~

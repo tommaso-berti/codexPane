@@ -1,0 +1,81 @@
+# HTML Document
+
+## Doctype
+
+This declaration is an instruction that **must be the first line** of your HTML document. It tells the browser what type of document to expect and which version of HTML is being used. Today, the `html` in `<!DOCTYPE html>` refers to **HTML5**, the current standard.
+
+~~~html
+<!DOCTYPE html>
+<html>
+
+</html>
+~~~
+
+> Note: The doctype isn’t an HTML element; it’s a declaration for the browser and parsers.
+
+## Website Common Document Hierarchy
+
+When making multi-page static websites, developers often store HTML files in the **root directory**, a main folder containing all project files. As your projects grow, add subfolders to organize code and assets.
+
+~~~text
+project-folder/
+|—— about.html
+|—— contact.html
+|—— index.html
+~~~
+
+> Tip: Keep asset folders like `css/`, `js/`, and `images/` at the project root for predictable relative paths.
+
+## Document Structure
+
+~~~html
+<html></html>
+~~~
+The first tag in an HTML file. Everything inside is HTML content.
+
+~~~html
+<head></head>
+~~~
+Contains **metadata** about the page (not rendered visually). Typical contents include `<meta>` tags, styles, and the document `<title>`.
+
+~~~html
+<title></title>
+~~~
+Defines the text shown in the browser tab. The `<title>` is **always inside** `<head>`.
+
+~~~html
+<body></body>
+~~~
+Contains the **main content** of the page that is rendered to users.
+
+~~~html
+<footer></footer>
+~~~
+Contains the **footer** of the page—often site credits, links, or legal text.
+
+## Elements Overview
+
+~~~html
+<section></section>
+~~~
+The `<section>` element defines a **thematic grouping of content**, typically with a heading. It signals that enclosed content is related and forms a distinct section.
+
+> Note: Use `<section>` for **semantically meaningful** groupings. Use `<div>` for **generic containers** when no specific semantic element fits.
+
+~~~html
+<!-- Minimal semantic skeleton example -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Page</title>
+  </head>
+  <body>
+    <section>
+      <h1>Welcome</h1>
+      <p>Hello world.</p>
+    </section>
+    <footer>© 2025</footer>
+  </body>
+</html>
+~~~

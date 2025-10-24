@@ -1,1 +1,76 @@
 # Introduction to HTML
+
+# Introduction to html
+
+HyperText Markup Language (HTML) is the standard markup used to structure content on the web. You describe *what* things are—headings, paragraphs, links, forms, images—while CSS and JavaScript handle presentation and behavior. Browsers parse HTML into the **Document Object Model (DOM)**, which scripts can read and modify.
+
+**Goals of modern HTML**
+- Use **semantic elements** (`header`, `main`, `article`, `nav`, `footer`) to convey meaning.
+- Keep content **accessible** (proper landmarks, labels, alt text, and keyboard flow).
+- Structure documents for **findability** (SEO), **sharing** (metadata), and **interoperability**.
+
+**Minimal document**
+~~~html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello HTML</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header><h1>Site Title</h1></header>
+    <main>
+      <article>
+        <h2>Welcome</h2>
+        <p>This is a minimal, semantic page.</p>
+      </article>
+    </main>
+    <footer>&copy; 2025</footer>
+    <script src="app.js" defer></script>
+  </body>
+</html>
+~~~
+
+**Common content**
+~~~html
+<h1>Page Heading</h1>
+<p>Paragraph with a <a href="/about">link</a>.</p>
+<ul>
+  <li>List item</li>
+  <li>Another item</li>
+</ul>
+<img src="team.jpg" alt="Our team standing in front of the office" />
+~~~
+
+**Forms that work for everyone**
+~~~html
+<form action="/subscribe" method="post">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" required />
+  <button type="submit">Subscribe</button>
+</form>
+~~~
+
+**Media and captions**
+~~~html
+<figure>
+  <img src="diagram.png" alt="Architecture diagram" />
+  <figcaption>High-level architecture.</figcaption>
+</figure>
+<video controls width="480">
+  <source src="intro.mp4" type="video/mp4" />
+  Sorry, your browser doesn’t support embedded videos.
+</video>
+~~~
+
+> **Tip:** Prefer semantic tags (`button`, `nav`, `section`) over generic `<div>`s—assistive tech recognizes them automatically.
+
+> **Note:** Always include `lang` on `<html>`, a proper `<!doctype html>`, and the responsive `meta viewport` for mobile-friendly layouts.
+
+**Next steps**
+- Learn core elements, attributes, and document flow.
+- Master forms, tables, media, and semantics.
+- Add metadata (Open Graph, favicons), and practice accessible patterns.
+- Validate your pages with the W3C validator and test with a screen reade

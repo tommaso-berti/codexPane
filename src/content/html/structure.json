@@ -1,28 +1,510 @@
 {
   "id": "html",
-  "title": "HTML",
-  "icon": "HtmlIcon",
+  "title": "Html",
   "slug": "html",
   "items": [
     {
-      "id": "document-structure",
+      "id": "html-document",
       "type": "section",
-      "title": "Document structure",
-      "slug": "html/document-structure",
+      "title": "HTML Document",
+      "slug": "html/html-document",
       "order": 1,
       "items": [
-        { "id": "semantic-naming", "type": "subSection", "title": "Semantic naming", "slug": "html/document-structure/semantic-naming", "order": 1 },
-        { "id": "header", "type": "subSection", "title": "Header", "slug": "html/document-structure/header", "order": 2 }
+        {
+          "id": "doctype",
+          "type": "subSection",
+          "title": "Doctype",
+          "slug": "html/html-document#doctype",
+          "order": 1
+        },
+        {
+          "id": "website-common-document-hierarchy",
+          "type": "subSection",
+          "title": "Website Common Document Hierarchy",
+          "slug": "html/html-document#website-common-document-hierarchy",
+          "order": 2
+        },
+        {
+          "id": "document-structure",
+          "type": "subSection",
+          "title": "Document Structure",
+          "slug": "html/html-document#document-structure",
+          "order": 3
+        },
+        {
+          "id": "elements-overview",
+          "type": "subSection",
+          "title": "Elements Overview",
+          "slug": "html/html-document#elements-overview",
+          "order": 4
+        }
       ]
     },
     {
-      "id": "accessibility",
+      "id": "element-tags",
       "type": "section",
-      "title": "Accessibility",
-      "slug": "html/accessibility",
-      "order": 1,
+      "title": "Element Tags",
+      "slug": "html/element-tags",
+      "order": 2,
       "items": [
-        { "id": "seo", "type": "subSection", "title": "Seo", "slug": "html/accessibility/seo", "order": 1 }
+        {
+          "id": "images",
+          "type": "subSection",
+          "title": "Images",
+          "slug": "html/element-tags#images",
+          "order": 1
+        },
+        {
+          "id": "image-alt",
+          "type": "subSection",
+          "title": "Image Alt",
+          "slug": "html/element-tags#image-alt",
+          "order": 2
+        },
+        {
+          "id": "video",
+          "type": "subSection",
+          "title": "Video",
+          "slug": "html/element-tags#video",
+          "order": 3
+        },
+        {
+          "id": "links",
+          "type": "subSection",
+          "title": "Links",
+          "slug": "html/element-tags#links",
+          "order": 4
+        },
+        {
+          "id": "anchor-links",
+          "type": "subSection",
+          "title": "Anchor Links",
+          "slug": "html/element-tags#anchor-links",
+          "order": 5
+        },
+        {
+          "id": "title-attribute",
+          "type": "subSection",
+          "title": "Title Attribute",
+          "slug": "html/element-tags#title-attribute",
+          "order": 6
+        },
+        {
+          "id": "tables",
+          "type": "subSection",
+          "title": "Tables",
+          "slug": "html/element-tags#tables",
+          "order": 7
+        },
+        {
+          "id": "rowspan-and-colspan",
+          "type": "subSection",
+          "title": "Rowspan And Colspan",
+          "slug": "html/element-tags#rowspan-and-colspan",
+          "order": 8
+        },
+        {
+          "id": "multiple-classes",
+          "type": "subSection",
+          "title": "Multiple Classes",
+          "slug": "html/element-tags#multiple-classes",
+          "order": 9
+        },
+        {
+          "id": "table-sections",
+          "type": "subSection",
+          "title": "Table Sections",
+          "slug": "html/element-tags#table-sections",
+          "order": 10
+        },
+        {
+          "id": "table-playground",
+          "type": "subSection",
+          "title": "Table Playground",
+          "slug": "html/element-tags#table-playground",
+          "order": 11
+        }
+      ]
+    },
+    {
+      "id": "form-input",
+      "type": "section",
+      "title": "Form Input",
+      "slug": "html/form-input",
+      "order": 3,
+      "items": [
+        {
+          "id": "form",
+          "type": "subSection",
+          "title": "Form",
+          "slug": "html/form-input#form",
+          "order": 1
+        },
+        {
+          "id": "input",
+          "type": "subSection",
+          "title": "Input",
+          "slug": "html/form-input#input",
+          "order": 2
+        },
+        {
+          "id": "default-value",
+          "type": "subSection",
+          "title": "Default Value",
+          "slug": "html/form-input#default-value",
+          "order": 3
+        },
+        {
+          "id": "label",
+          "type": "subSection",
+          "title": "Label",
+          "slug": "html/form-input#label",
+          "order": 4
+        },
+        {
+          "id": "text",
+          "type": "subSection",
+          "title": "Text",
+          "slug": "html/form-input#text",
+          "order": 5
+        },
+        {
+          "id": "password",
+          "type": "subSection",
+          "title": "Password",
+          "slug": "html/form-input#password",
+          "order": 6
+        },
+        {
+          "id": "number",
+          "type": "subSection",
+          "title": "Number",
+          "slug": "html/form-input#number",
+          "order": 7
+        },
+        {
+          "id": "range",
+          "type": "subSection",
+          "title": "Range",
+          "slug": "html/form-input#range",
+          "order": 8
+        },
+        {
+          "id": "checkbox",
+          "type": "subSection",
+          "title": "Checkbox",
+          "slug": "html/form-input#checkbox",
+          "order": 9
+        },
+        {
+          "id": "radio-buttons",
+          "type": "subSection",
+          "title": "Radio Buttons",
+          "slug": "html/form-input#radio-buttons",
+          "order": 10
+        },
+        {
+          "id": "dropdown",
+          "type": "subSection",
+          "title": "Dropdown",
+          "slug": "html/form-input#dropdown",
+          "order": 11
+        },
+        {
+          "id": "datalist",
+          "type": "subSection",
+          "title": "Datalist",
+          "slug": "html/form-input#datalist",
+          "order": 12
+        },
+        {
+          "id": "textarea",
+          "type": "subSection",
+          "title": "Textarea",
+          "slug": "html/form-input#textarea",
+          "order": 13
+        },
+        {
+          "id": "submit",
+          "type": "subSection",
+          "title": "Submit",
+          "slug": "html/form-input#submit",
+          "order": 14
+        },
+        {
+          "id": "form-playground",
+          "type": "subSection",
+          "title": "Form Playground",
+          "slug": "html/form-input#form-playground",
+          "order": 15
+        }
+      ]
+    },
+    {
+      "id": "form-validation",
+      "type": "section",
+      "title": "Form Validation",
+      "slug": "html/form-validation",
+      "order": 4,
+      "items": [
+        {
+          "id": "required",
+          "type": "subSection",
+          "title": "Required",
+          "slug": "html/form-validation#required",
+          "order": 1
+        },
+        {
+          "id": "text-length",
+          "type": "subSection",
+          "title": "Text Length",
+          "slug": "html/form-validation#text-length",
+          "order": 2
+        },
+        {
+          "id": "matching-a-pattern",
+          "type": "subSection",
+          "title": "Matching A Pattern",
+          "slug": "html/form-validation#matching-a-pattern",
+          "order": 3
+        },
+        {
+          "id": "client-side-validation",
+          "type": "subSection",
+          "title": "Client Side Validation",
+          "slug": "html/form-validation#client-side-validation",
+          "order": 4
+        },
+        {
+          "id": "back-end-validation",
+          "type": "subSection",
+          "title": "Back End Validation",
+          "slug": "html/form-validation#back-end-validation",
+          "order": 5
+        },
+        {
+          "id": "validation-playground",
+          "type": "subSection",
+          "title": "Validation Playground",
+          "slug": "html/form-validation#validation-playground",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "semantic-html",
+      "type": "section",
+      "title": "Semantic Html",
+      "slug": "html/semantic-html",
+      "order": 5,
+      "items": [
+        {
+          "id": "why-use-semantic-html",
+          "type": "subSection",
+          "title": "Why Use Semantic Html",
+          "slug": "html/semantic-html#why-use-semantic-html",
+          "order": 2
+        },
+        {
+          "id": "header",
+          "type": "subSection",
+          "title": "Header",
+          "slug": "html/semantic-html#header",
+          "order": 3
+        },
+        {
+          "id": "nav",
+          "type": "subSection",
+          "title": "Nav",
+          "slug": "html/semantic-html#nav",
+          "order": 4
+        },
+        {
+          "id": "main",
+          "type": "subSection",
+          "title": "Main",
+          "slug": "html/semantic-html#main",
+          "order": 5
+        },
+        {
+          "id": "footer",
+          "type": "subSection",
+          "title": "Footer",
+          "slug": "html/semantic-html#footer",
+          "order": 6
+        },
+        {
+          "id": "section",
+          "type": "subSection",
+          "title": "Section",
+          "slug": "html/semantic-html#section",
+          "order": 7
+        },
+        {
+          "id": "article",
+          "type": "subSection",
+          "title": "Article",
+          "slug": "html/semantic-html#article",
+          "order": 8
+        },
+        {
+          "id": "aside",
+          "type": "subSection",
+          "title": "Aside",
+          "slug": "html/semantic-html#aside",
+          "order": 9
+        },
+        {
+          "id": "figure",
+          "type": "subSection",
+          "title": "Figure",
+          "slug": "html/semantic-html#figure",
+          "order": 10
+        },
+        {
+          "id": "figcaption",
+          "type": "subSection",
+          "title": "Figcaption",
+          "slug": "html/semantic-html#figcaption",
+          "order": 11
+        },
+        {
+          "id": "audio",
+          "type": "subSection",
+          "title": "Audio",
+          "slug": "html/semantic-html#audio",
+          "order": 12
+        }
+      ]
+    },
+    {
+      "id": "digital-accessibility",
+      "type": "section",
+      "title": "Digital Accessibility",
+      "slug": "html/digital-accessibility",
+      "order": 6,
+      "items": [
+        {
+          "id": "contrast",
+          "type": "subSection",
+          "title": "Contrast",
+          "slug": "html/digital-accessibility#contrast",
+          "order": 2
+        },
+        {
+          "id": "headings",
+          "type": "subSection",
+          "title": "Headings",
+          "slug": "html/digital-accessibility#headings",
+          "order": 3
+        },
+        {
+          "id": "font-accessibility",
+          "type": "subSection",
+          "title": "Font Accessibility",
+          "slug": "html/digital-accessibility#font-accessibility",
+          "order": 4
+        },
+        {
+          "id": "color-accessibility",
+          "type": "subSection",
+          "title": "Color Accessibility",
+          "slug": "html/digital-accessibility#color-accessibility",
+          "order": 5
+        },
+        {
+          "id": "best-practices",
+          "type": "subSection",
+          "title": "Best Practices",
+          "slug": "html/digital-accessibility#best-practices",
+          "order": 6
+        },
+        {
+          "id": "semantic-html-elements",
+          "type": "subSection",
+          "title": "Semantic Html Elements",
+          "slug": "html/digital-accessibility#semantic-html-elements",
+          "order": 7
+        },
+        {
+          "id": "aria-role",
+          "type": "subSection",
+          "title": "Aria Role",
+          "slug": "html/digital-accessibility#aria-role",
+          "order": 8
+        },
+        {
+          "id": "aria-properties",
+          "type": "subSection",
+          "title": "Aria Properties",
+          "slug": "html/digital-accessibility#aria-properties",
+          "order": 9
+        },
+        {
+          "id": "alt-attribute",
+          "type": "subSection",
+          "title": "Alt Attribute",
+          "slug": "html/digital-accessibility#alt-attribute",
+          "order": 10
+        },
+        {
+          "id": "screen-readers",
+          "type": "subSection",
+          "title": "Screen Readers",
+          "slug": "html/digital-accessibility#screen-readers",
+          "order": 11
+        },
+        {
+          "id": "tools-and-resources",
+          "type": "subSection",
+          "title": "Tools And Resources",
+          "slug": "html/digital-accessibility#tools-and-resources",
+          "order": 12
+        },
+        {
+          "id": "contrast-playground",
+          "type": "subSection",
+          "title": "Contrast Playground",
+          "slug": "html/digital-accessibility#contrast-playground",
+          "order": 13
+        }
+      ]
+    },
+    {
+      "id": "font-awesome",
+      "type": "section",
+      "title": "Font Awesome",
+      "slug": "html/font-awesome",
+      "order": 7,
+      "items": [
+        {
+          "id": "overview",
+          "type": "subSection",
+          "title": "Overview",
+          "slug": "html/font-awesome#overview",
+          "order": 1
+        },
+        {
+          "id": "link-font-awesome",
+          "type": "subSection",
+          "title": "Link Font Awesome",
+          "slug": "html/font-awesome#link-font-awesome",
+          "order": 2
+        },
+        {
+          "id": "add-font-awesome-icon",
+          "type": "subSection",
+          "title": "Add Font Awesome Icon",
+          "slug": "html/font-awesome#add-font-awesome-icon",
+          "order": 3
+        },
+        {
+          "id": "icon-sizing",
+          "type": "subSection",
+          "title": "Icon Sizing",
+          "slug": "html/font-awesome#icon-sizing",
+          "order": 4
+        }
       ]
     }
   ]
