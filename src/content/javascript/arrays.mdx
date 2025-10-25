@@ -1,0 +1,126 @@
+# Arrays
+
+## Array literals
+One way to create an array is with an **array literal**—wrap items in square brackets `[]`.
+
+~~~js
+const cities = ['Rome', 'Milan', 'Naples'];
+~~~
+
+Each element has a numbered position called its **index**.
+
+> **Tip:** Arrays in JavaScript are **zero-indexed**—the first item is at index `0`.
+
+## Indexing and strings
+Access elements with bracket notation:
+
+~~~js
+const cities = ['Rome', 'Milan', 'Naples'];
+console.log(cities[0]); // 'Rome'
+~~~
+
+You can also index **strings** (they are array-like):
+
+~~~js
+const hello = 'Hello World';
+console.log(hello[6]); // 'W'
+~~~
+
+Updating an element by index:
+
+~~~js
+const seasons = ['Winter', 'Spring', 'Summer', 'Fall'];
+seasons[3] = 'Autumn'; // replace value at index 3
+~~~
+
+> **Note:** If you access an index that doesn’t exist, you get `undefined`.
+
+## Mutability with const
+Variables declared with `const` **cannot be reassigned**, but array **contents remain mutable**.
+
+~~~js
+const nums = [1, 2, 3];
+nums[0] = 99;     // ✅ allowed (mutating contents)
+console.log(nums); // [99, 2, 3]
+
+// nums = [4,5,6]; // ❌ TypeError (reassigning the binding)
+~~~
+
+> **Attention:** `const` protects the **binding**, not the value. Objects/arrays referenced by a `const` can still change internally.
+
+## Properties
+`length` returns the number of items:
+
+~~~js
+const cities = ['Rome', 'Milan', 'Naples'];
+console.log(cities.length); // 3
+~~~
+
+## Methods destructive
+These **mutate** (change) the original array.
+
+~~~js
+const itemTracker = ['pen', 'book'];
+
+// push: add to end, returns new length
+itemTracker.push('pencil');          // ['pen','book','pencil']
+
+// pop: remove last, returns removed value
+const last = itemTracker.pop();      // last='pencil', array: ['pen','book']
+
+// splice: add/remove/replace; returns deleted items
+const arr = ['a','b','c','d'];
+const removed = arr.splice(1, 2, 'X','Y');
+// removed=['b','c']; arr=['a','X','Y','d']
+
+// shift: remove first
+const first = arr.shift();           // first='a', arr=['X','Y','d']
+
+// unshift: add to beginning
+arr.unshift('Z');                    // arr=['Z','X','Y','d']
+~~~
+
+> **Tip:** `.push()` and `.pop()` are generally faster than `.shift()`/`.unshift()` because they don’t reindex the array.
+
+## Methods non destructive
+These **do not modify** the original array; they return a new value.
+
+~~~js
+// join: array -> string
+['a','b','c'].join('-');          // 'a-b-c'
+
+// slice: copy a portion (end not included)
+const letters = ['a','b','c','d','e'];
+const subset = letters.slice(1, 4); // ['b','c','d']; letters unchanged
+
+// concat: merge arrays
+const a = [1,2];
+const b = [3,4];
+const merged = a.concat(b);        // [1,2,3,4]; a and b unchanged
+
+// indexOf: find first index or -1
+const beasts = ['ant','bison','camel','duck','bison'];
+beasts.indexOf('bison');           // 1
+~~~
+
+> **Note:** Prefer non-destructive methods when you need **immutability** or predictable state.
+
+## Pass by reference
+Arrays are **reference types**. Passing an array to a function gives the function a **reference** to the same array; mutations inside the function are visible outside.
+
+~~~js
+function addItem(list) {
+  list.push('new');
+}
+
+const items = ['old'];
+addItem(items);
+console.log(items); // ['old','new']  <-- mutated
+~~~
+
+> **Attention:** To avoid side effects, copy the array first (e.g., with `slice()`, spread `[...]`, or `Array.from()`).
+
+## Array methods playground
+import ArrayMethodsPlayground from "./components/arrays/ArrayMethodsPlayground.jsx"
+
+<ArrayMethodsPlayground />

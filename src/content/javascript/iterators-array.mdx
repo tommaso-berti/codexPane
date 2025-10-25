@@ -1,0 +1,160 @@
+# Iterators array
+
+## Foreach
+`.forEach()` executes the same callback for **each element**. It **returns `undefined`** and is typically used for side effects (e.g., logging).
+
+~~~js
+// Definition 1
+const groceries = ['brown sugar', 'salt', 'cranberries', 'walnuts'];
+groceries.forEach(function (groceryItem) {
+  console.log(' - ' + groceryItem);
+});
+
+// Definition 2 (ES6)
+groceries.forEach(groceryItem => console.log(groceryItem));
+
+// Definition 3 (named callback)
+function printGrocery(element) {
+  console.log(element);
+}
+groceries.forEach(printGrocery);
+~~~
+
+Pass a function directly; the iterator will provide each element as the parameter:
+
+~~~js
+const veggies = ['broccoli', 'spinach', 'cauliflower', 'broccoflower'];
+
+const politelyDecline = (veg) => {
+  console.log('No ' + veg + ' please. I will have pizza with extra cheese.');
+};
+
+function declineEverything(stringArray) {
+  return stringArray.forEach(politelyDecline); // returns undefined
+}
+
+console.log(declineEverything(veggies)); // undefined
+~~~
+
+> **Note:** Use `.forEach()` when you don’t need a returned array.
+
+## Map
+`.map()` applies a callback and **returns a new array** of the results (non-destructive).
+
+~~~js
+const numbers = [1, 2, 3, 4, 5];
+
+const bigNumbers = numbers.map(number => {
+  return number * 10;
+});
+console.log(numbers);     // [1, 2, 3, 4, 5]
+console.log(bigNumbers);  // [10, 20, 30, 40, 50]
+~~~
+
+## Filter
+`.filter()` creates a **new array** with elements for which the callback returns **true**.
+
+~~~js
+const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door'];
+
+const shortWords = words.filter(word => {
+  return word.length < 6;
+});
+console.log(words);       // ['chair','music','pillow','brick','pen','door']
+console.log(shortWords);  // ['chair','music','brick','pen','door']
+~~~
+
+## Find index
+`.findIndex()` returns the **index** of the first element that satisfies the test, or **-1** if none do.
+
+~~~js
+const jumbledNums = [123, 25, 78, 5, 9];
+
+const lessThanTen = jumbledNums.findIndex(num => num < 10);
+console.log(lessThanTen); // 3
+~~~
+
+## Reduce
+`.reduce()` iterates and **reduces** the array to a single value.
+
+~~~js
+const numbers = [1, 2, 4, 10];
+
+const summedNums = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+});
+
+console.log(summedNums); // 17
+~~~
+
+You can provide an **initial accumulator** as the second argument:
+
+~~~js
+const numbers = [1, 2, 4, 10];
+
+const summedNums = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 100);
+
+console.log(summedNums); // 117
+~~~
+
+> **Tip:** When reducing arrays that may be **empty**, always pass an initial value.
+
+## Some
+`.some()` tests whether **at least one** element passes the test. Returns `true`/`false`.
+
+~~~js
+const nums = [1, 3, 5, 8];
+const hasEven = nums.some(num => num % 2 === 0);
+console.log(hasEven); // true
+~~~
+
+## Every
+`.every()` tests whether **all** elements pass the test. Returns `true` only if **every** element passes.
+
+~~~js
+const nums = [2, 4, 6];
+const allEven = nums.every(num => num % 2 === 0);
+console.log(allEven); // true
+~~~
+
+## Split
+`split` is a **string** method that returns an **array** of substrings based on a separator.
+
+~~~js
+const sentence = "Hello World";
+const words = sentence.split(" ");
+console.log(words); // ["Hello", "World"]
+~~~
+
+> **Note:** `.split()` belongs to **String.prototype** (not arrays), but it’s commonly used to **produce** arrays.
+
+## Join
+`join` is an **array** method that concatenates elements into a **string**, separated by a delimiter.
+
+~~~js
+const fruits = ["apple", "banana", "cherry"];
+const fruitString = fruits.join(", ");
+console.log(fruitString); // "apple, banana, cherry"
+~~~
+
+## Sort
+`.sort()` sorts **in place** (destructive) and by default compares as **strings**. Provide a comparator for numeric order.
+
+~~~js
+// Descending order
+const sortYearsDesc = (yearsArray) => {
+  return yearsArray.sort((a, b) => b - a);
+};
+
+// Ascending order
+const sortYearsAsc = (yearsArray) => {
+  return yearsArray.sort((a, b) => a - b);
+};
+
+console.log(sortYearsDesc([2001, 1999, 2020])); // [2020, 2001, 1999]
+console.log(sortYearsAsc([2001, 1999, 2020]));  // [1999, 2001, 2020]
+~~~
+
+> **Attention:** `.sort()` mutates the original array. Clone first if you need immutability: `const sorted = [...arr].sort(...)`.

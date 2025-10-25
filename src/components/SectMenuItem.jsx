@@ -12,7 +12,7 @@ import List from "@mui/material/List";
 export default function SectMenuItem({section, subsections, selected, setSelected}) {
     const navigate = useNavigate();
     const { pathname, hash } = useLocation();
-    const { section: sectionParam } = useParams(); // nome route param: ":section"
+    const { section: sectionParam } = useParams();
     const anchor = hash ? decodeURIComponent(hash.slice(1)) : null;
 
     const isSectionInPath = !!section.slug && pathname.includes(`/${section.slug}`);

@@ -1,0 +1,66 @@
+# Errors management
+
+Understand common error types, how to **throw** them intentionally, and how to **handle** them using `try...catch`.
+
+## Error stack traces
+
+When an error occurs, JavaScript prints a **stack trace** that shows where execution moved through your code before the error happened. Read it **top-to-bottom** to locate the first line of your code that triggered the issue.
+
+> **Tip**
+> In browsers, open DevTools → Console to see the error message, file, and line number.
+
+## Error types
+
+- **SyntaxError** — Invalid code that the engine cannot parse (unmatched brackets, stray characters, etc.).
+- **ReferenceError** — Using a variable that hasn’t been declared.
+- **TypeError** — Performing an operation on a value of the wrong type (e.g., calling a string method on a number).
+
+~~~js
+// Examples
+// SyntaxError: Unclosed parenthesis
+// console.log("hi";
+
+// ReferenceError: foo is not defined
+// console.log(foo);
+
+// TypeError: (123).toUpperCase is not a function
+// (123).toUpperCase();
+~~~
+
+## Throw errors
+
+Creating an error object doesn’t stop execution; **throwing** it does.
+
+~~~js
+throw Error('Something wrong happened');
+// Error: Something wrong happened
+~~~
+
+> **Note**
+> You can throw custom error types: `throw new TypeError('Expected a string');`
+
+## Try catch
+
+Handle failures without crashing the program using `try...catch` (and optionally `finally`).
+
+~~~js
+try {
+  throw Error('This error will get caught');
+} catch (e) {
+  console.log(e); // handle or log the error
+} finally {
+  // runs whether try succeeded or threw
+}
+console.log('The thrown error that was caught in the try...catch statement!');
+~~~
+
+> **Tip**
+> Keep `try` blocks **small** and handle only the code that may throw. Surface actionable messages to users; log details for developers.
+
+## Additional resources
+
+- Article: Design Patterns in JavaScript
+- Article: Reducing Complexity with Guard Clauses in PHP and JavaScript by Craig Davis
+- Documentation: Inheritance and the Prototype Chain
+- Article: Understanding Prototypes and Inheritance in JavaScript
+- Article: Understanding Classes in JavaScript

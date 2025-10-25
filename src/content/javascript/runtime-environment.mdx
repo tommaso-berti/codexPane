@@ -1,0 +1,71 @@
+# Runtime Environment
+
+## Browser console
+Along with HTML and CSS, JavaScript (JS) is one of the core languages in web development. Beyond embedding code in an HTML `<script>` tag, modern browsers include a **console** in their developer tools where you can type and run JS directly. The console is a REPL (Read–Evaluate–Print–Loop) with access to the current page, allowing you to:
+- run ad-hoc JS for testing and debugging,
+- inspect or modify the **DOM**,
+- view logs, network activity, and security errors.
+
+> **Tip:** Run `clear()` first to clear the console.
+
+~~~js
+// Try in your browser DevTools console:
+console.log("Hello from the console!");
+document.body.style.background = "lavender";
+~~~
+
+## What is a runtime environment
+A **runtime environment** is where your program executes. It defines:
+- which **global objects** and APIs you can access,
+- how your code is scheduled and run,
+- available capabilities (e.g., DOM vs. filesystem).
+
+This guide covers two JS runtime environments: the **browser** and **Node**.
+
+## A browsers runtime environment
+The browser is the most common place JavaScript runs. Any program executed here has access to browser-specific globals like `window`, the DOM, and Web APIs.
+
+Example: create and open a local HTML file.
+
+~~~html
+<!-- my_website.html -->
+<html>
+  <body>
+    <h1>My Website</h1>
+    <script>
+      window.alert("Hello World");
+    </script>
+  </body>
+</html>
+~~~
+
+Open it in your browser (e.g., File → Open File → `my_website.html`). When the page loads, the embedded `<script>` executes and `window.alert()` shows a pop-up. The `window` object exposes lots of browser data and functionality beyond `.alert()`—including the DOM, timers, storage, fetch, and more.
+
+> **Note:** Applications executed in the browser are **front-end** apps.
+
+## Node runtime environment
+Created in 2009, **Node** lets you execute JavaScript **outside** the browser, enabling full-stack JS. Browser-only globals like `window.alert()` are unavailable; instead, Node provides server-side capabilities such as filesystem, networking, and process information.
+
+~~~js
+// my-app.js
+console.log(process.env.PWD);
+~~~
+
+`process` contains data about the running program. `process.env` gives you environment variables like `PWD` (Print Working Directory).
+
+Run the file with Node:
+
+~~~bash
+node my-app.js
+# → /path/to/working/directory
+~~~
+
+Open the Node REPL (interactive shell):
+
+~~~bash
+node
+> process.env.HOME
+'/home/ccuser'
+~~~
+
+> **Attention:** Choose your runtime based on the APIs you need. Use the browser for DOM/Web APIs; use Node for server-side tasks such as file I/O, networking, or scripts.

@@ -1,0 +1,196 @@
+# Modules export import
+
+Organize code into small, reusable files that you can **export** and **import** across projects.
+
+> **Note**
+> There are two common module systems by runtime:
+> - **Node**: `module.exports` / `require()`
+> - **Browser**: **ES modules** with `export` / `import`
+
+## Modules
+
+Modules are reusable pieces of code in a file that can be exported and then imported for use in another file. A **modular** program has components that can be separated, used individually, and recombined.
+
+## Node modules require and module exports
+
+In Node.js (CommonJS), export values from a file and require them elsewhere.
+
+~~~js
+// math.js (Node/CommonJS)
+function add(a, b) { return a + b; }
+const PI = 3.14159;
+
+module.exports = { add, PI };
+~~~
+
+~~~js
+// app.js (Node/CommonJS)
+const { add, PI } = require("./math.js");
+console.log(add(2, 3), PI);
+~~~
+
+> **Tip**
+> Prefer ES modules in modern Node by using `"type": "module"` in `package.json`, or `.mjs` files.
+
+## Es6 named export syntax
+
+Place the module file where both projects can access it, e.g.:
+
+~~~
+secret-image/
+|-- secret-image.html
+|-- secret-image.js
+secret-messages/
+|-- secret-messages.html
+|-- secret-messages.js
+modules/
+|-- dom-functions.js <-- new module file
+~~~
+
+Export selected bindings:
+
+~~~js
+// dom-functions.js
+export { resourceToExportA, resourceToExportB };
+~~~
+
+Import them elsewhere:
+
+~~~js
+import { exportedResourceA, exportedResourceB } from "/path/to/module.js";
+~~~
+
+## Script type module
+
+When loading ES modules in the browser, add `type="module"`.
+
+~~~html
+<!-- secret-messages.html -->
+<html>
+  <head>
+    <title>Secret Messages</title>
+  </head>
+  <body>
+    <button id="secret-button"> Press me... if you dare </button>
+    <p id="secret-p" style="display: none"> Modules are fancy! </p>
+    <script type="module" src="./secret-messages.js"></script>
+  </body>
+</html>
+~~~
+
+> **Attention**
+> Omitting `type="module"` can cause errors in some browsers.
+
+> **Note**
+> Browsers enforce CORS for modules. Serve files via a local server (not `file://`) when importing relative modules.
+
+## Renaming imports
+
+Avoid naming collisions with `as`.
+
+~~~js
+/* greeterEspanol.js */
+const greet = () => { console.log("hola"); };
+export { greet };
+
+/* greeterFrancais.js */
+const greet = () => { console.log("bonjour"); };
+export { greet };
+~~~
+
+~~~js
+/* main.js */
+import { greet as greetEspanol } from "./greeterEspanol.js";
+import { greet as greetFrancais } from "./greeterFrancais.js";
+
+greetEspanol();  // hola
+greetFrancais(); // bonjour
+~~~
+
+## Default export and import
+
+A module can export a **single default** value, often an object of utilities.
+
+~~~js
+// module.js
+const resources = { valueA, valueB };
+export default resources;
+// or:
+// export { resources as default };
+~~~
+
+Import the default:
+
+~~~js
+import resources from "./module.js";
+const { valueA, valueB } = resources; // destructure AFTER import
+~~~
+
+> **Attention**
+> This **will not work** (you can’t destructure default members directly in the import):
+> `import { valueA, valueB } from "./module.js"`.
+
+Shorthand for renaming default:
+~~~js
+import { default as importedResources } from "./module.js";
+~~~
+
+## Example
+
+**Export**
+
+~~~js
+/* modules/dom-functions.js */
+const toggleHiddenElement = (domElement) => {
+  if (domElement.style.display === "none") {
+    domElement.style.display = "block";
+  } else {
+    domElement.style.display = "none";
+  }
+};
+
+const changeToFunkyColor = (domElement) => {
+  const r = Math.random() * 255;
+  const g = Math.random() * 255;
+  const b = Math.random() * 255;
+  domElement.style.background = `rgb(${r}, ${g}, ${b})`;
+};
+
+const resources = { toggleHiddenElement, changeToFunkyColor };
+export default resources;
+~~~
+
+**Import**
+
+~~~js
+/* secret-messages/secret-messages.js */
+import domFunctions from "../modules/dom-functions.js";
+const { toggleHiddenElement, changeToFunkyColor } = domFunctions;
+
+const buttonElement = document.getElementById("secret-button");
+const pElement = document.getElementById("secret-p");
+
+buttonElement.addEventListener("click", () => {
+  toggleHiddenElement(pElement);
+  changeToFunkyColor(buttonElement);
+});
+~~~
+
+## Inline export
+
+Export at the declaration site.
+
+~~~js
+// Named exports inline
+export const PI = 3.14159;
+export function area(r) { return PI * r * r; }
+export class Circle { constructor(r) { this.r = r; } }
+
+// Default export inline (only one per module)
+export default function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+~~~
+
+> **Tip**
+> A file can have **many named exports** but **only one default** export.

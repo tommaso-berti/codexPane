@@ -1,0 +1,152 @@
+# Variables
+
+## Var
+Before ES6 (2015), variables were declared with `var`.
+- Function-scoped.
+- Allows re-declaration in the same scope (can be error-prone).
+
+~~~js
+function demo() {
+  var x = 1;
+  var x = 2; // re-declared, allowed
+  console.log(x); // 2
+}
+demo();
+~~~
+
+## Let
+`let` was introduced in ES6. It creates a variable that **can be reassigned** and is **block-scoped**.
+You can also declare without assigning; it will be `undefined`.
+
+~~~js
+let count;           // undefined
+count = 1;           // reassignment allowed
+if (true) {
+  let count = 99;    // block-scoped shadowing
+  console.log(count); // 99
+}
+console.log(count);   // 1
+~~~
+
+## Const
+`const` (constant) also arrived in ES6. You must **assign a value at declaration**, and you **cannot reassign** the binding.
+
+~~~js
+const apiUrl = "https://example.com";
+// apiUrl = "https://another.com"; // TypeError: Assignment to constant variable.
+~~~
+
+`const` protects the **binding**, not the value. Objects/arrays can still be mutated.
+
+~~~js
+const cfg = { mode: "dev" };
+cfg.mode = "prod";    // ok (object mutated)
+console.log(cfg.mode); // "prod"
+~~~
+
+> **Attention:** Declaring `const foo;` without an initializer throws a **SyntaxError**.
+
+## Difference between let and var
+- **var** is **function-scoped** and hoisted (initialized to `undefined`), can be re-declared.
+- **let** is **block-scoped**, not usable before initialization (temporal dead zone), and cannot be re-declared in the same scope.
+
+~~~js
+function f() {
+  console.log(a); // undefined (var hoisted)
+  // console.log(b); // ReferenceError (let not initialized yet)
+  var a = 1;
+  let b = 2;
+}
+f();
+~~~
+
+> **Tip:** Prefer `const` by default; use `let` when reassignment is needed. Avoid `var` in modern code.
+
+## Scope
+Scope defines where variables are accessible.
+
+- **Global scope:** declared outside any block. Accessible anywhere. Too many globals cause **scope pollution**.
+- **Block scope:** code inside `{ }` (e.g., in `if`, `for`) has its own scope for `let`/`const`.
+- **Function scope:** `var` uses this scope.
+
+~~~js
+let globalMsg = "hi"; // global scope
+
+if (true) {
+  let localMsg = "inside block"; // block scope
+  var leaked = "function scoped via var";
+  console.log(localMsg); // ok
+}
+console.log(globalMsg); // ok
+// console.log(localMsg); // ReferenceError
+console.log(leaked); // ok (var not block-scoped)
+~~~
+
+## Interpolation
+Use **template literals** (backticks) to interpolate values with `${...}`.
+
+~~~js
+const myPet = 'armadillo';
+console.log(`I own a pet ${myPet}.`);
+// Output: I own a pet armadillo.
+~~~
+
+> **Note:** The backtick (`) key is usually left of the `1` key.
+
+## Truthy and falsy
+Values used in a boolean context coerce to **true** or **false**.
+
+Falsy values:
+- `0`
+- `""` or `''` (empty string)
+- `null`
+- `undefined`
+- `NaN`
+
+Everything else is truthy.
+
+~~~js
+let myVariable = 'I Exist!';
+
+if (myVariable) {
+  console.log(myVariable);
+} else {
+  console.log('The variable does not exist.');
+}
+~~~
+
+## Ternary operators
+A compact form of `if...else`:
+
+~~~js
+const isNightTime = true;
+isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+~~~
+
+- Condition before `?`.
+- First expression runs if **true**, second after `:` if **false**.
+
+## Switch
+`switch` offers a clear alternative to multiple `if...else if` chains.
+
+~~~js
+let groceryItem = 'papaya';
+
+switch (groceryItem) {
+  case 'tomato':
+    console.log('Tomatoes are $0.49');
+    break;
+  case 'lime':
+    console.log('Limes are $1.49');
+    break;
+  case 'papaya':
+    console.log('Papayas are $1.29');
+    break;
+  default:
+    console.log('Invalid item');
+    break;
+}
+// Prints 'Papayas are $1.29'
+~~~
+
+> **Note:** Without `break`, execution falls through to subsequent cases, including `default`.

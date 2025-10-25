@@ -1,0 +1,127 @@
+# Classes
+
+Use classes to define blueprints for objects with shared structure and behavior.
+
+## Constructor
+
+JavaScript calls the `constructor()` method every time it creates a new **instance** of a class.
+
+~~~js
+class Dog {
+  constructor(name) {
+    this.name = name;
+    this.behavior = 0;
+  }
+}
+~~~
+
+- `Dog` is the class name (PascalCase by convention).
+- `constructor(name)` runs on `new Dog(...)`.
+- `this` refers to the **instance** being created.
+- `behavior` is initialized to `0` for each new dog.
+
+## Instance
+
+An **instance** is an object that uses the class’s properties and methods, with its own values.
+
+~~~js
+class Dog {
+  constructor(name) {
+    this.name = name;
+    this.behavior = 0;
+  }
+}
+
+const halley = new Dog('Halley'); // Create new Dog instance
+console.log(halley.name); // 'Halley'
+~~~
+
+- Use the `new` keyword; it calls `constructor()` and returns the instance.
+
+## Methods
+
+Class methods and getters/setters look like object methods, **without commas** between them.
+
+~~~js
+class Dog {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+  get name() {
+    return this._name;
+  }
+  get behavior() {
+    return this._behavior;
+  }
+  incrementBehavior() {
+    this._behavior++;
+  }
+}
+~~~
+
+## Inheritance
+
+Create a base (parent) class and extend it with a child class.
+
+~~~js
+// Abstract class (parent)
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get behavior() {
+    return this._behavior;
+  }
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+}
+
+// Extended class (child)
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+}
+~~~
+
+- `extends` makes parent methods available to the child class.
+- `super(name)` calls the parent constructor.
+- Child-specific properties (like `_usesLitter`) are set in the child.
+- **You must call `super(...)` before using `this` in a subclass constructor.**
+
+## Static methods
+
+Static methods are called on the **class**, not on instances (e.g., `Date.now()`).
+
+~~~js
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  static generateName() {
+    const names = ['Angel', 'Spike', 'Buffy', 'Willow', 'Tara'];
+    const randomNumber = Math.floor(Math.random() * 5);
+    return names[randomNumber];
+  }
+}
+
+console.log(Animal.generateName()); // returns a name
+
+const tyson = new Animal('Tyson');
+tyson.generateName(); // TypeError
+~~~
+
+> **Tip**
+> Use static utilities for helpers that do not depend on a specific instance’s state.

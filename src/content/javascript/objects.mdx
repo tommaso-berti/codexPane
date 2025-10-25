@@ -1,0 +1,311 @@
+# Objects
+
+## Object literals
+Objects can be assigned to variables like any type. Use `{}` to create an **object literal** with key–value pairs.
+
+~~~js
+// An object literal with two key-value pairs
+let spaceship = {
+  'Fuel Type': 'diesel', // property
+  color: 'silver'        // property
+  //   |        |
+  //  key     value
+};
+~~~
+
+## Access properties
+Use **dot notation** for standard keys, and **bracket notation** for keys with spaces, numbers, or special characters.
+
+~~~js
+let spaceship = {
+  'Fuel Type': 'Turbo Fuel',
+  'Active Mission': true,
+  homePlanet: 'Earth',
+  numCrew: 5
+};
+
+console.log(spaceship.numCrew);      // 5  (dot)
+console.log(spaceship['Active Mission']); // true (bracket)
+console.log(spaceship['Fuel Type']); // 'Turbo Fuel'
+console.log(spaceship['!!!!!!!!!!!!!!!']); // undefined
+~~~
+
+> **Tip:** Prefer dot notation; switch to brackets when the key is not a valid identifier or is dynamic.
+
+## Update properties
+You cannot **reassign** a `const` object variable, but you can update its **properties**.
+
+~~~js
+const spaceship = {
+  'Fuel Type': 'Turbo Fuel',
+  'Active Duty': true,
+  homePlanet: 'Earth',
+  numCrew: 5,
+  type: 'Shuttle'
+};
+
+// spaceship = { type: 'alien' }; // ❌ TypeError (reassignment)
+
+spaceship.type = 'alien';          // ✅ mutate property
+spaceship.speed = 'Mach 5';        // ✅ add new property
+spaceship['Active Duty'] = false;  // ✅ bracket notation
+spaceship.numCrew = 6;             // ✅ update number
+~~~
+
+> **Note:** Property updates are allowed even when the binding was declared with `const`.
+
+## Delete properties
+Use the `delete` operator to remove a property.
+
+~~~js
+const spaceship = {
+  'Fuel Type': 'Turbo Fuel',
+  homePlanet: 'Earth',
+  mission: 'Explore the universe'
+};
+
+delete spaceship.mission; // property removed
+~~~
+
+## Custom methods
+Add functions as object properties (methods). ES6 method shorthand omits `function` and the colon.
+
+~~~js
+const alienShip = {
+  invade: function () {
+    console.log('Hello! We have come to dominate your planet. Instead of Earth, it shall be called New Xaculon.');
+  }
+};
+
+const alienShip2 = {
+  invade () {
+    console.log('Hello! We have come to dominate your planet. Instead of Earth, it shall be called New Xaculon.');
+  },
+  takeOff () {
+    console.log('Take offfff');
+  }
+};
+
+alienShip2.invade(); // call a method
+~~~
+
+## Nested objects
+Objects can contain other objects. Use chained access with dot/bracket notation.
+
+~~~js
+const spaceship = {
+  telescope: {
+    yearBuilt: 2018,
+    model: '91031-XLT',
+    focalLength: 2032
+  },
+  crew: {
+    captain: {
+      name: 'Sandra',
+      degree: 'Computer Engineering',
+      encourageTeam() { console.log('We got this!') }
+    }
+  },
+  engine: { model: 'Nimbus2000' },
+  nanoelectronics: {
+    computer: { terabytes: 100, monitors: 'HD' },
+    'back-up': { battery: 'Lithium', terabytes: 50 }
+  }
+};
+
+spaceship.nanoelectronics['back-up'].battery; // 'Lithium'
+~~~
+
+## Pass by reference
+Objects (like arrays) are **passed by reference**—functions can mutate the original object.
+
+~~~js
+let spaceship = { homePlanet: 'Earth', color: 'red' };
+
+let tryReassignment = obj => {
+  obj = { identified: false, 'transport type': 'flying' };
+  console.log(obj); // { identified: false, 'transport type': 'flying' }
+};
+
+tryReassignment(spaceship); // reassignment inside does not affect the outer variable
+console.log(spaceship);     // { homePlanet: 'Earth', color: 'red' }
+
+// Regular reassignment of the outer variable still works:
+spaceship = { identified: false, 'transport type': 'flying' };
+~~~
+
+> **Attention:** Inside `tryReassignment`, `obj` is a new local variable. Reassigning it points `obj` to a new object, leaving `spaceship` unchanged. Mutating `obj`’s properties, however, would affect the original.
+
+## For in loop
+`for...in` iterates over **enumerable string keys** (including inherited enumerable properties; skips symbol keys).
+
+~~~js
+const object = { a: 1, b: 2, c: 3 };
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+// "a: 1", "b: 2", "c: 3"
+~~~
+
+> **Tip:** Use `Object.keys()`/`Object.entries()` for predictable own-property iteration.
+
+## This keyword
+`this` references the **calling object**, giving access to its properties.
+
+~~~js
+const goat = {
+  dietType: 'herbivore',
+  makeSound() { console.log('baaa'); },
+  diet() { console.log(this.dietType); }
+};
+
+goat.diet(); // 'herbivore'
+~~~
+
+## Arrow function with this
+Arrow functions don’t have their own `this`; they close over the surrounding `this` (lexical `this`). In object methods, that’s usually **not** what you want.
+
+~~~js
+const goat = {
+  dietType: 'herbivore',
+  makeSound() { console.log('baaa'); },
+  diet: () => {
+    console.log(this.dietType);
+  }
+};
+
+goat.diet(); // undefined (here, `this` is not the goat object)
+~~~
+
+> **Note:** Prefer method shorthand (or regular functions) for object methods that use `this`.
+
+## Privacy
+By convention, prefix internal properties with an underscore `_` to signal “do not touch”.
+
+~~~js
+const bankAccount = {
+  _amount: 1000
+};
+~~~
+
+> **Tip:** The underscore is **only a convention**. Use getters/setters to control access.
+
+## Getter
+Use `get` to define a **computed** or **controlled** property.
+
+~~~js
+const person = {
+  _firstName: 'John',
+  _lastName: 'Doe',
+  get fullName() {
+    if (this._firstName && this._lastName) {
+      return `${this._firstName} ${this._lastName}`;
+    } else {
+      return 'Missing a first name or a last name.';
+    }
+  }
+};
+
+person.fullName; // 'John Doe'  (no parentheses)
+~~~
+
+Advantages:
+- Can run logic when reading.
+- Can compute different results with conditionals.
+- Can access internal state via `this`.
+- Improves code clarity.
+
+## Setter
+Use `set` to **validate or transform** assignments.
+
+~~~js
+const person = {
+  _age: 37,
+  set age(newAge) {
+    if (typeof newAge === 'number') {
+      this._age = newAge;
+    } else {
+      console.log('You must assign a number to age');
+    }
+  }
+};
+
+person.age = 40;
+console.log(person._age); // 40
+person.age = '40';        // 'You must assign a number to age'
+~~~
+
+> **Note:** Setters are used like assignments—no parentheses.
+
+## Factory functions
+A **factory function** returns new object instances and can take parameters.
+
+~~~js
+const monsterFactory = (name, age, energySource, catchPhrase) => {
+  return {
+    name: name,
+    age: age,
+    energySource: energySource,
+    scare() {
+      console.log(catchPhrase);
+    }
+  };
+};
+
+const ghost = monsterFactory('Ghouly', 251, 'ectoplasm', 'BOO!');
+ghost.scare(); // 'BOO!'
+~~~
+
+## Property value shorthand
+ES6 lets you omit the `key: value` when the variable name matches the key.
+
+~~~js
+const monsterFactory = (name, age) => {
+  return { name, age };
+};
+~~~
+
+## Destructured assignment
+Extract properties into variables using **destructuring**.
+
+~~~js
+const vampire = {
+  name: 'Dracula',
+  residence: 'Transylvania',
+  preferences: {
+    day: 'stay inside',
+    night: 'satisfy appetite'
+  }
+};
+
+const { residence } = vampire;
+console.log(residence); // 'Transylvania'
+
+const { day } = vampire.preferences;
+console.log(day); // 'stay inside'
+~~~
+
+## Object methods
+Useful built-in utilities for objects:
+
+~~~js
+const robot = { name: 'T-800', power: 'high' };
+
+// hasOwnProperty: own (non-inherited) property check
+robot.hasOwnProperty('name'); // true
+
+// valueOf: primitive value
+robot.valueOf(); // often returns the object itself for plain objects
+
+// Object.assign: shallow copy/merge
+const newRobot = Object.assign({}, robot, { laserBlaster: true, voiceRecognition: true });
+// first {} ensures the original 'robot' is not mutated
+
+// Object.entries: array of [key, value] pairs
+Object.entries(robot); // [['name','T-800'], ['power','high']]
+
+// Object.keys: array of own property names
+Object.keys(robot); // ['name', 'power']
+~~~
+
+> **Attention:** `Object.assign` performs a **shallow** copy—nested objects are still shared by reference.

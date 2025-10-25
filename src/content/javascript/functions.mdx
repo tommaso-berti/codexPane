@@ -1,0 +1,185 @@
+# Functions
+
+## Function declaration
+A **function declaration** binds a function to a name (identifier). It uses the `function` keyword, an identifier, parentheses, and a body inside `{ }`.
+
+~~~js
+greetWorld(); // Output: Hello, World!
+
+function greetWorld() {
+  console.log('Hello, World!');
+}
+~~~
+
+The **function call** executes the statements inside the function body.
+
+> **Note:** Declarations are hoisted (you can call them before their definition appears).
+
+## Parameters
+When declaring a function, we can specify **parameters**—placeholders for values the function will receive when it is called.
+
+~~~js
+function add(a, b) {
+  console.log(a + b);
+}
+add(2, 3); // 5
+~~~
+
+> **Tip:** Parameters are local to the function’s scope.
+
+## Default parameters
+ES6 allows **default parameters**—a predetermined value used when an argument is missing or `undefined`.
+
+~~~js
+function greeting (name = 'stranger') {
+  console.log(`Hello, ${name}!`)
+}
+
+greeting('Nick'); // Output: Hello, Nick!
+greeting();       // Output: Hello, stranger!
+~~~
+
+- `name = 'stranger'` sets a default.
+- Passing `'Nick'` overrides the default; omitting the argument uses the default.
+
+## Return values
+By default, a function returns `undefined`. Use `return` to pass a value back to the caller.
+
+~~~js
+function square(n) {
+  return n * n;
+  console.log('This never runs'); // unreachable
+}
+
+const nine = square(3); // 9
+~~~
+
+> **Attention:** `return` immediately stops function execution.
+
+## Helper functions
+You can use the return value of one function inside another—these are often called **helper functions**.
+
+~~~js
+function multiplyByNineFifths(number) {
+  return number * (9/5);
+};
+
+function getFahrenheit(celsius) {
+  return multiplyByNineFifths(celsius) + 32;
+};
+
+getFahrenheit(15); // Returns 59
+// Steps:
+// 1) multiplyByNineFifths(15) -> 27
+// 2) 27 + 32 -> 59
+~~~
+
+## Function expressions
+A **function expression** creates a function value (often anonymous) and stores it in a variable.
+
+~~~js
+const isEven = function (n) {
+  return n % 2 === 0;
+};
+
+console.log(isEven(4)); // true
+~~~
+
+> **Note:** Function expressions are not hoisted like declarations.
+
+## Arrow functions
+ES6 introduced **arrow functions**—a shorter syntax using `() =>`.
+
+~~~js
+// Block body
+const rectangleArea = (width, height) => {
+  let area = width * height;
+  return area;
+};
+
+// Parameters
+const functionName = () => {};          // zero parameters
+const functionName1 = paramOne => {};   // one parameter (no parens needed)
+const functionName2 = (a, b) => {};     // two or more parameters
+
+// Single line block (implicit return)
+const dupliateNumber = number => number + number;
+
+// Multiple lines block
+const sumNumbers = number => {
+  const sum = number + number;
+  return sum;
+};
+~~~
+
+> **Tip:** Use implicit return for short expressions; use braces and `return` for multi-line logic.
+
+## Higher order functions
+A **higher-order function** is any function that accepts other functions as arguments, returns a function, or both.
+
+> **Note:** Functions are first-class values in JavaScript—they can be stored in variables, passed around, and returned.
+
+## Functions as data
+Functions are objects with properties like `.length` and `.name`, and methods such as `.toString()`.
+
+~~~js
+const announceThatIAmDoingImportantWork = () => {
+  console.log("I’m doing very important work!");
+};
+
+const busy = announceThatIAmDoingImportantWork; // reference copy
+busy(); // I’m doing very important work!
+
+console.log(announceThatIAmDoingImportantWork.name);   // 'announceThatIAmDoingImportantWork'
+console.log(announceThatIAmDoingImportantWork.length); // 0
+~~~
+
+> **Tip:** Variables holding functions store **references**. Both variables point to the same function in memory.
+
+## Functions as parameters
+When we pass a function into another function, the passed-in function is called a **callback**.
+
+~~~js
+const higherOrderFunc = param => {
+  param();
+  return `I just invoked ${param.name} as a callback function!`
+}
+
+const anotherFunc = () => {
+  return "I'm being invoked by the higher-order function!";
+}
+
+higherOrderFunc(anotherFunc);
+~~~
+
+Explanation:
+1. `higherOrderFunc` accepts `param`, invokes it, and returns a message using `param.name`.
+2. `anotherFunc` is defined and later passed as the callback.
+3. Calling `higherOrderFunc(anotherFunc)` invokes the callback.
+
+Another example—comparing direct computation to a callback’s result:
+
+~~~js
+const addTwo = num => {
+  return num + 2;
+}
+
+const checkConsistentOutput = (func, val) => {
+  let checkA = val + 2;
+  let checkB = func(val);
+  if (checkA === checkB) return checkB;
+  else return 'inconsistent results';
+}
+
+console.log(checkConsistentOutput(addTwo, 5)); // 7
+~~~
+
+## Function forms playground
+import FunctionFormsPlayground from "./components/functions/FunctionFormsPlayground.jsx"
+
+<FunctionFormsPlayground />
+
+## Callback tracer playground
+import CallbackTracer from "./components/functions/CallbackTracer.jsx"
+
+<CallbackTracer />

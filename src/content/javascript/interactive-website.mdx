@@ -1,0 +1,289 @@
+# Interactive website
+
+Use scripts to add interactivity to pages, then reach into the DOM to read and modify elements, styles, and behavior with events.
+
+> **Note**
+> In examples, HTML is shown inline for clarity; in real projects keep JS in separate files when possible.
+
+## Script tag
+
+The `<script>` element embeds JavaScript code in an HTML document.
+
+~~~html
+<h1>This is an embedded JS example</h1>
+<script>
+  function Hello() {
+    alert('Hello World');
+  }
+</script>
+~~~
+
+## External script
+
+Reference external files (local or CDN) with `src`.
+
+~~~html
+<script src="./exampleScript.js"></script>
+~~~
+
+## Script loading
+
+Browsers parse HTML top-to-bottom. When the parser meets a `<script>`, it **downloads and executes it before continuing**, which can delay rendering. Scripts run **sequentially** in source order.
+
+> **Attention**
+> If script **B** depends on **A**, load **A** first or use modules/imports.
+
+## Defer attribute
+
+`defer` downloads the script during parsing but **defers execution** until **after** HTML is fully parsed.
+
+~~~html
+<script src="example.js" defer></script>
+~~~
+
+Use for scripts that interact with DOM elements created in the page.
+
+## Async attribute
+
+`async` downloads **and executes** independently of parsing (fires as soon as it’s ready).
+
+~~~html
+<script src="example.js" async></script>
+~~~
+
+Best for standalone scripts (analytics, ads) that don’t depend on DOM readiness or other scripts.
+
+> **Tip**
+> `defer` preserves order among deferred scripts; `async` does **not**.
+
+## Dom
+
+The **Document Object Model** represents the page as a **tree** of nodes: element nodes (`<div>`, `<p>`, …) and text nodes (text content).
+A **parent** node sits above its **children**.
+
+~~~js
+document (root)
+└── html
+├── head
+└── body
+├── h1
+└── p
+~~~
+
+## Document object
+
+`document` is your entry point to the DOM tree.
+
+~~~js
+// Access the <body> element
+console.log(document.body);
+~~~
+
+## Innerhtml
+
+`.innerHTML` gets/sets the HTML content of an element.
+
+~~~js
+document.body.innerHTML = 'The cat loves the dog.';
+document.body.innerHTML = '<h2>This is a heading</h2>';
+~~~
+
+## Queryselector
+
+Selects the **first** element that matches a CSS selector.
+
+~~~js
+const firstParagraph = document.querySelector('p');
+~~~
+
+## Getelementbyid
+
+Select by `id`.
+
+~~~js
+document.getElementById('bio').innerHTML = 'The description';
+~~~
+
+## Getelementsbyclassname and getelementsbytagname
+
+Return **HTMLCollections** (array-like).
+
+~~~js
+// Set first element of .student class as 'Not yet registered'
+document.getElementsByClassName('student')[0].innerHTML = 'Not yet registered';
+
+// Set second <li> tag as 'Cedric Diggory'
+document.getElementsByTagName('li')[1].innerHTML = 'Cedric Diggory';
+~~~
+
+> **Tip**
+> Convert to real arrays if you need array methods: `Array.from(document.getElementsByTagName('li'))`.
+
+## Style
+
+Inline styles via `.style` use **camelCase** properties.
+
+~~~js
+let blueElement = document.querySelector('.blue');
+blueElement.style.backgroundColor = 'blue';
+// or
+document.querySelector('.blue').style.fontFamily = 'Roboto';
+~~~
+
+## Parentnode and children
+
+Navigate relationships.
+
+~~~html
+<ul id="groceries">
+  <li id="must-have">Toilet Paper</li>
+  <li>Apples</li>
+  <li>Chocolate</li>
+  <li>Dumplings</li>
+</ul>
+~~~
+
+~~~js
+let parentElement = document.getElementById('must-have').parentNode; // <ul>
+let childElements = document.getElementById('groceries').children;   // HTMLCollection of <li>
+~~~
+
+## Createelement
+
+Create elements (not yet in the DOM).
+
+~~~js
+let paragraph = document.createElement('p');
+paragraph.id = 'info';
+paragraph.innerHTML = 'The text inside the paragraph';
+~~~
+
+## Appendchild
+
+Attach nodes to the DOM (as the last child).
+
+~~~js
+document.body.appendChild(paragraph);
+
+// Example: add a list item
+let newAttraction = document.createElement('li');
+newAttraction.id = 'vespa';
+newAttraction.innerHTML = 'Rent a Vespa';
+document.getElementById('italy-attractions').appendChild(newAttraction);
+~~~
+
+## Removechild
+
+Remove a specific child from its parent.
+
+~~~js
+let paragraphNode = document.querySelector('p');
+document.body.removeChild(paragraphNode);
+~~~
+
+## Hidden
+
+Toggle visibility without removing from the DOM.
+
+~~~js
+document.getElementById('sign').hidden = true;
+~~~
+
+## Add event listener
+
+Listen for events with `.addEventListener(eventType, handler)`.
+
+~~~js
+let eventTarget = document.getElementById('targetElement');
+function eventHandlerFunction() {
+  // code to run on click
+}
+eventTarget.addEventListener('click', eventHandlerFunction);
+~~~
+
+## Onevent
+
+Assign a single handler via `.onevent` property.
+
+~~~js
+eventTarget.onclick = eventHandlerFunction;
+~~~
+
+> **Note**
+> `.onevent` allows **one** handler; `.addEventListener` allows **multiple**.
+
+## Onclick
+
+Assign inline click handler in JS.
+
+~~~js
+let element = document.querySelector('button');
+element.onclick = function () {
+  element.style.backgroundColor = 'blue';
+};
+
+// or
+function turnBlue() {
+  element.style.backgroundColor = 'blue';
+}
+element.onclick = turnBlue;
+~~~
+
+## Removeeventlistener
+
+Unregister a listener (needs the **same function reference**).
+
+~~~js
+eventTarget.removeEventListener('click', eventHandlerFunction);
+~~~
+
+## Event object properties
+
+The browser passes an **event object** to handlers.
+
+~~~js
+function eventHandlerFunction(event) {
+  console.log(event.timeStamp); // ms since page load
+}
+eventTarget.addEventListener('click', eventHandlerFunction);
+~~~
+
+Common properties:
+- `.target` — element that received the event
+- `.type` — event name
+- `.timeStamp` — time since load
+
+~~~js
+let social = document.getElementById('social-media');
+let share = document.getElementById('share-button');
+let text = document.getElementById('text');
+
+let sharePhoto = function (event) {
+  event.target.style.display = 'none';
+  text.innerHTML = event.timeStamp;
+};
+
+share.addEventListener('click', sharePhoto);
+~~~
+
+## Event types
+
+- The `load` event fires after website files completely load in the browser.
+- See MDN list of events: https://developer.mozilla.org/en-US/docs/Web/Events#Mouse_Events
+
+## Mouse events
+
+- `click` — press and release on an element
+- `wheel` — mouse wheel used
+- `mousedown` — button pressed
+- `mouseup` — button released
+- `mouseover` — pointer enters element
+- `mouseout` — pointer leaves element
+
+## Keyboard events
+
+- `keydown` — key pressed down
+- `keyup` — key released
+- `keypress` — press and release (legacy)
+
+Keyboard events have properties like `.key` with the pressed key value.

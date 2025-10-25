@@ -1,0 +1,95 @@
+# Loops
+
+## For loop
+A `for` loop has three expressions separated by `;` inside the parentheses:
+- **initialization** — run once before the loop starts;
+- **stopping condition** — if `true`, the body runs; if `false`, the loop ends;
+- **iteration statement** — updates the iterator each round.
+
+~~~js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+}
+~~~
+
+> **Tip:** Keep the loop variable `let`-scoped to avoid leaking it outside the loop.
+
+## For of loop
+`for...of` loops over **values** from any **iterable** (Array, String, Map, Set, TypedArray, NodeList, generators, etc.).
+
+~~~js
+const hobbies = ['singing', 'eating', 'quidditch', 'writing'];
+for (const hobby of hobbies) {
+  console.log(`I enjoy ${hobby}.`);
+}
+~~~
+
+> **Note:** `for...of` iterates values; `for...in` iterates keys/indexes. Prefer `for...of` for arrays.
+
+## While loop
+Use `while` when you don’t know in advance how many iterations are needed.
+
+~~~js
+let counterTwo = 1;
+while (counterTwo < 4) {
+  console.log(counterTwo);
+  counterTwo++;
+}
+~~~
+
+> **Attention:** Always ensure the condition eventually becomes `false` to avoid infinite loops.
+
+## Do while
+`do...while` runs the body **at least once**, then continues while the condition is `true`.
+
+~~~js
+let countString = '';
+let i = 0;
+
+do {
+  countString = countString + i;
+  i++;
+} while (i < 5);
+
+console.log(countString); // "01234"
+~~~
+
+## Break
+Use `break` to exit a loop early.
+
+~~~js
+for (let i = 0; i < 99; i++) {
+  if (i > 2) {
+    break;
+  }
+  console.log('Banana.');
+}
+console.log('Orange you glad I broke out the loop!');
+~~~
+
+## Continue
+Use `continue` to **skip** the current iteration and move to the next.
+
+~~~js
+const strangeBirds = ['Shoebill', 'Cockatrice', 'Basan', 'Cow', 'Terrorbird', 'Parotia', 'Kakapo'];
+
+for (const bird of strangeBirds) {
+  if (bird === 'Cow') {
+    continue;
+  }
+  console.log(bird);
+}
+
+// Results:
+// Shoebill
+// Cockatrice
+// Basan
+// Terrorbird
+// Parotia
+// Kakapo
+~~~
+
+## Loop visualizer playground
+import LoopVisualizer from "./components/loops/LoopVisualizer.jsx"
+
+<LoopVisualizer />

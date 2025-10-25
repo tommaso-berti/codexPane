@@ -1,0 +1,38 @@
+# Introduction to javascript
+
+JavaScript (JS) is the language of the web. It runs in every modern browser, powers dynamic user interfaces, and—thanks to runtimes like Node.js—also runs on servers, CLIs, and edge platforms. Its flexibility lets you prototype fast, build production apps, and integrate with countless libraries and frameworks.
+
+**What you’ll use it for**
+- Making pages interactive (DOM manipulation, events, animations).
+- Building SPAs with frameworks (React, Vue, Svelte).
+- Calling APIs and handling data (fetch, JSON).
+- Writing servers, tooling, and scripts (Node.js, npm).
+- Shipping to new runtimes (Cloudflare Workers, Deno, Bun).
+
+**Core ideas in a glance**
+- **Types:** dynamic, with primitives (string, number, boolean, null, undefined, symbol, bigint) and objects.
+- **Functions:** first-class citizens; closures capture variables from outer scopes.
+- **Async:** promises and `async/await` simplify asynchronous flows (network, timers, I/O).
+- **Modules:** ES modules (`import`/`export`) are the modern standard across browsers and Node.
+- **Prototypes & classes:** objects inherit via prototypes; `class` offers a familiar syntax over the prototype model.
+
+**Tiny taste**
+~~~js
+// A quick async example
+async function getJoke() {
+  const res = await fetch("https://api.example.com/joke");
+  if (!res.ok) throw new Error("Network error");
+  const { setup, punchline } = await res.json();
+  return `${setup} — ${punchline}`;
+}
+
+getJoke().then(console.log).catch(console.error);
+~~~
+
+**Tooling snapshot**
+- **Package managers:** npm, pnpm, yarn.
+- **Transpilers/bundlers:** TypeScript, Babel, Vite, esbuild, Webpack.
+- **Testing:** Vitest, Jest, Playwright.
+- **Lint/format:** ESLint, Prettier.
+
+> Tip: Prefer modern ES modules and `async/await`. Add TypeScript increment
