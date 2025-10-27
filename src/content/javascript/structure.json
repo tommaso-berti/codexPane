@@ -10,34 +10,10 @@
       "slug": "javascript/runtime-environment",
       "order": 0,
       "items": [
-        {
-          "id": "browser-console",
-          "type": "subSection",
-          "title": "Browser console",
-          "slug": "javascript/runtime-environment#browser-console",
-          "order": 1
-        },
-        {
-          "id": "what-is-a-runtime-environment",
-          "type": "subSection",
-          "title": "What is a runtime environment",
-          "slug": "javascript/runtime-environment#what-is-a-runtime-environment",
-          "order": 2
-        },
-        {
-          "id": "a-browsers-runtime-environment",
-          "type": "subSection",
-          "title": "A browsers runtime environment",
-          "slug": "javascript/runtime-environment#a-browsers-runtime-environment",
-          "order": 3
-        },
-        {
-          "id": "node-runtime-environment",
-          "type": "subSection",
-          "title": "Node runtime environment",
-          "slug": "javascript/runtime-environment#node-runtime-environment",
-          "order": 4
-        }
+        { "id": "browser-console", "type": "subSection", "title": "Browser console", "slug": "javascript/runtime-environment#browser-console", "order": 1 },
+        { "id": "what-is-a-runtime-environment", "type": "subSection", "title": "What is a runtime environment", "slug": "javascript/runtime-environment#what-is-a-runtime-environment", "order": 2 },
+        { "id": "a-browsers-runtime-environment", "type": "subSection", "title": "A browsers runtime environment", "slug": "javascript/runtime-environment#a-browsers-runtime-environment", "order": 3 },
+        { "id": "node-runtime-environment", "type": "subSection", "title": "Node runtime environment", "slug": "javascript/runtime-environment#node-runtime-environment", "order": 4 }
       ]
     },
     {
@@ -47,69 +23,15 @@
       "slug": "javascript/variables",
       "order": 1,
       "items": [
-        {
-          "id": "var",
-          "type": "subSection",
-          "title": "Var",
-          "slug": "javascript/variables#var",
-          "order": 1
-        },
-        {
-          "id": "let",
-          "type": "subSection",
-          "title": "Let",
-          "slug": "javascript/variables#let",
-          "order": 2
-        },
-        {
-          "id": "const",
-          "type": "subSection",
-          "title": "Const",
-          "slug": "javascript/variables#const",
-          "order": 3
-        },
-        {
-          "id": "difference-between-let-and-var",
-          "type": "subSection",
-          "title": "Difference Between Let And Var",
-          "slug": "javascript/variables#difference-between-let-and-var",
-          "order": 4
-        },
-        {
-          "id": "scope",
-          "type": "subSection",
-          "title": "Scope",
-          "slug": "javascript/variables#scope",
-          "order": 5
-        },
-        {
-          "id": "interpolation",
-          "type": "subSection",
-          "title": "Interpolation",
-          "slug": "javascript/variables#interpolation",
-          "order": 6
-        },
-        {
-          "id": "truthy-and-falsy",
-          "type": "subSection",
-          "title": "Truthy And Falsy",
-          "slug": "javascript/variables#truthy-and-falsy",
-          "order": 7
-        },
-        {
-          "id": "ternary-operators",
-          "type": "subSection",
-          "title": "Ternary Operators",
-          "slug": "javascript/variables#ternary-operators",
-          "order": 8
-        },
-        {
-          "id": "switch",
-          "type": "subSection",
-          "title": "Switch",
-          "slug": "javascript/variables#switch",
-          "order": 9
-        }
+        { "id": "var", "type": "subSection", "title": "Var", "slug": "javascript/variables#var", "order": 1 },
+        { "id": "let", "type": "subSection", "title": "Let", "slug": "javascript/variables#let", "order": 2 },
+        { "id": "const", "type": "subSection", "title": "Const", "slug": "javascript/variables#const", "order": 3 },
+        { "id": "difference-between-let-and-var", "type": "subSection", "title": "Difference Between Let And Var", "slug": "javascript/variables#difference-between-let-and-var", "order": 4 },
+        { "id": "scope", "type": "subSection", "title": "Scope", "slug": "javascript/variables#scope", "order": 5 },
+        { "id": "interpolation", "type": "subSection", "title": "Interpolation", "slug": "javascript/variables#interpolation", "order": 6 },
+        { "id": "truthy-and-falsy", "type": "subSection", "title": "Truthy And Falsy", "slug": "javascript/variables#truthy-and-falsy", "order": 7 },
+        { "id": "ternary-operators", "type": "subSection", "title": "Ternary Operators", "slug": "javascript/variables#ternary-operators", "order": 8 },
+        { "id": "switch", "type": "subSection", "title": "Switch", "slug": "javascript/variables#switch", "order": 9 }
       ]
     },
     {
@@ -119,62 +41,14 @@
       "slug": "javascript/arrays",
       "order": 2,
       "items": [
-        {
-          "id": "array-literals",
-          "type": "subSection",
-          "title": "Array literals",
-          "slug": "javascript/arrays#array-literals",
-          "order": 1
-        },
-        {
-          "id": "indexing-and-strings",
-          "type": "subSection",
-          "title": "Indexing and strings",
-          "slug": "javascript/arrays#indexing-and-strings",
-          "order": 2
-        },
-        {
-          "id": "mutability-with-const",
-          "type": "subSection",
-          "title": "Mutability with const",
-          "slug": "javascript/arrays#mutability-with-const",
-          "order": 3
-        },
-        {
-          "id": "properties",
-          "type": "subSection",
-          "title": "Properties",
-          "slug": "javascript/arrays#properties",
-          "order": 4
-        },
-        {
-          "id": "methods-destructive",
-          "type": "subSection",
-          "title": "Methods destructive",
-          "slug": "javascript/arrays#methods-destructive",
-          "order": 5
-        },
-        {
-          "id": "methods-non-destructive",
-          "type": "subSection",
-          "title": "Methods non destructive",
-          "slug": "javascript/arrays#methods-non-destructive",
-          "order": 6
-        },
-        {
-          "id": "pass-by-reference",
-          "type": "subSection",
-          "title": "Pass by reference",
-          "slug": "javascript/arrays#pass-by-reference",
-          "order": 7
-        },
-        {
-          "id": "array-methods-playground",
-          "type": "subSection",
-          "title": "Array methods playground",
-          "slug": "javascript/arrays#array-methods-playground",
-          "order": 8
-        }
+        { "id": "array-literals", "type": "subSection", "title": "Array literals", "slug": "javascript/arrays#array-literals", "order": 1 },
+        { "id": "indexing-and-strings", "type": "subSection", "title": "Indexing and strings", "slug": "javascript/arrays#indexing-and-strings", "order": 2 },
+        { "id": "mutability-with-const", "type": "subSection", "title": "Mutability with const", "slug": "javascript/arrays#mutability-with-const", "order": 3 },
+        { "id": "properties", "type": "subSection", "title": "Properties", "slug": "javascript/arrays#properties", "order": 4 },
+        { "id": "methods-destructive", "type": "subSection", "title": "Methods destructive", "slug": "javascript/arrays#methods-destructive", "order": 5 },
+        { "id": "methods-non-destructive", "type": "subSection", "title": "Methods non destructive", "slug": "javascript/arrays#methods-non-destructive", "order": 6 },
+        { "id": "pass-by-reference", "type": "subSection", "title": "Pass by reference", "slug": "javascript/arrays#pass-by-reference", "order": 7 },
+        { "id": "array-methods-playground", "type": "subSection", "title": "Array methods playground", "slug": "javascript/arrays#array-methods-playground", "order": 8 }
       ]
     },
     {
@@ -184,55 +58,13 @@
       "slug": "javascript/loops",
       "order": 3,
       "items": [
-        {
-          "id": "for-loop",
-          "type": "subSection",
-          "title": "For loop",
-          "slug": "javascript/loops#for-loop",
-          "order": 1
-        },
-        {
-          "id": "for-of-loop",
-          "type": "subSection",
-          "title": "For of loop",
-          "slug": "javascript/loops#for-of-loop",
-          "order": 2
-        },
-        {
-          "id": "while-loop",
-          "type": "subSection",
-          "title": "While loop",
-          "slug": "javascript/loops#while-loop",
-          "order": 3
-        },
-        {
-          "id": "do-while",
-          "type": "subSection",
-          "title": "Do while",
-          "slug": "javascript/loops#do-while",
-          "order": 4
-        },
-        {
-          "id": "break",
-          "type": "subSection",
-          "title": "Break",
-          "slug": "javascript/loops#break",
-          "order": 5
-        },
-        {
-          "id": "continue",
-          "type": "subSection",
-          "title": "Continue",
-          "slug": "javascript/loops#continue",
-          "order": 6
-        },
-        {
-          "id": "loop-visualizer-playground",
-          "type": "subSection",
-          "title": "Loop visualizer playground",
-          "slug": "javascript/loops#loop-visualizer-playground",
-          "order": 7
-        }
+        { "id": "for-loop", "type": "subSection", "title": "For loop", "slug": "javascript/loops#for-loop", "order": 1 },
+        { "id": "for-of-loop", "type": "subSection", "title": "For of loop", "slug": "javascript/loops#for-of-loop", "order": 2 },
+        { "id": "while-loop", "type": "subSection", "title": "While loop", "slug": "javascript/loops#while-loop", "order": 3 },
+        { "id": "do-while", "type": "subSection", "title": "Do while", "slug": "javascript/loops#do-while", "order": 4 },
+        { "id": "break", "type": "subSection", "title": "Break", "slug": "javascript/loops#break", "order": 5 },
+        { "id": "continue", "type": "subSection", "title": "Continue", "slug": "javascript/loops#continue", "order": 6 },
+        { "id": "loop-visualizer-playground", "type": "subSection", "title": "Loop visualizer playground", "slug": "javascript/loops#loop-visualizer-playground", "order": 7 }
       ]
     },
     {
@@ -242,90 +74,18 @@
       "slug": "javascript/functions",
       "order": 4,
       "items": [
-        {
-          "id": "function-declaration",
-          "type": "subSection",
-          "title": "Function declaration",
-          "slug": "javascript/functions#function-declaration",
-          "order": 1
-        },
-        {
-          "id": "parameters",
-          "type": "subSection",
-          "title": "Parameters",
-          "slug": "javascript/functions#parameters",
-          "order": 2
-        },
-        {
-          "id": "default-parameters",
-          "type": "subSection",
-          "title": "Default parameters",
-          "slug": "javascript/functions#default-parameters",
-          "order": 3
-        },
-        {
-          "id": "return-values",
-          "type": "subSection",
-          "title": "Return values",
-          "slug": "javascript/functions#return-values",
-          "order": 4
-        },
-        {
-          "id": "helper-functions",
-          "type": "subSection",
-          "title": "Helper functions",
-          "slug": "javascript/functions#helper-functions",
-          "order": 5
-        },
-        {
-          "id": "function-expressions",
-          "type": "subSection",
-          "title": "Function expressions",
-          "slug": "javascript/functions#function-expressions",
-          "order": 6
-        },
-        {
-          "id": "arrow-functions",
-          "type": "subSection",
-          "title": "Arrow functions",
-          "slug": "javascript/functions#arrow-functions",
-          "order": 7
-        },
-        {
-          "id": "higher-order-functions",
-          "type": "subSection",
-          "title": "Higher order functions",
-          "slug": "javascript/functions#higher-order-functions",
-          "order": 8
-        },
-        {
-          "id": "functions-as-data",
-          "type": "subSection",
-          "title": "Functions as data",
-          "slug": "javascript/functions#functions-as-data",
-          "order": 9
-        },
-        {
-          "id": "functions-as-parameters",
-          "type": "subSection",
-          "title": "Functions as parameters",
-          "slug": "javascript/functions#functions-as-parameters",
-          "order": 10
-        },
-        {
-          "id": "function-forms-playground",
-          "type": "subSection",
-          "title": "Function forms playground",
-          "slug": "javascript/functions#function-forms-playground",
-          "order": 11
-        },
-        {
-          "id": "callback-tracer-playground",
-          "type": "subSection",
-          "title": "Callback tracer playground",
-          "slug": "javascript/functions#callback-tracer-playground",
-          "order": 12
-        }
+        { "id": "function-declaration", "type": "subSection", "title": "Function declaration", "slug": "javascript/functions#function-declaration", "order": 1 },
+        { "id": "parameters", "type": "subSection", "title": "Parameters", "slug": "javascript/functions#parameters", "order": 2 },
+        { "id": "default-parameters", "type": "subSection", "title": "Default parameters", "slug": "javascript/functions#default-parameters", "order": 3 },
+        { "id": "return-values", "type": "subSection", "title": "Return values", "slug": "javascript/functions#return-values", "order": 4 },
+        { "id": "helper-functions", "type": "subSection", "title": "Helper functions", "slug": "javascript/functions#helper-functions", "order": 5 },
+        { "id": "function-expressions", "type": "subSection", "title": "Function expressions", "slug": "javascript/functions#function-expressions", "order": 6 },
+        { "id": "arrow-functions", "type": "subSection", "title": "Arrow functions", "slug": "javascript/functions#arrow-functions", "order": 7 },
+        { "id": "higher-order-functions", "type": "subSection", "title": "Higher order functions", "slug": "javascript/functions#higher-order-functions", "order": 8 },
+        { "id": "functions-as-data", "type": "subSection", "title": "Functions as data", "slug": "javascript/functions#functions-as-data", "order": 9 },
+        { "id": "functions-as-parameters", "type": "subSection", "title": "Functions as parameters", "slug": "javascript/functions#functions-as-parameters", "order": 10 },
+        { "id": "function-forms-playground", "type": "subSection", "title": "Function forms playground", "slug": "javascript/functions#function-forms-playground", "order": 11 },
+        { "id": "callback-tracer-playground", "type": "subSection", "title": "Callback tracer playground", "slug": "javascript/functions#callback-tracer-playground", "order": 12 }
       ]
     },
     {
@@ -335,125 +95,23 @@
       "slug": "javascript/objects",
       "order": 5,
       "items": [
-        {
-          "id": "object-literals",
-          "type": "subSection",
-          "title": "Object literals",
-          "slug": "javascript/objects#object-literals",
-          "order": 1
-        },
-        {
-          "id": "access-properties",
-          "type": "subSection",
-          "title": "Access properties",
-          "slug": "javascript/objects#access-properties",
-          "order": 2
-        },
-        {
-          "id": "update-properties",
-          "type": "subSection",
-          "title": "Update properties",
-          "slug": "javascript/objects#update-properties",
-          "order": 3
-        },
-        {
-          "id": "delete-properties",
-          "type": "subSection",
-          "title": "Delete properties",
-          "slug": "javascript/objects#delete-properties",
-          "order": 4
-        },
-        {
-          "id": "custom-methods",
-          "type": "subSection",
-          "title": "Custom methods",
-          "slug": "javascript/objects#custom-methods",
-          "order": 5
-        },
-        {
-          "id": "nested-objects",
-          "type": "subSection",
-          "title": "Nested objects",
-          "slug": "javascript/objects#nested-objects",
-          "order": 6
-        },
-        {
-          "id": "pass-by-reference",
-          "type": "subSection",
-          "title": "Pass by reference",
-          "slug": "javascript/objects#pass-by-reference",
-          "order": 7
-        },
-        {
-          "id": "for-in-loop",
-          "type": "subSection",
-          "title": "For in loop",
-          "slug": "javascript/objects#for-in-loop",
-          "order": 8
-        },
-        {
-          "id": "this-keyword",
-          "type": "subSection",
-          "title": "This keyword",
-          "slug": "javascript/objects#this-keyword",
-          "order": 9
-        },
-        {
-          "id": "arrow-function-with-this",
-          "type": "subSection",
-          "title": "Arrow function with this",
-          "slug": "javascript/objects#arrow-function-with-this",
-          "order": 10
-        },
-        {
-          "id": "privacy",
-          "type": "subSection",
-          "title": "Privacy",
-          "slug": "javascript/objects#privacy",
-          "order": 11
-        },
-        {
-          "id": "getter",
-          "type": "subSection",
-          "title": "Getter",
-          "slug": "javascript/objects#getter",
-          "order": 12
-        },
-        {
-          "id": "setter",
-          "type": "subSection",
-          "title": "Setter",
-          "slug": "javascript/objects#setter",
-          "order": 13
-        },
-        {
-          "id": "factory-functions",
-          "type": "subSection",
-          "title": "Factory functions",
-          "slug": "javascript/objects#factory-functions",
-          "order": 14
-        },
-        {
-          "id": "property-value-shorthand",
-          "type": "subSection",
-          "title": "Property value shorthand",
-          "slug": "javascript/objects#property-value-shorthand",
-          "order": 15
-        },
-        {
-          "id": "destructured-assignment",
-          "type": "subSection",
-          "title": "Destructured assignment",
-          "slug": "javascript/objects#destructured-assignment",
-          "order": 16
-        },
-        {
-          "id": "object-methods",
-          "type": "subSection",
-          "title": "Object methods",
-          "slug": "javascript/objects#object-methods",
-          "order": 17
-        }
+        { "id": "object-literals", "type": "subSection", "title": "Object literals", "slug": "javascript/objects#object-literals", "order": 1 },
+        { "id": "access-properties", "type": "subSection", "title": "Access properties", "slug": "javascript/objects#access-properties", "order": 2 },
+        { "id": "update-properties", "type": "subSection", "title": "Update properties", "slug": "javascript/objects#update-properties", "order": 3 },
+        { "id": "delete-properties", "type": "subSection", "title": "Delete properties", "slug": "javascript/objects#delete-properties", "order": 4 },
+        { "id": "custom-methods", "type": "subSection", "title": "Custom methods", "slug": "javascript/objects#custom-methods", "order": 5 },
+        { "id": "nested-objects", "type": "subSection", "title": "Nested objects", "slug": "javascript/objects#nested-objects", "order": 6 },
+        { "id": "pass-by-reference", "type": "subSection", "title": "Pass by reference", "slug": "javascript/objects#pass-by-reference", "order": 7 },
+        { "id": "for-in-loop", "type": "subSection", "title": "For in loop", "slug": "javascript/objects#for-in-loop", "order": 8 },
+        { "id": "this-keyword", "type": "subSection", "title": "This keyword", "slug": "javascript/objects#this-keyword", "order": 9 },
+        { "id": "arrow-function-with-this", "type": "subSection", "title": "Arrow function with this", "slug": "javascript/objects#arrow-function-with-this", "order": 10 },
+        { "id": "privacy", "type": "subSection", "title": "Privacy", "slug": "javascript/objects#privacy", "order": 11 },
+        { "id": "getter", "type": "subSection", "title": "Getter", "slug": "javascript/objects#getter", "order": 12 },
+        { "id": "setter", "type": "subSection", "title": "Setter", "slug": "javascript/objects#setter", "order": 13 },
+        { "id": "factory-functions", "type": "subSection", "title": "Factory functions", "slug": "javascript/objects#factory-functions", "order": 14 },
+        { "id": "property-value-shorthand", "type": "subSection", "title": "Property value shorthand", "slug": "javascript/objects#property-value-shorthand", "order": 15 },
+        { "id": "destructured-assignment", "type": "subSection", "title": "Destructured assignment", "slug": "javascript/objects#destructured-assignment", "order": 16 },
+        { "id": "object-methods", "type": "subSection", "title": "Object methods", "slug": "javascript/objects#object-methods", "order": 17 }
       ]
     },
     {
@@ -463,76 +121,16 @@
       "slug": "javascript/iterators-array",
       "order": 6,
       "items": [
-        {
-          "id": "foreach",
-          "type": "subSection",
-          "title": "Foreach",
-          "slug": "javascript/iterators-array#foreach",
-          "order": 1
-        },
-        {
-          "id": "map",
-          "type": "subSection",
-          "title": "Map",
-          "slug": "javascript/iterators-array#map",
-          "order": 2
-        },
-        {
-          "id": "filter",
-          "type": "subSection",
-          "title": "Filter",
-          "slug": "javascript/iterators-array#filter",
-          "order": 3
-        },
-        {
-          "id": "find-index",
-          "type": "subSection",
-          "title": "Find index",
-          "slug": "javascript/iterators-array#find-index",
-          "order": 4
-        },
-        {
-          "id": "reduce",
-          "type": "subSection",
-          "title": "Reduce",
-          "slug": "javascript/iterators-array#reduce",
-          "order": 5
-        },
-        {
-          "id": "some",
-          "type": "subSection",
-          "title": "Some",
-          "slug": "javascript/iterators-array#some",
-          "order": 6
-        },
-        {
-          "id": "every",
-          "type": "subSection",
-          "title": "Every",
-          "slug": "javascript/iterators-array#every",
-          "order": 7
-        },
-        {
-          "id": "split",
-          "type": "subSection",
-          "title": "Split",
-          "slug": "javascript/iterators-array#split",
-          "order": 8
-        },
-        {
-          "id": "join",
-          "type": "subSection",
-          "title": "Join",
-          "slug": "javascript/iterators-array#join",
-          "order": 9
-        },
-        {
-          "id": "sort",
-          "type": "subSection",
-          "title": "Sort",
-          "slug": "javascript/iterators-array#sort",
-          "order": 10
-        }
+        { "id": "foreach", "type": "subSection", "title": "Foreach", "slug": "javascript/iterators-array#foreach", "order": 1 },
+        { "id": "map", "type": "subSection", "title": "Map", "slug": "javascript/iterators-array#map", "order": 2 },
+        { "id": "filter", "type": "subSection", "title": "Filter", "slug": "javascript/iterators-array#filter", "order": 3 },
+        { "id": "find-index", "type": "subSection", "title": "Find index", "slug": "javascript/iterators-array#find-index", "order": 4 },
+        { "id": "reduce", "type": "subSection", "title": "Reduce", "slug": "javascript/iterators-array#reduce", "order": 5 },
+        { "id": "some", "type": "subSection", "title": "Some", "slug": "javascript/iterators-array#some", "order": 6 },
+        { "id": "every", "type": "subSection", "title": "Every", "slug": "javascript/iterators-array#every", "order": 7 },
+        { "id": "split", "type": "subSection", "title": "Split", "slug": "javascript/iterators-array#split", "order": 8 },
+        { "id": "join", "type": "subSection", "title": "Join", "slug": "javascript/iterators-array#join", "order": 9 },
+        { "id": "sort", "type": "subSection", "title": "Sort", "slug": "javascript/iterators-array#sort", "order": 10 }
       ]
     },
     {

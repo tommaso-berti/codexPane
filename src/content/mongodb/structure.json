@@ -1,4 +1,3 @@
-
 {
   "id": "mongodb",
   "title": "MongoDB",
@@ -11,55 +10,13 @@
       "slug": "mongodb/databases",
       "order": 1,
       "items": [
-        {
-          "id": "database-management-systems",
-          "type": "subSection",
-          "title": "Database management systems",
-          "slug": "mongodb/databases#database-management-systems",
-          "order": 2
-        },
-        {
-          "id": "relational-databases",
-          "type": "subSection",
-          "title": "Relational databases",
-          "slug": "mongodb/databases#relational-databases",
-          "order": 3
-        },
-        {
-          "id": "non-relational-databases",
-          "type": "subSection",
-          "title": "Non relational databases",
-          "slug": "mongodb/databases#non-relational-databases",
-          "order": 4
-        },
-        {
-          "id": "nosql-databases",
-          "type": "subSection",
-          "title": "Nosql databases",
-          "slug": "mongodb/databases#nosql-databases",
-          "order": 5
-        },
-        {
-          "id": "advantages",
-          "type": "subSection",
-          "title": "Advantages",
-          "slug": "mongodb/databases#advantages",
-          "order": 6
-        },
-        {
-          "id": "unique-disadvantages",
-          "type": "subSection",
-          "title": "Unique disadvantages",
-          "slug": "mongodb/databases#unique-disadvantages",
-          "order": 7
-        },
-        {
-          "id": "mongodb",
-          "type": "subSection",
-          "title": "Mongodb",
-          "slug": "mongodb/databases#mongodb",
-          "order": 8
-        }
+        { "id": "database-management-systems", "type": "subSection", "title": "Database management systems", "slug": "mongodb/databases#database-management-systems", "order": 2 },
+        { "id": "relational-databases", "type": "subSection", "title": "Relational databases", "slug": "mongodb/databases#relational-databases", "order": 3 },
+        { "id": "non-relational-databases", "type": "subSection", "title": "Non relational databases", "slug": "mongodb/databases#non-relational-databases", "order": 4 },
+        { "id": "nosql-databases", "type": "subSection", "title": "Nosql databases", "slug": "mongodb/databases#nosql-databases", "order": 5 },
+        { "id": "advantages", "type": "subSection", "title": "Advantages", "slug": "mongodb/databases#advantages", "order": 6 },
+        { "id": "unique-disadvantages", "type": "subSection", "title": "Unique disadvantages", "slug": "mongodb/databases#unique-disadvantages", "order": 7 },
+        { "id": "mongodb", "type": "subSection", "title": "Mongodb", "slug": "mongodb/databases#mongodb", "order": 8 }
       ]
     },
     {
@@ -69,41 +26,11 @@
       "slug": "mongodb/commands",
       "order": 2,
       "items": [
-        {
-          "id": "show-databases",
-          "type": "subSection",
-          "title": "Show databases",
-          "slug": "mongodb/commands#show-databases",
-          "order": 1
-        },
-        {
-          "id": "switch-database",
-          "type": "subSection",
-          "title": "Switch database",
-          "slug": "mongodb/commands#switch-database",
-          "order": 2
-        },
-        {
-          "id": "database-creation-behavior",
-          "type": "subSection",
-          "title": "Database creation behavior",
-          "slug": "mongodb/commands#database-creation-behavior",
-          "order": 3
-        },
-        {
-          "id": "current-database",
-          "type": "subSection",
-          "title": "Current database",
-          "slug": "mongodb/commands#current-database",
-          "order": 4
-        },
-        {
-          "id": "show-collections",
-          "type": "subSection",
-          "title": "Show collections",
-          "slug": "mongodb/commands#show-collections",
-          "order": 5
-        }
+        { "id": "show-databases", "type": "subSection", "title": "Show databases", "slug": "mongodb/commands#show-databases", "order": 1 },
+        { "id": "switch-database", "type": "subSection", "title": "Switch database", "slug": "mongodb/commands#switch-database", "order": 2 },
+        { "id": "database-creation-behavior", "type": "subSection", "title": "Database creation behavior", "slug": "mongodb/commands#database-creation-behavior", "order": 3 },
+        { "id": "current-database", "type": "subSection", "title": "Current database", "slug": "mongodb/commands#current-database", "order": 4 },
+        { "id": "show-collections", "type": "subSection", "title": "Show collections", "slug": "mongodb/commands#show-collections", "order": 5 }
       ]
     },
     {
@@ -113,34 +40,10 @@
       "slug": "mongodb/operators-and-methods",
       "order": 3,
       "items": [
-        {
-          "id": "operators",
-          "type": "subSection",
-          "title": "Operators",
-          "slug": "mongodb/operators-and-methods#operators",
-          "order": 1
-        },
-        {
-          "id": "query-on-arrays",
-          "type": "subSection",
-          "title": "Query on arrays",
-          "slug": "mongodb/operators-and-methods#query-on-arrays",
-          "order": 2
-        },
-        {
-          "id": "dot-notation",
-          "type": "subSection",
-          "title": "Dot notation",
-          "slug": "mongodb/operators-and-methods#dot-notation",
-          "order": 3
-        },
-        {
-          "id": "methods",
-          "type": "subSection",
-          "title": "Methods",
-          "slug": "mongodb/operators-and-methods#methods",
-          "order": 4
-        }
+        { "id": "operators", "type": "subSection", "title": "Operators", "slug": "mongodb/operators-and-methods#operators", "order": 1 },
+        { "id": "query-on-arrays", "type": "subSection", "title": "Query on arrays", "slug": "mongodb/operators-and-methods#query-on-arrays", "order": 2 },
+        { "id": "dot-notation", "type": "subSection", "title": "Dot notation", "slug": "mongodb/operators-and-methods#dot-notation", "order": 3 },
+        { "id": "methods", "type": "subSection", "title": "Methods", "slug": "mongodb/operators-and-methods#methods", "order": 4 }
       ]
     },
     {
@@ -150,34 +53,10 @@
       "slug": "mongodb/crud-operations",
       "order": 4,
       "items": [
-        {
-          "id": "syntax",
-          "type": "subSection",
-          "title": "Syntax",
-          "slug": "mongodb/crud-operations#syntax",
-          "order": 1
-        },
-        {
-          "id": "find",
-          "type": "subSection",
-          "title": "Find",
-          "slug": "mongodb/crud-operations#find",
-          "order": 2
-        },
-        {
-          "id": "cursor-behavior",
-          "type": "subSection",
-          "title": "Cursor behavior",
-          "slug": "mongodb/crud-operations#cursor-behavior",
-          "order": 3
-        },
-        {
-          "id": "example-query-on-embedded-field",
-          "type": "subSection",
-          "title": "Example query on embedded field",
-          "slug": "mongodb/crud-operations#example-query-on-embedded-field",
-          "order": 4
-        }
+        { "id": "syntax", "type": "subSection", "title": "Syntax", "slug": "mongodb/crud-operations#syntax", "order": 1 },
+        { "id": "find", "type": "subSection", "title": "Find", "slug": "mongodb/crud-operations#find", "order": 2 },
+        { "id": "cursor-behavior", "type": "subSection", "title": "Cursor behavior", "slug": "mongodb/crud-operations#cursor-behavior", "order": 3 },
+        { "id": "example-query-on-embedded-field", "type": "subSection", "title": "Example query on embedded field", "slug": "mongodb/crud-operations#example-query-on-embedded-field", "order": 4 }
       ]
     }
   ]

@@ -10,62 +10,14 @@
       "slug": "bash/navigation",
       "order": 2,
       "items": [
-        {
-          "id": "clear-terminal",
-          "type": "subSection",
-          "title": "Clear terminal",
-          "slug": "bash/navigation#clear-terminal",
-          "order": 1
-        },
-        {
-          "id": "list-files",
-          "type": "subSection",
-          "title": "List files",
-          "slug": "bash/navigation#list-files",
-          "order": 2
-        },
-        {
-          "id": "list-all-in-long-format",
-          "type": "subSection",
-          "title": "List all in long format",
-          "slug": "bash/navigation#list-all-in-long-format",
-          "order": 3
-        },
-        {
-          "id": "print-working-directory",
-          "type": "subSection",
-          "title": "Print working directory",
-          "slug": "bash/navigation#print-working-directory",
-          "order": 4
-        },
-        {
-          "id": "change-directory",
-          "type": "subSection",
-          "title": "Change directory",
-          "slug": "bash/navigation#change-directory",
-          "order": 5
-        },
-        {
-          "id": "move-up-directories",
-          "type": "subSection",
-          "title": "Move up directories",
-          "slug": "bash/navigation#move-up-directories",
-          "order": 6
-        },
-        {
-          "id": "relative-paths-and-chaining",
-          "type": "subSection",
-          "title": "Relative paths and chaining",
-          "slug": "bash/navigation#relative-paths-and-chaining",
-          "order": 7
-        },
-        {
-          "id": "make-directory",
-          "type": "subSection",
-          "title": "Make directory",
-          "slug": "bash/navigation#make-directory",
-          "order": 8
-        }
+        { "id": "clear-terminal", "type": "subSection", "title": "Clear terminal", "slug": "bash/navigation#clear-terminal", "order": 1 },
+        { "id": "list-files", "type": "subSection", "title": "List files", "slug": "bash/navigation#list-files", "order": 2 },
+        { "id": "list-all-in-long-format", "type": "subSection", "title": "List all in long format", "slug": "bash/navigation#list-all-in-long-format", "order": 3 },
+        { "id": "print-working-directory", "type": "subSection", "title": "Print working directory", "slug": "bash/navigation#print-working-directory", "order": 4 },
+        { "id": "change-directory", "type": "subSection", "title": "Change directory", "slug": "bash/navigation#change-directory", "order": 5 },
+        { "id": "move-up-directories", "type": "subSection", "title": "Move up directories", "slug": "bash/navigation#move-up-directories", "order": 6 },
+        { "id": "relative-paths-and-chaining", "type": "subSection", "title": "Relative paths and chaining", "slug": "bash/navigation#relative-paths-and-chaining", "order": 7 },
+        { "id": "make-directory", "type": "subSection", "title": "Make directory", "slug": "bash/navigation#make-directory", "order": 8 }
       ]
     },
     {
@@ -75,83 +27,17 @@
       "slug": "bash/file-manipulation",
       "order": 3,
       "items": [
-        {
-          "id": "create-files",
-          "type": "subSection",
-          "title": "Create files",
-          "slug": "bash/file-manipulation#create-files",
-          "order": 1
-        },
-        {
-          "id": "view-file-contents",
-          "type": "subSection",
-          "title": "View file contents",
-          "slug": "bash/file-manipulation#view-file-contents",
-          "order": 2
-        },
-        {
-          "id": "create-file-with-content",
-          "type": "subSection",
-          "title": "Create file with content",
-          "slug": "bash/file-manipulation#create-file-with-content",
-          "order": 3
-        },
-        {
-          "id": "copy-files",
-          "type": "subSection",
-          "title": "Copy files",
-          "slug": "bash/file-manipulation#copy-files",
-          "order": 4
-        },
-        {
-          "id": "copy-and-rename",
-          "type": "subSection",
-          "title": "Copy and rename",
-          "slug": "bash/file-manipulation#copy-and-rename",
-          "order": 5
-        },
-        {
-          "id": "copy-multiple-files",
-          "type": "subSection",
-          "title": "Copy multiple files",
-          "slug": "bash/file-manipulation#copy-multiple-files",
-          "order": 6
-        },
-        {
-          "id": "copy-with-wildcards",
-          "type": "subSection",
-          "title": "Copy with wildcards",
-          "slug": "bash/file-manipulation#copy-with-wildcards",
-          "order": 7
-        },
-        {
-          "id": "move-files",
-          "type": "subSection",
-          "title": "Move files",
-          "slug": "bash/file-manipulation#move-files",
-          "order": 8
-        },
-        {
-          "id": "current-directory-dot",
-          "type": "subSection",
-          "title": "Current directory dot",
-          "slug": "bash/file-manipulation#current-directory-dot",
-          "order": 9
-        },
-        {
-          "id": "remove-files",
-          "type": "subSection",
-          "title": "Remove files",
-          "slug": "bash/file-manipulation#remove-files",
-          "order": 10
-        },
-        {
-          "id": "remove-directories-recursively",
-          "type": "subSection",
-          "title": "Remove directories recursively",
-          "slug": "bash/file-manipulation#remove-directories-recursively",
-          "order": 11
-        }
+        { "id": "create-files", "type": "subSection", "title": "Create files", "slug": "bash/file-manipulation#create-files", "order": 1 },
+        { "id": "view-file-contents", "type": "subSection", "title": "View file contents", "slug": "bash/file-manipulation#view-file-contents", "order": 2 },
+        { "id": "create-file-with-content", "type": "subSection", "title": "Create file with content", "slug": "bash/file-manipulation#create-file-with-content", "order": 3 },
+        { "id": "copy-files", "type": "subSection", "title": "Copy files", "slug": "bash/file-manipulation#copy-files", "order": 4 },
+        { "id": "copy-and-rename", "type": "subSection", "title": "Copy and rename", "slug": "bash/file-manipulation#copy-and-rename", "order": 5 },
+        { "id": "copy-multiple-files", "type": "subSection", "title": "Copy multiple files", "slug": "bash/file-manipulation#copy-multiple-files", "order": 6 },
+        { "id": "copy-with-wildcards", "type": "subSection", "title": "Copy with wildcards", "slug": "bash/file-manipulation#copy-with-wildcards", "order": 7 },
+        { "id": "move-files", "type": "subSection", "title": "Move files", "slug": "bash/file-manipulation#move-files", "order": 8 },
+        { "id": "current-directory-dot", "type": "subSection", "title": "Current directory dot", "slug": "bash/file-manipulation#current-directory-dot", "order": 9 },
+        { "id": "remove-files", "type": "subSection", "title": "Remove files", "slug": "bash/file-manipulation#remove-files", "order": 10 },
+        { "id": "remove-directories-recursively", "type": "subSection", "title": "Remove directories recursively", "slug": "bash/file-manipulation#remove-directories-recursively", "order": 11 }
       ]
     },
     {
@@ -161,83 +47,17 @@
       "slug": "bash/redirection",
       "order": 4,
       "items": [
-        {
-          "id": "echo-and-standard-streams",
-          "type": "subSection",
-          "title": "Echo and standard streams",
-          "slug": "bash/redirection#echo-and-standard-streams",
-          "order": 1
-        },
-        {
-          "id": "redirect-output-overwrite",
-          "type": "subSection",
-          "title": "Redirect output overwrite",
-          "slug": "bash/redirection#redirect-output-overwrite",
-          "order": 2
-        },
-        {
-          "id": "append-output",
-          "type": "subSection",
-          "title": "Append output",
-          "slug": "bash/redirection#append-output",
-          "order": 3
-        },
-        {
-          "id": "redirect-input",
-          "type": "subSection",
-          "title": "Redirect input",
-          "slug": "bash/redirection#redirect-input",
-          "order": 4
-        },
-        {
-          "id": "pipes-and-word-count",
-          "type": "subSection",
-          "title": "Pipes and word count",
-          "slug": "bash/redirection#pipes-and-word-count",
-          "order": 5
-        },
-        {
-          "id": "sort",
-          "type": "subSection",
-          "title": "Sort",
-          "slug": "bash/redirection#sort",
-          "order": 6
-        },
-        {
-          "id": "uniq",
-          "type": "subSection",
-          "title": "Uniq",
-          "slug": "bash/redirection#uniq",
-          "order": 7
-        },
-        {
-          "id": "grep-case-insensitive",
-          "type": "subSection",
-          "title": "Grep case insensitive",
-          "slug": "bash/redirection#grep-case-insensitive",
-          "order": 8
-        },
-        {
-          "id": "grep-recursive-and-list-filenames",
-          "type": "subSection",
-          "title": "Grep recursive and list filenames",
-          "slug": "bash/redirection#grep-recursive-and-list-filenames",
-          "order": 9
-        },
-        {
-          "id": "sed-substitution",
-          "type": "subSection",
-          "title": "Sed substitution",
-          "slug": "bash/redirection#sed-substitution",
-          "order": 10
-        },
-        {
-          "id": "sed-in-place",
-          "type": "subSection",
-          "title": "Sed in place",
-          "slug": "bash/redirection#sed-in-place",
-          "order": 11
-        }
+        { "id": "echo-and-standard-streams", "type": "subSection", "title": "Echo and standard streams", "slug": "bash/redirection#echo-and-standard-streams", "order": 1 },
+        { "id": "redirect-output-overwrite", "type": "subSection", "title": "Redirect output overwrite", "slug": "bash/redirection#redirect-output-overwrite", "order": 2 },
+        { "id": "append-output", "type": "subSection", "title": "Append output", "slug": "bash/redirection#append-output", "order": 3 },
+        { "id": "redirect-input", "type": "subSection", "title": "Redirect input", "slug": "bash/redirection#redirect-input", "order": 4 },
+        { "id": "pipes-and-word-count", "type": "subSection", "title": "Pipes and word count", "slug": "bash/redirection#pipes-and-word-count", "order": 5 },
+        { "id": "sort", "type": "subSection", "title": "Sort", "slug": "bash/redirection#sort", "order": 6 },
+        { "id": "uniq", "type": "subSection", "title": "Uniq", "slug": "bash/redirection#uniq", "order": 7 },
+        { "id": "grep-case-insensitive", "type": "subSection", "title": "Grep case insensitive", "slug": "bash/redirection#grep-case-insensitive", "order": 8 },
+        { "id": "grep-recursive-and-list-filenames", "type": "subSection", "title": "Grep recursive and list filenames", "slug": "bash/redirection#grep-recursive-and-list-filenames", "order": 9 },
+        { "id": "sed-substitution", "type": "subSection", "title": "Sed substitution", "slug": "bash/redirection#sed-substitution", "order": 10 },
+        { "id": "sed-in-place", "type": "subSection", "title": "Sed in place", "slug": "bash/redirection#sed-in-place", "order": 11 }
       ]
     },
     {
@@ -247,62 +67,14 @@
       "slug": "bash/environment-nano-text-editor",
       "order": 5,
       "items": [
-        {
-          "id": "nano",
-          "type": "subSection",
-          "title": "Nano",
-          "slug": "bash/environment-nano-text-editor#nano",
-          "order": 1
-        },
-        {
-          "id": "bash-profile",
-          "type": "subSection",
-          "title": "Bash profile",
-          "slug": "bash/environment-nano-text-editor#bash-profile",
-          "order": 2
-        },
-        {
-          "id": "alias",
-          "type": "subSection",
-          "title": "Alias",
-          "slug": "bash/environment-nano-text-editor#alias",
-          "order": 3
-        },
-        {
-          "id": "environment-variables",
-          "type": "subSection",
-          "title": "Environment variables",
-          "slug": "bash/environment-nano-text-editor#environment-variables",
-          "order": 4
-        },
-        {
-          "id": "ps1",
-          "type": "subSection",
-          "title": "PS1",
-          "slug": "bash/environment-nano-text-editor#ps1",
-          "order": 5
-        },
-        {
-          "id": "home",
-          "type": "subSection",
-          "title": "Home",
-          "slug": "bash/environment-nano-text-editor#home",
-          "order": 6
-        },
-        {
-          "id": "path",
-          "type": "subSection",
-          "title": "Path",
-          "slug": "bash/environment-nano-text-editor#path",
-          "order": 7
-        },
-        {
-          "id": "env",
-          "type": "subSection",
-          "title": "Env",
-          "slug": "bash/environment-nano-text-editor#env",
-          "order": 8
-        }
+        { "id": "nano", "type": "subSection", "title": "Nano", "slug": "bash/environment-nano-text-editor#nano", "order": 1 },
+        { "id": "bash-profile", "type": "subSection", "title": "Bash profile", "slug": "bash/environment-nano-text-editor#bash-profile", "order": 2 },
+        { "id": "alias", "type": "subSection", "title": "Alias", "slug": "bash/environment-nano-text-editor#alias", "order": 3 },
+        { "id": "environment-variables", "type": "subSection", "title": "Environment variables", "slug": "bash/environment-nano-text-editor#environment-variables", "order": 4 },
+        { "id": "ps1", "type": "subSection", "title": "PS1", "slug": "bash/environment-nano-text-editor#ps1", "order": 5 },
+        { "id": "home", "type": "subSection", "title": "Home", "slug": "bash/environment-nano-text-editor#home", "order": 6 },
+        { "id": "path", "type": "subSection", "title": "Path", "slug": "bash/environment-nano-text-editor#path", "order": 7 },
+        { "id": "env", "type": "subSection", "title": "Env", "slug": "bash/environment-nano-text-editor#env", "order": 8 }
       ]
     },
     {
@@ -312,34 +84,10 @@
       "slug": "bash/advanced-examples-on-chained-operators",
       "order": 6,
       "items": [
-        {
-          "id": "find-empty-txt-files",
-          "type": "subSection",
-          "title": "Find empty txt files",
-          "slug": "bash/advanced-examples-on-chained-operators#find-empty-txt-files",
-          "order": 1
-        },
-        {
-          "id": "why-it-works",
-          "type": "subSection",
-          "title": "Why it works",
-          "slug": "bash/advanced-examples-on-chained-operators#why-it-works",
-          "order": 2
-        },
-        {
-          "id": "safer-matching",
-          "type": "subSection",
-          "title": "Safer matching",
-          "slug": "bash/advanced-examples-on-chained-operators#safer-matching",
-          "order": 3
-        },
-        {
-          "id": "alternative-with-find",
-          "type": "subSection",
-          "title": "Alternative with find",
-          "slug": "bash/advanced-examples-on-chained-operators#alternative-with-find",
-          "order": 4
-        }
+        { "id": "find-empty-txt-files", "type": "subSection", "title": "Find empty txt files", "slug": "bash/advanced-examples-on-chained-operators#find-empty-txt-files", "order": 1 },
+        { "id": "why-it-works", "type": "subSection", "title": "Why it works", "slug": "bash/advanced-examples-on-chained-operators#why-it-works", "order": 2 },
+        { "id": "safer-matching", "type": "subSection", "title": "Safer matching", "slug": "bash/advanced-examples-on-chained-operators#safer-matching", "order": 3 },
+        { "id": "alternative-with-find", "type": "subSection", "title": "Alternative with find", "slug": "bash/advanced-examples-on-chained-operators#alternative-with-find", "order": 4 }
       ]
     }
   ]
