@@ -11,7 +11,7 @@ export default function SectMenu() {
     const currentDoc = docs.find(d => d.id === params.docs);
     const currentSections = currentDoc ? currentDoc.sections : [];
     const [selected, setSelected] = useState(null);
-
+    const [openSections, setOpenSections] = useState([]);
 
     return (
         <List dense={true} className="flex-1 min-h-0 overflow-y-auto">
@@ -24,6 +24,8 @@ export default function SectMenu() {
                         subsections={currentSubsections}
                         selected={selected}
                         setSelected={setSelected}
+                        openSections={openSections}
+                        setOpenSections={setOpenSections}
                     />
                 );
             })}

@@ -2,41 +2,57 @@ import { useDocs } from '../contexts/DocsContext.jsx';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Menu, MenuItem, Button, ListItemIcon, ListItemText } from '@mui/material';
-import ICONS from '../../icons.js'
+import ICONS from '../../icons.js';
 
 export default function DocMenu() {
     const { docs } = useDocs();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [buttonMenuName, setButtonMenuName] = useState('Choose topic');
+    const [buttonMenu, setButtonMenu] = useState({ iconKey: 'ImageNotSupportedIcon', label: 'Choose topic' });
     const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
-        if(params.docs) {
-            setButtonMenuName(docs.find(d => d.id === params.docs)?.title || 'Choose topic');
-        }
+        const found = params.docs ? docs.find(d => d.id === params.docs) : null;
+        setButtonMenu(prev => ({
+            ...prev,
+            label: found?.title || 'Choose topic',
+            iconKey: found?.icon || 'ImageNotSupportedIcon'
+        }));
     }, [params.docs, docs]);
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
 
-    const handleSelect = (id, title) => {
+    const handleSelect = (id, title, iconKey) => {
         setAnchorEl(null);
-        if(title) setButtonMenuName(title);
-        navigate(`/${docs.find(d => d.id === id).slug}`);
+        setButtonMenu(prev => ({ ...prev, iconKey, label: title }));
+        const slug = docs.find(d => d.id === id)?.slug;
+        if (slug) navigate(`/${slug}`);
     };
+
+    const SelectedIconComponent = buttonMenu.iconKey ? (ICONS[buttonMenu.iconKey] || ICONS.ImageNotSupportedIcon) : ICONS.ImageNotSupportedIcon;
 
     return (
         <>
-            <Button onClick={handleClick} className="!text-xl !">{buttonMenuName}</Button>
-            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
+            <Button
+                onClick={handleClick}
+                className="!text-xl"
+                sx={{
+                    textTransform: 'none',
+                }}
+                startIcon={<SelectedIconComponent fontSize="small" />}
+            >
+                {buttonMenu.label}
+            </Button>
+
+            <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 {docs.map(({ id, title, icon }) => {
-                    const IconComponent = ICONS[icon] || ICONS.SettingsIcon;
+                    const IconComponent = ICONS[icon] || ICONS.ImageNotSupportedIcon;
                     return (
-                        <MenuItem key={id} onClick={() => handleSelect(id, title)}>
+                        <MenuItem key={id}  onClick={() => handleSelect(id, title, icon) }>
                             <ListItemIcon><IconComponent fontSize="small" /></ListItemIcon>
-                            <ListItemText>{title}</ListItemText>
+                            <ListItemText primary={title} />
                         </MenuItem>
                     );
                 })}

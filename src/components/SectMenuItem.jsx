@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import {useNavigate, useParams} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
@@ -9,7 +8,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 
-export default function SectMenuItem({section, subsections, selected, setSelected}) {
+export default function SectMenuItem({key, section, subsections, selected, setSelected, openSections, setOpenSections}) {
     const navigate = useNavigate();
     const { pathname, hash } = useLocation();
     const { section: sectionParam } = useParams();
@@ -19,16 +18,26 @@ export default function SectMenuItem({section, subsections, selected, setSelecte
     const isSectionParamMatch = sectionParam === section.id;
     const isAnchorInThisSection = anchor && subsections?.some(s => s.id === anchor);
     const shouldBeOpen = isSectionInPath || isSectionParamMatch || isAnchorInThisSection;
-    const [open, setOpen] = useState(shouldBeOpen);
+
+    const isControlled = Array.isArray(openSections) && typeof setOpenSections === "function";
+    const [localOpen, setLocalOpen] = useState(shouldBeOpen);
+    const open = isControlled ? openSections.includes(section.id) : localOpen;
 
     useEffect(() => {
-        if (shouldBeOpen) setOpen(true);
-    }, [shouldBeOpen]);
+        if (!shouldBeOpen) return;
+        if (isControlled) {
+            if (!openSections.includes(section.id)) {
+                setOpenSections((prev) => [...prev, section.id]);
+            }
+        } else {
+            setLocalOpen(true);
+        }
+    }, [shouldBeOpen, isControlled, openSections, section.id, setOpenSections]);
 
     useEffect(() => {
         if (!shouldBeOpen) return;
         if (anchor) {
-            const sub = subsections?.find(s => s.id === anchor);
+            const sub = subsections?.find((s) => s.id === anchor);
             if (sub && (selected?.type !== "subsection" || selected?.value !== sub.id)) {
                 setSelected?.({ type: "subsection", value: sub.id });
             }
@@ -49,14 +58,19 @@ export default function SectMenuItem({section, subsections, selected, setSelecte
         selected?.value,
         setSelected,
         isSectionInPath,
-        isSectionParamMatch
+        isSectionParamMatch,
     ]);
 
 
     const handleClick = () => {
-        setOpen(prev => !prev);
+        if (isControlled) {
+            const currentlyOpen = openSections.includes(section.id);
+            setOpenSections(currentlyOpen ? openSections.filter((id) => id !== section.id) : [...openSections, section.id]);
+        } else {
+            setLocalOpen((prev) => !prev);
+        }
         setSelected?.({ type: "section", value: section.id });
-        navigate(`${section.slug}`)
+        navigate(`${section.slug}`);
     };
 
     const handleSelect = (slug, subsection) => {
@@ -67,7 +81,7 @@ export default function SectMenuItem({section, subsections, selected, setSelecte
     return (
         <>
             <ListItemButton
-                key={section.id}
+                key={key}
                 onClick={handleClick}
                 selected={selected?.type === "section" && selected?.value === section.id}
                 sx={{
@@ -81,7 +95,7 @@ export default function SectMenuItem({section, subsections, selected, setSelecte
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List dense={true} component="div" disablePadding>
-                    {subsections.map((subsection) => (
+                    {subsections?.map((subsection) => (
                         <ListItemButton
                             key={subsection.id}
                             onClick={() => handleSelect(subsection.slug, subsection)}

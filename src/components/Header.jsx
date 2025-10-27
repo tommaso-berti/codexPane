@@ -9,7 +9,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 export default function Header({onOpenDrawer}) {
     return (
         <header className="border-b border-black h-18 top-0 w-full fixed z-10 bg-white flex items-center justify-between pl-5 pr-5">
-            <div className="flex items-baseline gap-6 mr-5">
+            <div className="flex items-center gap-6 mr-5">
                 <h1 className="text-black text-4xl font-bold">CodexPane</h1>
                 <DocMenu />
                 <Breadcrumb />
