@@ -2,11 +2,13 @@ import {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
 import SearchIcon from "@mui/icons-material/Search";
 import { useMiniSearchFromDocs } from './useMiniSearchFromDocs';
 import SearchInput from "./SearchInput.jsx";
 import SearchResults from "./SearchResults.jsx";
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
     position: 'absolute',
@@ -63,7 +65,12 @@ export default function SearchModal() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <SearchInput value={searchString} onChange={(e) => setSearchString(e.target.value)} />
+                    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%'}}>
+                        <SearchInput value={searchString} onChange={(e) => setSearchString(e.target.value)} />
+                        <IconButton aria-label="delete" color="primary" onClick={() => handleClose()}>
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
                     <SearchResults topics={topics}  results={results} onItemClick={handleClick} />
                 </Box>
             </Modal>

@@ -24,6 +24,7 @@ export default function SearchInput({value, onChange}) {
                 size="small"
                 variant="outlined"
                 autoComplete="off"
+                autoFocus
                 value={value}
                 onChange={onChange}
             />
