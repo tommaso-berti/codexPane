@@ -2,6 +2,7 @@
   "id": "git",
   "title": "Git",
   "slug": "git",
+  "icon": "CallMergeIcon",
   "items": [
     {
       "id": "overview-basic-flow",

@@ -2,6 +2,7 @@
   "id": "github",
   "title": "GitHub",
   "slug": "github",
+  "icon": "GitHubIcon",
   "items": [
     {
       "id": "markdown",
