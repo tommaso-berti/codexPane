@@ -1,0 +1,170 @@
+# The Event Loop
+
+## What is synchronous code
+Synchronous code executes in sequential order — it starts with the code at the top of the file and executes line by line until the end. Each line **blocks** the next until it finishes.
+
+## What is asynchronous code
+Asynchronous code can be scheduled to run later or in parallel with currently running code. It is **non blocking** and often relies on multiple **threads** at the platform level (e.g., web browser or Node) to perform tasks concurrently. More threads generally allow more tasks to run at once.
+
+**Note:** JavaScript itself is **single threaded**, but browsers and Node expose asynchronous **APIs** plus an **event loop** that lets JS coordinate async work.
+
+## Asynchronous callbacks
+A callback that runs after an external event or timer completes.
+
+~~~js
+easterEgg.addEventListener('click', () => {
+  console.log('Up, Up, Down, Down, Left, Right, Left, Right, B, A');
+});
+// The function runs only after the element is clicked.
+~~~
+
+## Settimeout
+Schedules a function to run **after at least** the given delay (ms).
+
+~~~js
+setTimeout(() => {
+  console.log('Delay the printing of this string, please.');
+}, 1000); // ≈ 1 second
+~~~
+
+**Tip:** The delay is a **minimum**; the callback runs when the call stack is free.
+
+## Setinterval
+Repeats a function every `n` ms until cleared.
+
+~~~js
+const id = setInterval(() => {
+  alert('Are you paying attention???');
+}, 300000); // 5 minutes
+
+// clearInterval(id) to stop
+~~~
+
+## Concurrency model and event loop in javascript
+Even though JavaScript executes on a single thread, the **event loop** allows non blocking behavior:
+
+~~~js
+console.log("I’m learning about");
+setTimeout(() => { console.log("Event Loop"); }, 2000);
+console.log("the");
+// Order: "I’m learning about" → "the" → (after ~2s) "Event Loop"
+~~~
+
+## What is the event loop
+A scheduling system that coordinates:
+- JavaScript engine (heap, call stack)
+- Platform APIs (web or Node)
+- Queues of pending work (tasks/events)
+
+It moves ready-to-run callbacks from queues to the call stack when the stack is empty.
+
+## Components of the event loop
+- **Memory heap** — where objects live.
+- **Call stack** — where the currently executing function frame sits.
+- **Event queue** — FIFO list of pending callbacks (tasks).
+- **Event loop** — the coordinator that enqueues tasks onto the stack when it’s clear.
+- **Node or web apis** — timers, network, DOM events, etc.
+
+**Copy friendly diagram (ASCII):**
+
+~~~txt
+[ Web/Node APIs ] --(events)--> [ Event queue ] --(when stack empty)--> [ Call stack ]
+         ^                                                                   |
+         |------------------------ scheduled callbacks ----------------------|
+~~~
+
+**Note:** The diagram above uses only ASCII characters so it can be copied reliably in any editor.
+
+## Heap
+A block of memory holding objects and values currently in use.
+
+## The call stack
+Tracks the **current execution context**. Calling a function pushes a frame; returning pops it. LIFO (last in, first out).
+
+~~~js
+function foo() {
+  return function bar() {
+    return function baz() {
+      return 'I love CodeCademy';
+    }
+  }
+}
+console.log(foo()()()); // nested frames push/pop
+~~~
+
+**Note:** The global execution context is created first; each function call creates its own execution context.
+
+## The event queue
+FIFO list of callbacks waiting to run. No code executes here; it only **stores** tasks until the stack is clear.
+
+Process:
+1. Event loop checks if the stack is empty.
+2. If empty and the queue has tasks, it moves the first task to the stack.
+3. Repeat.
+
+## The event loop in action
+~~~js
+console.log("This is the first line of code in app.js.");
+
+function usingsetTimeout() {
+  console.log("I'm going to be queued in the Event Loop.");
+}
+
+setTimeout(usingsetTimeout, 3000);
+
+console.log("This is the last line of code in app.js.");
+~~~
+
+Step by step:
+- First `console.log` runs and pops.
+- `setTimeout` schedules via a web api; after ~3s its callback enters the **event queue**.
+- Second `console.log` runs and pops.
+- When the stack is empty, the event loop moves the queued callback to the stack; it logs and returns.
+
+## Example
+~~~js
+const shopForBeans = () => {
+  return new Promise((resolve, reject) => {
+    const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo'];
+    setTimeout(() => {
+      let randomIndex = Math.floor(Math.random() * beanTypes.length);
+      let beanType = beanTypes[randomIndex];
+      console.log(`2. I bought ${beanType} beans because they were on sale.`);
+      resolve(beanType);
+    }, 1000);
+  });
+}
+
+async function getBeans() {
+  console.log(`1. Heading to the store to buy beans...`);
+  let value = await shopForBeans();
+  console.log(`3. Great! I'm making ${value} beans for dinner tonight!`);
+}
+
+getBeans();
+console.log("Describe what happens with this `console.log()` statement as well.");
+~~~
+
+Expected order:
+1. `Heading to the store to buy beans...`
+2. `Describe what happens with this console.log() statement as well.`
+3. `I bought <type> beans because they were on sale.`
+4. `Great! I'm making <type> beans for dinner tonight!`
+
+## Microtasks and macrotasks
+**Promises** (and `queueMicrotask`) queue **microtasks**, which run **before** timer/IO callbacks (often called **macrotasks**) once the call stack is clear.
+
+~~~js
+console.log('A');
+setTimeout(() => console.log('timeout'), 0); // macrotask
+Promise.resolve().then(() => console.log('microtask')); // microtask
+console.log('B');
+// Order: A, B, microtask, timeout
+~~~
+
+**Attention:** A long-running synchronous loop blocks *everything*, preventing even microtasks from running until it finishes.
+
+## Event loop playground
+import EventLoopPlayground from "./components/the-event-loop/EventLoopPlayground.jsx"
+
+<EventLoopPlayground />

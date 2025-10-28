@@ -1,0 +1,105 @@
+# Async…await (ES8)
+
+## Async operator
+Use `async` to declare a function that handles asynchronous work. An `async` function **always returns a promise**.
+
+~~~js
+async function myFunc() {
+  // Function body here
+}
+myFunc();
+
+const myArrowFunc = async () => {
+  // Function body here
+};
+myArrowFunc();
+~~~
+
+> Note: Because `async` functions return promises, you can still use `.then()` / `.catch()` on their results.
+
+## Await operator
+`await` can only be used **inside** an `async` function. It pauses execution of that function until the awaited promise settles and yields the **resolved value** (or throws if rejected).
+
+~~~js
+async function asyncFuncExample(){
+  const resolvedValue = await myPromise(); // myPromise() returns a Promise
+  console.log(resolvedValue);
+}
+
+asyncFuncExample(); // Prints: I am resolved now!
+~~~
+
+> Tip: `await` makes async code read like synchronous code, but it still doesn’t block the main thread outside that function.
+
+## Errors
+Handle errors with `try...catch` inside `async` functions. This catches both synchronous throws and rejected awaits.
+
+~~~js
+async function usingTryCatch() {
+  try {
+    const resolveValue = await asyncFunction('thing that will fail');
+    const secondValue = await secondAsyncFunction(resolveValue);
+  } catch (err) {
+    console.log(err);
+  }
+}
+usingTryCatch();
+~~~
+
+`async` functions return promises, so you can also handle rejections with `.catch()`:
+
+~~~js
+async function usingPromiseCatch() {
+  const resolveValue = await asyncFunction('thing that will fail');
+}
+
+const rejectedPromise = usingPromiseCatch();
+rejectedPromise.catch((rejectValue) => {
+  console.log(rejectValue);
+});
+~~~
+
+## Independent promises
+Awaiting one-after-the-other is **sequential**; starting both first and then awaiting them is **concurrent**.
+
+~~~js
+// Sequential: total time ≈ sum of both
+async function waiting() {
+  const firstValue = await firstAsyncThing();
+  const secondValue = await secondAsyncThing();
+  console.log(firstValue, secondValue);
+}
+
+// Concurrent: total time ≈ max of both
+async function concurrent() {
+  const firstPromise = firstAsyncThing();
+  const secondPromise = secondAsyncThing();
+  console.log(await firstPromise, await secondPromise);
+}
+~~~
+
+> Note: “Concurrent” here means both operations are in-flight together. It is **not** parallel CPU execution.
+
+## Await promise all
+Use `await Promise.all([...])` to run multiple required tasks together and gather their results. It **fails fast** on the first rejection.
+
+~~~js
+const a = fetch('/a.json');
+const b = fetch('/b.json');
+const c = fetch('/c.json');
+
+try {
+  const [ra, rb, rc] = await Promise.all([a, b, c]); // resolves in input order
+  const [A, B, C] = await Promise.all([ra.json(), rb.json(), rc.json()]);
+  console.log(A, B, C);
+} catch (err) {
+  console.error('One failed:', err);
+}
+~~~
+
+## AsyncAwait Playground
+Interactive demo comparing **sequential vs concurrent awaits**, `try/catch`, and `Promise.all()`. The playground also **shows the exact code** executed for each action.
+
+import AsyncAwaitPlayground from "./components/async-await-es8/AsyncAwaitPlayground.jsx"
+
+<AsyncAwaitPlayground />

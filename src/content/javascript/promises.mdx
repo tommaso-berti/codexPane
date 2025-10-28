@@ -1,0 +1,120 @@
+# Promises
+
+## States
+A Promise object can be in one of three states:
+
+- **Pending**: the initial state — the operation has not completed yet.
+- **Fulfilled**: the operation has completed successfully and the promise now has a resolved value (e.g., a request may resolve with a JSON object).
+- **Rejected**: the operation has failed and the promise has a reason for the failure (usually an `Error`).
+
+A promise is **settled** if it is no longer pending (either fulfilled or rejected).
+
+> Tip: Think of a dishwasher: *running* (pending), *clean* (fulfilled), or *error light on* (rejected).
+
+## Constructing a promise object
+The `Promise` constructor takes an **executor function** which runs immediately. JavaScript injects `resolve` and `reject` into this executor. Calling:
+- `resolve(value)` moves the promise from pending → fulfilled with `value`.
+- `reject(reason)` moves the promise from pending → rejected with `reason`.
+
+~~~js
+const executorFunction = (resolve, reject) => { };
+const myFirstPromise = new Promise(executorFunction);
+~~~
+
+~~~js
+const executorFunction = (resolve, reject) => {
+  if (someCondition) {
+    resolve('I resolved!');
+  } else {
+    reject('I rejected!');
+  }
+};
+const myFirstPromise = new Promise(executorFunction);
+~~~
+
+> Note: The executor should start the async work and decide how to settle the promise.
+
+## Then
+`.then(onFulfilled, onRejected)` registers **handlers** for when a promise settles. You may pass one, both, or neither handler. **`.then()` always returns a new promise.**
+
+~~~js
+let prom = new Promise((resolve, reject) => {
+  let num = Math.random();
+  if (num < 0.5) {
+    resolve('Yay!');
+  } else {
+    reject('Ohhh noooo!');
+  }
+});
+
+const handleSuccess = (resolvedValue) => {
+  console.log(resolvedValue);
+};
+const handleFailure = (rejectionReason) => {
+  console.log(rejectionReason);
+};
+
+prom.then(handleSuccess, handleFailure);
+~~~
+
+> Attention: If a handler is omitted, the settled value/reason is passed through to the next promise unchanged.
+
+## Catch
+`.catch(onRejected)` is sugar for `.then(undefined, onRejected)` and handles rejections.
+
+~~~js
+prom
+  .then((resolvedValue) => {
+    console.log(resolvedValue);
+  })
+  .catch((rejectionReason) => {
+    console.log(rejectionReason);
+  });
+~~~
+
+## Chaining multiple promises
+Return a promise from a `.then()` to form a chain.
+
+~~~js
+firstPromiseFunction()
+  .then((firstResolveVal) => {
+    return secondPromiseFunction(firstResolveVal);
+  })
+  .then((secondResolveVal) => {
+    console.log(secondResolveVal);
+  });
+~~~
+
+Key points:
+- `firstPromiseFunction()` returns a promise.
+- Inside the first `.then()`, **return** `secondPromiseFunction(firstResolveVal)` so the next link waits for it.
+- The next `.then()` receives the second promise’s resolved value.
+
+> Tip: Forgetting `return` creates a new promise that settles to the previous value, breaking the intended chain.
+
+## Promise all
+Use **concurrency** when order doesn’t matter. `Promise.all(iterable)` returns a single promise that:
+- **Resolves** when **all** input promises resolve → with an **array** of resolved values (in input order).
+- **Rejects immediately** if **any** input promise rejects → with that rejection reason (**fail fast**).
+
+~~~js
+const a = fetch('/a.json');
+const b = fetch('/b.json');
+const c = fetch('/c.json');
+
+Promise.all([a, b, c])
+  .then(async ([ra, rb, rc]) => {
+    const [A, B, C] = await Promise.all([ra.json(), rb.json(), rc.json()]);
+    console.log(A, B, C);
+  })
+  .catch(err => {
+    console.error('One failed:', err);
+  });
+~~~
+
+## Promises Playground
+Hands-on demo to see resolution, rejection, chaining, and `Promise.all()` behavior.
+
+import PromisesPlayground from "./components/promises/PromisesPlayground.jsx"
+
+<PromisesPlayground />

@@ -1,0 +1,36 @@
+# Introduction to jQuery
+
+jQuery is a lightweight, battle-tested JavaScript library that smooths over browser quirks and makes DOM manipulation, event handling, AJAX, and simple animations easier with a fluent, chainable API. While modern browsers have adopted many features that jQuery popularized, it remains useful for legacy projects, quick prototypes, and teams maintaining codebases that depend on its concise utilities.
+
+**Why it still matters**
+- **Ergonomic DOM APIs:** Select, traverse, and manipulate elements with a familiar CSS-like syntax: `$(".item").addClass("active")`.
+- **Cross-browser stability:** Consistent behavior across older environments without custom polyfills.
+- **AJAX helpers:** Simplified network requests: `$.get("/api/users")`.
+- **Plugin ecosystem:** A long history of community plugins for widgets, effects, and utilities.
+
+**Core ideas at a glance**
+- **$ function:** The entry point for selecting elements and creating jQuery objects.
+- **Chaining:** Perform multiple operations in one go: `$("#box").addClass("show").fadeIn(200)`.
+- **Event helpers:** `on`, `off`, and shorthand methods like `click`, `keyup`.
+- **Utility methods:** `$.each`, `$.map`, `$.extend`, and type checks.
+
+**Quick example**
+~~~html
+<div id="app">
+  <button id="toggle">Toggle</button>
+  <p class="message">Hello jQuery</p>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  $("#toggle").on("click", function () {
+    $(".message").toggleClass("hidden").fadeToggle(200);
+  });
+</script>
+<style>
+  .hidden { display: none; }
+</style>
+~~~
+
+> Tip: If you’re starting a new project targeting evergreen browsers, consider native DOM APIs (`querySelector`, `fetch`, `classList`) first. Reach for jQuery when working within legacy constraints or when its chaining and plugin ecosystem accelerate your workflow.
+
+In the following sections, we’ll cover selection, traversal, events, AJAX, effects, utilities, and migration tips for balancing modern JavaScript with existing jQuery code.

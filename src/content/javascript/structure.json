@@ -212,6 +212,61 @@
         { "id": "try-catch", "type": "subSection", "title": "Try catch", "slug": "javascript/errors-management#try-catch", "order": 4 },
         { "id": "additional-resources", "type": "subSection", "title": "Additional resources", "slug": "javascript/errors-management#additional-resources", "order": 5 }
       ]
+    },
+    {
+      "id": "the-event-loop",
+      "type": "section",
+      "title": "The Event Loop",
+      "slug": "javascript/the-event-loop",
+      "order": 1,
+      "items": [
+        { "id": "what-is-synchronous-code", "type": "subSection", "title": "What is synchronous code", "slug": "javascript/the-event-loop#what-is-synchronous-code", "order": 1 },
+        { "id": "what-is-asynchronous-code", "type": "subSection", "title": "What is asynchronous code", "slug": "javascript/the-event-loop#what-is-asynchronous-code", "order": 2 },
+        { "id": "asynchronous-callbacks", "type": "subSection", "title": "Asynchronous callbacks", "slug": "javascript/the-event-loop#asynchronous-callbacks", "order": 3 },
+        { "id": "settimeout", "type": "subSection", "title": "Settimeout", "slug": "javascript/the-event-loop#settimeout", "order": 4 },
+        { "id": "setinterval", "type": "subSection", "title": "Setinterval", "slug": "javascript/the-event-loop#setinterval", "order": 5 },
+        { "id": "concurrency-model-and-event-loop-in-javascript", "type": "subSection", "title": "Concurrency model and event loop in javascript", "slug": "javascript/the-event-loop#concurrency-model-and-event-loop-in-javascript", "order": 6 },
+        { "id": "what-is-the-event-loop", "type": "subSection", "title": "What is the event loop", "slug": "javascript/the-event-loop#what-is-the-event-loop", "order": 7 },
+        { "id": "components-of-the-event-loop", "type": "subSection", "title": "Components of the event loop", "slug": "javascript/the-event-loop#components-of-the-event-loop", "order": 8 },
+        { "id": "heap", "type": "subSection", "title": "Heap", "slug": "javascript/the-event-loop#heap", "order": 9 },
+        { "id": "the-call-stack", "type": "subSection", "title": "The call stack", "slug": "javascript/the-event-loop#the-call-stack", "order": 10 },
+        { "id": "the-event-queue", "type": "subSection", "title": "The event queue", "slug": "javascript/the-event-loop#the-event-queue", "order": 11 },
+        { "id": "the-event-loop-in-action", "type": "subSection", "title": "The event loop in action", "slug": "javascript/the-event-loop#the-event-loop-in-action", "order": 12 },
+        { "id": "example", "type": "subSection", "title": "Example", "slug": "javascript/the-event-loop#example", "order": 13 },
+        { "id": "microtasks-and-macrotasks", "type": "subSection", "title": "Microtasks and macrotasks", "slug": "javascript/the-event-loop#microtasks-and-macrotasks", "order": 14 },
+        { "id": "event-loop-playground", "type": "subSection", "title": "Event loop playground", "slug": "javascript/the-event-loop#event-loop-playground", "order": 15 }
+      ]
+    },
+    {
+      "id": "promises",
+      "type": "section",
+      "title": "Promises",
+      "slug": "javascript/promises",
+      "order": 2,
+      "items": [
+        { "id": "states", "type": "subSection", "title": "States", "slug": "javascript/promises#states", "order": 1 },
+        { "id": "constructing-a-promise-object", "type": "subSection", "title": "Constructing a promise object", "slug": "javascript/promises#constructing-a-promise-object", "order": 2 },
+        { "id": "then", "type": "subSection", "title": "Then", "slug": "javascript/promises#then", "order": 3 },
+        { "id": "catch", "type": "subSection", "title": "Catch", "slug": "javascript/promises#catch", "order": 4 },
+        { "id": "chaining-multiple-promises", "type": "subSection", "title": "Chaining multiple promises", "slug": "javascript/promises#chaining-multiple-promises", "order": 5 },
+        { "id": "promise-all", "type": "subSection", "title": "Promise all", "slug": "javascript/promises#promise-all", "order": 6 },
+        { "id": "promises-playground", "type": "subSection", "title": "Promises Playground", "slug": "javascript/promises#promises-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "async-await-es8",
+      "type": "section",
+      "title": "Async…await (ES8)",
+      "slug": "javascript/async-await-es8",
+      "order": 3,
+      "items": [
+        { "id": "async-operator", "type": "subSection", "title": "Async operator", "slug": "javascript/async-await-es8#async-operator", "order": 1 },
+        { "id": "await-operator", "type": "subSection", "title": "Await operator", "slug": "javascript/async-await-es8#await-operator", "order": 2 },
+        { "id": "errors", "type": "subSection", "title": "Errors", "slug": "javascript/async-await-es8#errors", "order": 3 },
+        { "id": "independent-promises", "type": "subSection", "title": "Independent promises", "slug": "javascript/async-await-es8#independent-promises", "order": 4 },
+        { "id": "await-promise-all", "type": "subSection", "title": "Await promise all", "slug": "javascript/async-await-es8#await-promise-all", "order": 5 },
+        { "id": "asyncawait-playground", "type": "subSection", "title": "AsyncAwait Playground", "slug": "javascript/async-await-es8#asyncawait-playground", "order": 6 }
+      ]
     }
   ]
 }
