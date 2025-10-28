@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -8,7 +8,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 
-export default function SectMenuItem({key, section, subsections, selected, setSelected, openSections, setOpenSections}) {
+export default function SectMenuItem({section, subsections, selected, setSelected, openSections, setOpenSections}) {
     const navigate = useNavigate();
     const { pathname, hash } = useLocation();
     const { section: sectionParam } = useParams();
@@ -22,9 +22,14 @@ export default function SectMenuItem({key, section, subsections, selected, setSe
     const isControlled = Array.isArray(openSections) && typeof setOpenSections === "function";
     const [localOpen, setLocalOpen] = useState(shouldBeOpen);
     const open = isControlled ? openSections.includes(section.id) : localOpen;
+    const suppressAutoOpen = useRef(false);
 
     useEffect(() => {
-        if (!shouldBeOpen) return;
+        suppressAutoOpen.current = false;
+    }, [pathname, hash, sectionParam]);
+
+    useEffect(() => {
+        if (!shouldBeOpen || suppressAutoOpen.current) return;
         if (isControlled) {
             if (!openSections.includes(section.id)) {
                 setOpenSections((prev) => [...prev, section.id]);
@@ -65,12 +70,20 @@ export default function SectMenuItem({key, section, subsections, selected, setSe
     const handleClick = () => {
         if (isControlled) {
             const currentlyOpen = openSections.includes(section.id);
-            setOpenSections(currentlyOpen ? openSections.filter((id) => id !== section.id) : [...openSections, section.id]);
+            if (currentlyOpen) {
+                suppressAutoOpen.current = true;
+                setOpenSections(openSections.filter((id) => id !== section.id));
+            } else {
+                setOpenSections([...openSections, section.id]);
+            }
         } else {
+            if (open) {
+                suppressAutoOpen.current = true;
+            }
             setLocalOpen((prev) => !prev);
         }
         setSelected?.({ type: "section", value: section.id });
-        navigate(`${section.slug}`);
+        //navigate(`${section.slug}`);
     };
 
     const handleSelect = (slug, subsection) => {
@@ -81,7 +94,6 @@ export default function SectMenuItem({key, section, subsections, selected, setSe
     return (
         <>
             <ListItemButton
-                key={key}
                 onClick={handleClick}
                 selected={selected?.type === "section" && selected?.value === section.id}
                 sx={{
