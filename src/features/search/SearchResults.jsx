@@ -35,7 +35,6 @@ export default function SearchResults({topics, results, onItemClick}) {
                                 const key = res.breadcrumb[1];
                                 const prev = items[i - 1]?.breadcrumb[1];
                                 const next = items[i + 1]?.breadcrumb[1];
-
                                 let branch = 'single';
                                 if (prev === key && next === key) branch = 'middle';
                                 else if (prev !== key && next === key) branch = 'start';

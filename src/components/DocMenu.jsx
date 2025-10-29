@@ -46,11 +46,24 @@ export default function DocMenu() {
                 {buttonMenu.label}
             </Button>
 
-            <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+            <Menu
+                anchorEl={anchorEl}
+                slotProps={{
+                    list: {
+                        sx: {
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                            gap: 1,
+                        }
+                    }
+                }}
+                open={open}
+                onClose={handleClose}
+            >
                 {docs.map(({ id, title, icon }) => {
                     const IconComponent = ICONS[icon] || ICONS.ImageNotSupportedIcon;
                     return (
-                        <MenuItem key={id}  onClick={() => handleSelect(id, title, icon) }>
+                        <MenuItem key={id} sx={{justifyContent: 'center'}} onClick={() => handleSelect(id, title, icon) }>
                             <ListItemIcon><IconComponent fontSize="small" /></ListItemIcon>
                             <ListItemText primary={title} />
                         </MenuItem>
