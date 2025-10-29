@@ -1,0 +1,64 @@
+# Introduction to vps
+
+A Virtual Private Server (VPS) is a slice of a physical machine that behaves like a dedicated server. The provider uses a hypervisor (e.g., KVM) to carve one host into isolated virtual machines, each with its own CPU/RAM allocation, disk, operating system, root access, and network identity. You get more control and consistency than shared hosting, without paying for a full dedicated box.
+
+**When to use a VPS**
+- You’ve outgrown shared hosting (need custom runtimes, background workers, or predictable performance).
+- You want root access to install system packages, tweak firewalls, or run containers.
+- You need an affordable, always-on environment for APIs, bots, staging, CI runners, or game servers.
+
+**Common components**
+- **Compute:** vCPU count and clock performance matter for dynamic apps and build tasks.
+- **Memory:** determines how many processes/containers you can run comfortably.
+- **Storage:** SSD/NVMe size and IOPS for databases and logs.
+- **Network:** bandwidth caps, egress costs, and regional latency.
+
+**Pros**
+- Full control (root, custom OS images).
+- Better isolation and consistent resources vs. shared hosting.
+- Scales vertically (resize plan) and horizontally (add nodes or load balancer).
+
+**Cons**
+- You manage security, updates, and backups (unless you choose a managed tier).
+- Misconfiguration can lead to downtime or vulnerabilities.
+- Performance depends on plan sizing and host contention.
+
+**Typical stacks**
+- LEMP/LAMP (Nginx/Apache + PHP + MySQL/MariaDB)
+- Node.js, Python (Gunicorn/Uvicorn) behind Nginx/HAProxy/Caddy
+- Containers (Docker/Podman) or lightweight orchestration (Docker Compose, Nomad, k3s)
+
+**Sizing quick tips**
+- Static site + small API: 1–2 vCPU, 1–2 GB RAM, 20–40 GB SSD.
+- Medium web app + DB: 2–4 vCPU, 4–8 GB RAM, 80–160 GB NVMe (consider separate DB node).
+- CPU-bound or build tasks: favor higher single-core performance.
+
+**Security basics**
+- Create a non-root sudo user, disable password SSH, enable key-based auth (and optionally FIDO2).
+- Keep OS and packages updated; enable unattended upgrades if appropriate.
+- Use a firewall (ufw/iptables/nftables), fail2ban, and minimal open ports.
+- Backups and snapshots: test restore regularly.
+
+**Cost awareness**
+- You usually pay per month (or hour) for the plan size, plus optional storage, snapshots, floating IPs, and bandwidth overage. Monitor egress if you serve large assets.
+
+**Operational checklist**
+- Provision → harden → deploy → monitor → back up → document.
+- Add observability: metrics (node exporter), logs (journald/filebeat), and alerts (health checks).
+
+**Mental model**
+
+~~~
+[ Internet ]
+|
+[ Load balancer / Reverse proxy ]
+|
+[ VPS #1 ] --- [ Block storage / Snapshots ]
+|
+[ Database VPS or managed DB ]
+~~~
+
+
+> Tip: If you prefer less ops, pick a managed database and object storage so your VPS only runs your app and reverse proxy.
+
+This guide will walk through practical VPS tasks—from provisioning and hardening to deploying apps and debugging performance—using clear examples and optional playgrounds where interactive visuals help the most.

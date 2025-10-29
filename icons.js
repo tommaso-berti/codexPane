@@ -8,6 +8,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CodeIcon from '@mui/icons-material/Code';
 import HttpIcon from '@mui/icons-material/Http';
+import PublicIcon from '@mui/icons-material/Public';
 
 const ICONS = {
     HtmlIcon,
@@ -19,7 +20,8 @@ const ICONS = {
     GitHubIcon,
     ImageNotSupportedIcon,
     CodeIcon,
-    HttpIcon
+    HttpIcon,
+    PublicIcon
 };
 
 export default ICONS;

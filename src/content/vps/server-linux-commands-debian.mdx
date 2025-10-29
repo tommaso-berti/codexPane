@@ -1,0 +1,180 @@
+# Server Linux Commands (Debian)
+
+A compact, task-oriented reference for Debian/Ubuntu VPS administration. All commands are safe to paste on a fresh Debian/Ubuntu server unless noted.
+
+> Note: Run administrative commands with `sudo`. Replace placeholders like `username` and `YOUR_SERVER_IP` with your values.
+
+## Check system info
+
+~~~bash
+lsb_release -a   # Check Ubuntu/Debian release version
+uname -a         # Kernel version and architecture
+df -h            # Human-readable disk usage
+free -m          # RAM usage in MB
+uptime           # Uptime + load averages
+htop             # Process monitor (install first: sudo apt install -y htop)
+~~~
+
+## Update your system
+
+~~~bash
+# Debian/Ubuntu
+sudo apt update && sudo apt upgrade -y
+~~~
+
+> Tip: Consider `sudo apt full-upgrade -y` for kernel or dependency changes on maintenance windows.
+
+## User management
+
+~~~bash
+# Create a new user
+sudo adduser username
+
+# Grant sudo permissions
+sudo usermod -aG sudo username
+
+# Change a user’s password
+sudo passwd username
+
+# List all local users
+cut -d: -f1 /etc/passwd
+~~~
+
+## Set up a firewall ufw
+
+~~~bash
+# Allow SSH and enable firewall
+sudo ufw allow OpenSSH
+sudo ufw enable
+sudo ufw status
+
+# Allow web traffic (HTTP/HTTPS)
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+~~~
+
+> Note: If your SSH port is non-default (e.g., 2222), allow it before enabling UFW: `sudo ufw allow 2222/tcp`.
+
+## Secure ssh disable password login
+
+~~~bash
+# Edit SSH server configuration
+sudo nano /etc/ssh/sshd_config
+# Find:
+#PasswordAuthentication yes
+# Change to:
+PasswordAuthentication no
+
+# Restart SSH service
+sudo systemctl restart ssh
+~~~
+
+> Attention: Make sure key-based SSH works before disabling passwords, or you can lock yourself out.
+
+## Install a web server
+
+**Apache (good default, PHP-friendly)**
+~~~bash
+sudo apt install -y apache2
+sudo systemctl enable apache2
+sudo systemctl start apache2
+~~~
+
+**Nginx (high-performance, great reverse proxy)**
+~~~bash
+sudo apt install -y nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
+~~~
+
+Access your site at: `http://YOUR_SERVER_IP`
+
+## Install a database server
+
+**MariaDB/MySQL**
+~~~bash
+sudo apt install -y mariadb-server
+sudo mysql_secure_installation
+~~~
+
+**PostgreSQL**
+~~~bash
+sudo apt install -y postgresql postgresql-contrib
+~~~
+
+## Set up wordpress quick install
+
+~~~bash
+sudo apt install -y php libapache2-mod-php php-mysql
+cd /var/www/html
+sudo wget https://wordpress.org/latest.tar.gz
+sudo tar -xvzf latest.tar.gz
+sudo mv wordpress/* .
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+# Then open in your browser:
+# http://YOUR_SERVER_IP
+~~~
+
+> Tip: For production, create a separate database/user with least privileges and disable `xmlrpc.php` if not needed.
+
+## Secure your ssh keys
+
+~~~bash
+mkdir -p ~/.secret_keys
+chmod 700 ~/.secret_keys
+mv ionos_vps_key.pem ~/.secret_keys/
+chmod 600 ~/.secret_keys/ionos_vps_key.pem
+~~~
+
+> Note: Private keys should never be world-readable. Permissions `600` protect against accidental exposure.
+
+## Monitor your vps
+
+~~~bash
+# Processes
+top
+
+# Real-time CPU/RAM with a friendlier UI
+htop
+
+# System logs (most recent with context)
+sudo journalctl -xe
+
+# Last SSH logins
+sudo grep "sshd" /var/log/auth.log
+~~~
+
+## Server basic commands
+
+**Check for Linux updates**
+
+~~~bash
+# Update package lists
+sudo apt update
+
+# See which packages have updates available
+apt list --upgradable
+
+# Install all available upgrades
+sudo apt upgrade -y
+
+# Include dependency changes and removals if needed
+sudo apt full-upgrade -y
+
+# Remove unused packages
+sudo apt autoremove -y
+~~~
+
+## Reboot and power controls
+
+~~~bash
+# Reboot the server
+sudo reboot
+
+# Force reboot
+sudo reboot -f
+
+# Power off (you will need to power it back on from your provider panel, e.g., IONOS)
+sudo poweroff
+~~~

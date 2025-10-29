@@ -1,0 +1,103 @@
+# Security
+
+This section explains RSA keys in plain English and shows how to create and use a PEM-formatted SSH key to connect to your VPS without a password.
+
+> Note: Commands assume OpenSSH on Linux/macOS. Replace placeholders like `INDIRIZZO_IP` (server IP) and filenames with your own.
+
+## What is a rsa key
+
+An RSA key is a pair of cryptographic keys used by the RSA (Rivest–Shamir–Adleman) algorithm for secure communication. It supports **encryption** and **digital signatures** and is based on operations with very large prime numbers.
+
+## Types of rsa keys
+
+- **Public key** — Shareable. Used to encrypt data or verify digital signatures.
+- **Private key** — Secret. Used to decrypt data or sign messages/documents.
+
+## How does rsa work
+
+1. **Key generation** — Two large primes are chosen; their product becomes part of the public key.
+2. **Encryption** — A message (as a number) is encrypted with the public key.
+3. **Decryption** — Only the matching private key can recover the original message.
+4. **Digital signatures** — The private key signs; anyone with the public key can verify.
+
+## Where is rsa used
+
+- Secure connections: **HTTPS, VPN, SSH**
+- Authentication: SSH key pairs (e.g., `id_rsa`, `.pem`)
+- Digital signatures for documents and emails
+
+## Key length and future
+
+RSA is considered secure today with key sizes of **2048** or **4096** bits. However, **quantum computing** could break RSA in the future; post-quantum alternatives are being standardized.
+
+> Tip: For SSH, many admins prefer `ed25519` keys for smaller, faster keys with strong security. Use RSA when compatibility with legacy systems is required.
+
+## Create an ssh connection with pem certification
+
+The steps below create a PEM-formatted RSA private key, set correct permissions, install the public key on your VPS, and connect without a password.
+
+### 1. Generate a pem private key
+
+~~~bash
+ssh-keygen -t rsa -b 4096 -m PEM -f my_vps_key.pem
+~~~
+
+- `-t rsa` → RSA key type
+- `-b 4096` → Strong 4096-bit key
+- `-m PEM` → Save private key in PEM format
+- `-f my_vps_key.pem` → Output file name (choose your own)
+
+### 2. Set proper permissions on the private key
+
+~~~bash
+chmod 400 my_vps_key.pem
+~~~
+
+- `4` → read for owner
+- `0` → no permissions for group
+- `0` → no permissions for others
+
+> Attention: OpenSSH refuses to use a private key if its permissions are too open.
+
+### 3. Copy the public key to your vps
+
+Extract the public key from the private key, then install it on the server:
+
+~~~bash
+# Extract the public key
+ssh-keygen -y -f my_vps_key.pem > my_vps_key.pub
+
+# Copy the public key (preferred)
+ssh-copy-id -i my_vps_key.pub root@INDIRIZZO_IP
+~~~
+
+If `ssh-copy-id` is unavailable, copy it manually:
+
+~~~bash
+cat my_vps_key.pub | ssh root@INDIRIZZO_IP "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+~~~
+
+When prompted:
+
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+
+php-template
+Copia codice
+
+Type `yes`, then enter the **root** password when asked (first-time only).
+
+### 4. Connect using the pem key
+
+~~~bash
+ssh -i my_vps_key.pem root@INDIRIZZO_IP
+~~~
+
+> Note: Consider creating a non-root sudo user and disabling password logins after confirming key-based access works.
+
+## Ssh keygen playground
+
+A small interactive to compose the correct `ssh-keygen` command for your needs.
+
+import SshKeygenPlayground from "./components/security/SshKeygenPlayground.jsx"
+
+<SshKeygenPlayground />
