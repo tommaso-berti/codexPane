@@ -1,0 +1,109 @@
+{
+  "id": "redux",
+  "title": "Redux",
+  "slug": "redux",
+  "icon": "",
+  "items": [
+    {
+      "id": "introduction-to-redux",
+      "type": "section",
+      "title": "Introduction to Redux",
+      "slug": "redux/introduction-to-redux",
+      "order": 1,
+      "items": [
+        { "id": "one-way-data-flow", "type": "subSection", "title": "One way data flow", "slug": "redux/introduction-to-redux#one-way-data-flow", "order": 1 },
+        { "id": "state", "type": "subSection", "title": "State", "slug": "redux/introduction-to-redux#state", "order": 2 },
+        { "id": "action", "type": "subSection", "title": "Action", "slug": "redux/introduction-to-redux#action", "order": 3 },
+        { "id": "reducers", "type": "subSection", "title": "Reducers", "slug": "redux/introduction-to-redux#reducers", "order": 4 },
+        { "id": "rules-of-reducers", "type": "subSection", "title": "Rules of reducers", "slug": "redux/introduction-to-redux#rules-of-reducers", "order": 5 },
+        { "id": "immutable-updates-and-pure-functions", "type": "subSection", "title": "Immutable updates and pure functions", "slug": "redux/introduction-to-redux#immutable-updates-and-pure-functions", "order": 6 },
+        { "id": "store", "type": "subSection", "title": "Store", "slug": "redux/introduction-to-redux#store", "order": 7 },
+        { "id": "reducer-playground", "type": "subSection", "title": "Reducer playground", "slug": "redux/introduction-to-redux#reducer-playground", "order": 8 }
+      ]
+    },
+    {
+      "id": "redux-api",
+      "type": "section",
+      "title": "Redux API",
+      "slug": "redux/redux-api",
+      "order": 2,
+      "items": [
+        { "id": "create-a-redux-store", "type": "subSection", "title": "Create A Redux Store", "slug": "redux/redux-api#create-a-redux-store", "order": 1 },
+        { "id": "dispatch-actions-to-the-store", "type": "subSection", "title": "Dispatch Actions To The Store", "slug": "redux/redux-api#dispatch-actions-to-the-store", "order": 2 },
+        { "id": "get-current-state", "type": "subSection", "title": "Get Current State", "slug": "redux/redux-api#get-current-state", "order": 3 },
+        { "id": "action-creators", "type": "subSection", "title": "Action Creators", "slug": "redux/redux-api#action-creators", "order": 4 },
+        { "id": "respond-to-state-changes", "type": "subSection", "title": "Respond To State Changes", "slug": "redux/redux-api#respond-to-state-changes", "order": 5 },
+        { "id": "connect-the-redux-store-to-a-ui", "type": "subSection", "title": "Connect The Redux Store To A Ui", "slug": "redux/redux-api#connect-the-redux-store-to-a-ui", "order": 6 },
+        { "id": "redux-store-playground", "type": "subSection", "title": "Redux Store Playground", "slug": "redux/redux-api#redux-store-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "strategies-for-complex-state",
+      "type": "section",
+      "title": "Strategies for complex state",
+      "slug": "redux/strategies-for-complex-state",
+      "order": 3,
+      "items": [
+        { "id": "todo-state-example", "type": "subSection", "title": "Todo state example", "slug": "redux/strategies-for-complex-state#todo-state-example", "order": 1 },
+        { "id": "slices-and-initial-state", "type": "subSection", "title": "Slices and initial state", "slug": "redux/strategies-for-complex-state#slices-and-initial-state", "order": 2 },
+        { "id": "actions-and-payloads", "type": "subSection", "title": "Actions and payloads", "slug": "redux/strategies-for-complex-state#actions-and-payloads", "order": 3 },
+        { "id": "action-creators", "type": "subSection", "title": "Action creators", "slug": "redux/strategies-for-complex-state#action-creators", "order": 4 },
+        { "id": "immutable-updates-and-complex-state", "type": "subSection", "title": "Immutable updates and complex state", "slug": "redux/strategies-for-complex-state#immutable-updates-and-complex-state", "order": 5 },
+        { "id": "reducer-composition", "type": "subSection", "title": "Reducer composition", "slug": "redux/strategies-for-complex-state#reducer-composition", "order": 6 },
+        { "id": "separate-slice-state-initialization", "type": "subSection", "title": "Separate slice state initialization", "slug": "redux/strategies-for-complex-state#separate-slice-state-initialization", "order": 7 },
+        { "id": "combinereducers", "type": "subSection", "title": "Combinereducers", "slug": "redux/strategies-for-complex-state#combinereducers", "order": 8 },
+        { "id": "todo-reducer-playground", "type": "subSection", "title": "Todo reducer playground", "slug": "redux/strategies-for-complex-state#todo-reducer-playground", "order": 9 }
+      ]
+    },
+    {
+      "id": "file-structure",
+      "type": "section",
+      "title": "File structure",
+      "slug": "redux/file-structure",
+      "order": 4,
+      "items": [
+        { "id": "ducks-pattern-structure", "type": "subSection", "title": "Ducks pattern structure", "slug": "redux/file-structure#ducks-pattern-structure", "order": 1 },
+        { "id": "app-and-features-directories", "type": "subSection", "title": "App and features directories", "slug": "redux/file-structure#app-and-features-directories", "order": 2 },
+        { "id": "react-integrated-structure", "type": "subSection", "title": "React integrated structure", "slug": "redux/file-structure#react-integrated-structure", "order": 3 },
+        { "id": "component-colocation-with-slices", "type": "subSection", "title": "Component colocation with slices", "slug": "redux/file-structure#component-colocation-with-slices", "order": 4 },
+        { "id": "app-component-responsibilities", "type": "subSection", "title": "App component responsibilities", "slug": "redux/file-structure#app-component-responsibilities", "order": 5 },
+        { "id": "index-wiring-and-props", "type": "subSection", "title": "Index wiring and props", "slug": "redux/file-structure#index-wiring-and-props", "order": 6 },
+        { "id": "file-structure-playground", "type": "subSection", "title": "File structure playground", "slug": "redux/file-structure#file-structure-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "redux-toolkit",
+      "type": "section",
+      "title": "Redux toolkit",
+      "slug": "redux/redux-toolkit",
+      "order": 5,
+      "items": [
+        { "id": "redux-toolkit-overview", "type": "subSection", "title": "Redux toolkit overview", "slug": "redux/redux-toolkit#redux-toolkit-overview", "order": 1 },
+        { "id": "create-slice", "type": "subSection", "title": "Create slice", "slug": "redux/redux-toolkit#create-slice", "order": 2 },
+        { "id": "writing-mutable-code-with-immer", "type": "subSection", "title": "Writing mutable code with immer", "slug": "redux/redux-toolkit#writing-mutable-code-with-immer", "order": 3 },
+        { "id": "returned-objects-and-auto-generated-actions", "type": "subSection", "title": "Returned objects and auto generated actions", "slug": "redux/redux-toolkit#returned-objects-and-auto-generated-actions", "order": 4 },
+        { "id": "returned-objects-and-reducers", "type": "subSection", "title": "Returned objects and reducers", "slug": "redux/redux-toolkit#returned-objects-and-reducers", "order": 5 },
+        { "id": "configure-store", "type": "subSection", "title": "Configure store", "slug": "redux/redux-toolkit#configure-store", "order": 6 },
+        { "id": "todos-slice-playground", "type": "subSection", "title": "Todos slice playground", "slug": "redux/redux-toolkit#todos-slice-playground", "order": 7 }
+      ]
+    },
+
+    {
+      "id": "redux-middleware-and-thunks",
+      "type": "section",
+      "title": "Redux middleware and thunks",
+      "slug": "redux/redux-middleware-and-thunks",
+      "order": 6,
+      "items": [
+        { "id": "middleware-in-redux", "type": "subSection", "title": "Middleware in redux", "slug": "redux/redux-middleware-and-thunks#middleware-in-redux", "order": 1 },
+        { "id": "write-your-own-middleware", "type": "subSection", "title": "Write your own middleware", "slug": "redux/redux-middleware-and-thunks#write-your-own-middleware", "order": 2 },
+        { "id": "introduction-to-thunks", "type": "subSection", "title": "Introduction to thunks", "slug": "redux/redux-middleware-and-thunks#introduction-to-thunks", "order": 3 },
+        { "id": "promise-lifecycle-actions", "type": "subSection", "title": "Promise lifecycle actions", "slug": "redux/redux-middleware-and-thunks#promise-lifecycle-actions", "order": 4 },
+        { "id": "create-async-thunk", "type": "subSection", "title": "Create async thunk", "slug": "redux/redux-middleware-and-thunks#create-async-thunk", "order": 5 },
+        { "id": "actions-generated-by-create-asyncthunk", "type": "subSection", "title": "Actions generated by create asyncthunk", "slug": "redux/redux-middleware-and-thunks#actions-generated-by-create-asyncthunk", "order": 6 },
+        { "id": "using-createslice-with-async-action-creators", "type": "subSection", "title": "Using createslice with async action creators", "slug": "redux/redux-middleware-and-thunks#using-createslice-with-async-action-creators", "order": 7 },
+        { "id": "middleware-pipeline-playground", "type": "subSection", "title": "Middleware pipeline playground", "slug": "redux/redux-middleware-and-thunks#middleware-pipeline-playground", "order": 8 }
+      ]
+    }
+  ]
+}

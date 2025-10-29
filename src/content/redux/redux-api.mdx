@@ -1,0 +1,196 @@
+# Redux API
+
+> **Note**
+> Building an application that follows Redux principles can be done without external libraries. However, the dedicated Redux library provides useful tools that enforce one-way data flow and common patterns.
+
+## Create a redux store
+
+The **store** holds the current state, receives dispatched actions, runs the reducer to compute the next state, and exposes the current state to the UI.
+
+You *could* manually call your reducer:
+
+~~~js
+let state = 'on';
+state = lightSwitchReducer(state, { type: 'toggle' });
+console.log(state); // Prints 'off'
+~~~
+
+But this is what the store is for. Redux exports `createStore(reducer)` to build a store:
+
+~~~js
+import { createStore } from 'redux'
+
+const initialState = 'on';
+
+const lightSwitchReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'toggle':
+      return state === 'on' ? 'off' : 'on';
+    default:
+      return state;
+  }
+}
+
+const store = createStore(lightSwitchReducer);
+~~~
+
+> **Note**
+> In modern Redux apps, `createStore` is considered legacy. New code typically uses **@reduxjs/toolkit**’s `configureStore`. The examples below keep `createStore` to match the text and keep concepts focused.
+
+## Dispatch actions to the store
+
+The store exposes several methods. The most used is `store.dispatch(action)` to request a state update:
+
+~~~js
+const action = { type: 'actionDescriptor' };
+store.dispatch(action);
+~~~
+
+Internally, when the store executes its reducer, it uses `store.getState()` as the `state` argument:
+
+~~~js
+lightSwitchReducer(store.getState(), { type: 'toggle' });
+~~~
+
+## Get current state
+
+Use `store.getState()` to read the current value:
+
+~~~js
+const current = store.getState();
+console.log(current);
+~~~
+
+> **Attention**
+> There is **no** `store.get()` method in Redux. Always use `store.getState()`.
+
+## Action creators
+
+Typing the same action object in multiple places is error-prone. An **action creator** returns an action:
+
+~~~js
+const toggle = () => {
+  return { type: "toggle" };
+}
+
+store.dispatch(toggle()); // Toggles the light to 'off'
+store.dispatch(toggle()); // Toggles the light back to 'on'
+store.dispatch(toggle()); // Toggles the light back to 'off'
+~~~
+
+> **Tip**
+> Keep action creators small and pure. If you need async logic or side effects, consider middleware (e.g., thunks).
+
+## Respond to state changes
+
+You can subscribe a listener with `store.subscribe(listener)`. The listener runs **after** a dispatch that changes state and you can unsubscribe later:
+
+~~~js
+// lightSwitchReducer(), toggle(), and store omitted...
+
+const reactToChange = () => {
+  console.log(`The light was switched ${store.getState()}!`);
+}
+
+const unsubscribe = store.subscribe(reactToChange);
+
+store.dispatch(toggle());
+// 'The light was switched off!'
+
+store.dispatch(toggle());
+// 'The light was switched on!'
+
+unsubscribe();
+// listener removed
+
+store.dispatch(toggle());
+// no print statement!
+
+console.log(store.getState()); // Prints 'off'
+~~~
+
+* The listener `reactToChange()` is subscribed to the store.
+* Each dispatch triggers the listener; listeners commonly call `store.getState()` inside.
+* Calling `unsubscribe()` stops further notifications.
+
+## Connect the redux store to a ui
+
+The following example wires a store to a React UI **without** external bindings. The UI reads state via props and dispatches actions on events.
+
+~~~jsx
+// App.js
+import React from "react";
+import { increment, decrement } from "./store";
+
+function App({ state, dispatch }) {
+  const incrementerClicked = () => dispatch(increment());
+  const decrementerClicked = () => dispatch(decrement());
+
+  return (
+    <main>
+      <p id='counter'>{state}</p>
+      <button id='incrementer' onClick={incrementerClicked}>+</button>
+      <button id='decrementer' onClick={decrementerClicked}>-</button>
+    </main>
+  );
+}
+
+export default App;
+~~~
+
+~~~js
+// Store.js
+import { createStore } from 'redux';
+
+// Action Creators
+export function increment() {
+  return { type: 'increment' }
+}
+export function decrement() {
+  return { type: 'decrement' }
+}
+
+// Reducer / Store
+const initialState = 0;
+
+const countReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'increment':
+      return state + 1;
+    case 'decrement':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+export const store = createStore(countReducer);
+~~~
+
+~~~jsx
+// index.js
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.js";
+import { store } from "./store.js";
+
+const root = createRoot(document.getElementById("app"));
+
+// Store State Change Listener
+const render = () => {
+  root.render(<App state={store.getState()} dispatch={store.dispatch} />);
+};
+
+render();
+store.subscribe(render);
+// Subscribe to state changes
+~~~
+
+> **Note**
+> For idiomatic React integration, consider the `react-redux` bindings (`<Provider>`, `useSelector`, `useDispatch`). This removes manual `subscribe`/`render` plumbing.
+
+## Redux store playground
+
+import ReduxStorePlayground from "./components/redux-api/ReduxStorePlayground.jsx"
+
+<ReduxStorePlayground />

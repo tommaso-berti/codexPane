@@ -1,0 +1,208 @@
+# Introduction to Redux
+
+## One way data flow
+
+In most applications, there are three parts:
+1. State – the current data used in the app
+2. View – the user interface displayed to users
+3. Actions – events that a user can take to change the state
+
+The flow of information would go like this:
+* The state holds the current data used by the app’s components.
+* The view components display that state data.
+* When a user interacts with the view, like clicking a button, the state will be updated in some way.
+* The view is updated to display the new state.
+
+With plain React, these three parts overlap quite a bit. Components not only render the user interface, but they also may manage their own state. When actions that may change the state occur, components need to directly communicate these changes to each other.
+
+Requests to change the state are sent to this single source by view components in the form of an action. Any components of the view that would be affected by these changes are informed by this single source. By imposing this structure, Redux makes our code more readable, reliable, and maintainable.
+
+> **Note:** Redux enforces a unidirectional flow: **state → view → actions → reducer → new state**. This predictability is why it shines in large apps.
+
+## State
+
+With Redux, the state can be any JavaScript type, including number, string, boolean, array and object.
+
+~~~js
+const state = [ 'Print trail map', 'Pack snacks', 'Summit the mountain' ];
+~~~
+
+Each piece of information in this state—an array in this case—would inform some part of the user interface.
+
+## Action
+
+A to-do list might have an input field where the user can type in a new to-do item. The application might transfer this data from the input field, add it to an array of all to-dos, and render them as text on the screen. This entire interaction can be defined as an action. Actions describe an event or an action that has occurred and provide information about what needs to be updated in the application’s state. In short, actions are how Redux manages and update the state.
+
+In Redux, actions are represented as plain JS objects. Here’s what that action might look like:
+
+~~~js
+const action = {
+  type: 'todos/addTodo',
+  payload: 'Take selfies'
+};
+~~~
+
+* Every action must have a type property with a stringPreview: Docs Loading link description value. This describes the action.
+* Typically, an action has a payload property with an object value. This includes any information related to the action. In this case, the payload is the to-do text.
+* When an action is generated and notifies other parts of the application, we say that the action is dispatched.
+
+Another action that removes the ‘Pack snacks’ To-Do:
+
+~~~js
+const action = {
+  type: 'todos/removeTodo',
+  payload: 'Pack snacks'
+}
+~~~
+
+> **Tip:** The `type` is usually a string (e.g. `"todos/addTodo"`). Keeping types scoped by feature (like `todos/`) helps avoid collisions.
+
+## Reducers
+
+So far, we’ve defined the state of our application and the actions representing requests to change that state, but we haven’t seen how these changes are carried out in JavaScript. The answer is a reducer.
+
+A reducer, or reducer function, is a plain JavaScript function that defines how the current state and an action are used in combination to create the new state.
+
+~~~js
+const initialState = [ 'Print trail map', 'Pack snacks', 'Summit the mountain' ];
+
+const todoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'todos/addTodo': {
+      return [ ...state, action.payload];
+    }
+    case 'todos/removeAll': {
+      return [];
+    }
+    default: {
+      return state;
+    }
+  }
+}
+~~~
+
+* It’s a plain JavaScript function
+* It defines the application’s next state given a current state and a specific action
+* It returns a default initial state if no action is provided
+* It returns the current state if the action is not recognized
+* We use the equals sign `=` to supply a default value for the `state` parameter
+* We use the spread operator `...` to copy the current state and any changed values into a new object, not the existing `state` argument. We’ll explain why in the next exercise.
+
+## Rules of reducers
+
+In the previous exercise, we wrote reducers that returned a new copy of the state rather than editing it directly. We did this to adhere to the rules of reducers provided by the Redux documentation:
+
+* They should only calculate the new state value based on the `state` and `action` arguments.
+* They are not allowed to modify the existing state. Instead, they must copy the existing state and make changes to the copied values.
+* They must not do any asynchronous logic or have other “side effects”.
+
+By asynchronous logic or “side effects”, we mean anything that the function does aside from returning a value, e.g., logging to the console, saving a file, setting a timer, making an HTTP request, and generating random numbers.
+
+## Immutable updates and pure functions
+
+When a function makes immutable updates to its arguments, it doesn’t directly modify the original argument. Instead, it creates a copy and modifies that copy. This process is referred to as immutable updating because the function doesn’t alter or mutate the original arguments.
+
+This function mutates its argument:
+
+~~~js
+const mutableUpdater = (obj) => {
+  obj.completed = !obj.completed;
+  return obj;
+}
+const task = { text: 'do dishes', completed: false };
+const updatedTask = mutableUpdater(task);
+console.log(updatedTask);
+// Prints { text: 'do dishes', completed: true };
+console.log(task);
+// Prints { text: 'do dishes', completed: true };
+~~~
+
+Meanwhile, this function “immutably updates” its argument:
+
+~~~js
+const immutableUpdater = (obj) => {
+  return {
+    ...obj,
+    completed: !obj.completed
+  }
+}
+const task = { text: 'iron clothes', completed: false };
+const updatedTask = immutableUpdater(task);
+console.log(updatedTask);
+// Prints { text: 'iron clothes', completed: true };
+console.log(task);
+// Prints { text: 'iron clothes', completed: false };
+~~~
+
+By copying the contents of the argument `obj` into a new object (`{...obj}`) and updating the `completed` property of the copy, the argument `obj` will remain unchanged.
+
+Plain strings, numbers, and booleans are immutable in JavaScript, so we can just return them without making a copy:
+
+~~~js
+const immutator = (num) => num + 1;
+const x = 5;
+const updatedX = immutator(x);
+console.log(x, updatedX); // Prints 5, 6
+~~~
+
+If a function is pure, then it will always have the same outputs given the same inputs.
+
+This is a combination of rules 1 and 3:
+
+* Reducers should only calculate the new state value based on the state and action arguments.
+* Reducers must not do any asynchronous logic or other “side effects”.
+
+In this example, the function is not a pure function because its returned value depends on the status of a remote endpoint.
+
+~~~js
+const addItemToList = (list) => {
+  let item;
+  fetch('https://anything.com/endpoint')
+    .then(response => {
+      if (!response.ok) {
+        item = {};
+      }
+      item = response.json();
+   });
+   return [...list, item];
+};
+~~~
+
+The function can be made pure by pulling the `fetch()` statement outside of the function.
+
+~~~js
+let item;
+fetch('https://anything.com/endpoint')
+  .then(response => {
+    if (!response.ok) {
+      item = {};
+    }
+    item = response.json();
+  });
+
+const addItemToList = (list, item) => {
+  return [...list, item];
+};
+~~~
+
+> **Attention:** Reducers must be **pure** and use **immutable** updates. Breaking these rules often leads to subtle bugs and hard-to-reproduce UI state.
+
+## Store
+
+Redux uses a special object called the store. The store serves as a container for the state, and it is the centerpiece of your application and the single source of truth. The store is in charge of facilitating the dispatching of actions, and triggering the reducer when actions are dispatched. In most Redux applications, there is typically only one store.
+
+Let’s rephrase the data flow using the new term:
+
+* The store initializes the state with a default value.
+* The view displays that state to the user.
+* When a user interacts with the view, such as clicking a button, an action is dispatched to the store.
+* The store’s reducer combines the dispatched action and the current state to determine the next state.
+* The view is updated to display the new state.
+
+While we won’t be writing any code for the store during this lesson, it is essential that you understand the state, actions, reducers, and their role in the one-way data flow.
+
+## Reducer playground
+
+import ReducerPlayground from "./components/introduction-to-redux/ReducerPlayground.jsx"
+
+<ReducerPlayground />

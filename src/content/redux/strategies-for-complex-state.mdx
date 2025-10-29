@@ -1,0 +1,235 @@
+# Strategies for complex state
+
+## Todo state example
+For example, consider a todo app that allows a user to:
+* Add to a list of todos.
+* Mark individual todos as complete or incomplete.
+* Apply a filter to show only the completed todos, only the incomplete todos, or all of the todos.
+
+After adding a few todos and setting the filter to show incomplete todos, the state might look like this:
+~~~
+state = {
+  todos: [
+    {
+      id: 0,
+      text: 'Complete the Learn Redux course',
+      isCompleted: false
+    },
+    {
+      id: 1,
+      text: 'Build a counter app',
+      isCompleted: true
+    },
+  ],
+  visibilityFilter: 'SHOW_INCOMPLETE'
+};
+~~~
+
+## Slices and initial state
+Slices
+In a Redux application, the top-level state properties, `state.todos` and `state.visibilityFilter`, are known as slices. Each slice typically represents a different feature of the entire application. Notice that a slice can be any data value, like an array of objects (`state.todos`) or just a string (`state.visibilityFilter`).
+
+As a best practice, most Redux applications begin with an `initialState` that allows the programmer to do two key things:
+* Plan out the general structure of the state
+* Provide an initial state value to the reducer function
+
+For the todo app, this may look like this:
+~~~
+const initialState = {
+  todos: [],
+  visibilityFilter: 'SHOW_ALL'
+};
+const todosReducer = (state = initialState, action) => {
+  // rest of todosReducer logic omitted
+};
+~~~
+
+> Tip: Keep each slice focused on one concern. This makes updates predictable and reducers easier to test.
+
+## Actions and payloads
+Actions and payloads for complex state
+When an application state has multiple slices, individual actions typically only change one slice at a time. Therefore, it is recommended that each action’s `type` follows the pattern `'sliceName/actionDescriptor'`, to clarify which slice of state should be updated.
+
+It’s also important to consider which of these actions will have a payload — additional data passed to the reducer in order to carry out the desired change of state.
+
+Once you have a clear idea of the types of actions that will be dispatched in your application, when they will be dispatched, and what payload data they will carry, the next step is to make action creators. Action creators enable Redux programmers to re-use action object structures without typing them out by hand, and they improve the readability of their code, particularly when dealing with bulky payloads.
+
+## Action creators
+Example of an action creator:
+~~~
+export const setSearchTerm = (term) => {
+  return {
+    type: 'sliceName/setSearchTerm',
+    payload: term
+  };
+}
+~~~
+
+> Note: Consistent action shapes (e.g., `{type, payload}`) help tooling and middleware interoperate smoothly.
+
+## Immutable updates and complex state
+Now that you have defined which changes can occur to your application’s state, you need a reducer to execute those changes.
+
+It should be clarified that the `state.todos.map()` method only makes a “shallow” copy of the array, meaning the objects inside share the same references as the originals. Therefore, mutations to the objects within the copy will affect the objects within the original. For now, we can make do with this solution, but you will learn how to bypass this issue in a later lesson on the Redux Toolkit.
+
+~~~
+const recipesReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case 'allRecipes/loadData':
+      return {
+        ...state,
+        allRecipes: action.payload
+      }
+    case 'searchTerm/clearSearchTerm':
+      return {
+        ...state,
+        searchTerm: ''
+      }
+    case 'searchTerm/setSearchTerm':
+      return {
+        ...state,
+        searchTerm: action.payload
+      }
+    case 'favoriteRecipes/addRecipe':
+      return {
+        ...state,
+       favoriteRecipes: [...state.favoriteRecipes, action.payload]
+      }
+    case 'favoriteRecipes/removeRecipe':
+      return {
+        ...state,
+        favoriteRecipes: state.favoriteRecipes.filter((recipe) => recipe.id !== action.payload.id)
+      }
+    default:
+      return state;
+  }
+};
+~~~
+
+> Attention: Avoid mutating nested objects or arrays. Always create new objects or arrays when updating state.
+
+## Reducer composition
+The solution is to follow a pattern called reducer composition. In this pattern, individual slice reducers are responsible for updating only one slice of the application’s state, and their results are recombined by a root reducer to form a single state object.
+
+~~~
+import { createStore } from 'redux'
+
+// Handles only `state.todos`.
+const initialTodos = [
+  { id: 0, text: 'learn redux', completed: false },
+  { id: 1, text: 'build a redux app', completed: true },
+  { id: 2, text: 'do a dance', completed: false },
+];
+
+const todosReducer = (todos = initialTodos, action) => {
+  switch (action.type) {
+    case 'todos/addTodo':
+      return [...todos, action.payload]
+    case 'todos/toggleTodo':
+      return todos.map(todo => {
+        return (todo.id === action.payload.id) ?
+          { ...todo, completed: !todo.completed } :
+          {...todo};
+      });
+    default:
+      return todos;
+  }
+};
+
+// Handles only `state.filter`
+const initialFilter = 'SHOW_INCOMPLETE';
+const filterReducer = (filter = initialFilter, action) => {
+  switch (action.type) {
+    case 'filter/setFilter':
+      return action.payload;
+    default:
+      return filter;
+  }
+};
+
+const rootReducer = (state = {}, action) => {
+  const nextState = {
+    todos: todosReducer(state.todos, action),
+    filter: filterReducer(state.filter, action)
+  };
+  return nextState;
+};
+
+const store = createStore(rootReducer);
+~~~
+
+* The root reducer calls each slice reducer, regardless of the `action.type`, with the incoming `action` and the appropriate slice of the state as arguments.
+* The slice reducers each determine if they need to update their slice of state, or simply return their slice of state unchanged.
+* The root reducer reassembles the updated slice values in a new state object.
+
+One major advantage of this approach is that each slice reducer only receives its slice of the entire application’s state. Therefore, each slice reducer only needs to immutably update its own slice and doesn’t care about the others. This removes the problem of copying potentially deeply nested state objects.
+
+## Separate slice state initialization
+Another common solution is to separate the initial state in separate variables containing the slices (composing in the root reducer the final state, that at the start will be empty, as it uses the value returned by the default case)
+
+~~~
+const initialFavoriteRecipes = []
+const favoriteRecipesReducer = (favoriteRecipes = initialFavoriteRecipes, action) => {
+  switch(action.type) {
+    // Add action.type cases here.
+    case 'favoriteRecipes/addRecipe': {
+      return  [...favoriteRecipes, action.payload]
+    }
+    case 'favoriteRecipes/removeRecipe': {
+      return favoriteRecipes.filter(recipe => recipe.id !== action.payload.id)
+    }
+    default: {
+      return favoriteRecipes
+    }
+  }
+}
+
+const rootReducer = (state = {}, action) => {
+  const nextState = {
+    allRecipes: allRecipesReducer(state.allRecipes, action),
+    searchTerm: searchTermReducer(state.searchTerm, action),
+    favoriteRecipes: favoriteRecipesReducer(state.favoriteRecipes, action)
+  }
+  return nextState;
+}
+
+export const store = createStore(rootReducer);
+~~~
+
+## Combinereducers
+`combineReducers()`
+The Redux package helps facilitate this pattern by providing a utility function called `combineReducers()`, which handles this boilerplate for us:
+
+~~~
+import { createStore, combineReducers } from 'redux'
+
+// todosReducer and filterReducer omitted.
+const reducers = {
+  todos: todosReducer,
+  filter: filterReducer
+};
+
+const rootReducer = combineReducers(reducers);
+const store = createStore(rootReducer);
+~~~
+
+* The `reducers` object contains the slice reducers for the application. The keys of the object correspond to the name of the slice being managed by the reducer value.
+* The `combineReducers()` function accepts this `reducers` object and returns a `rootReducer` function.
+* The returned `rootReducer` is passed to `createStore()` to create a `store` object.
+
+Just as before, when an action is dispatched to the store, the `rootReducer()` is executed, which then calls each slice reducer, passing along the `action` and the appropriate slice of `state`.
+
+The final compressed form is the following:
+~~~
+const store = createStore(combineReducers({
+  todos: todosReducer,
+  filter: filterReducer
+}));
+~~~
+
+## Todo reducer playground
+import TodoReducer from "./components/strategies-for-complex-state/TodoReducer.jsx"
+
+<TodoReducer />
+
+> Tip: Try adding a few todos and toggling them to watch how the reducer returns new arrays each time.
