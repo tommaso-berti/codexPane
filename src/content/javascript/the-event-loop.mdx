@@ -18,7 +18,7 @@ easterEgg.addEventListener('click', () => {
 // The function runs only after the element is clicked.
 ~~~
 
-## Settimeout
+## Set timeout
 Schedules a function to run **after at least** the given delay (ms).
 
 ~~~js
@@ -29,7 +29,7 @@ setTimeout(() => {
 
 **Tip:** The delay is a **minimum**; the callback runs when the call stack is free.
 
-## Setinterval
+## Set interval
 Repeats a function every `n` ms until cleared.
 
 ~~~js
@@ -66,7 +66,6 @@ It moves ready-to-run callbacks from queues to the call stack when the stack is 
 - **Node or web apis** — timers, network, DOM events, etc.
 
 **Copy friendly diagram (ASCII):**
-
 ~~~txt
 [ Web/Node APIs ] --(events)--> [ Event queue ] --(when stack empty)--> [ Call stack ]
          ^                                                                   |
@@ -77,6 +76,15 @@ It moves ready-to-run callbacks from queues to the call stack when the stack is 
 
 ## Heap
 A block of memory holding objects and values currently in use.
+
+~~~js
+const cat = {
+  name: "Jupiter"
+};
+
+const pets = ["Jupiter", "Moshi", "Hercules"];
+// cat and pets live in the heap; fixed-size references to them live on the stack.
+~~~
 
 ## The call stack
 Tracks the **current execution context**. Calling a function pushes a frame; returning pops it. LIFO (last in, first out).
@@ -152,7 +160,7 @@ Expected order:
 4. `Great! I'm making <type> beans for dinner tonight!`
 
 ## Microtasks and macrotasks
-**Promises** (and `queueMicrotask`) queue **microtasks**, which run **before** timer/IO callbacks (often called **macrotasks**) once the call stack is clear.
+**Promises** (and `queueMicrotask`) queue **microtasks**, which run **before** timer or IO callbacks (often called **macrotasks**) once the call stack is clear.
 
 ~~~js
 console.log('A');
@@ -168,3 +176,197 @@ console.log('B');
 import EventLoopPlayground from "./components/the-event-loop/EventLoopPlayground.jsx"
 
 <EventLoopPlayground />
+
+---
+
+## Memory management
+In other languages like C or C++, you manually `new`/`delete` memory. In JavaScript, the engine handles allocation and reclamation for you. The main problems you encounter are **memory leaks**—memory that should be released but remains referenced.
+
+**Note:** JavaScript has two data structures for memory:
+- The **heap**
+- The **stack**
+
+When you assign values to variables, the engine decides whether the value is a **primitive** or a **reference value**, which determines if it is stored in the stack or the heap.
+
+## The stack and the heap
+**The stack** is used for static storage where the size is known. It holds:
+- Primitive values,
+- **References** to non-primitive values,
+- Function call frames.
+
+**The heap** provides dynamic storage for data without fixed size (objects, functions). We keep track of where to find them in the unstructured heap using fixed-size references on the stack.
+
+~~~js
+const cat = { name: "Jupiter" };
+const pets = ["Jupiter", "Moshi", "Hercules"];
+// cat and pets are in the heap; references to them are on the stack.
+~~~
+
+~~~js
+let object = new Object();
+let object2 = object;
+object.greeting = "Hello, world";
+
+console.log(object2); // { greeting: 'Hello, world' }
+~~~
+
+In the example, `object` and `object2` are different variables (stack), but both point to the **same** heap object.
+
+~~~js
+let str = "Hi";
+let str2 = str;
+// str and str2 are two separate primitives on the stack (copy by value)
+~~~
+
+**Tip:** Mutating an object via any reference affects the single underlying heap object.
+
+## Memory life cycle
+Three parts to consider:
+- **Memory allocation** — values are declared and stored.
+- **Memory in use** — values are read or rewritten.
+- **Releasing memory** — values no longer in use get removed.
+
+Allocation can happen via:
+- Regular variable assignment,
+- Assigning properties to an object,
+- Declaring callable functions,
+- Calling functions (which pushes a **function frame** onto the stack).
+
+During function execution, locals allocate stack space; new objects allocate heap space and are referenced from the frame. When a function returns, its frame is popped and its stack memory is deallocated. Heap objects that become unreachable are then eligible for garbage collection.
+
+~~~js
+let aaliyah = { name: "Aaliyah" };
+
+function nameObjectModification(obj, name) {
+  obj.name = name;
+  return obj;
+}
+
+let sarah = nameObjectModification(aaliyah, "Sarah");
+
+console.log(aaliyah); // { name: 'Sarah' }
+console.log(sarah);   // { name: 'Sarah' }
+~~~
+
+Objects are passed by **reference value copy** (the reference is copied). If you modify the object inside a function, the original is modified because both variables reference the same heap object.
+
+## Garbage collection
+Garbage collection clears memory that is no longer needed. Engines use two key algorithms:
+
+### Reference counting
+Tracks how many references point to an object.
+
+~~~js
+let obj = new Object(); // count = 1
+let obj2 = obj;         // count = 2
+obj2 = "string";        // obj count returns to 1
+~~~
+
+If the count drops to **zero**, the object can be reclaimed.
+
+~~~js
+let monument = { name: "Eiffel Tower" };
+monument = "Golden Gate Bridge"; // previous object becomes collectible if no other refs
+~~~
+
+**Attention:** Pure reference counting struggles with **circular references**.
+
+### Mark and sweep
+Runs periodically from the root (global object), **marks** reachable values by traversing references, then **sweeps** unmarked ones. This handles cycles correctly and is what most modern engines use.
+
+## Memory leaks
+When memory that is no longer needed persists, it’s a **memory leak**. Causes include:
+
+## Messy closures
+Long-lived closures over large objects keep them alive.
+
+~~~js
+function bigObjMaker() {
+  const bigObj = {};
+  return (key, val) => {
+    bigObj[key] = val;
+    console.log(bigObj);
+  }
+}
+let bigMemoryUser = bigObjMaker();
+
+Array(1000).fill(1).map((x,i) => {
+  bigMemoryUser(i, i);
+});
+~~~
+
+`bigObj` remains reachable through the closure and can grow indefinitely.
+
+## Dangling timers and event listeners
+Intervals, timeouts, or event handlers can hold references and prevent collection.
+
+~~~js
+function cb() {
+  let count = 0;
+  return function() {
+    count++;
+    console.log(count);
+  }
+}
+
+let intervalID = setInterval(cb(), 1000);
+// later...
+clearInterval(intervalID);
+~~~
+
+Anonymous listeners also capture outer values:
+
+~~~js
+const lotsOfMemory = "Imagine this is a value that uses a lot of memory";
+
+document.addEventListener('scroll', function() {
+  cb(lotsOfMemory);
+});
+~~~
+
+## Circular references
+Objects that reference each other can defeat reference counting (though not mark-and-sweep).
+
+~~~js
+let first = new Object();
+let second = new Object();
+
+first.aProperty = second;
+second.anotherProperty = first;
+~~~
+
+## Declaring variables on the global object
+Accidentally creating globals keeps them alive for the lifetime of the page or process.
+
+~~~js
+function helloWorld() {
+  // Missing let/const/var — becomes a global binding in sloppy mode
+  greeting = "Hello world";
+  // Also leaks to global this in sloppy mode
+  this.greeting2 = "Goodbye!";
+}
+helloWorld();
+~~~
+
+**Tip:** Always use `let`/`const` and enable **strict mode** to avoid accidental globals.
+
+## Out of memory errors
+When memory grows without bound (e.g., leaks), processes can crash or slow down.
+
+Example Node error:
+~~~txt
+==== JS stack trace =========================================
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+~~~
+
+Increasing Node’s heap can mask the issue, but the better fix is to find and remove the leak. In browsers, tabs may crash when memory is exhausted.
+
+## Memory behavior and performance
+Garbage collection frequency and pauses affect performance. High **object churn** can trigger frequent GCs and jank. Techniques like **object pooling** in hot paths can reduce allocations and GC pressure.
+
+---
+
+## Memory leaks playground
+import MemoryGraphDemo from "./components/the-event-loop/MemoryGraphDemo.jsx"
+
+<MemoryGraphDemo />

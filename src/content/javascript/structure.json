@@ -27,12 +27,14 @@
         { "id": "var", "type": "subSection", "title": "Var", "slug": "javascript/variables#var", "order": 1 },
         { "id": "let", "type": "subSection", "title": "Let", "slug": "javascript/variables#let", "order": 2 },
         { "id": "const", "type": "subSection", "title": "Const", "slug": "javascript/variables#const", "order": 3 },
-        { "id": "difference-between-let-and-var", "type": "subSection", "title": "Difference Between Let And Var", "slug": "javascript/variables#difference-between-let-and-var", "order": 4 },
+        { "id": "difference-between-let-and-var", "type": "subSection", "title": "Difference between let and var", "slug": "javascript/variables#difference-between-let-and-var", "order": 4 },
         { "id": "scope", "type": "subSection", "title": "Scope", "slug": "javascript/variables#scope", "order": 5 },
         { "id": "interpolation", "type": "subSection", "title": "Interpolation", "slug": "javascript/variables#interpolation", "order": 6 },
-        { "id": "truthy-and-falsy", "type": "subSection", "title": "Truthy And Falsy", "slug": "javascript/variables#truthy-and-falsy", "order": 7 },
-        { "id": "ternary-operators", "type": "subSection", "title": "Ternary Operators", "slug": "javascript/variables#ternary-operators", "order": 8 },
-        { "id": "switch", "type": "subSection", "title": "Switch", "slug": "javascript/variables#switch", "order": 9 }
+        { "id": "truthy-and-falsy", "type": "subSection", "title": "Truthy and falsy", "slug": "javascript/variables#truthy-and-falsy", "order": 7 },
+        { "id": "ternary-operators", "type": "subSection", "title": "Ternary operators", "slug": "javascript/variables#ternary-operators", "order": 8 },
+        { "id": "switch", "type": "subSection", "title": "Switch", "slug": "javascript/variables#switch", "order": 9 },
+        { "id": "hoisting", "type": "subSection", "title": "Hoisting", "slug": "javascript/variables#hoisting", "order": 10 },
+        { "id": "scope-playground", "type": "subSection", "title": "Scope playground", "slug": "javascript/variables#scope-playground", "order": 11 }
       ]
     },
     {
@@ -86,7 +88,8 @@
         { "id": "functions-as-data", "type": "subSection", "title": "Functions as data", "slug": "javascript/functions#functions-as-data", "order": 9 },
         { "id": "functions-as-parameters", "type": "subSection", "title": "Functions as parameters", "slug": "javascript/functions#functions-as-parameters", "order": 10 },
         { "id": "function-forms-playground", "type": "subSection", "title": "Function forms playground", "slug": "javascript/functions#function-forms-playground", "order": 11 },
-        { "id": "callback-tracer-playground", "type": "subSection", "title": "Callback tracer playground", "slug": "javascript/functions#callback-tracer-playground", "order": 12 }
+        { "id": "callback-tracer-playground", "type": "subSection", "title": "Callback tracer playground", "slug": "javascript/functions#callback-tracer-playground", "order": 12 },
+        { "id": "currying", "type": "subSection", "title": "Currying", "slug": "javascript/functions#currying", "order": 13 }
       ]
     },
     {
@@ -218,13 +221,13 @@
       "type": "section",
       "title": "The Event Loop",
       "slug": "javascript/the-event-loop",
-      "order": 1,
+      "order": 11,
       "items": [
         { "id": "what-is-synchronous-code", "type": "subSection", "title": "What is synchronous code", "slug": "javascript/the-event-loop#what-is-synchronous-code", "order": 1 },
         { "id": "what-is-asynchronous-code", "type": "subSection", "title": "What is asynchronous code", "slug": "javascript/the-event-loop#what-is-asynchronous-code", "order": 2 },
         { "id": "asynchronous-callbacks", "type": "subSection", "title": "Asynchronous callbacks", "slug": "javascript/the-event-loop#asynchronous-callbacks", "order": 3 },
-        { "id": "settimeout", "type": "subSection", "title": "Settimeout", "slug": "javascript/the-event-loop#settimeout", "order": 4 },
-        { "id": "setinterval", "type": "subSection", "title": "Setinterval", "slug": "javascript/the-event-loop#setinterval", "order": 5 },
+        { "id": "set-timeout", "type": "subSection", "title": "Set timeout", "slug": "javascript/the-event-loop#set-timeout", "order": 4 },
+        { "id": "set-interval", "type": "subSection", "title": "Set interval", "slug": "javascript/the-event-loop#set-interval", "order": 5 },
         { "id": "concurrency-model-and-event-loop-in-javascript", "type": "subSection", "title": "Concurrency model and event loop in javascript", "slug": "javascript/the-event-loop#concurrency-model-and-event-loop-in-javascript", "order": 6 },
         { "id": "what-is-the-event-loop", "type": "subSection", "title": "What is the event loop", "slug": "javascript/the-event-loop#what-is-the-event-loop", "order": 7 },
         { "id": "components-of-the-event-loop", "type": "subSection", "title": "Components of the event loop", "slug": "javascript/the-event-loop#components-of-the-event-loop", "order": 8 },
@@ -234,7 +237,19 @@
         { "id": "the-event-loop-in-action", "type": "subSection", "title": "The event loop in action", "slug": "javascript/the-event-loop#the-event-loop-in-action", "order": 12 },
         { "id": "example", "type": "subSection", "title": "Example", "slug": "javascript/the-event-loop#example", "order": 13 },
         { "id": "microtasks-and-macrotasks", "type": "subSection", "title": "Microtasks and macrotasks", "slug": "javascript/the-event-loop#microtasks-and-macrotasks", "order": 14 },
-        { "id": "event-loop-playground", "type": "subSection", "title": "Event loop playground", "slug": "javascript/the-event-loop#event-loop-playground", "order": 15 }
+        { "id": "event-loop-playground", "type": "subSection", "title": "Event loop playground", "slug": "javascript/the-event-loop#event-loop-playground", "order": 15 },
+        { "id": "memory-management", "type": "subSection", "title": "Memory management", "slug": "javascript/the-event-loop#memory-management", "order": 16 },
+        { "id": "the-stack-and-the-heap", "type": "subSection", "title": "The stack and the heap", "slug": "javascript/the-event-loop#the-stack-and-the-heap", "order": 17 },
+        { "id": "memory-life-cycle", "type": "subSection", "title": "Memory life cycle", "slug": "javascript/the-event-loop#memory-life-cycle", "order": 18 },
+        { "id": "garbage-collection", "type": "subSection", "title": "Garbage collection", "slug": "javascript/the-event-loop#garbage-collection", "order": 19 },
+        { "id": "memory-leaks", "type": "subSection", "title": "Memory leaks", "slug": "javascript/the-event-loop#memory-leaks", "order": 20 },
+        { "id": "messy-closures", "type": "subSection", "title": "Messy closures", "slug": "javascript/the-event-loop#messy-closures", "order": 21 },
+        { "id": "dangling-timers-and-event-listeners", "type": "subSection", "title": "Dangling timers and event listeners", "slug": "javascript/the-event-loop#dangling-timers-and-event-listeners", "order": 22 },
+        { "id": "circular-references", "type": "subSection", "title": "Circular references", "slug": "javascript/the-event-loop#circular-references", "order": 23 },
+        { "id": "declaring-variables-on-the-global-object", "type": "subSection", "title": "Declaring variables on the global object", "slug": "javascript/the-event-loop#declaring-variables-on-the-global-object", "order": 24 },
+        { "id": "out-of-memory-errors", "type": "subSection", "title": "Out of memory errors", "slug": "javascript/the-event-loop#out-of-memory-errors", "order": 25 },
+        { "id": "memory-behavior-and-performance", "type": "subSection", "title": "Memory behavior and performance", "slug": "javascript/the-event-loop#memory-behavior-and-performance", "order": 26 },
+        { "id": "memory-leaks-playground", "type": "subSection", "title": "Memory leaks playground", "slug": "javascript/the-event-loop#memory-leaks-playground", "order": 27 }
       ]
     },
     {
@@ -242,7 +257,7 @@
       "type": "section",
       "title": "Promises",
       "slug": "javascript/promises",
-      "order": 2,
+      "order": 12,
       "items": [
         { "id": "states", "type": "subSection", "title": "States", "slug": "javascript/promises#states", "order": 1 },
         { "id": "constructing-a-promise-object", "type": "subSection", "title": "Constructing a promise object", "slug": "javascript/promises#constructing-a-promise-object", "order": 2 },
@@ -258,7 +273,7 @@
       "type": "section",
       "title": "Async…await (ES8)",
       "slug": "javascript/async-await-es8",
-      "order": 3,
+      "order": 13,
       "items": [
         { "id": "async-operator", "type": "subSection", "title": "Async operator", "slug": "javascript/async-await-es8#async-operator", "order": 1 },
         { "id": "await-operator", "type": "subSection", "title": "Await operator", "slug": "javascript/async-await-es8#await-operator", "order": 2 },
@@ -266,6 +281,31 @@
         { "id": "independent-promises", "type": "subSection", "title": "Independent promises", "slug": "javascript/async-await-es8#independent-promises", "order": 4 },
         { "id": "await-promise-all", "type": "subSection", "title": "Await promise all", "slug": "javascript/async-await-es8#await-promise-all", "order": 5 },
         { "id": "asyncawait-playground", "type": "subSection", "title": "AsyncAwait Playground", "slug": "javascript/async-await-es8#asyncawait-playground", "order": 6 }
+      ]
+    },
+    {
+      "id": "design-patterns",
+      "type": "section",
+      "title": "Design patterns",
+      "slug": "javascript/design-patterns",
+      "order": 14,
+      "items": [
+        { "id": "design-patterns-overview", "type": "subSection", "title": "Design patterns overview", "slug": "javascript/design-patterns#design-patterns-overview", "order": 1 },
+        { "id": "creational-category", "type": "subSection", "title": "Creational category", "slug": "javascript/design-patterns#creational-category", "order": 2 },
+        { "id": "factory-pattern", "type": "subSection", "title": "Factory pattern", "slug": "javascript/design-patterns#factory-pattern", "order": 3 },
+        { "id": "singleton-pattern", "type": "subSection", "title": "Singleton pattern", "slug": "javascript/design-patterns#singleton-pattern", "order": 4 },
+        { "id": "structural-category", "type": "subSection", "title": "Structural category", "slug": "javascript/design-patterns#structural-category", "order": 5 },
+        { "id": "proxy-pattern", "type": "subSection", "title": "Proxy pattern", "slug": "javascript/design-patterns#proxy-pattern", "order": 6 },
+        { "id": "facade-pattern", "type": "subSection", "title": "Facade pattern", "slug": "javascript/design-patterns#facade-pattern", "order": 7 },
+        { "id": "behavioral-category", "type": "subSection", "title": "Behavioral category", "slug": "javascript/design-patterns#behavioral-category", "order": 8 },
+        { "id": "observer-pattern", "type": "subSection", "title": "Observer pattern", "slug": "javascript/design-patterns#observer-pattern", "order": 9 },
+        { "id": "mediator-pattern", "type": "subSection", "title": "Mediator pattern", "slug": "javascript/design-patterns#mediator-pattern", "order": 10 },
+        { "id": "how-to-select-the-right-design-pattern", "type": "subSection", "title": "How to select the right design pattern", "slug": "javascript/design-patterns#how-to-select-the-right-design-pattern", "order": 11 },
+        { "id": "design-patterns-in-architecture", "type": "subSection", "title": "Design patterns in architecture", "slug": "javascript/design-patterns#design-patterns-in-architecture", "order": 12 },
+        { "id": "using-the-proxy-pattern-to-implement-a-proxy-server", "type": "subSection", "title": "Using the proxy pattern to implement a proxy server", "slug": "javascript/design-patterns#using-the-proxy-pattern-to-implement-a-proxy-server", "order": 13 },
+        { "id": "using-the-facade-pattern-to-implement-microservices", "type": "subSection", "title": "Using the facade pattern to implement microservices", "slug": "javascript/design-patterns#using-the-facade-pattern-to-implement-microservices", "order": 14 },
+        { "id": "anti-patterns", "type": "subSection", "title": "Anti patterns", "slug": "javascript/design-patterns#anti-patterns", "order": 15 },
+        { "id": "proxy-playground", "type": "subSection", "title": "Proxy playground", "slug": "javascript/design-patterns#proxy-playground", "order": 16 }
       ]
     }
   ]

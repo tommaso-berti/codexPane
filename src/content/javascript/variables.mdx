@@ -7,36 +7,36 @@ Before ES6 (2015), variables were declared with `var`.
 
 ~~~js
 function demo() {
-  var x = 1;
-  var x = 2; // re-declared, allowed
-  console.log(x); // 2
+    var x = 1;
+    var x = 2; // re-declared, allowed
+    console.log(x); // 2
 }
 demo();
 ~~~
 
 ## Let
-`let` was introduced in ES6. It creates a variable that **can be reassigned** and is **block-scoped**.
+    `let` was introduced in ES6. It creates a variable that **can be reassigned** and is **block-scoped**.
 You can also declare without assigning; it will be `undefined`.
 
 ~~~js
 let count;           // undefined
 count = 1;           // reassignment allowed
 if (true) {
-  let count = 99;    // block-scoped shadowing
-  console.log(count); // 99
+    let count = 99;    // block-scoped shadowing
+    console.log(count); // 99
 }
 console.log(count);   // 1
 ~~~
 
 ## Const
-`const` (constant) also arrived in ES6. You must **assign a value at declaration**, and you **cannot reassign** the binding.
+    `const` (constant) also arrived in ES6. You must **assign a value at declaration**, and you **cannot reassign** the binding.
 
 ~~~js
 const apiUrl = "https://example.com";
 // apiUrl = "https://another.com"; // TypeError: Assignment to constant variable.
 ~~~
 
-`const` protects the **binding**, not the value. Objects/arrays can still be mutated.
+    `const` protects the **binding**, not the value. Objects/arrays can still be mutated.
 
 ~~~js
 const cfg = { mode: "dev" };
@@ -47,15 +47,15 @@ console.log(cfg.mode); // "prod"
 > **Attention:** Declaring `const foo;` without an initializer throws a **SyntaxError**.
 
 ## Difference between let and var
-- **var** is **function-scoped** and hoisted (initialized to `undefined`), can be re-declared.
+    - **var** is **function-scoped** and hoisted (initialized to `undefined`), can be re-declared.
 - **let** is **block-scoped**, not usable before initialization (temporal dead zone), and cannot be re-declared in the same scope.
 
 ~~~js
 function f() {
-  console.log(a); // undefined (var hoisted)
-  // console.log(b); // ReferenceError (let not initialized yet)
-  var a = 1;
-  let b = 2;
+    console.log(a); // undefined (var hoisted)
+    // console.log(b); // ReferenceError (let not initialized yet)
+    var a = 1;
+    let b = 2;
 }
 f();
 ~~~
@@ -73,9 +73,9 @@ Scope defines where variables are accessible.
 let globalMsg = "hi"; // global scope
 
 if (true) {
-  let localMsg = "inside block"; // block scope
-  var leaked = "function scoped via var";
-  console.log(localMsg); // ok
+    let localMsg = "inside block"; // block scope
+    var leaked = "function scoped via var";
+    console.log(localMsg); // ok
 }
 console.log(globalMsg); // ok
 // console.log(localMsg); // ReferenceError
@@ -85,7 +85,7 @@ console.log(leaked); // ok (var not block-scoped)
 ## Interpolation
 Use **template literals** (backticks) to interpolate values with `${...}`.
 
-~~~js
+    ~~~js
 const myPet = 'armadillo';
 console.log(`I own a pet ${myPet}.`);
 // Output: I own a pet armadillo.
@@ -150,3 +150,42 @@ switch (groceryItem) {
 ~~~
 
 > **Note:** Without `break`, execution falls through to subsequent cases, including `default`.
+
+## Hoisting
+During the compilation phase of code execution, the JavaScript engine allocates memory to save the names of declared variables and functions by **hoisting** variable and function declarations to the top of their current scope. Hoisting does not actually move your code around; instead, it:
+- Finds all of the variable and function declarations in the code
+- ‘Raises’ the variable names and function declarations to the top of their scope before code execution
+- Immediately initializes **function declarations**
+- Postpones handling initialization, or assignment of values, until the code is executed
+
+`let` and `const` differ from `var` in how they initialize as well; while the names are hoisted, they are **not initialized**. So calling a variable in your code **before it is initialized** results in a `ReferenceError` (temporal dead zone).
+
+~~~js
+// var: name hoisted, initialized to undefined
+console.log(a); // undefined
+var a = 1;
+
+// let/const: name hoisted, NOT initialized (TDZ)
+try {
+  console.log(b); // ReferenceError
+} catch (e) {
+  console.log(e.name); // "ReferenceError"
+}
+let b = 2;
+
+try {
+  c = 3;          // ReferenceError (assignment before initialization)
+  const c = 3;
+} catch (e) {
+  console.log(e.name); // "ReferenceError"
+}
+~~~
+
+> **Note:** This stricter behavior is one reason `let`/`const` are preferable—fail fast instead of silently reading `undefined`.
+
+## Scope playground
+import ScopePlayground from "./components/variables/ScopePlayground.jsx"
+
+<ScopePlayground />
+
+> **Tip:** Toggle between `var`, `let`, and `const` and try enabling a block to see how scoping and redeclaration rules affect the output and errors.

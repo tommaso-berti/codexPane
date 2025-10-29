@@ -1,0 +1,290 @@
+# Design patterns
+
+## Design patterns overview
+Design patterns are systems for solutions, not copy-paste code. They give names and rules for solving recurring problems so teams can talk at a higher level and produce implementations that are:
+- DRY
+- Modular
+- Reusable
+- Easier to maintain
+- Easier to discuss
+
+Patterns are commonly grouped by purpose:
+- **Creational**
+- **Structural**
+- **Behavioral**
+
+## Creational category
+When you need to control how objects are created/instantiated, use creational patterns. Common examples:
+- **Factory**
+- **Singleton**
+- **Abstract factory**
+- **Constructor**
+- **Prototype**
+
+## Factory pattern
+Imagine tracking a reading list—each book has a title, author, pages, year, reading status, etc. Rather than repeating boilerplate for each object, use a **factory** that returns objects from a template.
+
+**Implementation**
+~~~js
+function createBook(title, author, read = false) {
+  return {
+    title: title,
+    author: author,
+    read: read,
+    getDescription() {
+      console.log(`${this.title} was written by ${this.author}. I ${this.read ? "have" : "have not"} read it.`);
+    },
+    readBook() {
+      this.read = true;
+    },
+  }
+}
+
+const beloved = createBook("Beloved", "Toni Morrison");
+console.log(beloved);
+/*
+{
+  title: 'Beloved',
+  author: 'Toni Morrison',
+  read: false,
+  getDescription: [Function: getDescription],
+  readBook: [Function: readBook]
+}
+*/
+
+// call the `.readBook()` method
+beloved.readBook(); // read is updated to true
+
+// modifies the property directly
+beloved.title = "I can change the property."
+~~~
+
+**Tip:** Factories can encapsulate defaults, validation, and private details, returning a clean object API.
+
+## Singleton pattern
+A **singleton** ensures exactly one instance of a class. It’s often used for app-wide configuration, logging, caches, or database connections—shared resources with a single access point.
+
+**Implementation**
+~~~js
+class Singleton {
+  constructor() {
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
+  static getInstance() {
+    return this.instance;
+  }
+}
+
+const instance = new Singleton();
+console.log(Singleton.getInstance()); // logs "Singleton {}"
+~~~
+
+**Attention:** Overuse of singletons can become an anti-pattern by introducing hidden global state and tight coupling. Prefer dependency injection when possible.
+
+## Structural category
+Structural patterns define object relationships and composition to provide new functionality:
+- **Facade**
+- **Proxy**
+- **Flyweight**
+- **Adapter**
+- **Decorator**
+- **Composite**
+- **Bridge**
+
+## Proxy pattern
+A **proxy** stands in front of a target object to intercept and redefine operations (great for lazy fetch, caching, access control, and logging). ES6 ships a `Proxy` type and related `Reflect` helpers.
+
+~~~js
+const target = {
+  city1: "Marseille, France",
+  city2: "Mombasa, Kenya"
+};
+
+const handler = {
+  get: function (target, prop, receiver) {
+    if (prop === "city1") {
+      return "Montreal, Canada";
+    }
+    return Reflect.get(...arguments); // forward default behavior
+  },
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.city1); // Montreal, Canada
+console.log(proxy.city2); // Mombasa, Kenya
+~~~
+
+**Note:** `Proxy` traps (e.g., `get`, `set`, `has`, `apply`) can mirror default behavior via `Reflect.<sameName>()`.
+
+## Facade pattern
+A **facade** hides subsystem complexity behind a simple API. Clients talk to the facade; the facade coordinates the underlying parts.
+
+~~~js
+class VideoConverter {
+  constructor() {}
+  convertNewVideo(...args) {
+    // This method can interact with `Audio`, `Video`, `Codec`, and `Compression`
+  }
+}
+
+class Audio { constructor() {} /* complex subsystem code */ }
+class Video { constructor() {} /* complex subsystem code */ }
+class Codec { constructor() {} /* complex subsystem code */ }
+class Compression { constructor() {} /* complex subsystem code */ }
+~~~
+
+**Tip:** Facades are great for stabilizing public APIs while subsystems evolve.
+
+## Behavioral category
+Behavioral patterns define how unrelated objects communicate by decoupling senders from receivers. Common examples:
+- **Iterator**
+- **Mediator**
+- **Observer**
+- **Visitor**
+
+## Observer pattern
+Subscribers “observe” a subject and are notified when it changes (one-to-many).
+
+~~~js
+class NewsTopic {
+  constructor() {
+    this.subscribers = [];
+  }
+
+  subscribe(user) {
+    this.subscribers.push(user);
+  }
+
+  unsubscribe(user) {
+    this.subscribers = this.subscribers.filter(subscriber => subscriber !== user);
+  }
+
+  notify(news) {
+    this.subscribers.forEach(subscriber => subscriber.update(news));
+  }
+
+  publish(news) {
+    console.log(`Publishing news: ${news}`);
+    this.notify(news);
+  }
+}
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+
+  update(news) {
+    console.log(`${this.name} received news: ${news}`);
+  }
+}
+
+// Create a news topic
+const techNews = new NewsTopic();
+
+// Create users
+const alice = new User("Alice");
+const bob = new User("Bob");
+
+// Users subscribe to the topic
+techNews.subscribe(alice);
+techNews.subscribe(bob);
+
+// Publish a new article
+techNews.publish("New JavaScript framework released!");
+~~~
+
+**Explanation**
+- `NewsTopic`: subject holding subscribers.
+- `subscribe`/`unsubscribe`: manage observers.
+- `notify`: pushes updates to observers.
+- `publish`: triggers notifications.
+- `User`: concrete observer.
+
+## Mediator pattern
+A **mediator** centralizes communication so components don’t talk directly, reducing coupling.
+
+~~~js
+class Passenger {
+  constructor(name) { this.name = name; }
+  sendRequest(rideshareapp) {
+    rideshareapp.receiveRequest(this.name);
+  }
+}
+
+class Driver {
+  constructor(name) { this.name = name; }
+  goOnline(rideshareapp) {
+    rideshareapp.addDriver(this.name);
+  }
+}
+
+class RideshareApp {
+  constructor() {
+    this.drivers = [];
+    this.riders = [];
+  }
+  addDriver(name) {
+    this.drivers.push(name);
+  }
+  updateDriverArray(name) {
+    this.drivers.splice(this.drivers.indexOf(name), 1);
+  }
+  assignDriver() {
+    // We will assume there are always more drivers than riders
+    return this.drivers[Math.floor(Math.random(this.drivers.length))].name;
+  }
+  receiveRequest(passenger) {
+    const driver = this.assignDriver();
+    console.log(driver);
+    this.sendNotification(passenger, driver);
+    this.updateDriverArray(driver);
+  }
+  sendNotification(passenger, driver) {
+    console.log(`${driver} is assigned to ${passenger}.`)
+  }
+}
+
+const rideshareapp = new RideshareApp();
+const james = new Passenger("James");
+const sarah = new Driver("Sarah");
+
+rideshareapp.addDriver(sarah);
+james.sendRequest(rideshareapp);
+~~~
+
+**Note:** UIs with many components often benefit from a mediator (e.g., an event bus).
+
+## How to select the right design pattern
+- Think about each object’s interface and collaborators. Are responsibilities well encapsulated?
+- Consider each property and how updates flow. Who needs to be aware of changes?
+- Match your *intent* to the pattern family (creation vs. structure vs. behavior).
+- Review and refactor—would another pattern simplify the design?
+- Prefer composition over inheritance; you can mix multiple patterns in one codebase.
+
+## Design patterns in architecture
+Patterns also apply at higher levels (services/processes), not just classes/objects.
+
+## Using the proxy pattern to implement a proxy server
+A proxy server sits between clients and remote servers to modify, cache, and control requests/responses—exactly what the **proxy** pattern describes. Benefits include identity hiding, caching, throttling, and central policy enforcement.
+
+## Using the facade pattern to implement microservices
+Microservices split an app into independent services. A **facade** can provide a single, stable interface that coordinates multiple services without exposing their internal details, reducing coupling between clients and services.
+
+## Anti patterns
+Anti-patterns are ineffective solutions that lead to problems like namespace pollution, unnecessary complexity, hard-to-test code, and debugging pain. Common examples:
+- **God object** — an object that knows/does too much.
+- **Big ball of mud / spaghetti code** — no discernible architecture.
+- **Yo yo problem** — bouncing across definitions to understand behavior.
+- **Singleton misuse** — over-reliance on global-like state.
+- **Global namespace pollution** — too many globals.
+- **Modifying the object prototype** — altering the root `Object.prototype` affects all objects; avoid this.
+
+## Proxy playground
+import ProxyPlayground from "./components/design-patterns/ProxyPlayground.jsx"
+
+<ProxyPlayground />

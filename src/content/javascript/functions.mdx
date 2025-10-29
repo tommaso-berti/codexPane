@@ -117,6 +117,17 @@ const sumNumbers = number => {
 ## Higher order functions
 A **higher-order function** is any function that accepts other functions as arguments, returns a function, or both.
 
+~~~js
+// Passing different behaviors into a higher-order function:
+const add = (x, y) => x + y;
+const multiply = (x, y) => x * y;
+
+const operate = (x, y, func) => func(x, y);
+
+console.log(operate(2, 3, add));      // 5
+console.log(operate(2, 3, multiply)); // 6
+~~~
+
 > **Note:** Functions are first-class values in JavaScript—they can be stored in variables, passed around, and returned.
 
 ## Functions as data
@@ -132,6 +143,17 @@ busy(); // I’m doing very important work!
 
 console.log(announceThatIAmDoingImportantWork.name);   // 'announceThatIAmDoingImportantWork'
 console.log(announceThatIAmDoingImportantWork.length); // 0
+~~~
+
+You can also assign functions to new variables, store them in objects or arrays, and even add custom properties:
+
+~~~js
+const originalFunc = (num) => { return num + 2 };
+const newFunc = originalFunc; // copy the reference
+
+console.log(newFunc.name);      // 'originalFunc'
+console.log(newFunc.toString()); // '(num) => { return num + 2 }'
+newFunc.isMathFunction = true;   // add a custom property
 ~~~
 
 > **Tip:** Variables holding functions store **references**. Both variables point to the same function in memory.
@@ -174,6 +196,19 @@ const checkConsistentOutput = (func, val) => {
 console.log(checkConsistentOutput(addTwo, 5)); // 7
 ~~~
 
+A practical callback example that passes a predicate function:
+
+~~~js
+const isEven = (n) => n % 2 === 0;
+
+const printMsg = (evenFunc, num) => {
+  const isNumEven = evenFunc(num);
+  console.log(`The number ${num} is an even number: ${isNumEven}.`);
+};
+
+printMsg(isEven, 4); // Prints: The number 4 is an even number: true.
+~~~
+
 ## Function forms playground
 import FunctionFormsPlayground from "./components/functions/FunctionFormsPlayground.jsx"
 
@@ -183,3 +218,43 @@ import FunctionFormsPlayground from "./components/functions/FunctionFormsPlaygro
 import CallbackTracer from "./components/functions/CallbackTracer.jsx"
 
 <CallbackTracer />
+
+## Currying
+**Currying** transforms a function with multiple parameters into a sequence of unary functions. It is a functional programming technique that encourages small, reusable units and can improve testability and composition.
+
+~~~js
+// Classic curried function with closures
+function curried_add(a) {
+  // has access to the argument for a
+  return function nested_add(b) {
+    // has access to the arguments for a and b
+    return a + b;
+  }
+}
+
+// creates a local variable a and assigns it the value 1
+let add_one = curried_add(1);
+
+// add_one() still has access to the argument from curried_add()
+console.log(add_one(10)); // 11
+~~~
+
+With arrow functions, currying becomes very concise:
+
+~~~js
+function changeColor(color) {
+  return function(obj) {
+    obj.color = color;
+  }
+}
+
+// Equivalent curried version with arrows:
+let changeColorArrow = color => obj => (obj.color = color);
+
+// Usage
+const box = { color: "red" };
+changeColorArrow("blue")(box);
+console.log(box.color); // "blue"
+~~~
+
+> **Tip:** Curried functions are handy when you want to **preset** some arguments and reuse the resulting function in multiple places (also known as *partial application*).
