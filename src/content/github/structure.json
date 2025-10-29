@@ -93,6 +93,18 @@
         { "id": "troubleshooting", "type": "subSection", "title": "Troubleshooting", "slug": "github/github-pages#troubleshooting", "order": 9 },
         { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/github-pages#resources", "order": 10 }
       ]
+    },
+    {
+      "id": "commit-guidelines",
+      "type": "section",
+      "title": "Commit guidelines",
+      "slug": "github/commit-guidelines",
+      "order": 6,
+      "items": [
+        { "id": "prefix", "type": "subSection", "title": "Prefix", "slug": "github/commit-guidelines#prefix", "order": 1 },
+        { "id": "usage", "type": "subSection", "title": "Usage", "slug": "github/commit-guidelines#usage", "order": 2 },
+        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "github/commit-guidelines#examples", "order": 3 }
+      ]
     }
   ]
 }

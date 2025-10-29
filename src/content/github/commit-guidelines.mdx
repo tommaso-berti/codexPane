@@ -1,0 +1,71 @@
+# Commit guidelines
+
+Short, consistent commit messages make history easier to read, search and automate. Use the prefixes below to categorize changes and keep subjects in the imperative mood (e.g., *add*, *fix*, *refactor*).
+
+> **Tip**: Keep the subject under ~72 characters. Add details in the body when needed.
+
+## Prefix
+
+Use one of these prefixes at the start of the subject (or as a branch-style tag), followed by a brief description.
+
+| Prefix     | Usage                                             | Example                       |
+|------------|---------------------------------------------------|-------------------------------|
+| `feature/` | New functionality or section                      | `feature/14-search-component` |
+| `fix/`     | Bug fix or regression                             | `fix/22-docmenu-anchor`       |
+| `refactor/`| Code improvement without behavior change          | `refactor/19-hooks-cleanup`   |
+| `docs/`    | Documentation, README, comments                   | `docs/20-update-install-guide`|
+| `chore/`   | Minor tasks or maintenance (deps, build, lint)    | *(no number)*                 |
+
+> **Note**: If you track work with issues or tickets, include the number right after the prefix (e.g., `feature/14-...`, `fix/22-...`).
+
+## Usage
+
+- **Format**:
+~~~
+<prefix><optional-issue-id>-<short-kebab-slug>: <concise imperative subject>
+  ~~~
+Examples of subjects: `add autocomplete to search`, `fix anchor scrolling in doc menu`.
+
+- **Body (optional)**: Add context, rationale, or references on a new line after a blank line.
+~~~
+Why:
+- Anchor links were not preserved on navigation
+- Regression after sidebar refactor
+
+References: #22
+  ~~~
+
+- **Scope (optional)**: You can include an additional scope between the prefix and slug if helpful.
+~~~
+feature/14-ui-search: add debounce to input
+fix/22-docs-nav: preserve hash on route change
+  ~~~
+
+> **Attention**: Avoid vague subjects like “updates” or “minor fixes”. Prefer explicit actions and affected areas.
+
+## Examples
+
+- Feature:
+~~~
+feature/14-search-component: add autocomplete and keyboard nav
+  ~~~
+
+- Fix:
+~~~
+fix/22-docmenu-anchor: preserve hash when navigating sections
+  ~~~
+
+- Refactor:
+~~~
+refactor/19-hooks-cleanup: extract shared useFetch hook
+  ~~~
+
+- Docs:
+~~~
+docs/20-update-install-guide: add pnpm instructions and troubleshooting
+  ~~~
+
+- Chore:
+~~~
+chore/deps: bump eslint and fix new rules
+  ~~~
