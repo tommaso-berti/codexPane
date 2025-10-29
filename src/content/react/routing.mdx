@@ -1,0 +1,368 @@
+# Routing
+
+## What is routing
+Routing is the process by which a web application uses the current browser URL (Uniform Resource Locator) to determine what content to show a user.
+
+Before we dive into the lesson, let’s briefly go over the basic structure of URLs. Consider this URL:
+
+- **Domain** (e.g., `codecademy.com`) — specifies the website that hosts the resource. The domain serves as the entry point for your application.
+- **Path** (e.g., `/articles`) — identifies the specific resource or page to be loaded and displayed to the user. This is where routing begins.
+- **Query string** (e.g., `?search=node`) — appears after a `?` and assigns values to parameters. Common uses include search parameters and filters.
+
+A popular back end solution is to use the Express routing framework. In this lesson, we will cover **React Router**, a popular front end routing solution designed specifically for React applications.
+
+> **Note:** Client side routing changes the URL without a full page reload, giving a faster, app like experience.
+
+## Installation
+https://reactrouter.com/
+
+To use React Router on the web, install the `react-router-dom` package:
+
+~~~
+npm install --save react-router-dom@6
+~~~
+
+React Router provides multiple routers; the most common is `createBrowserRouter`. (Other options and trade offs are outside the scope of this lesson—see the React Router docs to explore them.)
+
+Import and initialize:
+
+~~~js
+import { createBrowserRouter } from 'react-router-dom';
+
+const router = createBrowserRouter(
+  /* application routes are defined here */
+);
+~~~
+
+The `router` serves as the basis for all React Router logic. Without it, using Router components or hooks will throw errors.
+
+## Provide a router
+In React Router, different views (routes) are React components. To include them in your application, you render them by providing a router at the root with `RouterProvider`.
+
+~~~jsx
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+const router = createBrowserRouter(/* routes here */);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+~~~
+
+`createBrowserRouter` prevents URL changes from causing a full page reload. Instead, URL changes allow the router to determine which route to render while passing information about the current path as props.
+
+## Basic routing
+With our router in place, define the different views (routes) your app renders for various URL paths. You can define routes via JSX or via objects.
+
+Using JSX with `createRoutesFromElements`:
+
+~~~jsx
+import About from './About.js';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route
+} from 'react-router-dom';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(<Route path="/about" element={<About />} />)
+);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+~~~
+
+Layout routes let you show UI that should render on every page (navbars, footers, etc.):
+
+~~~jsx
+// App.js
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Outlet
+} from 'react-router-dom';
+import Root from './Root';
+import About from './About';
+import SignUp from './SignUp';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Root />}>
+      {/* nested routes render inside <Root /> */}
+      <Route path="/about" element={<About />} />
+      <Route path="/sign-up" element={<SignUp />} />
+    </Route>
+  )
+);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+
+// Root.js
+export default function Root() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+}
+~~~
+
+## Linking to routes
+Using a plain `<a>` tag causes a page reload. React Router provides `<Link>` and `<NavLink>`:
+
+~~~jsx
+import {
+  Link,
+  NavLink
+} from 'react-router-dom';
+
+<Link to="/about">About</Link>
+<NavLink to="/about">About</NavLink>
+~~~
+
+- Both accept a `to` prop (like `href`) and render an anchor tag with navigation handled by the router (no reload).
+- A path starting with `/` is absolute (from the app root).
+
+`<NavLink>` adds an active class automatically when its `to` matches the current URL. You can map active state to custom classes:
+
+~~~jsx
+<NavLink
+  to="about"
+  className={({ isActive }) => (isActive ? 'activeNavLink' : 'inactiveNavLink')}
+>
+  About
+</NavLink>
+~~~
+
+## Dynamic routes
+Static routes match a single path. Use **URL parameters** to create dynamic routes:
+
+~~~jsx
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import Article from './Article';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/articles/:title" element={<Article />} />
+  )
+);
+~~~
+
+- The `:title` segment is a URL parameter.
+- `/articles/what-is-react` and `/articles/html-and-css` both render `<Article />`.
+- Routes can have multiple params (e.g., `articles/:title/comments/:commentId`) or none.
+
+## Use params
+Access URL parameter values with `useParams()`:
+
+~~~jsx
+import { useParams } from 'react-router-dom';
+
+export default function Article() {
+  const { title } = useParams(); // e.g., "objects"
+  return (
+    <article>
+      <h1>{title}</h1>
+    </article>
+  );
+}
+~~~
+
+> **Tip:** URL params are strings. Convert to numbers when needed (e.g., `Number(id)`).
+
+## Nested routes
+Child routes render inside parent routes. Child paths are **relative** to their parent.
+
+~~~jsx
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import About from './About';
+import Secret from './Secret';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/about" element={<About />}>
+      {/* About renders if path starts with /about */}
+      <Route path="secret" element={<Secret />} />
+    </Route>
+  )
+);
+~~~
+
+- `/about` renders `About`.
+- `/about/secret` renders `About` **and** `Secret`.
+
+## Outlet
+A parent route decides **where** to render its children via `<Outlet />`:
+
+~~~jsx
+import { Outlet } from 'react-router-dom';
+
+export default function About() {
+  return (
+    <main>
+      <h1>Lorem ipsum dolor sit amet.</h1>
+      <Outlet /> {/* child route renders here */}
+    </main>
+  );
+}
+~~~
+
+## Index route
+Index routes render on the parent’s exact path:
+
+~~~jsx
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import About from './About';
+import IndexComponent from './IndexComponent';
+import Secret from './Secret';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/about" element={<About />}>
+      <Route index element={<IndexComponent />} />   {/* /about */}
+      <Route path="secret" element={<Secret />} />   {/* /about/secret */}
+    </Route>
+  )
+);
+~~~
+
+**Example**
+
+~~~jsx
+<Route path="/profile" element={<Profile />}>
+  <Route index element={<ProfileHome />} />
+  <Route path="edit" element={<EditProfileForm />} />
+</Route>
+~~~
+
+- Visiting `/profile` shows `Profile` and, inside it, `ProfileHome` where `<Outlet />` is placed.
+- Visiting `/profile/edit` shows `Profile` and `EditProfileForm`.
+
+## Navigate
+`<Navigate to="...">` redirects immediately when rendered:
+
+~~~jsx
+import { Navigate } from 'react-router-dom';
+
+const UserProfile = ({ loggedIn }) => {
+  if (!loggedIn) {
+    return <Navigate to="/" />;
+  }
+  return (
+    // ... user profile content here
+  );
+};
+~~~
+
+## Use navigate
+Imperatively change location with `useNavigate()`:
+
+~~~jsx
+import { useNavigate } from 'react-router-dom';
+
+export function ExampleForm() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/'); // go to home
+  };
+
+  return <form onSubmit={handleSubmit}>{/* form elements */}</form>;
+}
+~~~
+
+> **Note:** Imperative navigation is helpful after side effects like form submissions.
+
+## History
+`useNavigate()` also navigates through history:
+
+- `navigate(-1)` — go back one entry.
+- `navigate(1)` — go forward one entry.
+- `navigate(-3)` — go back three entries.
+
+## Query parameters
+Query parameters start with `?` and are key value pairs:
+
+- Example: `https://www.google.com/search?q=codecademy`
+  Here, the parameter name is `q`.
+
+Use query parameters to search, sort, and filter resources.
+
+## Use search params
+Access and update query parameters with `useSearchParams()`:
+
+~~~jsx
+import { useSearchParams } from 'react-router-dom';
+
+// Rendered when a user visits "/list?order=DESC"
+export function SortedList({ numberList }) {
+  const [searchParams] = useSearchParams();
+  const sortOrder = searchParams.get('order');
+
+  if (sortOrder === 'ASC') {
+    // render numberList ascending
+  } else if (sortOrder === 'DESC') {
+    // render numberList descending
+  } else {
+    // render numberList as is
+  }
+}
+~~~
+
+To update:
+
+~~~jsx
+import { useSearchParams } from 'react-router-dom';
+
+// Rendered when a user visits "/list"
+export function List({ numberList }) {
+  const [, setSearchParams] = useSearchParams();
+  return (
+    <button onClick={() => setSearchParams({ order: 'ASC' })}>
+      Sort
+    </button>
+  );
+}
+~~~
+
+## Create search params
+Combine `createSearchParams()` with `useNavigate()` to navigate **and** set query params:
+
+~~~jsx
+import { useNavigate, createSearchParams } from 'react-router-dom';
+
+export function GoToListButton() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const searchQueryParams = { order: 'ASC' };
+    const searchQueryString = createSearchParams(searchQueryParams);
+    navigate({
+      pathname: '/list',
+      search: `?${searchQueryString}`
+    });
+  };
+
+  return <button onClick={handleClick}>Go to sorted list</button>;
+}
+~~~
+
+## Routing playground
+A small interactive playground using `MemoryRouter` to demonstrate links, nested routes, params, query strings, and imperative navigation.
+
+> **Tip:** `MemoryRouter` keeps history in memory—perfect for demos and tests.
+
+import RoutingPlayground from "./components/routing/RoutingPlayground.jsx"
+
+<RoutingPlayground />

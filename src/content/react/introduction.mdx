@@ -1,0 +1,49 @@
+# Introduction
+
+## Web apps
+A web application is application software that does not require installation and can be accessed from a remote server via a web browser. Web applications are made for interaction, allowing users to send and consume data between the browser and the web server. This interaction can be as simple as logging in to an account, or as complex as making a payment with your credit card.
+
+If a website could be said to be defined by its content, then a web application would be defined by its interaction with the user. As such, web applications are significantly more complicated than static websites, both in general architecture and features.
+
+> **Note:** If you are curious about what powers a site, the *Wappalyzer* Chrome extension can identify many of the technologies used on a page.
+
+## Architecture
+To facilitate complex data flow, web applications are usually designed in layers. The most common paradigm is a three layered design consisting of a **presentation layer** (web browser), **application layer** (server), and **storage layer** (database).
+
+- The presentation layer relays user data to the application layer.
+- The application layer processes that data and may pass it to the storage layer.
+- The storage layer persists data for later retrieval.
+
+When apps grow more complex, additional layers may be introduced. For instance, an **integration layer** between the application and storage layers can provide a uniform interface for data access, insulating the application layer from changes to storage implementations.
+
+## Multi page applications
+In multi page sites (static or dynamic), each time new data is needed, the browser requests a **new page** from the server, which returns new HTML (and related assets). This is fine for static sites, but highly interactive apps can feel slow due to full page reloads.
+
+## Spa single page application
+**Single page applications (SPAs)** combine the content delivery of traditional sites with the smooth, app like UX of mobile apps. An SPA typically loads a single HTML file and then uses JavaScript to update the view dynamically as the user interacts.
+
+- Requests to the server send or fetch **only the data** needed to update the current view.
+- The file remains constant while client side logic updates the DOM surgically.
+- SPAs emphasize **speed** in user interactions and rendering.
+
+## Spa frameworks
+As SPA complexity scales, plain JavaScript becomes hard to manage. Frameworks and libraries help with view control, state management, and builds:
+
+- **React** focuses on components that render based on state and props.
+- **Vue.js** uses single file components with templating and reactivity.
+- Other options include **Angular**, **Ember**, **ExtJS**, **Knockout**, and **Meteor**—all sharing similar goals with different approaches.
+
+> **Tip:** Start with one ecosystem (e.g., React + Vite) to learn the fundamentals before exploring others.
+
+## Spa pros and cons
+**Pros**
+- **Speedy interactions:** Fewer full page reloads; smaller JSON responses update the UI in near real time.
+- **Code reuse:** Component driven design encourages reuse within and across projects.
+- **Easier mobile paths:** Decoupled front end and back end allow mobile UIs to consume the same APIs.
+
+**Cons**
+- **Initial load time:** More JavaScript at startup can slow first paint; mitigate with code splitting and lazy loading.
+- **Seo considerations:** Content rendered client side may require SSR, SSG, or hydration strategies to index well.
+- **Browser expectations:** History, back button, and deep links must be handled explicitly (e.g., HTML5 History API, router).
+
+> **Attention:** Always provide accessible fallbacks and sensible loading states. SPAs that “flash” empty content or trap focus harm usability.

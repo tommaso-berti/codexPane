@@ -1,0 +1,253 @@
+# Hooks: useState()
+
+React Hooks, plainly put, are functions that let us manage the internal state of components and handle post-rendering side effects directly from our function components. Using Hooks, we can determine what we want to show the users by declaring how our user interface should look based on the state.
+
+## Update function component state
+
+Let’s get started with the **State Hook**, the most common Hook used for building React components. The State Hook is a named export from the React library:
+
+~~~
+import React, { useState } from 'react';
+~~~
+
+When we call the `useState()` function, it returns an array with two values:
+
+- The current state: the current value of this state.
+- The state setter: a function that we can use to update the value of this state.
+
+We can use these two values to track the current state of a data value or property and change it when we need to. To extract the two values from the array, we can assign them to local variables by using array destructuring. For example:
+
+~~~
+const [currentState, setCurrentState] = useState();
+~~~
+
+**Example**
+
+~~~
+import React, { useState } from "react";
+
+function Toggle() {
+  const [toggle, setToggle] = useState();
+
+  return (
+    <div>
+      <p>The toggle is {toggle}</p>
+      <button onClick={() => setToggle("On")}>On</button>
+      <button onClick={() => setToggle("Off")}>Off</button>
+    </div>
+  );
+}
+~~~
+
+Notice how the state setter function, `setToggle()`, is called by our `onClick` event listeners. To update the value of `toggle` and re-render this component with the new value, call the state setter with the next state value.
+
+> **Note:** Calling a state setter schedules a re-render. React remembers state between renders so the component function can run again with the updated value.
+
+## Initialize state
+
+We can use the State Hook to manage primitives, arrays, and objects. To initialize state, pass the initial value to `useState()`:
+
+~~~
+const [isLoading, setIsLoading] = useState(true);
+~~~
+
+Effects:
+
+- During the first render, the **initial state argument** is used.
+- After calling the setter, React ignores the initial argument and uses the **new** value.
+- On other re-renders, React continues to use the value from the **previous render**.
+
+> **Tip:** If you don’t have a value for the first render, prefer `null` over leaving it `undefined`.
+
+## Use state setter outside of jsx
+
+~~~
+import React, { useState } from 'react';
+
+export default function EmailTextInput() {
+  const [email, setEmail] = useState('');
+
+  const handleChange = (event) => {
+    const updatedEmail = event.target.value;
+    setEmail(updatedEmail);
+  };
+
+  return <input value={email} onChange={handleChange} />;
+}
+~~~
+
+- `email` is the current state value.
+- `setEmail` updates state.
+- Naming convention: prefix setter with `set`.
+
+You can simplify the handler:
+
+~~~
+const handleChange = (event) => setEmail(event.target.value);
+// or
+const handleChange = ({ target }) => setEmail(target.value);
+~~~
+
+## Set from previous state
+
+React state updates are **asynchronous**. When the next state depends on the previous one, pass a **state setter callback**:
+
+~~~
+import React, { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(prevCount => prevCount + 1);
+
+  return (
+    <div>
+      <p>Wow, you've clicked that button: {count} times</p>
+      <button onClick={increment}>Click here!</button>
+    </div>
+  );
+}
+~~~
+
+`setCount(prev => prev + 1)` receives the previous value and returns the next value.
+
+## Arrays in state
+
+~~~
+import React, { useState } from 'react';
+
+// Static array of pizza options offered.
+const options = ['Bell Pepper', 'Sausage', 'Pepperoni', 'Pineapple'];
+
+export default function PersonalPizza() {
+  const [selected, setSelected] = useState([]);
+
+  const toggleTopping = ({ target }) => {
+    const clickedTopping = target.value;
+    setSelected((prev) => {
+      if (prev.includes(clickedTopping)) {
+        return prev.filter(t => t !== clickedTopping);
+      } else {
+        return [clickedTopping, ...prev];
+      }
+    });
+  };
+
+  return (
+    <div>
+      {options.map(option => (
+        <button value={option} onClick={toggleTopping} key={option}>
+          {selected.includes(option) ? 'Remove ' : 'Add '}
+          {option}
+        </button>
+      ))}
+      <p>Order a {selected.join(', ')} pizza</p>
+    </div>
+  );
+}
+~~~
+
+- Define **static** data outside components so it isn’t recreated each render.
+- When updating arrays in state, **replace** the array with a new one (use spread, `filter`, etc.).
+
+## Array example
+
+~~~
+import React, { useState } from "react";
+import ItemList from "./ItemList";
+import { produce, pantryItems } from "./storeItems";
+
+export default function GroceryCart() {
+  const [cart, setCart] = useState([]);
+
+  const addItem = (item) => {
+    setCart(prevCart => [item, ...prevCart]);
+  };
+
+  const removeItem = (targetIndex) => {
+    setCart(prevCart =>
+      prevCart.filter((elem, index) => index !== targetIndex)
+    );
+  };
+
+  return (
+    <div>
+      <h1>Grocery Cart</h1>
+      <ul>
+        {cart.map((item, index) => (
+          <li onClick={() => removeItem(index)} key={index}>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <h2>Produce</h2>
+      <ItemList items={produce} onItemClick={addItem} />
+      <h2>Pantry Items</h2>
+      <ItemList items={pantryItems} onItemClick={addItem} />
+    </div>
+  );
+}
+~~~
+
+## Objects in state
+
+Group related values in an object:
+
+~~~
+export default function Login() {
+  const [formState, setFormState] = useState({});
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  return (
+    <form>
+      <input
+        value={formState.firstName}
+        onChange={handleChange}
+        name="firstName"
+        type="text"
+      />
+      <input
+        value={formState.password}
+        onChange={handleChange}
+        type="password"
+        name="password"
+      />
+    </form>
+  );
+}
+~~~
+
+- Use a setter callback to derive next state from previous state.
+- Spread syntax for objects: `{ ...oldObject, newKey: newValue }`.
+- Reuse one handler for multiple inputs via the `name` attribute.
+- `[{ name }]: value` uses a **computed property name**.
+
+## Separate hooks for separate states
+
+Managing dynamic data is easier when we keep data models simple.
+
+~~~
+function Subject() {
+  const [currentGrade, setGrade] = useState('B');
+  const [classmates, setClassmates] = useState(['Hasan', 'Sam', 'Emma']);
+  const [classDetails, setClassDetails] = useState({topic: 'Math', teacher: 'Ms. Barry', room: 201});
+  const [exams, setExams] = useState([{unit: 1, score: 91}, {unit: 2, score: 88}]);
+  // ...
+}
+~~~
+
+> **Tip:** Split unrelated pieces of state. Combine only when values truly belong together.
+
+## Use state playground
+
+An interactive demo that ties together initialization, controlled inputs, functional updates, arrays, and objects.
+
+import UseStatePlayground from "./components/hooks-usestate/UseStatePlayground.jsx"
+
+<UseStatePlayground />

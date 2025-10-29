@@ -1,0 +1,64 @@
+# Inline Styles And Style Object Variables
+
+## Inline styles
+An inline style is a style that’s written as an attribute, like this:
+~~~
+<h1 style={{ color: 'red' }}>Hello world</h1>
+~~~
+The outer curly braces tell JSX to read the value as **JavaScript**. The inner curly braces create a **JavaScript object literal**.
+
+> Tip: Inline styles are great for quick one-offs or dynamic values, but prefer classes for reusable styling.
+
+## Style object variables
+You can store a style object in a variable and inject that variable into the `style` attribute:
+~~~
+const darkMode = {
+  color: 'white',
+  background: 'black'
+};
+<h1 style={darkMode}>Hello world</h1>
+~~~
+
+## Style syntax
+**CSS property names use camelCase in React.**
+~~~
+const styles = {
+  marginTop: '20px',
+  backgroundColor: 'green'
+};
+~~~
+A hyphen is a reserved operator in JavaScript, so `background-color` would be parsed as subtraction. Use camelCase to match the DOM `style` object.
+
+In regular JavaScript, style **values** are strings. Even if a value is numeric, you usually specify a unit (e.g. `'450px'`, `'20%'`). If you pass a **number** in React styles, the unit `'px'` is assumed:
+~~~
+<div style={{ width: 450, padding: 20 }}>Px are implied</div>
+~~~
+
+> Note: Not all CSS properties default to `px` when numeric (e.g., `lineHeight` accepts unitless numbers intentionally).
+
+## Stylesheet and modules
+You can import a stylesheet with:
+~~~
+import './App.css';
+~~~
+If multiple stylesheets define the same class names, names can collide.
+
+**CSS Modules** avoid collisions by generating unique class names per file. Name your file:
+~~~
+ComponentName.module.css
+~~~
+Import it in the component:
+~~~
+import styles from './ComponentName.module.css';
+~~~
+Use the generated selectors via the import:
+~~~
+<div className={styles.divStyle}></div>
+~~~
+
+> Tip: With CSS Modules, keep selectors **local** and descriptive; global resets/utilities can live in a normal CSS file.
+
+## Styles playground
+import StylesPlayground from "./components/inline-styles-and-style-object-variables/StylesPlayground.jsx"
+
+<StylesPlayground />

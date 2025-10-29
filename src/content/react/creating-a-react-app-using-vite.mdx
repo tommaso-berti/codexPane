@@ -1,0 +1,171 @@
+# Creating a React App Using Vite
+
+## Getting ready
+We’ve previously recommended using **create-react-app (CRA)** to bootstrap a React project. Since then, the React team has sunset this tool. This lesson focuses on **Vite** (pronounced “veet”), the modern build tool that has become the preferred non-framework lightweight solution for React development.
+
+You’ll need **Node v18+ or v20+**. Even if you installed Node recently, it’s a good idea to update **npm**, which ships with Node but updates more frequently:
+
+~~~bash
+sudo npm install -g npm@latest
+~~~
+
+> **Tip:** On Windows PowerShell, drop `sudo`:
+> ~~~powershell
+> npm install -g npm@latest
+> ~~~
+
+## Setting up the boilerplate application
+Using a build tool like Vite lets you quickly generate a boilerplate React app with the necessary configuration.
+
+**Why Vite?**
+- A consistent project structure you’ll recognize across projects
+- An optimized build process out of the box
+- A fast dev server with hot module replacement (HMR)
+- Modern tooling with minimal configuration
+
+Create a new Vite project using npm’s `create` command (runs the package without installing globally):
+
+~~~bash
+npm create vite@latest
+~~~
+
+Follow the interactive prompts:
+- Enter your project name (e.g., `my-react-app`)
+- Select **React** as the framework
+- Choose **JavaScript** or **TypeScript** as the variant
+
+You can also pass options directly:
+
+~~~bash
+# npm
+npm create vite@latest my-react-app -- --template react
+~~~
+
+Per creare la struttura React dentro a una cartella già esistente si può usare:
+~~~bash
+npm create vite@latest . -- --template react
+~~~
+> **Note:** The line above is in Italian as provided by the original notes. English: “To create the React structure inside an existing folder you can use …”.
+
+Then `cd` into your project, install dependencies, and start the dev server:
+
+~~~bash
+cd my-react-app
+npm install
+npm run dev
+~~~
+
+> **Tip:** You can use `yarn` or `pnpm` instead of `npm` if you prefer. Replace the install/run commands accordingly.
+
+## Recap
+Interactive prompt summary (as shown by `create-vite`):
+
+~~~
+npx
+create-vite
+
+│
+◇ Project name:
+│ my-react-app
+│
+◇ Select a framework:
+│ React
+│
+◇ Select a variant:
+│ JavaScript
+│
+◇ Scaffolding project in /Users/codecademy/Desktop/vite/my-react-app...
+│
+└ Done. Now run:
+
+cd my-react-app
+npm install
+npm run dev
+~~~
+
+## React app structure
+After scaffolding, you’ll see a structure like:
+
+~~~
+└── 📁my-react-app
+├── 📁public
+│ └── vite.svg
+├── 📁src
+│ ├── App.css
+│ ├── App.jsx
+│ ├── 📁assets
+│ │ └── react.svg
+│ ├── index.css
+│ └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
+~~~
+
+Vite uses a modern build system that transforms these files into optimized static assets. Visitors are served those static assets.
+
+## Key directories
+**/node_modules**
+All dependencies and sub-dependencies specified in `package.json`. You don’t edit this folder directly; it’s in `.gitignore`.
+
+**/public**
+Static assets served directly without processing. Copied to the build output during production.
+- `vite.svg` — Vite logo (replace with your favicon if you like).
+
+**/src**
+Your application code:
+- `/assets` — images and other assets that Vite can process
+- `App.jsx` — main React component
+- `App.css` — styles for `App`
+- `main.jsx` — app entry point (like `index.js`/`index.jsx` elsewhere)
+- `index.css` — global styles
+
+> **Note:** Throughout the Learn React materials we refer to `index.jsx` as the entry file. Vite’s template uses `main.jsx` but it serves the same purpose. If you prefer to follow the lessons exactly, you can rename `main.jsx` to `index.jsx` and update the script reference in `index.html`.
+
+## Key files
+**index.html** (at project root)
+The HTML entry for your app. Vite injects your JavaScript during build. Edit it to add meta tags, change the page title, or include additional scripts/styles.
+
+**package.json**
+Project settings:
+- Dependencies
+- Scripts for development, build, and preview
+- Other metadata
+
+Common scripts:
+- `dev` — starts the dev server
+- `build` — creates a production build
+- `preview` — serves the production build locally
+
+**vite.config.js**
+Vite configuration (includes the React plugin by default). Extend it to add:
+- Import aliases
+- Custom build options
+- Additional plugins
+- Proxy settings for API requests
+
+**eslint.config.js**
+ESLint configuration (Vite template ships with a basic React-recommended setup).
+
+**.gitignore**
+Tells Git which paths to ignore (e.g., `node_modules`, build output, environment files).
+
+> **Tip:** As your app grows, add a `/components` directory for reusable components and a `/views` directory for route-level pages.
+
+## Starting the react app development server
+Run:
+
+~~~bash
+npm run dev
+~~~
+
+This starts Vite’s dev server with fast HMR. Open the printed local URL in your browser.
+
+## React devtools sandbox
+**React DevTools** has an online sandbox that lets you try the basic features without installing a browser extension. Use it as a quick, hands-on way to learn component inspection, props/state viewing, and performance profiling.
+
+> **Note:** If you have the sandbox link from your course material, keep it handy and open it alongside your running Vite app for practice.

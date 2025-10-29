@@ -1,0 +1,180 @@
+# React forms
+
+## How react handles form state
+In a regular HTML form, the browser manages input state and only sends data to the server when the user submits.
+In React, a component can manage form state directly. As the user types, the `onChange` event fires and you update component state, causing a re-render with the latest value.
+
+> Tip: Keep inputs and state in sync by updating state in every `onChange` and reading the input’s value from state.
+
+## Controlled inputs
+When a user types in the `<input>` field, a `change` event calls your handler (e.g., `handleUserInput()`), where you set state from `e.target.value`. To ensure the input UI reflects state, set the input’s `value` prop from that state. React will re-render and keep the DOM in sync.
+
+**Minimal pattern**
+~~~
+const [value, setValue] = useState("");
+
+<input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+~~~
+
+> Note: Without a `value` prop, an input is **uncontrolled** and manages its own internal state.
+
+## Controlled vs uncontrolled
+An **uncontrolled component** keeps its own internal state (e.g., a plain `<input type="text" />` you read with DOM APIs).
+A **controlled component** gets its value via **props** and notifies changes via **events**; it has no private state for the input value.
+
+Giving an `<input>` a `value` prop makes it **controlled**—it stops using internal storage and instead renders whatever value you pass.
+
+> Attention: Mixing controlled and uncontrolled mode (e.g., toggling between having `value` and not having it) can cause warnings. Initialize with `useState` and keep it controlled.
+
+## Form submission
+Prevent the default page reload with `event.preventDefault()` and handle submission in JavaScript (e.g., validation, API calls).
+~~~
+function handleSubmit(e) {
+  e.preventDefault();
+  // process form data from state
+}
+<form onSubmit={handleSubmit}>…</form>
+~~~
+
+## Examples
+The following examples illustrate controlled inputs. (Original user code preserved.)
+
+**Input example**
+~~~
+import React, { useState } from "react";
+import styles from "./Input.module.css";
+
+function Input() {
+  const [userInput, setUserInput] = useState("");
+  function handleUserInput(e) {
+    setUserInput(e.target.value);
+  }
+  return (
+    <>
+      <div className={styles.emailContainer}>
+        <h2>Let's stay in touch.</h2>
+        <p>
+          Sign up for our newsletter to stay up-to-date on the latest products,
+          receive exclusive discounts, and connect with other programmers who
+          share your passion for all things tech.
+        </p>
+        <form>
+          <label for="email">Email: </label>
+          <input
+            id="email"
+            type="text"
+            onChange={handleUserInput}
+            value={userInput}
+          />
+        </form>
+      </div>
+      <div className={styles.inputDisplay}>
+        <h2>Current User Input: </h2>
+        <h4>{userInput}</h4>
+      </div>
+    </>
+  );
+}
+export default Input;
+~~~
+
+> Note: In React, use `htmlFor` on `<label>` instead of `for`. The original snippet is shown unchanged.
+
+**Example 1: student form**
+~~~
+import React, { useState } from "react";
+function StudentForm() {
+  const [userInput, setUserInput] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    address: "",
+    homeroom: "",
+    studentId: "",
+  });
+  function handleUserInput(e) {
+    setUserInput({ ...userInput, [e.target.id]: e.target.value });
+  }
+  return (
+    <div>
+      <h1 style={{ color: "red" }}>Student form</h1>
+      <form>
+        <label for="firstName">First name: </label>
+        <input
+          id="firstName"
+          type="text"
+          onChange={handleUserInput}
+          value={userInput.firstName}
+        />
+        <label for="lastName">Last name: </label>
+        <input
+          id="lastName"
+          type="text"
+          onChange={handleUserInput}
+          value={userInput.lastName}
+        />
+        <label for="age">Age: </label>
+        <input
+          id="age"
+          type="number"
+          onChange={handleUserInput}
+          value={userInput.age}
+        />
+        <label for="address">Address: </label>
+        ...
+      </form>
+      <h2>Stai inserendo questo valore</h2>
+      <h4>{userInput.firstName}</h4>
+      ....
+    </div>
+  );
+}
+export default StudentForm;
+~~~
+
+**Example 2: food order form**
+~~~
+import React, { useState } from "react";
+
+function FoodOrderForm() {
+const [name, setName] = useState('')
+const [phone, setPhone] = useState('')
+const [address, setAddress] = useState('')
+const [order, setOrder] = useState('')
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  alert(\`Order Successful! Your order was \${order}.Please show your confirmation number for pickup\`)
+}
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor='name'>Name</label>
+      <input id='name' name="name" type='text' value={name} onChange={(e) => setName(e.target.value)}>
+      </input>
+      <label htmlFor='phone'>Phone</label>
+      <input id='phone' name="phone" type='tel' value={phone} onChange={(e) => setPhone(e.target.value)}>
+      </input>
+      <label htmlFor='address'>Address</label>
+      <input id='address' name="address" type='text' value={address} onChange={(e) => setAddress(e.target.value)}>
+      </input>
+      <label htmlFor='order'>Order</label>
+      <input id='order' name="order" type='text' value={order} onChange={(e) => setOrder(e.target.value)}>
+      </input>
+      <button type='submit'>Submit Order</button>
+    </form>
+  )
+}
+
+export default FoodOrderForm;
+~~~
+
+> Tip: For multiple fields, store them in an object state and update with a computed key: `{ ...form, [e.target.name]: e.target.value }`.
+
+## Forms playground
+import FormsPlayground from "./components/react-forms/FormsPlayground.jsx"
+
+<FormsPlayground />

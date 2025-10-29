@@ -1,0 +1,236 @@
+# Hooks: useEffect()
+
+We use the **Effect Hook** to run some JavaScript code after each render to:
+
+- fetch data from a back-end service,
+- subscribe to a stream of data,
+- manage timers and intervals,
+- read from and make changes to the DOM.
+
+Components re-render multiple times throughout their lifetime. These moments are perfect for executing “side effects”.
+
+There are three key moments when the Effect Hook can be utilized:
+
+- when the component is first added, or mounted, to the DOM and renders,
+- when the state or props change, causing a re-render,
+- when the component is removed, or unmounted, from the DOM.
+
+## Function component effects
+
+~~~
+import React, { useState, useEffect } from 'react';
+
+function PageTitle() {
+  const [name, setName] = useState('');
+  useEffect(() => {
+    document.title = `Hi, ${name}`;
+  });
+  return (
+    <div>
+      <p>Use the input field below to rename this page!</p>
+      <input onChange={({target}) => setName(target.value)} value={name} type='text' />
+    </div>
+  );
+}
+~~~
+
+The `useEffect()` function has no return value; it **runs your effect callback** after render. In the example above, this effect runs after **every** render:
+
+~~~
+() => { document.title = `Hi, ${name}`; }
+~~~
+
+The `onChange` listener updates state, triggering a re-render and thus the effect. Even though the effect runs **after** render, it still closes over the latest variables from your component’s scope.
+
+> **Note:** `useEffect()` is always triggered when `PageTitle` re-renders (no dependency array provided).
+
+## Clean up effects
+
+Some effects require **cleanup** (e.g., DOM event listeners, timers, subscriptions).
+
+~~~
+useEffect(()=>{
+  document.addEventListener('keydown', handleKeyPress);
+  // Specify how to clean up after the effect:
+  return () => {
+    document.removeEventListener('keydown', handleKeyPress);
+  };
+});
+~~~
+
+If you don’t return a cleanup function, you could register duplicate listeners on every render—leading to bugs and memory leaks.
+
+Another example:
+
+~~~
+import React, { useState, useEffect } from "react";
+
+export default function Counter() {
+  const [clickCount, setClickCount] = useState(0);
+
+  const increment = () => {
+    setClickCount((prevClick) => prevClick + 1);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", increment);
+    return () => {
+      document.removeEventListener("mousedown", increment);
+    };
+  });
+
+  return <h1>Document Clicks: {clickCount}</h1>;
+}
+~~~
+
+React calls the cleanup **before** the next effect and on unmount.
+
+## Control when effects are called
+
+To run an effect **only on mount**, pass an empty dependency array `[]`:
+
+~~~
+useEffect(() => {
+  alert("component rendered for the first time");
+  return () => {
+    alert("component is being removed from the DOM");
+  };
+}, []);
+~~~
+
+Without `[]`, those alerts would run on **every** render.
+
+**Timer example:**
+
+~~~
+import React, { useState, useEffect } from "react";
+
+export default function Timer() {
+  const [time, setTime] = useState(0);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+    return () => { clearInterval(intervalId); };
+  }, []);
+
+  const handleChange = ({target}) => setName(target.value);
+
+  return (
+    <>
+      <h1>Time: {time}</h1>
+      <input value={name} onChange={handleChange} />
+    </>
+  );
+}
+~~~
+
+To re-run only when specific values change, list them in the dependency array:
+
+~~~
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // re-run when count changes
+~~~
+
+> **Tip:** An empty array means “run once on mount and clean on unmount”. A non-empty array means “re-run when any listed dependency changes”.
+
+## Fetch data
+
+When fetching from a server, avoid unnecessary requests. If the data does not change, fetch **once** on mount and store it in state:
+
+~~~
+useEffect(() => {
+  let ignore = false;
+  async function load() {
+    const res = await fetch("/api/items");
+    const data = await res.json();
+    if (!ignore) setItems(data);
+  }
+  load();
+  return () => { ignore = true; }; // guards against setting state after unmount
+}, []);
+~~~
+
+This pattern pairs `useEffect` with `useState` to fetch once and reuse the data on subsequent renders.
+
+## Rules of hooks
+
+Two main rules:
+
+- **Only call Hooks at the top level.**
+- **Only call Hooks from React functions.**
+
+Incorrect:
+
+~~~
+if (userName !== '') {
+  useEffect(() => {
+    localStorage.setItem('savedUserName', userName);
+  });
+}
+~~~
+
+Correct:
+
+~~~
+useEffect(() => {
+  if (userName !== '') {
+    localStorage.setItem('savedUserName', userName);
+  }
+});
+~~~
+
+Hooks work by order of calls—don’t call them in loops, conditions, or nested functions. Use them in **function components** and **custom hooks** only.
+
+## Separate hooks for separate effects
+
+Separating concerns makes effects easier to reason about.
+
+All-in-one effect:
+
+~~~
+const [data, setData] = useState({ position: { x: 0, y: 0 } });
+
+useEffect(() => {
+  get('/menu').then((response) => {
+    setData((prev) => ({ ...prev, menuItems: response.data }));
+  });
+  const handleMove = (event) =>
+    setData((prev) => ({
+      ...prev,
+      position: { x: event.clientX, y: event.clientY }
+    }));
+  window.addEventListener('mousemove', handleMove);
+  return () => window.removeEventListener('mousemove', handleMove);
+}, []);
+~~~
+
+Separated, clearer effects:
+
+~~~
+const [menuItems, setMenuItems] = useState(null);
+useEffect(() => {
+  get('/menu').then((response) => setMenuItems(response.data));
+}, []);
+
+const [position, setPosition] = useState({ x: 0, y: 0 });
+useEffect(() => {
+  const handleMove = (event) =>
+    setPosition({ x: event.clientX, y: event.clientY });
+  window.addEventListener('mousemove', handleMove);
+  return () => window.removeEventListener('mousemove', handleMove);
+}, []);
+~~~
+
+> **Note:** Prefer multiple focused effects over a single effect that mixes unrelated concerns.
+
+## Use effect playground
+
+An interactive demo showing mount only effects, dependency-based effects, and cleanups.
+
+import UseEffectPlayground from "./components/hooks-useeffect/UseEffectPlayground.jsx"
+
+<UseEffectPlayground />

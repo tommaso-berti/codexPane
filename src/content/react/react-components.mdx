@@ -1,0 +1,244 @@
+# React components
+
+React applications are made of components. A component is a small, reusable chunk of code responsible for one job—often rendering some HTML and re-rendering it when data changes.
+
+## Import react
+
+The first React component we created in the last exercise started with importing **react**:
+
+~~~
+import React from 'react';
+~~~
+
+This creates an object named `React`, which contains methods necessary to use the React library. `react` is imported from the `'react'` package, which should be installed in your project as a dependency. With this object, we can start utilizing features of the React library!
+
+In a React application, the `App.js` file is typically the top level of your application, and `index.js` is the entry point.
+
+## Import reactdom
+
+Import React DOM (React 18+ entry):
+
+~~~
+import ReactDOM from 'react-dom/client';
+~~~
+
+- The methods imported from `'react-dom'` interact with the **DOM**.
+- The methods imported from `'react'` do **not** deal with the DOM directly.
+- The DOM is used in React applications, but it isn’t part of React itself.
+
+`ReactDOM` deals with DOM-specific methods that should be used in `index.js`, the entry point of your application.
+
+## Function component
+
+It’s useful to think of components as smaller pieces of our interface. Combined, they are the building blocks that make up a React application. In a website, we can create a component for the search bar, another component for the navigation bar, and another component for the dashboard content itself. We can use JavaScript functions to define a new React component—this is called a **function component**.
+
+~~~
+import React from 'react';
+
+function MyComponent() {
+  return <h1>Hello, I'm a functional React Component!</h1>;
+}
+
+export default MyComponent;
+~~~
+
+Function component names must start with a capital letter and are conventionally written in **PascalCase**. If a component begins with a lowercase letter, React will try to render a built-in HTML tag (like `div` or `input`) instead.
+
+Components are reusable. Keep them organized by placing each component in its own file and exporting it:
+
+~~~
+export default MyComponent;
+~~~
+
+Then import it where needed, e.g., from `index.js`:
+
+~~~
+import MyComponent from './App';
+~~~
+
+> **Tip:** If you need a refresher on `export` and `import`, see the MDN Web Docs.
+
+## Using and rendering a component
+
+Use a component with an HTML-like syntax:
+
+~~~
+<MyComponent />
+~~~
+
+If you need to nest other components:
+
+~~~
+<MyComponent>
+  <OtherComponent />
+</MyComponent>
+~~~
+
+To render to the browser, create a React root and call `.render()` (usually once, in `index.js`):
+
+~~~
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import MyComponent from './App';
+
+ReactDOM.createRoot(document.getElementById('app')).render(<MyComponent />);
+~~~
+
+- `document.getElementById('app')` comes from `index.html`.
+- `.createRoot()` creates a React root for that element.
+- `.render()` mounts your component tree.
+
+> **Note:** In a React app, you typically call `createRoot(...).render(...)` exactly once. After that, React manages the DOM for you.
+
+## Use multiline jsx in a component
+
+A multi-line JSX expression should be wrapped in parentheses:
+
+~~~
+import React from 'react';
+
+function QuoteMaker() {
+  return (
+    <blockquote>
+      <p>
+        The world is full of objects, more or less interesting; I do not wish to add any more.
+      </p>
+      <cite>
+        <a target="_blank"
+           href="https://en.wikipedia.org/wiki/Douglas_Huebler">
+          Douglas Huebler
+        </a>
+      </cite>
+    </blockquote>
+  );
+}
+
+export default QuoteMaker;
+~~~
+
+## Use a variable attribute in a component
+
+~~~
+import React from 'react';
+
+const redPanda = {
+  src: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Endangered_Red_Panda.jpg',
+  alt: 'Red Panda',
+  width: '200px'
+};
+
+function RedPanda() {
+  return (
+    <div>
+      <h1>Cute Red Panda</h1>
+      <img
+        src={redPanda.src}
+        alt={redPanda.alt}
+        width={redPanda.width}
+      />
+    </div>
+  );
+}
+
+export default RedPanda;
+~~~
+
+> **Tip:** In JSX, attributes are JavaScript expressions—wrap them in `{}` when pulling from variables.
+
+## Putting logic in a function component
+
+~~~
+function RandomNumber() {
+  // First, some logic that must happen before returning
+  const n = Math.floor(Math.random() * 10 + 1);
+  // Next, a return statement using that logic
+  return <h1>{n}</h1>;
+}
+~~~
+
+## Use a conditional in a function component
+
+~~~
+import React from 'react';
+
+function TodaysPlan() {
+  let task;
+  const apocalypse = false;
+
+  if (!apocalypse) {
+    task = 'learn React.js';
+  } else {
+    task = 'run around';
+  }
+
+  return <h1>Today I am going to {task}!</h1>;
+}
+
+export default TodaysPlan;
+~~~
+
+> **Note:** You can also use the ternary operator or logical `&&` for inline conditionals in JSX.
+
+## Event listener and event handlers in a component
+
+~~~
+function MyComponent() {
+  function handleHover() {
+    alert('Stop it.  Stop hovering.');
+  }
+  return <div onHover={handleHover}></div>;
+}
+~~~
+
+> **Attention:** `onHover` is **not** a React DOM event. Use `onMouseEnter` (fires once when the pointer enters) or `onMouseOver` (bubbles) instead:
+>
+> ~~~
+> function MyComponent() {
+>   function handleMouseEnter() {
+>     alert('Stop it. Stop hovering.');
+>   }
+>   return <div onMouseEnter={handleMouseEnter}>Hover me</div>;
+> }
+> ~~~
+
+Event handler functions are typically defined inside the component and named with the `handle*` convention. Pass the function **reference** (no parentheses) so it runs only when the event occurs.
+
+## Returning another component
+
+~~~
+function PurchaseButton() {
+  return <button onClick={() => { alert("Purchase Complete"); }}>Purchase</button>;
+}
+
+function ItemBox() {
+  return (
+    <div>
+      <h1>50% Sale</h1>
+      <h2>Item: Small Shirt</h2>
+      <PurchaseButton />
+    </div>
+  );
+}
+~~~
+
+## Apply a component in a render function
+
+We can treat the `Button` component as a child of the parent `App` component. By extracting smaller components, we can reuse these parts.
+
+~~~
+import Button from './Button';
+
+function App() {
+  return <Button />;
+}
+
+export default App;
+~~~
+
+## Components playground
+
+A small interactive demo that shows event handlers, conditional rendering, props, and composition.
+
+import ComponentsPlayground from "./components/react-components/ComponentsPlayground.jsx"
+
+<ComponentsPlayground />
