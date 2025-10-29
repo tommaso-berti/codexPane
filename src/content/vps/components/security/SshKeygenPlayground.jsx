@@ -57,7 +57,7 @@ export default function SshKeygenPlayground() {
                 <TextField fullWidth label="Comment" value={comment} onChange={(e)=>setComment(e.target.value)} />
             </Stack>
 
-            <Box sx={{ p: 2, bgcolor: "#111", color: "#e0e0e0", borderRadius: 2, fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <Box sx={{ p: 2, borderRadius: 2, fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <Typography component="code" sx={{ whiteSpace: "nowrap", overflowX: "auto", pr: 2 }}>
                     {command}
                 </Typography>
