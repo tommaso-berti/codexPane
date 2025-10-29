@@ -1,0 +1,104 @@
+# HTTP/HTTPS
+
+## Http basics
+HTTP stands for **Hypertext Transfer Protocol** and defines how clients and servers format and exchange messages over a network. The transfer of resources happens over **TCP** (Transmission Control Protocol): TCP sets up a reliable channel; HTTP is the application-level language used over that channel.
+
+client (browser) ──TCP──> server
+HTTP requests HTTP responses
+
+markdown
+Copia codice
+
+**Roles**
+- **client**: initiates requests (e.g., your browser).
+- **server**: listens for requests and returns responses.
+
+> Tip: HTTP itself is stateless. Each request is independent unless you add state via cookies, tokens, or other mechanisms.
+
+## Url and dns
+When you enter a URL like `http://www.wikipedia.org/`:
+1. The browser parses the scheme (`http`) to choose the protocol.
+2. It resolves the **domain** via DNS to an **IP address**.
+3. It opens a TCP connection to that IP and port (default 80 for HTTP, 443 for HTTPS).
+4. It sends an HTTP request.
+
+> Note: A **URL** (Uniform Resource Locator) is the address to a resource and includes components like scheme, host, path, query, and fragment.
+
+## Requests and methods
+A simple **GET** request:
+
+~~~
+GET / HTTP/1.1
+Host: www.codecademy.com
+~~~
+
+- The **request line** is `METHOD path HTTP-version`.
+- The **Host** header indicates the target virtual host.
+- Other common methods: `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+
+> Attention: `GET` requests **should not** carry a body. Use `POST` (or others) when sending data that changes server state.
+
+## Responses and status codes
+If the path is found, a typical response header might be:
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: text/html
+~~~
+
+- `HTTP/1.1 200 OK` confirms the protocol and returns a success **status code**.
+- `Content-Type` describes the media type sent back.
+
+If the resource is missing:
+
+~~~
+HTTP/1.1 404 Not Found
+~~~
+
+Common classes:
+- **2xx** success (`200`, `204`)
+- **3xx** redirection (`301`, `302`, `304`)
+- **4xx** client errors (`400`, `401`, `403`, `404`)
+- **5xx** server errors (`500`, `502`, `503`)
+
+## Http versions
+- **HTTP/1.0**: opens a new TCP connection per resource.
+- **HTTP/1.1**: supports **persistent connections** (keep-alive) so multiple resources (HTML, images, CSS) can reuse one TCP connection → lower latency.
+
+> Note: Persistent connections reduce handshake overhead and often improve page load performance compared to HTTP/1.0.
+
+## Https and certificates
+HTTP messages are readable in transit. **HTTPS** (HTTP Secure) encrypts the TCP channel using TLS so requests and responses cannot be easily read or modified.
+
+To enable HTTPS, site operators obtain a **digital certificate** from a **Certificate Authority (CA)** that proves control of the domain. Browsers validate this certificate during the TLS handshake before sending HTTP data.
+
+> Tip: Always use HTTPS when handling logins, payments, or any sensitive data.
+
+## Httpdemo playground
+import Httpdemo from "./components/http-https/Httpdemo.jsx"
+
+<Httpdemo />
+
+## Additional examples
+**Minimal GET/HTML round-trip**
+
+~~~
+# Request
+GET /wiki/Main_Page HTTP/1.1
+Host: www.wikipedia.org
+User-Agent: ExampleBrowser/1.0
+Accept: text/html
+
+# Response (headers only)
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Content-Length: 12345
+Cache-Control: public, max-age=600
+~~~
+
+> Note: After the response is sent, the server may keep the TCP connection open (HTTP/1.1) for further requests; otherwise it closes it.
+
+## Glossary
+- **dns**: system that maps hostnames to IP addresses.
+- **tls**: cryptographic protocol that secures HTTPS.
+- **host header**: identifies the virtual host on a server serving multiple domains.

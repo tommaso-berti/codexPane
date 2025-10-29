@@ -1,0 +1,79 @@
+# Fetch with await and async
+
+## Overview
+The **await… async** style is widely used because it reads top-to-bottom, making control flow easier to follow and debug. `fetch()` still returns a **promise**, but `await` pauses within an `async` function until the promise settles.
+
+> Note: `response.json()` is **asynchronous** and returns a promise—use `await` on it.
+
+## Async await get
+**Async/await GET** (kept from your notes):
+
+~~~
+const getData = async () => {
+
+  try {
+    const response = await fetch('https://api-to-call.com/endpoint');
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      // Code to execute with jsonResponse
+    }
+    throw new Error('Request failed!');
+  } catch (error) {
+    console.log(error);
+  }
+};
+~~~
+
+> Tip: Prefer `if (!response.ok) throw new Error(...)` early, then parse once.
+
+## Async await post
+**Async/await POST** (kept from your notes):
+
+~~~
+const getData = async () => {
+  try {
+    const response = await fetch('https://api-to-call.com/endpoint', {
+      method: 'POST',
+      body: JSON.stringify({id: 200})
+    });
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      // Code to execute with jsonResponse
+    }
+    throw new Error('Request failed!');
+  } catch (error) {
+    console.log(error);
+  }
+};
+~~~
+
+> Note: Most JSON APIs also expect `headers: { 'Content-Type': 'application/json' }`.
+
+## Error handling
+- **Network errors** throw from `fetch()` and are caught by `try/catch`.
+- **HTTP errors** resolve with `response.ok === false`. Throw when not OK, ideally with the status:
+  ~~~
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  ~~~
+- Use a **single** `try/catch` around the whole sequence to capture both fetch and parsing errors.
+
+## Tips and pitfalls
+- Always `await response.json()` (or `.text()`/`.blob()`) **once**.
+- Consider timeouts and **CORS** when calling external endpoints.
+- Keep side effects (UI updates, logs) after you have validated `response.ok`.
+
+## Additional resources
+- Documentation: Ajax
+- Video: What the Heck is the Event Loop Anyways
+- Resource: MDN’s Guide to Graceful asynchronous Programming with Promises
+- Resource: MDN’s Guide to Choosing the Right Approach
+- Article: MDN’s Introduction to web APIs
+- Article: MDN’s Overview of HTTP
+- Resource: MDN’s Guide to Fetching Data From the Server
+- Documentation: MDN: Using the Fetch API
+- Resource: MDN’s Guide to Third-party APIs
+
+## Fetch await playground
+import FetchAwaitDemo from "./components/fetch-with-await-and-async/FetchAwaitDemo.jsx"
+
+<FetchAwaitDemo />

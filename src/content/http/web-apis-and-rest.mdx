@@ -1,0 +1,203 @@
+# Web apis and rest
+
+## Web apis
+An **Application Programming Interface (API)** is a tool that lets developers interact with another application’s features or data. APIs solve repeated, complex problems by exposing well-defined operations.
+
+## Types of apis
+APIs come in various forms; on the web you will commonly use **browser** and **third party** APIs.
+
+## Browser apis
+Browser APIs expose capabilities of the browser (with user permission when sensitive). Examples include **geolocation**, **audio**, **cryptography**, and **webxr** for VR/AR. See MDN’s Web APIs documentation for a comprehensive catalog: https://developer.mozilla.org/en-US/docs/Web/API
+
+> Note: Sensitive browser APIs (like geolocation or camera) require explicit user permission.
+
+## Third party apis
+Third-party APIs (usually offered by companies) expose data or services your app doesn’t own. Example: **OpenWeather API** for forecasts and historical weather data.
+
+> Tip: Check rate limits, pricing tiers, and terms of service before integrating any third-party API.
+
+## Rules and requirements
+Each API defines how you access it: authentication, request shape, rate limits, and quotas. Many providers require an **API key** associated with your account—keep it **secret** (never commit to public repos).
+
+## Making requests
+API docs describe how to **request** data: HTTP method, path, query params, headers, and body. For example, OpenWeather requests typically include a location (city, coords), units, and an API key.
+
+## Response data
+APIs usually return **JSON**. Example:
+
+~~~
+{
+  "temperature": {
+    "celcius": 25
+  },
+  "city": "chicago"
+}
+~~~
+
+> Attention: Property names and casing vary by API. Always validate and handle missing fields defensively.
+
+## Rest
+**REST (Representational State Transfer)** is an architectural style for web services. RESTful systems are **stateless** and separate **client** and **server** concerns.
+
+## Separation of client and server
+Clients and servers evolve independently. Multiple different clients can call the **same endpoints** and receive the **same kinds of responses**. Statelessness means every request contains all information needed to process it—no server-side session is required.
+
+## Communication between client and server
+Clients send requests to retrieve or modify **resources** (nouns), and servers reply with representations of those resources and status codes.
+
+## Request parts
+A REST request generally includes:
+- an **http verb** (operation)
+- **headers** (metadata)
+- a **path to a resource**
+- an optional **message body**
+
+## Http verbs
+Common verbs and intents:
+- **GET** — retrieve a specific resource (by id) or a collection
+- **POST** — create a new resource
+- **PUT** — replace or update a specific resource
+- **DELETE** — remove a specific resource
+
+> Tip: Map CRUD → **Create=POST**, **Read=GET**, **Update=PUT/PATCH**, **Delete=DELETE**.
+
+## Headers and accept parameters
+Clients advertise acceptable response media types via the **Accept** header (MIME types). Examples:
+- `text/html`, `text/css`, `text/plain`
+- `image/png`, `image/jpeg`, `image/gif`
+- `audio/wav`, `audio/mpeg`
+- `video/mp4`, `video/ogg`
+- `application/json`, `application/pdf`, `application/xml`, `application/octet-stream`
+
+> Note: If a client expects `text/css` but receives `text/plain`, it may not be able to process the response.
+
+## Paths
+Paths describe **resources** clearly and hierarchically. Use **plural nouns** and ids for specific items:
+
+- Collection: `POST /customers` → create a customer (server assigns id)
+- Item: `GET /customers/:id` → retrieve a specific customer
+- Nested: `GET /customers/223/orders/12` → order 12 for customer 223
+
+## Sending responses
+Servers include a **Content-Type** header that matches one of the client’s `Accept` types.
+
+Example:
+
+~~~
+GET /articles/23 HTTP/1.1
+Accept: text/html, application/xhtml
+
+HTTP/1.1 200 OK
+Content-Type: text/html
+~~~
+
+## Response codes
+Know the common status codes:
+
+- **200 ok** — successful request
+- **201 created** — resource created
+- **204 no content** — success with no body
+- **400 bad request** — invalid syntax/parameters
+- **403 forbidden** — not allowed
+- **404 not found** — missing resource
+- **500 internal server error** — unexpected failure
+
+Expected success codes by verb:
+- **GET** → 200
+- **POST** → 201
+- **PUT** → 200
+- **DELETE** → 204
+
+## Restful api example customer management
+**Context**: `fashionboutique.com` provides a RESTful API to manage customers.
+
+1) **view all customers**
+
+**Request**
+~~~
+GET http://fashionboutique.com/customers
+Accept: application/json
+~~~
+
+**Response**
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+# Body: full list of customers (JSON)
+~~~
+
+2) **create a new customer**
+
+**Request**
+~~~
+POST http://fashionboutique.com/customers
+Content-Type: application/json
+
+{
+  "customer": {
+    "name": "Scylla Buss",
+    "email": "scylla.buss@codecademy.org"
+  }
+}
+~~~
+
+**Response**
+~~~
+HTTP/1.1 201 Created
+Content-Type: application/json
+# Body: created object with assigned id
+~~~
+
+3) **view a single customer**
+
+**Request**
+~~~
+GET http://fashionboutique.com/customers/123
+Accept: application/json
+~~~
+
+**Response**
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+# Body: details for id 123
+~~~
+
+4) **update an existing customer**
+
+**Request**
+~~~
+PUT http://fashionboutique.com/customers/123
+Content-Type: application/json
+
+{
+  "customer": {
+    "name": "Scylla Buss",
+    "email": "scyllabuss1@codecademy.com"
+  }
+}
+~~~
+
+**Response**
+~~~
+HTTP/1.1 200 OK
+# Body: updated object or confirmation
+~~~
+
+5) **delete a customer**
+
+**Request**
+~~~
+DELETE http://fashionboutique.com/customers/123
+~~~
+
+**Response**
+~~~
+HTTP/1.1 204 No Content
+# Body: none
+~~~
+
+## Rest client playground
+import RestClientDemo from "./components/web-apis-and-rest/RestClientDemo.jsx"
+
+<RestClientDemo />

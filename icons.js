@@ -7,6 +7,7 @@ import CallMergeIcon from '@mui/icons-material/CallMerge';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CodeIcon from '@mui/icons-material/Code';
+import HttpIcon from '@mui/icons-material/Http';
 
 const ICONS = {
     HtmlIcon,
@@ -17,7 +18,8 @@ const ICONS = {
     CallMergeIcon,
     GitHubIcon,
     ImageNotSupportedIcon,
-    CodeIcon
+    CodeIcon,
+    HttpIcon
 };
 
 export default ICONS;

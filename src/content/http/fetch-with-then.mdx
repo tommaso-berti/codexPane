@@ -1,0 +1,86 @@
+# Fetch with then
+
+## Overview
+The **fetch()** function:
+- creates a **request object** with the details an API needs,
+- **sends** that request to the endpoint you provide, and
+- **returns a promise** that resolves to a **response** object containing the status and data from the server.
+
+First, call `fetch()` with a URL string to determine the request endpoint:
+
+~~~
+fetch('https://api-to-call.com/endpoint')
+~~~
+
+The `.then()` method is chained to handle the resolved promise. Its first callback receives the **response** for successful network requests. A second callback handles **network errors** (e.g., DNS failure, server unreachable).
+
+A second `.then()` runs after the previous `.then()` completes without error. It receives the parsed data (commonly from `response.json()`).
+
+## Fetch get
+**GET** example (kept as-is):
+
+~~~
+fetch('http://api-to-call.com/endpoint').then(response => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Request failed!');
+}, networkError => console.log(networkError.message)
+).then(jsonResponse => {
+  // Code to execute with jsonResponse
+});
+~~~
+
+> Note: `response.ok` is `true` for 2xx statuses. Non-OK HTTP statuses (e.g., 404, 500) still count as a *resolved* network request, so you throw to enter the rejection path.
+
+## Fetch post
+A **POST** includes a second argument with request options:
+
+~~~
+fetch('http://api-to-call.com/endpoint', {
+  method: 'POST',
+  body: JSON.stringify({id: '200'})
+}).then(response => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Request failed!');
+}, networkError => console.log(networkError.message)
+).then(jsonResponse => {
+  // Code to execute with jsonResponse
+});
+~~~
+
+> Tip: Most JSON APIs expect a `Content-Type: application/json` header on POST/PUT/PATCH with a JSON body.
+
+## Error handling
+- **Network failures** (no response at all) trigger the **second** argument to `.then()` *or* a `.catch()` at the end of the chain.
+- **HTTP errors** (like 404/500) resolve successfully but with `response.ok === false`. Check `ok` and throw to route to rejection handlers.
+
+> Attention: Prefer a final `.catch(err => …)` to handle both network and thrown application errors in one place.
+
+## Parsing json
+`response.json()` **returns a promise** that resolves to the parsed body. Chain another `.then()` to access the data:
+
+~~~
+fetch('/api/items')
+  .then(r => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  })
+  .then(data => {
+    // use parsed JSON here
+  })
+  .catch(err => console.error(err));
+~~~
+
+## Tips and pitfalls
+- Include `headers: { 'Content-Type': 'application/json' }` when sending JSON.
+- Use `JSON.stringify(value, null, 2)` for pretty output during debugging.
+- Consider timeouts and **CORS** policies when calling third-party endpoints.
+- Chain `.catch()` once at the end to centralize error handling.
+
+## Fetch then playground
+import FetchThenDemo from "./components/fetch-with-then/FetchThenDemo.jsx"
+
+<FetchThenDemo />

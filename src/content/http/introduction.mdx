@@ -1,0 +1,72 @@
+# Introduction to http
+
+Hypertext Transfer Protocol (HTTP) is the application-layer protocol that powers the web. It defines how clients (usually browsers, apps, or scripts) request resources from servers and how servers respond. HTTP is **stateless** and **text-based** (even when moving binary data), and it sits on top of TCP or QUIC (via HTTP/3). When used over TLS, it becomes **HTTPS**—the secure, encrypted version most sites use today.
+
+## What you will use it for
+- Fetching web pages, APIs, files, and media.
+- Building REST/JSON and GraphQL APIs.
+- Controlling caching, cookies, authentication, and content negotiation.
+
+## Core pieces
+- **Methods**: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+- **Status codes**:
+  - 2xx (success) — `200 OK`, `201 Created`
+  - 3xx (redirect) — `301 Moved Permanently`, `302 Found`, `304 Not Modified`
+  - 4xx (client error) — `400 Bad Request`, `401 Unauthorized`, `404 Not Found`
+  - 5xx (server error) — `500 Internal Server Error`, `502 Bad Gateway`
+- **Headers**: Key–value metadata that shapes behavior (e.g., `Content-Type`, `Authorization`, `Cache-Control`, `Accept`, `Set-Cookie`).
+- **Body**: Optional payload for requests/responses (e.g., JSON, HTML, images).
+
+## Minimal exchange
+
+~~~http
+GET /articles/42 HTTP/1.1
+Host: api.example.com
+Accept: application/json
+User-Agent: demo-client/1.0
+~~~
+
+~~~http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: max-age=60
+
+{"id":42,"title":"Hello HTTP"}
+~~~
+
+## Versions at a glance
+- **HTTP/1.1**: Persistent connections, chunked transfer, text framing.
+- **HTTP/2**: Multiplexing, header compression (HPACK), server push (deprecated by many).
+- **HTTP/3**: Runs over QUIC/UDP, improves latency and reliability, better loss recovery.
+
+## Caching essentials
+- **Freshness**: `Cache-Control: max-age`, `s-maxage`, `immutable`, plus `Expires`.
+- **Validation**: `ETag` / `If-None-Match`, `Last-Modified` / `If-Modified-Since`.
+- **Scopes**: `public` (shared caches) vs `private` (per-user).
+
+> Tip: Prefer strong `ETag`s and explicit `Cache-Control` over relying on defaults.
+
+## Content negotiation
+Clients advertise what they can handle; servers choose the best match:
+- `Accept` (media types), `Accept-Language`, `Accept-Encoding`, `Accept-Charset`.
+- `Vary` tells caches which request headers affect the representation.
+
+## Cookies and sessions
+- `Set-Cookie` establishes state on the client.
+- Use `HttpOnly`, `Secure`, `SameSite` to mitigate common attacks.
+- Prefer tokens (e.g., JWT or opaque) over server-stored sessions when scaling stateless APIs—evaluate trade-offs around revocation.
+
+## Security basics
+- Use **HTTPS** everywhere; redirect `http://` → `https://`.
+- Add **HSTS** (`Strict-Transport-Security`) to enforce TLS.
+- Protect against **CSRF** (SameSite cookies, CSRF tokens) and **XSS** (encode output, `Content-Security-Policy`).
+- Validate and sanitize inputs; prefer allow-lists.
+
+## Practical tooling
+- CLI: `curl`, `wget`, `httpie`.
+- Debugging: browser DevTools → Network tab.
+- Testing: Postman/Insomnia, automated tests in CI with `fetch`, `axios`, or language-native HTTP libs.
+
+> Note: Idempotency matters—`GET`, `HEAD`, `PUT`, and `DELETE` should be safe/idempotent by design; `POST` typically is not. This affects retries and caching.
+
+With these fundamentals, you can read, design, debug, and optimize HTTP interactions—from static websites to high-performance APIs.

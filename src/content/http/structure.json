@@ -1,0 +1,112 @@
+{
+  "id": "http",
+  "title": "HTTP",
+  "slug": "http",
+  "icon": "HttpIcon",
+  "items": [
+    {
+      "id": "http-https",
+      "type": "section",
+      "title": "HTTP/HTTPS",
+      "slug": "http/http-https",
+      "order": 1,
+      "items": [
+        { "id": "http-basics", "type": "subSection", "title": "Http basics", "slug": "http/http-https#http-basics", "order": 1 },
+        { "id": "url-and-dns", "type": "subSection", "title": "Url and dns", "slug": "http/http-https#url-and-dns", "order": 2 },
+        { "id": "requests-and-methods", "type": "subSection", "title": "Requests and methods", "slug": "http/http-https#requests-and-methods", "order": 3 },
+        { "id": "responses-and-status-codes", "type": "subSection", "title": "Responses and status codes", "slug": "http/http-https#responses-and-status-codes", "order": 4 },
+        { "id": "http-versions", "type": "subSection", "title": "Http versions", "slug": "http/http-https#http-versions", "order": 5 },
+        { "id": "https-and-certificates", "type": "subSection", "title": "Https and certificates", "slug": "http/http-https#https-and-certificates", "order": 6 },
+        { "id": "httpdemo-playground", "type": "subSection", "title": "Httpdemo playground", "slug": "http/http-https#httpdemo-playground", "order": 7 },
+        { "id": "additional-examples", "type": "subSection", "title": "Additional Examples", "slug": "http/http-https#additional-examples", "order": 8 }
+      ]
+    },
+    {
+      "id": "web-apis-and-rest",
+      "type": "section",
+      "title": "Web apis and rest",
+      "slug": "http/web-apis-and-rest",
+      "order": 2,
+      "items": [
+        { "id": "web-apis", "type": "subSection", "title": "Web apis", "slug": "http/web-apis-and-rest#web-apis", "order": 1 },
+        { "id": "types-of-apis", "type": "subSection", "title": "Types of apis", "slug": "http/web-apis-and-rest#types-of-apis", "order": 2 },
+        { "id": "browser-apis", "type": "subSection", "title": "Browser apis", "slug": "http/web-apis-and-rest#browser-apis", "order": 3 },
+        { "id": "third-party-apis", "type": "subSection", "title": "Third party apis", "slug": "http/web-apis-and-rest#third-party-apis", "order": 4 },
+        { "id": "rules-and-requirements", "type": "subSection", "title": "Rules and requirements", "slug": "http/web-apis-and-rest#rules-and-requirements", "order": 5 },
+        { "id": "making-requests", "type": "subSection", "title": "Making requests", "slug": "http/web-apis-and-rest#making-requests", "order": 6 },
+        { "id": "response-data", "type": "subSection", "title": "Response data", "slug": "http/web-apis-and-rest#response-data", "order": 7 },
+        { "id": "rest", "type": "subSection", "title": "Rest", "slug": "http/web-apis-and-rest#rest", "order": 8 },
+        { "id": "separation-of-client-and-server", "type": "subSection", "title": "Separation of client and server", "slug": "http/web-apis-and-rest#separation-of-client-and-server", "order": 9 },
+        { "id": "communication-between-client-and-server", "type": "subSection", "title": "Communication between client and server", "slug": "http/web-apis-and-rest#communication-between-client-and-server", "order": 10 },
+        { "id": "request-parts", "type": "subSection", "title": "Request parts", "slug": "http/web-apis-and-rest#request-parts", "order": 11 },
+        { "id": "http-verbs", "type": "subSection", "title": "Http verbs", "slug": "http/web-apis-and-rest#http-verbs", "order": 12 },
+        { "id": "headers-and-accept-parameters", "type": "subSection", "title": "Headers and accept parameters", "slug": "http/web-apis-and-rest#headers-and-accept-parameters", "order": 13 },
+        { "id": "paths", "type": "subSection", "title": "Paths", "slug": "http/web-apis-and-rest#paths", "order": 14 },
+        { "id": "sending-responses", "type": "subSection", "title": "Sending responses", "slug": "http/web-apis-and-rest#sending-responses", "order": 15 },
+        { "id": "response-codes", "type": "subSection", "title": "Response codes", "slug": "http/web-apis-and-rest#response-codes", "order": 16 },
+        { "id": "restful-api-example-customer-management", "type": "subSection", "title": "Restful api example customer management", "slug": "http/web-apis-and-rest#restful-api-example-customer-management", "order": 17 },
+        { "id": "rest-client-playground", "type": "subSection", "title": "Rest client playground", "slug": "http/web-apis-and-rest#rest-client-playground", "order": 18 }
+      ]
+    },
+    {
+      "id": "json",
+      "type": "section",
+      "title": "JSON",
+      "slug": "http/json",
+      "order": 3,
+      "items": [
+        { "id": "json-syntax", "type": "subSection", "title": "Json syntax", "slug": "http/json#json-syntax", "order": 1 },
+        { "id": "json-data-types", "type": "subSection", "title": "Json data types", "slug": "http/json#json-data-types", "order": 2 },
+        { "id": "json-object-vs-javascript-object", "type": "subSection", "title": "Json object vs javascript object", "slug": "http/json#json-object-vs-javascript-object", "order": 3 },
+        { "id": "reading-a-json-string", "type": "subSection", "title": "Reading a json string", "slug": "http/json#reading-a-json-string", "order": 4 },
+        { "id": "writing-a-json-string", "type": "subSection", "title": "Writing a json string", "slug": "http/json#writing-a-json-string", "order": 5 },
+        { "id": "json-playground", "type": "subSection", "title": "Json playground", "slug": "http/json#json-playground", "order": 6 }
+      ]
+    },
+    {
+      "id": "fetch-with-then",
+      "type": "section",
+      "title": "Fetch with then",
+      "slug": "http/fetch-with-then",
+      "order": 4,
+      "items": [
+        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/fetch-with-then#overview", "order": 1 },
+        { "id": "fetch-get", "type": "subSection", "title": "Fetch get", "slug": "http/fetch-with-then#fetch-get", "order": 2 },
+        { "id": "fetch-post", "type": "subSection", "title": "Fetch post", "slug": "http/fetch-with-then#fetch-post", "order": 3 },
+        { "id": "error-handling", "type": "subSection", "title": "Error handling", "slug": "http/fetch-with-then#error-handling", "order": 4 },
+        { "id": "parsing-json", "type": "subSection", "title": "Parsing json", "slug": "http/fetch-with-then#parsing-json", "order": 5 },
+        { "id": "tips-and-pitfalls", "type": "subSection", "title": "Tips and pitfalls", "slug": "http/fetch-with-then#tips-and-pitfalls", "order": 6 },
+        { "id": "fetch-then-playground", "type": "subSection", "title": "Fetch then playground", "slug": "http/fetch-with-then#fetch-then-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "fetch-with-await-and-async",
+      "type": "section",
+      "title": "Fetch with await and async",
+      "slug": "http/fetch-with-await-and-async",
+      "order": 6,
+      "items": [
+        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/fetch-with-await-and-async#overview", "order": 1 },
+        { "id": "async-await-get", "type": "subSection", "title": "Async await get", "slug": "http/fetch-with-await-and-async#async-await-get", "order": 2 },
+        { "id": "async-await-post", "type": "subSection", "title": "Async await post", "slug": "http/fetch-with-await-and-async#async-await-post", "order": 3 },
+        { "id": "error-handling", "type": "subSection", "title": "Error handling", "slug": "http/fetch-with-await-and-async#error-handling", "order": 4 },
+        { "id": "tips-and-pitfalls", "type": "subSection", "title": "Tips and pitfalls", "slug": "http/fetch-with-await-and-async#tips-and-pitfalls", "order": 5 },
+        { "id": "additional-resources", "type": "subSection", "title": "Additional resources", "slug": "http/fetch-with-await-and-async#additional-resources", "order": 6 },
+        { "id": "fetch-await-playground", "type": "subSection", "title": "Fetch await playground", "slug": "http/fetch-with-await-and-async#fetch-await-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "api-call",
+      "type": "section",
+      "title": "API call",
+      "slug": "http/api-call",
+      "order": 7,
+      "items": [
+        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/api-call#overview", "order": 1 },
+        { "id": "query-strings", "type": "subSection", "title": "Query strings", "slug": "http/api-call#query-strings", "order": 2 },
+        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "http/api-call#examples", "order": 3 },
+        { "id": "query-string-playground", "type": "subSection", "title": "Query string playground", "slug": "http/api-call#query-string-playground", "order": 4 }
+      ]
+    }
+  ]
+}

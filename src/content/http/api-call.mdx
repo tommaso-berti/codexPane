@@ -1,0 +1,55 @@
+# API call
+
+## Overview
+An API call typically combines:
+- a **base URL**,
+- an **endpoint** (path),
+- optional **query parameters** (after `?`), and
+- optionally **headers** and a **body** (for non-GET requests).
+
+## Query strings
+Query strings start with `?` followed by **key=value** pairs. Multiple pairs are joined with `&`.
+
+~~~
+const queryString = `?${key}=${value}`;
+// Multiple params:
+const qs = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+~~~
+
+> Tip: Always URL-encode user-provided values:
+> ~~~
+> const qs = `?q=${encodeURIComponent(userSearch)}`;
+> ~~~
+
+## Examples
+**Example of an API call**
+
+~~~
+const tmdbKey = 'personal API key';
+const tmdbBaseUrl = 'https://api.themoviedb.org/3';
+
+const getGenres = () => {
+  const genreRequestEndpoint = 'genre/movie/list';
+  const requestParams = `?api_key=tmdbKey`;
+  const urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams
+};
+~~~
+
+> Note: When using template literals with variables, interpolate with `${...}`:
+> ~~~
+> const requestParams = `?api_key=${tmdbKey}`;
+> const urlToFetch = `${tmdbBaseUrl}/${genreRequestEndpoint}${requestParams}`;
+> ~~~
+
+**Query strings with two parameters**
+
+~~~
+`?api_key=${tmdbKey}&with_genres=${selectedGenre}`
+~~~
+
+> Attention: Most APIs require the key to be passed as a header or as `api_key`/`key` query param. Keep secrets out of client-side code in production.
+
+## Query string playground
+import QueryStringBuilder from "./components/api-call/QueryStringBuilder.jsx"
+
+<QueryStringBuilder />

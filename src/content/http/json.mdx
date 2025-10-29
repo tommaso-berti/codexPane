@@ -1,0 +1,106 @@
+# JSON
+
+JSON, or JavaScript Object Notation, is a popular, language-independent, standard format for storing and exchanging data. Adopted by ECMA International, JSON has become the de facto standard that facilitates storing and sending data between all programming languages.
+
+JSON is heavily used to facilitate data transfer in web applications between a client (such as a browser) and a server. A typical example is when you submit a web form: the form data is converted from HTML to JavaScript objects to JSON, then sent to a remote server for processing.
+
+When companies make their data public for other applications (e.g., Spotify’s music library or Google’s map data), the information is often formatted in JSON so any application, regardless of language, can parse it.
+
+## Json syntax
+Since JSON is derived from the JavaScript programming language, its appearance is similar to that of JavaScript objects.
+
+~~~
+{
+  "student": {
+    "name": "Rumaisa Mahoney",
+    "age": 30,
+    "fullTime": true,
+    "languages": [ "JavaScript", "HTML", "CSS" ],
+    "GPA": 3.9,
+    "favoriteSubject": null
+  }
+}
+~~~
+
+> Note: JSON requires double quotes for property names and string values.
+
+## Json data types
+A JSON data type must be one of the following:
+
+- string (double-quoted)
+- number (integer or floating point)
+- object (name-value pair)
+- array (comma-delimited)
+- boolean (true or false)
+- null
+
+Notably, JSON doesn’t cover every data type. Types not represented in JSON—such as dates—can be stored as strings and converted to language-specific data structures.
+
+Example ISO 8601 date string:
+
+~~~
+"2014-01-01T23:28:56.782Z"
+~~~
+
+> Attention: Always validate incoming data and handle missing or unexpected fields defensively.
+
+## Json object vs javascript object
+**JSON**
+
+~~~
+{
+  "person": {
+    "name": "Kate",
+    "age": 30,
+    "hobbies": [ "reading", "writing", "cooking", "tennis" ]
+  }
+}
+~~~
+
+**JavaScript**
+
+~~~
+{
+  person: {
+    name: 'Kate',
+    age: 30,
+    hobbies: [ 'reading', 'writing', 'cooking', 'tennis' ]
+  }
+}
+~~~
+
+Notice the differences:
+
+- In JSON, property names and all string values **must** be in **double quotes**.
+- In JavaScript objects, quotes around property names are optional (when identifiers are valid), and strings may be single or double quoted (style guides may prefer one).
+
+## Reading a json string
+In a typical web application, JSON from a web request arrives as a **string**. Sometimes JSON is stored in `.json` files (for configuration, authentication, etc.). You’ll need to convert the string into a usable in-memory representation.
+
+In JavaScript, the built-in `JSON` class has a `.parse()` method that takes a JSON string and returns a JavaScript object.
+
+~~~
+const jsonData = '{ "book": { "name": "JSON Primer", "price": 29.99, "inStock": true, "rating": null } }';
+const jsObject = JSON.parse(jsonData);
+console.log(jsObject);
+// → { book: { name: 'JSON Primer', price: 29.99, inStock: true, rating: null } }
+~~~
+
+> Tip: Wrap `JSON.parse` in `try/catch` to handle malformed input.
+
+## Writing a json string
+Before sending data across the web, convert it to a JSON string. In JavaScript, use `JSON.stringify()` to transform a JavaScript value into JSON.
+
+~~~
+const jsObject = { book: 'JSON Primer', price: 29.99, inStock: true, rating: null };
+const jsonData = JSON.stringify(jsObject);
+console.log(jsonData);
+// → { "book": "JSON Primer", "price": 29.99, "inStock": true, "rating": null }
+~~~
+
+> Note: `JSON.stringify(value, null, 2)` pretty-prints with 2-space indentation. Omit the third argument to minify.
+
+## Json playground
+import JsonPlayground from "./components/json/JsonPlayground.jsx"
+
+<JsonPlayground />
