@@ -1,0 +1,293 @@
+# Static Website Deployment — VPS + NGINX + HTTPS + GitHub Actions
+
+This guide explains how to host and automatically deploy a **static website** (HTML, CSS, JS) on a **Linux VPS** using **NGINX**, **Certbot**, **Aruba DNS**, and **GitHub Actions** for CI/CD via SSH.
+Follow steps in order and replace placeholders like `<project-name>`, `<domain>`, `<VPS-IP>`, `<deploy-user>`, `<your-user>`, `<repo>`.
+
+> Tip: Commands assume Debian/Ubuntu and `sudo` privileges. Run from a non-root user unless stated otherwise.
+
+## Repository and vps structure
+
+**On GitHub**
+~~~
+my-cheat-sheet/
+├── deploy/
+│   └── update-my-cheat-sheet.sh
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+~~~
+
+**On VPS**
+~~~
+/srv/www/sites/my-cheat-sheet/public/        # GitHub project clone
+~~~
+
+**Recommended VPS Structure (Static Website)**
+~~~
+/srv/www/
+├── sites/
+│   └── example-site/
+│       └── public/           ← Contains index.html, CSS, JS files
+├── logs/
+│   └── example-site/
+│       ├── access.log
+│       └── error.log
+├── configs/
+    └── nginx/
+        └── example.conf
+~~~
+
+## Prerequisites
+
+- Linux VPS (Ubuntu/Debian) with public IP
+- Non-root user with `sudo` (e.g., `<deploy-user>`)
+- GitHub repo with your static site (`index.html` required)
+- Domain or subdomain on Aruba (e.g., `www.example.com`)
+
+## Prepare the vps packages firewall user
+
+~~~bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y nginx git curl ufw
+
+# Create a non-root deploy user (if needed)
+sudo adduser <deploy-user>
+sudo usermod -aG sudo <deploy-user>
+
+# Open firewall for SSH + HTTP/HTTPS
+sudo ufw allow OpenSSH
+sudo ufw allow 'Nginx Full'   # opens 80 + 443
+sudo ufw --force enable
+sudo ufw status
+~~~
+
+## Create the directory layout
+
+~~~bash
+sudo mkdir -p /srv/www/sites/<project-name>/public
+sudo mkdir -p /srv/www/logs/<project-name>
+sudo mkdir -p /srv/www/configs/nginx
+~~~
+
+## Clone your website from github
+
+~~~bash
+cd /srv/www/sites/<project-name>/public
+sudo git clone https://github.com/<your-user>/<repo>.git .
+~~~
+
+> Note: The trailing `.` prevents creating an extra folder.
+
+## Configure nginx
+
+Create `/srv/www/configs/nginx/<project-name>.conf`:
+
+~~~nginx
+server {
+    listen 80;
+    server_name <domain>;  # e.g. www.example.com
+
+    root /srv/www/sites/<project-name>/public;
+    index index.html;
+
+    access_log /srv/www/logs/<project-name>/access.log;
+    error_log  /srv/www/logs/<project-name>/error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+~~~
+
+Enable and reload:
+
+~~~bash
+sudo ln -s /srv/www/configs/nginx/<project-name>.conf /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+~~~
+
+## Point dns on aruba
+
+Create an **A** record:
+
+| Type | Host (Name)   | Value (IP) |
+|-----:|----------------|------------|
+|  A   | `www.example`  | `<VPS-IP>` |
+
+Result: `www.example.yourdomain.com` → `<VPS-IP>`.
+
+> Note: DNS propagation can take time. Verify with `dig +short <domain>` or `nslookup <domain>`.
+
+## Enable https with certbot
+
+~~~bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d <domain>   # e.g. -d www.example.com
+~~~
+
+> Note: Certbot installs auto-renewal via systemd timers. Check with `systemctl list-timers | grep certbot`.
+
+## Fix permissions
+
+~~~bash
+sudo chown -R www-data:www-data /srv/www/sites/<project-name>/public
+sudo chmod -R 755 /srv/www/sites/<project-name>/public
+~~~
+
+## Optional one shot provisioning script
+
+Create `setup-static-site.sh` to automate steps 2–7:
+
+~~~bash
+#!/bin/bash
+set -euo pipefail
+
+PROJECT_NAME="<project-name>"
+REPO_GITHUB="https://github.com/<your-user>/<repo>.git"
+DOMAIN="<domain>"  # e.g. www.example.com
+ROOT_DIR="/srv/www/sites/$PROJECT_NAME/public"
+LOG_DIR="/srv/www/logs/$PROJECT_NAME"
+CONF_DIR="/srv/www/configs/nginx"
+CONF_FILE="$CONF_DIR/$PROJECT_NAME.conf"
+
+echo "Creating folders..."
+sudo mkdir -p "$ROOT_DIR" "$LOG_DIR" "$CONF_DIR"
+
+echo "Cloning repository..."
+cd "$ROOT_DIR"
+if [[ ! -d .git ]]; then
+  sudo git clone "$REPO_GITHUB" .
+else
+  sudo git pull --ff-only
+fi
+
+echo "Setting permissions..."
+sudo chown -R www-data:www-data "$ROOT_DIR"
+sudo chmod -R 755 "$ROOT_DIR"
+
+echo "Writing NGINX config..."
+sudo tee "$CONF_FILE" >/dev/null <<EOF
+server {
+    listen 80;
+    server_name $DOMAIN;
+
+    root $ROOT_DIR;
+    index index.html;
+
+    access_log $LOG_DIR/access.log;
+    error_log  $LOG_DIR/error.log;
+
+    location / { try_files \$uri \$uri/ =404; }
+}
+EOF
+
+echo "Enable site & reload NGINX..."
+sudo ln -sf "$CONF_FILE" /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+
+read -p "Enable HTTPS with Certbot for $DOMAIN? (y/n): " RESP
+[[ "$RESP" =~ ^[Yy]$ ]] && sudo certbot --nginx -d "$DOMAIN" || echo "HTTPS not enabled."
+
+echo "✅ Static site ready at: http://$DOMAIN"
+~~~
+
+Make it executable:
+
+~~~bash
+chmod +x setup-static-site.sh
+~~~
+
+## Ci cd with github actions over ssh
+
+**Generate a deploy SSH key (local machine):**
+
+~~~bash
+ssh-keygen -t rsa -b 4096 -C "github-deploy" -f ~/.ssh/id_rsa_github -N ""
+ssh-copy-id -i ~/.ssh/id_rsa_github.pub <deploy-user>@<VPS-IP>
+~~~
+
+**Add GitHub repository secrets:**
+
+- `SSH_PRIVATE_KEY` → content of `~/.ssh/id_rsa_github`
+- `VPS_HOST` → `<VPS-IP>`
+- `VPS_USER` → `<deploy-user>`
+
+**Add a repo-local deployment script (executed on VPS):** create `deploy/update-site.sh` in your repo:
+
+~~~bash
+#!/bin/bash
+set -euo pipefail
+echo "Pulling latest changes..."; git pull origin main
+echo "Fixing permissions..."; chown -R www-data:www-data .
+echo "Reloading NGINX..."; systemctl reload nginx
+echo "✅ Deploy complete."
+~~~
+
+On the VPS (first time):
+
+~~~bash
+chmod +x /srv/www/sites/<project-name>/public/deploy/update-site.sh
+~~~
+
+**GitHub Actions workflow** `.github/workflows/deploy.yml`:
+
+~~~yaml
+name: Deploy Static Site to VPS
+on:
+  push:
+    branches: [ main ]
+concurrency: deploy-static
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deployment script on VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd /srv/www/sites/<project-name>/public
+            bash deploy/update-site.sh
+~~~
+
+**Test:** push to `main` and verify the workflow updates your site.
+
+> Attention: The action connects over SSH as your deploy user. Ensure the public key is present in `~/.ssh/authorized_keys` on the VPS and that the firewall allows SSH.
+
+## Optional nginx enhancements
+
+**http to https redirect**
+~~~nginx
+server {
+  listen 80;
+  server_name <domain>;
+  return 301 https://$host$request_uri;
+}
+~~~
+
+**Caching and gzip**
+~~~nginx
+gzip on;
+gzip_types text/plain text/css application/javascript application/json image/svg+xml;
+location ~* \.(js|css|png|jpg|svg|woff2?)$ { expires 30d; access_log off; }
+~~~
+
+## Troubleshooting
+
+| Symptom                              | Likely cause and fix                                      |
+|-------------------------------------|------------------------------------------------------------|
+| `403 Forbidden`                      | Wrong permissions or missing `index.html`.                |
+| `nginx: bind() to 0.0.0.0:80 failed`| Port 80 in use (Traefik/Docker). Check `ss -lntp`.        |
+| Certbot NXDOMAIN                     | DNS not propagated or wrong host at Aruba.                |
+| Actions SSH fails                    | Bad secrets, missing pubkey in `authorized_keys`, port.   |
+
+## Deployment checklist playground
+
+import DeploymentChecklist from "./components/static-site-deploy/DeploymentChecklist.jsx"
+
+<DeploymentChecklist />

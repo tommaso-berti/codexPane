@@ -40,6 +40,51 @@
         {"id": "create-an-ssh-connection-with-pem-certification", "type": "subSection", "title": "Create an ssh connection with pem certification", "slug": "vps/security#create-an-ssh-connection-with-pem-certification", "order": 6},
         {"id": "ssh-keygen-playground", "type": "subSection", "title": "Ssh keygen playground", "slug": "vps/security#ssh-keygen-playground", "order": 7}
       ]
+    },
+    {
+      "id": "static-site-deploy",
+      "type": "section",
+      "title": "Static Website Deployment",
+      "slug": "vps/static-site-deploy",
+      "order": 300,
+      "items": [
+        { "id": "repository-and-vps-structure", "type": "subSection", "title": "Repository and vps structure", "slug": "vps/static-site-deploy#repository-and-vps-structure", "order": 1 },
+        { "id": "prerequisites", "type": "subSection", "title": "Prerequisites", "slug": "vps/static-site-deploy#prerequisites", "order": 2 },
+        { "id": "prepare-the-vps-packages-firewall-user", "type": "subSection", "title": "Prepare the vps packages firewall user", "slug": "vps/static-site-deploy#prepare-the-vps-packages-firewall-user", "order": 3 },
+        { "id": "create-the-directory-layout", "type": "subSection", "title": "Create the directory layout", "slug": "vps/static-site-deploy#create-the-directory-layout", "order": 4 },
+        { "id": "clone-your-website-from-github", "type": "subSection", "title": "Clone your website from github", "slug": "vps/static-site-deploy#clone-your-website-from-github", "order": 5 },
+        { "id": "configure-nginx", "type": "subSection", "title": "Configure nginx", "slug": "vps/static-site-deploy#configure-nginx", "order": 6 },
+        { "id": "point-dns-on-aruba", "type": "subSection", "title": "Point dns on aruba", "slug": "vps/static-site-deploy#point-dns-on-aruba", "order": 7 },
+        { "id": "enable-https-with-certbot", "type": "subSection", "title": "Enable https with certbot", "slug": "vps/static-site-deploy#enable-https-with-certbot", "order": 8 },
+        { "id": "fix-permissions", "type": "subSection", "title": "Fix permissions", "slug": "vps/static-site-deploy#fix-permissions", "order": 9 },
+        { "id": "optional-one-shot-provisioning-script", "type": "subSection", "title": "Optional one shot provisioning script", "slug": "vps/static-site-deploy#optional-one-shot-provisioning-script", "order": 10 },
+        { "id": "ci-cd-with-github-actions-over-ssh", "type": "subSection", "title": "Ci cd with github actions over ssh", "slug": "vps/static-site-deploy#ci-cd-with-github-actions-over-ssh", "order": 11 },
+        { "id": "optional-nginx-enhancements", "type": "subSection", "title": "Optional nginx enhancements", "slug": "vps/static-site-deploy#optional-nginx-enhancements", "order": 12 },
+        { "id": "troubleshooting", "type": "subSection", "title": "Troubleshooting", "slug": "vps/static-site-deploy#troubleshooting", "order": 13 },
+        { "id": "deployment-checklist-playground", "type": "subSection", "title": "Deployment checklist playground", "slug": "vps/static-site-deploy#deployment-checklist-playground", "order": 14 }
+      ]
+    },
+    {
+      "id": "react-spa-deploy",
+      "type": "section",
+      "title": "React SPA Deployment",
+      "slug": "vps/react-spa-deploy",
+      "order": 400,
+      "items": [
+        { "id": "recommended-vps-structure", "type": "subSection", "title": "Recommended vps structure", "slug": "vps/react-spa-deploy#recommended-vps-structure", "order": 1 },
+        { "id": "prerequisites", "type": "subSection", "title": "Prerequisites", "slug": "vps/react-spa-deploy#prerequisites", "order": 2 },
+        { "id": "prepare-the-vps-node-nginx-firewall", "type": "subSection", "title": "Prepare the vps node nginx firewall", "slug": "vps/react-spa-deploy#prepare-the-vps-node-nginx-firewall", "order": 3 },
+        { "id": "clone-and-build-the-react-app", "type": "subSection", "title": "Clone and build the react app", "slug": "vps/react-spa-deploy#clone-and-build-the-react-app", "order": 4 },
+        { "id": "configure-nginx-for-spa-routing", "type": "subSection", "title": "Configure nginx for spa routing", "slug": "vps/react-spa-deploy#configure-nginx-for-spa-routing", "order": 5 },
+        { "id": "point-dns-on-aruba", "type": "subSection", "title": "Point dns on aruba", "slug": "vps/react-spa-deploy#point-dns-on-aruba", "order": 6 },
+        { "id": "enable-https-with-certbot", "type": "subSection", "title": "Enable https with certbot", "slug": "vps/react-spa-deploy#enable-https-with-certbot", "order": 7 },
+        { "id": "fix-permissions", "type": "subSection", "title": "Fix permissions", "slug": "vps/react-spa-deploy#fix-permissions", "order": 8 },
+        { "id": "all-in-one-deploy-script", "type": "subSection", "title": "All in one deploy script", "slug": "vps/react-spa-deploy#all-in-one-deploy-script", "order": 9 },
+        { "id": "build-on-the-vps", "type": "subSection", "title": "Build on the vps", "slug": "vps/react-spa-deploy#build-on-the-vps", "order": 10 },
+        { "id": "build-in-ci-upload-artifacts", "type": "subSection", "title": "Build in ci upload artifacts", "slug": "vps/react-spa-deploy#build-in-ci-upload-artifacts", "order": 11 },
+        { "id": "optional-nginx-enhancements", "type": "subSection", "title": "Optional nginx enhancements", "slug": "vps/react-spa-deploy#optional-nginx-enhancements", "order": 12 },
+        { "id": "troubleshooting", "type": "subSection", "title": "Troubleshooting", "slug": "vps/react-spa-deploy#troubleshooting", "order": 13 }
+      ]
     }
   ]
 }
