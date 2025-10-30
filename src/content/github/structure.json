@@ -103,7 +103,8 @@
       "items": [
         { "id": "prefix", "type": "subSection", "title": "Prefix", "slug": "github/commit-guidelines#prefix", "order": 1 },
         { "id": "usage", "type": "subSection", "title": "Usage", "slug": "github/commit-guidelines#usage", "order": 2 },
-        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "github/commit-guidelines#examples", "order": 3 }
+        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "github/commit-guidelines#examples", "order": 3 },
+        { "id": "close-issue-with-commit", "type": "subSection", "title": "Close issue with commit", "slug": "github/commit-guidelines#close-issue-with-commit", "order": 4 }
       ]
     }
   ]
