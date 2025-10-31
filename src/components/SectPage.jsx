@@ -2,6 +2,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react'
 import 'github-markdown-css/github-markdown.css';
 import '../styles/mdx.css';
+import PreWithCopy from "./PreWithCopy.jsx";
+
 const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
 
 function useScrollToHash(deps = []) {
@@ -34,7 +36,9 @@ export default function SectPage() {
 
     return (
         <div className="markdown-body">
-            <Content />
+            {
+                Content && <Content components={{ pre: PreWithCopy }} />
+            }
         </div>
     );
 }
