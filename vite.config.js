@@ -10,7 +10,8 @@ export default defineConfig({
   plugins: [
       mdx({
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeSlug]
+          rehypePlugins: [rehypeSlug],
+          exclude: ['**/CHANGELOG.md']
       }),
       react(),
       tailwindcss()
