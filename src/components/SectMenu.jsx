@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import SectionMenuItem from './SectMenuItem.jsx';
 import { useDocs } from '../contexts/DocsContext.jsx';
 import { useParams} from "react-router-dom";
-import {useState} from "react";
+import { useState } from "react";
 
 
 export default function SectMenu() {
@@ -14,7 +14,7 @@ export default function SectMenu() {
     const [openSections, setOpenSections] = useState([]);
 
     return (
-        <List dense={true} className="flex-1 min-h-0 overflow-y-auto">
+        <List dense disablePadding sx={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
             {(currentSections).map(section => {
                 const currentSubsections = section?.subSections ?? [];
                 return (
