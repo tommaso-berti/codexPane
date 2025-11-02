@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 const ALL_SUBSECTIONS = import.meta.glob("../content/**/introduction.mdx", { eager: true });
 import 'github-markdown-css/github-markdown.css';
 import '../styles/mdx.css';
-import Box from '@mui/material/Box';
 import PreWithCopy from "./PreWithCopy.jsx";
+import MdxTable from "./MdxTable.jsx";
 
 export default function TopicPage() {
     const {docs} = useParams();
@@ -13,9 +13,14 @@ export default function TopicPage() {
 
     return (
         <div className="markdown-body">
-            {
-                Content && <Content components={{ pre: PreWithCopy }} />
-            }
+            {Content && (
+                <Content
+                    components={{
+                        pre: PreWithCopy,
+                        table: MdxTable,
+                    }}
+                />
+            )}
         </div>
     );
 }

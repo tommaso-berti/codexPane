@@ -44,7 +44,7 @@ export default function Header({onOpenDrawer}) {
             <Box sx={{ ml: 2.5, display: 'flex', alignItems: 'center', gap: 1 }}>
                 <SearchModal />
                 <IconButton aria-label="github" size="large" href="https://github.com/tommaso-berti/codexPane" target="_blank" sx={{color: 'inherit'}}>
-                    <GitHubIcon fontSize="inherit"/>
+                    <GitHubIcon fontSize="inherit" color="primary" />
                 </IconButton>
                 <Button variant="outlined" onClick={onOpenDrawer}><SettingsIcon /></Button>
             </Box>
