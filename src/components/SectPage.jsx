@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import 'github-markdown-css/github-markdown.css';
 import '../styles/mdx.css';
 import PreWithCopy from "./PreWithCopy.jsx";
+import MdxTable from "./MdxTable.jsx";
 
 const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
 
@@ -36,9 +37,14 @@ export default function SectPage() {
 
     return (
         <div className="markdown-body">
-            {
-                Content && <Content components={{ pre: PreWithCopy }} />
-            }
+            {Content && (
+                <Content
+                    components={{
+                        pre: PreWithCopy,
+                        table: MdxTable,
+                    }}
+                />
+            )}
         </div>
     );
 }

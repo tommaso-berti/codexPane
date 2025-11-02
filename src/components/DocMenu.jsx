@@ -40,6 +40,7 @@ export default function DocMenu() {
                 className="!text-xl"
                 sx={{
                     textTransform: 'none',
+                    color: 'inherit',
                 }}
                 startIcon={<SelectedIconComponent fontSize="small" />}
             >

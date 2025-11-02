@@ -5,22 +5,49 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import SettingsIcon from "@mui/icons-material/Settings";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export default function Header({onOpenDrawer}) {
     return (
-        <header className="border-b border-black h-18 top-0 w-full fixed z-10 bg-white flex items-center justify-between pl-5 pr-5">
-            <div className="flex items-center gap-6 mr-5">
-                <h1 className="text-black text-4xl font-bold">CodexPane</h1>
+        <Box
+            component="header"
+            sx={{
+                position: 'fixed',
+                top: 0,
+                width: '100%',
+                zIndex: 10,
+                backgroundColor: 'background.paper',
+                color: 'text.primary',
+                borderBottom: 1,
+                borderColor: 'divider',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                px: 2.5,
+                height: 72
+            }}
+        >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mr: 2.5 }}>
+                <Typography
+                    variant="h4"
+                    component="h1"
+                    fontWeight={700}
+                    color="primary"
+                    noWrap
+                >
+                    CodexPane
+                </Typography>
                 <DocMenu />
                 <Breadcrumb />
-            </div>
-            <div className="max-w ml-5">
+            </Box>
+            <Box sx={{ ml: 2.5, display: 'flex', alignItems: 'center', gap: 1 }}>
                 <SearchModal />
-                <IconButton aria-label="github" size="large" href="https://github.com/tommaso-berti/codexPane" target="_blank">
-                    <GitHubIcon fontSize="inherit"/>
+                <IconButton aria-label="github" size="large" href="https://github.com/tommaso-berti/codexPane" target="_blank" sx={{color: 'inherit'}}>
+                    <GitHubIcon fontSize="inherit" color="primary" />
                 </IconButton>
                 <Button variant="outlined" onClick={onOpenDrawer}><SettingsIcon /></Button>
-            </div>
-        </header>
+            </Box>
+        </Box>
     );
 }

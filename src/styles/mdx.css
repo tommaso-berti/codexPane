@@ -7,27 +7,6 @@
     font-family: "Roboto Light", Avenir, Helvetica, Arial, sans-serif;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-    scroll-margin-top: 5.75rem;
-}
-
-.markdown-body table {
-    --bgColor-default: #FFFFFF;
-    --bgColor-muted: #F0F0F0;
-    color: #222;
-    border-collapse: collapse;
-}
-
-.markdown-body th,
-.markdown-body td {
-    border: 1px solid #ddd;
-}
-
 .markdown-body pre {
     --bgColor-muted: #59bed7;
 }

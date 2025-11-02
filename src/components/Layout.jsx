@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import SettingsDrawer from './SettingsDrawer.jsx';
+import Box from '@mui/material/Box';
+const SIDEBAR_WIDTH = 304;
 
 export default function Layout() {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -10,20 +12,43 @@ export default function Layout() {
     const closeDrawer = () => setDrawerOpen(false);
 
     return (
-        <div className="flex flex-col min-h-screen w-full">
-            <Header onOpenDrawer={openDrawer}/>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh', width: '100%' }}>
+            <Header onOpenDrawer={openDrawer} />
             <SettingsDrawer open={drawerOpen} onClose={closeDrawer} />
-            <div className="flex flex-row flex-1 mt-18 w-full h-[calc(100dvh-5rem)] min-h-0">
-                <div className="w-75 border-r fixed h-full">
+
+            <Box sx={{ display: 'flex', flex: 1, mt: '72px', width: '100%', height: 'calc(100dvh - 72px)', minHeight: 0 }}>
+                <Box
+                    sx={{
+                        position: 'fixed',
+                        top: 72,
+                        left: 0,
+                        height: 'calc(100dvh - 72px)',
+                        width: SIDEBAR_WIDTH,
+                        borderRight: 1,
+                        borderColor: 'divider',
+                        backgroundColor: 'background.paper',
+                    }}
+                >
                     <Sidebar />
-                </div>
-                <main
+                </Box>
+
+                <Box
+                    component="main"
                     data-scroller="content"
-                    className="flex-1 pl-5 pr-5 pt-3 min-h-0 overflow-auto ml-76 mb-6"
+                    sx={{
+                        flex: 1,
+                        pl: 2.5,
+                        pr: 2.5,
+                        pt: 1.5,
+                        minHeight: 0,
+                        overflow: 'auto',
+                        ml: `${SIDEBAR_WIDTH}px`,
+                        mb: 1.5,
+                    }}
                 >
                     <Outlet />
-                </main>
-            </div>
-        </div>
-    )
+                </Box>
+            </Box>
+        </Box>
+    );
 }

@@ -9,6 +9,7 @@ import { useMiniSearchFromDocs } from './useMiniSearchFromDocs';
 import SearchInput from "./SearchInput.jsx";
 import SearchResults from "./SearchResults.jsx";
 import CloseIcon from '@mui/icons-material/Close';
+import { alpha } from '@mui/material/styles';
 
 const style = {
     position: 'absolute',
@@ -63,6 +64,15 @@ export default function SearchModal() {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                slotProps={{
+                    backdrop: {
+                        sx: (theme) => ({
+                            backgroundColor: alpha(theme.palette.background.default, 0.6),
+                            backdropFilter: 'blur(2px)',
+                            WebkitBackdropFilter: 'blur(2px)'
+                        })
+                    }
+                }}
             >
                 <Box sx={style}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%'}}>
