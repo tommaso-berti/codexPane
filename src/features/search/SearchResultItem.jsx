@@ -5,31 +5,39 @@ import Typography from "@mui/material/Typography";
 import TagIcon from "@mui/icons-material/Tag";
 import ListItemButton from "@mui/material/ListItemButton";
 
-export default function SearchResultItem({result, onClick, branch = 'single'}) {
-    const hasTwo = result.breadcrumb.length <= 2;
+export default function SearchResultItem({result, onClick, branch = 'single', siblings = [], index}) {
+    const breadcrumb = result.breadcrumb;
+    const isParent = breadcrumb.length === 2;
+    const isChild  = breadcrumb.length === 3;
 
-    const Gutter = branch === 'none' ? null : (
-        <Typography
-            component="span"
-            sx={{
-                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-                opacity: 0.6,
-                minWidth: 10,
-                textAlign: 'center'
-            }}
-        >
-            {{
-                start: '┌',
-                middle: '├',
-                end: '└',
-                single: '-'
-            }[branch]}
-        </Typography>
-    );
+    const previous = index > 0 ? siblings[index - 1] : null;
+    const prevSameSection =
+        !!previous &&
+        previous.breadcrumb?.[1] === breadcrumb[1] &&
+        (previous.breadcrumb.length === 2 || previous.breadcrumb.length === 3);
+
+    const showGutter = isChild && prevSameSection;
+
+    let gutter = null;
+    if (showGutter) {
+        const symbols = { start: '┌', middle: '├', end: '└', single: '-' };
+        gutter = (
+            <Typography
+                component="span"
+                sx={{
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                    opacity: 0.6,
+                    minWidth: 10,
+                    textAlign: 'center'
+                }}
+            >
+                {symbols[branch]}
+            </Typography>
+        );
+    }
 
     return (
         <ListItemButton
-            key={result.id}
             onClick={() => onClick(result.path)}
             sx={{
                 border: '1px solid #ccc',
@@ -42,34 +50,37 @@ export default function SearchResultItem({result, onClick, branch = 'single'}) {
                 width: '100%'
             }}
         >
-            {
-                hasTwo ? (
+            {isParent && (
+                <ListItemText
+                    primary={
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                            <ArticleIcon fontSize="small" color="action" />
+                            <Typography variant="h6">
+                                {breadcrumb[1]}
+                            </Typography>
+                        </Box>
+                    }
+                />
+            )}
+
+            {isChild && (
+                <>
                     <ListItemText
                         primary={
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                {Gutter}
-                                <ArticleIcon fontSize="small" color="action" />
-                                <Typography variant="h6">{result.breadcrumb[1]}</Typography>
+                                {gutter}
+                                <TagIcon fontSize="small" color="action" />
+                                <Typography variant="h6">
+                                    {breadcrumb[2]}
+                                </Typography>
                             </Box>
                         }
                     />
-                ) : (
-                    <Box>
-                        <ListItemText
-                            primary={
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    {Gutter}
-                                    <TagIcon fontSize="small" color="action" />
-                                    <Typography variant="h6">{result.breadcrumb[2]}</Typography>
-                                </Box>
-                            }
-                        />
-                        <ListItemText
-                            primary={<Typography variant="subtitle2">{result.breadcrumb[1]}</Typography>}
-                        />
-                    </Box>
-                )
-            }
+                    <ListItemText
+                        primary={<Typography variant="subtitle2">{breadcrumb[1]}</Typography>}
+                    />
+                </>
+            )}
         </ListItemButton>
-    )
+    );
 }

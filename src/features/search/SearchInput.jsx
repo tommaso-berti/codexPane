@@ -7,9 +7,9 @@ export default function SearchInput({value, onChange}) {
         <Box
             sx={{
                 position: 'sticky',
-                bgcolor: 'background.paper',
+                backgroundColor: 'background.paper',
                 zIndex: 1,
-                mb: 2,
+                flexGrow: 1
             }}
         >
             <TextField

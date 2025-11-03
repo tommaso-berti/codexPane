@@ -42,7 +42,7 @@ export function useMiniSearchFromDocs() {
         const ms = new MiniSearch({
             fields: ['title', 'body'],
             storeFields: ['title', 'path', 'breadcrumb', 'topictitle'],
-            searchOptions: { prefix: true, fuzzy: 0.2 },
+            searchOptions: { prefix: true, fuzzy: 0.2, boost: { title: 3, body: 1 } },
         });
 
         ms.addAll(flat);

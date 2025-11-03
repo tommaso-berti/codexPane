@@ -19,11 +19,11 @@ const style = {
     width: '50%',
     height: '50%',
     overflow: 'auto',
-    bgcolor: 'background.paper',
+    backgroundColor: 'background.paper',
     border: '1px solid #000',
     borderRadius: '10px',
     boxShadow: 24,
-    p: 2
+    p: 3
 };
 
 export default function SearchModal() {
@@ -75,7 +75,7 @@ export default function SearchModal() {
                 }}
             >
                 <Box sx={style}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%'}}>
+                    <Box sx={{ display: 'flex', gap:2 }}>
                         <SearchInput value={searchString} onChange={(e) => setSearchString(e.target.value)} />
                         <IconButton aria-label="delete" color="primary" onClick={() => handleClose()}>
                             <CloseIcon />
