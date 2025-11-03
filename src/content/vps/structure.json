@@ -5,24 +5,24 @@
   "icon": "PublicIcon",
   "items": [
     {
-      "id": "server-linux-commands-debian",
+      "id": "server-linux-commands",
       "type": "section",
-      "title": "Server Linux Commands (Debian)",
-      "slug": "vps/server-linux-commands-debian",
+      "title": "Server Linux Commands",
+      "slug": "vps/server-linux-commands",
       "order": 100,
       "items": [
-        {"id": "check-system-info", "type": "subSection", "title": "Check system info", "slug": "vps/server-linux-commands-debian#check-system-info", "order": 1},
-        {"id": "update-your-system", "type": "subSection", "title": "Update your system", "slug": "vps/server-linux-commands-debian#update-your-system", "order": 2},
-        {"id": "user-management", "type": "subSection", "title": "User management", "slug": "vps/server-linux-commands-debian#user-management", "order": 3},
-        {"id": "set-up-a-firewall-ufw", "type": "subSection", "title": "Set up a firewall ufw", "slug": "vps/server-linux-commands-debian#set-up-a-firewall-ufw", "order": 4},
-        {"id": "secure-ssh-disable-password-login", "type": "subSection", "title": "Secure ssh disable password login", "slug": "vps/server-linux-commands-debian#secure-ssh-disable-password-login", "order": 5},
-        {"id": "install-a-web-server", "type": "subSection", "title": "Install a web server", "slug": "vps/server-linux-commands-debian#install-a-web-server", "order": 6},
-        {"id": "install-a-database-server", "type": "subSection", "title": "Install a database server", "slug": "vps/server-linux-commands-debian#install-a-database-server", "order": 7},
-        {"id": "set-up-wordpress-quick-install", "type": "subSection", "title": "Set up wordpress quick install", "slug": "vps/server-linux-commands-debian#set-up-wordpress-quick-install", "order": 8},
-        {"id": "secure-your-ssh-keys", "type": "subSection", "title": "Secure your ssh keys", "slug": "vps/server-linux-commands-debian#secure-your-ssh-keys", "order": 9},
-        {"id": "monitor-your-vps", "type": "subSection", "title": "Monitor your vps", "slug": "vps/server-linux-commands-debian#monitor-your-vps", "order": 10},
-        {"id": "server-basic-commands", "type": "subSection", "title": "Server basic commands", "slug": "vps/server-linux-commands-debian#server-basic-commands", "order": 11},
-        {"id": "reboot-and-power-controls", "type": "subSection", "title": "Reboot and power controls", "slug": "vps/server-linux-commands-debian#reboot-and-power-controls", "order": 12}
+        {"id": "check-system-info", "type": "subSection", "title": "Check system info", "slug": "vps/server-linux-commands#check-system-info", "order": 1},
+        {"id": "update-your-system", "type": "subSection", "title": "Update your system", "slug": "vps/server-linux-commands#update-your-system", "order": 2},
+        {"id": "user-management", "type": "subSection", "title": "User management", "slug": "vps/server-linux-commands#user-management", "order": 3},
+        {"id": "set-up-a-firewall-ufw", "type": "subSection", "title": "Set up a firewall ufw", "slug": "vps/server-linux-commands#set-up-a-firewall-ufw", "order": 4},
+        {"id": "secure-ssh-disable-password-login", "type": "subSection", "title": "Secure ssh disable password login", "slug": "vps/server-linux-commands#secure-ssh-disable-password-login", "order": 5},
+        {"id": "install-a-web-server", "type": "subSection", "title": "Install a web server", "slug": "vps/server-linux-commands#install-a-web-server", "order": 6},
+        {"id": "install-a-database-server", "type": "subSection", "title": "Install a database server", "slug": "vps/server-linux-commands#install-a-database-server", "order": 7},
+        {"id": "set-up-wordpress-quick-install", "type": "subSection", "title": "Set up wordpress quick install", "slug": "vps/server-linux-commands#set-up-wordpress-quick-install", "order": 8},
+        {"id": "secure-your-ssh-keys", "type": "subSection", "title": "Secure your ssh keys", "slug": "vps/server-linux-commands#secure-your-ssh-keys", "order": 9},
+        {"id": "monitor-your-vps", "type": "subSection", "title": "Monitor your vps", "slug": "vps/server-linux-commands#monitor-your-vps", "order": 10},
+        {"id": "server-basic-commands", "type": "subSection", "title": "Server basic commands", "slug": "vps/server-linux-commands#server-basic-commands", "order": 11},
+        {"id": "reboot-and-power-controls", "type": "subSection", "title": "Reboot and power controls", "slug": "vps/server-linux-commands#reboot-and-power-controls", "order": 12}
       ]
     },
     {
