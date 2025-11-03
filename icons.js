@@ -9,6 +9,8 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CodeIcon from '@mui/icons-material/Code';
 import HttpIcon from '@mui/icons-material/Http';
 import PublicIcon from '@mui/icons-material/Public';
+import { CustomMuiIcon } from './icons/index.js';
+
 
 const ICONS = {
     HtmlIcon,
@@ -21,7 +23,8 @@ const ICONS = {
     ImageNotSupportedIcon,
     CodeIcon,
     HttpIcon,
-    PublicIcon
+    PublicIcon,
+    CustomMuiIcon
 };
 
 export default ICONS;
