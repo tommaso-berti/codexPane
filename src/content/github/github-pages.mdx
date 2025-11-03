@@ -1,0 +1,242 @@
+# GitHub Pages
+
+GitHub Pages is a static hosting service that publishes HTML, CSS, JavaScript, and static assets directly from a GitHub repository. It is ideal for documentation sites, portfolios, blogs, and demo pages. You can publish from a specific branch or deploy via GitHub Actions for more control.
+
+> **Note**
+> GitHub Pages serves static content only. For server-side logic, use an external backend or serverless functions hosted elsewhere.
+
+## Types of sites
+There are three common patterns:
+
+- **User or organization site**
+  Lives at `https://<user>.github.io/` or `https://<org>.github.io/`. The repository must be named `<user>.github.io` or `<org>.github.io`.
+
+- **Project site**
+  Lives at `https://<user>.github.io/<repo>/`. Any repository name is fine. Useful for docs and demos per project.
+
+- **Custom domain**
+  Map your site to `https://example.com` or a subdomain like `https://docs.example.com` via DNS (CNAME/ALIAS/ANAME) and the Pages settings.
+
+> **Tip**
+> Prefer a user/organization site for a single homepage and project sites for individual repositories.
+
+## Quick start
+1. **Create or open a repository** with your static files (HTML/CSS/JS) or docs.
+2. **Add an index.html** at the repository root (or in `/docs` if you plan to publish from the `docs/` folder).
+3. **Enable Pages**
+   Go to **Settings → Pages**:
+   - **Source**: choose a branch (e.g., `main`) and folder (`/root` or `/docs`).
+   - Click **Save**. GitHub will build and publish.
+4. **Wait for the green check** then open the site URL provided by Pages.
+
+Minimal example:
+
+~~~
+index.html
+styles.css
+images/
+~~~
+
+`index.html`:
+
+~~~html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello Pages</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Hello, GitHub Pages 👋</h1>
+    <p>This site is deployed from a GitHub repository.</p>
+  </body>
+</html>
+~~~
+
+> **Attention**
+> If you publish from `/docs`, keep your `index.html` inside the `docs/` folder.
+
+## Jekyll basics
+GitHub Pages natively supports **Jekyll**, a static site generator. When a `_config.yml` is present (and you do **not** add a `.nojekyll` file), the repository is built with Jekyll on GitHub’s infrastructure.
+
+- **Disable Jekyll** by adding a file named `.nojekyll` at the root if you use another generator (e.g., Next.js SSG, Astro, Hugo built output).
+- **Minimal Jekyll site** structure:
+
+~~~
+_config.yml
+index.md
+_posts/
+  2025-01-01-hello.md
+assets/
+~~~
+
+`_config.yml` (example):
+
+~~~yaml
+title: My Docs
+description: Project documentation
+theme: minima
+plugins:
+  - jekyll-feed
+markdown: kramdown
+permalink: pretty
+~~~
+
+`index.md`:
+
+~~~markdown
+---
+layout: home
+title: Welcome
+---
+
+# Welcome
+This is my Jekyll-powered site on GitHub Pages.
+~~~
+
+> **Tip**
+> For non-Jekyll static sites, build locally or via Actions and publish the generated output directory. Add `.nojekyll` to bypass Jekyll processing.
+
+## Custom domain and https
+1. **Add your domain** in **Settings → Pages → Custom domain** (e.g., `docs.example.com`).
+2. **Set DNS**: create a **CNAME** record pointing your domain to `<user>.github.io`.
+   For apex domains (e.g., `example.com`), use an **ALIAS/ANAME** if your DNS supports it, or `A` records to GitHub Pages IPs (check the latest IPs in GitHub docs).
+3. **Enforce HTTPS** once the certificate is issued (toggle on in Pages settings).
+
+`CNAME` file (optional, but recommended to commit):
+
+~~~
+docs.example.com
+~~~
+
+> **Note**
+> DNS propagation may take time. Keep the `CNAME` file in the published branch so Pages keeps your mapping during redeploys.
+
+## Project configuration
+Key settings and patterns:
+
+- **Publishing source**: branch + folder (`/root` or `/docs`), or deploy via Actions.
+- **Base path** for project sites: your site is served at `/repo-name/`.
+  - Prefer **relative URLs** or compute paths using a `<base>` tag.
+  - In Jekyll, set `baseurl: "/repo-name"` in `_config.yml` and reference assets as `{{ site.baseurl }}/assets/app.css`.
+
+Example `_config.yml` for a project site:
+
+~~~yaml
+title: My Project
+baseurl: "/my-project"
+url: "https://<user>.github.io"
+~~~
+
+Link to asset in a template:
+
+~~~liquid
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/app.css">
+~~~
+
+Plain HTML alternative:
+
+~~~html
+<head>
+  <base href="/my-project/">
+</head>
+~~~
+
+> **Tip**
+> When you move from a project site to a custom domain, remove or update `baseurl` and `<base>` to avoid broken links.
+
+## Deploy with actions
+Use **GitHub Actions** for repeatable, generator-agnostic deploys. Typical flow:
+
+- Build the site (e.g., npm build).
+- Upload the build output as an artifact.
+- Deploy the artifact to the Pages environment.
+
+Minimal workflow (`.github/workflows/deploy.yml`):
+
+~~~yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+~~~
+
+> **Note**
+> Replace `./dist` with your generator’s output folder (e.g., `build`, `out`, `public`). The `pages` permissions are required.
+
+## Spa routing and 404
+Because Pages is static, the server cannot rewrite all SPA routes to `index.html` by default. Common strategies:
+
+- **Client-side fallback** using `404.html`: create a `404.html` that redirects unknown routes to `index.html`.
+
+`404.html`:
+
+~~~html
+<!doctype html>
+<meta charset="utf-8">
+<script>
+  const segment = location.pathname.replace(/\/+$/, "");
+  const repoName = "/my-project"; // set to "" for user/organization sites
+  const target = repoName + "/index.html?path=" + encodeURIComponent(segment + location.search + location.hash);
+  location.replace(target);
+</script>
+<p>Redirecting…</p>
+~~~
+
+- **Hash-based routing** (e.g., `/#/about`) avoids 404s entirely because the path before `#` is always `/`.
+
+> **Tip**
+> If you use React Router, configure `BrowserRouter` with a `basename` equal to your base path (e.g., `/my-project`) or use `HashRouter` for zero-config routing on Pages.
+
+## Troubleshooting
+- **Site builds but shows old content** → Clear browser cache or add a cache-busting query (e.g., `app.css?v=2`). Ensure Actions deploy finished successfully.
+- **404 on asset paths** → Check `baseurl` or `<base>` and relative vs absolute paths.
+- **Custom domain not working** → Verify DNS records, keep `CNAME` file, and ensure HTTPS is enabled in Pages settings.
+- **Jekyll processing unwanted** → Add `.nojekyll` at the root of the published branch/folder.
+- **Large assets** → Use Git LFS for large binaries, but serve only what’s necessary to keep pages light.
+
+> **Attention**
+> Project sites live under a subpath. Broken links often come from assuming the site is at `/`. Always test with the full site path.
+
+## Github resources
+- GitHub Pages docs: https://docs.github.com/pages
+- Jekyll on GitHub Pages: https://docs.github.com/pages/setting-up-a-github-pages-site-with-jekyll
+- Custom domains: https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site
+- Actions for Pages: https://docs.github.com/actions/deployment/deploying-to-github-pages

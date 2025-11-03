@@ -40,7 +40,7 @@
       "slug": "css/specificity",
       "order": 3,
       "items": [
-        { "id": "basics", "type": "subSection", "title": "Basics", "slug": "css/specificity#basics", "order": 1 },
+        { "id": "specificity-basics", "type": "subSection", "title": "Specificity basics", "slug": "css/specificity#specificity-basics", "order": 1 },
         { "id": "multiple-classes", "type": "subSection", "title": "Multiple classes", "slug": "css/specificity#multiple-classes", "order": 2 },
         { "id": "chaining", "type": "subSection", "title": "Chaining", "slug": "css/specificity#chaining", "order": 3 },
         { "id": "descendant", "type": "subSection", "title": "Descendant", "slug": "css/specificity#descendant", "order": 4 }
@@ -221,7 +221,7 @@
       "slug": "css/breadcrumb-navigation",
       "order": 13,
       "items": [
-        { "id": "basics", "type": "subSection", "title": "Basics", "slug": "css/breadcrumb-navigation#basics", "order": 1 },
+        { "id": "breadcrumbs-basics", "type": "subSection", "title": "Breadcrumbs basics", "slug": "css/breadcrumb-navigation#breadcrumbs-basics", "order": 1 },
         { "id": "pseudo-element", "type": "subSection", "title": "Pseudo element", "slug": "css/breadcrumb-navigation#pseudo-element", "order": 2 },
         { "id": "arrow-style", "type": "subSection", "title": "Arrow style", "slug": "css/breadcrumb-navigation#arrow-style", "order": 3 },
         { "id": "abbreviated-breadcrumb", "type": "subSection", "title": "Abbreviated breadcrumb", "slug": "css/breadcrumb-navigation#abbreviated-breadcrumb", "order": 4 },

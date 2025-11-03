@@ -20,7 +20,7 @@ function useScrollToHash(deps = []) {
                     el.focus?.();
                 }
             } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ behavior: 'smooth' });
             }
         }, 0);
         return () => clearTimeout(t);

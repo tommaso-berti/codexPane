@@ -1,3 +1,8 @@
+:root {
+    --header-h: 72px;
+    --scroll-offset: 12px;
+}
+
 .markdown-body {
     box-sizing: border-box;
     margin: 0;
@@ -5,6 +10,10 @@
     background: transparent;
     max-width: 100%;
     font-family: "Roboto Light", Avenir, Helvetica, Arial, sans-serif;
+}
+
+.markdown-body :is(h1, h2, h3, h4, h5, h6) {
+    scroll-margin-top: calc(var(--header-h) + var(--scroll-offset));
 }
 
 .markdown-body pre {

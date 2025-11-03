@@ -50,7 +50,7 @@
         { "id": "properties", "type": "subSection", "title": "Properties", "slug": "javascript/arrays#properties", "order": 4 },
         { "id": "methods-destructive", "type": "subSection", "title": "Methods destructive", "slug": "javascript/arrays#methods-destructive", "order": 5 },
         { "id": "methods-non-destructive", "type": "subSection", "title": "Methods non destructive", "slug": "javascript/arrays#methods-non-destructive", "order": 6 },
-        { "id": "pass-by-reference", "type": "subSection", "title": "Pass by reference", "slug": "javascript/arrays#pass-by-reference", "order": 7 },
+        { "id": "array-pass-by-reference", "type": "subSection", "title": "Array pass by reference", "slug": "javascript/arrays#array-pass-by-reference", "order": 7 },
         { "id": "array-methods-playground", "type": "subSection", "title": "Array methods playground", "slug": "javascript/arrays#array-methods-playground", "order": 8 }
       ]
     },
@@ -198,7 +198,7 @@
         { "id": "script-type-module", "type": "subSection", "title": "Script type module", "slug": "javascript/modules-export-import#script-type-module", "order": 4 },
         { "id": "renaming-imports", "type": "subSection", "title": "Renaming imports", "slug": "javascript/modules-export-import#renaming-imports", "order": 5 },
         { "id": "default-export-and-import", "type": "subSection", "title": "Default export and import", "slug": "javascript/modules-export-import#default-export-and-import", "order": 6 },
-        { "id": "example", "type": "subSection", "title": "Example", "slug": "javascript/modules-export-import#example", "order": 7 },
+        { "id": "export-and-import-example", "type": "subSection", "title": "Export and Import example", "slug": "javascript/modules-export-import#export-and-import-example", "order": 7 },
         { "id": "inline-export", "type": "subSection", "title": "Inline export", "slug": "javascript/modules-export-import#inline-export", "order": 8 }
       ]
     },

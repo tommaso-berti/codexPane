@@ -19,7 +19,7 @@
         { "id": "file-extensions", "type": "subSection", "title": "File extensions", "slug": "github/markdown#file-extensions", "order": 6 },
         { "id": "parsers-and-tools", "type": "subSection", "title": "Parsers and tools", "slug": "github/markdown#parsers-and-tools", "order": 7 },
         { "id": "readme-essentials", "type": "subSection", "title": "Readme essentials", "slug": "github/markdown#readme-essentials", "order": 8 },
-        { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/markdown#resources", "order": 9 }
+        { "id": "markdown-resources", "type": "subSection", "title": "Markdown resources", "slug": "github/markdown#markdown-resources", "order": 9 }
       ]
     },
     {
@@ -56,7 +56,7 @@
         { "id": "aliases", "type": "subSection", "title": "Aliases", "slug": "github/github-cli#aliases", "order": 9 },
         { "id": "configuration", "type": "subSection", "title": "Configuration", "slug": "github/github-cli#configuration", "order": 10 },
         { "id": "tips-and-tricks", "type": "subSection", "title": "Tips and tricks", "slug": "github/github-cli#tips-and-tricks", "order": 11 },
-        { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/github-cli#resources", "order": 12 }
+        { "id": "cli-resources", "type": "subSection", "title": "CLI Resources", "slug": "github/github-cli#cli-resources", "order": 12 }
       ]
     },
     {
@@ -66,13 +66,12 @@
       "slug": "github/github-actions-and-automated-testing",
       "order": 4,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "github/github-actions-and-automated-testing#overview", "order": 1 },
         { "id": "when-to-use-github-actions", "type": "subSection", "title": "When to use github actions", "slug": "github/github-actions-and-automated-testing#when-to-use-github-actions", "order": 2 },
         { "id": "workflow-anatomy", "type": "subSection", "title": "Workflow anatomy", "slug": "github/github-actions-and-automated-testing#workflow-anatomy", "order": 3 },
         { "id": "tutorial-add-automated-tests", "type": "subSection", "title": "Tutorial add automated tests", "slug": "github/github-actions-and-automated-testing#tutorial-add-automated-tests", "order": 4 },
         { "id": "tutorial-simple-workflow", "type": "subSection", "title": "Tutorial simple workflow", "slug": "github/github-actions-and-automated-testing#tutorial-simple-workflow", "order": 5 },
         { "id": "tips-and-troubleshooting", "type": "subSection", "title": "Tips and troubleshooting", "slug": "github/github-actions-and-automated-testing#tips-and-troubleshooting", "order": 6 },
-        { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/github-actions-and-automated-testing#resources", "order": 7 }
+        { "id": "actions-resources", "type": "subSection", "title": "Actions resources", "slug": "github/github-actions-and-automated-testing#actions-resources", "order": 7 }
       ]
     },
     {
@@ -82,7 +81,6 @@
       "slug": "github/github-pages",
       "order": 5,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "github/github-pages#overview", "order": 1 },
         { "id": "types-of-sites", "type": "subSection", "title": "Types of sites", "slug": "github/github-pages#types-of-sites", "order": 2 },
         { "id": "quick-start", "type": "subSection", "title": "Quick start", "slug": "github/github-pages#quick-start", "order": 3 },
         { "id": "jekyll-basics", "type": "subSection", "title": "Jekyll basics", "slug": "github/github-pages#jekyll-basics", "order": 4 },
@@ -91,7 +89,7 @@
         { "id": "deploy-with-actions", "type": "subSection", "title": "Deploy with actions", "slug": "github/github-pages#deploy-with-actions", "order": 7 },
         { "id": "spa-routing-and-404", "type": "subSection", "title": "Spa routing and 404", "slug": "github/github-pages#spa-routing-and-404", "order": 8 },
         { "id": "troubleshooting", "type": "subSection", "title": "Troubleshooting", "slug": "github/github-pages#troubleshooting", "order": 9 },
-        { "id": "resources", "type": "subSection", "title": "Resources", "slug": "github/github-pages#resources", "order": 10 }
+        { "id": "github-resources", "type": "subSection", "title": "GitHub resources", "slug": "github/github-pages#github-resources", "order": 10 }
       ]
     },
     {
