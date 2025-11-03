@@ -1,0 +1,178 @@
+# Navigation
+
+Build clear, accessible navigation with app bars, drawers, tabs, menus, and bottom navigation. Keep keyboard focus and aria attributes correct, and avoid nesting multiple navigations on the same level.
+
+> Tip: Prefer a single primary navigation (tabs or drawer) and a secondary one (menu or breadcrumbs). Too many levels harm discoverability.
+
+## App bar
+
+A fixed top bar with title and actions.
+
+~~~jsx
+import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
+export function TopBar() {
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="open menu">
+          <MenuIcon />
+        </IconButton>
+        <Typography sx={{ flexGrow: 1 }} variant="h6">Dashboard</Typography>
+        <IconButton color="inherit" aria-label="account">
+          {/* account icon here */}
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
+}
+~~~
+
+> Note: Use `position="static"` when the bar lives inside scrollable content; `fixed` when it should stay on top.
+
+## Drawer
+
+Temporary drawer for small screens; persistent for large screens.
+
+~~~jsx
+import * as React from "react";
+import { Drawer, List, ListItemButton, ListItemText, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
+export function SideNav() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <IconButton aria-label="open drawer" onClick={() => setOpen(true)}>
+        <MenuIcon />
+      </IconButton>
+      <Drawer open={open} onClose={() => setOpen(false)} anchor="left">
+        <List sx={{ width: 240 }}>
+          {["Home", "Products", "About"].map((t) => (
+            <ListItemButton key={t} onClick={() => setOpen(false)}>
+              <ListItemText primary={t} />
+            </ListItemButton>
+          ))}
+        </List>
+      </Drawer>
+    </>
+  );
+}
+~~~
+
+> Tip: Always close the temporary drawer after navigation (`onClick` of an item).
+
+## Tabs
+
+Use tabs for sibling pages at the same hierarchy level.
+
+~~~jsx
+import * as React from "react";
+import { Tabs, Tab, Box } from "@mui/material";
+
+export function SectionsTabs() {
+  const [value, setValue] = React.useState(0);
+  return (
+    <>
+      <Tabs value={value} onChange={(_, v) => setValue(v)} aria-label="sections">
+        <Tab label="Overview" />
+        <Tab label="Analytics" />
+        <Tab label="Settings" />
+      </Tabs>
+      <Box sx={{ p: 2 }}>{["Overview", "Analytics", "Settings"][value]}</Box>
+    </>
+  );
+}
+~~~
+
+## Breadcrumbs
+
+Breadcrumbs help orientation inside deep structures.
+
+~~~jsx
+import { Breadcrumbs, Link, Typography } from "@mui/material";
+
+export function Path() {
+  return (
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link underline="hover" color="inherit" href="/">Home</Link>
+      <Link underline="hover" color="inherit" href="/products">Products</Link>
+      <Typography color="text.primary">Laptops</Typography>
+    </Breadcrumbs>
+  );
+}
+~~~
+
+## Menu
+
+Contextual actions triggered from a button.
+
+~~~jsx
+import * as React from "react";
+import { Button, Menu, MenuItem } from "@mui/material";
+
+export function ActionsMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClose = () => setAnchorEl(null);
+
+  return (
+    <>
+      <Button
+        aria-haspopup="menu"
+        aria-expanded={open ? "true" : undefined}
+        aria-controls="actions-menu"
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+      >
+        Open menu
+      </Button>
+      <Menu id="actions-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <MenuItem onClick={handleClose}>Edit</MenuItem>
+        <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+        <MenuItem onClick={handleClose}>Archive</MenuItem>
+      </Menu>
+    </>
+  );
+}
+~~~
+
+## Bottom navigation
+
+For mobile-first primary sections.
+
+~~~jsx
+import * as React from "react";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/Search";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
+export function MobileNav() {
+  const [value, setValue] = React.useState(0);
+  return (
+    <Paper sx={{ position: "relative" }}>
+      <BottomNavigation value={value} onChange={(_, v) => setValue(v)} showLabels>
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      </BottomNavigation>
+    </Paper>
+  );
+}
+~~~
+
+## Navigation patterns
+
+- Use one primary pattern (tabs **or** drawer) plus secondary helpers (menu, breadcrumbs).
+- Keep labels short and nouns; avoid sentence case verbs.
+- Respect keyboard: `Tab` to focus, arrow keys within tabs and menus.
+- Announce structure with `aria-label` and `aria-controls`.
+
+## Nav playground
+
+import NavPlayground from "./components/navigation/NavPlayground.jsx"
+
+<NavPlayground />
+
+> Attention: The playground is self contained and does not install themes or baseline. It only uses local state and MUI components.

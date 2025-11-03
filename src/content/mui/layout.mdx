@@ -1,0 +1,141 @@
+# Layout
+
+Build responsive pages using `Stack` for one-dimensional flow, `Grid` for two-dimensional layouts, and `Box` for small composition and `sx` utilities.
+
+> Tip: Prefer `Stack` for spacing between siblings. Use `Grid` only when you need columns and rows together.
+
+## Stack
+
+`Stack` arranges children vertically or horizontally with a theme-aware `spacing`.
+
+~~~jsx
+import { Stack, Button, Paper } from "@mui/material";
+
+export function Actions() {
+  return (
+    <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+      <Button variant="contained">Primary</Button>
+      <Button variant="outlined">Secondary</Button>
+      <Paper sx={{ p: 1 }}>Extra</Paper>
+    </Stack>
+  );
+}
+~~~
+
+> Note: `gap` in `sx` also works, but `spacing` maps to theme spacing tokens.
+
+## Grid
+
+Use the 12-column flexbox grid. Combine `xs`, `sm`, `md`, `lg`, `xl` for responsive columns.
+
+~~~jsx
+import { Grid, Paper } from "@mui/material";
+
+export function Cards() {
+  return (
+    <Grid container spacing={2}>
+      {Array.from({ length: 6 }).map((_, i) => (
+        <Grid key={i} item xs={12} sm={6} md={4}>
+          <Paper sx={{ p: 2, height: 140 }}>Card {i + 1}</Paper>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+~~~
+
+> Tip: Use `auto` and `flex` (`flex: 1`) for fluid cards inside a `Stack`—you do not always need `Grid`.
+
+## Box patterns
+
+`Box` is a convenience wrapper with `sx`. Great for quick surfaces and layout primitives.
+
+~~~jsx
+import { Box } from "@mui/material";
+
+export function Surface() {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        p: 2,
+        borderRadius: 2,
+        bgcolor: "background.paper",
+        boxShadow: 1
+      }}
+    >
+      <Box sx={{ fontWeight: 600 }}>Title</Box>
+      <Box sx={{ color: "text.secondary" }}>Meta</Box>
+    </Box>
+  );
+}
+~~~
+
+## Responsive breakpoints
+
+Use object syntax in `sx` and `Stack direction` for responsive styles.
+
+~~~jsx
+import { Box } from "@mui/material";
+
+export function Responsive() {
+  return (
+    <Box
+      sx={{
+        p: { xs: 2, md: 3 },
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+        gap: 2
+      }}
+    >
+      <Box sx={{ bgcolor: "grey.100", p: 2 }}>A</Box>
+      <Box sx={{ bgcolor: "grey.100", p: 2 }}>B</Box>
+    </Box>
+  );
+}
+~~~
+
+> Attention: Keep breakpoint logic declarative. Avoid custom media queries unless you need fine-grained control.
+
+## Container
+
+Use `Container` to center content with sensible max-widths.
+
+~~~jsx
+import { Container, Typography } from "@mui/material";
+
+export function Centered() {
+  return (
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Typography variant="h4">Blog</Typography>
+    </Container>
+  );
+}
+~~~
+
+## Hidden and use media query
+
+Prefer `useMediaQuery` for conditional rendering. It respects your theme’s breakpoints.
+
+~~~jsx
+import * as React from "react";
+import { useMediaQuery, Button, Stack } from "@mui/material";
+
+export function ResponsiveActions() {
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  return (
+    <Stack direction="row" spacing={2}>
+      <Button variant="contained">Buy</Button>
+      {isDesktop && <Button variant="outlined">Add to wishlist</Button>}
+    </Stack>
+  );
+}
+~~~
+
+## Flex playground
+
+import FlexPlayground from "./components/layout/FlexPlayground.jsx"
+
+<FlexPlayground />

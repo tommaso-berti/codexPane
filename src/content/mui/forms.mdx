@@ -1,0 +1,181 @@
+# Forms
+
+Build accessible, type safe, and responsive forms using MUI inputs, selects, autocompletes, and pickers. Keep validation declarative and show errors inline.
+
+> Tip: Group related controls with `FormControl` and always connect `error` and `helperText` for clear feedback.
+
+## Text fields
+
+Use `TextField` for most inputs. Variants: `outlined` (default), `filled`, `standard`.
+
+~~~jsx
+import { Stack, TextField } from "@mui/material";
+
+export function BasicTextFields() {
+  return (
+    <Stack spacing={2} sx={{ maxWidth: 420 }}>
+      <TextField label="Name" />
+      <TextField label="Email" type="email" helperText="We will not share your email." />
+      <TextField label="Password" type="password" required />
+      <TextField label="Search" variant="filled" size="small" />
+    </Stack>
+  );
+}
+~~~
+
+> Note: Prefer `type="email"`, `type="number"`, etc. for better keyboards on mobile and native validation.
+
+## Select and autocomplete
+
+`Select` is great for short lists. Use `Autocomplete` for long or searchable lists.
+
+~~~jsx
+import { Stack, FormControl, InputLabel, Select, MenuItem, Autocomplete, TextField } from "@mui/material";
+
+const cities = ["Rome", "Milan", "Naples", "Turin", "Palermo"];
+
+export function Choosers() {
+  return (
+    <Stack spacing={2} sx={{ maxWidth: 420 }}>
+      <FormControl>
+        <InputLabel id="country-label">Country</InputLabel>
+        <Select labelId="country-label" label="Country" defaultValue="it">
+          <MenuItem value="it">Italy</MenuItem>
+          <MenuItem value="fr">France</MenuItem>
+          <MenuItem value="es">Spain</MenuItem>
+        </Select>
+      </FormControl>
+
+      <Autocomplete
+        options={cities}
+        renderInput={(params) => <TextField {...params} label="City" />}
+      />
+    </Stack>
+  );
+}
+~~~
+
+> Tip: For multi select, add `multiple` to `Autocomplete` and manage `value` as an array.
+
+## Validation with react hook form
+
+Integrate with [`react-hook-form`](https://react-hook-form.com/) for performant validation.
+
+~~~bash
+npm i react-hook-form @hookform/resolvers yup
+~~~
+
+~~~jsx
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Stack, TextField, Button } from "@mui/material";
+
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(6).required()
+});
+
+export function LoginForm() {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    resolver: yupResolver(schema)
+  });
+
+  const onSubmit = (data) => new Promise((r) => setTimeout(() => r(alert(JSON.stringify(data))), 600));
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Stack spacing={2} sx={{ maxWidth: 380 }}>
+        <TextField
+          label="Email"
+          type="email"
+          error={!!errors.email}
+          helperText={errors.email?.message}
+          {...register("email")}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          error={!!errors.password}
+          helperText={errors.password?.message}
+          {...register("password")}
+        />
+        <Button type="submit" variant="contained" disabled={isSubmitting}>
+          Sign in
+        </Button>
+      </Stack>
+    </form>
+  );
+}
+~~~
+
+> Attention: Add `noValidate` to the `<form>` to avoid clashing with native browser error bubbles.
+
+## Input adornments and mask
+
+Use `InputAdornment` for prefixes and suffixes. For masking, reach for a tiny helper like `react-input-mask`.
+
+~~~jsx
+import { Stack, TextField, InputAdornment } from "@mui/material";
+
+export function MoneyPhone() {
+  return (
+    <Stack spacing={2} sx={{ maxWidth: 360 }}>
+      <TextField
+        label="Amount"
+        InputProps={{ startAdornment: <InputAdornment position="start">€</InputAdornment> }}
+      />
+      <TextField
+        label="Website"
+        InputProps={{ endAdornment: <InputAdornment position="end">.com</InputAdornment> }}
+      />
+    </Stack>
+  );
+}
+~~~
+
+> Tip: Keep adornments concise; long strings in adornments reduce input space on mobile.
+
+## Date and time pickers
+
+Install pickers from MUI X and wrap with a `LocalizationProvider`.
+
+~~~bash
+npm i @mui/x-date-pickers date-fns
+~~~
+
+~~~jsx
+import * as React from "react";
+import { Stack, TextField } from "@mui/material";
+import { LocalizationProvider, DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
+export function Booking() {
+  const [date, setDate] = React.useState(null);
+  const [time, setTime] = React.useState(null);
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Stack spacing={2} sx={{ maxWidth: 320 }}>
+        <DatePicker label="Date" value={date} onChange={setDate} slotProps={{ textField: { fullWidth: true } }} />
+        <TimePicker label="Time" value={time} onChange={setTime} />
+        <TextField value={date ? date.toDateString() : ""} label="Summary" placeholder="Auto" />
+      </Stack>
+    </LocalizationProvider>
+  );
+}
+~~~
+
+## Accessibility and ux
+
+- Always provide `label` or `aria-label`.
+- Use `helperText` to explain validation rules.
+- Ensure a visible focus state and enough contrast.
+- Do not rely on color alone; combine color with icons or text.
+
+## Form playground
+
+import FormPlayground from "./components/forms/FormPlayground.jsx"
+
+<FormPlayground />

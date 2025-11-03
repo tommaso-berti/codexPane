@@ -1,0 +1,216 @@
+# Theme
+
+Centralize look and feel with tokens (palette, typography, spacing, shape), enable color schemes, and extend the theme safely.
+
+> Tip: Start small. Add or rename tokens only when repetition appears in real screens.
+
+## Theme essentials
+
+Create a base theme and wrap the app once.
+
+~~~jsx
+import * as React from "react";
+import { ThemeProvider, createTheme, CssBaseline, Button, Container } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    mode: "light",
+    primary: { main: "#1976d2" },
+    secondary: { main: "#9c27b0" }
+  },
+  shape: { borderRadius: 10 },
+  typography: {
+    fontFamily: '"Inter", system-ui, Arial, sans-serif',
+    h1: { fontWeight: 700, letterSpacing: -0.5 }
+  }
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container sx={{ py: 4 }}>
+        <Button variant="contained">Primary action</Button>
+      </Container>
+    </ThemeProvider>
+  );
+}
+~~~
+
+> Note: Keep `CssBaseline` near the root. It normalizes styles and sets sensible defaults.
+
+## Extend the theme
+
+Add custom tokens with TypeScript module augmentation (or by convention in JS).
+
+~~~ts
+// theme.d.ts
+import "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+  interface Theme {
+    brand: { radiusLg: number; surface: string };
+  }
+  interface ThemeOptions {
+    brand?: { radiusLg?: number; surface?: string };
+  }
+}
+~~~
+
+~~~ts
+// theme.ts
+import { createTheme } from "@mui/material/styles";
+
+export const theme = createTheme({
+  brand: { radiusLg: 16, surface: "#0B1020" },
+  shape: { borderRadius: 10 },
+  palette: { mode: "dark", primary: { main: "#7c4dff" } }
+});
+~~~
+
+Use custom tokens with `sx`:
+
+~~~tsx
+<Box sx={(theme) => ({
+  borderRadius: theme.brand.radiusLg,
+  bgcolor: theme.brand.surface,
+  color: "primary.contrastText",
+  p: 2
+})} />
+~~~
+
+## Color schemes and dark mode
+
+Toggle at runtime and persist user choice.
+
+~~~jsx
+import * as React from "react";
+import { ThemeProvider, createTheme, CssBaseline, IconButton } from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
+export default function ColorSchemeToggle() {
+  const [mode, setMode] = React.useState(localStorage.getItem("mode") || "light");
+  const theme = React.useMemo(() => createTheme({ palette: { mode } }), [mode]);
+
+  React.useEffect(() => localStorage.setItem("mode", mode), [mode]);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <IconButton
+        color="inherit"
+        onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}
+        aria-label="toggle color scheme"
+      >
+        {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+      </IconButton>
+    </ThemeProvider>
+  );
+}
+~~~
+
+> Tip: Check contrast ratios for interactive states in both modes.
+
+## Typography
+
+Define the base scale and opt into responsive sizing.
+
+~~~ts
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+
+let theme = createTheme({
+  typography: {
+    fontFamily: '"Inter", system-ui, Arial, sans-serif',
+  * h1: { fontSize: "2.75rem", fontWeight: 800 },
+    h2: { fontSize: "2rem", fontWeight: 700 },
+    button: { textTransform: "none", fontWeight: 600 }
+  }
+});
+theme = responsiveFontSizes(theme);
+export default theme;
+~~~
+
+~~~jsx
+import { Typography, Stack } from "@mui/material";
+
+export function Headings() {
+  return (
+    <Stack spacing={1}>
+      <Typography variant="h2">Products</Typography>
+      <Typography variant="body2" color="text.secondary">
+        Browse the catalog by category.
+      </Typography>
+    </Stack>
+  );
+}
+~~~
+
+> Note: Avoid hardcoded `font-size` in components. Prefer variants.
+
+## Spacing and shape
+
+Use theme spacing and the global border radius to keep surfaces consistent.
+
+~~~jsx
+import { Box, Paper, Stack } from "@mui/material";
+
+export function Cards() {
+  return (
+    <Stack spacing={2}>
+      {[1, 2, 3].map((i) => (
+        <Paper key={i} sx={(t) => ({ p: t.spacing(2), borderRadius: t.shape.borderRadius })}>
+          <Box>Card {i}</Box>
+        </Paper>
+      ))}
+    </Stack>
+  );
+}
+~~~
+
+> Tip: The default unit is `8px`. `t.spacing(2)` equals `16px`.
+
+## Css variables and sx
+
+Blend CSS variables with MUI tokens.
+
+~~~css
+/* index.css */
+:root {
+  --surface: #0f1117;
+  --accent: #7c4dff;
+}
+[data-mode="light"] { --surface: #ffffff; --accent: #1976d2; }
+~~~
+
+~~~jsx
+import { Box, Button } from "@mui/material";
+
+export function Mixed() {
+  return (
+    <Box sx={{
+      bgcolor: "var(--surface)",
+      p: 2,
+      borderRadius: 2,
+      "& .accent": { color: "var(--accent)" }
+    }}>
+      <Button className="accent" variant="text">Link</Button>
+    </Box>
+  );
+}
+~~~
+
+## Theming pitfalls
+
+- Avoid deep overrides for a single screen; prefer local `sx`.
+- Do not hardcode hex colors in components; reference palette keys.
+- Check contrast when customizing `primary` or `secondary`.
+- Keep custom tokens flat and descriptive (e.g., `brand.surface`).
+
+## Theme playground
+
+import ThemePlayground from "./components/theme/ThemePlayground.jsx"
+
+<ThemePlayground />
+
+> Tip: The playground mirrors production usage of `ThemeProvider` and lets you try live primary color, mode, and radius changes.

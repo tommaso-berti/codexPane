@@ -1,0 +1,139 @@
+{
+  "id": "mui",
+  "title": "MUI",
+  "slug": "mui",
+  "icon": "CustomMuiIcon",
+  "items": [
+    {
+      "id": "getting-started",
+      "type": "section",
+      "title": "Getting started",
+      "slug": "mui/getting-started",
+      "order": 1,
+      "items": [
+        { "id": "install-the-library", "type": "subSection", "title": "Install the library", "slug": "mui/getting-started#install-the-library", "order": 1 },
+        { "id": "set-up-the-theme-provider", "type": "subSection", "title": "Set up the theme provider", "slug": "mui/getting-started#set-up-the-theme-provider", "order": 2 },
+        { "id": "css-baseline-and-fonts", "type": "subSection", "title": "Css baseline and fonts", "slug": "mui/getting-started#css-baseline-and-fonts", "order": 3 },
+        { "id": "the-sx-prop-basics", "type": "subSection", "title": "The sx prop basics", "slug": "mui/getting-started#the-sx-prop-basics", "order": 4 },
+        { "id": "icons-and-svg", "type": "subSection", "title": "Icons and svg", "slug": "mui/getting-started#icons-and-svg", "order": 5 },
+        { "id": "typescript-tips", "type": "subSection", "title": "Typescript tips", "slug": "mui/getting-started#typescript-tips", "order": 6 },
+        { "id": "sx-playground", "type": "subSection", "title": "Sx playground", "slug": "mui/getting-started#sx-playground", "order": 7 }
+      ]
+    },
+    {
+    "id": "theme",
+    "type": "section",
+    "title": "Theme",
+    "slug": "mui/theme",
+    "order": 2,
+    "items": [
+        { "id": "theme-essentials", "type": "subSection", "title": "Theme essentials", "slug": "mui/theme#theme-essentials", "order": 1 },
+        { "id": "extend-the-theme", "type": "subSection", "title": "Extend the theme", "slug": "mui/theme#extend-the-theme", "order": 2 },
+        { "id": "color-schemes-and-dark-mode", "type": "subSection", "title": "Color schemes and dark mode", "slug": "mui/theme#color-schemes-and-dark-mode", "order": 3 },
+        { "id": "typography", "type": "subSection", "title": "Typography", "slug": "mui/theme#typography", "order": 4 },
+        { "id": "spacing-and-shape", "type": "subSection", "title": "Spacing and shape", "slug": "mui/theme#spacing-and-shape", "order": 5 },
+        { "id": "css-variables-and-sx", "type": "subSection", "title": "Css variables and sx", "slug": "mui/theme#css-variables-and-sx", "order": 6 },
+        { "id": "theming-pitfalls", "type": "subSection", "title": "Theming pitfalls", "slug": "mui/theme#theming-pitfalls", "order": 7 },
+        { "id": "theme-playground", "type": "subSection", "title": "Theme playground", "slug": "mui/theme#theme-playground", "order": 8 }
+      ]
+    },
+    {
+      "id": "layout",
+      "type": "section",
+      "title": "Layout",
+      "slug": "mui/layout",
+      "order": 3,
+      "items": [
+        { "id": "stack", "type": "subSection", "title": "Stack", "slug": "mui/layout#stack", "order": 1 },
+        { "id": "grid", "type": "subSection", "title": "Grid", "slug": "mui/layout#grid", "order": 2 },
+        { "id": "box-patterns", "type": "subSection", "title": "Box patterns", "slug": "mui/layout#box-patterns", "order": 3 },
+        { "id": "responsive-breakpoints", "type": "subSection", "title": "Responsive breakpoints", "slug": "mui/layout#responsive-breakpoints", "order": 4 },
+        { "id": "container", "type": "subSection", "title": "Container", "slug": "mui/layout#container", "order": 5 },
+        { "id": "hidden-and-use-media-query", "type": "subSection", "title": "Hidden and use media query", "slug": "mui/layout#hidden-and-use-media-query", "order": 6 },
+        { "id": "flex-playground", "type": "subSection", "title": "Flex playground", "slug": "mui/layout#flex-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "forms",
+      "type": "section",
+      "title": "Forms",
+      "slug": "mui/forms",
+      "order": 4,
+      "items": [
+        { "id": "text-fields", "type": "subSection", "title": "Text fields", "slug": "mui/forms#text-fields", "order": 1 },
+        { "id": "select-and-autocomplete", "type": "subSection", "title": "Select and autocomplete", "slug": "mui/forms#select-and-autocomplete", "order": 2 },
+        { "id": "validation-with-react-hook-form", "type": "subSection", "title": "Validation with react hook form", "slug": "mui/forms#validation-with-react-hook-form", "order": 3 },
+        { "id": "input-adornments-and-mask", "type": "subSection", "title": "Input adornments and mask", "slug": "mui/forms#input-adornments-and-mask", "order": 4 },
+        { "id": "date-and-time-pickers", "type": "subSection", "title": "Date and time pickers", "slug": "mui/forms#date-and-time-pickers", "order": 5 },
+        { "id": "accessibility-and-ux", "type": "subSection", "title": "Accessibility and ux", "slug": "mui/forms#accessibility-and-ux", "order": 6 },
+        { "id": "form-playground", "type": "subSection", "title": "Form playground", "slug": "mui/forms#form-playground", "order": 7 }
+      ]
+    },
+    {
+      "id": "navigation",
+      "type": "section",
+      "title": "Navigation",
+      "slug": "mui/navigation",
+      "order": 5,
+      "items": [
+        { "id": "app-bar", "type": "subSection", "title": "App bar", "slug": "mui/navigation#app-bar", "order": 1 },
+        { "id": "drawer", "type": "subSection", "title": "Drawer", "slug": "mui/navigation#drawer", "order": 2 },
+        { "id": "tabs", "type": "subSection", "title": "Tabs", "slug": "mui/navigation#tabs", "order": 3 },
+        { "id": "breadcrumbs", "type": "subSection", "title": "Breadcrumbs", "slug": "mui/navigation#breadcrumbs", "order": 4 },
+        { "id": "menu", "type": "subSection", "title": "Menu", "slug": "mui/navigation#menu", "order": 5 },
+        { "id": "bottom-navigation", "type": "subSection", "title": "Bottom navigation", "slug": "mui/navigation#bottom-navigation", "order": 6 },
+        { "id": "navigation-patterns", "type": "subSection", "title": "Navigation patterns", "slug": "mui/navigation#navigation-patterns", "order": 7 },
+        { "id": "nav-playground", "type": "subSection", "title": "Nav playground", "slug": "mui/navigation#nav-playground", "order": 8 }
+      ]
+    },
+    {
+      "id": "data-display",
+      "type": "section",
+      "title": "Data display",
+      "slug": "mui/data-display",
+      "order": 6,
+      "items": [
+        { "id": "tables", "type": "subSection", "title": "Tables", "slug": "mui/data-display#tables", "order": 1 },
+        { "id": "lists", "type": "subSection", "title": "Lists", "slug": "mui/data-display#lists", "order": 2 },
+        { "id": "chips-and-avatars", "type": "subSection", "title": "Chips and avatars", "slug": "mui/data-display#chips-and-avatars", "order": 3 },
+        { "id": "tooltips-and-badges", "type": "subSection", "title": "Tooltips and badges", "slug": "mui/data-display#tooltips-and-badges", "order": 4 },
+        { "id": "divider-and-typography", "type": "subSection", "title": "Divider and typography", "slug": "mui/data-display#divider-and-typography", "order": 5 },
+        { "id": "cards", "type": "subSection", "title": "Cards", "slug": "mui/data-display#cards", "order": 6 },
+        { "id": "data-display-patterns", "type": "subSection", "title": "Data display patterns", "slug": "mui/data-display#data-display-patterns", "order": 7 },
+        { "id": "data-display-playground", "type": "subSection", "title": "Data display playground", "slug": "mui/data-display#data-display-playground", "order": 8 }
+      ]
+    },
+    {
+      "id": "feedback",
+      "type": "section",
+      "title": "Feedback",
+      "slug": "mui/feedback",
+      "order": 7,
+      "items": [
+        { "id": "alerts-and-snackbar", "type": "subSection", "title": "Alerts and snackbar", "slug": "mui/feedback#alerts-and-snackbar", "order": 1 },
+        { "id": "dialog-and-modal", "type": "subSection", "title": "Dialog and modal", "slug": "mui/feedback#dialog-and-modal", "order": 2 },
+        { "id": "progress-and-skeleton", "type": "subSection", "title": "Progress and skeleton", "slug": "mui/feedback#progress-and-skeleton", "order": 3 },
+        { "id": "backdrop", "type": "subSection", "title": "Backdrop", "slug": "mui/feedback#backdrop", "order": 4 },
+        { "id": "toast-patterns", "type": "subSection", "title": "Toast patterns", "slug": "mui/feedback#toast-patterns", "order": 5 },
+        { "id": "feedback-playground", "type": "subSection", "title": "Feedback playground", "slug": "mui/feedback#feedback-playground", "order": 6 }
+      ]
+    },
+    {
+      "id": "utilities",
+      "type": "section",
+      "title": "Utilities",
+      "slug": "mui/utilities",
+      "order": 8,
+      "items": [
+        { "id": "use-media-query", "type": "subSection", "title": "Use media query", "slug": "mui/utilities#use-media-query", "order": 1 },
+        { "id": "portal-and-no-ssr", "type": "subSection", "title": "Portal and no ssr", "slug": "mui/utilities#portal-and-no-ssr", "order": 2 },
+        { "id": "click-away-listener", "type": "subSection", "title": "Click away listener", "slug": "mui/utilities#click-away-listener", "order": 3 },
+        { "id": "transitions", "type": "subSection", "title": "Transitions", "slug": "mui/utilities#transitions", "order": 4 },
+        { "id": "popover-anchoring", "type": "subSection", "title": "Popover anchoring", "slug": "mui/utilities#popover-anchoring", "order": 5 },
+        { "id": "styled-api-basics", "type": "subSection", "title": "Styled api basics", "slug": "mui/utilities#styled-api-basics", "order": 6 },
+        { "id": "z-index-and-layers", "type": "subSection", "title": "Z index and layers", "slug": "mui/utilities#z-index-and-layers", "order": 7 },
+        { "id": "utilities-playground", "type": "subSection", "title": "Utilities playground", "slug": "mui/utilities#utilities-playground", "order": 8 }
+      ]
+    }
+  ]
+}

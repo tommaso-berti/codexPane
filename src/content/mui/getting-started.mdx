@@ -1,0 +1,199 @@
+# Getting started
+
+A fast path to ship a production-ready MUI app. This section covers installation, theming, baseline styles, icons, TypeScript, and the `sx` prop with hands-on examples.
+
+> Tip: Keep your theme minimal at first—palette, typography, and shape. Add more tokens only when a repetition emerges.
+
+## Install the library
+
+Install Material UI core, Emotion (default styling engine), and icons:
+
+~~~bash
+npm i @mui/material @emotion/react @emotion/styled @mui/icons-material
+# or with yarn/pnpm if you prefer
+~~~
+
+Optional flavors:
+- Joy UI: `@mui/joy`
+- Base UI (unstyled primitives): `@mui/base`
+- MUI X Data Grid: `@mui/x-data-grid`
+
+Links:
+- https://mui.com/material-ui/getting-started/installation/
+- https://mui.com/joy-ui/getting-started/
+- https://mui.com/base-ui/getting-started/
+
+## Set up the theme provider
+
+Wrap the app once with `ThemeProvider` and add `CssBaseline` for sensible defaults.
+
+~~~jsx
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import { ThemeProvider, createTheme, CssBaseline, Container, Button } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    mode: "light",
+    primary: { main: "#1976d2" },
+    secondary: { main: "#9c27b0" }
+  },
+  shape: { borderRadius: 10 }
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container sx={{ py: 4 }}>
+        <Button variant="contained">Hello MUI</Button>
+      </Container>
+    </ThemeProvider>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
+~~~
+
+> Note: To switch to styled-components see: https://mui.com/material-ui/guides/styled-engine/
+
+## Css baseline and fonts
+
+`CssBaseline` normalizes styles and applies sensible defaults.
+
+~~~jsx
+import { CssBaseline } from "@mui/material";
+
+function Root() {
+  return (
+    <>
+      <CssBaseline />
+      {/* your app */}
+    </>
+  );
+}
+~~~
+
+Add a custom font (e.g., Inter) via CSS:
+
+~~~css
+/* index.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+:root { --font-body: "Inter", system-ui, Arial, sans-serif; }
+body { font-family: var(--font-body); }
+~~~
+
+Or through the theme:
+
+~~~ts
+import { createTheme } from "@mui/material/styles";
+export const theme = createTheme({
+  typography: { fontFamily: '"Inter", system-ui, Arial, sans-serif' }
+});
+~~~
+
+## The sx prop basics
+
+`sx` is a theme-aware, typesafe shortcut for styling any MUI component (and `Box`).
+
+~~~jsx
+import { Box, Stack, Typography } from "@mui/material";
+
+export default function Hero() {
+  return (
+    <Box
+      sx={{
+        bgcolor: "primary.main",
+        color: "primary.contrastText",
+        py: { xs: 4, md: 8 },
+        borderRadius: 2
+      }}
+    >
+      <Stack spacing={1} sx={{ maxWidth: 720, mx: "auto", px: 2 }}>
+        <Typography variant="h3">Build faster with MUI</Typography>
+        <Typography variant="body1" sx={{ opacity: 0.9 }}>
+          Theme-aware styles, accessible components, and ergonomic APIs.
+        </Typography>
+      </Stack>
+    </Box>
+  );
+}
+~~~
+
+> Tip: `sx={(theme) => ({ boxShadow: theme.shadows[3] })}` grants full access to theme tokens.
+
+## Icons and svg
+
+Use Material Icons or your own SVG.
+
+~~~jsx
+import SaveIcon from "@mui/icons-material/Save";
+import { Button } from "@mui/material";
+
+export function CTA() {
+  return (
+    <Button variant="contained" startIcon={<SaveIcon />}>
+      Save changes
+    </Button>
+  );
+}
+~~~
+
+Inline SVG example:
+
+~~~jsx
+import { SvgIcon } from "@mui/material";
+
+function BrandLogo(props) {
+  return (
+    <SvgIcon viewBox="0 0 24 24" {...props}>
+      <path d="M3 12h18M12 3v18" stroke="currentColor" strokeWidth="2" fill="none" />
+    </SvgIcon>
+  );
+}
+~~~
+
+## Typescript tips
+
+Enable strong typing for theme extensions and `sx`.
+
+~~~ts
+// theme.d.ts
+import "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+  interface Theme {
+    brand?: { radiusLg: number };
+  }
+  interface ThemeOptions {
+    brand?: { radiusLg?: number };
+  }
+}
+~~~
+
+~~~ts
+// theme.ts
+import { createTheme } from "@mui/material/styles";
+export const theme = createTheme({
+  brand: { radiusLg: 16 },
+  shape: { borderRadius: 10 }
+});
+~~~
+
+Use `SxProps` when sharing `sx` snippets:
+
+~~~ts
+import { SxProps, Theme } from "@mui/material/styles";
+
+export const cardSx: SxProps<Theme> = (theme) => ({
+  p: 2,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[1]
+});
+~~~
+
+## Sx playground
+
+import SxPlayground from "./components/getting-started/SxPlayground.jsx"
+
+<SxPlayground />
