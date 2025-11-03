@@ -3,50 +3,54 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
+import Box from "@mui/material/Box";
 
-export default function SearchResults({topics, results, onItemClick}) {
+function groupByTopic(results) {
+    const map = new Map();
+    for (const r of results) {
+        const topic = r.topictitle
+        if (!map.has(topic)) {
+            map.set(topic, { topicTitle: topic, items: [] });
+        }
+        map.get(topic).items.push(r);
+    }
+    return [...map.values()];
+}
+
+
+export default function SearchResults({ results, onItemClick }) {
+    if (!results?.length) return null;
+
+    const groups = groupByTopic(results);
+
     return (
-        <List>
-            {topics.map((topic) => {
-                const items = results.filter(r => r.topic === topic.topic);
-                if (!items.length) return null;
-                const sections = new Map();
-                items.forEach((r, idx) => {
-                    const key = r.breadcrumb[1];
-                    if (!key) return;
-                    const entry = sections.get(key) ?? { parentIndex: null, children: [] };
-                    if (r.breadcrumb.length <= 2) entry.parentIndex = idx;
-                    else entry.children.push(idx);
-                    sections.set(key, entry);
-                });
-                return (
-                    <ListItem
-                        dense
-                        component="div"
-                        disablePadding
-                        key={topic.topic}
-                        sx={{flexDirection: 'column', alignItems: 'flex-start'}}
-                    >
-                        <ListItemText
-                            primary={<Typography variant="h6">{topic.topictitle}</Typography>}
+        <Box sx={{ mt: 2 }}>
+            {groups.map((group) => (
+                <Box key={group.topicTitle} sx={{ mb: 3 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
+                        {group.topicTitle}
+                    </Typography>
+
+                    {group.items.map((item, index) => (
+                        <SearchResultItem
+                            key={item.id}
+                            result={item}
+                            siblings={group.items}
+                            index={index}
+                            onClick={(path) => onItemClick(path)}
+                            branch={
+                                group.items.length === 1
+                                    ? 'single'
+                                    : index === 0
+                                        ? 'start'
+                                        : index === group.items.length - 1
+                                            ? 'end'
+                                            : 'middle'
+                            }
                         />
-                        {
-                            items.map((res, i) => {
-                                const key = res.breadcrumb[1];
-                                const prev = items[i - 1]?.breadcrumb[1];
-                                const next = items[i + 1]?.breadcrumb[1];
-                                let branch = 'single';
-                                if (prev === key && next === key) branch = 'middle';
-                                else if (prev !== key && next === key) branch = 'start';
-                                else if (prev === key && next !== key) branch = 'end';
-                                return (
-                                    <SearchResultItem key={res.id} result={res} onClick={onItemClick} branch={branch} />
-                                )
-                        })
-                        }
-                    </ListItem>
-                )
-            })}
-        </List>
-    )
+                    ))}
+                </Box>
+            ))}
+        </Box>
+    );
 }
