@@ -1,6 +1,5 @@
 # Fetch with await and async
 
-## Overview
 The **await… async** style is widely used because it reads top-to-bottom, making control flow easier to follow and debug. `fetch()` still returns a **promise**, but `await` pauses within an `async` function until the promise settles.
 
 > Note: `response.json()` is **asynchronous** and returns a promise—use `await` on it.
@@ -49,7 +48,7 @@ const getData = async () => {
 
 > Note: Most JSON APIs also expect `headers: { 'Content-Type': 'application/json' }`.
 
-## Error handling
+## Await Async error handling
 - **Network errors** throw from `fetch()` and are caught by `try/catch`.
 - **HTTP errors** resolve with `response.ok === false`. Throw when not OK, ideally with the status:
   ~~~

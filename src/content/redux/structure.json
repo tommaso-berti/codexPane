@@ -47,7 +47,7 @@
         { "id": "todo-state-example", "type": "subSection", "title": "Todo state example", "slug": "redux/strategies-for-complex-state#todo-state-example", "order": 1 },
         { "id": "slices-and-initial-state", "type": "subSection", "title": "Slices and initial state", "slug": "redux/strategies-for-complex-state#slices-and-initial-state", "order": 2 },
         { "id": "actions-and-payloads", "type": "subSection", "title": "Actions and payloads", "slug": "redux/strategies-for-complex-state#actions-and-payloads", "order": 3 },
-        { "id": "action-creators", "type": "subSection", "title": "Action creators", "slug": "redux/strategies-for-complex-state#action-creators", "order": 4 },
+        { "id": "complex-state-action-creators", "type": "subSection", "title": "Complex state action creators", "slug": "redux/strategies-for-complex-state#complex-state-action-creators", "order": 4 },
         { "id": "immutable-updates-and-complex-state", "type": "subSection", "title": "Immutable updates and complex state", "slug": "redux/strategies-for-complex-state#immutable-updates-and-complex-state", "order": 5 },
         { "id": "reducer-composition", "type": "subSection", "title": "Reducer composition", "slug": "redux/strategies-for-complex-state#reducer-composition", "order": 6 },
         { "id": "separate-slice-state-initialization", "type": "subSection", "title": "Separate slice state initialization", "slug": "redux/strategies-for-complex-state#separate-slice-state-initialization", "order": 7 },

@@ -124,7 +124,6 @@
       "slug": "html/font-awesome",
       "order": 7,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "html/font-awesome#overview", "order": 1 },
         { "id": "link-font-awesome", "type": "subSection", "title": "Link Font Awesome", "slug": "html/font-awesome#link-font-awesome", "order": 2 },
         { "id": "add-font-awesome-icon", "type": "subSection", "title": "Add Font Awesome Icon", "slug": "html/font-awesome#add-font-awesome-icon", "order": 3 },
         { "id": "icon-sizing", "type": "subSection", "title": "Icon Sizing", "slug": "html/font-awesome#icon-sizing", "order": 4 }

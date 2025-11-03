@@ -70,7 +70,6 @@
       "slug": "http/fetch-with-then",
       "order": 4,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/fetch-with-then#overview", "order": 1 },
         { "id": "fetch-get", "type": "subSection", "title": "Fetch get", "slug": "http/fetch-with-then#fetch-get", "order": 2 },
         { "id": "fetch-post", "type": "subSection", "title": "Fetch post", "slug": "http/fetch-with-then#fetch-post", "order": 3 },
         { "id": "error-handling", "type": "subSection", "title": "Error handling", "slug": "http/fetch-with-then#error-handling", "order": 4 },
@@ -86,10 +85,9 @@
       "slug": "http/fetch-with-await-and-async",
       "order": 6,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/fetch-with-await-and-async#overview", "order": 1 },
         { "id": "async-await-get", "type": "subSection", "title": "Async await get", "slug": "http/fetch-with-await-and-async#async-await-get", "order": 2 },
         { "id": "async-await-post", "type": "subSection", "title": "Async await post", "slug": "http/fetch-with-await-and-async#async-await-post", "order": 3 },
-        { "id": "error-handling", "type": "subSection", "title": "Error handling", "slug": "http/fetch-with-await-and-async#error-handling", "order": 4 },
+        { "id": "await-async-error-handling", "type": "subSection", "title": "Await Async error handling", "slug": "http/fetch-with-await-and-async#await-async-error-handling", "order": 4 },
         { "id": "tips-and-pitfalls", "type": "subSection", "title": "Tips and pitfalls", "slug": "http/fetch-with-await-and-async#tips-and-pitfalls", "order": 5 },
         { "id": "additional-resources", "type": "subSection", "title": "Additional resources", "slug": "http/fetch-with-await-and-async#additional-resources", "order": 6 },
         { "id": "fetch-await-playground", "type": "subSection", "title": "Fetch await playground", "slug": "http/fetch-with-await-and-async#fetch-await-playground", "order": 7 }
@@ -102,7 +100,6 @@
       "slug": "http/api-call",
       "order": 7,
       "items": [
-        { "id": "overview", "type": "subSection", "title": "Overview", "slug": "http/api-call#overview", "order": 1 },
         { "id": "query-strings", "type": "subSection", "title": "Query strings", "slug": "http/api-call#query-strings", "order": 2 },
         { "id": "examples", "type": "subSection", "title": "Examples", "slug": "http/api-call#examples", "order": 3 },
         { "id": "query-string-playground", "type": "subSection", "title": "Query string playground", "slug": "http/api-call#query-string-playground", "order": 4 }

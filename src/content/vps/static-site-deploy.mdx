@@ -37,7 +37,7 @@ my-cheat-sheet/
         └── example.conf
 ~~~
 
-## Prerequisites
+## Static site deploy prerequisites
 
 - Linux VPS (Ubuntu/Debian) with public IP
 - Non-root user with `sudo` (e.g., `<deploy-user>`)
@@ -107,7 +107,7 @@ sudo nginx -t
 sudo systemctl reload nginx
 ~~~
 
-## Point dns on aruba
+## Static site deploy point dns on aruba
 
 Create an **A** record:
 
@@ -119,7 +119,7 @@ Result: `www.example.yourdomain.com` → `<VPS-IP>`.
 
 > Note: DNS propagation can take time. Verify with `dig +short <domain>` or `nslookup <domain>`.
 
-## Enable https with certbot
+## Static site deploy enable https with certbot
 
 ~~~bash
 sudo apt install -y certbot python3-certbot-nginx
@@ -128,7 +128,7 @@ sudo certbot --nginx -d <domain>   # e.g. -d www.example.com
 
 > Note: Certbot installs auto-renewal via systemd timers. Check with `systemctl list-timers | grep certbot`.
 
-## Fix permissions
+## Static site deploy fix permissions
 
 ~~~bash
 sudo chown -R www-data:www-data /srv/www/sites/<project-name>/public
@@ -259,7 +259,7 @@ jobs:
 
 > Attention: The action connects over SSH as your deploy user. Ensure the public key is present in `~/.ssh/authorized_keys` on the VPS and that the firewall allows SSH.
 
-## Optional nginx enhancements
+## Static site deploy optional nginx enhancements
 
 **http to https redirect**
 ~~~nginx
@@ -277,7 +277,7 @@ gzip_types text/plain text/css application/javascript application/json image/svg
 location ~* \.(js|css|png|jpg|svg|woff2?)$ { expires 30d; access_log off; }
 ~~~
 
-## Troubleshooting
+## Static site deploy troubleshooting
 
 | Symptom                              | Likely cause and fix                                      |
 |-------------------------------------|------------------------------------------------------------|
