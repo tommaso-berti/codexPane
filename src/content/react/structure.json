@@ -2,7 +2,7 @@
   "id": "react",
   "title": "React",
   "slug": "react",
-  "icon": "",
+  "icon": "CustomReactIcon",
   "items": [
     {
       "id": "virtual-dom",

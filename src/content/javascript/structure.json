@@ -2,7 +2,7 @@
   "id": "javascript",
   "title": "Javascript",
   "slug": "javascript",
-  "icon": "JavascriptIcon",
+  "icon": "CustomJavascriptIcon",
   "items": [
     {
       "id": "runtime-environment",

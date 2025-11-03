@@ -2,7 +2,7 @@
   "id": "redux",
   "title": "Redux",
   "slug": "redux",
-  "icon": "",
+  "icon": "CustomReduxIcon",
   "items": [
     {
       "id": "introduction-to-redux",

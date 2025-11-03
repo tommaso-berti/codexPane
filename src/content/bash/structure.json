@@ -2,7 +2,7 @@
   "id": "bash",
   "title": "Bash",
   "slug": "bash",
-  "icon": "TerminalIcon",
+  "icon": "CustomBashIcon",
   "items": [
     {
       "id": "navigation",

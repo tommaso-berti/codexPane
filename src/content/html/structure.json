@@ -2,7 +2,7 @@
   "id": "html",
   "title": "HTML",
   "slug": "html",
-  "icon": "HtmlIcon",
+  "icon": "CustomHtmlIcon",
   "items": [
     {
       "id": "html-document",

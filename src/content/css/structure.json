@@ -2,7 +2,7 @@
   "id": "css",
   "title": "CSS",
   "slug": "css",
-  "icon": "CssIcon",
+  "icon": "CustomCssIcon",
   "items": [
     {
       "id": "styling",
