@@ -1,0 +1,10 @@
+export { default as CustomMuiIcon } from './CustomMuiIcon.jsx';
+export { default as CustomReactIcon} from './CustomReactIcon.jsx';
+export { default as CustomCssIcon } from './CustomCssIcon.jsx';
+export { default as CustomHtmlIcon } from './CustomHtmlIcon.jsx';
+export { default as CustomMongoDbIcon } from './CustomMongoDbIcon.jsx';
+export { default as CustomJavascriptIcon } from './CustomJavascriptIcon.jsx';
+export { default as CustomReduxIcon } from './CustomReduxIcon.jsx';
+export { default as CustomjQueryIcon } from './CustomjQueryIcon.jsx';
+export { default as CustomGitIcon } from './CustomGitIcon.jsx';
+export { default as CustomBashIcon } from './CustomBashIcon.jsx';

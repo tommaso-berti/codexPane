@@ -2,6 +2,7 @@
   "id": "mongodb",
   "title": "MongoDB",
   "slug": "mongodb",
+  "icon": "CustomMongoDbIcon",
   "items": [
     {
       "id": "databases",
