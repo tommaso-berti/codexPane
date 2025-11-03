@@ -1,0 +1,234 @@
+# Linux Ubuntu Basics
+
+## What is linux and ubuntu
+Ubuntu is a popular Linux distribution based on Debian. It uses the Linux kernel, GNU tools, and APT for package management. You’ll mostly interact with it via the shell (bash) over SSH on a VPS.
+
+> **Note**
+> Commands shown with `#` require root (or `sudo`), while `$` can be run as a regular user.
+
+## Navigation and help
+Move around the filesystem and discover command help.
+
+~~~bash
+$ pwd              # print working directory
+$ ls -la           # list files (long, including hidden)
+$ cd /etc          # change directory
+$ cd -             # go back to previous directory
+$ history | tail   # last commands
+$ which nginx      # full path of a command
+$ type cd          # show if a name is a builtin, alias, etc.
+
+# Built-in help
+$ man nginx        # manual page
+$ nginx -h         # short help
+$ apropos nginx    # search man-page db for keywords
+~~~
+
+> **Tip**
+> Use `/` to search inside `man` pages and `q` to quit.
+
+## File system and paths
+Common directories on Ubuntu:
+
+- `/` root of the filesystem
+- `/home/<user>` user files
+- `/etc` configuration
+- `/var` variable data (logs, cache)
+- `/usr` userland programs and libraries
+- `/tmp` temporary files
+
+~~~bash
+$ tree -L 1 /var   # requires 'tree' package, quick top-level view
+$ df -h            # mounted filesystems and usage
+$ mount | column -t
+~~~
+
+## Permissions and ownership
+Each file has owner, group, and permissions (`rwx`). Use `chmod`, `chown`, `chgrp`.
+
+~~~bash
+$ ls -l /var/www/index.html
+-rw-r--r-- 1 www-data www-data 1203 Oct  2 10:00 /var/www/index.html
+
+# change ownership
+# (owner:group)
+# (recursively)
+# (symbolic mode)
+# (octal mode)
+# (capabilities)
+# (getfacl/setfacl)
+# (sticky bit example)
+# (umask)
+# (sudoers secure path)
+$ sudo chown -R www-data:www-data /var/www
+$ chmod u+rw,go=r /var/www/index.html
+$ chmod 644 /var/www/index.html
+$ sudo setcap 'cap_net_bind_service=+ep' /usr/sbin/nginx
+
+# ACLs (optional, finer control)
+$ getfacl /var/www/index.html
+$ setfacl -m u:deploy:rwx /var/www
+~~~
+
+> **Attention**
+> Avoid `chmod -R 777`. Prefer precise permissions and service-specific users.
+
+## Processes and services
+Manage processes and systemd services.
+
+~~~bash
+$ ps aux | grep nginx
+$ top                           # interactive process monitor
+$ htop                          # nicer top (install: sudo apt install htop)
+
+# systemd services
+$ systemctl status nginx
+$ sudo systemctl start nginx
+$ sudo systemctl enable nginx   # start on boot
+$ journalctl -u nginx --since "1 hour ago"
+~~~
+
+## Networking basics
+Check interfaces, IPs, open ports, and connections.
+
+~~~bash
+$ ip a                         # addresses
+$ ip r                         # routes
+$ ss -tulpn                    # listening sockets (tcp/udp)
+$ curl -I http://localhost     # HTTP headers (HEAD request)
+$ dig +short example.com       # DNS lookup (sudo apt install dnsutils)
+$ ping -c 4 1.1.1.1            # connectivity
+~~~
+
+> **Tip**
+> On Ubuntu 22.04+, Netplan manages network config; files live in `/etc/netplan/`.
+
+## Package management apt
+Install and update software with APT.
+
+~~~bash
+$ sudo apt update                    # refresh package lists
+$ sudo apt upgrade                   # upgrade installed packages
+$ sudo apt install nginx git ufw     # install packages
+$ apt show nginx                     # package details
+$ apt list --installed | grep nginx  # list installed packages
+$ sudo apt autoremove                # remove unused dependencies
+~~~
+
+## Files search and edit
+Find files and edit them with `nano` or `vim`.
+
+~~~bash
+$ find /var/www -type f -name "*.log"
+$ grep -R "ERROR" /var/log/nginx
+$ sudo nano /etc/nginx/nginx.conf
+$ sudo vim /etc/nginx/sites-available/default
+$ tail -f /var/log/nginx/access.log   # live log tail
+~~~
+
+## Compression and archives
+Create and extract archives.
+
+~~~bash
+# tar gzip
+$ tar -czf site.tar.gz /var/www/site
+$ tar -xzf site.tar.gz -C /tmp
+
+# zip
+$ zip -r site.zip /var/www/site
+$ unzip site.zip -d /tmp/site
+~~~
+
+## Disk usage and partitions
+Monitor space and inspect block devices.
+
+~~~bash
+$ df -h                 # filesystem usage
+$ du -sh /var/www/*     # per-directory usage
+$ lsblk                 # block devices and mount points
+$ sudo fdisk -l         # partitions
+$ sudo swapoff -a && sudo swapon -a   # reload swap (careful)
+~~~
+
+## System logs and journald
+Read logs via `journalctl` or files under `/var/log`.
+
+~~~bash
+# systemd journal
+$ journalctl --since "today" --priority=warning
+$ journalctl -u ssh --since "2025-11-01"
+
+# classic log files
+$ sudo less /var/log/syslog
+$ sudo less /var/log/auth.log
+~~~
+
+## Environment variables
+View, set, and persist environment variables.
+
+~~~bash
+$ printenv | sort
+$ echo "$HOME"
+$ export NODE_ENV=production
+$ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+$ source ~/.bashrc
+~~~
+
+## Bash scripting basics
+Tiny automation with executable scripts.
+
+~~~bash
+$ cat > ~/backup.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+SRC="/var/www/site"
+DST="/backups/site-$(date +%F).tar.gz"
+
+sudo tar -czf "$DST" "$SRC"
+echo "Backup saved to $DST"
+EOF
+
+$ chmod +x ~/backup.sh
+$ ./backup.sh
+~~~
+
+> **Note**
+> Use `set -euo pipefail` to catch common scripting errors.
+
+## Cheatsheet commands
+Quick reference:
+
+~~~bash
+# users and groups
+$ id; whoami; groups
+$ sudo adduser deploy && sudo usermod -aG sudo deploy
+
+# time and timezone
+$ timedatectl
+$ sudo timedatectl set-timezone Europe/Rome
+
+# ssh and keys
+$ ssh -i ~/.ssh/id_rsa user@server
+$ ssh-copy-id user@server
+
+# firewall (ufw)
+$ sudo ufw allow OpenSSH
+$ sudo ufw allow 80,443/tcp
+$ sudo ufw enable
+$ sudo ufw status
+
+# system info
+$ uname -a; lsb_release -a
+$ neofetch  # apt install neofetch
+
+# service quick check
+$ systemctl is-active nginx && systemctl is-enabled nginx
+~~~
+
+## Chmod playground
+A small interactive to convert symbolic permissions to octal and vice versa.
+
+import ChmodPlayground from "./components/linux-ubuntu-basics/ChmodPlayground.jsx"
+
+<ChmodPlayground />

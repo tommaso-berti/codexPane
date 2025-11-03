@@ -26,6 +26,31 @@
       ]
     },
     {
+      "id": "linux-ubuntu-basics",
+      "type": "section",
+      "title": "Linux Ubuntu Basics",
+      "slug": "vps/linux-ubuntu-basics",
+      "order": 101,
+      "items": [
+        { "id": "what-is-linux-and-ubuntu", "type": "subSection", "title": "What is linux and ubuntu", "slug": "vps/linux-ubuntu-basics#what-is-linux-and-ubuntu", "order": 1 },
+        { "id": "navigation-and-help", "type": "subSection", "title": "Navigation and help", "slug": "vps/linux-ubuntu-basics#navigation-and-help", "order": 2 },
+        { "id": "file-system-and-paths", "type": "subSection", "title": "File system and paths", "slug": "vps/linux-ubuntu-basics#file-system-and-paths", "order": 3 },
+        { "id": "permissions-and-ownership", "type": "subSection", "title": "Permissions and ownership", "slug": "vps/linux-ubuntu-basics#permissions-and-ownership", "order": 4 },
+        { "id": "processes-and-services", "type": "subSection", "title": "Processes and services", "slug": "vps/linux-ubuntu-basics#processes-and-services", "order": 5 },
+        { "id": "networking-basics", "type": "subSection", "title": "Networking basics", "slug": "vps/linux-ubuntu-basics#networking-basics", "order": 6 },
+        { "id": "package-management-apt", "type": "subSection", "title": "Package management apt", "slug": "vps/linux-ubuntu-basics#package-management-apt", "order": 7 },
+        { "id": "files-search-and-edit", "type": "subSection", "title": "Files search and edit", "slug": "vps/linux-ubuntu-basics#files-search-and-edit", "order": 8 },
+        { "id": "compression-and-archives", "type": "subSection", "title": "Compression and archives", "slug": "vps/linux-ubuntu-basics#compression-and-archives", "order": 9 },
+        { "id": "disk-usage-and-partitions", "type": "subSection", "title": "Disk usage and partitions", "slug": "vps/linux-ubuntu-basics#disk-usage-and-partitions", "order": 10 },
+        { "id": "system-logs-and-journald", "type": "subSection", "title": "System logs and journald", "slug": "vps/linux-ubuntu-basics#system-logs-and-journald", "order": 11 },
+        { "id": "environment-variables", "type": "subSection", "title": "Environment variables", "slug": "vps/linux-ubuntu-basics#environment-variables", "order": 12 },
+        { "id": "bash-scripting-basics", "type": "subSection", "title": "Bash scripting basics", "slug": "vps/linux-ubuntu-basics#bash-scripting-basics", "order": 13 },
+        { "id": "cheatsheet-commands", "type": "subSection", "title": "Cheatsheet commands", "slug": "vps/linux-ubuntu-basics#cheatsheet-commands", "order": 14 },
+        { "id": "chmod-playground", "type": "subSection", "title": "Chmod playground", "slug": "vps/linux-ubuntu-basics#chmod-playground", "order": 15 }
+      ]
+    },
+
+    {
       "id": "security",
       "type": "section",
       "title": "Security",
