@@ -1,0 +1,211 @@
+# Data display
+
+Present information clearly with tables, lists, cards, chips, and subtle affordances like tooltips and badges. Keep density, alignment, and truncation consistent.
+
+> Tip: Prefer concise labels and right align numeric columns in tables.
+
+## Tables
+
+A compact table with sticky header and sortable column behavior via local state.
+
+~~~jsx
+import * as React from "react";
+import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, TableSortLabel } from "@mui/material";
+
+const rows = [
+  { id: 1, name: "Notebook", price: 1299, stock: 12 },
+  { id: 2, name: "Mouse", price: 29, stock: 120 },
+  { id: 3, name: "Keyboard", price: 79, stock: 48 },
+  { id: 4, name: "Monitor", price: 249, stock: 17 }
+];
+
+export function InventoryTable() {
+  const [orderBy, setOrderBy] = React.useState("name");
+  const [order, setOrder] = React.useState("asc");
+
+  const handleSort = (key) => {
+    setOrderBy(key);
+    setOrder((o) => (o === "asc" ? "desc" : "asc"));
+  };
+
+  const sorted = [...rows].sort((a, b) => {
+    const vA = a[orderBy], vB = b[orderBy];
+    return (vA < vB ? -1 : vA > vB ? 1 : 0) * (order === "asc" ? 1 : -1);
+  });
+
+  return (
+    <TableContainer component={Paper} sx={{ maxHeight: 300 }}>
+      <Table size="small" stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell sortDirection={orderBy === "name" ? order : false}>
+              <TableSortLabel
+                active={orderBy === "name"}
+                direction={order}
+                onClick={() => handleSort("name")}
+              >
+                Name
+              </TableSortLabel>
+            </TableCell>
+            <TableCell align="right" sortDirection={orderBy === "price" ? order : false}>
+              <TableSortLabel
+                active={orderBy === "price"}
+                direction={order}
+                onClick={() => handleSort("price")}
+              >
+                Price
+              </TableSortLabel>
+            </TableCell>
+            <TableCell align="right">Stock</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sorted.map((r) => (
+            <TableRow key={r.id} hover>
+              <TableCell>{r.name}</TableCell>
+              <TableCell align="right">€ {r.price}</TableCell>
+              <TableCell align="right">{r.stock}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+~~~
+
+> Note: Use `TableContainer` with a max height for scrollable data without changing your page layout.
+
+## Lists
+
+Use lists for navigation or metadata. Combine with secondary text and icons for clarity.
+
+~~~jsx
+import { List, ListItemButton, ListItemIcon, ListItemText, Avatar } from "@mui/material";
+import FolderIcon from "@mui/icons-material/Folder";
+
+export function FilesList() {
+  const items = [
+    { name: "Documents", info: "12 files" },
+    { name: "Pictures", info: "87 files" },
+    { name: "Archive", info: "3 files" }
+  ];
+  return (
+    <List dense sx={{ maxWidth: 360, bgcolor: "background.paper" }}>
+      {items.map((it) => (
+        <ListItemButton key={it.name}>
+          <ListItemIcon><FolderIcon /></ListItemIcon>
+          <ListItemText primary={it.name} secondary={it.info} />
+        </ListItemButton>
+      ))}
+    </List>
+  );
+}
+~~~
+
+## Chips and avatars
+
+Compact identifiers and statuses.
+
+~~~jsx
+import { Stack, Chip, Avatar } from "@mui/material";
+
+export function TagsPeople() {
+  return (
+    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+      <Chip label="New" color="success" size="small" />
+      <Chip label="Beta" color="warning" size="small" variant="outlined" />
+      <Chip avatar={<Avatar alt="AC" src="https://i.pravatar.cc/24?img=3" />} label="Alice" />
+      <Chip avatar={<Avatar>JD</Avatar>} label="John" variant="outlined" />
+    </Stack>
+  );
+}
+~~~
+
+## Tooltips and badges
+
+Reveal extra info on hover or show counters without cluttering.
+
+~~~jsx
+import { Tooltip, Badge, IconButton } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+
+export function HintsCounters() {
+  return (
+    <Tooltip title="Notifications">
+      <IconButton aria-label="notifications">
+        <Badge badgeContent={8} color="error">
+          <NotificationsIcon />
+        </Badge>
+      </IconButton>
+    </Tooltip>
+  );
+}
+~~~
+
+## Divider and typography
+
+Divide sections and control truncation with `noWrap`.
+
+~~~jsx
+import { Divider, Typography, Box } from "@mui/material";
+
+export function SectionHeader() {
+  return (
+    <Box>
+      <Typography variant="overline" color="text.secondary">Overview</Typography>
+      <Typography variant="h6" noWrap sx={{ maxWidth: 320 }}>
+        Sales by region and product line in the last quarter
+      </Typography>
+      <Divider sx={{ my: 1.5 }} />
+      <Typography variant="body2" color="text.secondary">
+        Keep headings short and scannable. Use overlines for category labels.
+      </Typography>
+    </Box>
+  );
+}
+~~~
+
+## Cards
+
+Group related content with actions.
+
+~~~jsx
+import { Card, CardHeader, CardContent, CardActions, Button, Typography, Avatar } from "@mui/material";
+
+export function ProductCard() {
+  return (
+    <Card sx={{ maxWidth: 360 }}>
+      <CardHeader
+        avatar={<Avatar aria-hidden>NB</Avatar>}
+        title="Notebook 14”"
+        subheader="SKU NB-14-2025"
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          Lightweight laptop with 16GB RAM and 512GB SSD.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Details</Button>
+        <Button size="small" variant="contained">Buy</Button>
+      </CardActions>
+    </Card>
+  );
+}
+~~~
+
+## Data display patterns
+
+- Align numbers to the right and text to the left in tables.
+- Prefer progressive disclosure: use tooltips for details, badges for counts.
+- Avoid long labels in chips; keep within 12–16 characters.
+- In lists, keep primary action on the entire row (`ListItemButton`) for mobile reachability.
+
+## Data display playground
+
+import DataDisplayPlayground from "./components/data-display/DataDisplayPlayground.jsx"
+
+<DataDisplayPlayground />
+
+> Attention: The playground does not create themes or baselines and only uses local state.

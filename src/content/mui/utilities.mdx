@@ -1,0 +1,197 @@
+# Utilities
+
+Handy helpers for responsive logic, layering, portals, transitions, and quick styling. These patterns are lightweight and do not alter your app’s theme or baseline.
+
+> Tip: Utilities should be small, composable snippets—prefer local state and scoped effects.
+
+## Use media query
+
+Respond to viewport changes with the `useMediaQuery` hook.
+
+~~~jsx
+import * as React from "react";
+import { useMediaQuery, Box, Button } from "@mui/material";
+
+export function ResponsiveHint() {
+  const isMdUp = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  return (
+    <Box sx={{ p: 2, bgcolor: "background.paper", borderRadius: 1 }}>
+      {isMdUp ? "Desktop layout" : "Mobile layout"}
+      <Button sx={{ ml: 2 }} size={isMdUp ? "medium" : "small"}>Action</Button>
+    </Box>
+  );
+}
+~~~
+
+> Note: The callback form reads breakpoints from your existing theme (no extra providers needed).
+
+## Portal and no ssr
+
+Render UI outside the parent DOM hierarchy (useful for overlays) and avoid hydration mismatches with `NoSsr`.
+
+~~~jsx
+import * as React from "react";
+import { Portal, Box, Button, NoSsr } from "@mui/material";
+
+export function PortalNote() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen((v) => !v)}>Toggle note</Button>
+      {open && (
+        <Portal>
+          <Box sx={{
+            position: "fixed", right: 16, bottom: 16, p: 2,
+            bgcolor: "background.paper", borderRadius: 1, boxShadow: 3
+          }}>
+            I live in a portal
+          </Box>
+        </Portal>
+      )}
+      <NoSsr defer>
+        {/* client-only widget */}
+      </NoSsr>
+    </>
+  );
+}
+~~~
+
+## Click away listener
+
+Close popups when clicking outside—no document listeners required.
+
+~~~jsx
+import * as React from "react";
+import { Box, Button, ClickAwayListener } from "@mui/material";
+
+export function MiniPopover() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Box sx={{ position: "relative", display: "inline-block" }}>
+      <Button onClick={() => setOpen((v) => !v)}>Open</Button>
+      {open && (
+        <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <Box sx={{
+            position: "absolute", top: "100%", mt: 1, p: 1.5,
+            bgcolor: "background.paper", borderRadius: 1, boxShadow: 3, minWidth: 180
+          }}>
+            Outside click will close me.
+          </Box>
+        </ClickAwayListener>
+      )}
+    </Box>
+  );
+}
+~~~
+
+## Transitions
+
+Animate mount/unmount with `Fade`, `Grow`, `Collapse`, or `Slide`.
+
+~~~jsx
+import * as React from "react";
+import { Box, Button, Fade, Collapse } from "@mui/material";
+
+export function TransitionsDemo() {
+  const [fadeIn, setFadeIn] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Box sx={{ display: "grid", gap: 2 }}>
+      <Button onClick={() => setFadeIn((v) => !v)}>Toggle fade</Button>
+      <Fade in={fadeIn}>
+        <Box sx={{ p: 2, bgcolor: "success.main", color: "success.contrastText", borderRadius: 1 }}>
+          Fades in and out
+        </Box>
+      </Fade>
+
+      <Button onClick={() => setOpen((v) => !v)}>Toggle collapse</Button>
+      <Collapse in={open}>
+        <Box sx={{ p: 2, bgcolor: "info.main", color: "info.contrastText", borderRadius: 1 }}>
+          Collapses vertically
+        </Box>
+      </Collapse>
+    </Box>
+  );
+}
+~~~
+
+## Popover anchoring
+
+Anchor floating content to a button or any element using `anchorEl`.
+
+~~~jsx
+import * as React from "react";
+import { Button, Popover, Box } from "@mui/material";
+
+export function AnchoredPopover() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  return (
+    <>
+      <Button aria-describedby="info-pop" onClick={(e) => setAnchorEl(e.currentTarget)}>Info</Button>
+      <Popover
+        id="info-pop"
+        open={open}
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: "left" }}
+      >
+        <Box sx={{ p: 2, maxWidth: 240 }}>
+          Anchored to the button. Set origins to control positioning.
+        </Box>
+      </Popover>
+    </>
+  );
+}
+~~~
+
+## Styled api basics
+
+Use the `styled` utility for reusable, theme-aware components. Works alongside `sx`.
+
+~~~jsx
+import { styled } from "@mui/material/styles";
+import { Button } from "@mui/material";
+
+const DangerButton = styled(Button)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+  textTransform: "none",
+  backgroundColor: theme.palette.error.main,
+  color: theme.palette.error.contrastText,
+  "&:hover": { backgroundColor: theme.palette.error.dark }
+}));
+
+export function StyledButtons() {
+  return <DangerButton variant="contained">Delete</DangerButton>;
+}
+~~~
+
+> Tip: Prefer `styled` for reusable components; prefer `sx` for local, per-instance tweaks.
+
+## Z index and layers
+
+Coordinate overlays with the theme’s z-index scale.
+
+~~~jsx
+import { Box, Backdrop } from "@mui/material";
+
+export function LayerDemo({ open }) {
+  return (
+    <>
+      <Box sx={{ position: "fixed", top: 16, right: 16, zIndex: (t) => t.zIndex.tooltip }}>
+        Tooltip layer
+      </Box>
+      <Backdrop open={open} sx={{ zIndex: (t) => t.zIndex.modal + 1 }} />
+    </>
+  );
+}
+~~~
+
+## Utilities playground
+
+import UtilitiesPlayground from "./components/utilities/UtilitiesPlayground.jsx"
+
+<UtilitiesPlayground />
+
+> Attention: The playground is self-contained (no theme or css baseline) and uses only local state for isolation.

@@ -1,0 +1,127 @@
+# Feedback
+
+Use alerts, snackbars, dialogs, progress, and backdrops to communicate system status without overwhelming users. Keep messages concise and actionable.
+
+> Tip: Prefer non-blocking feedback (snackbar) for background tasks; use dialogs only when user input or confirmation is required.
+
+## Alerts and snackbar
+
+`Alert` conveys status with optional actions. `Snackbar` is a transient container—often holding an `Alert`.
+
+~~~jsx
+import * as React from "react";
+import { Stack, Button, Snackbar, Alert } from "@mui/material";
+
+export function SnackSuccess() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Stack spacing={1} direction="row">
+      <Button variant="contained" onClick={() => setOpen(true)}>Save</Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={2500}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={() => setOpen(false)} severity="success" variant="filled" sx={{ width: "100%" }}>
+          Settings saved
+        </Alert>
+      </Snackbar>
+    </Stack>
+  );
+}
+~~~
+
+> Note: Keep to 1–2 lines. Include an undo when feasible.
+
+## Dialog and modal
+
+Use `Dialog` for confirmations and short forms. Provide clear primary/secondary actions.
+
+~~~jsx
+import * as React from "react";
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
+
+export function ConfirmDelete() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button color="error" variant="outlined" onClick={() => setOpen(true)}>Delete</Button>
+      <Dialog open={open} onClose={() => setOpen(false)} aria-labelledby="confirm-title">
+        <DialogTitle id="confirm-title">Delete item?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            This action cannot be undone. You can archive instead to keep history.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button color="error" variant="contained" onClick={() => setOpen(false)}>Delete</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
+~~~
+
+## Progress and skeleton
+
+Show progress for ongoing tasks; use `Skeleton` for optimistic layout while content loads.
+
+~~~jsx
+import * as React from "react";
+import { Stack, LinearProgress, CircularProgress, Skeleton, Button } from "@mui/material";
+
+export function LoadingStates() {
+  const [loading, setLoading] = React.useState(false);
+  return (
+    <Stack spacing={2} alignItems="flex-start">
+      <Button variant="contained" onClick={() => setLoading(true)}>Start task</Button>
+      {loading ? <LinearProgress sx={{ width: 240 }} /> : <div style={{ height: 4 }} />}
+      <Stack direction="row" spacing={2} alignItems="center">
+        <CircularProgress size={24} />
+        <Skeleton variant="rectangular" width={160} height={24} />
+      </Stack>
+    </Stack>
+  );
+}
+~~~
+
+## Backdrop
+
+Dim the page to indicate a blocking operation. Prefer short durations and pair with progress.
+
+~~~jsx
+import * as React from "react";
+import { Backdrop, CircularProgress, Button } from "@mui/material";
+
+export function BlockingAction() {
+  const [open, setOpen] = React.useState(false);
+  const run = () => {
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1500);
+  };
+  return (
+    <>
+      <Button variant="contained" onClick={run}>Sync</Button>
+      <Backdrop open={open} sx={{ color: "#fff", zIndex: (t) => t.zIndex.modal + 1 }}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
+  );
+}
+~~~
+
+## Toast patterns
+
+- Keep content short (≤ 60 chars) and avoid stacking multiple snackbars.
+- Use success/neutral for completed background work; use error with a next step.
+- Place undo on the snackbar; place destructive confirmations in dialogs.
+
+## Feedback playground
+
+import FeedbackPlayground from "./components/feedback/FeedbackPlayground.jsx"
+
+<FeedbackPlayground />
+
+> Attention: The playground is self contained (no theme or css baseline) and only uses local state.
