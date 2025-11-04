@@ -1,24 +1,38 @@
-name: Deploy React (build on VPS)
+name: Deploy React (Vite build on VPS)
 on:
   push:
     branches: [ main ]
 concurrency: deploy-react
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Build & deploy on VPS
+      - name: Build & deploy on VPS (Vite)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            set -e
-            cd /srv/www/react-apps/<app-name>
-            git pull origin main
-            npm ci
+            set -euo pipefail
+
+            # 1) Vai nella cartella del progetto (gestisci maiuscole)
+            cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
+
+            # 2) Allinea il repo in modo pulito
+            git fetch --all --prune
+            git reset --hard origin/main
+            git clean -fdx
+
+            # 3) (facoltativo) stampa versioni per debug
+            node -v || true
+            npm -v || true
+
+            # 4) Installa e builda (Vite -> dist)
+            npm ci --no-audit --no-fund || npm install
             npm run build
-            chown -R www-data:www-data build
-            systemctl reload nginx
+
+            # 5) Permessi cartella dist e reload NGINX
+            test -d dist && chown -R www-data:www-data dist
+            nginx -t && systemctl reload nginx
