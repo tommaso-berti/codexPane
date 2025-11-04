@@ -125,7 +125,7 @@ set -euo pipefail
 
 if [[ $# -ne 3 ]]; then
   echo "Usage: $0 <project-name> <github-repo-url> <domain>"
-  echo "Example: $0 my-react-app https://github.com/you/repo.git app.example.com"
+  echo "Example: $0 codexpane https://github.com/tommaso-berti/codexPane.git codexpane.tommasoberti.com"
   exit 1
 fi
 
@@ -134,32 +134,52 @@ REPO_URL="$2"
 DOMAIN="$3"
 
 ROOT_DIR="/srv/www/react-apps/$PROJECT_NAME"
-BUILD_DIR="$ROOT_DIR/build"
 LOG_DIR="/srv/www/logs/$PROJECT_NAME"
 CONF_DIR="/srv/www/configs/nginx"
 CONF_FILE="$CONF_DIR/$PROJECT_NAME.conf"
 
-echo "Creating folders..."
-sudo mkdir -p "$ROOT_DIR" "$BUILD_DIR" "$LOG_DIR" "$CONF_DIR"
-
-echo "Cloning/updating repository..."
+echo "📁 Creating folders..."
+mkdir -p "$ROOT_DIR" "$LOG_DIR" "$CONF_DIR"
 cd "$ROOT_DIR"
-if [[ ! -d .git ]]; then
-  sudo git clone "$REPO_URL" .
+
+echo "🔽 Preparing repository..."
+if [[ -d .git ]]; then
+  git fetch --all --prune
+  DEFAULT_BRANCH="$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
+  DEFAULT_BRANCH="${DEFAULT_BRANCH:-main}"
+  git reset --hard "origin/$DEFAULT_BRANCH"
+  git clean -fdx
 else
-  sudo git pull --ff-only
+  if [[ -n "$(ls -A 2>/dev/null || true)" ]]; then
+    echo "❌ $ROOT_DIR esiste ma non è un repo Git. Svuota o rimuovi la cartella e riprova."
+    exit 1
+  fi
+  git clone "$REPO_URL" .
 fi
 
-echo "Installing & building..."
-sudo npm ci
-sudo npm run build
+echo "📦 Installing dependencies & building..."
+if command -v npm >/dev/null 2>&1; then
+  npm ci --no-audit --no-fund || npm install
+  npm run build
+else
+  echo "❌ npm non trovato"; exit 1
+fi
 
-echo "Permissions..."
-sudo chown -R www-data:www-data "$BUILD_DIR"
-sudo chmod -R 755 "$BUILD_DIR"
+# Vite => dist, CRA => build
+if [[ -d dist ]]; then
+  BUILD_DIR="$ROOT_DIR/dist"
+elif [[ -d build ]]; then
+  BUILD_DIR="$ROOT_DIR/build"
+else
+  echo "❌ Cartella di build non trovata (né dist né build)"; exit 1
+fi
 
-echo "Writing NGINX config..."
-sudo tee "$CONF_FILE" >/dev/null <<EOF
+echo "🔐 Setting permissions on $BUILD_DIR..."
+chown -R www-data:www-data "$BUILD_DIR"
+chmod -R 755 "$BUILD_DIR"
+
+echo "⚙️ Writing NGINX config for $DOMAIN..."
+cat > "$CONF_FILE" <<EOF
 server {
     listen 80;
     server_name $DOMAIN;
@@ -167,21 +187,28 @@ server {
     root $BUILD_DIR;
     index index.html;
 
-    access_log $LOG_DIR/access.log;
-    error_log  $LOG_DIR/error.log;
+    access_log /srv/www/logs/$PROJECT_NAME/access.log;
+    error_log  /srv/www/logs/$PROJECT_NAME/error.log;
 
-    location / { try_files \$uri /index.html; }
+    location / {
+        try_files \$uri \$uri/ /index.html;
+    }
 }
 EOF
 
-echo "Enable & reload NGINX..."
-sudo ln -sf "$CONF_FILE" /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
+ln -sf "$CONF_FILE" "/etc/nginx/sites-enabled/$PROJECT_NAME.conf"
 
-read -p "Enable HTTPS with Certbot for $DOMAIN? (y/n): " R
-[[ "$R" =~ ^[Yy]$ ]] && sudo certbot --nginx -d "$DOMAIN" || echo "HTTPS not enabled."
+echo "🚀 Testing & reloading NGINX..."
+nginx -t && systemctl reload nginx
 
-echo "✅ React app deployed: https://$DOMAIN"
+read -r -p "🔒 Enable HTTPS with Certbot for $DOMAIN? (y/n): " R
+if [[ "$R" =~ ^[Yy]$ ]]; then
+  echo "ℹ️ A record seen from this server:"
+  getent ahostsv4 "$DOMAIN" 2>/dev/null | awk '{print $1}' | sort -u || true
+  certbot --nginx -d "$DOMAIN"
+fi
+
+echo "✅ Done. Visit: http://$DOMAIN"
 ~~~
 
 Make it executable:

@@ -30,7 +30,7 @@ const STEPS = [
     "Permissions set to www-data 755",
     "GitHub secrets set (SSH_PRIVATE_KEY, VPS_HOST, VPS_USER)",
     "deploy/update-site.sh executable on VPS",
-    "GitHub Actions workflow pushed to main",
+    "GitHub Actions workflows pushed to main",
     "Manual test: site loads over https"
 ];
 
