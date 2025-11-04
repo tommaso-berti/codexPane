@@ -1,38 +1,51 @@
 name: Deploy React (Vite build on VPS)
+
 on:
   push:
-    branches: [ main ]
-concurrency: deploy-react
+    branches: ["main"]
+
+concurrency:
+  group: deploy-react
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Build & deploy on VPS (Vite)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
+          username: ${{ secrets.VPS_USER }}   # e.g. website-deployer
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          command_timeout: 30m
           script: |
             set -euo pipefail
 
-            # 1) Vai nella cartella del progetto (gestisci maiuscole)
+            # Avoid "dubious ownership" if the repo was created by another user
+            git config --global --add safe.directory /srv/www/react-apps/codexpane || true
+            git config --global --add safe.directory /srv/www/react-apps/codexPane || true
+
+            # Go to your app folder (handles both casings)
             cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
 
-            # 2) Allinea il repo in modo pulito
+            # If you use nvm, load Node 20; otherwise this line is a no-op
+            [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" && nvm use 20 || true
+
+            # Clean align to main
             git fetch --all --prune
             git reset --hard origin/main
             git clean -fdx
 
-            # 3) (facoltativo) stampa versioni per debug
-            node -v || true
-            npm -v || true
-
-            # 4) Installa e builda (Vite -> dist)
+            # Build Vite -> dist
             npm ci --no-audit --no-fund || npm install
             npm run build
 
-            # 5) Permessi cartella dist e reload NGINX
-            test -d dist && chown -R www-data:www-data dist
-            nginx -t && systemctl reload nginx
+            # NGINX only needs read access; do NOT chown here
+            chmod -R a+rX dist || true
+
+            # Reload NGINX (requires limited sudo on the server)
+            sudo /usr/sbin/nginx -t
+            sudo /usr/bin/systemctl reload nginx
