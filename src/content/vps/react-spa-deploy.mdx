@@ -123,15 +123,17 @@ Create `deploy-react-app.sh` (store on VPS or `~/scripts`):
 #!/bin/bash
 set -euo pipefail
 
-if [[ $# -ne 3 ]]; then
-  echo "Usage: $0 <project-name> <github-repo-url> <domain>"
-  echo "Example: $0 codexpane https://github.com/tommaso-berti/codexPane.git www.codexpane.tommasoberti.com"
+# Usage: deploy-react-app.sh <project-name> <repo-url> <domain> [deploy-user]
+if [[ $# -lt 3 || $# -gt 4 ]]; then
+  echo "Usage: $0 <project-name> <github-repo-url> <domain> [deploy-user]"
+  echo "Example: $0 codexpane https://github.com/tommaso-berti/codexPane.git www.codexpane.tommasoberti.com website-deployer"
   exit 1
 fi
 
 PROJECT_NAME="$1"
 REPO_URL="$2"
 DOMAIN="$3"
+DEPLOY_USER="${4-}"                # optional
 PROJECT_SLUG="${PROJECT_NAME,,}"
 
 ROOT_DIR="/srv/www/react-apps/$PROJECT_SLUG"
@@ -139,9 +141,33 @@ LOG_DIR="/srv/www/logs/$PROJECT_SLUG"
 CONF_DIR="/srv/www/configs/nginx"
 CONF_FILE="$CONF_DIR/$PROJECT_SLUG.conf"
 
+# Helpers
+ensure_deploy_user() {
+  [[ -z "$DEPLOY_USER" ]] && return 0
+  id -u "$DEPLOY_USER" >/dev/null 2>&1 || adduser --disabled-password --gecos "" "$DEPLOY_USER"
+}
+
+setup_sudoers_for_nginx() {
+  [[ -z "$DEPLOY_USER" ]] && return 0
+  local NGINX_BIN SYSTEMCTL_BIN VISUDO SUDOERS_FILE
+  NGINX_BIN="$(command -v nginx || echo /usr/sbin/nginx)"
+  SYSTEMCTL_BIN="$(command -v systemctl || echo /usr/bin/systemctl)"
+  VISUDO="$(command -v visudo || echo /usr/sbin/visudo)"
+  SUDOERS_FILE="/etc/sudoers.d/${DEPLOY_USER}-nginx"
+  cat > "$SUDOERS_FILE" <<EOF
+Cmnd_Alias NGINX_CMDS = $NGINX_BIN -t, $SYSTEMCTL_BIN reload nginx
+$DEPLOY_USER ALL=(root) NOPASSWD: NGINX_CMDS
+EOF
+  chmod 440 "$SUDOERS_FILE"
+  $VISUDO -cf "$SUDOERS_FILE" >/dev/null
+}
+
 echo "📁 Creating folders..."
 mkdir -p "$ROOT_DIR" "$LOG_DIR" "$CONF_DIR"
 cd "$ROOT_DIR"
+
+echo "👤 Ensuring deploy user (if provided)..."
+ensure_deploy_user
 
 echo "🔽 Preparing repository..."
 if [[ -d .git ]]; then
@@ -175,25 +201,33 @@ else
   echo "❌ Build folder not found (neither dist nor build)"; exit 1
 fi
 
-echo "🔐 Setting permissions on $BUILD_DIR..."
-chown -R www-data:www-data "$BUILD_DIR"
-chmod -R 755 "$BUILD_DIR"
+echo "🔐 Permissions..."
+# NGINX must read files; keep ownership with DEPLOY_USER (or root if none), DO NOT chown to www-data here
+chmod -R a+rX "$BUILD_DIR"
+
+# Logs must be writable by nginx
+chown -R www-data:www-data "$LOG_DIR"
+
+# If a deploy user is provided, give them ownership of the whole repo (future builds as that user)
+if [[ -n "$DEPLOY_USER" ]]; then
+  chown -R "$DEPLOY_USER":"$DEPLOY_USER" "$ROOT_DIR"
+fi
 
 echo "⚙️ Writing NGINX config for $DOMAIN..."
 cat > "$CONF_FILE" <<EOF
 server {
-    listen 80;
-    server_name $DOMAIN;
+  listen 80;
+  server_name $DOMAIN;
 
-    root $BUILD_DIR;
-    index index.html;
+  root $BUILD_DIR;
+  index index.html;
 
-    access_log /srv/www/logs/$PROJECT_SLUG/access.log;
-    error_log  /srv/www/logs/$PROJECT_SLUG/error.log;
+  access_log /srv/www/logs/$PROJECT_SLUG/access.log;
+  error_log  /srv/www/logs/$PROJECT_SLUG/error.log;
 
-    location / {
-        try_files \$uri \$uri/ /index.html;
-    }
+  location / {
+    try_files \$uri \$uri/ /index.html;
+  }
 }
 EOF
 
@@ -208,6 +242,9 @@ if grep -q '/etc/nginx/sites-enabled/codexPane.conf' /etc/nginx/nginx.conf 2>/de
   sed -i 's|/etc/nginx/sites-enabled/codexPane.conf|/etc/nginx/sites-enabled/*.conf|' /etc/nginx/nginx.conf
 fi
 
+echo "🛡️ Sudoers for nginx reload (if deploy user provided)..."
+setup_sudoers_for_nginx
+
 echo "🚀 Testing & reloading NGINX..."
 nginx -t && systemctl reload nginx
 
@@ -215,11 +252,10 @@ read -r -p "🔒 Enable HTTPS with Certbot for $DOMAIN? (y/n): " R
 if [[ "$R" =~ ^[Yy]$ ]]; then
   echo "ℹ️ DNS A record (as seen from this server):"
   getent ahostsv4 "$DOMAIN" 2>/dev/null | awk '{print $1}' | sort -u || true
-  # Only the domain you passed (e.g., www.codexpane...)
   certbot --nginx --redirect -d "$DOMAIN"
 fi
 
-echo "✅ Done. Visit: http://$DOMAIN"
+echo "✅ Done. Visit: https://$DOMAIN"
 ~~~
 
 Make it executable everywhere on the VPS:
