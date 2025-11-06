@@ -1,21 +1,22 @@
-name: Deploy site (vite)
+name: Deploy static site
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-    types: [closed]
+    types: [ closed ]
     branches: [ "main" ]
 
 jobs:
   deploy:
+    # Esegui su push o su PR chiusa che è stata effettivamente merge-ata
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
 
+    # Solo valori "semplici" qui
     env:
       SITE_DOMAIN: www.codexpane.tommasoberti.com   # cambia se serve
-      BUILD_DIR: dist                               # "build" se usi CRA
-      REMOTE_PATH: /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }}
+      BUILD_DIR: dist                               # "build" se CRA
 
     steps:
       - name: Checkout
@@ -34,22 +35,21 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Scriviamo la private key in un file e settiamo i permessi corretti
       - name: Prepare SSH key
         run: |
           mkdir -p ~/.ssh
           printf "%s" "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          # evita prompt interattivi su prima connessione
-          ssh-keyscan -t ed25519 ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts || true
+          ssh-keyscan -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      - name: Rsync build to server
+      - name: Rsync build to server as a new release
         run: |
+          REMOTE_PATH="/srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER}"
           rsync -az --delete -e "ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }}" \
-            "${{ env.BUILD_DIR }}/" \
-            "${{ secrets.VPS_HOST }}:${{ env.REMOTE_PATH }}/"
+            "${BUILD_DIR}/" \
+            "${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
 
       - name: Switch symlink & reload caddy
         run: |
           ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }} ${{ secrets.VPS_HOST }} \
-            "ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }} /srv/www/${{ env.SITE_DOMAIN }}/current && sudo systemctl reload caddy"
+            "ln -sfn /srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER} /srv/www/${SITE_DOMAIN}/current && sudo systemctl reload caddy"
