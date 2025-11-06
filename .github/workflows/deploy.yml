@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SITE_DOMAIN: www.codexpane.tommasoberti.com   # <-- cambia se diverso
-      BUILD_DIR: dist                               # <-- usa "build" se la tua build è lì
+      SITE_DOMAIN: www.codexpane.tommasoberti.com   # cambia se serve
+      BUILD_DIR: dist                               # "build" se usi CRA
+      REMOTE_PATH: /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }}
 
     steps:
       - name: Checkout
@@ -33,22 +34,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Rsync build to server as a new release
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -az --delete
-          path: ${{ env.BUILD_DIR }}/
-          remote_path: /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }}
-          remote_host: ${{ secrets.VPS_HOST }}
-          remote_user: ${{ secrets.VPS_USER }}
-          remote_key: ${{ secrets.VPS_SSH_KEY }}
+      # Scriviamo la private key in un file e settiamo i permessi corretti
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf "%s" "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # evita prompt interattivi su prima connessione
+          ssh-keyscan -t ed25519 ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts || true
+
+      - name: Rsync build to server
+        run: |
+          rsync -az --delete -e "ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }}" \
+            "${{ env.BUILD_DIR }}/" \
+            "${{ secrets.VPS_HOST }}:${{ env.REMOTE_PATH }}/"
 
       - name: Switch symlink & reload caddy
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }} /srv/www/${{ env.SITE_DOMAIN }}/current
-            sudo systemctl reload caddy
+        run: |
+          ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }} ${{ secrets.VPS_HOST }} \
+            "ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }} /srv/www/${{ env.SITE_DOMAIN }}/current && sudo systemctl reload caddy"
