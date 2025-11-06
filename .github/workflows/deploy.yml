@@ -1,51 +1,54 @@
-name: Deploy React (Vite build on VPS)
+name: Deploy site (vite)
 
 on:
   push:
-    branches: ["main"]
-
-concurrency:
-  group: deploy-react
-  cancel-in-progress: true
+    branches: [ "main" ]
+  pull_request:
+    types: [closed]
+    branches: [ "main" ]
 
 jobs:
   deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+
+    env:
+      SITE_DOMAIN: www.codexpane.tommasoberti.com   # <-- cambia se diverso
+      BUILD_DIR: dist                               # <-- usa "build" se la tua build è lì
+
     steps:
-      - name: Build & deploy on VPS (Vite)
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Rsync build to server as a new release
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -az --delete
+          path: ${{ env.BUILD_DIR }}/
+          remote_path: /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }}
+          remote_host: ${{ secrets.VPS_HOST }}
+          remote_user: ${{ secrets.VPS_USER }}
+          remote_key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Switch symlink & reload caddy
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}   # e.g. website-deployer
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
-          command_timeout: 30m
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            set -euo pipefail
-
-            # Avoid "dubious ownership" if the repo was created by another user
-            git config --global --add safe.directory /srv/www/react-apps/codexpane || true
-            git config --global --add safe.directory /srv/www/react-apps/codexPane || true
-
-            # Go to your app folder (handles both casings)
-            cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
-
-            # If you use nvm, load Node 20; otherwise this line is a no-op
-            [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" && nvm use 20 || true
-
-            # Clean align to main
-            git fetch --all --prune
-            git reset --hard origin/main
-            git clean -fdx
-
-            # Build Vite -> dist
-            npm ci --no-audit --no-fund || npm install
-            npm run build
-
-            # NGINX only needs read access; do NOT chown here
-            chmod -R a+rX dist || true
-
-            # Reload NGINX (requires limited sudo on the server)
-            sudo /usr/sbin/nginx -t
-            sudo /usr/bin/systemctl reload nginx
+            ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${{ github.run_number }} /srv/www/${{ env.SITE_DOMAIN }}/current
+            sudo systemctl reload caddy
