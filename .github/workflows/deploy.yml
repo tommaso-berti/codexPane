@@ -9,14 +9,8 @@ on:
 
 jobs:
   deploy:
-    # Esegui su push o su PR chiusa merge-ata
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
-
-    env:
-      SITE_DOMAIN: www.codexpane.tommasoberti.com
-      BUILD_DIR: dist
-
+    # esegui deploy solo su push; su PR chiuso fai solo build (niente secrets)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,17 +28,32 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 🔐 PREPARE SSH KEY (raw multi-line OpenSSH key)
+      # Stoppa subito se l'evento è PR: non usiamo secrets nei PR
+      - name: Skip deploy on PR
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Pull request run: skipping deploy (no secrets available)."
+          exit 0
+
+      - name: Prepare env
+        run: |
+          echo "SITE_DOMAIN=www.codexpane.tommasoberti.com" >> $GITHUB_ENV
+          echo "BUILD_DIR=dist" >> $GITHUB_ENV
+
+      # 🔐 PREPARE SSH KEY (RAW, NO BASE64) con guardia
       - name: Prepare SSH key
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          if [ -z "${{ secrets.VPS_SSH_KEY }}" ]; then
+            echo "❌ Missing secret VPS_SSH_KEY (is it defined? secrets are not available on PR from forks)."
+            exit 1
+          fi
 
-          # Scrivi la chiave privata esattamente come salvata nel Secret (raw, multi-line)
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
 
-          # Rimuovi eventuali CRLF (\r) e converte \n letterali in newline se serve
+          # normalizza CRLF e \n letterali
           tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
             sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
@@ -52,40 +61,33 @@ jobs:
 
           chmod 600 ~/.ssh/deploy_key
 
-          # ✅ Validazione reale: se la chiave estrae una pub, è ok
+          # valida davvero la chiave
           ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
-
-          echo "✅ Chiave SSH caricata. Fingerprint:"
+          echo "Fingerprint della chiave usata dal runner:"
           ssh-keygen -lf ~/.ssh/deploy_key.pub
 
-      # 🛡️ Aggiungi chiave host del server per evitare prompt
       - name: Add server host key to known_hosts
         run: |
           ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           ssh-keyscan -H -t rsa "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 644 ~/.ssh/known_hosts
 
-      # 🛰️ Test SSH (no password fallback)
       - name: Test SSH connection
         run: |
-          ssh -vvv -o BatchMode=yes -o IdentitiesOnly=yes \
-              -o PreferredAuthentications=publickey \
-              -i ~/.ssh/deploy_key \
-              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
+          ssh -o BatchMode=yes -o IdentitiesOnly=yes -o PreferredAuthentications=publickey \
+              -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
 
-      # 📦 Rsync build sul server
       - name: Rsync build to server as a new release
         run: |
           set -euo pipefail
-          REMOTE_PATH="/srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER}"
+          REMOTE_PATH="/srv/www/${{ env.SITE_DOMAIN }}/releases/${GITHUB_RUN_NUMBER}"
           rsync -az --delete \
             -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
-            "${BUILD_DIR}/" \
+            "${{ env.BUILD_DIR }}/" \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
 
-      # 🔁 Cambia symlink corrente + reload caddy (richiede sudo senza password)
       - name: Switch symlink & reload caddy
         run: |
           ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            "ln -sfn /srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER} /srv/www/${SITE_DOMAIN}/current && sudo -n systemctl reload caddy"
+            "ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${GITHUB_RUN_NUMBER} /srv/www/${{ env.SITE_DOMAIN }}/current && sudo -n systemctl reload caddy"
