@@ -2,14 +2,13 @@ name: Deploy static site
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    types: [ closed ]
-    branches: [ "main" ]
+    types: [closed]
+    branches: ["main"]
 
 jobs:
   deploy:
-    # Esegui su push o su PR chiusa che è stata effettivamente merge-ata
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
 
@@ -34,25 +33,53 @@ jobs:
       - name: Build
         run: npm run build
 
+      # 🔑 write key safely, strip CRLF, set strict perms, sanity-check header
       - name: Prepare SSH key
+        shell: bash
         run: |
-          mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+          # If your secret is RAW OpenSSH (multi-line):
+          printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          # If you stored it BASE64 instead, comment the line above and use:
+          # printf '%s' "${{ secrets.VPS_SSH_KEY_B64 }}" | base64 -d > ~/.ssh/deploy_key
+
+          # Normalize Windows CRLF if any
+          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/deploy_key.fix && mv ~/.ssh/deploy_key.fix ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-      # ✅ ➤ NUOVO STEP: aggiunge la host key del server ed evita l’errore
+          # Optional sanity check: should be OpenSSH or RSA
+          head -n1 ~/.ssh/deploy_key | grep -Eq 'BEGIN (OPENSSH|RSA) PRIVATE KEY' || {
+            echo "❌ Key is not an OpenSSH/RSA private key. Recreate with: ssh-keygen -t ed25519"
+            exit 1
+          }
+
       - name: Add server host key to known_hosts
         run: |
-          ssh-keyscan -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          # optional fallback if server doesn't expose ed25519 host key:
+          ssh-keyscan -H -t rsa "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          chmod 644 ~/.ssh/known_hosts
+
+      # 🛰️ quick connectivity check (verbose)
+      - name: Test SSH connection (no command)
+        run: |
+          ssh -vvv -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
 
       - name: Rsync build to server as a new release
         run: |
+          set -euo pipefail
           REMOTE_PATH="/srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER}"
-          rsync -az --delete -e "ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }}" \
+          rsync -az --delete \
+            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
             "${BUILD_DIR}/" \
-            "${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
 
+      # ⚠️ this needs passwordless sudo on the server for that user (NOPASSWD)
       - name: Switch symlink & reload caddy
         run: |
-          ssh -i ~/.ssh/deploy_key -l ${{ secrets.VPS_USER }} ${{ secrets.VPS_HOST }} \
-            "ln -sfn /srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER} /srv/www/${SITE_DOMAIN}/current && sudo systemctl reload caddy"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "ln -sfn /srv/www/${SITE_DOMAIN}/releases/${GITHUB_RUN_NUMBER} /srv/www/${SITE_DOMAIN}/current && sudo -n systemctl reload caddy"
