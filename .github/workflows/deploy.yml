@@ -66,6 +66,19 @@ jobs:
           echo "Fingerprint della chiave usata dal runner:"
           ssh-keygen -lf ~/.ssh/deploy_key.pub
 
+      - name: Debug key file (temporary)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "== header/footer (masked) =="
+          sed -n '1p;$p' ~/.ssh/deploy_key
+          echo "== first 32 bytes in hex =="
+          head -c 32 ~/.ssh/deploy_key | od -An -t x1
+          echo "== total size (bytes) =="
+          wc -c ~/.ssh/deploy_key
+          echo "== file type =="
+          file ~/.ssh/deploy_key || true
+
       - name: Add server host key to known_hosts
         run: |
           ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
