@@ -1,10 +1,6 @@
 name: Deploy CodexPane (version-only)
-
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    types: [closed]
     branches: ["main"]
 
 concurrency:
@@ -15,28 +11,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           cache: 'npm'
 
       - name: Resolve VERSION
-        id: ver
         shell: bash
         run: |
-          if [ -f VERSION ]; then
-            VERSION=$(tr -d ' \n\r' < VERSION)
-          else
-            VERSION=$(node -p "require('./package.json').version")
-          fi
-          [ -n "$VERSION" ] || { echo "❌ VERSION non trovata"; exit 1; }
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "RELEASE_DIR=v$VERSION" >> $GITHUB_ENV
-          echo "✔ VERSION: $VERSION"
+          V=$( [ -f VERSION ] && tr -d ' \n\r' < VERSION || node -p "require('./package.json').version" )
+          V=${V#v}
+          echo "VERSION=$V" >> $GITHUB_ENV
+          echo "RELEASE_DIR=v$V" >> $GITHUB_ENV
 
       - name: Install deps
         run: |
@@ -47,19 +35,22 @@ jobs:
           VITE_APP_VERSION: ${{ env.VERSION }}
         run: npm run build
 
-      # Stop su PR chiusa: niente deploy (niente secrets)
-      - name: Skip deploy on PR
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "Pull request closed: build only, skipping deploy."
-          exit 0
-
-      - name: Prepare SSH
+      - name: Prepare SSH key (robust)
         shell: bash
         run: |
+          set -euo pipefail
+          if [ -z "${{ secrets.VPS_SSH_KEY }}" ]; then
+            echo "❌ Missing secret VPS_SSH_KEY"; exit 1
+          fi
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
+            sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          fi
+          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
           ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           ssh-keyscan -H -t rsa     "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 644 ~/.ssh/known_hosts
@@ -81,7 +72,6 @@ jobs:
             -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
             dist/ \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_RELEASE}/"
-          # scrivi file VERSION nella release
           ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
             "echo '${{ env.VERSION }}' > '${REMOTE_RELEASE}/VERSION'"
 
@@ -91,6 +81,3 @@ jobs:
           REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
           ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
             "ln -sfn '${REMOTE_BASE}/releases/${{ env.RELEASE_DIR }}' '${REMOTE_BASE}/current' && sudo -n systemctl reload caddy || true"
-
-      - name: Done
-        run: echo "✓ Deployed v${{ env.VERSION }} → /srv/www/www.codexpane.tommasoberti.com/releases/${{ env.RELEASE_DIR }}"
