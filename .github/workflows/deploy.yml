@@ -41,43 +41,52 @@ jobs:
           echo "BUILD_DIR=dist" >> $GITHUB_ENV
 
       # 🔐 PREPARE SSH KEY (RAW, NO BASE64) con guardia
-      - name: Prepare SSH key
+      - name: Prepare SSH key (debug first)
         shell: bash
         run: |
           set -euo pipefail
+
           if [ -z "${{ secrets.VPS_SSH_KEY }}" ]; then
-            echo "❌ Missing secret VPS_SSH_KEY (is it defined? secrets are not available on PR from forks)."
+            echo "❌ Missing secret VPS_SSH_KEY"
             exit 1
           fi
 
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+          # Scrivi il segreto così com'è (multi-line)
           printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
 
-          # normalizza CRLF e \n letterali
+          # Normalizza: CRLF -> LF, '\n' letterali, BOM
           tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
             sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           fi
+          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
 
           chmod 600 ~/.ssh/deploy_key
 
-          # valida davvero la chiave
-          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
-          echo "Fingerprint della chiave usata dal runner:"
-          ssh-keygen -lf ~/.ssh/deploy_key.pub
+          # 🔎 DEBUG: guardiamo cosa c'è *prima* di usare ssh-keygen
+          echo "== header/footer (mascherati da GitHub) =="
+          sed -n '1p;$p' ~/.ssh/deploy_key || true
 
-      - name: Debug key file (temporary)
-        shell: bash
-        run: |
-          set -euo pipefail
-          echo "== header/footer (masked) =="
-          sed -n '1p;$p' ~/.ssh/deploy_key
-          echo "== first 32 bytes in hex =="
-          head -c 32 ~/.ssh/deploy_key | od -An -t x1
-          echo "== total size (bytes) =="
-          wc -c ~/.ssh/deploy_key
-          echo "== file type =="
+          echo "== primi 16 byte in hex (devono iniziare con 2d 2d 2d 2d 2d) =="
+          head -c 16 ~/.ssh/deploy_key | od -An -t x1 || true
+
+          echo "== size (bytes) e numero righe =="
+          wc -c ~/.ssh/deploy_key || true
+          wc -l ~/.ssh/deploy_key || true
+
+          echo "== tipo file =="
           file ~/.ssh/deploy_key || true
+
+          echo "== sha256 del file (confronta con la tua privata locale) =="
+          sha256sum ~/.ssh/deploy_key || shasum -a 256 ~/.ssh/deploy_key || true
+
+          # ✅ Solo adesso proviamo a estrarre la pubblica (fallisce se cifrata/corrotta)
+          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          echo "Fingerprint:"
+          ssh-keygen -lf ~/.ssh/deploy_key.pub
+      
 
       - name: Add server host key to known_hosts
         run: |
