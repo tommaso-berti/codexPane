@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    # Esegui su push o su PR chiusa merge-ata
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
 
@@ -33,41 +34,46 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 🔑 write key safely, strip CRLF, set strict perms, sanity-check header
+      # 🔐 PREPARE SSH KEY (raw multi-line OpenSSH key)
       - name: Prepare SSH key
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
 
-          # If your secret is RAW OpenSSH (multi-line):
+          # Scrivi la chiave privata esattamente come salvata nel Secret (raw, multi-line)
           printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-          # If you stored it BASE64 instead, comment the line above and use:
-          # printf '%s' "${{ secrets.VPS_SSH_KEY_B64 }}" | base64 -d > ~/.ssh/deploy_key
 
-          # Normalize Windows CRLF if any
-          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/deploy_key.fix && mv ~/.ssh/deploy_key.fix ~/.ssh/deploy_key
+          # Rimuovi eventuali CRLF (\r) e converte \n letterali in newline se serve
+          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
+            sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          fi
+
           chmod 600 ~/.ssh/deploy_key
 
-          # Optional sanity check: should be OpenSSH or RSA
-          head -n1 ~/.ssh/deploy_key | grep -Eq 'BEGIN (OPENSSH|RSA) PRIVATE KEY' || {
-            echo "❌ Key is not an OpenSSH/RSA private key. Recreate with: ssh-keygen -t ed25519"
-            exit 1
-          }
+          # ✅ Validazione reale: se la chiave estrae una pub, è ok
+          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
 
+          echo "✅ Chiave SSH caricata. Fingerprint:"
+          ssh-keygen -lf ~/.ssh/deploy_key.pub
+
+      # 🛡️ Aggiungi chiave host del server per evitare prompt
       - name: Add server host key to known_hosts
         run: |
           ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
-          # optional fallback if server doesn't expose ed25519 host key:
           ssh-keyscan -H -t rsa "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 644 ~/.ssh/known_hosts
 
-      # 🛰️ quick connectivity check (verbose)
-      - name: Test SSH connection (no command)
+      # 🛰️ Test SSH (no password fallback)
+      - name: Test SSH connection
         run: |
-          ssh -vvv -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
-            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
+          ssh -vvv -o BatchMode=yes -o IdentitiesOnly=yes \
+              -o PreferredAuthentications=publickey \
+              -i ~/.ssh/deploy_key \
+              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
 
+      # 📦 Rsync build sul server
       - name: Rsync build to server as a new release
         run: |
           set -euo pipefail
@@ -77,7 +83,7 @@ jobs:
             "${BUILD_DIR}/" \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
 
-      # ⚠️ this needs passwordless sudo on the server for that user (NOPASSWD)
+      # 🔁 Cambia symlink corrente + reload caddy (richiede sudo senza password)
       - name: Switch symlink & reload caddy
         run: |
           ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
