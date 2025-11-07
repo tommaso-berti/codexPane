@@ -1,46 +1,96 @@
-name: Deploy CodexPane
+name: Deploy CodexPane (version-only)
+
 on:
   push:
-    branches: [ main ]
+    branches: ["main"]
+  pull_request:
+    types: [closed]
+    branches: ["main"]
+
+concurrency:
+  group: deploy-codexpane
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Deploy on VPS
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            set -euo pipefail
-            cd /srv/apps/codexpane
+          node-version: 'lts/*'
+          cache: 'npm'
 
-            # 1) Prendo la versione: prima da ./VERSION, sennò da package.json
-            if [ -f VERSION ]; then
-              VERSION=$(tr -d ' \n\r' < VERSION)
-            else
-              VERSION=$(node -p "require('./package.json').version")
-            fi
-            [ -n "$VERSION" ] || { echo "VERSION non trovata"; exit 1; }
+      - name: Resolve VERSION
+        id: ver
+        shell: bash
+        run: |
+          if [ -f VERSION ]; then
+            VERSION=$(tr -d ' \n\r' < VERSION)
+          else
+            VERSION=$(node -p "require('./package.json').version")
+          fi
+          [ -n "$VERSION" ] || { echo "❌ VERSION non trovata"; exit 1; }
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "RELEASE_DIR=v$VERSION" >> $GITHUB_ENV
+          echo "✔ VERSION: $VERSION"
 
-            # 2) Build
-            git pull --ff-only || true
-            npm ci
-            VITE_APP_VERSION="$VERSION" npm run build
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
-            # 3) Release path SOLO con versione
-            BASE_DIR="/srv/www/www.codexpane.tommasoberti.com"
-            RELEASE_DIR="$BASE_DIR/releases/v$VERSION"
-            mkdir -p "$RELEASE_DIR"
+      - name: Build
+        env:
+          VITE_APP_VERSION: ${{ env.VERSION }}
+        run: npm run build
 
-            # 4) Pubblico (sovrascrive la stessa versione se esiste)
-            rsync -a --delete dist/ "$RELEASE_DIR/"
+      # Stop su PR chiusa: niente deploy (niente secrets)
+      - name: Skip deploy on PR
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Pull request closed: build only, skipping deploy."
+          exit 0
 
-            # 5) Attivo
-            ln -sfn "$RELEASE_DIR" "$BASE_DIR/current"
+      - name: Prepare SSH
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh-keyscan -H -t rsa     "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          chmod 644 ~/.ssh/known_hosts
 
-            echo "✓ Deployed v$VERSION → $RELEASE_DIR"
+      - name: Ensure remote release dir
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "mkdir -p \"$REMOTE_RELEASE\""
+
+      - name: Rsync build → /releases/vX.Y.Z
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
+          rsync -az --delete \
+            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
+            dist/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_RELEASE}/"
+          # scrivi file VERSION nella release
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "echo '${{ env.VERSION }}' > '${REMOTE_RELEASE}/VERSION'"
+
+      - name: Activate release (symlink) & reload caddy
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "ln -sfn '${REMOTE_BASE}/releases/${{ env.RELEASE_DIR }}' '${REMOTE_BASE}/current' && sudo -n systemctl reload caddy || true"
+
+      - name: Done
+        run: echo "✓ Deployed v${{ env.VERSION }} → /srv/www/www.codexpane.tommasoberti.com/releases/${{ env.RELEASE_DIR }}"
