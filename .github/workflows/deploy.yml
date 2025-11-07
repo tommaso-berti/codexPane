@@ -1,115 +1,46 @@
-name: Deploy static site
-
+name: Deploy CodexPane
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    types: [closed]
-    branches: ["main"]
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # esegui deploy solo su push; su PR chiuso fai solo build (niente secrets)
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          node-version: 'lts/*'
-          cache: 'npm'
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            cd /srv/apps/codexpane
 
-      - name: Install deps
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+            # 1) Prendo la versione: prima da ./VERSION, sennò da package.json
+            if [ -f VERSION ]; then
+              VERSION=$(tr -d ' \n\r' < VERSION)
+            else
+              VERSION=$(node -p "require('./package.json').version")
+            fi
+            [ -n "$VERSION" ] || { echo "VERSION non trovata"; exit 1; }
 
-      - name: Build
-        run: npm run build
+            # 2) Build
+            git pull --ff-only || true
+            npm ci
+            VITE_APP_VERSION="$VERSION" npm run build
 
-      # Stoppa subito se l'evento è PR: non usiamo secrets nei PR
-      - name: Skip deploy on PR
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "Pull request run: skipping deploy (no secrets available)."
-          exit 0
+            # 3) Release path SOLO con versione
+            BASE_DIR="/srv/www/www.codexpane.tommasoberti.com"
+            RELEASE_DIR="$BASE_DIR/releases/v$VERSION"
+            mkdir -p "$RELEASE_DIR"
 
-      - name: Prepare env
-        run: |
-          echo "SITE_DOMAIN=www.codexpane.tommasoberti.com" >> $GITHUB_ENV
-          echo "BUILD_DIR=dist" >> $GITHUB_ENV
+            # 4) Pubblico (sovrascrive la stessa versione se esiste)
+            rsync -a --delete dist/ "$RELEASE_DIR/"
 
-      # 🔐 PREPARE SSH KEY (RAW, NO BASE64) con guardia
-      - name: Prepare SSH key (debug first)
-        shell: bash
-        run: |
-          set -euo pipefail
+            # 5) Attivo
+            ln -sfn "$RELEASE_DIR" "$BASE_DIR/current"
 
-          if [ -z "${{ secrets.VPS_SSH_KEY }}" ]; then
-            echo "❌ Missing secret VPS_SSH_KEY"
-            exit 1
-          fi
-
-          mkdir -p ~/.ssh && chmod 700 ~/.ssh
-
-          # Scrivi il segreto così com'è (multi-line)
-          printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-
-          # Normalizza: CRLF -> LF, '\n' letterali, BOM
-          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
-          if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
-            sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
-          fi
-          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
-
-          chmod 600 ~/.ssh/deploy_key
-
-          # 🔎 DEBUG: guardiamo cosa c'è *prima* di usare ssh-keygen
-          echo "== header/footer (mascherati da GitHub) =="
-          sed -n '1p;$p' ~/.ssh/deploy_key || true
-
-          echo "== primi 16 byte in hex (devono iniziare con 2d 2d 2d 2d 2d) =="
-          head -c 16 ~/.ssh/deploy_key | od -An -t x1 || true
-
-          echo "== size (bytes) e numero righe =="
-          wc -c ~/.ssh/deploy_key || true
-          wc -l ~/.ssh/deploy_key || true
-
-          echo "== tipo file =="
-          file ~/.ssh/deploy_key || true
-
-          echo "== sha256 del file (confronta con la tua privata locale) =="
-          sha256sum ~/.ssh/deploy_key || shasum -a 256 ~/.ssh/deploy_key || true
-
-          # ✅ Solo adesso proviamo a estrarre la pubblica (fallisce se cifrata/corrotta)
-          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
-          echo "Fingerprint:"
-          ssh-keygen -lf ~/.ssh/deploy_key.pub
-      
-
-      - name: Add server host key to known_hosts
-        run: |
-          ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
-          ssh-keyscan -H -t rsa "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
-          chmod 644 ~/.ssh/known_hosts
-
-      - name: Test SSH connection
-        run: |
-          ssh -o BatchMode=yes -o IdentitiesOnly=yes -o PreferredAuthentications=publickey \
-              -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true
-
-      - name: Rsync build to server as a new release
-        run: |
-          set -euo pipefail
-          REMOTE_PATH="/srv/www/${{ env.SITE_DOMAIN }}/releases/${GITHUB_RUN_NUMBER}"
-          rsync -az --delete \
-            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
-            "${{ env.BUILD_DIR }}/" \
-            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_PATH}/"
-
-      - name: Switch symlink & reload caddy
-        run: |
-          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key \
-            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            "ln -sfn /srv/www/${{ env.SITE_DOMAIN }}/releases/${GITHUB_RUN_NUMBER} /srv/www/${{ env.SITE_DOMAIN }}/current && sudo -n systemctl reload caddy"
+            echo "✓ Deployed v$VERSION → $RELEASE_DIR"
