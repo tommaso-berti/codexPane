@@ -1,1 +1,45 @@
 # Introduction to DEMO
+
+DEMO is a practical area to validate how documentation should look, read, and behave inside CodexPane.
+
+Use this topic as a working template when you need to create new docs quickly while keeping a consistent structure, style, and navigation quality.
+
+## What this page is for
+
+- Provide a safe place to test writing patterns before applying them to real topics.
+- Standardize heading hierarchy (`#`, `##`) so sidebar navigation remains clean.
+- Keep examples realistic and easy to copy into production docs.
+
+## Quick workflow for new documentation
+
+1. Create a new `*.mdx` file inside the target topic folder.
+2. Add one clear `#` title and concise opening paragraph.
+3. Organize content with meaningful `##` headings.
+4. Add code snippets only when they clarify the concept.
+5. Run `npm run docs:build-manifest`.
+6. Verify rendering and search with `npm run dev`.
+
+## Content quality checklist
+
+- **Clear intent:** the first paragraph explains why the section exists.
+- **Scannable layout:** short paragraphs, focused subsections, useful lists.
+- **Actionable examples:** commands and code are runnable or immediately understandable.
+- **Stable anchors:** avoid renaming `##` headings unless necessary.
+- **No fluff:** remove repeated or generic text.
+
+## Recommended writing style
+
+- Write in short, direct sentences.
+- Prefer practical examples over theory-only explanations.
+- Keep terminology consistent across sections.
+- Use callouts only when they add real value.
+
+> **Tip:** if a paragraph does not help the reader act, simplify or delete it.
+
+## Related demo content
+
+For a complete style reference (lists, tables, code blocks, callouts, details), open:
+
+- `/demo/style-showcase`
+
+This lets you reuse proven patterns without reinventing formatting each time.
