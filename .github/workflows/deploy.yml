@@ -423,12 +423,12 @@ jobs:
           body_path: release-notes/${{ env.RELEASE_TAG }}.md
           generate_release_notes: false
 
-      - name: Build static release-notes payload for frontend modal
+      - name: Refresh static data for frontend modal
         if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/release-notes/build_static_release_notes.mjs --tag "${RELEASE_TAG}"
+          node scripts/static-data/refresh-static-data.mjs --tag "${RELEASE_TAG}"
           test -f public/data/release-notes.json
 
       - name: Sync release-notes modal data to deployed release

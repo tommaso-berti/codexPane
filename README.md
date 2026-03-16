@@ -219,18 +219,26 @@ Files:
 - `scripts/release-notes/generate_notes.mjs`
 - `scripts/release-notes/release_notes_prompt.md`
 - `scripts/release-notes/run.sh`
+- `scripts/static-data/refresh-static-data.mjs`
 - `release-notes/vX.Y.Z.md`
+- `public/data/release-notes.json`
 
 Manual workflow:
 - `.github/workflows/release-notes.yml` (`workflow_dispatch`)
 - Inputs: `tag`, optional `from`, optional `to`
 - Output: `release-notes/<tag>.md` and GitHub Release body update
 
+Static data workflow:
+- `.github/workflows/refresh-static-data.yml` (`workflow_dispatch`)
+- Optional input: `tag`
+- Output: `public/data/release-notes.json` for frontend modal consumption
+
 Local generation:
 
 ```bash
 scripts/release-notes/run.sh --tag v1.2.3
 scripts/release-notes/run.sh --tag v1.2.3 --from v1.2.2 --to HEAD
+npm run data:refresh -- --tag v1.2.3
 ```
 
 Notes:

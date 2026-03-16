@@ -1,0 +1,43 @@
+name: Refresh Static Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Optional tag to build payload for (e.g. v2.0.0)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      - name: Generate static JSON data
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            node scripts/static-data/refresh-static-data.mjs --tag "${{ inputs.tag }}"
+          else
+            node scripts/static-data/refresh-static-data.mjs
+          fi
+          test -f public/data/release-notes.json
+
+      - name: Manual mode info
+        run: |
+          echo "Manual utility workflow: snapshots are generated for validation only."
+          echo "No automatic commit/push is performed by this workflow."
