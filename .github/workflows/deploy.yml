@@ -1,44 +1,252 @@
-name: Deploy CodexPane (version-only)
+name: Deploy www.codexpane.tommasoberti.com (versioned)
+
 on:
   push:
     branches: ["main"]
+    tags: ["v*"]
+  pull_request:
+    types: [closed]
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: "Branch or ref to deploy"
+        required: true
+        default: "main"
+        type: string
+      bump_level:
+        description: "Version bump level"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      skip_deploy:
+        description: "Skip build/deploy/tag steps"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
 
 concurrency:
-  group: deploy-codexpane
+  group: deploy-www-codexpane-tommasoberti-com-${{ github.ref_type }}-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    env:
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.target_ref || github.ref_name }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           cache: 'npm'
-
-      - name: Resolve VERSION
-        shell: bash
-        run: |
-          V=$( [ -f VERSION ] && tr -d ' \n\r' < VERSION || node -p "require('./package.json').version" )
-          V=${V#v}
-          echo "VERSION=$V" >> $GITHUB_ENV
-          echo "RELEASE_DIR=v$V" >> $GITHUB_ENV
 
       - name: Install deps
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
-      - name: Validate docs manifest
-        run: npm run docs:validate
+      - name: Resolve VERSION and bump level
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          TARGET_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.target_ref || github.ref_name }}
+          MANUAL_BUMP: ${{ github.event_name == 'workflow_dispatch' && inputs.bump_level || '' }}
+          MANUAL_SKIP_DEPLOY: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_deploy || 'false' }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_MERGE_MESSAGE: ${{ github.event.pull_request.merge_commit_message }}
+        run: |
+          set -euo pipefail
+
+          git fetch --tags --force
+          RESOLVED_SHA="$(git rev-parse HEAD)"
+          echo "RESOLVED_SHA=$RESOLVED_SHA" >> "$GITHUB_ENV"
+          IS_TAG_PUSH="false"
+          if [ "$EVENT_NAME" = "push" ] && [ "$REF_TYPE" = "tag" ] && printf '%s' "$REF_NAME" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            IS_TAG_PUSH="true"
+          fi
+          echo "IS_TAG_PUSH=$IS_TAG_PUSH" >> "$GITHUB_ENV"
+
+          RELEASE_TEXT=""
+          if [ "$IS_TAG_PUSH" = "true" ]; then
+            RELEASE_TEXT=""
+          elif [ "$EVENT_NAME" = "push" ]; then
+            # Use only the latest pushed commit for bump tokens (#major/#minor/#patch),
+            # so the current commit intent is not overridden by older commits in the push range.
+            RELEASE_TEXT="$(git log --format=%B -n 1 "$SHA" || true)"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            RELEASE_TEXT="$(git log --format=%B -n 20 "$RESOLVED_SHA" || true)"
+          fi
+
+          # If PR context is present, include PR metadata.
+          RELEASE_TEXT="$RELEASE_TEXT
+          $PR_TITLE
+          $PR_BODY
+          $PR_MERGE_MESSAGE"
+          RELEASE_TEXT_LOWER=$(printf '%s' "$RELEASE_TEXT" | tr '[:upper:]' '[:lower:]')
+
+          HAS_BUMP_TOKEN="false"
+          if printf '%s' "$RELEASE_TEXT_LOWER" | grep -Eq '#major|\[major\]|#minor|\[minor\]|#patch|\[patch\]'; then
+            HAS_BUMP_TOKEN="true"
+          fi
+          if [ "$IS_TAG_PUSH" = "true" ]; then
+            HAS_BUMP_TOKEN="true"
+          fi
+          echo "HAS_BUMP_TOKEN=$HAS_BUMP_TOKEN" >> "$GITHUB_ENV"
+
+          SKIP_DEPLOY="false"
+          SKIP_REASON="none"
+          if [ "$IS_TAG_PUSH" = "true" ]; then
+            SKIP_DEPLOY="false"
+            SKIP_REASON="tag_push_release"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            if [ "${MANUAL_SKIP_DEPLOY:-false}" = "true" ]; then
+              SKIP_DEPLOY="true"
+              SKIP_REASON="manual_input"
+            fi
+          else
+            if printf '%s' "$RELEASE_TEXT_LOWER" | grep -Eq '#skip-deploy|\[skip-deploy\]'; then
+              SKIP_DEPLOY="true"
+              SKIP_REASON="token_found"
+            elif [ "$HAS_BUMP_TOKEN" != "true" ]; then
+              SKIP_DEPLOY="true"
+              SKIP_REASON="no_bump_token"
+            fi
+          fi
+          echo "SKIP_DEPLOY=$SKIP_DEPLOY" >> "$GITHUB_ENV"
+          echo "SKIP_DEPLOY_REASON=$SKIP_REASON" >> "$GITHUB_ENV"
+
+          if [ "$IS_TAG_PUSH" = "true" ]; then
+            RELEASE_TAG="$REF_NAME"
+            VERSION="${RELEASE_TAG#v}"
+            echo "BUMP_LEVEL=none" >> "$GITHUB_ENV"
+            echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+            echo "RELEASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
+            echo "RELEASE_DIR=$RELEASE_TAG" >> "$GITHUB_ENV"
+            echo "TARGET_REF=$DEFAULT_BRANCH" >> "$GITHUB_ENV"
+            echo "event=$EVENT_NAME ref=$REF_NAME bump=none has_bump_token=$HAS_BUMP_TOKEN skip_deploy=$SKIP_DEPLOY version=$VERSION skip_deploy_reason=$SKIP_REASON (tag push release)"
+            exit 0
+          fi
+
+          # Rerun-safe: if HEAD is already tagged with a SemVer release, reuse it.
+          EXISTING_TAG=$(git tag --points-at "$RESOLVED_SHA" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1 || true)
+          if [ -n "${EXISTING_TAG}" ]; then
+            VERSION="${EXISTING_TAG#v}"
+            echo "BUMP_LEVEL=none" >> "$GITHUB_ENV"
+            echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+            echo "RELEASE_TAG=$EXISTING_TAG" >> "$GITHUB_ENV"
+            echo "RELEASE_DIR=$EXISTING_TAG" >> "$GITHUB_ENV"
+            echo "TARGET_REF=$TARGET_REF" >> "$GITHUB_ENV"
+            echo "event=$EVENT_NAME ref=$TARGET_REF bump=none has_bump_token=$HAS_BUMP_TOKEN skip_deploy=$SKIP_DEPLOY version=$VERSION skip_deploy_reason=$SKIP_REASON (existing tag reused)"
+            exit 0
+          fi
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            case "$MANUAL_BUMP" in
+              major|minor|patch) BUMP_LEVEL="$MANUAL_BUMP" ;;
+              *) BUMP_LEVEL="patch" ;;
+            esac
+          else
+            BUMP_LEVEL="none"
+            if [ "$HAS_BUMP_TOKEN" = "true" ]; then
+              BUMP_LEVEL="patch"
+              if printf '%s' "$RELEASE_TEXT_LOWER" | grep -Eq '#major|\[major\]'; then
+                BUMP_LEVEL="major"
+              elif printf '%s' "$RELEASE_TEXT_LOWER" | grep -Eq '#minor|\[minor\]'; then
+                BUMP_LEVEL="minor"
+              elif printf '%s' "$RELEASE_TEXT_LOWER" | grep -Eq '#patch|\[patch\]'; then
+                BUMP_LEVEL="patch"
+              fi
+            fi
+          fi
+
+          LATEST_TAG=$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 1 || true)
+          if [ -z "$LATEST_TAG" ]; then
+            if [ -f VERSION ]; then
+              FILE_VERSION=$(tr -d ' \n\r' < VERSION)
+              FILE_VERSION="${FILE_VERSION#v}"
+              if printf '%s' "$FILE_VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+                LATEST_TAG="v$FILE_VERSION"
+              else
+                LATEST_TAG="v0.1.0"
+              fi
+            else
+              LATEST_TAG="v0.1.0"
+            fi
+          fi
+
+          BASE_VERSION="${LATEST_TAG#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
+
+          case "$BUMP_LEVEL" in
+            major)
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            minor)
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            patch)
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          VERSION="$MAJOR.$MINOR.$PATCH"
+          RELEASE_TAG="v$VERSION"
+
+          echo "BUMP_LEVEL=$BUMP_LEVEL" >> "$GITHUB_ENV"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
+          echo "RELEASE_DIR=$RELEASE_TAG" >> "$GITHUB_ENV"
+          echo "TARGET_REF=$TARGET_REF" >> "$GITHUB_ENV"
+          echo "event=$EVENT_NAME ref=$TARGET_REF bump=$BUMP_LEVEL has_bump_token=$HAS_BUMP_TOKEN skip_deploy=$SKIP_DEPLOY version=$VERSION skip_deploy_reason=$SKIP_REASON"
+          if [ "$SKIP_DEPLOY" = "true" ]; then
+            echo "skip-deploy active: reason=$SKIP_REASON has_bump_token=$HAS_BUMP_TOKEN"
+          fi
 
       - name: Build
+        if: env.SKIP_DEPLOY != 'true'
         env:
           VITE_APP_VERSION: ${{ env.VERSION }}
         run: npm run build
 
-      - name: Prepare SSH key (robust)
+      # Stop PR runs before touching secrets
+      - name: Skip deploy on PR
+        if: env.SKIP_DEPLOY != 'true' && github.event_name == 'pull_request'
+        run: |
+          echo "Pull request run: skipping deploy (no secrets available)."
+
+      - name: Prepare env
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
+        run: |
+          echo "SITE_DOMAIN=www.codexpane.tommasoberti.com" >> $GITHUB_ENV
+          echo "BUILD_DIR=dist" >> $GITHUB_ENV
+          echo "REMOTE_BASE=/srv/www/www.codexpane.tommasoberti.com" >> $GITHUB_ENV
+          echo "REMOTE_RELEASE=/srv/www/www.codexpane.tommasoberti.com/releases/${{ env.RELEASE_DIR }}" >> $GITHUB_ENV
+
+      # 🔐 PREPARE SSH KEY (RAW, NO BASE64) — con diagnostica
+      - name: Prepare SSH key (debug first)
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
@@ -47,40 +255,210 @@ jobs:
           fi
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+
+          # Normalizza: CRLF -> LF, '\n' letterali -> newline, rimuovi BOM
           tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
-          if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
+          if [ "$(wc -l < ~/.ssh/deploy_key)" -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
             sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           fi
           awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+
+          echo "== header/footer =="
+          sed -n '1p;$p' ~/.ssh/deploy_key || true
+          echo "== primi 16 byte (hex) =="
+          head -c 16 ~/.ssh/deploy_key | od -An -t x1 || true
+          echo "== size/lines =="
+          wc -c ~/.ssh/deploy_key || true
+          wc -l ~/.ssh/deploy_key || true
+          echo "== file type =="
+          file ~/.ssh/deploy_key || true
+
+          # Valida chiave (fallisce se cifrata/corrotta/errato formato)
           ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          echo "Fingerprint:"
+          ssh-keygen -lf ~/.ssh/deploy_key.pub
+
+      - name: Add server host key to known_hosts
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
+        run: |
           ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           ssh-keyscan -H -t rsa     "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Ensure remote release dir
+      - name: Test SSH connection
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
         shell: bash
         run: |
-          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
-          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
+          set -euo pipefail
+          SSH_OPTS="-o BatchMode=yes -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=3"
+          ATTEMPT=1
+          MAX_ATTEMPTS=3
+
+          until ssh $SSH_OPTS -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" true; do
+            if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+              echo "SSH connectivity test failed after ${MAX_ATTEMPTS} attempts." >&2
+              exit 1
+            fi
+            echo "SSH test failed (attempt ${ATTEMPT}/${MAX_ATTEMPTS}), retrying in 5s..."
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 5
+          done
+
+      - name: Ensure remote release dir
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
           ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            "mkdir -p \"$REMOTE_RELEASE\""
+            "mkdir -p '${{ env.REMOTE_RELEASE }}'"
 
       - name: Rsync build → /releases/vX.Y.Z
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
         shell: bash
         run: |
-          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
-          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
-          rsync -az --delete \
-            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
-            dist/ \
-            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_RELEASE}/"
-          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            "echo '${{ env.VERSION }}' > '${REMOTE_RELEASE}/VERSION'"
+          set -euo pipefail
+          SSH_OPTS="-o IdentitiesOnly=yes -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
+          RSYNC_SSH="ssh ${SSH_OPTS} -i ~/.ssh/deploy_key"
+          ATTEMPT=1
+          MAX_ATTEMPTS=4
+
+          until rsync -az --delete \
+            -e "$RSYNC_SSH" \
+            "${{ env.BUILD_DIR }}/" \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.REMOTE_RELEASE }}/"; do
+            if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+              echo "Rsync failed after ${MAX_ATTEMPTS} attempts." >&2
+              exit 1
+            fi
+            echo "Rsync failed (attempt ${ATTEMPT}/${MAX_ATTEMPTS}), retrying in 10s..."
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 10
+          done
+
+          ATTEMPT=1
+          until ssh $SSH_OPTS -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "echo '${{ env.VERSION }}' > '${{ env.REMOTE_RELEASE }}/VERSION'"; do
+            if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+              echo "Failed to write remote VERSION after ${MAX_ATTEMPTS} attempts." >&2
+              exit 1
+            fi
+            echo "Write VERSION failed (attempt ${ATTEMPT}/${MAX_ATTEMPTS}), retrying in 5s..."
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 5
+          done
 
       - name: Activate release (symlink) & reload caddy
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
         shell: bash
         run: |
-          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
-          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            "ln -sfn '${REMOTE_BASE}/releases/${{ env.RELEASE_DIR }}' '${REMOTE_BASE}/current' && sudo -n systemctl reload caddy || true"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" '
+            set -e
+            REMOTE_BASE="'"${{ env.REMOTE_BASE }}"'"
+            # Se "current" è directory reale (non symlink), rinominala e poi usa symlink
+            if [ -d "$REMOTE_BASE/current" ] && [ ! -L "$REMOTE_BASE/current" ]; then
+              mv "$REMOTE_BASE/current" "$REMOTE_BASE/current.bak.$(date +%s)"
+            fi
+            ln -sfn "'"${{ env.REMOTE_RELEASE }}"'" "$REMOTE_BASE/current"
+            # Con Caddyfile che importa da sites-enabled, un reload basta
+            sudo -n systemctl reload caddy || true
+          '
+
+      - name: Prune old releases (keep last 5)
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" '
+            set -e
+            cd "'"${{ env.REMOTE_BASE }}"'/releases" 2>/dev/null || exit 0
+            ls -1dt v* 2>/dev/null | tail -n +6 | xargs -r rm -rf --
+          '
+
+      - name: Create and push release tag
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${IS_TAG_PUSH:-false}" = "true" ]; then
+            echo "Tag push event detected (${RELEASE_TAG:-unknown}), skipping tag creation."
+            exit 0
+          fi
+
+          if [ "${TARGET_REF:-}" != "${DEFAULT_BRANCH}" ]; then
+            echo "event=${{ github.event_name }} ref=${TARGET_REF:-unknown} bump=${BUMP_LEVEL:-unknown} version=${VERSION:-unknown} tag_created=false (non-main ref)"
+            exit 0
+          fi
+
+          if [ -z "${RELEASE_TAG:-}" ]; then
+            echo "Missing RELEASE_TAG in environment"; exit 1
+          fi
+
+          if git ls-remote --tags origin "refs/tags/$RELEASE_TAG" | grep -q .; then
+            echo "Tag $RELEASE_TAG already exists on origin, skipping."
+            echo "event=${{ github.event_name }} ref=${TARGET_REF:-unknown} bump=${BUMP_LEVEL:-unknown} version=${VERSION:-unknown} tag_created=false (already exists)"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag "$RELEASE_TAG" "${RESOLVED_SHA:-$GITHUB_SHA}"
+          git push origin "refs/tags/$RELEASE_TAG"
+          echo "event=${{ github.event_name }} ref=${TARGET_REF:-unknown} bump=${BUMP_LEVEL:-unknown} version=${VERSION:-unknown} tag_created=true"
+
+      - name: Generate release notes for deployed tag
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RELEASE_NOTES_MODEL: gpt-5-mini
+        run: |
+          chmod +x scripts/release-notes/run.sh
+          scripts/release-notes/run.sh --tag "${RELEASE_TAG}"
+          test -f "release-notes/${RELEASE_TAG}.md"
+
+      - name: Publish GitHub release body for deployed tag
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          body_path: release-notes/${{ env.RELEASE_TAG }}.md
+          generate_release_notes: false
+
+      - name: Commit release artifacts to main
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f "release-notes/${RELEASE_TAG}.md" ]; then
+            echo "Missing release notes file: release-notes/${RELEASE_TAG}.md" >&2
+            exit 1
+          fi
+
+          ATTEMPT=1
+          MAX_ATTEMPTS=3
+          while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+            git fetch origin "${DEFAULT_BRANCH}"
+            git checkout -B "${DEFAULT_BRANCH}" "origin/${DEFAULT_BRANCH}"
+
+            git add "release-notes/${RELEASE_TAG}.md"
+            if git diff --cached --quiet; then
+              echo "No release artifact changes."
+              exit 0
+            fi
+
+            git commit -m "docs(release): ${RELEASE_TAG} artifacts #skip-deploy [skip ci]"
+            if git pull --rebase origin "${DEFAULT_BRANCH}" && git push origin "${DEFAULT_BRANCH}"; then
+              echo "Release artifacts pushed on attempt ${ATTEMPT}."
+              exit 0
+            fi
+
+            echo "Push race detected on attempt ${ATTEMPT}; retrying..."
+            git rebase --abort || true
+            git reset --hard "origin/${DEFAULT_BRANCH}"
+            ATTEMPT=$((ATTEMPT + 1))
+          done
+
+          echo "Failed to push release artifacts after ${MAX_ATTEMPTS} attempts." >&2
+          exit 1

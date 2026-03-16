@@ -1,0 +1,20 @@
+{
+  "productName": "CodexPane",
+  "audience": "developer-and-technical",
+  "excludeGlobs": [
+    "dist/**",
+    "node_modules/**",
+    "**/*.lock"
+  ],
+  "sections": [
+    "overview",
+    "new_features",
+    "bug_fixes",
+    "refactor_engineering",
+    "breaking_changes",
+    "migration_notes",
+    "known_limitations",
+    "diff_commit_range"
+  ],
+  "tone": "concise-verifiable"
+}

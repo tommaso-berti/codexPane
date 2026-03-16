@@ -1,0 +1,69 @@
+name: Release Notes (Manual Tool)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag version (e.g. v1.2.3)"
+        required: true
+        type: string
+      from:
+        description: "Optional from git ref"
+        required: false
+        type: string
+      to:
+        description: "Optional to git ref"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+      FROM_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.from || '' }}
+      TO_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.to || '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      - name: Generate release notes file
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RELEASE_NOTES_MODEL: gpt-5-mini
+        run: |
+          chmod +x scripts/release-notes/run.sh
+          if [ -n "$FROM_REF" ] || [ -n "$TO_REF" ]; then
+            scripts/release-notes/run.sh --tag "$TARGET_TAG" ${FROM_REF:+--from "$FROM_REF"} ${TO_REF:+--to "$TO_REF"}
+          else
+            scripts/release-notes/run.sh --tag "$TARGET_TAG"
+          fi
+          if [ ! -f "release-notes/${TARGET_TAG}.md" ]; then
+            echo "release-notes/${TARGET_TAG}.md was not generated." >&2
+            exit 1
+          fi
+
+      - name: Create or update GitHub release body
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TARGET_TAG }}
+          body_path: release-notes/${{ env.TARGET_TAG }}.md
+          generate_release_notes: false
+
+      - name: Manual mode info
+        run: |
+          echo "Manual diagnostic workflow: no commit/push on main is performed here."
+          echo "Single writer is Deploy workflow."

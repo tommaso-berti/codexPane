@@ -37,6 +37,10 @@ It renders MDX content from the repository, has client-side navigation and searc
 │   ├── App.jsx
 │   └── main.jsx
 ├── public/
+├── .github/workflows/         # deploy + manual release notes workflows
+├── scripts/release-notes/     # release notes generation pipeline
+├── release-notes/             # versioned release notes files (vX.Y.Z.md)
+├── .release-notes.config.json # release notes metadata/config
 ├── CHANGELOG.md
 ├── VERSION
 ├── vite.config.js
@@ -169,15 +173,69 @@ Supported modes:
 
 ## Build and Deployment
 
-This is a static SPA. Typical workflow:
+This is a static SPA. Local production build:
 
 ```bash
 npm run build
 ```
 
-Deploy the `dist/` folder to any static host (GitHub Pages, Netlify, Vercel static output, Nginx, etc.).
+Production deploy is handled by GitHub Actions with a versioned release layout on VPS:
+- Target domain: `www.codexpane.tommasoberti.com`
+- Remote structure:
+  - `/srv/www/www.codexpane.tommasoberti.com/releases/vX.Y.Z`
+  - `/srv/www/www.codexpane.tommasoberti.com/current` (symlink to active release)
+- Workflow file: `.github/workflows/deploy.yml`
 
-Important for SPA hosting: configure fallback rewrites so unknown paths serve `index.html`.
+### CI/CD Deploy Logic (same procedure as portfolio)
+
+Triggers:
+- `push` on `main`
+- `push` on tags `v*`
+- `pull_request` `closed` on `main`
+- manual `workflow_dispatch`
+
+Version bump policy from commit/PR text:
+- `#major` or `[major]` -> major bump
+- `#minor` or `[minor]` -> minor bump
+- `#patch` or `[patch]` -> patch bump
+- `#skip-deploy` or `[skip-deploy]` -> skip deploy steps
+
+Behavior:
+1. Resolve release version/tag.
+2. Build app and upload `dist/` to `/releases/vX.Y.Z`.
+3. Update `current` symlink.
+4. Prune old releases (keep last 5).
+5. Generate `release-notes/vX.Y.Z.md`.
+6. Publish GitHub Release body from that file.
+7. Commit release notes artifact to `main` (`docs(release): vX.Y.Z artifacts #skip-deploy [skip ci]`).
+
+### Release Notes Pipeline
+
+Data structure and procedure are aligned with `tommaso-berti-portfolio`.
+
+Files:
+- `.release-notes.config.json`
+- `scripts/release-notes/collect_changes.sh`
+- `scripts/release-notes/generate_notes.mjs`
+- `scripts/release-notes/release_notes_prompt.md`
+- `scripts/release-notes/run.sh`
+- `release-notes/vX.Y.Z.md`
+
+Manual workflow:
+- `.github/workflows/release-notes.yml` (`workflow_dispatch`)
+- Inputs: `tag`, optional `from`, optional `to`
+- Output: `release-notes/<tag>.md` and GitHub Release body update
+
+Local generation:
+
+```bash
+scripts/release-notes/run.sh --tag v1.2.3
+scripts/release-notes/run.sh --tag v1.2.3 --from v1.2.2 --to HEAD
+```
+
+Notes:
+- If `OPENAI_API_KEY` is available, notes are AI-generated (`RELEASE_NOTES_MODEL`, default `gpt-5-mini`).
+- Without API key, generator falls back to deterministic commit-based notes.
 
 ## Known Limitations
 
@@ -188,5 +246,6 @@ Important for SPA hosting: configure fallback rewrites so unknown paths serve `i
 ## Versioning and Release Notes
 
 - App version is read from [`VERSION`](./VERSION)
-- Release notes are sourced from [`CHANGELOG.md`](./CHANGELOG.md)
+- CI/CD release notes artifacts are generated in [`release-notes/`](./release-notes)
+- In-app modal currently reads notes from [`CHANGELOG.md`](./CHANGELOG.md)
 - Footer exposes a modal with notes for the current version
