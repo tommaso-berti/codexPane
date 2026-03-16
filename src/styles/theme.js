@@ -83,6 +83,13 @@ export const makeTheme = (mode) => {
                         '--code-fg': t.codeText,
                         '--surface-soft': t.surfaceSoft,
                         '--focus-ring': t.accent,
+                        '--callout-code-bg': mode === 'dark' ? '#334155' : '#1e293b',
+                        '--callout-code-fg': '#ffffff',
+                        '--callout-code-border': mode === 'dark' ? '#94a3b8' : '#475569',
+                        '--callout-muted-fg': mode === 'dark' ? '#e2e8f0' : '#334155',
+                        '--blockquote-bg': mode === 'dark' ? '#1f2f47' : '#dbeafe',
+                        '--blockquote-fg': mode === 'dark' ? '#e2e8f0' : '#334155',
+                        '--blockquote-border': mode === 'dark' ? '#60a5fa' : '#93c5fd',
                     },
                     body: {
                         fontFamily: 'var(--font-family)',

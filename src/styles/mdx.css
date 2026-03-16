@@ -105,11 +105,11 @@
 
 .markdown-body blockquote {
     margin: 1.2rem 0;
-    border-left: 3px solid #93c5fd;
-    background: color-mix(in srgb, #dbeafe 58%, transparent);
+    border-left: 3px solid var(--blockquote-border);
+    background: color-mix(in srgb, var(--blockquote-bg) 58%, transparent);
     border-radius: 8px;
     padding: 0.9rem 1rem;
-    color: #334155;
+    color: var(--blockquote-fg);
 }
 
 .markdown-body blockquote p {
@@ -132,4 +132,12 @@
 
 .doc-callout {
     margin: 1rem 0;
+}
+
+.doc-callout code,
+.doc-callout code:not(pre code) {
+    background: var(--callout-code-bg);
+    color: var(--callout-code-fg);
+    border: 1px solid var(--callout-code-border);
+    font-weight: 600;
 }
