@@ -15,7 +15,7 @@
 }
 
 .markdown-body--hide-first-h1 > h1:first-of-type,
-.markdown-body--hide-first-h1 > .doc-heading:first-of-type {
+.markdown-body--hide-first-h1 > h1.doc-heading:first-of-type {
     display: none;
 }
 
