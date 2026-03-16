@@ -142,8 +142,22 @@ Screen readers convert on-screen text to speech or braille.
 - Contrast checker: https://webaim.org/resources/contrastchecker/
 - Color-blind filter (Toptal): search “Toptal colorblind filter”.
 
-## Contrast Playground
+## Interactive Playground
+
+**Why this matters:** contrast affects readability and compliance, especially for users with low vision or under poor lighting conditions.
+
+**What to try:** test AA pass/fail presets, then tweak foreground/background colors to reach at least 4.5:1 for normal text.
 
 import ContrastPlayground from "./components/digital-accessibility/ContrastPlayground.jsx"
 
 <ContrastPlayground />
+
+## Interactive Playground: Text Quality
+
+**Why this matters:** screen readers rely on alt text and link labels to communicate meaning; vague wording reduces usability.
+
+**What to try:** compare descriptive and weak examples, then observe how the feedback changes for image alternatives and link destinations.
+
+import TextQualityPlayground from "./components/digital-accessibility/TextQualityPlayground.jsx"
+
+<TextQualityPlayground />

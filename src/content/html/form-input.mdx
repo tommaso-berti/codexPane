@@ -182,7 +182,11 @@ Submit the form:
 
 > Tip: You can also use `<button type="submit">Send</button>` for richer content.
 
-## Form Playground
+## Interactive Playground
+
+**Why this matters:** forms submit raw `name=value` pairs, so field naming and type choice directly affect your backend payload.
+
+**What to try:** change one field at a time and observe how the serialized query string and parsed object update live.
 
 import FormPlayground from "./components/form-input/FormPlayground.jsx"
 

@@ -1881,6 +1881,12 @@
               "title": "Elements Overview",
               "slug": "html/html-document#elements-overview",
               "order": 4
+            },
+            {
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/html-document#interactive-playground",
+              "order": 5
             }
           ],
           "order": 1
@@ -1952,9 +1958,9 @@
               "order": 10
             },
             {
-              "id": "table-playground",
-              "title": "Table Playground",
-              "slug": "html/element-tags#table-playground",
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/element-tags#interactive-playground",
               "order": 11
             }
           ],
@@ -2051,9 +2057,9 @@
               "order": 14
             },
             {
-              "id": "form-playground",
-              "title": "Form Playground",
-              "slug": "html/form-input#form-playground",
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/form-input#interactive-playground",
               "order": 15
             }
           ],
@@ -2096,9 +2102,9 @@
               "order": 5
             },
             {
-              "id": "validation-playground",
-              "title": "Validation Playground",
-              "slug": "html/form-validation#validation-playground",
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/form-validation#interactive-playground",
               "order": 6
             }
           ],
@@ -2175,6 +2181,12 @@
               "title": "Audio",
               "slug": "html/semantic-html#audio",
               "order": 11
+            },
+            {
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/semantic-html#interactive-playground",
+              "order": 12
             }
           ],
           "order": 5
@@ -2252,10 +2264,16 @@
               "order": 11
             },
             {
-              "id": "contrast-playground",
-              "title": "Contrast Playground",
-              "slug": "html/digital-accessibility#contrast-playground",
+              "id": "interactive-playground",
+              "title": "Interactive Playground",
+              "slug": "html/digital-accessibility#interactive-playground",
               "order": 12
+            },
+            {
+              "id": "interactive-playground-text-quality",
+              "title": "Interactive Playground: Text Quality",
+              "slug": "html/digital-accessibility#interactive-playground-text-quality",
+              "order": 13
             }
           ],
           "order": 6
