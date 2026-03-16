@@ -27,6 +27,12 @@ export default function SearchInput({value, onChange}) {
                 autoFocus
                 value={value}
                 onChange={onChange}
+                sx={{
+                    '& .MuiOutlinedInput-root': {
+                        borderRadius: 2,
+                        backgroundColor: 'background.paper',
+                    }
+                }}
             />
         </Box>
     )

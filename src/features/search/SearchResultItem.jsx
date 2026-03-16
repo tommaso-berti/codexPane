@@ -40,14 +40,19 @@ export default function SearchResultItem({result, onClick, branch = 'single', si
         <ListItemButton
             onClick={() => onClick(result.path)}
             sx={{
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                p: 1,
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 2,
+                p: 1.2,
                 mb: 1,
                 cursor: 'pointer',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
-                width: '100%'
+                width: '100%',
+                '&:hover': {
+                    borderColor: 'primary.light',
+                    bgcolor: 'action.hover',
+                },
             }}
         >
             {isParent && (

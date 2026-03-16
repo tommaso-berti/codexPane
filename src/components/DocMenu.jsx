@@ -1,5 +1,5 @@
 import { useDocs } from '../contexts/useDocs.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Menu, MenuItem, Button, ListItemIcon, ListItemText } from '@mui/material';
 import ICONS from '../../icons.js';
@@ -10,6 +10,7 @@ export default function DocMenu() {
     const [buttonMenu, setButtonMenu] = useState({ iconKey: 'ImageNotSupportedIcon', label: 'Choose topic' });
     const navigate = useNavigate();
     const params = useParams();
+    const triggerRef = useRef(null);
 
     useEffect(() => {
         const found = params.docs ? docs.find(d => d.id === params.docs) : null;
@@ -19,6 +20,16 @@ export default function DocMenu() {
             iconKey: found?.icon || 'ImageNotSupportedIcon'
         }));
     }, [params.docs, docs]);
+
+    useEffect(() => {
+        const openTopicMenu = () => {
+            if (triggerRef.current) {
+                setAnchorEl(triggerRef.current);
+            }
+        };
+        window.addEventListener('open-topic-menu', openTopicMenu);
+        return () => window.removeEventListener('open-topic-menu', openTopicMenu);
+    }, []);
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -36,11 +47,22 @@ export default function DocMenu() {
     return (
         <>
             <Button
+                ref={triggerRef}
                 onClick={handleClick}
-                className="!text-xl"
                 sx={{
                     textTransform: 'none',
                     color: 'inherit',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    borderRadius: 2,
+                    px: 1.25,
+                    py: 0.55,
+                    backgroundColor: 'background.paper',
+                    minWidth: 140,
+                    '&:hover': {
+                        borderColor: 'primary.light',
+                        backgroundColor: 'action.hover',
+                    },
                 }}
                 startIcon={<SelectedIconComponent fontSize="small" />}
             >
@@ -50,11 +72,21 @@ export default function DocMenu() {
             <Menu
                 anchorEl={anchorEl}
                 slotProps={{
+                    paper: {
+                        sx: {
+                            borderRadius: 2,
+                            border: '1px solid',
+                            borderColor: 'divider',
+                            mt: 0.8,
+                            boxShadow: 2,
+                        }
+                    },
                     list: {
                         sx: {
                             display: 'grid',
                             gridTemplateColumns: '1fr 1fr',
                             gap: 1,
+                            p: 1,
                         }
                     }
                 }}
@@ -64,7 +96,7 @@ export default function DocMenu() {
                 {docs.map(({ id, title, icon }) => {
                     const IconComponent = ICONS[icon] || ICONS.ImageNotSupportedIcon;
                     return (
-                        <MenuItem key={id} sx={{justifyContent: 'center'}} onClick={() => handleSelect(id, title, icon) }>
+                        <MenuItem key={id} sx={{ justifyContent: 'center', borderRadius: 1.5 }} onClick={() => handleSelect(id, title, icon) }>
                             <ListItemIcon><IconComponent fontSize="small" /></ListItemIcon>
                             <ListItemText primary={title} />
                         </MenuItem>

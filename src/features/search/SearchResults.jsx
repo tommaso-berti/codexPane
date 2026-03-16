@@ -24,7 +24,7 @@ export default function SearchResults({ results, onItemClick }) {
         <Box sx={{ mt: 2 }}>
             {groups.map((group) => (
                 <Box key={group.topicTitle} sx={{ mb: 3 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: 'text.secondary' }}>
                         {group.topicTitle}
                     </Typography>
 

@@ -53,7 +53,20 @@ export default function SectMenu() {
     };
 
     return (
-        <List dense disablePadding sx={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
+        <List
+            dense
+            disablePadding
+            sx={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                px: 1.2,
+                py: 1.4,
+                display: 'grid',
+                gap: 0.65,
+            }}
+        >
             {currentSections.map((section) => {
                 const currentSubsections = section?.subSections ?? [];
                 return (
