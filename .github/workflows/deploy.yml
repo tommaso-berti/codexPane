@@ -1,51 +1,83 @@
-name: Deploy React (Vite build on VPS)
-
+name: Deploy CodexPane (version-only)
 on:
   push:
     branches: ["main"]
 
 concurrency:
-  group: deploy-react
+  group: deploy-codexpane
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
-      - name: Build & deploy on VPS (Vite)
-        uses: appleboy/ssh-action@v1.0.0
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}   # e.g. website-deployer
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
-          command_timeout: 30m
-          script: |
-            set -euo pipefail
+          node-version: 'lts/*'
+          cache: 'npm'
 
-            # Avoid "dubious ownership" if the repo was created by another user
-            git config --global --add safe.directory /srv/www/react-apps/codexpane || true
-            git config --global --add safe.directory /srv/www/react-apps/codexPane || true
+      - name: Resolve VERSION
+        shell: bash
+        run: |
+          V=$( [ -f VERSION ] && tr -d ' \n\r' < VERSION || node -p "require('./package.json').version" )
+          V=${V#v}
+          echo "VERSION=$V" >> $GITHUB_ENV
+          echo "RELEASE_DIR=v$V" >> $GITHUB_ENV
 
-            # Go to your app folder (handles both casings)
-            cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
-            # If you use nvm, load Node 20; otherwise this line is a no-op
-            [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" && nvm use 20 || true
+      - name: Build
+        env:
+          VITE_APP_VERSION: ${{ env.VERSION }}
+        run: npm run build
 
-            # Clean align to main
-            git fetch --all --prune
-            git reset --hard origin/main
-            git clean -fdx
+      - name: Prepare SSH key (robust)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${{ secrets.VPS_SSH_KEY }}" ]; then
+            echo "❌ Missing secret VPS_SSH_KEY"; exit 1
+          fi
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          tr -d '\r' < ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          if [ $(wc -l < ~/.ssh/deploy_key) -eq 1 ] && grep -q '\\n' ~/.ssh/deploy_key; then
+            sed 's/\\n/\n/g' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          fi
+          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' ~/.ssh/deploy_key > ~/.ssh/_tmp && mv ~/.ssh/_tmp ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          ssh-keyscan -H -t ed25519 "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh-keyscan -H -t rsa     "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+          chmod 644 ~/.ssh/known_hosts
 
-            # Build Vite -> dist
-            npm ci --no-audit --no-fund || npm install
-            npm run build
+      - name: Ensure remote release dir
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "mkdir -p \"$REMOTE_RELEASE\""
 
-            # NGINX only needs read access; do NOT chown here
-            chmod -R a+rX dist || true
+      - name: Rsync build → /releases/vX.Y.Z
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          REMOTE_RELEASE="$REMOTE_BASE/releases/${{ env.RELEASE_DIR }}"
+          rsync -az --delete \
+            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" \
+            dist/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_RELEASE}/"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "echo '${{ env.VERSION }}' > '${REMOTE_RELEASE}/VERSION'"
 
-            # Reload NGINX (requires limited sudo on the server)
-            sudo /usr/sbin/nginx -t
-            sudo /usr/bin/systemctl reload nginx
+      - name: Activate release (symlink) & reload caddy
+        shell: bash
+        run: |
+          REMOTE_BASE="/srv/www/www.codexpane.tommasoberti.com"
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "ln -sfn '${REMOTE_BASE}/releases/${{ env.RELEASE_DIR }}' '${REMOTE_BASE}/current' && sudo -n systemctl reload caddy || true"
