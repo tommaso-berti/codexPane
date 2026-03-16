@@ -14,6 +14,11 @@
     font-size: 1.02rem;
 }
 
+.markdown-body--hide-first-h1 > h1:first-of-type,
+.markdown-body--hide-first-h1 > .doc-heading:first-of-type {
+    display: none;
+}
+
 .markdown-body :is(h1, h2, h3, h4, h5, h6) {
     scroll-margin-top: calc(var(--header-h) + var(--scroll-offset));
     letter-spacing: -0.015em;

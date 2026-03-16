@@ -30,6 +30,9 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
+      - name: Validate docs manifest
+        run: npm run docs:validate
+
       - name: Build
         env:
           VITE_APP_VERSION: ${{ env.VERSION }}

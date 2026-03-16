@@ -1,0 +1,5898 @@
+{
+  "version": 1,
+  "docs": [
+    {
+      "id": "bash",
+      "title": "Bash",
+      "icon": "CustomBashIcon",
+      "slug": "bash",
+      "introPath": "../../content/bash/introduction.mdx",
+      "sections": [
+        {
+          "id": "navigation",
+          "title": "Navigation",
+          "slug": "bash/navigation",
+          "filePath": "../../content/bash/navigation.mdx",
+          "subSections": [
+            {
+              "id": "clear-terminal",
+              "title": "Clear terminal",
+              "slug": "bash/navigation#clear-terminal",
+              "order": 1
+            },
+            {
+              "id": "list-files",
+              "title": "List files",
+              "slug": "bash/navigation#list-files",
+              "order": 2
+            },
+            {
+              "id": "list-all-in-long-format",
+              "title": "List all in long format",
+              "slug": "bash/navigation#list-all-in-long-format",
+              "order": 3
+            },
+            {
+              "id": "print-working-directory",
+              "title": "Print working directory",
+              "slug": "bash/navigation#print-working-directory",
+              "order": 4
+            },
+            {
+              "id": "change-directory",
+              "title": "Change directory",
+              "slug": "bash/navigation#change-directory",
+              "order": 5
+            },
+            {
+              "id": "move-up-directories",
+              "title": "Move up directories",
+              "slug": "bash/navigation#move-up-directories",
+              "order": 6
+            },
+            {
+              "id": "relative-paths-and-chaining",
+              "title": "Relative paths and chaining",
+              "slug": "bash/navigation#relative-paths-and-chaining",
+              "order": 7
+            },
+            {
+              "id": "make-directory",
+              "title": "Make directory",
+              "slug": "bash/navigation#make-directory",
+              "order": 8
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "file-manipulation",
+          "title": "File Manipulation",
+          "slug": "bash/file-manipulation",
+          "filePath": "../../content/bash/file-manipulation.mdx",
+          "subSections": [
+            {
+              "id": "create-files",
+              "title": "Create files",
+              "slug": "bash/file-manipulation#create-files",
+              "order": 1
+            },
+            {
+              "id": "view-file-contents",
+              "title": "View file contents",
+              "slug": "bash/file-manipulation#view-file-contents",
+              "order": 2
+            },
+            {
+              "id": "create-file-with-content",
+              "title": "Create file with content",
+              "slug": "bash/file-manipulation#create-file-with-content",
+              "order": 3
+            },
+            {
+              "id": "copy-files",
+              "title": "Copy files",
+              "slug": "bash/file-manipulation#copy-files",
+              "order": 4
+            },
+            {
+              "id": "copy-and-rename",
+              "title": "Copy and rename",
+              "slug": "bash/file-manipulation#copy-and-rename",
+              "order": 5
+            },
+            {
+              "id": "copy-multiple-files",
+              "title": "Copy multiple files",
+              "slug": "bash/file-manipulation#copy-multiple-files",
+              "order": 6
+            },
+            {
+              "id": "copy-with-wildcards",
+              "title": "Copy with wildcards",
+              "slug": "bash/file-manipulation#copy-with-wildcards",
+              "order": 7
+            },
+            {
+              "id": "move-files",
+              "title": "Move files",
+              "slug": "bash/file-manipulation#move-files",
+              "order": 8
+            },
+            {
+              "id": "current-directory-dot",
+              "title": "Current directory dot",
+              "slug": "bash/file-manipulation#current-directory-dot",
+              "order": 9
+            },
+            {
+              "id": "remove-files",
+              "title": "Remove files",
+              "slug": "bash/file-manipulation#remove-files",
+              "order": 10
+            },
+            {
+              "id": "remove-directories-recursively",
+              "title": "Remove directories recursively",
+              "slug": "bash/file-manipulation#remove-directories-recursively",
+              "order": 11
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "redirection",
+          "title": "Redirection",
+          "slug": "bash/redirection",
+          "filePath": "../../content/bash/redirection.mdx",
+          "subSections": [
+            {
+              "id": "echo-and-standard-streams",
+              "title": "Echo and standard streams",
+              "slug": "bash/redirection#echo-and-standard-streams",
+              "order": 1
+            },
+            {
+              "id": "redirect-output-overwrite",
+              "title": "Redirect output overwrite",
+              "slug": "bash/redirection#redirect-output-overwrite",
+              "order": 2
+            },
+            {
+              "id": "append-output",
+              "title": "Append output",
+              "slug": "bash/redirection#append-output",
+              "order": 3
+            },
+            {
+              "id": "redirect-input",
+              "title": "Redirect input",
+              "slug": "bash/redirection#redirect-input",
+              "order": 4
+            },
+            {
+              "id": "pipes-and-word-count",
+              "title": "Pipes and word count",
+              "slug": "bash/redirection#pipes-and-word-count",
+              "order": 5
+            },
+            {
+              "id": "sort",
+              "title": "Sort",
+              "slug": "bash/redirection#sort",
+              "order": 6
+            },
+            {
+              "id": "uniq",
+              "title": "Uniq",
+              "slug": "bash/redirection#uniq",
+              "order": 7
+            },
+            {
+              "id": "grep-case-insensitive",
+              "title": "Grep case insensitive",
+              "slug": "bash/redirection#grep-case-insensitive",
+              "order": 8
+            },
+            {
+              "id": "grep-recursive-and-list-filenames",
+              "title": "Grep recursive and list filenames",
+              "slug": "bash/redirection#grep-recursive-and-list-filenames",
+              "order": 9
+            },
+            {
+              "id": "sed-substitution",
+              "title": "Sed substitution",
+              "slug": "bash/redirection#sed-substitution",
+              "order": 10
+            },
+            {
+              "id": "sed-in-place",
+              "title": "Sed in place",
+              "slug": "bash/redirection#sed-in-place",
+              "order": 11
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "environment-nano-text-editor",
+          "title": "Environment (nano text editor)",
+          "slug": "bash/environment-nano-text-editor",
+          "filePath": "../../content/bash/environment-nano-text-editor.mdx",
+          "subSections": [
+            {
+              "id": "nano",
+              "title": "Nano",
+              "slug": "bash/environment-nano-text-editor#nano",
+              "order": 1
+            },
+            {
+              "id": "bash-profile",
+              "title": "Bash profile",
+              "slug": "bash/environment-nano-text-editor#bash-profile",
+              "order": 2
+            },
+            {
+              "id": "alias",
+              "title": "Alias",
+              "slug": "bash/environment-nano-text-editor#alias",
+              "order": 3
+            },
+            {
+              "id": "environment-variables",
+              "title": "Environment variables",
+              "slug": "bash/environment-nano-text-editor#environment-variables",
+              "order": 4
+            },
+            {
+              "id": "ps1",
+              "title": "PS1",
+              "slug": "bash/environment-nano-text-editor#ps1",
+              "order": 5
+            },
+            {
+              "id": "home",
+              "title": "Home",
+              "slug": "bash/environment-nano-text-editor#home",
+              "order": 6
+            },
+            {
+              "id": "path",
+              "title": "Path",
+              "slug": "bash/environment-nano-text-editor#path",
+              "order": 7
+            },
+            {
+              "id": "env",
+              "title": "Env",
+              "slug": "bash/environment-nano-text-editor#env",
+              "order": 8
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "advanced-examples-on-chained-operators",
+          "title": "Advanced examples on chained operators",
+          "slug": "bash/advanced-examples-on-chained-operators",
+          "filePath": "../../content/bash/advanced-examples-on-chained-operators.mdx",
+          "subSections": [
+            {
+              "id": "find-empty-txt-files",
+              "title": "Find empty txt files",
+              "slug": "bash/advanced-examples-on-chained-operators#find-empty-txt-files",
+              "order": 1
+            },
+            {
+              "id": "why-it-works",
+              "title": "Why it works",
+              "slug": "bash/advanced-examples-on-chained-operators#why-it-works",
+              "order": 2
+            },
+            {
+              "id": "safer-matching",
+              "title": "Safer matching",
+              "slug": "bash/advanced-examples-on-chained-operators#safer-matching",
+              "order": 3
+            },
+            {
+              "id": "alternative-with-find",
+              "title": "Alternative with find",
+              "slug": "bash/advanced-examples-on-chained-operators#alternative-with-find",
+              "order": 4
+            }
+          ],
+          "order": 5
+        }
+      ],
+      "order": 1
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "icon": "CustomCssIcon",
+      "slug": "css",
+      "introPath": "../../content/css/introduction.mdx",
+      "sections": [
+        {
+          "id": "styling",
+          "title": "Styling",
+          "slug": "css/styling",
+          "filePath": "../../content/css/styling.mdx",
+          "subSections": [
+            {
+              "id": "inline-styling",
+              "title": "Inline styling",
+              "slug": "css/styling#inline-styling",
+              "order": 1
+            },
+            {
+              "id": "external-stylesheet",
+              "title": "External stylesheet",
+              "slug": "css/styling#external-stylesheet",
+              "order": 2
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "selectors",
+          "title": "Selectors",
+          "slug": "css/selectors",
+          "filePath": "../../content/css/selectors.mdx",
+          "subSections": [
+            {
+              "id": "tag-selector",
+              "title": "Tag selector",
+              "slug": "css/selectors#tag-selector",
+              "order": 1
+            },
+            {
+              "id": "universal-selector",
+              "title": "Universal selector",
+              "slug": "css/selectors#universal-selector",
+              "order": 2
+            },
+            {
+              "id": "class-selector",
+              "title": "Class selector",
+              "slug": "css/selectors#class-selector",
+              "order": 3
+            },
+            {
+              "id": "id-selector",
+              "title": "ID selector",
+              "slug": "css/selectors#id-selector",
+              "order": 4
+            },
+            {
+              "id": "attribute-selectors",
+              "title": "Attribute selectors",
+              "slug": "css/selectors#attribute-selectors",
+              "order": 5
+            },
+            {
+              "id": "pseudo-class-selectors",
+              "title": "Pseudo class selectors",
+              "slug": "css/selectors#pseudo-class-selectors",
+              "order": 6
+            },
+            {
+              "id": "descendant-and-child-combinators",
+              "title": "Descendant and child combinators",
+              "slug": "css/selectors#descendant-and-child-combinators",
+              "order": 7
+            },
+            {
+              "id": "grouping-selectors",
+              "title": "Grouping selectors",
+              "slug": "css/selectors#grouping-selectors",
+              "order": 8
+            },
+            {
+              "id": "sibling-combinators-and-pseudo-elements",
+              "title": "Sibling combinators and pseudo elements",
+              "slug": "css/selectors#sibling-combinators-and-pseudo-elements",
+              "order": 9
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "specificity",
+          "title": "Specificity",
+          "slug": "css/specificity",
+          "filePath": "../../content/css/specificity.mdx",
+          "subSections": [
+            {
+              "id": "specificity-basics",
+              "title": "Specificity basics",
+              "slug": "css/specificity#specificity-basics",
+              "order": 1
+            },
+            {
+              "id": "multiple-classes",
+              "title": "Multiple classes",
+              "slug": "css/specificity#multiple-classes",
+              "order": 2
+            },
+            {
+              "id": "chaining",
+              "title": "Chaining",
+              "slug": "css/specificity#chaining",
+              "order": 3
+            },
+            {
+              "id": "descendant",
+              "title": "Descendant",
+              "slug": "css/specificity#descendant",
+              "order": 4
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "box-model",
+          "title": "Box model",
+          "slug": "css/box-model",
+          "filePath": "../../content/css/box-model.mdx",
+          "subSections": [
+            {
+              "id": "border",
+              "title": "Border",
+              "slug": "css/box-model#border",
+              "order": 1
+            },
+            {
+              "id": "border-radius",
+              "title": "Border radius",
+              "slug": "css/box-model#border-radius",
+              "order": 2
+            },
+            {
+              "id": "padding",
+              "title": "Padding",
+              "slug": "css/box-model#padding",
+              "order": 3
+            },
+            {
+              "id": "margin",
+              "title": "Margin",
+              "slug": "css/box-model#margin",
+              "order": 4
+            },
+            {
+              "id": "margin-collapse",
+              "title": "Margin collapse",
+              "slug": "css/box-model#margin-collapse",
+              "order": 5
+            },
+            {
+              "id": "min-and-max-dimensions",
+              "title": "Min and max dimensions",
+              "slug": "css/box-model#min-and-max-dimensions",
+              "order": 6
+            },
+            {
+              "id": "overflow",
+              "title": "Overflow",
+              "slug": "css/box-model#overflow",
+              "order": 7
+            },
+            {
+              "id": "reset-defaults",
+              "title": "Reset defaults",
+              "slug": "css/box-model#reset-defaults",
+              "order": 8
+            },
+            {
+              "id": "visibility",
+              "title": "Visibility",
+              "slug": "css/box-model#visibility",
+              "order": 9
+            },
+            {
+              "id": "content-box",
+              "title": "Content box",
+              "slug": "css/box-model#content-box",
+              "order": 10
+            },
+            {
+              "id": "box-sizing-border-box",
+              "title": "Box sizing border box",
+              "slug": "css/box-model#box-sizing-border-box",
+              "order": 11
+            },
+            {
+              "id": "box-sizing-playground",
+              "title": "Box-sizing playground",
+              "slug": "css/box-model#box-sizing-playground",
+              "order": 12
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "flow-of-html",
+          "title": "Flow of HTML",
+          "slug": "css/flow-of-html",
+          "filePath": "../../content/css/flow-of-html.mdx",
+          "subSections": [
+            {
+              "id": "position",
+              "title": "Position",
+              "slug": "css/flow-of-html#position",
+              "order": 1
+            },
+            {
+              "id": "relative",
+              "title": "Relative",
+              "slug": "css/flow-of-html#relative",
+              "order": 2
+            },
+            {
+              "id": "absolute",
+              "title": "Absolute",
+              "slug": "css/flow-of-html#absolute",
+              "order": 3
+            },
+            {
+              "id": "fixed",
+              "title": "Fixed",
+              "slug": "css/flow-of-html#fixed",
+              "order": 4
+            },
+            {
+              "id": "sticky",
+              "title": "Sticky",
+              "slug": "css/flow-of-html#sticky",
+              "order": 5
+            },
+            {
+              "id": "z-index",
+              "title": "Z index",
+              "slug": "css/flow-of-html#z-index",
+              "order": 6
+            },
+            {
+              "id": "display",
+              "title": "Display",
+              "slug": "css/flow-of-html#display",
+              "order": 7
+            },
+            {
+              "id": "inline",
+              "title": "Inline",
+              "slug": "css/flow-of-html#inline",
+              "order": 8
+            },
+            {
+              "id": "block",
+              "title": "Block",
+              "slug": "css/flow-of-html#block",
+              "order": 9
+            },
+            {
+              "id": "inline-block",
+              "title": "Inline block",
+              "slug": "css/flow-of-html#inline-block",
+              "order": 10
+            },
+            {
+              "id": "float",
+              "title": "Float",
+              "slug": "css/flow-of-html#float",
+              "order": 11
+            },
+            {
+              "id": "clear",
+              "title": "Clear",
+              "slug": "css/flow-of-html#clear",
+              "order": 12
+            },
+            {
+              "id": "position-playground",
+              "title": "Position playground",
+              "slug": "css/flow-of-html#position-playground",
+              "order": 13
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "fonts",
+          "title": "Fonts",
+          "slug": "css/fonts",
+          "filePath": "../../content/css/fonts.mdx",
+          "subSections": [
+            {
+              "id": "web-fonts-using-link",
+              "title": "Web fonts using link",
+              "slug": "css/fonts#web-fonts-using-link",
+              "order": 1
+            },
+            {
+              "id": "web-fonts-using-font-face",
+              "title": "Web fonts using font face",
+              "slug": "css/fonts#web-fonts-using-font-face",
+              "order": 2
+            },
+            {
+              "id": "fallback-fonts-and-font-stacks",
+              "title": "Fallback fonts and font stacks",
+              "slug": "css/fonts#fallback-fonts-and-font-stacks",
+              "order": 3
+            },
+            {
+              "id": "serif-and-sans-serif",
+              "title": "Serif and sans serif",
+              "slug": "css/fonts#serif-and-sans-serif",
+              "order": 4
+            },
+            {
+              "id": "font-weight",
+              "title": "Font weight",
+              "slug": "css/fonts#font-weight",
+              "order": 5
+            },
+            {
+              "id": "font-stack-playground",
+              "title": "Font stack playground",
+              "slug": "css/fonts#font-stack-playground",
+              "order": 6
+            }
+          ],
+          "order": 6
+        },
+        {
+          "id": "colors",
+          "title": "Colors",
+          "slug": "css/colors",
+          "filePath": "../../content/css/colors.mdx",
+          "subSections": [
+            {
+              "id": "hsl",
+              "title": "hsl",
+              "slug": "css/colors#hsl",
+              "order": 1
+            },
+            {
+              "id": "hsla",
+              "title": "hsla",
+              "slug": "css/colors#hsla",
+              "order": 2
+            },
+            {
+              "id": "rgba",
+              "title": "rgba",
+              "slug": "css/colors#rgba",
+              "order": 3
+            },
+            {
+              "id": "hsl-playground",
+              "title": "HSL playground",
+              "slug": "css/colors#hsl-playground",
+              "order": 4
+            }
+          ],
+          "order": 7
+        },
+        {
+          "id": "responsive-design",
+          "title": "Responsive design",
+          "slug": "css/responsive-design",
+          "filePath": "../../content/css/responsive-design.mdx",
+          "subSections": [
+            {
+              "id": "relative-measurements",
+              "title": "Relative measurements",
+              "slug": "css/responsive-design#relative-measurements",
+              "order": 1
+            },
+            {
+              "id": "em",
+              "title": "em",
+              "slug": "css/responsive-design#em",
+              "order": 2
+            },
+            {
+              "id": "rem",
+              "title": "rem",
+              "slug": "css/responsive-design#rem",
+              "order": 3
+            },
+            {
+              "id": "percentages-width-and-height",
+              "title": "Percentages width and height",
+              "slug": "css/responsive-design#percentages-width-and-height",
+              "order": 4
+            },
+            {
+              "id": "percentages-padding-and-margin",
+              "title": "Percentages padding and margin",
+              "slug": "css/responsive-design#percentages-padding-and-margin",
+              "order": 5
+            },
+            {
+              "id": "max-width-and-height",
+              "title": "Max width and height",
+              "slug": "css/responsive-design#max-width-and-height",
+              "order": 6
+            },
+            {
+              "id": "scaling-images-and-videos",
+              "title": "Scaling images and videos",
+              "slug": "css/responsive-design#scaling-images-and-videos",
+              "order": 7
+            },
+            {
+              "id": "scaling-background-images",
+              "title": "Scaling background images",
+              "slug": "css/responsive-design#scaling-background-images",
+              "order": 8
+            },
+            {
+              "id": "viewport-meta-tag",
+              "title": "Viewport meta tag",
+              "slug": "css/responsive-design#viewport-meta-tag",
+              "order": 9
+            },
+            {
+              "id": "media-queries",
+              "title": "Media queries",
+              "slug": "css/responsive-design#media-queries",
+              "order": 10
+            },
+            {
+              "id": "media-rule",
+              "title": "Media rule",
+              "slug": "css/responsive-design#media-rule",
+              "order": 11
+            },
+            {
+              "id": "dots-per-inch-dpi",
+              "title": "Dots per inch dpi",
+              "slug": "css/responsive-design#dots-per-inch-dpi",
+              "order": 12
+            },
+            {
+              "id": "and-operator",
+              "title": "and operator",
+              "slug": "css/responsive-design#and-operator",
+              "order": 13
+            },
+            {
+              "id": "comma-operator",
+              "title": "comma operator",
+              "slug": "css/responsive-design#comma-operator",
+              "order": 14
+            },
+            {
+              "id": "breakpoints",
+              "title": "Breakpoints",
+              "slug": "css/responsive-design#breakpoints",
+              "order": 15
+            }
+          ],
+          "order": 8
+        },
+        {
+          "id": "flexbox",
+          "title": "Flexbox",
+          "slug": "css/flexbox",
+          "filePath": "../../content/css/flexbox.mdx",
+          "subSections": [
+            {
+              "id": "display-flex",
+              "title": "display flex",
+              "slug": "css/flexbox#display-flex",
+              "order": 1
+            },
+            {
+              "id": "gap-column-gap-and-row-gap",
+              "title": "gap column gap and row gap",
+              "slug": "css/flexbox#gap-column-gap-and-row-gap",
+              "order": 2
+            },
+            {
+              "id": "display-inline-flex",
+              "title": "display inline flex",
+              "slug": "css/flexbox#display-inline-flex",
+              "order": 3
+            },
+            {
+              "id": "justify-content",
+              "title": "justify content",
+              "slug": "css/flexbox#justify-content",
+              "order": 4
+            },
+            {
+              "id": "align-items",
+              "title": "align items",
+              "slug": "css/flexbox#align-items",
+              "order": 5
+            },
+            {
+              "id": "flex-grow",
+              "title": "flex grow",
+              "slug": "css/flexbox#flex-grow",
+              "order": 6
+            },
+            {
+              "id": "flex-shrink",
+              "title": "flex shrink",
+              "slug": "css/flexbox#flex-shrink",
+              "order": 7
+            },
+            {
+              "id": "flex-basis",
+              "title": "flex basis",
+              "slug": "css/flexbox#flex-basis",
+              "order": 8
+            },
+            {
+              "id": "flex-shorthand",
+              "title": "flex shorthand",
+              "slug": "css/flexbox#flex-shorthand",
+              "order": 9
+            },
+            {
+              "id": "flex-wrap",
+              "title": "flex wrap",
+              "slug": "css/flexbox#flex-wrap",
+              "order": 10
+            },
+            {
+              "id": "align-content",
+              "title": "align content",
+              "slug": "css/flexbox#align-content",
+              "order": 11
+            },
+            {
+              "id": "flex-direction",
+              "title": "flex direction",
+              "slug": "css/flexbox#flex-direction",
+              "order": 12
+            },
+            {
+              "id": "flex-flow",
+              "title": "flex flow",
+              "slug": "css/flexbox#flex-flow",
+              "order": 13
+            },
+            {
+              "id": "nested-flexboxes",
+              "title": "Nested flexboxes",
+              "slug": "css/flexbox#nested-flexboxes",
+              "order": 14
+            },
+            {
+              "id": "review",
+              "title": "Review",
+              "slug": "css/flexbox#review",
+              "order": 15
+            },
+            {
+              "id": "flex-playground",
+              "title": "Flex Playground",
+              "slug": "css/flexbox#flex-playground",
+              "order": 16
+            }
+          ],
+          "order": 9
+        },
+        {
+          "id": "transitions",
+          "title": "Transitions",
+          "slug": "css/transitions",
+          "filePath": "../../content/css/transitions.mdx",
+          "subSections": [
+            {
+              "id": "duration",
+              "title": "Duration",
+              "slug": "css/transitions#duration",
+              "order": 1
+            },
+            {
+              "id": "timing-function",
+              "title": "Timing function",
+              "slug": "css/transitions#timing-function",
+              "order": 2
+            },
+            {
+              "id": "delay",
+              "title": "Delay",
+              "slug": "css/transitions#delay",
+              "order": 3
+            },
+            {
+              "id": "transition",
+              "title": "Transition",
+              "slug": "css/transitions#transition",
+              "order": 4
+            },
+            {
+              "id": "combination",
+              "title": "Combination",
+              "slug": "css/transitions#combination",
+              "order": 5
+            },
+            {
+              "id": "all",
+              "title": "All",
+              "slug": "css/transitions#all",
+              "order": 6
+            },
+            {
+              "id": "animation-tips",
+              "title": "Animation tips",
+              "slug": "css/transitions#animation-tips",
+              "order": 7
+            },
+            {
+              "id": "transition-playground",
+              "title": "Transition Playground",
+              "slug": "css/transitions#transition-playground",
+              "order": 8
+            }
+          ],
+          "order": 10
+        },
+        {
+          "id": "favicons-and-resize-images",
+          "title": "Favicons And Resize Images",
+          "slug": "css/favicons-and-resize-images",
+          "filePath": "../../content/css/favicons-and-resize-images.mdx",
+          "subSections": [
+            {
+              "id": "image-formats",
+              "title": "Image formats",
+              "slug": "css/favicons-and-resize-images#image-formats",
+              "order": 1
+            },
+            {
+              "id": "favicon",
+              "title": "Favicon",
+              "slug": "css/favicons-and-resize-images#favicon",
+              "order": 2
+            },
+            {
+              "id": "add-the-favicon-to-your-web-page",
+              "title": "Add the favicon to your web page",
+              "slug": "css/favicons-and-resize-images#add-the-favicon-to-your-web-page",
+              "order": 3
+            },
+            {
+              "id": "editing-images",
+              "title": "Editing images",
+              "slug": "css/favicons-and-resize-images#editing-images",
+              "order": 4
+            },
+            {
+              "id": "converting-to-scalable-vector-format",
+              "title": "Converting to scalable vector format",
+              "slug": "css/favicons-and-resize-images#converting-to-scalable-vector-format",
+              "order": 5
+            },
+            {
+              "id": "resizing-images-with-css",
+              "title": "Resizing images with css",
+              "slug": "css/favicons-and-resize-images#resizing-images-with-css",
+              "order": 6
+            },
+            {
+              "id": "responsive-images-with-srcset",
+              "title": "Responsive images with srcset",
+              "slug": "css/favicons-and-resize-images#responsive-images-with-srcset",
+              "order": 7
+            }
+          ],
+          "order": 11
+        },
+        {
+          "id": "buttons",
+          "title": "Buttons",
+          "slug": "css/buttons",
+          "filePath": "../../content/css/buttons.mdx",
+          "subSections": [
+            {
+              "id": "skeuomorphic-styling",
+              "title": "Skeuomorphic styling",
+              "slug": "css/buttons#skeuomorphic-styling",
+              "order": 1
+            },
+            {
+              "id": "flat-design",
+              "title": "Flat design",
+              "slug": "css/buttons#flat-design",
+              "order": 2
+            },
+            {
+              "id": "hover-states",
+              "title": "Hover states",
+              "slug": "css/buttons#hover-states",
+              "order": 3
+            },
+            {
+              "id": "affordances-signifiers-and-clickability",
+              "title": "Affordances signifiers and clickability",
+              "slug": "css/buttons#affordances-signifiers-and-clickability",
+              "order": 4
+            },
+            {
+              "id": "buttons-playground",
+              "title": "Buttons Playground",
+              "slug": "css/buttons#buttons-playground",
+              "order": 5
+            }
+          ],
+          "order": 12
+        },
+        {
+          "id": "breadcrumb-navigation",
+          "title": "Breadcrumb Navigation",
+          "slug": "css/breadcrumb-navigation",
+          "filePath": "../../content/css/breadcrumb-navigation.mdx",
+          "subSections": [
+            {
+              "id": "breadcrumbs-basics",
+              "title": "Breadcrumbs basics",
+              "slug": "css/breadcrumb-navigation#breadcrumbs-basics",
+              "order": 1
+            },
+            {
+              "id": "pseudo-element",
+              "title": "Pseudo element",
+              "slug": "css/breadcrumb-navigation#pseudo-element",
+              "order": 2
+            },
+            {
+              "id": "arrow-style",
+              "title": "Arrow style",
+              "slug": "css/breadcrumb-navigation#arrow-style",
+              "order": 3
+            },
+            {
+              "id": "abbreviated-breadcrumb",
+              "title": "Abbreviated breadcrumb",
+              "slug": "css/breadcrumb-navigation#abbreviated-breadcrumb",
+              "order": 4
+            },
+            {
+              "id": "breadcrumb-playground",
+              "title": "Breadcrumb Playground",
+              "slug": "css/breadcrumb-navigation#breadcrumb-playground",
+              "order": 5
+            }
+          ],
+          "order": 13
+        },
+        {
+          "id": "grid",
+          "title": "Grid",
+          "slug": "css/grid",
+          "filePath": "../../content/css/grid.mdx",
+          "subSections": [
+            {
+              "id": "creating-a-grid",
+              "title": "Creating a grid",
+              "slug": "css/grid#creating-a-grid",
+              "order": 1
+            },
+            {
+              "id": "creating-columns",
+              "title": "Creating columns",
+              "slug": "css/grid#creating-columns",
+              "order": 2
+            },
+            {
+              "id": "creating-rows",
+              "title": "Creating rows",
+              "slug": "css/grid#creating-rows",
+              "order": 3
+            },
+            {
+              "id": "grid-template",
+              "title": "Grid template",
+              "slug": "css/grid#grid-template",
+              "order": 4
+            },
+            {
+              "id": "fraction",
+              "title": "Fraction",
+              "slug": "css/grid#fraction",
+              "order": 5
+            },
+            {
+              "id": "repeat-function",
+              "title": "Repeat function",
+              "slug": "css/grid#repeat-function",
+              "order": 6
+            },
+            {
+              "id": "minmax-function",
+              "title": "Minmax function",
+              "slug": "css/grid#minmax-function",
+              "order": 7
+            },
+            {
+              "id": "row-gap-and-column-gap",
+              "title": "Row gap and column gap",
+              "slug": "css/grid#row-gap-and-column-gap",
+              "order": 8
+            },
+            {
+              "id": "multiple-row-items",
+              "title": "Multiple row items",
+              "slug": "css/grid#multiple-row-items",
+              "order": 9
+            },
+            {
+              "id": "multiple-column-items",
+              "title": "Multiple column items",
+              "slug": "css/grid#multiple-column-items",
+              "order": 10
+            },
+            {
+              "id": "grid-area",
+              "title": "Grid area",
+              "slug": "css/grid#grid-area",
+              "order": 11
+            },
+            {
+              "id": "grid-template-areas",
+              "title": "Grid template areas",
+              "slug": "css/grid#grid-template-areas",
+              "order": 12
+            },
+            {
+              "id": "overlap-elements",
+              "title": "Overlap elements",
+              "slug": "css/grid#overlap-elements",
+              "order": 13
+            },
+            {
+              "id": "justify-items",
+              "title": "Justify items",
+              "slug": "css/grid#justify-items",
+              "order": 14
+            },
+            {
+              "id": "justify-content",
+              "title": "Justify content",
+              "slug": "css/grid#justify-content",
+              "order": 15
+            },
+            {
+              "id": "align-items",
+              "title": "Align items",
+              "slug": "css/grid#align-items",
+              "order": 16
+            },
+            {
+              "id": "align-content",
+              "title": "Align content",
+              "slug": "css/grid#align-content",
+              "order": 17
+            },
+            {
+              "id": "justify-self-and-align-self",
+              "title": "Justify self and align self",
+              "slug": "css/grid#justify-self-and-align-self",
+              "order": 18
+            },
+            {
+              "id": "implicit-grid",
+              "title": "Implicit grid",
+              "slug": "css/grid#implicit-grid",
+              "order": 19
+            },
+            {
+              "id": "grid-auto-rows-and-columns",
+              "title": "Grid auto rows and columns",
+              "slug": "css/grid#grid-auto-rows-and-columns",
+              "order": 20
+            },
+            {
+              "id": "grid-auto-flow",
+              "title": "Grid auto flow",
+              "slug": "css/grid#grid-auto-flow",
+              "order": 21
+            },
+            {
+              "id": "grid-playground",
+              "title": "Grid Playground",
+              "slug": "css/grid#grid-playground",
+              "order": 22
+            }
+          ],
+          "order": 14
+        }
+      ],
+      "order": 2
+    },
+    {
+      "id": "demo",
+      "title": "Demo",
+      "icon": "ImageNotSupportedIcon",
+      "slug": "demo",
+      "introPath": "../../content/demo/introduction.mdx",
+      "sections": [
+        {
+          "id": "style-showcase",
+          "title": "MDX Style Guide (Demo)",
+          "slug": "demo/style-showcase",
+          "filePath": "../../content/demo/style-showcase.mdx",
+          "subSections": [
+            {
+              "id": "text-and-emphasis",
+              "title": "Text and emphasis",
+              "slug": "demo/style-showcase#text-and-emphasis",
+              "order": 1
+            },
+            {
+              "id": "lists",
+              "title": "Lists",
+              "slug": "demo/style-showcase#lists",
+              "order": 2
+            },
+            {
+              "id": "headings",
+              "title": "Headings",
+              "slug": "demo/style-showcase#headings",
+              "order": 3
+            },
+            {
+              "id": "h2--subsection-title-recognized-as-a-subsection",
+              "title": "H2 — Subsection title (recognized as a subSection)",
+              "slug": "demo/style-showcase#h2--subsection-title-recognized-as-a-subsection",
+              "order": 4
+            },
+            {
+              "id": "links-and-images",
+              "title": "Links and images",
+              "slug": "demo/style-showcase#links-and-images",
+              "order": 5
+            },
+            {
+              "id": "tables",
+              "title": "Tables",
+              "slug": "demo/style-showcase#tables",
+              "order": 6
+            },
+            {
+              "id": "code-blocks",
+              "title": "Code blocks",
+              "slug": "demo/style-showcase#code-blocks",
+              "order": 7
+            },
+            {
+              "id": "collapsible-details",
+              "title": "Collapsible details",
+              "slug": "demo/style-showcase#collapsible-details",
+              "order": 8
+            },
+            {
+              "id": "inline-html",
+              "title": "Inline HTML",
+              "slug": "demo/style-showcase#inline-html",
+              "order": 9
+            },
+            {
+              "id": "footnotes",
+              "title": "Footnotes",
+              "slug": "demo/style-showcase#footnotes",
+              "order": 10
+            },
+            {
+              "id": "horizontal-rule",
+              "title": "Horizontal rule",
+              "slug": "demo/style-showcase#horizontal-rule",
+              "order": 11
+            },
+            {
+              "id": "ascii-diagrams",
+              "title": "ASCII diagrams",
+              "slug": "demo/style-showcase#ascii-diagrams",
+              "order": 12
+            },
+            {
+              "id": "callout-patterns",
+              "title": "Callout patterns",
+              "slug": "demo/style-showcase#callout-patterns",
+              "order": 13
+            },
+            {
+              "id": "minimal-section-skeleton",
+              "title": "Minimal section skeleton",
+              "slug": "demo/style-showcase#minimal-section-skeleton",
+              "order": 14
+            },
+            {
+              "id": "subsection-a",
+              "title": "Subsection A",
+              "slug": "demo/style-showcase#subsection-a",
+              "order": 15
+            },
+            {
+              "id": "subsection-b",
+              "title": "Subsection B",
+              "slug": "demo/style-showcase#subsection-b",
+              "order": 16
+            }
+          ],
+          "order": 1
+        }
+      ],
+      "order": 3
+    },
+    {
+      "id": "git",
+      "title": "Git",
+      "icon": "CustomGitIcon",
+      "slug": "git",
+      "introPath": "../../content/git/introduction.mdx",
+      "sections": [
+        {
+          "id": "overview-basic-flow",
+          "title": "Overview basic flow",
+          "slug": "git/overview-basic-flow",
+          "filePath": "../../content/git/overview-basic-flow.mdx",
+          "subSections": [
+            {
+              "id": "initialize-a-repository",
+              "title": "Initialize a repository",
+              "slug": "git/overview-basic-flow#initialize-a-repository",
+              "order": 1
+            },
+            {
+              "id": "check-changes",
+              "title": "Check changes",
+              "slug": "git/overview-basic-flow#check-changes",
+              "order": 2
+            },
+            {
+              "id": "stage-files",
+              "title": "Stage files",
+              "slug": "git/overview-basic-flow#stage-files",
+              "order": 3
+            },
+            {
+              "id": "view-differences",
+              "title": "View differences",
+              "slug": "git/overview-basic-flow#view-differences",
+              "order": 4
+            },
+            {
+              "id": "commit-changes",
+              "title": "Commit changes",
+              "slug": "git/overview-basic-flow#commit-changes",
+              "order": 5
+            },
+            {
+              "id": "view-history",
+              "title": "View history",
+              "slug": "git/overview-basic-flow#view-history",
+              "order": 6
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "backtrack",
+          "title": "Backtrack",
+          "slug": "git/backtrack",
+          "filePath": "../../content/git/backtrack.mdx",
+          "subSections": [
+            {
+              "id": "inspect-head-changes",
+              "title": "Inspect head changes",
+              "slug": "git/backtrack#inspect-head-changes",
+              "order": 1
+            },
+            {
+              "id": "checkout-file",
+              "title": "Checkout file",
+              "slug": "git/backtrack#checkout-file",
+              "order": 2
+            },
+            {
+              "id": "reset-staging-file",
+              "title": "Reset staging file",
+              "slug": "git/backtrack#reset-staging-file",
+              "order": 3
+            },
+            {
+              "id": "reset-to-commit",
+              "title": "Reset to commit",
+              "slug": "git/backtrack#reset-to-commit",
+              "order": 4
+            },
+            {
+              "id": "checkout-working-directory",
+              "title": "Checkout working directory",
+              "slug": "git/backtrack#checkout-working-directory",
+              "order": 5
+            },
+            {
+              "id": "safety-notes",
+              "title": "Safety notes",
+              "slug": "git/backtrack#safety-notes",
+              "order": 6
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "stash",
+          "title": "Stash",
+          "slug": "git/stash",
+          "filePath": "../../content/git/stash.mdx",
+          "subSections": [
+            {
+              "id": "save-work-in-progress",
+              "title": "Save work in progress",
+              "slug": "git/stash#save-work-in-progress",
+              "order": 1
+            },
+            {
+              "id": "list-stashes",
+              "title": "List stashes",
+              "slug": "git/stash#list-stashes",
+              "order": 2
+            },
+            {
+              "id": "apply-and-pop",
+              "title": "Apply and pop",
+              "slug": "git/stash#apply-and-pop",
+              "order": 3
+            },
+            {
+              "id": "partial-stash",
+              "title": "Partial stash",
+              "slug": "git/stash#partial-stash",
+              "order": 4
+            },
+            {
+              "id": "include-untracked-files",
+              "title": "Include untracked files",
+              "slug": "git/stash#include-untracked-files",
+              "order": 5
+            },
+            {
+              "id": "clean-up",
+              "title": "Clean up",
+              "slug": "git/stash#clean-up",
+              "order": 6
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "advanced-commands",
+          "title": "Advanced commands",
+          "slug": "git/advanced-commands",
+          "filePath": "../../content/git/advanced-commands.mdx",
+          "subSections": [
+            {
+              "id": "log",
+              "title": "Log",
+              "slug": "git/advanced-commands#log",
+              "order": 1
+            },
+            {
+              "id": "commit",
+              "title": "Commit",
+              "slug": "git/advanced-commands#commit",
+              "order": 2
+            },
+            {
+              "id": "alias",
+              "title": "Alias",
+              "slug": "git/advanced-commands#alias",
+              "order": 3
+            }
+          ],
+          "order": 4
+        }
+      ],
+      "order": 4
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "icon": "GitHubIcon",
+      "slug": "github",
+      "introPath": "../../content/github/introduction.mdx",
+      "sections": [
+        {
+          "id": "markdown",
+          "title": "Markdown",
+          "slug": "github/markdown",
+          "filePath": "../../content/github/markdown.mdx",
+          "subSections": [
+            {
+              "id": "headings",
+              "title": "Headings",
+              "slug": "github/markdown#headings",
+              "order": 1
+            },
+            {
+              "id": "lists",
+              "title": "Lists",
+              "slug": "github/markdown#lists",
+              "order": 2
+            },
+            {
+              "id": "blockquotes",
+              "title": "Blockquotes",
+              "slug": "github/markdown#blockquotes",
+              "order": 3
+            },
+            {
+              "id": "inline-emphasis",
+              "title": "Inline emphasis",
+              "slug": "github/markdown#inline-emphasis",
+              "order": 4
+            },
+            {
+              "id": "html-in-markdown",
+              "title": "Html in markdown",
+              "slug": "github/markdown#html-in-markdown",
+              "order": 5
+            },
+            {
+              "id": "file-extensions",
+              "title": "File extensions",
+              "slug": "github/markdown#file-extensions",
+              "order": 6
+            },
+            {
+              "id": "parsers-and-tools",
+              "title": "Parsers and tools",
+              "slug": "github/markdown#parsers-and-tools",
+              "order": 7
+            },
+            {
+              "id": "readme-essentials",
+              "title": "Readme essentials",
+              "slug": "github/markdown#readme-essentials",
+              "order": 8
+            },
+            {
+              "id": "markdown-resources",
+              "title": "Markdown resources",
+              "slug": "github/markdown#markdown-resources",
+              "order": 9
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "git-flow",
+          "title": "Git flow",
+          "slug": "github/git-flow",
+          "filePath": "../../content/github/git-flow.mdx",
+          "subSections": [
+            {
+              "id": "branching",
+              "title": "Branching",
+              "slug": "github/git-flow#branching",
+              "order": 1
+            },
+            {
+              "id": "clone",
+              "title": "Clone",
+              "slug": "github/git-flow#clone",
+              "order": 2
+            },
+            {
+              "id": "rebase",
+              "title": "Rebase",
+              "slug": "github/git-flow#rebase",
+              "order": 3
+            },
+            {
+              "id": "git-log-graph",
+              "title": "Git log graph",
+              "slug": "github/git-flow#git-log-graph",
+              "order": 4
+            },
+            {
+              "id": "gitignore",
+              "title": "Gitignore",
+              "slug": "github/git-flow#gitignore",
+              "order": 5
+            },
+            {
+              "id": "fork",
+              "title": "Fork",
+              "slug": "github/git-flow#fork",
+              "order": 6
+            },
+            {
+              "id": "repository-template",
+              "title": "Repository template",
+              "slug": "github/git-flow#repository-template",
+              "order": 7
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "github-cli",
+          "title": "GitHub CLI",
+          "slug": "github/github-cli",
+          "filePath": "../../content/github/github-cli.mdx",
+          "subSections": [
+            {
+              "id": "authentication",
+              "title": "Authentication",
+              "slug": "github/github-cli#authentication",
+              "order": 1
+            },
+            {
+              "id": "repositories",
+              "title": "Repositories",
+              "slug": "github/github-cli#repositories",
+              "order": 2
+            },
+            {
+              "id": "issues",
+              "title": "Issues",
+              "slug": "github/github-cli#issues",
+              "order": 3
+            },
+            {
+              "id": "pull-requests",
+              "title": "Pull requests",
+              "slug": "github/github-cli#pull-requests",
+              "order": 4
+            },
+            {
+              "id": "actions",
+              "title": "Actions",
+              "slug": "github/github-cli#actions",
+              "order": 5
+            },
+            {
+              "id": "releases",
+              "title": "Releases",
+              "slug": "github/github-cli#releases",
+              "order": 6
+            },
+            {
+              "id": "codespaces",
+              "title": "Codespaces",
+              "slug": "github/github-cli#codespaces",
+              "order": 7
+            },
+            {
+              "id": "gists",
+              "title": "Gists",
+              "slug": "github/github-cli#gists",
+              "order": 8
+            },
+            {
+              "id": "aliases",
+              "title": "Aliases",
+              "slug": "github/github-cli#aliases",
+              "order": 9
+            },
+            {
+              "id": "configuration",
+              "title": "Configuration",
+              "slug": "github/github-cli#configuration",
+              "order": 10
+            },
+            {
+              "id": "tips-and-tricks",
+              "title": "Tips and tricks",
+              "slug": "github/github-cli#tips-and-tricks",
+              "order": 11
+            },
+            {
+              "id": "cli-resources",
+              "title": "CLI resources",
+              "slug": "github/github-cli#cli-resources",
+              "order": 12
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "github-actions-and-automated-testing",
+          "title": "GitHub actions and automated testing",
+          "slug": "github/github-actions-and-automated-testing",
+          "filePath": "../../content/github/github-actions-and-automated-testing.mdx",
+          "subSections": [
+            {
+              "id": "when-to-use-github-actions",
+              "title": "When to use github actions",
+              "slug": "github/github-actions-and-automated-testing#when-to-use-github-actions",
+              "order": 1
+            },
+            {
+              "id": "workflow-anatomy",
+              "title": "Workflow anatomy",
+              "slug": "github/github-actions-and-automated-testing#workflow-anatomy",
+              "order": 2
+            },
+            {
+              "id": "tutorial-add-automated-tests",
+              "title": "Tutorial add automated tests",
+              "slug": "github/github-actions-and-automated-testing#tutorial-add-automated-tests",
+              "order": 3
+            },
+            {
+              "id": "tutorial-simple-workflow",
+              "title": "Tutorial simple workflow",
+              "slug": "github/github-actions-and-automated-testing#tutorial-simple-workflow",
+              "order": 4
+            },
+            {
+              "id": "tips-and-troubleshooting",
+              "title": "Tips and troubleshooting",
+              "slug": "github/github-actions-and-automated-testing#tips-and-troubleshooting",
+              "order": 5
+            },
+            {
+              "id": "actions-resources",
+              "title": "Actions Resources",
+              "slug": "github/github-actions-and-automated-testing#actions-resources",
+              "order": 6
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "github-pages",
+          "title": "GitHub Pages",
+          "slug": "github/github-pages",
+          "filePath": "../../content/github/github-pages.mdx",
+          "subSections": [
+            {
+              "id": "types-of-sites",
+              "title": "Types of sites",
+              "slug": "github/github-pages#types-of-sites",
+              "order": 1
+            },
+            {
+              "id": "quick-start",
+              "title": "Quick start",
+              "slug": "github/github-pages#quick-start",
+              "order": 2
+            },
+            {
+              "id": "jekyll-basics",
+              "title": "Jekyll basics",
+              "slug": "github/github-pages#jekyll-basics",
+              "order": 3
+            },
+            {
+              "id": "custom-domain-and-https",
+              "title": "Custom domain and https",
+              "slug": "github/github-pages#custom-domain-and-https",
+              "order": 4
+            },
+            {
+              "id": "project-configuration",
+              "title": "Project configuration",
+              "slug": "github/github-pages#project-configuration",
+              "order": 5
+            },
+            {
+              "id": "deploy-with-actions",
+              "title": "Deploy with actions",
+              "slug": "github/github-pages#deploy-with-actions",
+              "order": 6
+            },
+            {
+              "id": "spa-routing-and-404",
+              "title": "Spa routing and 404",
+              "slug": "github/github-pages#spa-routing-and-404",
+              "order": 7
+            },
+            {
+              "id": "troubleshooting",
+              "title": "Troubleshooting",
+              "slug": "github/github-pages#troubleshooting",
+              "order": 8
+            },
+            {
+              "id": "github-resources",
+              "title": "Github resources",
+              "slug": "github/github-pages#github-resources",
+              "order": 9
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "commit-guidelines",
+          "title": "Commit guidelines",
+          "slug": "github/commit-guidelines",
+          "filePath": "../../content/github/commit-guidelines.mdx",
+          "subSections": [
+            {
+              "id": "prefix",
+              "title": "Prefix",
+              "slug": "github/commit-guidelines#prefix",
+              "order": 1
+            },
+            {
+              "id": "usage",
+              "title": "Usage",
+              "slug": "github/commit-guidelines#usage",
+              "order": 2
+            },
+            {
+              "id": "examples",
+              "title": "Examples",
+              "slug": "github/commit-guidelines#examples",
+              "order": 3
+            },
+            {
+              "id": "close-issue-with-commit",
+              "title": "Close issue with commit",
+              "slug": "github/commit-guidelines#close-issue-with-commit",
+              "order": 4
+            }
+          ],
+          "order": 6
+        }
+      ],
+      "order": 5
+    },
+    {
+      "id": "html",
+      "title": "HTML",
+      "icon": "CustomHtmlIcon",
+      "slug": "html",
+      "introPath": "../../content/html/introduction.mdx",
+      "sections": [
+        {
+          "id": "html-document",
+          "title": "HTML Document",
+          "slug": "html/html-document",
+          "filePath": "../../content/html/html-document.mdx",
+          "subSections": [
+            {
+              "id": "doctype",
+              "title": "Doctype",
+              "slug": "html/html-document#doctype",
+              "order": 1
+            },
+            {
+              "id": "website-common-document-hierarchy",
+              "title": "Website Common Document Hierarchy",
+              "slug": "html/html-document#website-common-document-hierarchy",
+              "order": 2
+            },
+            {
+              "id": "document-structure",
+              "title": "Document Structure",
+              "slug": "html/html-document#document-structure",
+              "order": 3
+            },
+            {
+              "id": "elements-overview",
+              "title": "Elements Overview",
+              "slug": "html/html-document#elements-overview",
+              "order": 4
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "element-tags",
+          "title": "Element Tags",
+          "slug": "html/element-tags",
+          "filePath": "../../content/html/element-tags.mdx",
+          "subSections": [
+            {
+              "id": "images",
+              "title": "Images",
+              "slug": "html/element-tags#images",
+              "order": 1
+            },
+            {
+              "id": "image-alt",
+              "title": "Image Alt",
+              "slug": "html/element-tags#image-alt",
+              "order": 2
+            },
+            {
+              "id": "video",
+              "title": "Video",
+              "slug": "html/element-tags#video",
+              "order": 3
+            },
+            {
+              "id": "links",
+              "title": "Links",
+              "slug": "html/element-tags#links",
+              "order": 4
+            },
+            {
+              "id": "anchor-links",
+              "title": "Anchor Links",
+              "slug": "html/element-tags#anchor-links",
+              "order": 5
+            },
+            {
+              "id": "title-attribute",
+              "title": "Title Attribute",
+              "slug": "html/element-tags#title-attribute",
+              "order": 6
+            },
+            {
+              "id": "tables",
+              "title": "Tables",
+              "slug": "html/element-tags#tables",
+              "order": 7
+            },
+            {
+              "id": "rowspan-and-colspan",
+              "title": "Rowspan And Colspan",
+              "slug": "html/element-tags#rowspan-and-colspan",
+              "order": 8
+            },
+            {
+              "id": "multiple-classes",
+              "title": "Multiple Classes",
+              "slug": "html/element-tags#multiple-classes",
+              "order": 9
+            },
+            {
+              "id": "table-sections",
+              "title": "Table Sections",
+              "slug": "html/element-tags#table-sections",
+              "order": 10
+            },
+            {
+              "id": "table-playground",
+              "title": "Table Playground",
+              "slug": "html/element-tags#table-playground",
+              "order": 11
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "form-input",
+          "title": "Form Input",
+          "slug": "html/form-input",
+          "filePath": "../../content/html/form-input.mdx",
+          "subSections": [
+            {
+              "id": "form",
+              "title": "Form",
+              "slug": "html/form-input#form",
+              "order": 1
+            },
+            {
+              "id": "input",
+              "title": "Input",
+              "slug": "html/form-input#input",
+              "order": 2
+            },
+            {
+              "id": "default-value",
+              "title": "Default Value",
+              "slug": "html/form-input#default-value",
+              "order": 3
+            },
+            {
+              "id": "label",
+              "title": "Label",
+              "slug": "html/form-input#label",
+              "order": 4
+            },
+            {
+              "id": "text",
+              "title": "Text",
+              "slug": "html/form-input#text",
+              "order": 5
+            },
+            {
+              "id": "password",
+              "title": "Password",
+              "slug": "html/form-input#password",
+              "order": 6
+            },
+            {
+              "id": "number",
+              "title": "Number",
+              "slug": "html/form-input#number",
+              "order": 7
+            },
+            {
+              "id": "range",
+              "title": "Range",
+              "slug": "html/form-input#range",
+              "order": 8
+            },
+            {
+              "id": "checkbox",
+              "title": "Checkbox",
+              "slug": "html/form-input#checkbox",
+              "order": 9
+            },
+            {
+              "id": "radio-buttons",
+              "title": "Radio Buttons",
+              "slug": "html/form-input#radio-buttons",
+              "order": 10
+            },
+            {
+              "id": "dropdown",
+              "title": "Dropdown",
+              "slug": "html/form-input#dropdown",
+              "order": 11
+            },
+            {
+              "id": "datalist",
+              "title": "Datalist",
+              "slug": "html/form-input#datalist",
+              "order": 12
+            },
+            {
+              "id": "textarea",
+              "title": "Textarea",
+              "slug": "html/form-input#textarea",
+              "order": 13
+            },
+            {
+              "id": "submit",
+              "title": "Submit",
+              "slug": "html/form-input#submit",
+              "order": 14
+            },
+            {
+              "id": "form-playground",
+              "title": "Form Playground",
+              "slug": "html/form-input#form-playground",
+              "order": 15
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "form-validation",
+          "title": "Form Validation",
+          "slug": "html/form-validation",
+          "filePath": "../../content/html/form-validation.mdx",
+          "subSections": [
+            {
+              "id": "required",
+              "title": "Required",
+              "slug": "html/form-validation#required",
+              "order": 1
+            },
+            {
+              "id": "text-length",
+              "title": "Text Length",
+              "slug": "html/form-validation#text-length",
+              "order": 2
+            },
+            {
+              "id": "matching-a-pattern",
+              "title": "Matching A Pattern",
+              "slug": "html/form-validation#matching-a-pattern",
+              "order": 3
+            },
+            {
+              "id": "client-side-validation",
+              "title": "Client Side Validation",
+              "slug": "html/form-validation#client-side-validation",
+              "order": 4
+            },
+            {
+              "id": "back-end-validation",
+              "title": "Back End Validation",
+              "slug": "html/form-validation#back-end-validation",
+              "order": 5
+            },
+            {
+              "id": "validation-playground",
+              "title": "Validation Playground",
+              "slug": "html/form-validation#validation-playground",
+              "order": 6
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "semantic-html",
+          "title": "Semantic Html",
+          "slug": "html/semantic-html",
+          "filePath": "../../content/html/semantic-html.mdx",
+          "subSections": [
+            {
+              "id": "why-use-semantic-html",
+              "title": "Why Use Semantic Html",
+              "slug": "html/semantic-html#why-use-semantic-html",
+              "order": 1
+            },
+            {
+              "id": "header",
+              "title": "Header",
+              "slug": "html/semantic-html#header",
+              "order": 2
+            },
+            {
+              "id": "nav",
+              "title": "Nav",
+              "slug": "html/semantic-html#nav",
+              "order": 3
+            },
+            {
+              "id": "main",
+              "title": "Main",
+              "slug": "html/semantic-html#main",
+              "order": 4
+            },
+            {
+              "id": "footer",
+              "title": "Footer",
+              "slug": "html/semantic-html#footer",
+              "order": 5
+            },
+            {
+              "id": "section",
+              "title": "Section",
+              "slug": "html/semantic-html#section",
+              "order": 6
+            },
+            {
+              "id": "article",
+              "title": "Article",
+              "slug": "html/semantic-html#article",
+              "order": 7
+            },
+            {
+              "id": "aside",
+              "title": "Aside",
+              "slug": "html/semantic-html#aside",
+              "order": 8
+            },
+            {
+              "id": "figure",
+              "title": "Figure",
+              "slug": "html/semantic-html#figure",
+              "order": 9
+            },
+            {
+              "id": "figcaption",
+              "title": "Figcaption",
+              "slug": "html/semantic-html#figcaption",
+              "order": 10
+            },
+            {
+              "id": "audio",
+              "title": "Audio",
+              "slug": "html/semantic-html#audio",
+              "order": 11
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "digital-accessibility",
+          "title": "Digital Accessibility",
+          "slug": "html/digital-accessibility",
+          "filePath": "../../content/html/digital-accessibility.mdx",
+          "subSections": [
+            {
+              "id": "contrast",
+              "title": "Contrast",
+              "slug": "html/digital-accessibility#contrast",
+              "order": 1
+            },
+            {
+              "id": "headings",
+              "title": "Headings",
+              "slug": "html/digital-accessibility#headings",
+              "order": 2
+            },
+            {
+              "id": "font-accessibility",
+              "title": "Font Accessibility",
+              "slug": "html/digital-accessibility#font-accessibility",
+              "order": 3
+            },
+            {
+              "id": "color-accessibility",
+              "title": "Color Accessibility",
+              "slug": "html/digital-accessibility#color-accessibility",
+              "order": 4
+            },
+            {
+              "id": "best-practices",
+              "title": "Best Practices",
+              "slug": "html/digital-accessibility#best-practices",
+              "order": 5
+            },
+            {
+              "id": "semantic-html-elements",
+              "title": "Semantic Html Elements",
+              "slug": "html/digital-accessibility#semantic-html-elements",
+              "order": 6
+            },
+            {
+              "id": "aria-role",
+              "title": "Aria Role",
+              "slug": "html/digital-accessibility#aria-role",
+              "order": 7
+            },
+            {
+              "id": "aria-properties",
+              "title": "Aria Properties",
+              "slug": "html/digital-accessibility#aria-properties",
+              "order": 8
+            },
+            {
+              "id": "alt-attribute",
+              "title": "Alt Attribute",
+              "slug": "html/digital-accessibility#alt-attribute",
+              "order": 9
+            },
+            {
+              "id": "screen-readers",
+              "title": "Screen Readers",
+              "slug": "html/digital-accessibility#screen-readers",
+              "order": 10
+            },
+            {
+              "id": "tools-and-resources",
+              "title": "Tools And Resources",
+              "slug": "html/digital-accessibility#tools-and-resources",
+              "order": 11
+            },
+            {
+              "id": "contrast-playground",
+              "title": "Contrast Playground",
+              "slug": "html/digital-accessibility#contrast-playground",
+              "order": 12
+            }
+          ],
+          "order": 6
+        },
+        {
+          "id": "font-awesome",
+          "title": "Font Awesome",
+          "slug": "html/font-awesome",
+          "filePath": "../../content/html/font-awesome.mdx",
+          "subSections": [
+            {
+              "id": "link-font-awesome",
+              "title": "Link Font Awesome",
+              "slug": "html/font-awesome#link-font-awesome",
+              "order": 1
+            },
+            {
+              "id": "add-font-awesome-icon",
+              "title": "Add Font Awesome Icon",
+              "slug": "html/font-awesome#add-font-awesome-icon",
+              "order": 2
+            },
+            {
+              "id": "icon-sizing",
+              "title": "Icon Sizing",
+              "slug": "html/font-awesome#icon-sizing",
+              "order": 3
+            }
+          ],
+          "order": 7
+        }
+      ],
+      "order": 6
+    },
+    {
+      "id": "http",
+      "title": "HTTP",
+      "icon": "HttpIcon",
+      "slug": "http",
+      "introPath": "../../content/http/introduction.mdx",
+      "sections": [
+        {
+          "id": "http-https",
+          "title": "HTTP/HTTPS",
+          "slug": "http/http-https",
+          "filePath": "../../content/http/http-https.mdx",
+          "subSections": [
+            {
+              "id": "http-basics",
+              "title": "Http basics",
+              "slug": "http/http-https#http-basics",
+              "order": 1
+            },
+            {
+              "id": "url-and-dns",
+              "title": "Url and dns",
+              "slug": "http/http-https#url-and-dns",
+              "order": 2
+            },
+            {
+              "id": "requests-and-methods",
+              "title": "Requests and methods",
+              "slug": "http/http-https#requests-and-methods",
+              "order": 3
+            },
+            {
+              "id": "responses-and-status-codes",
+              "title": "Responses and status codes",
+              "slug": "http/http-https#responses-and-status-codes",
+              "order": 4
+            },
+            {
+              "id": "http-versions",
+              "title": "Http versions",
+              "slug": "http/http-https#http-versions",
+              "order": 5
+            },
+            {
+              "id": "https-and-certificates",
+              "title": "Https and certificates",
+              "slug": "http/http-https#https-and-certificates",
+              "order": 6
+            },
+            {
+              "id": "httpdemo-playground",
+              "title": "Httpdemo playground",
+              "slug": "http/http-https#httpdemo-playground",
+              "order": 7
+            },
+            {
+              "id": "additional-examples",
+              "title": "Additional examples",
+              "slug": "http/http-https#additional-examples",
+              "order": 8
+            },
+            {
+              "id": "glossary",
+              "title": "Glossary",
+              "slug": "http/http-https#glossary",
+              "order": 9
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "web-apis-and-rest",
+          "title": "Web apis and rest",
+          "slug": "http/web-apis-and-rest",
+          "filePath": "../../content/http/web-apis-and-rest.mdx",
+          "subSections": [
+            {
+              "id": "web-apis",
+              "title": "Web apis",
+              "slug": "http/web-apis-and-rest#web-apis",
+              "order": 1
+            },
+            {
+              "id": "types-of-apis",
+              "title": "Types of apis",
+              "slug": "http/web-apis-and-rest#types-of-apis",
+              "order": 2
+            },
+            {
+              "id": "browser-apis",
+              "title": "Browser apis",
+              "slug": "http/web-apis-and-rest#browser-apis",
+              "order": 3
+            },
+            {
+              "id": "third-party-apis",
+              "title": "Third party apis",
+              "slug": "http/web-apis-and-rest#third-party-apis",
+              "order": 4
+            },
+            {
+              "id": "rules-and-requirements",
+              "title": "Rules and requirements",
+              "slug": "http/web-apis-and-rest#rules-and-requirements",
+              "order": 5
+            },
+            {
+              "id": "making-requests",
+              "title": "Making requests",
+              "slug": "http/web-apis-and-rest#making-requests",
+              "order": 6
+            },
+            {
+              "id": "response-data",
+              "title": "Response data",
+              "slug": "http/web-apis-and-rest#response-data",
+              "order": 7
+            },
+            {
+              "id": "rest",
+              "title": "Rest",
+              "slug": "http/web-apis-and-rest#rest",
+              "order": 8
+            },
+            {
+              "id": "separation-of-client-and-server",
+              "title": "Separation of client and server",
+              "slug": "http/web-apis-and-rest#separation-of-client-and-server",
+              "order": 9
+            },
+            {
+              "id": "communication-between-client-and-server",
+              "title": "Communication between client and server",
+              "slug": "http/web-apis-and-rest#communication-between-client-and-server",
+              "order": 10
+            },
+            {
+              "id": "request-parts",
+              "title": "Request parts",
+              "slug": "http/web-apis-and-rest#request-parts",
+              "order": 11
+            },
+            {
+              "id": "http-verbs",
+              "title": "Http verbs",
+              "slug": "http/web-apis-and-rest#http-verbs",
+              "order": 12
+            },
+            {
+              "id": "headers-and-accept-parameters",
+              "title": "Headers and accept parameters",
+              "slug": "http/web-apis-and-rest#headers-and-accept-parameters",
+              "order": 13
+            },
+            {
+              "id": "paths",
+              "title": "Paths",
+              "slug": "http/web-apis-and-rest#paths",
+              "order": 14
+            },
+            {
+              "id": "sending-responses",
+              "title": "Sending responses",
+              "slug": "http/web-apis-and-rest#sending-responses",
+              "order": 15
+            },
+            {
+              "id": "response-codes",
+              "title": "Response codes",
+              "slug": "http/web-apis-and-rest#response-codes",
+              "order": 16
+            },
+            {
+              "id": "restful-api-example-customer-management",
+              "title": "Restful api example customer management",
+              "slug": "http/web-apis-and-rest#restful-api-example-customer-management",
+              "order": 17
+            },
+            {
+              "id": "rest-client-playground",
+              "title": "Rest client playground",
+              "slug": "http/web-apis-and-rest#rest-client-playground",
+              "order": 18
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "json",
+          "title": "JSON",
+          "slug": "http/json",
+          "filePath": "../../content/http/json.mdx",
+          "subSections": [
+            {
+              "id": "json-syntax",
+              "title": "Json syntax",
+              "slug": "http/json#json-syntax",
+              "order": 1
+            },
+            {
+              "id": "json-data-types",
+              "title": "Json data types",
+              "slug": "http/json#json-data-types",
+              "order": 2
+            },
+            {
+              "id": "json-object-vs-javascript-object",
+              "title": "Json object vs javascript object",
+              "slug": "http/json#json-object-vs-javascript-object",
+              "order": 3
+            },
+            {
+              "id": "reading-a-json-string",
+              "title": "Reading a json string",
+              "slug": "http/json#reading-a-json-string",
+              "order": 4
+            },
+            {
+              "id": "writing-a-json-string",
+              "title": "Writing a json string",
+              "slug": "http/json#writing-a-json-string",
+              "order": 5
+            },
+            {
+              "id": "json-playground",
+              "title": "Json playground",
+              "slug": "http/json#json-playground",
+              "order": 6
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "fetch-with-then",
+          "title": "Fetch with then",
+          "slug": "http/fetch-with-then",
+          "filePath": "../../content/http/fetch-with-then.mdx",
+          "subSections": [
+            {
+              "id": "fetch-get",
+              "title": "Fetch get",
+              "slug": "http/fetch-with-then#fetch-get",
+              "order": 1
+            },
+            {
+              "id": "fetch-post",
+              "title": "Fetch post",
+              "slug": "http/fetch-with-then#fetch-post",
+              "order": 2
+            },
+            {
+              "id": "error-handling",
+              "title": "Error handling",
+              "slug": "http/fetch-with-then#error-handling",
+              "order": 3
+            },
+            {
+              "id": "parsing-json",
+              "title": "Parsing json",
+              "slug": "http/fetch-with-then#parsing-json",
+              "order": 4
+            },
+            {
+              "id": "tips-and-pitfalls",
+              "title": "Tips and pitfalls",
+              "slug": "http/fetch-with-then#tips-and-pitfalls",
+              "order": 5
+            },
+            {
+              "id": "fetch-then-playground",
+              "title": "Fetch then playground",
+              "slug": "http/fetch-with-then#fetch-then-playground",
+              "order": 6
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "fetch-with-await-and-async",
+          "title": "Fetch with await and async",
+          "slug": "http/fetch-with-await-and-async",
+          "filePath": "../../content/http/fetch-with-await-and-async.mdx",
+          "subSections": [
+            {
+              "id": "async-await-get",
+              "title": "Async await get",
+              "slug": "http/fetch-with-await-and-async#async-await-get",
+              "order": 1
+            },
+            {
+              "id": "async-await-post",
+              "title": "Async await post",
+              "slug": "http/fetch-with-await-and-async#async-await-post",
+              "order": 2
+            },
+            {
+              "id": "await-async-error-handling",
+              "title": "Await Async error handling",
+              "slug": "http/fetch-with-await-and-async#await-async-error-handling",
+              "order": 3
+            },
+            {
+              "id": "tips-and-pitfalls",
+              "title": "Tips and pitfalls",
+              "slug": "http/fetch-with-await-and-async#tips-and-pitfalls",
+              "order": 4
+            },
+            {
+              "id": "additional-resources",
+              "title": "Additional resources",
+              "slug": "http/fetch-with-await-and-async#additional-resources",
+              "order": 5
+            },
+            {
+              "id": "fetch-await-playground",
+              "title": "Fetch await playground",
+              "slug": "http/fetch-with-await-and-async#fetch-await-playground",
+              "order": 6
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "api-call",
+          "title": "API call",
+          "slug": "http/api-call",
+          "filePath": "../../content/http/api-call.mdx",
+          "subSections": [
+            {
+              "id": "query-strings",
+              "title": "Query strings",
+              "slug": "http/api-call#query-strings",
+              "order": 1
+            },
+            {
+              "id": "examples",
+              "title": "Examples",
+              "slug": "http/api-call#examples",
+              "order": 2
+            },
+            {
+              "id": "query-string-playground",
+              "title": "Query string playground",
+              "slug": "http/api-call#query-string-playground",
+              "order": 3
+            }
+          ],
+          "order": 6
+        }
+      ],
+      "order": 7
+    },
+    {
+      "id": "javascript",
+      "title": "Javascript",
+      "icon": "CustomJavascriptIcon",
+      "slug": "javascript",
+      "introPath": "../../content/javascript/introduction.mdx",
+      "sections": [
+        {
+          "id": "runtime-environment",
+          "title": "Runtime Environment",
+          "slug": "javascript/runtime-environment",
+          "filePath": "../../content/javascript/runtime-environment.mdx",
+          "subSections": [
+            {
+              "id": "browser-console",
+              "title": "Browser console",
+              "slug": "javascript/runtime-environment#browser-console",
+              "order": 1
+            },
+            {
+              "id": "what-is-a-runtime-environment",
+              "title": "What is a runtime environment",
+              "slug": "javascript/runtime-environment#what-is-a-runtime-environment",
+              "order": 2
+            },
+            {
+              "id": "a-browsers-runtime-environment",
+              "title": "A browsers runtime environment",
+              "slug": "javascript/runtime-environment#a-browsers-runtime-environment",
+              "order": 3
+            },
+            {
+              "id": "node-runtime-environment",
+              "title": "Node runtime environment",
+              "slug": "javascript/runtime-environment#node-runtime-environment",
+              "order": 4
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "variables",
+          "title": "Variables",
+          "slug": "javascript/variables",
+          "filePath": "../../content/javascript/variables.mdx",
+          "subSections": [
+            {
+              "id": "var",
+              "title": "Var",
+              "slug": "javascript/variables#var",
+              "order": 1
+            },
+            {
+              "id": "let",
+              "title": "Let",
+              "slug": "javascript/variables#let",
+              "order": 2
+            },
+            {
+              "id": "const",
+              "title": "Const",
+              "slug": "javascript/variables#const",
+              "order": 3
+            },
+            {
+              "id": "difference-between-let-and-var",
+              "title": "Difference between let and var",
+              "slug": "javascript/variables#difference-between-let-and-var",
+              "order": 4
+            },
+            {
+              "id": "scope",
+              "title": "Scope",
+              "slug": "javascript/variables#scope",
+              "order": 5
+            },
+            {
+              "id": "interpolation",
+              "title": "Interpolation",
+              "slug": "javascript/variables#interpolation",
+              "order": 6
+            },
+            {
+              "id": "truthy-and-falsy",
+              "title": "Truthy and falsy",
+              "slug": "javascript/variables#truthy-and-falsy",
+              "order": 7
+            },
+            {
+              "id": "ternary-operators",
+              "title": "Ternary operators",
+              "slug": "javascript/variables#ternary-operators",
+              "order": 8
+            },
+            {
+              "id": "switch",
+              "title": "Switch",
+              "slug": "javascript/variables#switch",
+              "order": 9
+            },
+            {
+              "id": "hoisting",
+              "title": "Hoisting",
+              "slug": "javascript/variables#hoisting",
+              "order": 10
+            },
+            {
+              "id": "scope-playground",
+              "title": "Scope playground",
+              "slug": "javascript/variables#scope-playground",
+              "order": 11
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "arrays",
+          "title": "Arrays",
+          "slug": "javascript/arrays",
+          "filePath": "../../content/javascript/arrays.mdx",
+          "subSections": [
+            {
+              "id": "array-literals",
+              "title": "Array literals",
+              "slug": "javascript/arrays#array-literals",
+              "order": 1
+            },
+            {
+              "id": "indexing-and-strings",
+              "title": "Indexing and strings",
+              "slug": "javascript/arrays#indexing-and-strings",
+              "order": 2
+            },
+            {
+              "id": "mutability-with-const",
+              "title": "Mutability with const",
+              "slug": "javascript/arrays#mutability-with-const",
+              "order": 3
+            },
+            {
+              "id": "properties",
+              "title": "Properties",
+              "slug": "javascript/arrays#properties",
+              "order": 4
+            },
+            {
+              "id": "methods-destructive",
+              "title": "Methods destructive",
+              "slug": "javascript/arrays#methods-destructive",
+              "order": 5
+            },
+            {
+              "id": "methods-non-destructive",
+              "title": "Methods non destructive",
+              "slug": "javascript/arrays#methods-non-destructive",
+              "order": 6
+            },
+            {
+              "id": "array-pass-by-reference",
+              "title": "Array pass by reference",
+              "slug": "javascript/arrays#array-pass-by-reference",
+              "order": 7
+            },
+            {
+              "id": "array-methods-playground",
+              "title": "Array methods playground",
+              "slug": "javascript/arrays#array-methods-playground",
+              "order": 8
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "loops",
+          "title": "Loops",
+          "slug": "javascript/loops",
+          "filePath": "../../content/javascript/loops.mdx",
+          "subSections": [
+            {
+              "id": "for-loop",
+              "title": "For loop",
+              "slug": "javascript/loops#for-loop",
+              "order": 1
+            },
+            {
+              "id": "for-of-loop",
+              "title": "For of loop",
+              "slug": "javascript/loops#for-of-loop",
+              "order": 2
+            },
+            {
+              "id": "while-loop",
+              "title": "While loop",
+              "slug": "javascript/loops#while-loop",
+              "order": 3
+            },
+            {
+              "id": "do-while",
+              "title": "Do while",
+              "slug": "javascript/loops#do-while",
+              "order": 4
+            },
+            {
+              "id": "break",
+              "title": "Break",
+              "slug": "javascript/loops#break",
+              "order": 5
+            },
+            {
+              "id": "continue",
+              "title": "Continue",
+              "slug": "javascript/loops#continue",
+              "order": 6
+            },
+            {
+              "id": "loop-visualizer-playground",
+              "title": "Loop visualizer playground",
+              "slug": "javascript/loops#loop-visualizer-playground",
+              "order": 7
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "functions",
+          "title": "Functions",
+          "slug": "javascript/functions",
+          "filePath": "../../content/javascript/functions.mdx",
+          "subSections": [
+            {
+              "id": "function-declaration",
+              "title": "Function declaration",
+              "slug": "javascript/functions#function-declaration",
+              "order": 1
+            },
+            {
+              "id": "parameters",
+              "title": "Parameters",
+              "slug": "javascript/functions#parameters",
+              "order": 2
+            },
+            {
+              "id": "default-parameters",
+              "title": "Default parameters",
+              "slug": "javascript/functions#default-parameters",
+              "order": 3
+            },
+            {
+              "id": "return-values",
+              "title": "Return values",
+              "slug": "javascript/functions#return-values",
+              "order": 4
+            },
+            {
+              "id": "helper-functions",
+              "title": "Helper functions",
+              "slug": "javascript/functions#helper-functions",
+              "order": 5
+            },
+            {
+              "id": "function-expressions",
+              "title": "Function expressions",
+              "slug": "javascript/functions#function-expressions",
+              "order": 6
+            },
+            {
+              "id": "arrow-functions",
+              "title": "Arrow functions",
+              "slug": "javascript/functions#arrow-functions",
+              "order": 7
+            },
+            {
+              "id": "higher-order-functions",
+              "title": "Higher order functions",
+              "slug": "javascript/functions#higher-order-functions",
+              "order": 8
+            },
+            {
+              "id": "functions-as-data",
+              "title": "Functions as data",
+              "slug": "javascript/functions#functions-as-data",
+              "order": 9
+            },
+            {
+              "id": "functions-as-parameters",
+              "title": "Functions as parameters",
+              "slug": "javascript/functions#functions-as-parameters",
+              "order": 10
+            },
+            {
+              "id": "function-forms-playground",
+              "title": "Function forms playground",
+              "slug": "javascript/functions#function-forms-playground",
+              "order": 11
+            },
+            {
+              "id": "callback-tracer-playground",
+              "title": "Callback tracer playground",
+              "slug": "javascript/functions#callback-tracer-playground",
+              "order": 12
+            },
+            {
+              "id": "currying",
+              "title": "Currying",
+              "slug": "javascript/functions#currying",
+              "order": 13
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "objects",
+          "title": "Objects",
+          "slug": "javascript/objects",
+          "filePath": "../../content/javascript/objects.mdx",
+          "subSections": [
+            {
+              "id": "object-literals",
+              "title": "Object literals",
+              "slug": "javascript/objects#object-literals",
+              "order": 1
+            },
+            {
+              "id": "access-properties",
+              "title": "Access properties",
+              "slug": "javascript/objects#access-properties",
+              "order": 2
+            },
+            {
+              "id": "update-properties",
+              "title": "Update properties",
+              "slug": "javascript/objects#update-properties",
+              "order": 3
+            },
+            {
+              "id": "delete-properties",
+              "title": "Delete properties",
+              "slug": "javascript/objects#delete-properties",
+              "order": 4
+            },
+            {
+              "id": "custom-methods",
+              "title": "Custom methods",
+              "slug": "javascript/objects#custom-methods",
+              "order": 5
+            },
+            {
+              "id": "nested-objects",
+              "title": "Nested objects",
+              "slug": "javascript/objects#nested-objects",
+              "order": 6
+            },
+            {
+              "id": "pass-by-reference",
+              "title": "Pass by reference",
+              "slug": "javascript/objects#pass-by-reference",
+              "order": 7
+            },
+            {
+              "id": "for-in-loop",
+              "title": "For in loop",
+              "slug": "javascript/objects#for-in-loop",
+              "order": 8
+            },
+            {
+              "id": "this-keyword",
+              "title": "This keyword",
+              "slug": "javascript/objects#this-keyword",
+              "order": 9
+            },
+            {
+              "id": "arrow-function-with-this",
+              "title": "Arrow function with this",
+              "slug": "javascript/objects#arrow-function-with-this",
+              "order": 10
+            },
+            {
+              "id": "privacy",
+              "title": "Privacy",
+              "slug": "javascript/objects#privacy",
+              "order": 11
+            },
+            {
+              "id": "getter",
+              "title": "Getter",
+              "slug": "javascript/objects#getter",
+              "order": 12
+            },
+            {
+              "id": "setter",
+              "title": "Setter",
+              "slug": "javascript/objects#setter",
+              "order": 13
+            },
+            {
+              "id": "factory-functions",
+              "title": "Factory functions",
+              "slug": "javascript/objects#factory-functions",
+              "order": 14
+            },
+            {
+              "id": "property-value-shorthand",
+              "title": "Property value shorthand",
+              "slug": "javascript/objects#property-value-shorthand",
+              "order": 15
+            },
+            {
+              "id": "destructured-assignment",
+              "title": "Destructured assignment",
+              "slug": "javascript/objects#destructured-assignment",
+              "order": 16
+            },
+            {
+              "id": "object-methods",
+              "title": "Object methods",
+              "slug": "javascript/objects#object-methods",
+              "order": 17
+            }
+          ],
+          "order": 6
+        },
+        {
+          "id": "iterators-array",
+          "title": "Iterators array",
+          "slug": "javascript/iterators-array",
+          "filePath": "../../content/javascript/iterators-array.mdx",
+          "subSections": [
+            {
+              "id": "foreach",
+              "title": "Foreach",
+              "slug": "javascript/iterators-array#foreach",
+              "order": 1
+            },
+            {
+              "id": "map",
+              "title": "Map",
+              "slug": "javascript/iterators-array#map",
+              "order": 2
+            },
+            {
+              "id": "filter",
+              "title": "Filter",
+              "slug": "javascript/iterators-array#filter",
+              "order": 3
+            },
+            {
+              "id": "find-index",
+              "title": "Find index",
+              "slug": "javascript/iterators-array#find-index",
+              "order": 4
+            },
+            {
+              "id": "reduce",
+              "title": "Reduce",
+              "slug": "javascript/iterators-array#reduce",
+              "order": 5
+            },
+            {
+              "id": "some",
+              "title": "Some",
+              "slug": "javascript/iterators-array#some",
+              "order": 6
+            },
+            {
+              "id": "every",
+              "title": "Every",
+              "slug": "javascript/iterators-array#every",
+              "order": 7
+            },
+            {
+              "id": "split",
+              "title": "Split",
+              "slug": "javascript/iterators-array#split",
+              "order": 8
+            },
+            {
+              "id": "join",
+              "title": "Join",
+              "slug": "javascript/iterators-array#join",
+              "order": 9
+            },
+            {
+              "id": "sort",
+              "title": "Sort",
+              "slug": "javascript/iterators-array#sort",
+              "order": 10
+            }
+          ],
+          "order": 7
+        },
+        {
+          "id": "interactive-website",
+          "title": "Interactive Website",
+          "slug": "javascript/interactive-website",
+          "filePath": "../../content/javascript/interactive-website.mdx",
+          "subSections": [
+            {
+              "id": "script-tag",
+              "title": "Script tag",
+              "slug": "javascript/interactive-website#script-tag",
+              "order": 1
+            },
+            {
+              "id": "external-script",
+              "title": "External script",
+              "slug": "javascript/interactive-website#external-script",
+              "order": 2
+            },
+            {
+              "id": "script-loading",
+              "title": "Script loading",
+              "slug": "javascript/interactive-website#script-loading",
+              "order": 3
+            },
+            {
+              "id": "defer-attribute",
+              "title": "Defer attribute",
+              "slug": "javascript/interactive-website#defer-attribute",
+              "order": 4
+            },
+            {
+              "id": "async-attribute",
+              "title": "Async attribute",
+              "slug": "javascript/interactive-website#async-attribute",
+              "order": 5
+            },
+            {
+              "id": "dom",
+              "title": "Dom",
+              "slug": "javascript/interactive-website#dom",
+              "order": 6
+            },
+            {
+              "id": "document-object",
+              "title": "Document object",
+              "slug": "javascript/interactive-website#document-object",
+              "order": 7
+            },
+            {
+              "id": "innerhtml",
+              "title": "Innerhtml",
+              "slug": "javascript/interactive-website#innerhtml",
+              "order": 8
+            },
+            {
+              "id": "queryselector",
+              "title": "Queryselector",
+              "slug": "javascript/interactive-website#queryselector",
+              "order": 9
+            },
+            {
+              "id": "getelementbyid",
+              "title": "Getelementbyid",
+              "slug": "javascript/interactive-website#getelementbyid",
+              "order": 10
+            },
+            {
+              "id": "getelementsbyclassname-and-getelementsbytagname",
+              "title": "Getelementsbyclassname and getelementsbytagname",
+              "slug": "javascript/interactive-website#getelementsbyclassname-and-getelementsbytagname",
+              "order": 11
+            },
+            {
+              "id": "style",
+              "title": "Style",
+              "slug": "javascript/interactive-website#style",
+              "order": 12
+            },
+            {
+              "id": "parentnode-and-children",
+              "title": "Parentnode and children",
+              "slug": "javascript/interactive-website#parentnode-and-children",
+              "order": 13
+            },
+            {
+              "id": "createelement",
+              "title": "Createelement",
+              "slug": "javascript/interactive-website#createelement",
+              "order": 14
+            },
+            {
+              "id": "appendchild",
+              "title": "Appendchild",
+              "slug": "javascript/interactive-website#appendchild",
+              "order": 15
+            },
+            {
+              "id": "removechild",
+              "title": "Removechild",
+              "slug": "javascript/interactive-website#removechild",
+              "order": 16
+            },
+            {
+              "id": "hidden",
+              "title": "Hidden",
+              "slug": "javascript/interactive-website#hidden",
+              "order": 17
+            },
+            {
+              "id": "add-event-listener",
+              "title": "Add event listener",
+              "slug": "javascript/interactive-website#add-event-listener",
+              "order": 18
+            },
+            {
+              "id": "onevent",
+              "title": "Onevent",
+              "slug": "javascript/interactive-website#onevent",
+              "order": 19
+            },
+            {
+              "id": "onclick",
+              "title": "Onclick",
+              "slug": "javascript/interactive-website#onclick",
+              "order": 20
+            },
+            {
+              "id": "removeeventlistener",
+              "title": "Removeeventlistener",
+              "slug": "javascript/interactive-website#removeeventlistener",
+              "order": 21
+            },
+            {
+              "id": "event-object-properties",
+              "title": "Event object properties",
+              "slug": "javascript/interactive-website#event-object-properties",
+              "order": 22
+            },
+            {
+              "id": "event-types",
+              "title": "Event types",
+              "slug": "javascript/interactive-website#event-types",
+              "order": 23
+            },
+            {
+              "id": "mouse-events",
+              "title": "Mouse events",
+              "slug": "javascript/interactive-website#mouse-events",
+              "order": 24
+            },
+            {
+              "id": "keyboard-events",
+              "title": "Keyboard events",
+              "slug": "javascript/interactive-website#keyboard-events",
+              "order": 25
+            }
+          ],
+          "order": 8
+        },
+        {
+          "id": "classes",
+          "title": "Classes",
+          "slug": "javascript/classes",
+          "filePath": "../../content/javascript/classes.mdx",
+          "subSections": [
+            {
+              "id": "constructor",
+              "title": "Constructor",
+              "slug": "javascript/classes#constructor",
+              "order": 1
+            },
+            {
+              "id": "instance",
+              "title": "Instance",
+              "slug": "javascript/classes#instance",
+              "order": 2
+            },
+            {
+              "id": "methods",
+              "title": "Methods",
+              "slug": "javascript/classes#methods",
+              "order": 3
+            },
+            {
+              "id": "inheritance",
+              "title": "Inheritance",
+              "slug": "javascript/classes#inheritance",
+              "order": 4
+            },
+            {
+              "id": "static-methods",
+              "title": "Static methods",
+              "slug": "javascript/classes#static-methods",
+              "order": 5
+            }
+          ],
+          "order": 9
+        },
+        {
+          "id": "modules-export-import",
+          "title": "Modules Export Import",
+          "slug": "javascript/modules-export-import",
+          "filePath": "../../content/javascript/modules-export-import.mdx",
+          "subSections": [
+            {
+              "id": "modules",
+              "title": "Modules",
+              "slug": "javascript/modules-export-import#modules",
+              "order": 1
+            },
+            {
+              "id": "node-modules-require-and-module-exports",
+              "title": "Node modules require and module exports",
+              "slug": "javascript/modules-export-import#node-modules-require-and-module-exports",
+              "order": 2
+            },
+            {
+              "id": "es6-named-export-syntax",
+              "title": "Es6 named export syntax",
+              "slug": "javascript/modules-export-import#es6-named-export-syntax",
+              "order": 3
+            },
+            {
+              "id": "script-type-module",
+              "title": "Script type module",
+              "slug": "javascript/modules-export-import#script-type-module",
+              "order": 4
+            },
+            {
+              "id": "renaming-imports",
+              "title": "Renaming imports",
+              "slug": "javascript/modules-export-import#renaming-imports",
+              "order": 5
+            },
+            {
+              "id": "default-export-and-import",
+              "title": "Default export and import",
+              "slug": "javascript/modules-export-import#default-export-and-import",
+              "order": 6
+            },
+            {
+              "id": "export-and-import-example",
+              "title": "Export and Import example",
+              "slug": "javascript/modules-export-import#export-and-import-example",
+              "order": 7
+            },
+            {
+              "id": "inline-export",
+              "title": "Inline export",
+              "slug": "javascript/modules-export-import#inline-export",
+              "order": 8
+            }
+          ],
+          "order": 10
+        },
+        {
+          "id": "errors-management",
+          "title": "Errors Management",
+          "slug": "javascript/errors-management",
+          "filePath": "../../content/javascript/errors-management.mdx",
+          "subSections": [
+            {
+              "id": "error-stack-traces",
+              "title": "Error stack traces",
+              "slug": "javascript/errors-management#error-stack-traces",
+              "order": 1
+            },
+            {
+              "id": "error-types",
+              "title": "Error types",
+              "slug": "javascript/errors-management#error-types",
+              "order": 2
+            },
+            {
+              "id": "throw-errors",
+              "title": "Throw errors",
+              "slug": "javascript/errors-management#throw-errors",
+              "order": 3
+            },
+            {
+              "id": "try-catch",
+              "title": "Try catch",
+              "slug": "javascript/errors-management#try-catch",
+              "order": 4
+            },
+            {
+              "id": "additional-resources",
+              "title": "Additional resources",
+              "slug": "javascript/errors-management#additional-resources",
+              "order": 5
+            }
+          ],
+          "order": 11
+        },
+        {
+          "id": "the-event-loop",
+          "title": "The Event Loop",
+          "slug": "javascript/the-event-loop",
+          "filePath": "../../content/javascript/the-event-loop.mdx",
+          "subSections": [
+            {
+              "id": "what-is-synchronous-code",
+              "title": "What is synchronous code",
+              "slug": "javascript/the-event-loop#what-is-synchronous-code",
+              "order": 1
+            },
+            {
+              "id": "what-is-asynchronous-code",
+              "title": "What is asynchronous code",
+              "slug": "javascript/the-event-loop#what-is-asynchronous-code",
+              "order": 2
+            },
+            {
+              "id": "asynchronous-callbacks",
+              "title": "Asynchronous callbacks",
+              "slug": "javascript/the-event-loop#asynchronous-callbacks",
+              "order": 3
+            },
+            {
+              "id": "set-timeout",
+              "title": "Set timeout",
+              "slug": "javascript/the-event-loop#set-timeout",
+              "order": 4
+            },
+            {
+              "id": "set-interval",
+              "title": "Set interval",
+              "slug": "javascript/the-event-loop#set-interval",
+              "order": 5
+            },
+            {
+              "id": "concurrency-model-and-event-loop-in-javascript",
+              "title": "Concurrency model and event loop in javascript",
+              "slug": "javascript/the-event-loop#concurrency-model-and-event-loop-in-javascript",
+              "order": 6
+            },
+            {
+              "id": "what-is-the-event-loop",
+              "title": "What is the event loop",
+              "slug": "javascript/the-event-loop#what-is-the-event-loop",
+              "order": 7
+            },
+            {
+              "id": "components-of-the-event-loop",
+              "title": "Components of the event loop",
+              "slug": "javascript/the-event-loop#components-of-the-event-loop",
+              "order": 8
+            },
+            {
+              "id": "heap",
+              "title": "Heap",
+              "slug": "javascript/the-event-loop#heap",
+              "order": 9
+            },
+            {
+              "id": "the-call-stack",
+              "title": "The call stack",
+              "slug": "javascript/the-event-loop#the-call-stack",
+              "order": 10
+            },
+            {
+              "id": "the-event-queue",
+              "title": "The event queue",
+              "slug": "javascript/the-event-loop#the-event-queue",
+              "order": 11
+            },
+            {
+              "id": "the-event-loop-in-action",
+              "title": "The event loop in action",
+              "slug": "javascript/the-event-loop#the-event-loop-in-action",
+              "order": 12
+            },
+            {
+              "id": "example",
+              "title": "Example",
+              "slug": "javascript/the-event-loop#example",
+              "order": 13
+            },
+            {
+              "id": "microtasks-and-macrotasks",
+              "title": "Microtasks and macrotasks",
+              "slug": "javascript/the-event-loop#microtasks-and-macrotasks",
+              "order": 14
+            },
+            {
+              "id": "event-loop-playground",
+              "title": "Event loop playground",
+              "slug": "javascript/the-event-loop#event-loop-playground",
+              "order": 15
+            },
+            {
+              "id": "memory-management",
+              "title": "Memory management",
+              "slug": "javascript/the-event-loop#memory-management",
+              "order": 16
+            },
+            {
+              "id": "the-stack-and-the-heap",
+              "title": "The stack and the heap",
+              "slug": "javascript/the-event-loop#the-stack-and-the-heap",
+              "order": 17
+            },
+            {
+              "id": "memory-life-cycle",
+              "title": "Memory life cycle",
+              "slug": "javascript/the-event-loop#memory-life-cycle",
+              "order": 18
+            },
+            {
+              "id": "garbage-collection",
+              "title": "Garbage collection",
+              "slug": "javascript/the-event-loop#garbage-collection",
+              "order": 19
+            },
+            {
+              "id": "memory-leaks",
+              "title": "Memory leaks",
+              "slug": "javascript/the-event-loop#memory-leaks",
+              "order": 20
+            },
+            {
+              "id": "messy-closures",
+              "title": "Messy closures",
+              "slug": "javascript/the-event-loop#messy-closures",
+              "order": 21
+            },
+            {
+              "id": "dangling-timers-and-event-listeners",
+              "title": "Dangling timers and event listeners",
+              "slug": "javascript/the-event-loop#dangling-timers-and-event-listeners",
+              "order": 22
+            },
+            {
+              "id": "circular-references",
+              "title": "Circular references",
+              "slug": "javascript/the-event-loop#circular-references",
+              "order": 23
+            },
+            {
+              "id": "declaring-variables-on-the-global-object",
+              "title": "Declaring variables on the global object",
+              "slug": "javascript/the-event-loop#declaring-variables-on-the-global-object",
+              "order": 24
+            },
+            {
+              "id": "out-of-memory-errors",
+              "title": "Out of memory errors",
+              "slug": "javascript/the-event-loop#out-of-memory-errors",
+              "order": 25
+            },
+            {
+              "id": "memory-behavior-and-performance",
+              "title": "Memory behavior and performance",
+              "slug": "javascript/the-event-loop#memory-behavior-and-performance",
+              "order": 26
+            },
+            {
+              "id": "memory-leaks-playground",
+              "title": "Memory leaks playground",
+              "slug": "javascript/the-event-loop#memory-leaks-playground",
+              "order": 27
+            }
+          ],
+          "order": 12
+        },
+        {
+          "id": "promises",
+          "title": "Promises",
+          "slug": "javascript/promises",
+          "filePath": "../../content/javascript/promises.mdx",
+          "subSections": [
+            {
+              "id": "states",
+              "title": "States",
+              "slug": "javascript/promises#states",
+              "order": 1
+            },
+            {
+              "id": "constructing-a-promise-object",
+              "title": "Constructing a promise object",
+              "slug": "javascript/promises#constructing-a-promise-object",
+              "order": 2
+            },
+            {
+              "id": "then",
+              "title": "Then",
+              "slug": "javascript/promises#then",
+              "order": 3
+            },
+            {
+              "id": "catch",
+              "title": "Catch",
+              "slug": "javascript/promises#catch",
+              "order": 4
+            },
+            {
+              "id": "chaining-multiple-promises",
+              "title": "Chaining multiple promises",
+              "slug": "javascript/promises#chaining-multiple-promises",
+              "order": 5
+            },
+            {
+              "id": "promise-all",
+              "title": "Promise all",
+              "slug": "javascript/promises#promise-all",
+              "order": 6
+            },
+            {
+              "id": "promises-playground",
+              "title": "Promises Playground",
+              "slug": "javascript/promises#promises-playground",
+              "order": 7
+            }
+          ],
+          "order": 13
+        },
+        {
+          "id": "async-await-es8",
+          "title": "Async…await (ES8)",
+          "slug": "javascript/async-await-es8",
+          "filePath": "../../content/javascript/async-await-es8.mdx",
+          "subSections": [
+            {
+              "id": "async-operator",
+              "title": "Async operator",
+              "slug": "javascript/async-await-es8#async-operator",
+              "order": 1
+            },
+            {
+              "id": "await-operator",
+              "title": "Await operator",
+              "slug": "javascript/async-await-es8#await-operator",
+              "order": 2
+            },
+            {
+              "id": "errors",
+              "title": "Errors",
+              "slug": "javascript/async-await-es8#errors",
+              "order": 3
+            },
+            {
+              "id": "independent-promises",
+              "title": "Independent promises",
+              "slug": "javascript/async-await-es8#independent-promises",
+              "order": 4
+            },
+            {
+              "id": "await-promise-all",
+              "title": "Await promise all",
+              "slug": "javascript/async-await-es8#await-promise-all",
+              "order": 5
+            },
+            {
+              "id": "asyncawait-playground",
+              "title": "AsyncAwait Playground",
+              "slug": "javascript/async-await-es8#asyncawait-playground",
+              "order": 6
+            }
+          ],
+          "order": 14
+        },
+        {
+          "id": "design-patterns",
+          "title": "Design patterns",
+          "slug": "javascript/design-patterns",
+          "filePath": "../../content/javascript/design-patterns.mdx",
+          "subSections": [
+            {
+              "id": "design-patterns-overview",
+              "title": "Design patterns overview",
+              "slug": "javascript/design-patterns#design-patterns-overview",
+              "order": 1
+            },
+            {
+              "id": "creational-category",
+              "title": "Creational category",
+              "slug": "javascript/design-patterns#creational-category",
+              "order": 2
+            },
+            {
+              "id": "factory-pattern",
+              "title": "Factory pattern",
+              "slug": "javascript/design-patterns#factory-pattern",
+              "order": 3
+            },
+            {
+              "id": "singleton-pattern",
+              "title": "Singleton pattern",
+              "slug": "javascript/design-patterns#singleton-pattern",
+              "order": 4
+            },
+            {
+              "id": "structural-category",
+              "title": "Structural category",
+              "slug": "javascript/design-patterns#structural-category",
+              "order": 5
+            },
+            {
+              "id": "proxy-pattern",
+              "title": "Proxy pattern",
+              "slug": "javascript/design-patterns#proxy-pattern",
+              "order": 6
+            },
+            {
+              "id": "facade-pattern",
+              "title": "Facade pattern",
+              "slug": "javascript/design-patterns#facade-pattern",
+              "order": 7
+            },
+            {
+              "id": "behavioral-category",
+              "title": "Behavioral category",
+              "slug": "javascript/design-patterns#behavioral-category",
+              "order": 8
+            },
+            {
+              "id": "observer-pattern",
+              "title": "Observer pattern",
+              "slug": "javascript/design-patterns#observer-pattern",
+              "order": 9
+            },
+            {
+              "id": "mediator-pattern",
+              "title": "Mediator pattern",
+              "slug": "javascript/design-patterns#mediator-pattern",
+              "order": 10
+            },
+            {
+              "id": "how-to-select-the-right-design-pattern",
+              "title": "How to select the right design pattern",
+              "slug": "javascript/design-patterns#how-to-select-the-right-design-pattern",
+              "order": 11
+            },
+            {
+              "id": "design-patterns-in-architecture",
+              "title": "Design patterns in architecture",
+              "slug": "javascript/design-patterns#design-patterns-in-architecture",
+              "order": 12
+            },
+            {
+              "id": "using-the-proxy-pattern-to-implement-a-proxy-server",
+              "title": "Using the proxy pattern to implement a proxy server",
+              "slug": "javascript/design-patterns#using-the-proxy-pattern-to-implement-a-proxy-server",
+              "order": 13
+            },
+            {
+              "id": "using-the-facade-pattern-to-implement-microservices",
+              "title": "Using the facade pattern to implement microservices",
+              "slug": "javascript/design-patterns#using-the-facade-pattern-to-implement-microservices",
+              "order": 14
+            },
+            {
+              "id": "anti-patterns",
+              "title": "Anti patterns",
+              "slug": "javascript/design-patterns#anti-patterns",
+              "order": 15
+            },
+            {
+              "id": "proxy-playground",
+              "title": "Proxy playground",
+              "slug": "javascript/design-patterns#proxy-playground",
+              "order": 16
+            }
+          ],
+          "order": 15
+        }
+      ],
+      "order": 8
+    },
+    {
+      "id": "jquery",
+      "title": "jQuery",
+      "icon": "CustomjQueryIcon",
+      "slug": "jquery",
+      "introPath": "../../content/jquery/introduction.mdx",
+      "sections": [],
+      "order": 9
+    },
+    {
+      "id": "mongodb",
+      "title": "MongoDB",
+      "icon": "CustomMongoDbIcon",
+      "slug": "mongodb",
+      "introPath": "../../content/mongodb/introduction.mdx",
+      "sections": [
+        {
+          "id": "databases",
+          "title": "Databases",
+          "slug": "mongodb/databases",
+          "filePath": "../../content/mongodb/databases.mdx",
+          "subSections": [
+            {
+              "id": "database-management-systems",
+              "title": "Database management systems",
+              "slug": "mongodb/databases#database-management-systems",
+              "order": 1
+            },
+            {
+              "id": "relational-databases",
+              "title": "Relational databases",
+              "slug": "mongodb/databases#relational-databases",
+              "order": 2
+            },
+            {
+              "id": "non-relational-databases",
+              "title": "Non relational databases",
+              "slug": "mongodb/databases#non-relational-databases",
+              "order": 3
+            },
+            {
+              "id": "nosql-databases",
+              "title": "Nosql databases",
+              "slug": "mongodb/databases#nosql-databases",
+              "order": 4
+            },
+            {
+              "id": "advantages",
+              "title": "Advantages",
+              "slug": "mongodb/databases#advantages",
+              "order": 5
+            },
+            {
+              "id": "unique-disadvantages",
+              "title": "Unique disadvantages",
+              "slug": "mongodb/databases#unique-disadvantages",
+              "order": 6
+            },
+            {
+              "id": "mongodb",
+              "title": "Mongodb",
+              "slug": "mongodb/databases#mongodb",
+              "order": 7
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "commands",
+          "title": "Commands",
+          "slug": "mongodb/commands",
+          "filePath": "../../content/mongodb/commands.mdx",
+          "subSections": [
+            {
+              "id": "show-databases",
+              "title": "Show databases",
+              "slug": "mongodb/commands#show-databases",
+              "order": 1
+            },
+            {
+              "id": "switch-database",
+              "title": "Switch database",
+              "slug": "mongodb/commands#switch-database",
+              "order": 2
+            },
+            {
+              "id": "database-creation-behavior",
+              "title": "Database creation behavior",
+              "slug": "mongodb/commands#database-creation-behavior",
+              "order": 3
+            },
+            {
+              "id": "current-database",
+              "title": "Current database",
+              "slug": "mongodb/commands#current-database",
+              "order": 4
+            },
+            {
+              "id": "show-collections",
+              "title": "Show collections",
+              "slug": "mongodb/commands#show-collections",
+              "order": 5
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "operators-and-methods",
+          "title": "Operators and methods",
+          "slug": "mongodb/operators-and-methods",
+          "filePath": "../../content/mongodb/operators-and-methods.mdx",
+          "subSections": [
+            {
+              "id": "operators",
+              "title": "Operators",
+              "slug": "mongodb/operators-and-methods#operators",
+              "order": 1
+            },
+            {
+              "id": "query-on-arrays",
+              "title": "Query on arrays",
+              "slug": "mongodb/operators-and-methods#query-on-arrays",
+              "order": 2
+            },
+            {
+              "id": "dot-notation",
+              "title": "Dot notation",
+              "slug": "mongodb/operators-and-methods#dot-notation",
+              "order": 3
+            },
+            {
+              "id": "methods",
+              "title": "Methods",
+              "slug": "mongodb/operators-and-methods#methods",
+              "order": 4
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "crud-operations",
+          "title": "Crud operations",
+          "slug": "mongodb/crud-operations",
+          "filePath": "../../content/mongodb/crud-operations.mdx",
+          "subSections": [
+            {
+              "id": "syntax",
+              "title": "Syntax",
+              "slug": "mongodb/crud-operations#syntax",
+              "order": 1
+            },
+            {
+              "id": "find",
+              "title": "Find",
+              "slug": "mongodb/crud-operations#find",
+              "order": 2
+            },
+            {
+              "id": "cursor-behavior",
+              "title": "Cursor behavior",
+              "slug": "mongodb/crud-operations#cursor-behavior",
+              "order": 3
+            },
+            {
+              "id": "example-query-on-embedded-field",
+              "title": "Example query on embedded field",
+              "slug": "mongodb/crud-operations#example-query-on-embedded-field",
+              "order": 4
+            }
+          ],
+          "order": 4
+        }
+      ],
+      "order": 10
+    },
+    {
+      "id": "mui",
+      "title": "MUI",
+      "icon": "CustomMuiIcon",
+      "slug": "mui",
+      "introPath": "../../content/mui/introduction.mdx",
+      "sections": [
+        {
+          "id": "getting-started",
+          "title": "Getting started",
+          "slug": "mui/getting-started",
+          "filePath": "../../content/mui/getting-started.mdx",
+          "subSections": [
+            {
+              "id": "install-the-library",
+              "title": "Install the library",
+              "slug": "mui/getting-started#install-the-library",
+              "order": 1
+            },
+            {
+              "id": "set-up-the-theme-provider",
+              "title": "Set up the theme provider",
+              "slug": "mui/getting-started#set-up-the-theme-provider",
+              "order": 2
+            },
+            {
+              "id": "css-baseline-and-fonts",
+              "title": "Css baseline and fonts",
+              "slug": "mui/getting-started#css-baseline-and-fonts",
+              "order": 3
+            },
+            {
+              "id": "the-sx-prop-basics",
+              "title": "The sx prop basics",
+              "slug": "mui/getting-started#the-sx-prop-basics",
+              "order": 4
+            },
+            {
+              "id": "icons-and-svg",
+              "title": "Icons and svg",
+              "slug": "mui/getting-started#icons-and-svg",
+              "order": 5
+            },
+            {
+              "id": "typescript-tips",
+              "title": "Typescript tips",
+              "slug": "mui/getting-started#typescript-tips",
+              "order": 6
+            },
+            {
+              "id": "sx-playground",
+              "title": "Sx playground",
+              "slug": "mui/getting-started#sx-playground",
+              "order": 7
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "theme",
+          "title": "Theme",
+          "slug": "mui/theme",
+          "filePath": "../../content/mui/theme.mdx",
+          "subSections": [
+            {
+              "id": "theme-essentials",
+              "title": "Theme essentials",
+              "slug": "mui/theme#theme-essentials",
+              "order": 1
+            },
+            {
+              "id": "extend-the-theme",
+              "title": "Extend the theme",
+              "slug": "mui/theme#extend-the-theme",
+              "order": 2
+            },
+            {
+              "id": "color-schemes-and-dark-mode",
+              "title": "Color schemes and dark mode",
+              "slug": "mui/theme#color-schemes-and-dark-mode",
+              "order": 3
+            },
+            {
+              "id": "typography",
+              "title": "Typography",
+              "slug": "mui/theme#typography",
+              "order": 4
+            },
+            {
+              "id": "spacing-and-shape",
+              "title": "Spacing and shape",
+              "slug": "mui/theme#spacing-and-shape",
+              "order": 5
+            },
+            {
+              "id": "css-variables-and-sx",
+              "title": "Css variables and sx",
+              "slug": "mui/theme#css-variables-and-sx",
+              "order": 6
+            },
+            {
+              "id": "theming-pitfalls",
+              "title": "Theming pitfalls",
+              "slug": "mui/theme#theming-pitfalls",
+              "order": 7
+            },
+            {
+              "id": "theme-playground",
+              "title": "Theme playground",
+              "slug": "mui/theme#theme-playground",
+              "order": 8
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "layout",
+          "title": "Layout",
+          "slug": "mui/layout",
+          "filePath": "../../content/mui/layout.mdx",
+          "subSections": [
+            {
+              "id": "stack",
+              "title": "Stack",
+              "slug": "mui/layout#stack",
+              "order": 1
+            },
+            {
+              "id": "grid",
+              "title": "Grid",
+              "slug": "mui/layout#grid",
+              "order": 2
+            },
+            {
+              "id": "box-patterns",
+              "title": "Box patterns",
+              "slug": "mui/layout#box-patterns",
+              "order": 3
+            },
+            {
+              "id": "responsive-breakpoints",
+              "title": "Responsive breakpoints",
+              "slug": "mui/layout#responsive-breakpoints",
+              "order": 4
+            },
+            {
+              "id": "container",
+              "title": "Container",
+              "slug": "mui/layout#container",
+              "order": 5
+            },
+            {
+              "id": "hidden-and-use-media-query",
+              "title": "Hidden and use media query",
+              "slug": "mui/layout#hidden-and-use-media-query",
+              "order": 6
+            },
+            {
+              "id": "flex-playground",
+              "title": "Flex playground",
+              "slug": "mui/layout#flex-playground",
+              "order": 7
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "forms",
+          "title": "Forms",
+          "slug": "mui/forms",
+          "filePath": "../../content/mui/forms.mdx",
+          "subSections": [
+            {
+              "id": "text-fields",
+              "title": "Text fields",
+              "slug": "mui/forms#text-fields",
+              "order": 1
+            },
+            {
+              "id": "select-and-autocomplete",
+              "title": "Select and autocomplete",
+              "slug": "mui/forms#select-and-autocomplete",
+              "order": 2
+            },
+            {
+              "id": "validation-with-react-hook-form",
+              "title": "Validation with react hook form",
+              "slug": "mui/forms#validation-with-react-hook-form",
+              "order": 3
+            },
+            {
+              "id": "input-adornments-and-mask",
+              "title": "Input adornments and mask",
+              "slug": "mui/forms#input-adornments-and-mask",
+              "order": 4
+            },
+            {
+              "id": "date-and-time-pickers",
+              "title": "Date and time pickers",
+              "slug": "mui/forms#date-and-time-pickers",
+              "order": 5
+            },
+            {
+              "id": "accessibility-and-ux",
+              "title": "Accessibility and ux",
+              "slug": "mui/forms#accessibility-and-ux",
+              "order": 6
+            },
+            {
+              "id": "form-playground",
+              "title": "Form playground",
+              "slug": "mui/forms#form-playground",
+              "order": 7
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "navigation",
+          "title": "Navigation",
+          "slug": "mui/navigation",
+          "filePath": "../../content/mui/navigation.mdx",
+          "subSections": [
+            {
+              "id": "app-bar",
+              "title": "App bar",
+              "slug": "mui/navigation#app-bar",
+              "order": 1
+            },
+            {
+              "id": "drawer",
+              "title": "Drawer",
+              "slug": "mui/navigation#drawer",
+              "order": 2
+            },
+            {
+              "id": "tabs",
+              "title": "Tabs",
+              "slug": "mui/navigation#tabs",
+              "order": 3
+            },
+            {
+              "id": "breadcrumbs",
+              "title": "Breadcrumbs",
+              "slug": "mui/navigation#breadcrumbs",
+              "order": 4
+            },
+            {
+              "id": "menu",
+              "title": "Menu",
+              "slug": "mui/navigation#menu",
+              "order": 5
+            },
+            {
+              "id": "bottom-navigation",
+              "title": "Bottom navigation",
+              "slug": "mui/navigation#bottom-navigation",
+              "order": 6
+            },
+            {
+              "id": "navigation-patterns",
+              "title": "Navigation patterns",
+              "slug": "mui/navigation#navigation-patterns",
+              "order": 7
+            },
+            {
+              "id": "nav-playground",
+              "title": "Nav playground",
+              "slug": "mui/navigation#nav-playground",
+              "order": 8
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "data-display",
+          "title": "Data display",
+          "slug": "mui/data-display",
+          "filePath": "../../content/mui/data-display.mdx",
+          "subSections": [
+            {
+              "id": "tables",
+              "title": "Tables",
+              "slug": "mui/data-display#tables",
+              "order": 1
+            },
+            {
+              "id": "lists",
+              "title": "Lists",
+              "slug": "mui/data-display#lists",
+              "order": 2
+            },
+            {
+              "id": "chips-and-avatars",
+              "title": "Chips and avatars",
+              "slug": "mui/data-display#chips-and-avatars",
+              "order": 3
+            },
+            {
+              "id": "tooltips-and-badges",
+              "title": "Tooltips and badges",
+              "slug": "mui/data-display#tooltips-and-badges",
+              "order": 4
+            },
+            {
+              "id": "divider-and-typography",
+              "title": "Divider and typography",
+              "slug": "mui/data-display#divider-and-typography",
+              "order": 5
+            },
+            {
+              "id": "cards",
+              "title": "Cards",
+              "slug": "mui/data-display#cards",
+              "order": 6
+            },
+            {
+              "id": "data-display-patterns",
+              "title": "Data display patterns",
+              "slug": "mui/data-display#data-display-patterns",
+              "order": 7
+            },
+            {
+              "id": "data-display-playground",
+              "title": "Data display playground",
+              "slug": "mui/data-display#data-display-playground",
+              "order": 8
+            }
+          ],
+          "order": 6
+        },
+        {
+          "id": "feedback",
+          "title": "Feedback",
+          "slug": "mui/feedback",
+          "filePath": "../../content/mui/feedback.mdx",
+          "subSections": [
+            {
+              "id": "alerts-and-snackbar",
+              "title": "Alerts and snackbar",
+              "slug": "mui/feedback#alerts-and-snackbar",
+              "order": 1
+            },
+            {
+              "id": "dialog-and-modal",
+              "title": "Dialog and modal",
+              "slug": "mui/feedback#dialog-and-modal",
+              "order": 2
+            },
+            {
+              "id": "progress-and-skeleton",
+              "title": "Progress and skeleton",
+              "slug": "mui/feedback#progress-and-skeleton",
+              "order": 3
+            },
+            {
+              "id": "backdrop",
+              "title": "Backdrop",
+              "slug": "mui/feedback#backdrop",
+              "order": 4
+            },
+            {
+              "id": "toast-patterns",
+              "title": "Toast patterns",
+              "slug": "mui/feedback#toast-patterns",
+              "order": 5
+            },
+            {
+              "id": "feedback-playground",
+              "title": "Feedback playground",
+              "slug": "mui/feedback#feedback-playground",
+              "order": 6
+            }
+          ],
+          "order": 7
+        },
+        {
+          "id": "utilities",
+          "title": "Utilities",
+          "slug": "mui/utilities",
+          "filePath": "../../content/mui/utilities.mdx",
+          "subSections": [
+            {
+              "id": "use-media-query",
+              "title": "Use media query",
+              "slug": "mui/utilities#use-media-query",
+              "order": 1
+            },
+            {
+              "id": "portal-and-no-ssr",
+              "title": "Portal and no ssr",
+              "slug": "mui/utilities#portal-and-no-ssr",
+              "order": 2
+            },
+            {
+              "id": "click-away-listener",
+              "title": "Click away listener",
+              "slug": "mui/utilities#click-away-listener",
+              "order": 3
+            },
+            {
+              "id": "transitions",
+              "title": "Transitions",
+              "slug": "mui/utilities#transitions",
+              "order": 4
+            },
+            {
+              "id": "popover-anchoring",
+              "title": "Popover anchoring",
+              "slug": "mui/utilities#popover-anchoring",
+              "order": 5
+            },
+            {
+              "id": "styled-api-basics",
+              "title": "Styled api basics",
+              "slug": "mui/utilities#styled-api-basics",
+              "order": 6
+            },
+            {
+              "id": "z-index-and-layers",
+              "title": "Z index and layers",
+              "slug": "mui/utilities#z-index-and-layers",
+              "order": 7
+            },
+            {
+              "id": "utilities-playground",
+              "title": "Utilities playground",
+              "slug": "mui/utilities#utilities-playground",
+              "order": 8
+            }
+          ],
+          "order": 8
+        }
+      ],
+      "order": 11
+    },
+    {
+      "id": "react",
+      "title": "React",
+      "icon": "CustomReactIcon",
+      "slug": "react",
+      "introPath": "../../content/react/introduction.mdx",
+      "sections": [
+        {
+          "id": "virtual-dom",
+          "title": "Virtual dom",
+          "slug": "react/virtual-dom",
+          "filePath": "../../content/react/virtual-dom.mdx",
+          "subSections": [
+            {
+              "id": "why-frequent-dom-updates-are-slow",
+              "title": "why frequent dom updates are slow",
+              "slug": "react/virtual-dom#why-frequent-dom-updates-are-slow",
+              "order": 1
+            },
+            {
+              "id": "virtual-dom-in-react",
+              "title": "virtual dom in react",
+              "slug": "react/virtual-dom#virtual-dom-in-react",
+              "order": 2
+            },
+            {
+              "id": "how-it-works",
+              "title": "how it works",
+              "slug": "react/virtual-dom#how-it-works",
+              "order": 3
+            },
+            {
+              "id": "summary",
+              "title": "summary",
+              "slug": "react/virtual-dom#summary",
+              "order": 4
+            },
+            {
+              "id": "diffing-playground",
+              "title": "Diffing playground",
+              "slug": "react/virtual-dom#diffing-playground",
+              "order": 5
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "jsx",
+          "title": "JSX",
+          "slug": "react/jsx",
+          "filePath": "../../content/react/jsx.mdx",
+          "subSections": [
+            {
+              "id": "elements",
+              "title": "elements",
+              "slug": "react/jsx#elements",
+              "order": 1
+            },
+            {
+              "id": "attributes",
+              "title": "attributes",
+              "slug": "react/jsx#attributes",
+              "order": 2
+            },
+            {
+              "id": "classes",
+              "title": "classes",
+              "slug": "react/jsx#classes",
+              "order": 3
+            },
+            {
+              "id": "self-closing-tags",
+              "title": "self closing tags",
+              "slug": "react/jsx#self-closing-tags",
+              "order": 4
+            },
+            {
+              "id": "nested-jsx",
+              "title": "nested jsx",
+              "slug": "react/jsx#nested-jsx",
+              "order": 5
+            },
+            {
+              "id": "rendering",
+              "title": "rendering",
+              "slug": "react/jsx#rendering",
+              "order": 6
+            },
+            {
+              "id": "render-method",
+              "title": "render method",
+              "slug": "react/jsx#render-method",
+              "order": 7
+            },
+            {
+              "id": "curly-braces",
+              "title": "curly braces",
+              "slug": "react/jsx#curly-braces",
+              "order": 8
+            },
+            {
+              "id": "variable-attributes",
+              "title": "variable attributes",
+              "slug": "react/jsx#variable-attributes",
+              "order": 9
+            },
+            {
+              "id": "event-listeners",
+              "title": "event listeners",
+              "slug": "react/jsx#event-listeners",
+              "order": 10
+            },
+            {
+              "id": "conditionals-ternary-operator",
+              "title": "conditionals ternary operator",
+              "slug": "react/jsx#conditionals-ternary-operator",
+              "order": 11
+            },
+            {
+              "id": "conditionals-and",
+              "title": "conditionals and",
+              "slug": "react/jsx#conditionals-and",
+              "order": 12
+            },
+            {
+              "id": "map",
+              "title": "map",
+              "slug": "react/jsx#map",
+              "order": 13
+            },
+            {
+              "id": "keys",
+              "title": "keys",
+              "slug": "react/jsx#keys",
+              "order": 14
+            },
+            {
+              "id": "react-createelement",
+              "title": "react createelement",
+              "slug": "react/jsx#react-createelement",
+              "order": 15
+            },
+            {
+              "id": "jsx-playground",
+              "title": "jsx playground",
+              "slug": "react/jsx#jsx-playground",
+              "order": 16
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "react-components",
+          "title": "React components",
+          "slug": "react/react-components",
+          "filePath": "../../content/react/react-components.mdx",
+          "subSections": [
+            {
+              "id": "import-react",
+              "title": "Import react",
+              "slug": "react/react-components#import-react",
+              "order": 1
+            },
+            {
+              "id": "import-reactdom",
+              "title": "Import reactdom",
+              "slug": "react/react-components#import-reactdom",
+              "order": 2
+            },
+            {
+              "id": "function-component",
+              "title": "Function component",
+              "slug": "react/react-components#function-component",
+              "order": 3
+            },
+            {
+              "id": "using-and-rendering-a-component",
+              "title": "Using and rendering a component",
+              "slug": "react/react-components#using-and-rendering-a-component",
+              "order": 4
+            },
+            {
+              "id": "use-multiline-jsx-in-a-component",
+              "title": "Use multiline jsx in a component",
+              "slug": "react/react-components#use-multiline-jsx-in-a-component",
+              "order": 5
+            },
+            {
+              "id": "use-a-variable-attribute-in-a-component",
+              "title": "Use a variable attribute in a component",
+              "slug": "react/react-components#use-a-variable-attribute-in-a-component",
+              "order": 6
+            },
+            {
+              "id": "putting-logic-in-a-function-component",
+              "title": "Putting logic in a function component",
+              "slug": "react/react-components#putting-logic-in-a-function-component",
+              "order": 7
+            },
+            {
+              "id": "use-a-conditional-in-a-function-component",
+              "title": "Use a conditional in a function component",
+              "slug": "react/react-components#use-a-conditional-in-a-function-component",
+              "order": 8
+            },
+            {
+              "id": "event-listener-and-event-handlers-in-a-component",
+              "title": "Event listener and event handlers in a component",
+              "slug": "react/react-components#event-listener-and-event-handlers-in-a-component",
+              "order": 9
+            },
+            {
+              "id": "returning-another-component",
+              "title": "Returning another component",
+              "slug": "react/react-components#returning-another-component",
+              "order": 10
+            },
+            {
+              "id": "apply-a-component-in-a-render-function",
+              "title": "Apply a component in a render function",
+              "slug": "react/react-components#apply-a-component-in-a-render-function",
+              "order": 11
+            },
+            {
+              "id": "components-playground",
+              "title": "Components playground",
+              "slug": "react/react-components#components-playground",
+              "order": 12
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "props",
+          "title": "Props",
+          "slug": "react/props",
+          "filePath": "../../content/react/props.mdx",
+          "subSections": [
+            {
+              "id": "access-component-props",
+              "title": "Access component props",
+              "slug": "react/props#access-component-props",
+              "order": 1
+            },
+            {
+              "id": "pass-props-to-a-component",
+              "title": "Pass props to a component",
+              "slug": "react/props#pass-props-to-a-component",
+              "order": 2
+            },
+            {
+              "id": "render-component-props",
+              "title": "Render component props",
+              "slug": "react/props#render-component-props",
+              "order": 3
+            },
+            {
+              "id": "pass-props-from-component-to-component",
+              "title": "Pass props from component to component",
+              "slug": "react/props#pass-props-from-component-to-component",
+              "order": 4
+            },
+            {
+              "id": "render-different-ui-based-on-props",
+              "title": "Render different ui based on props",
+              "slug": "react/props#render-different-ui-based-on-props",
+              "order": 5
+            },
+            {
+              "id": "event-handler-in-a-function-component",
+              "title": "Event handler in a function component",
+              "slug": "react/props#event-handler-in-a-function-component",
+              "order": 6
+            },
+            {
+              "id": "pass-an-event-handler-as-a-prop",
+              "title": "Pass an event handler as a prop",
+              "slug": "react/props#pass-an-event-handler-as-a-prop",
+              "order": 7
+            },
+            {
+              "id": "receive-an-event-handler-as-a-prop",
+              "title": "Receive an event handler as a prop",
+              "slug": "react/props#receive-an-event-handler-as-a-prop",
+              "order": 8
+            },
+            {
+              "id": "naming-conventions",
+              "title": "Naming conventions",
+              "slug": "react/props#naming-conventions",
+              "order": 9
+            },
+            {
+              "id": "be-careful",
+              "title": "Be careful",
+              "slug": "react/props#be-careful",
+              "order": 10
+            },
+            {
+              "id": "props-children",
+              "title": "Props children",
+              "slug": "react/props#props-children",
+              "order": 11
+            },
+            {
+              "id": "default-values-for-props",
+              "title": "Default values for props",
+              "slug": "react/props#default-values-for-props",
+              "order": 12
+            },
+            {
+              "id": "props-playground",
+              "title": "Props playground",
+              "slug": "react/props#props-playground",
+              "order": 13
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "hooks-usestate",
+          "title": "Hooks: useState()",
+          "slug": "react/hooks-usestate",
+          "filePath": "../../content/react/hooks-usestate.mdx",
+          "subSections": [
+            {
+              "id": "update-function-component-state",
+              "title": "Update function component state",
+              "slug": "react/hooks-usestate#update-function-component-state",
+              "order": 1
+            },
+            {
+              "id": "initialize-state",
+              "title": "Initialize state",
+              "slug": "react/hooks-usestate#initialize-state",
+              "order": 2
+            },
+            {
+              "id": "use-state-setter-outside-of-jsx",
+              "title": "Use state setter outside of jsx",
+              "slug": "react/hooks-usestate#use-state-setter-outside-of-jsx",
+              "order": 3
+            },
+            {
+              "id": "set-from-previous-state",
+              "title": "Set from previous state",
+              "slug": "react/hooks-usestate#set-from-previous-state",
+              "order": 4
+            },
+            {
+              "id": "arrays-in-state",
+              "title": "Arrays in state",
+              "slug": "react/hooks-usestate#arrays-in-state",
+              "order": 5
+            },
+            {
+              "id": "array-example",
+              "title": "Array example",
+              "slug": "react/hooks-usestate#array-example",
+              "order": 6
+            },
+            {
+              "id": "objects-in-state",
+              "title": "Objects in state",
+              "slug": "react/hooks-usestate#objects-in-state",
+              "order": 7
+            },
+            {
+              "id": "separate-hooks-for-separate-states",
+              "title": "Separate hooks for separate states",
+              "slug": "react/hooks-usestate#separate-hooks-for-separate-states",
+              "order": 8
+            },
+            {
+              "id": "use-state-playground",
+              "title": "Use state playground",
+              "slug": "react/hooks-usestate#use-state-playground",
+              "order": 9
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "hooks-useeffect",
+          "title": "Hooks: useEffect()",
+          "slug": "react/hooks-useeffect",
+          "filePath": "../../content/react/hooks-useeffect.mdx",
+          "subSections": [
+            {
+              "id": "function-component-effects",
+              "title": "Function component effects",
+              "slug": "react/hooks-useeffect#function-component-effects",
+              "order": 1
+            },
+            {
+              "id": "clean-up-effects",
+              "title": "Clean up effects",
+              "slug": "react/hooks-useeffect#clean-up-effects",
+              "order": 2
+            },
+            {
+              "id": "control-when-effects-are-called",
+              "title": "Control when effects are called",
+              "slug": "react/hooks-useeffect#control-when-effects-are-called",
+              "order": 3
+            },
+            {
+              "id": "fetch-data",
+              "title": "Fetch data",
+              "slug": "react/hooks-useeffect#fetch-data",
+              "order": 4
+            },
+            {
+              "id": "rules-of-hooks",
+              "title": "Rules of hooks",
+              "slug": "react/hooks-useeffect#rules-of-hooks",
+              "order": 5
+            },
+            {
+              "id": "separate-hooks-for-separate-effects",
+              "title": "Separate hooks for separate effects",
+              "slug": "react/hooks-useeffect#separate-hooks-for-separate-effects",
+              "order": 6
+            },
+            {
+              "id": "use-effect-playground",
+              "title": "Use effect playground",
+              "slug": "react/hooks-useeffect#use-effect-playground",
+              "order": 7
+            }
+          ],
+          "order": 6
+        },
+        {
+          "id": "programming-patterns",
+          "title": "Programming patterns",
+          "slug": "react/programming-patterns",
+          "filePath": "../../content/react/programming-patterns.mdx",
+          "subSections": [
+            {
+              "id": "separate-container-components",
+              "title": "Separate container components",
+              "slug": "react/programming-patterns#separate-container-components",
+              "order": 1
+            },
+            {
+              "id": "create-presentational-component",
+              "title": "Create presentational component",
+              "slug": "react/programming-patterns#create-presentational-component",
+              "order": 2
+            },
+            {
+              "id": "parent-child-and-sibling-sibling-communication",
+              "title": "Parent child and sibling sibling communication",
+              "slug": "react/programming-patterns#parent-child-and-sibling-sibling-communication",
+              "order": 3
+            },
+            {
+              "id": "render-presentational-components-in-container-component",
+              "title": "Render presentational components in container component",
+              "slug": "react/programming-patterns#render-presentational-components-in-container-component",
+              "order": 4
+            },
+            {
+              "id": "container-presentational-playground",
+              "title": "Container presentational playground",
+              "slug": "react/programming-patterns#container-presentational-playground",
+              "order": 5
+            }
+          ],
+          "order": 7
+        },
+        {
+          "id": "inline-styles-and-style-object-variables",
+          "title": "Inline Styles And Style Object Variables",
+          "slug": "react/inline-styles-and-style-object-variables",
+          "filePath": "../../content/react/inline-styles-and-style-object-variables.mdx",
+          "subSections": [
+            {
+              "id": "inline-styles",
+              "title": "Inline styles",
+              "slug": "react/inline-styles-and-style-object-variables#inline-styles",
+              "order": 1
+            },
+            {
+              "id": "style-object-variables",
+              "title": "Style object variables",
+              "slug": "react/inline-styles-and-style-object-variables#style-object-variables",
+              "order": 2
+            },
+            {
+              "id": "style-syntax",
+              "title": "Style syntax",
+              "slug": "react/inline-styles-and-style-object-variables#style-syntax",
+              "order": 3
+            },
+            {
+              "id": "stylesheet-and-modules",
+              "title": "Stylesheet and modules",
+              "slug": "react/inline-styles-and-style-object-variables#stylesheet-and-modules",
+              "order": 4
+            },
+            {
+              "id": "styles-playground",
+              "title": "Styles playground",
+              "slug": "react/inline-styles-and-style-object-variables#styles-playground",
+              "order": 5
+            }
+          ],
+          "order": 8
+        },
+        {
+          "id": "react-forms",
+          "title": "React forms",
+          "slug": "react/react-forms",
+          "filePath": "../../content/react/react-forms.mdx",
+          "subSections": [
+            {
+              "id": "how-react-handles-form-state",
+              "title": "How react handles form state",
+              "slug": "react/react-forms#how-react-handles-form-state",
+              "order": 1
+            },
+            {
+              "id": "controlled-inputs",
+              "title": "Controlled inputs",
+              "slug": "react/react-forms#controlled-inputs",
+              "order": 2
+            },
+            {
+              "id": "controlled-vs-uncontrolled",
+              "title": "Controlled vs uncontrolled",
+              "slug": "react/react-forms#controlled-vs-uncontrolled",
+              "order": 3
+            },
+            {
+              "id": "form-submission",
+              "title": "Form submission",
+              "slug": "react/react-forms#form-submission",
+              "order": 4
+            },
+            {
+              "id": "examples",
+              "title": "Examples",
+              "slug": "react/react-forms#examples",
+              "order": 5
+            },
+            {
+              "id": "forms-playground",
+              "title": "Forms playground",
+              "slug": "react/react-forms#forms-playground",
+              "order": 6
+            }
+          ],
+          "order": 9
+        },
+        {
+          "id": "routing",
+          "title": "Routing",
+          "slug": "react/routing",
+          "filePath": "../../content/react/routing.mdx",
+          "subSections": [
+            {
+              "id": "what-is-routing",
+              "title": "What is routing",
+              "slug": "react/routing#what-is-routing",
+              "order": 1
+            },
+            {
+              "id": "installation",
+              "title": "Installation",
+              "slug": "react/routing#installation",
+              "order": 2
+            },
+            {
+              "id": "provide-a-router",
+              "title": "Provide a router",
+              "slug": "react/routing#provide-a-router",
+              "order": 3
+            },
+            {
+              "id": "basic-routing",
+              "title": "Basic routing",
+              "slug": "react/routing#basic-routing",
+              "order": 4
+            },
+            {
+              "id": "linking-to-routes",
+              "title": "Linking to routes",
+              "slug": "react/routing#linking-to-routes",
+              "order": 5
+            },
+            {
+              "id": "dynamic-routes",
+              "title": "Dynamic routes",
+              "slug": "react/routing#dynamic-routes",
+              "order": 6
+            },
+            {
+              "id": "use-params",
+              "title": "Use params",
+              "slug": "react/routing#use-params",
+              "order": 7
+            },
+            {
+              "id": "nested-routes",
+              "title": "Nested routes",
+              "slug": "react/routing#nested-routes",
+              "order": 8
+            },
+            {
+              "id": "outlet",
+              "title": "Outlet",
+              "slug": "react/routing#outlet",
+              "order": 9
+            },
+            {
+              "id": "index-route",
+              "title": "Index route",
+              "slug": "react/routing#index-route",
+              "order": 10
+            },
+            {
+              "id": "navigate",
+              "title": "Navigate",
+              "slug": "react/routing#navigate",
+              "order": 11
+            },
+            {
+              "id": "use-navigate",
+              "title": "Use navigate",
+              "slug": "react/routing#use-navigate",
+              "order": 12
+            },
+            {
+              "id": "history",
+              "title": "History",
+              "slug": "react/routing#history",
+              "order": 13
+            },
+            {
+              "id": "query-parameters",
+              "title": "Query parameters",
+              "slug": "react/routing#query-parameters",
+              "order": 14
+            },
+            {
+              "id": "use-search-params",
+              "title": "Use search params",
+              "slug": "react/routing#use-search-params",
+              "order": 15
+            },
+            {
+              "id": "create-search-params",
+              "title": "Create search params",
+              "slug": "react/routing#create-search-params",
+              "order": 16
+            },
+            {
+              "id": "routing-playground",
+              "title": "Routing playground",
+              "slug": "react/routing#routing-playground",
+              "order": 17
+            }
+          ],
+          "order": 10
+        },
+        {
+          "id": "creating-a-react-app-using-vite",
+          "title": "Creating a React App Using Vite",
+          "slug": "react/creating-a-react-app-using-vite",
+          "filePath": "../../content/react/creating-a-react-app-using-vite.mdx",
+          "subSections": [
+            {
+              "id": "getting-ready",
+              "title": "Getting ready",
+              "slug": "react/creating-a-react-app-using-vite#getting-ready",
+              "order": 1
+            },
+            {
+              "id": "setting-up-the-boilerplate-application",
+              "title": "Setting up the boilerplate application",
+              "slug": "react/creating-a-react-app-using-vite#setting-up-the-boilerplate-application",
+              "order": 2
+            },
+            {
+              "id": "recap",
+              "title": "Recap",
+              "slug": "react/creating-a-react-app-using-vite#recap",
+              "order": 3
+            },
+            {
+              "id": "react-app-structure",
+              "title": "React app structure",
+              "slug": "react/creating-a-react-app-using-vite#react-app-structure",
+              "order": 4
+            },
+            {
+              "id": "key-directories",
+              "title": "Key directories",
+              "slug": "react/creating-a-react-app-using-vite#key-directories",
+              "order": 5
+            },
+            {
+              "id": "key-files",
+              "title": "Key files",
+              "slug": "react/creating-a-react-app-using-vite#key-files",
+              "order": 6
+            },
+            {
+              "id": "starting-the-react-app-development-server",
+              "title": "Starting the react app development server",
+              "slug": "react/creating-a-react-app-using-vite#starting-the-react-app-development-server",
+              "order": 7
+            },
+            {
+              "id": "react-devtools-sandbox",
+              "title": "React devtools sandbox",
+              "slug": "react/creating-a-react-app-using-vite#react-devtools-sandbox",
+              "order": 8
+            }
+          ],
+          "order": 11
+        }
+      ],
+      "order": 12
+    },
+    {
+      "id": "redux",
+      "title": "Redux",
+      "icon": "CustomReduxIcon",
+      "slug": "redux",
+      "introPath": "../../content/redux/introduction.mdx",
+      "sections": [
+        {
+          "id": "introduction-to-redux",
+          "title": "Introduction to Redux",
+          "slug": "redux/introduction-to-redux",
+          "filePath": "../../content/redux/introduction-to-redux.mdx",
+          "subSections": [
+            {
+              "id": "one-way-data-flow",
+              "title": "One way data flow",
+              "slug": "redux/introduction-to-redux#one-way-data-flow",
+              "order": 1
+            },
+            {
+              "id": "state",
+              "title": "State",
+              "slug": "redux/introduction-to-redux#state",
+              "order": 2
+            },
+            {
+              "id": "action",
+              "title": "Action",
+              "slug": "redux/introduction-to-redux#action",
+              "order": 3
+            },
+            {
+              "id": "reducers",
+              "title": "Reducers",
+              "slug": "redux/introduction-to-redux#reducers",
+              "order": 4
+            },
+            {
+              "id": "rules-of-reducers",
+              "title": "Rules of reducers",
+              "slug": "redux/introduction-to-redux#rules-of-reducers",
+              "order": 5
+            },
+            {
+              "id": "immutable-updates-and-pure-functions",
+              "title": "Immutable updates and pure functions",
+              "slug": "redux/introduction-to-redux#immutable-updates-and-pure-functions",
+              "order": 6
+            },
+            {
+              "id": "store",
+              "title": "Store",
+              "slug": "redux/introduction-to-redux#store",
+              "order": 7
+            },
+            {
+              "id": "reducer-playground",
+              "title": "Reducer playground",
+              "slug": "redux/introduction-to-redux#reducer-playground",
+              "order": 8
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "redux-api",
+          "title": "Redux API",
+          "slug": "redux/redux-api",
+          "filePath": "../../content/redux/redux-api.mdx",
+          "subSections": [
+            {
+              "id": "create-a-redux-store",
+              "title": "Create a redux store",
+              "slug": "redux/redux-api#create-a-redux-store",
+              "order": 1
+            },
+            {
+              "id": "dispatch-actions-to-the-store",
+              "title": "Dispatch actions to the store",
+              "slug": "redux/redux-api#dispatch-actions-to-the-store",
+              "order": 2
+            },
+            {
+              "id": "get-current-state",
+              "title": "Get current state",
+              "slug": "redux/redux-api#get-current-state",
+              "order": 3
+            },
+            {
+              "id": "action-creators",
+              "title": "Action creators",
+              "slug": "redux/redux-api#action-creators",
+              "order": 4
+            },
+            {
+              "id": "respond-to-state-changes",
+              "title": "Respond to state changes",
+              "slug": "redux/redux-api#respond-to-state-changes",
+              "order": 5
+            },
+            {
+              "id": "connect-the-redux-store-to-a-ui",
+              "title": "Connect the redux store to a ui",
+              "slug": "redux/redux-api#connect-the-redux-store-to-a-ui",
+              "order": 6
+            },
+            {
+              "id": "redux-store-playground",
+              "title": "Redux store playground",
+              "slug": "redux/redux-api#redux-store-playground",
+              "order": 7
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "strategies-for-complex-state",
+          "title": "Strategies for complex state",
+          "slug": "redux/strategies-for-complex-state",
+          "filePath": "../../content/redux/strategies-for-complex-state.mdx",
+          "subSections": [
+            {
+              "id": "todo-state-example",
+              "title": "Todo state example",
+              "slug": "redux/strategies-for-complex-state#todo-state-example",
+              "order": 1
+            },
+            {
+              "id": "slices-and-initial-state",
+              "title": "Slices and initial state",
+              "slug": "redux/strategies-for-complex-state#slices-and-initial-state",
+              "order": 2
+            },
+            {
+              "id": "actions-and-payloads",
+              "title": "Actions and payloads",
+              "slug": "redux/strategies-for-complex-state#actions-and-payloads",
+              "order": 3
+            },
+            {
+              "id": "complex-state-action-creators",
+              "title": "Complex state action creators",
+              "slug": "redux/strategies-for-complex-state#complex-state-action-creators",
+              "order": 4
+            },
+            {
+              "id": "immutable-updates-and-complex-state",
+              "title": "Immutable updates and complex state",
+              "slug": "redux/strategies-for-complex-state#immutable-updates-and-complex-state",
+              "order": 5
+            },
+            {
+              "id": "reducer-composition",
+              "title": "Reducer composition",
+              "slug": "redux/strategies-for-complex-state#reducer-composition",
+              "order": 6
+            },
+            {
+              "id": "separate-slice-state-initialization",
+              "title": "Separate slice state initialization",
+              "slug": "redux/strategies-for-complex-state#separate-slice-state-initialization",
+              "order": 7
+            },
+            {
+              "id": "combinereducers",
+              "title": "Combinereducers",
+              "slug": "redux/strategies-for-complex-state#combinereducers",
+              "order": 8
+            },
+            {
+              "id": "todo-reducer-playground",
+              "title": "Todo reducer playground",
+              "slug": "redux/strategies-for-complex-state#todo-reducer-playground",
+              "order": 9
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "file-structure",
+          "title": "File structure",
+          "slug": "redux/file-structure",
+          "filePath": "../../content/redux/file-structure.mdx",
+          "subSections": [
+            {
+              "id": "ducks-pattern-structure",
+              "title": "Ducks pattern structure",
+              "slug": "redux/file-structure#ducks-pattern-structure",
+              "order": 1
+            },
+            {
+              "id": "app-and-features-directories",
+              "title": "App and features directories",
+              "slug": "redux/file-structure#app-and-features-directories",
+              "order": 2
+            },
+            {
+              "id": "react-integrated-structure",
+              "title": "React integrated structure",
+              "slug": "redux/file-structure#react-integrated-structure",
+              "order": 3
+            },
+            {
+              "id": "component-colocation-with-slices",
+              "title": "Component colocation with slices",
+              "slug": "redux/file-structure#component-colocation-with-slices",
+              "order": 4
+            },
+            {
+              "id": "app-component-responsibilities",
+              "title": "App component responsibilities",
+              "slug": "redux/file-structure#app-component-responsibilities",
+              "order": 5
+            },
+            {
+              "id": "index-wiring-and-props",
+              "title": "Index wiring and props",
+              "slug": "redux/file-structure#index-wiring-and-props",
+              "order": 6
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "redux-toolkit",
+          "title": "Redux toolkit",
+          "slug": "redux/redux-toolkit",
+          "filePath": "../../content/redux/redux-toolkit.mdx",
+          "subSections": [
+            {
+              "id": "redux-toolkit-overview",
+              "title": "Redux toolkit overview",
+              "slug": "redux/redux-toolkit#redux-toolkit-overview",
+              "order": 1
+            },
+            {
+              "id": "create-slice",
+              "title": "Create slice",
+              "slug": "redux/redux-toolkit#create-slice",
+              "order": 2
+            },
+            {
+              "id": "writing-mutable-code-with-immer",
+              "title": "Writing mutable code with immer",
+              "slug": "redux/redux-toolkit#writing-mutable-code-with-immer",
+              "order": 3
+            },
+            {
+              "id": "returned-objects-and-auto-generated-actions",
+              "title": "Returned objects and auto generated actions",
+              "slug": "redux/redux-toolkit#returned-objects-and-auto-generated-actions",
+              "order": 4
+            },
+            {
+              "id": "returned-objects-and-reducers",
+              "title": "Returned objects and reducers",
+              "slug": "redux/redux-toolkit#returned-objects-and-reducers",
+              "order": 5
+            },
+            {
+              "id": "configure-store",
+              "title": "Configure store",
+              "slug": "redux/redux-toolkit#configure-store",
+              "order": 6
+            },
+            {
+              "id": "todos-slice-playground",
+              "title": "Todos slice playground",
+              "slug": "redux/redux-toolkit#todos-slice-playground",
+              "order": 7
+            }
+          ],
+          "order": 5
+        },
+        {
+          "id": "redux-middleware-and-thunks",
+          "title": "Redux middleware and thunks",
+          "slug": "redux/redux-middleware-and-thunks",
+          "filePath": "../../content/redux/redux-middleware-and-thunks.mdx",
+          "subSections": [
+            {
+              "id": "middleware-in-redux",
+              "title": "Middleware in redux",
+              "slug": "redux/redux-middleware-and-thunks#middleware-in-redux",
+              "order": 1
+            },
+            {
+              "id": "write-your-own-middleware",
+              "title": "Write your own middleware",
+              "slug": "redux/redux-middleware-and-thunks#write-your-own-middleware",
+              "order": 2
+            },
+            {
+              "id": "introduction-to-thunks",
+              "title": "Introduction to thunks",
+              "slug": "redux/redux-middleware-and-thunks#introduction-to-thunks",
+              "order": 3
+            },
+            {
+              "id": "promise-lifecycle-actions",
+              "title": "Promise lifecycle actions",
+              "slug": "redux/redux-middleware-and-thunks#promise-lifecycle-actions",
+              "order": 4
+            },
+            {
+              "id": "create-async-thunk",
+              "title": "Create async thunk",
+              "slug": "redux/redux-middleware-and-thunks#create-async-thunk",
+              "order": 5
+            },
+            {
+              "id": "actions-generated-by-create-asyncthunk",
+              "title": "Actions generated by create asyncthunk",
+              "slug": "redux/redux-middleware-and-thunks#actions-generated-by-create-asyncthunk",
+              "order": 6
+            },
+            {
+              "id": "using-createslice-with-async-action-creators",
+              "title": "Using createslice with async action creators",
+              "slug": "redux/redux-middleware-and-thunks#using-createslice-with-async-action-creators",
+              "order": 7
+            },
+            {
+              "id": "middleware-pipeline-playground",
+              "title": "Middleware pipeline playground",
+              "slug": "redux/redux-middleware-and-thunks#middleware-pipeline-playground",
+              "order": 8
+            }
+          ],
+          "order": 6
+        }
+      ],
+      "order": 13
+    },
+    {
+      "id": "vps",
+      "title": "VPS",
+      "icon": "PublicIcon",
+      "slug": "vps",
+      "introPath": "../../content/vps/introduction.mdx",
+      "sections": [
+        {
+          "id": "server-linux-commands",
+          "title": "Server Linux Commands",
+          "slug": "vps/server-linux-commands",
+          "filePath": "../../content/vps/server-linux-commands.mdx",
+          "subSections": [
+            {
+              "id": "check-system-info",
+              "title": "Check system info",
+              "slug": "vps/server-linux-commands#check-system-info",
+              "order": 1
+            },
+            {
+              "id": "update-your-system",
+              "title": "Update your system",
+              "slug": "vps/server-linux-commands#update-your-system",
+              "order": 2
+            },
+            {
+              "id": "user-management",
+              "title": "User management",
+              "slug": "vps/server-linux-commands#user-management",
+              "order": 3
+            },
+            {
+              "id": "set-up-a-firewall-ufw",
+              "title": "Set up a firewall ufw",
+              "slug": "vps/server-linux-commands#set-up-a-firewall-ufw",
+              "order": 4
+            },
+            {
+              "id": "secure-ssh-disable-password-login",
+              "title": "Secure ssh disable password login",
+              "slug": "vps/server-linux-commands#secure-ssh-disable-password-login",
+              "order": 5
+            },
+            {
+              "id": "install-a-web-server",
+              "title": "Install a web server",
+              "slug": "vps/server-linux-commands#install-a-web-server",
+              "order": 6
+            },
+            {
+              "id": "install-a-database-server",
+              "title": "Install a database server",
+              "slug": "vps/server-linux-commands#install-a-database-server",
+              "order": 7
+            },
+            {
+              "id": "set-up-wordpress-quick-install",
+              "title": "Set up wordpress quick install",
+              "slug": "vps/server-linux-commands#set-up-wordpress-quick-install",
+              "order": 8
+            },
+            {
+              "id": "secure-your-ssh-keys",
+              "title": "Secure your ssh keys",
+              "slug": "vps/server-linux-commands#secure-your-ssh-keys",
+              "order": 9
+            },
+            {
+              "id": "monitor-your-vps",
+              "title": "Monitor your vps",
+              "slug": "vps/server-linux-commands#monitor-your-vps",
+              "order": 10
+            },
+            {
+              "id": "server-basic-commands",
+              "title": "Server basic commands",
+              "slug": "vps/server-linux-commands#server-basic-commands",
+              "order": 11
+            },
+            {
+              "id": "reboot-and-power-controls",
+              "title": "Reboot and power controls",
+              "slug": "vps/server-linux-commands#reboot-and-power-controls",
+              "order": 12
+            }
+          ],
+          "order": 1
+        },
+        {
+          "id": "linux-ubuntu-basics",
+          "title": "Linux Ubuntu Basics",
+          "slug": "vps/linux-ubuntu-basics",
+          "filePath": "../../content/vps/linux-ubuntu-basics.mdx",
+          "subSections": [
+            {
+              "id": "what-is-linux-and-ubuntu",
+              "title": "What is linux and ubuntu",
+              "slug": "vps/linux-ubuntu-basics#what-is-linux-and-ubuntu",
+              "order": 1
+            },
+            {
+              "id": "navigation-and-help",
+              "title": "Navigation and help",
+              "slug": "vps/linux-ubuntu-basics#navigation-and-help",
+              "order": 2
+            },
+            {
+              "id": "file-system-and-paths",
+              "title": "File system and paths",
+              "slug": "vps/linux-ubuntu-basics#file-system-and-paths",
+              "order": 3
+            },
+            {
+              "id": "permissions-and-ownership",
+              "title": "Permissions and ownership",
+              "slug": "vps/linux-ubuntu-basics#permissions-and-ownership",
+              "order": 4
+            },
+            {
+              "id": "processes-and-services",
+              "title": "Processes and services",
+              "slug": "vps/linux-ubuntu-basics#processes-and-services",
+              "order": 5
+            },
+            {
+              "id": "networking-basics",
+              "title": "Networking basics",
+              "slug": "vps/linux-ubuntu-basics#networking-basics",
+              "order": 6
+            },
+            {
+              "id": "package-management-apt",
+              "title": "Package management apt",
+              "slug": "vps/linux-ubuntu-basics#package-management-apt",
+              "order": 7
+            },
+            {
+              "id": "files-search-and-edit",
+              "title": "Files search and edit",
+              "slug": "vps/linux-ubuntu-basics#files-search-and-edit",
+              "order": 8
+            },
+            {
+              "id": "compression-and-archives",
+              "title": "Compression and archives",
+              "slug": "vps/linux-ubuntu-basics#compression-and-archives",
+              "order": 9
+            },
+            {
+              "id": "disk-usage-and-partitions",
+              "title": "Disk usage and partitions",
+              "slug": "vps/linux-ubuntu-basics#disk-usage-and-partitions",
+              "order": 10
+            },
+            {
+              "id": "system-logs-and-journald",
+              "title": "System logs and journald",
+              "slug": "vps/linux-ubuntu-basics#system-logs-and-journald",
+              "order": 11
+            },
+            {
+              "id": "environment-variables",
+              "title": "Environment variables",
+              "slug": "vps/linux-ubuntu-basics#environment-variables",
+              "order": 12
+            },
+            {
+              "id": "bash-scripting-basics",
+              "title": "Bash scripting basics",
+              "slug": "vps/linux-ubuntu-basics#bash-scripting-basics",
+              "order": 13
+            },
+            {
+              "id": "cheatsheet-commands",
+              "title": "Cheatsheet commands",
+              "slug": "vps/linux-ubuntu-basics#cheatsheet-commands",
+              "order": 14
+            },
+            {
+              "id": "chmod-playground",
+              "title": "Chmod playground",
+              "slug": "vps/linux-ubuntu-basics#chmod-playground",
+              "order": 15
+            }
+          ],
+          "order": 2
+        },
+        {
+          "id": "security",
+          "title": "Security",
+          "slug": "vps/security",
+          "filePath": "../../content/vps/security.mdx",
+          "subSections": [
+            {
+              "id": "what-is-a-rsa-key",
+              "title": "What is a rsa key",
+              "slug": "vps/security#what-is-a-rsa-key",
+              "order": 1
+            },
+            {
+              "id": "types-of-rsa-keys",
+              "title": "Types of rsa keys",
+              "slug": "vps/security#types-of-rsa-keys",
+              "order": 2
+            },
+            {
+              "id": "how-does-rsa-work",
+              "title": "How does rsa work",
+              "slug": "vps/security#how-does-rsa-work",
+              "order": 3
+            },
+            {
+              "id": "where-is-rsa-used",
+              "title": "Where is rsa used",
+              "slug": "vps/security#where-is-rsa-used",
+              "order": 4
+            },
+            {
+              "id": "key-length-and-future",
+              "title": "Key length and future",
+              "slug": "vps/security#key-length-and-future",
+              "order": 5
+            },
+            {
+              "id": "create-an-ssh-connection-with-pem-certification",
+              "title": "Create an ssh connection with pem certification",
+              "slug": "vps/security#create-an-ssh-connection-with-pem-certification",
+              "order": 6
+            },
+            {
+              "id": "ssh-keygen-playground",
+              "title": "Ssh keygen playground",
+              "slug": "vps/security#ssh-keygen-playground",
+              "order": 7
+            }
+          ],
+          "order": 3
+        },
+        {
+          "id": "static-site-deploy",
+          "title": "Static Website Deployment",
+          "slug": "vps/static-site-deploy",
+          "filePath": "../../content/vps/static-site-deploy.mdx",
+          "subSections": [
+            {
+              "id": "repository-and-vps-structure",
+              "title": "Repository and vps structure",
+              "slug": "vps/static-site-deploy#repository-and-vps-structure",
+              "order": 1
+            },
+            {
+              "id": "static-site-deploy-prerequisites",
+              "title": "Static site deploy prerequisites",
+              "slug": "vps/static-site-deploy#static-site-deploy-prerequisites",
+              "order": 2
+            },
+            {
+              "id": "prepare-the-vps-packages-firewall-user",
+              "title": "Prepare the vps packages firewall user",
+              "slug": "vps/static-site-deploy#prepare-the-vps-packages-firewall-user",
+              "order": 3
+            },
+            {
+              "id": "create-the-directory-layout",
+              "title": "Create the directory layout",
+              "slug": "vps/static-site-deploy#create-the-directory-layout",
+              "order": 4
+            },
+            {
+              "id": "clone-your-website-from-github",
+              "title": "Clone your website from github",
+              "slug": "vps/static-site-deploy#clone-your-website-from-github",
+              "order": 5
+            },
+            {
+              "id": "configure-nginx",
+              "title": "Configure nginx",
+              "slug": "vps/static-site-deploy#configure-nginx",
+              "order": 6
+            },
+            {
+              "id": "static-site-deploy-point-dns-on-aruba",
+              "title": "Static site deploy point dns on aruba",
+              "slug": "vps/static-site-deploy#static-site-deploy-point-dns-on-aruba",
+              "order": 7
+            },
+            {
+              "id": "static-site-deploy-enable-https-with-certbot",
+              "title": "Static site deploy enable https with certbot",
+              "slug": "vps/static-site-deploy#static-site-deploy-enable-https-with-certbot",
+              "order": 8
+            },
+            {
+              "id": "static-site-deploy-fix-permissions",
+              "title": "Static site deploy fix permissions",
+              "slug": "vps/static-site-deploy#static-site-deploy-fix-permissions",
+              "order": 9
+            },
+            {
+              "id": "optional-one-shot-provisioning-script",
+              "title": "Optional one shot provisioning script",
+              "slug": "vps/static-site-deploy#optional-one-shot-provisioning-script",
+              "order": 10
+            },
+            {
+              "id": "ci-cd-with-github-actions-over-ssh",
+              "title": "Ci cd with github actions over ssh",
+              "slug": "vps/static-site-deploy#ci-cd-with-github-actions-over-ssh",
+              "order": 11
+            },
+            {
+              "id": "static-site-deploy-optional-nginx-enhancements",
+              "title": "Static site deploy optional nginx enhancements",
+              "slug": "vps/static-site-deploy#static-site-deploy-optional-nginx-enhancements",
+              "order": 12
+            },
+            {
+              "id": "static-site-deploy-troubleshooting",
+              "title": "Static site deploy troubleshooting",
+              "slug": "vps/static-site-deploy#static-site-deploy-troubleshooting",
+              "order": 13
+            },
+            {
+              "id": "deployment-checklist-playground",
+              "title": "Deployment checklist playground",
+              "slug": "vps/static-site-deploy#deployment-checklist-playground",
+              "order": 14
+            }
+          ],
+          "order": 4
+        },
+        {
+          "id": "react-spa-deploy",
+          "title": "React SPA Deployment",
+          "slug": "vps/react-spa-deploy",
+          "filePath": "../../content/vps/react-spa-deploy.mdx",
+          "subSections": [
+            {
+              "id": "recommended-vps-structure",
+              "title": "Recommended vps structure",
+              "slug": "vps/react-spa-deploy#recommended-vps-structure",
+              "order": 1
+            },
+            {
+              "id": "prerequisites",
+              "title": "Prerequisites",
+              "slug": "vps/react-spa-deploy#prerequisites",
+              "order": 2
+            },
+            {
+              "id": "prepare-the-vps-node-nginx-firewall",
+              "title": "Prepare the vps node nginx firewall",
+              "slug": "vps/react-spa-deploy#prepare-the-vps-node-nginx-firewall",
+              "order": 3
+            },
+            {
+              "id": "clone-and-build-the-react-app",
+              "title": "Clone and build the react app",
+              "slug": "vps/react-spa-deploy#clone-and-build-the-react-app",
+              "order": 4
+            },
+            {
+              "id": "configure-nginx-for-spa-routing",
+              "title": "Configure nginx for spa routing",
+              "slug": "vps/react-spa-deploy#configure-nginx-for-spa-routing",
+              "order": 5
+            },
+            {
+              "id": "point-dns-on-aruba",
+              "title": "Point dns on aruba",
+              "slug": "vps/react-spa-deploy#point-dns-on-aruba",
+              "order": 6
+            },
+            {
+              "id": "enable-https-with-certbot",
+              "title": "Enable https with certbot",
+              "slug": "vps/react-spa-deploy#enable-https-with-certbot",
+              "order": 7
+            },
+            {
+              "id": "fix-permissions",
+              "title": "Fix permissions",
+              "slug": "vps/react-spa-deploy#fix-permissions",
+              "order": 8
+            },
+            {
+              "id": "all-in-one-deploy-script",
+              "title": "All in one deploy script",
+              "slug": "vps/react-spa-deploy#all-in-one-deploy-script",
+              "order": 9
+            },
+            {
+              "id": "build-on-the-vps",
+              "title": "Build on the vps",
+              "slug": "vps/react-spa-deploy#build-on-the-vps",
+              "order": 10
+            },
+            {
+              "id": "build-in-ci-upload-artifacts",
+              "title": "Build in ci upload artifacts",
+              "slug": "vps/react-spa-deploy#build-in-ci-upload-artifacts",
+              "order": 11
+            },
+            {
+              "id": "optional-nginx-enhancements",
+              "title": "Optional nginx enhancements",
+              "slug": "vps/react-spa-deploy#optional-nginx-enhancements",
+              "order": 12
+            },
+            {
+              "id": "troubleshooting",
+              "title": "Troubleshooting",
+              "slug": "vps/react-spa-deploy#troubleshooting",
+              "order": 13
+            }
+          ],
+          "order": 5
+        }
+      ],
+      "order": 14
+    }
+  ]
+}

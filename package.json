@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
+    "docs:build-manifest": "node ./scripts/docs-manifest.mjs",
+    "docs:validate": "node ./scripts/docs-manifest.mjs --validate",
+    "dev": "npm run docs:build-manifest && vite",
+    "build": "npm run docs:build-manifest && vite build",
+    "lint": "npm run docs:validate && eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -36,6 +38,7 @@
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
+    "github-slugger": "^2.0.0",
     "globals": "^16.4.0",
     "vite": "npm:rolldown-vite@7.1.14"
   },

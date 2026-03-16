@@ -18,7 +18,7 @@ It renders MDX content from the repository, has client-side navigation and searc
 
 - Content is file-based (`src/content/**`) and versioned in Git.
 - Routes are slug-based and resolved entirely on the client.
-- Search index is built in memory from `structure.json` metadata.
+- Docs navigation/search metadata is generated from MDX files into a single manifest.
 - No backend and no persistence beyond browser storage for UI preferences.
 
 ## Project Structure
@@ -73,40 +73,86 @@ Unknown routes are redirected to `/`.
 
 ## Content Authoring
 
-Each topic folder under `src/content/<topic>/` typically contains:
-
-- `structure.json` for sidebar/search metadata
+Each topic folder under `src/content/<topic>/` contains:
 - `introduction.mdx`
-- one or more `<section>.mdx`
+- one or more top-level `<section>.mdx`
+- optional local `components/` folder for embedded playground components
 
 Example:
 
 ```text
 src/content/react/
-  structure.json
   introduction.mdx
   hooks-usestate.mdx
   hooks-useeffect.mdx
 ```
 
-### `structure.json` expectations
+### Authoring contract
 
-The app reads:
+- Add a new section by adding a top-level `*.mdx` file in the topic folder.
+- Section route/id comes from the filename.
+- Subsections are inferred from `##` headings in the section file.
+- No manual sidebar/search sync file is required.
+- Optional frontmatter overrides:
+  - `title`
+  - `order`
+  - `icon` (topic introduction only)
 
-- `id`
-- `title`
-- `icon`
-- `slug`
-- `items[]` (sections)
-- `items[].items[]` (subsections/anchors)
+### Manifest workflow
 
-Keep `slug` values aligned with file names and route paths.
+- Build/update manifest:
+  - `npm run docs:build-manifest`
+- Validate manifest is up to date (used in lint/CI):
+  - `npm run docs:validate`
+
+Generated file:
+- `src/content/docs-manifest.generated.json`
+
+### Add docs in 60 seconds
+
+1. Create a new section file in a topic folder, for example:
+   - `src/content/react/state-management.mdx`
+2. Add the page title as first heading (`#`), then your subsections as `##`:
+   - `# State management`
+   - `## Local component state`
+   - `## Shared state`
+3. Build the manifest:
+   - `npm run docs:build-manifest`
+4. Run and verify:
+   - `npm run dev`
+   - open `/react/state-management`
+   - check sidebar + search show the new section/subsections
+
+Example file:
+
+```md
+# State management
+
+Short intro text.
+
+## Local component state
+
+Use `useState` for local UI concerns.
+
+## Shared state
+
+Lift state up or use a store when multiple branches need the same data.
+```
+
+Optional frontmatter overrides:
+
+```md
+---
+title: State management in React
+order: 6
+---
+```
 
 ## Search Behavior
 
 Search is client-side and powered by MiniSearch.
 
-- Source: normalized docs metadata from `structure.json`
+- Source: generated docs manifest (`src/content/docs-manifest.generated.json`)
 - Indexed fields: titles (section/subsection)
 - Query options: prefix + fuzzy match
 - Result behavior: clicking a result navigates to the matching page/anchor

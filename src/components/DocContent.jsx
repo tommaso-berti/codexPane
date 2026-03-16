@@ -174,18 +174,31 @@ export default function DocContent({ status, Content, error }) {
                     </Typography>
                 </Box>
             )}
-            <div className="markdown-body" data-doc-content="true">
+            <div
+                className={`markdown-body${pageMeta.hasDocs ? ' markdown-body--hide-first-h1' : ''}`}
+                data-doc-content="true"
+            >
             <Content
-                components={{
-                    pre: PreWithCopy,
-                    table: MdxTable,
-                    blockquote: MdxBlockquote,
-                    h2: (props) => <HeadingAnchor as="h2" {...props} />,
-                    h3: (props) => <HeadingAnchor as="h3" {...props} />,
-                    Tip,
-                    Note,
-                    Warning,
-                }}
+                components={(() => {
+                    let firstH1Skipped = false;
+                    return {
+                        pre: PreWithCopy,
+                        table: MdxTable,
+                        blockquote: MdxBlockquote,
+                        h1: (props) => {
+                            if (pageMeta.hasDocs && !firstH1Skipped) {
+                                firstH1Skipped = true;
+                                return null;
+                            }
+                            return <HeadingAnchor as="h1" {...props} />;
+                        },
+                        h2: (props) => <HeadingAnchor as="h2" {...props} />,
+                        h3: (props) => <HeadingAnchor as="h3" {...props} />,
+                        Tip,
+                        Note,
+                        Warning,
+                    };
+                })()}
             />
             </div>
         </Box>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useActiveSection } from './useActiveSection.js';
+import { useDocs } from '../../contexts/useDocs.js';
 
 const ALL_DOCS = import.meta.glob('../../content/**/*.mdx');
 const ACTIVATION_RATIO = 0.24;
@@ -63,11 +64,17 @@ export function useDocContent(path) {
 }
 
 export function useDocContentPath({ docs, section }) {
+    const { docs: docsTree = [] } = useDocs();
+
     return useMemo(() => {
         if (!docs) return null;
-        if (!section) return `../../content/${docs}/introduction.mdx`;
-        return `../../content/${docs}/${section}.mdx`;
-    }, [docs, section]);
+        const docNode = docsTree.find((docItem) => docItem.id === docs);
+        if (!docNode) return null;
+        if (!section) return docNode.introPath || `../../content/${docs}/introduction.mdx`;
+        const sectionNode = docNode.sections?.find((sectionItem) => sectionItem.id === section);
+        if (!sectionNode) return null;
+        return sectionNode.filePath || `../../content/${docs}/${section}.mdx`;
+    }, [docs, section, docsTree]);
 }
 
 function getScrollRoot() {
