@@ -423,6 +423,28 @@ jobs:
           body_path: release-notes/${{ env.RELEASE_TAG }}.md
           generate_release_notes: false
 
+      - name: Build static release-notes payload for frontend modal
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/release-notes/build_static_release_notes.mjs --tag "${RELEASE_TAG}"
+          test -f public/data/release-notes.json
+
+      - name: Sync release-notes modal data to deployed release
+        if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          SSH_OPTS="-o IdentitiesOnly=yes -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
+          ssh $SSH_OPTS -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            "mkdir -p '${{ env.REMOTE_RELEASE }}/data'"
+
+          rsync -az \
+            -e "ssh ${SSH_OPTS} -i ~/.ssh/deploy_key" \
+            public/data/release-notes.json \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.REMOTE_RELEASE }}/data/release-notes.json"
+
       - name: Commit release artifacts to main
         if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request' && env.RELEASE_TAG != ''
         shell: bash
@@ -432,33 +454,65 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           if [ ! -f "release-notes/${RELEASE_TAG}.md" ]; then
-            echo "Missing release notes file: release-notes/${RELEASE_TAG}.md" >&2
-            exit 1
+            echo "Missing release notes file: release-notes/${RELEASE_TAG}.md. Skipping artifact commit."
+            exit 0
           fi
+
+          TMP_NOTES="$(mktemp)"
+          cp "release-notes/${RELEASE_TAG}.md" "$TMP_NOTES"
+          TMP_STATIC=""
+          if [ -f public/data/release-notes.json ]; then
+            TMP_STATIC="$(mktemp)"
+            cp public/data/release-notes.json "$TMP_STATIC"
+          fi
+          trap 'rm -f "$TMP_NOTES" "$TMP_STATIC"' EXIT
 
           ATTEMPT=1
           MAX_ATTEMPTS=3
           while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
             git fetch origin "${DEFAULT_BRANCH}"
             git checkout -B "${DEFAULT_BRANCH}" "origin/${DEFAULT_BRANCH}"
+            mkdir -p release-notes public/data
+            cp "$TMP_NOTES" "release-notes/${RELEASE_TAG}.md"
+            if [ -n "$TMP_STATIC" ]; then
+              cp "$TMP_STATIC" public/data/release-notes.json
+            fi
 
-            git add "release-notes/${RELEASE_TAG}.md"
+            git add "release-notes/${RELEASE_TAG}.md" public/data/release-notes.json
             if git diff --cached --quiet; then
               echo "No release artifact changes."
               exit 0
             fi
 
             git commit -m "docs(release): ${RELEASE_TAG} artifacts #skip-deploy [skip ci]"
-            if git pull --rebase origin "${DEFAULT_BRANCH}" && git push origin "${DEFAULT_BRANCH}"; then
+            if ! git pull --rebase origin "${DEFAULT_BRANCH}"; then
+              echo "Push race detected on attempt ${ATTEMPT}; retrying..."
+              git rebase --abort || true
+              git reset --hard "origin/${DEFAULT_BRANCH}"
+              ATTEMPT=$((ATTEMPT + 1))
+              continue
+            fi
+
+            set +e
+            PUSH_OUTPUT="$(git push origin "${DEFAULT_BRANCH}" 2>&1)"
+            PUSH_EXIT=$?
+            set -e
+            printf '%s\n' "$PUSH_OUTPUT"
+
+            if [ "$PUSH_EXIT" -eq 0 ]; then
               echo "Release artifacts pushed on attempt ${ATTEMPT}."
               exit 0
             fi
 
+            if printf '%s' "$PUSH_OUTPUT" | grep -Eq 'GH006|Protected branch update failed|Changes must be made through a pull request|Commits must have verified signatures'; then
+              echo "Protected branch policy prevents direct push; keeping artifacts in current run only."
+              exit 0
+            fi
+
             echo "Push race detected on attempt ${ATTEMPT}; retrying..."
-            git rebase --abort || true
             git reset --hard "origin/${DEFAULT_BRANCH}"
             ATTEMPT=$((ATTEMPT + 1))
           done
 
-          echo "Failed to push release artifacts after ${MAX_ATTEMPTS} attempts." >&2
-          exit 1
+          echo "Failed to push release artifacts after ${MAX_ATTEMPTS} attempts. Continuing without failing deploy."
+          exit 0
