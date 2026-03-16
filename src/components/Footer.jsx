@@ -26,7 +26,7 @@ export default function Footer() {
             }}
         >
             <Typography variant="body2" color="text.secondary">
-                ©2025{' '}
+                ©2026{' '}
                 <Link href="https://www.tommasoberti.com" underline="hover" color="inherit">
                     Tommaso Berti
                 </Link>
