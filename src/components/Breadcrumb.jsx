@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useParams, useLocation, Link as RouterLink } from 'react-router-dom';
-import { useDocs } from '../contexts/DocsContext.jsx';
+import { useDocs } from '../contexts/useDocs.js';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -54,14 +54,14 @@ export default function Breadcrumb() {
                 const isLast = idx === crumbs.length - 1;
                 if (isLast) {
                     return (
-                        <Typography key={item.id} color="text.primary" aria-current="page">
+                        <Typography key={item.key ?? item.href} color="text.primary" aria-current="page">
                             {item.label}
                         </Typography>
                     );
                 }
                 return (
                     <Link
-                        key={item.id}
+                        key={item.key ?? item.href}
                         component={RouterLink}
                         underline="hover"
                         color="inherit"

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
@@ -8,34 +8,35 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import { toggleTheme } from "../store/themeSlice.js";
 
+const BUTTONS = [
+    { label: 'Light', mode: 'light', icon: <LightModeIcon /> },
+    { label: 'Dark', mode: 'dark', icon: <DarkModeIcon /> },
+    { label: 'System', mode: 'system', icon: <SettingsBrightnessIcon /> },
+];
+
 export default function SettingsDrawer({open, onClose}) {
-    const buttons = [{label: 'Light', mode: 'light', icon: <LightModeIcon /> }, {label: 'Dark', mode: 'dark', icon: <DarkModeIcon />}, {label: 'System', mode: 'system', icon: <SettingsBrightnessIcon />}];
-    const [active, setActive] = useState(null)
     const dispatch = useDispatch();
     const { mode: activeMode, fromSystem } = useSelector(state => state.theme);
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersDarkMode = useMemo(
+        () => window.matchMedia('(prefers-color-scheme: dark)').matches,
+        []
+    );
 
-    const handleClick = (index, mode) => {
+    const activeIndex = useMemo(() => {
+        if (fromSystem) {
+            return BUTTONS.findIndex((button) => button.mode === 'system');
+        }
+        return BUTTONS.findIndex((button) => button.mode === activeMode);
+    }, [activeMode, fromSystem]);
+
+    const handleClick = (mode) => {
         let system = false;
         if(mode === 'system') {
             mode = prefersDarkMode ? 'dark' : 'light';
             system = true;
         }
-        if(mode === 'dark' || mode === 'light') {
-            setActive(index);
-        }
         dispatch(toggleTheme({ mode, fromSystem: system }));
-    }
-
-    useEffect(() => {
-        buttons.forEach(({mode}, index) => {
-            if(fromSystem) {
-                setActive(index);
-            }
-            if(mode === activeMode && !fromSystem) {
-                setActive(index);
-            }
-        })}, [])
+    };
 
     return (
         <SwipeableDrawer
@@ -45,16 +46,16 @@ export default function SettingsDrawer({open, onClose}) {
             onOpen={() => {}}
         >
             <ButtonGroup variant="outlined" aria-label="dark theme settings" sx={{m:2, display: 'flex', flexDirection: 'row'}}>
-                {buttons.map(({label,mode, icon}, index) => {
+                {BUTTONS.map(({label, mode, icon}, index) => {
                     return (
                         <Button
-                            key={icon}
+                            key={mode}
                             startIcon={icon}
-                            onClick={() => handleClick(index, mode)}
+                            onClick={() => handleClick(mode)}
                             sx={{
-                                bgcolor: active === index ? "primary.main" : "transparent",
-                                color: active === index ? "white" : "text.primary",
-                                "&:hover": { bgcolor: active === index ? "primary.dark" : "action.hover" }
+                                bgcolor: activeIndex === index ? "primary.main" : "transparent",
+                                color: activeIndex === index ? "white" : "text.primary",
+                                "&:hover": { bgcolor: activeIndex === index ? "primary.dark" : "action.hover" }
                             }}
                         >
                             {label}

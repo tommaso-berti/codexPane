@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import MiniSearch from 'minisearch';
-import { useDocs } from '../../contexts/DocsContext.jsx';
+import { useDocs } from '../../contexts/useDocs.js';
 
 function flattenDocs(docs) {
     const out = [];
@@ -32,21 +32,17 @@ function flattenDocs(docs) {
 
 export function useMiniSearchFromDocs() {
     const { docs } = useDocs();
-    const [mini, setMini] = useState(null);
 
-    useEffect(() => {
-        if (!docs.length) return;
-
+    const mini = useMemo(() => {
+        if (!docs.length) return null;
         const flat = flattenDocs(docs);
-
         const ms = new MiniSearch({
             fields: ['title', 'body'],
             storeFields: ['title', 'path', 'breadcrumb', 'topictitle'],
             searchOptions: { prefix: true, fuzzy: 0.2, boost: { title: 3, body: 1 } },
         });
-
         ms.addAll(flat);
-        setMini(ms);
+        return ms;
     }, [docs]);
 
     const search = useMemo(() => {

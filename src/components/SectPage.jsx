@@ -1,50 +1,13 @@
-import { useParams, useLocation } from 'react-router-dom';
-import { useEffect } from 'react'
-import 'github-markdown-css/github-markdown.css';
-import '../styles/mdx.css';
-import PreWithCopy from "./PreWithCopy.jsx";
-import MdxTable from "./MdxTable.jsx";
-
-const ALL_SUBSECTIONS = import.meta.glob("../content/**/*.mdx", { eager: true });
-
-function useScrollToHash(deps = []) {
-    const { hash } = useLocation();
-
-    useEffect(() => {
-        const t = setTimeout(() => {
-            if (hash) {
-                const id = decodeURIComponent(hash.slice(1));
-                const el = document.getElementById(id);
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                    el.focus?.();
-                }
-            } else {
-                window.scrollTo({ behavior: 'smooth' });
-            }
-        }, 0);
-        return () => clearTimeout(t);
-    }, [hash, ...deps]);
-}
+import { useParams } from 'react-router-dom';
+import DocContent from './DocContent.jsx';
+import { useDocContent, useDocContentPath, useScrollToHash } from '../features/docs/useDocContent.js';
 
 export default function SectPage() {
-    const {docs, section} = useParams();
-    const key = `../content/${docs}/${section}.mdx`;
-    const mod = ALL_SUBSECTIONS[key];
-    const Content = mod && mod?.default;
+    const { docs, section } = useParams();
+    const path = useDocContentPath({ docs, section });
+    const { status, Content, error } = useDocContent(path);
 
-    useScrollToHash([key]);
+    useScrollToHash(path);
 
-    return (
-        <div className="markdown-body">
-            {Content && (
-                <Content
-                    components={{
-                        pre: PreWithCopy,
-                        table: MdxTable,
-                    }}
-                />
-            )}
-        </div>
-    );
+    return <DocContent status={status} Content={Content} error={error} />;
 }

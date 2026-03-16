@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -34,22 +34,11 @@ export default function SearchModal() {
         setSearchString('');
     }
     const [searchString, setSearchString] = useState('');
-    const [results, setResults] = useState([]);
-    const [topics, setTopics] = useState([]);
 
     const { search } = useMiniSearchFromDocs();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const found = search(searchString);
-        setResults(found);
-        const uniqTopics = [
-            ...new Map(
-                found.map(r => [r.topic, { topic: r.topic, topictitle: r.topictitle }])
-            ).values()
-        ];
-        setTopics(uniqTopics);
-    }, [searchString, search]);
+    const results = useMemo(() => search(searchString), [search, searchString]);
 
     const handleClick = (path) => {
         handleClose()
@@ -81,7 +70,7 @@ export default function SearchModal() {
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    <SearchResults topics={topics}  results={results} onItemClick={handleClick} />
+                    <SearchResults results={results} onItemClick={handleClick} />
                 </Box>
             </Modal>
         </>

@@ -1,8 +1,5 @@
 import SearchResultItem from "./SearchResultItem.jsx";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
 import Box from "@mui/material/Box";
 
 function groupByTopic(results) {
