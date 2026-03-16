@@ -18,6 +18,22 @@ import {
     SiMui
 } from 'react-icons/si';
 
+const ICON_COLORS = {
+    GitHubIcon: '#181717',
+    HttpIcon: '#0288d1',
+    PublicIcon: '#2e7d32',
+    CustomMuiIcon: '#007fff',
+    CustomReactIcon: '#61dafb',
+    CustomCssIcon: '#264de4',
+    CustomHtmlIcon: '#e34f26',
+    CustomMongoDbIcon: '#47a248',
+    CustomJavascriptIcon: '#f7df1e',
+    CustomReduxIcon: '#764abc',
+    CustomjQueryIcon: '#0769ad',
+    CustomGitIcon: '#f05032',
+    CustomBashIcon: '#4eaa25'
+};
+
 function toSize(fontSize) {
     if (fontSize === 'small') return 18;
     if (fontSize === 'large') return 28;
@@ -25,14 +41,16 @@ function toSize(fontSize) {
 }
 
 function asMuiIcon(Icon) {
-    return function MuiCompatibleIcon({ fontSize = 'medium', className }) {
+    return function MuiCompatibleIcon({ fontSize = 'medium', className, sx, ...rest }) {
         return createElement(Box, {
             component: Icon,
             className,
+            ...rest,
             sx: {
                 fontSize: toSize(fontSize),
                 color: 'currentColor',
                 flexShrink: 0,
+                ...sx,
             },
         });
     };
@@ -67,5 +85,9 @@ const ICONS = {
     CustomGitIcon,
     CustomBashIcon
 };
+
+export function getIconColor(iconKey) {
+    return ICON_COLORS[iconKey];
+}
 
 export default ICONS;

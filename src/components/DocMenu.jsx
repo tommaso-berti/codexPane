@@ -2,7 +2,7 @@ import { useDocs } from '../contexts/useDocs.js';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Menu, MenuItem, Button, ListItemIcon, ListItemText } from '@mui/material';
-import ICONS from '../../icons.js';
+import ICONS, { getIconColor } from '../../icons.js';
 
 export default function DocMenu() {
     const { docs } = useDocs();
@@ -43,6 +43,7 @@ export default function DocMenu() {
     };
 
     const SelectedIconComponent = buttonMenu.iconKey ? (ICONS[buttonMenu.iconKey] || ICONS.ImageNotSupportedIcon) : ICONS.ImageNotSupportedIcon;
+    const selectedIconColor = getIconColor(buttonMenu.iconKey);
 
     return (
         <>
@@ -64,7 +65,7 @@ export default function DocMenu() {
                         backgroundColor: 'action.hover',
                     },
                 }}
-                startIcon={<SelectedIconComponent fontSize="small" />}
+                startIcon={<SelectedIconComponent fontSize="small" sx={selectedIconColor ? { color: selectedIconColor } : undefined} />}
             >
                 {buttonMenu.label}
             </Button>
@@ -95,9 +96,10 @@ export default function DocMenu() {
             >
                 {docs.map(({ id, title, icon }) => {
                     const IconComponent = ICONS[icon] || ICONS.ImageNotSupportedIcon;
+                    const iconColor = getIconColor(icon);
                     return (
                         <MenuItem key={id} sx={{ justifyContent: 'center', borderRadius: 1.5 }} onClick={() => handleSelect(id, title, icon) }>
-                            <ListItemIcon><IconComponent fontSize="small" /></ListItemIcon>
+                            <ListItemIcon><IconComponent fontSize="small" sx={iconColor ? { color: iconColor } : undefined} /></ListItemIcon>
                             <ListItemText primary={title} />
                         </MenuItem>
                     );
