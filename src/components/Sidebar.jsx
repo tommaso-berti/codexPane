@@ -2,12 +2,12 @@ import SectMenu from './SectMenu.jsx';
 import Footer from './Footer';
 import Box from '@mui/material/Box';
 
-export default function Sidebar() {
+export default function Sidebar({ headerHeight }) {
     return (
         <Box
             component="aside"
             sx={{
-                height: 'calc(100dvh - 72px)',
+                height: `calc(100dvh - ${headerHeight}px)`,
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden',

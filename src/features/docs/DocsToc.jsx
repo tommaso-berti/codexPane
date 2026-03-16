@@ -18,7 +18,7 @@ export default function DocsToc({ enabled }) {
     const navigate = useNavigate();
     const location = useLocation();
     const [headings, setHeadings] = useState([]);
-    const [active, setActive] = useState('');
+    const active = location.hash ? decodeURIComponent(location.hash.slice(1)) : '';
 
     useEffect(() => {
         if (!enabled) {
@@ -35,33 +35,6 @@ export default function DocsToc({ enabled }) {
         observer.observe(container, { childList: true, subtree: true });
         return () => observer.disconnect();
     }, [enabled, location.pathname]);
-
-    useEffect(() => {
-        if (!enabled || !headings.length) {
-            setActive('');
-            return;
-        }
-        const scroller = document.querySelector('[data-scroller="content"]');
-        const elements = headings
-            .map((heading) => document.getElementById(heading.id))
-            .filter(Boolean);
-        if (!elements.length) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-                if (visible?.target?.id) {
-                    setActive(visible.target.id);
-                }
-            },
-            { root: scroller || null, rootMargin: '-20% 0px -65% 0px', threshold: [0, 1] }
-        );
-
-        elements.forEach((element) => observer.observe(element));
-        return () => observer.disconnect();
-    }, [enabled, headings, location.pathname]);
 
     const items = useMemo(() => headings.filter((h) => !!h.text), [headings]);
     if (!enabled || !items.length) return null;
@@ -118,4 +91,3 @@ export default function DocsToc({ enabled }) {
         </Box>
     );
 }
-

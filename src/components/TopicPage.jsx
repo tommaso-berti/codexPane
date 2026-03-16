@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import DocContent from './DocContent.jsx';
-import { useDocContent, useDocContentPath } from '../features/docs/useDocContent.js';
+import { useActiveSectionHash, useDocContent, useDocContentPath } from '../features/docs/useDocContent.js';
 
 export default function TopicPage() {
     const { docs } = useParams();
     const path = useDocContentPath({ docs });
     const { status, Content, error } = useDocContent(path);
+    useActiveSectionHash(path, status === 'ready');
 
     return <DocContent status={status} Content={Content} error={error} />;
 }

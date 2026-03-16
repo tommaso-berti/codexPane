@@ -3,13 +3,21 @@ import SectionMenuItem from './SectMenuItem.jsx';
 import { useDocs } from '../contexts/useDocs.js';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
+import { useActiveSection } from '../features/docs/useActiveSection.js';
 
+function normalizeHeadingId(id) {
+    if (!id) return '';
+    return id.replace(/-\d+$/, '');
+}
 
 export default function SectMenu() {
     const { docs = [] } = useDocs();
     const { docs: docsParam, section: sectionParam } = useParams();
     const { pathname, hash } = useLocation();
-    const anchor = hash ? decodeURIComponent(hash.slice(1)) : null;
+    const { activeSectionId } = useActiveSection();
+    const hashAnchor = hash ? decodeURIComponent(hash.slice(1)) : null;
+    const anchor = activeSectionId || hashAnchor || null;
+    const normalizedAnchor = normalizeHeadingId(anchor);
     const currentSections = useMemo(() => {
         const currentDoc = docs.find((doc) => doc.id === docsParam);
         return currentDoc ? currentDoc.sections : [];
@@ -23,7 +31,9 @@ export default function SectMenu() {
     const selected = useMemo(() => {
         for (const section of currentSections) {
             if (anchor) {
-                const subsection = section?.subSections?.find((sub) => sub.id === anchor);
+                const subsection = section?.subSections?.find(
+                    (sub) => sub.id === anchor || sub.id === normalizedAnchor
+                );
                 if (subsection) {
                     return { type: 'subsection', value: subsection.id, sectionId: section.id };
                 }
@@ -35,7 +45,7 @@ export default function SectMenu() {
             }
         }
         return null;
-    }, [anchor, currentSections, pathname, sectionParam]);
+    }, [anchor, normalizedAnchor, currentSections, pathname, sectionParam]);
 
     useEffect(() => {
         if (!selected?.sectionId) return;
@@ -61,7 +71,7 @@ export default function SectMenu() {
                 minHeight: 0,
                 overflowY: 'auto',
                 overflowX: 'hidden',
-                px: 1.2,
+                px: 0,
                 py: 1.4,
                 display: 'grid',
                 gap: 0.65,

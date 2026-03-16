@@ -1,12 +1,14 @@
-import { Children, cloneElement, isValidElement, useMemo } from 'react';
+import { Children, cloneElement, isValidElement, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import PreWithCopy from './PreWithCopy.jsx';
 import MdxTable from './MdxTable.jsx';
-import Breadcrumb from './Breadcrumb.jsx';
 import { useDocs } from '../contexts/useDocs.js';
 import { Note, Tip, Warning } from './Callout.jsx';
 
@@ -74,6 +76,50 @@ function MdxBlockquote({ children }) {
     return <Note>{content}</Note>;
 }
 
+function HeadingAnchor({ as = 'h2', id, children, ...props }) {
+    const [copied, setCopied] = useState(false);
+    const label = toText(children) || 'section';
+
+    const onCopyLink = async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!id) return;
+
+        const targetHash = `#${encodeURIComponent(id)}`;
+        const shareUrl = `${window.location.origin}${window.location.pathname}${targetHash}`;
+        window.history.replaceState(window.history.state, '', `${window.location.pathname}${targetHash}`);
+
+        try {
+            await navigator.clipboard.writeText(shareUrl);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1200);
+        } catch {
+            // Keep native anchor behavior as fallback even if clipboard access is blocked.
+            window.location.hash = targetHash;
+        }
+    };
+
+    return (
+        <Box component={as} id={id} {...props} className="doc-heading">
+            <span className="doc-heading__label">{children}</span>
+            {id && (
+                <Tooltip title={copied ? 'Link copied' : 'Copy section link'} placement="top" arrow>
+                    <IconButton
+                        component="a"
+                        href={`#${id}`}
+                        onClick={onCopyLink}
+                        className="doc-heading__anchor"
+                        size="small"
+                        aria-label={`Copy link to section ${label}`}
+                    >
+                        <LinkRoundedIcon fontSize="inherit" />
+                    </IconButton>
+                </Tooltip>
+            )}
+        </Box>
+    );
+}
+
 export default function DocContent({ status, Content, error }) {
     const { docs: docsParam, section: sectionParam } = useParams();
     const { docs = [] } = useDocs();
@@ -120,8 +166,7 @@ export default function DocContent({ status, Content, error }) {
         <Box sx={{ pb: 6 }}>
             {pageMeta.hasDocs && (
                 <Box sx={{ mb: 3.5, pt: 0.6 }}>
-                    <Breadcrumb />
-                    <Typography variant="h3" component="h1" sx={{ mt: 1.4, mb: 0.4 }}>
+                    <Typography variant="h3" component="h1" sx={{ mt: 0.2, mb: 0.4 }}>
                         {pageMeta.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -135,6 +180,8 @@ export default function DocContent({ status, Content, error }) {
                     pre: PreWithCopy,
                     table: MdxTable,
                     blockquote: MdxBlockquote,
+                    h2: (props) => <HeadingAnchor as="h2" {...props} />,
+                    h3: (props) => <HeadingAnchor as="h3" {...props} />,
                     Tip,
                     Note,
                     Warning,

@@ -19,6 +19,30 @@
     letter-spacing: -0.015em;
 }
 
+.markdown-body .doc-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.34rem;
+    max-width: 100%;
+}
+
+.markdown-body .doc-heading__label {
+    min-width: 0;
+}
+
+.markdown-body .doc-heading__anchor {
+    opacity: 0;
+    transform: translateY(1px);
+    transition: opacity 140ms ease, color 140ms ease;
+    color: color-mix(in srgb, #2563eb 72%, #64748b);
+    font-size: 0.9rem;
+}
+
+.markdown-body .doc-heading:hover .doc-heading__anchor,
+.markdown-body .doc-heading:focus-within .doc-heading__anchor {
+    opacity: 1;
+}
+
 .markdown-body h1 {
     font-size: clamp(2rem, 3.2vw, 2.65rem);
     margin: 0.4rem 0 1.3rem;
