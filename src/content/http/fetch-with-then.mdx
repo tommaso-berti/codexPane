@@ -79,7 +79,11 @@ fetch('/api/items')
 - Consider timeouts and **CORS** policies when calling third-party endpoints.
 - Chain `.catch()` once at the end to centralize error handling.
 
-## Fetch then playground
+## Interactive Playground: Fetch Promise Chain Flow
+**Why this matters:** `.then()` chains are easy to misuse when HTTP errors and network errors are mixed.
+
+**What to try:** walk through each step for success, HTTP error, and network error scenarios.
+
 import FetchThenDemo from "./components/fetch-with-then/FetchThenDemo.jsx"
 
 <FetchThenDemo />

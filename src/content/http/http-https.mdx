@@ -74,7 +74,11 @@ To enable HTTPS, site operators obtain a **digital certificate** from a **Certif
 
 > Tip: Always use HTTPS when handling logins, payments, or any sensitive data.
 
-## Httpdemo playground
+## Interactive Playground: HTTP Connection Reuse
+**Why this matters:** connection reuse directly affects latency and page load performance.
+
+**What to try:** switch between HTTP versions, increase resource count, and observe setup cost changes.
+
 import Httpdemo from "./components/http-https/Httpdemo.jsx"
 
 <Httpdemo />

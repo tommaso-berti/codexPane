@@ -1,118 +1,114 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
+    Alert,
     Box,
     Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    IconButton,
+    Paper,
     Stack,
     TextField,
-    Tooltip,
     Typography
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
+
+function buildUrl(baseUrl, endpoint, params) {
+    const cleanBase = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+
+    const pairs = params
+        .filter((entry) => entry.key.trim())
+        .map((entry) => `${encodeURIComponent(entry.key)}=${encodeURIComponent(entry.value)}`);
+
+    const query = pairs.length ? `?${pairs.join("&")}` : "";
+    return `${cleanBase}${cleanEndpoint}${query}`;
+}
 
 export default function QueryStringBuilder() {
     const [baseUrl, setBaseUrl] = useState("https://api.themoviedb.org/3");
-    const [endpoint, setEndpoint] = useState("genre/movie/list");
-    const [params, setParams] = useState([
-        { key: "api_key", value: "YOUR_API_KEY" },
-        { key: "with_genres", value: "28" }
-    ]);
+    const [endpoint, setEndpoint] = useState("discover/movie");
+    const [apiKey, setApiKey] = useState("YOUR_API_KEY");
+    const [genre, setGenre] = useState("28");
+    const [searchTerm, setSearchTerm] = useState("action movies");
 
-    const query = useMemo(() => {
-        const entries = params
-            .filter(p => p.key.trim() !== "")
-            .map(p => `${encodeURIComponent(p.key)}=${encodeURIComponent(p.value)}`);
-        return entries.length ? `?${entries.join("&")}` : "";
-    }, [params]);
+    const params = useMemo(() => ([
+        { key: "api_key", value: apiKey },
+        { key: "with_genres", value: genre },
+        { key: "query", value: searchTerm }
+    ]), [apiKey, genre, searchTerm]);
 
-    const url = useMemo(() => {
-        const slash = baseUrl.endsWith("/") || endpoint.startsWith("/") ? "" : "/";
-        return `${baseUrl}${slash}${endpoint}${query}`;
-    }, [baseUrl, endpoint, query]);
+    const url = useMemo(() => buildUrl(baseUrl, endpoint, params), [baseUrl, endpoint, params]);
 
-    function updateParam(i, field, value) {
-        setParams(prev => prev.map((p, idx) => (idx === i ? { ...p, [field]: value } : p)));
-    }
+    const parsedPairs = params
+        .filter((entry) => entry.key.trim())
+        .map((entry) => `${entry.key} = ${entry.value}`);
 
-    function addParam() {
-        setParams(prev => [...prev, { key: "", value: "" }]);
-    }
-
-    function removeParam(i) {
-        setParams(prev => prev.filter((_, idx) => idx !== i));
-    }
-
-    async function copy() {
-        try {
-            await navigator.clipboard.writeText(url);
-            alert("URL copied!");
-        } catch {
-            // no-op
-        }
-    }
+    const hasSpaces = /\s/.test(searchTerm);
+    const encodedSearch = encodeURIComponent(searchTerm);
 
     return (
-        <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
-            <CardHeader title="Query String Builder" subheader="Combine base URL, endpoint, and query params" />
-            <CardContent>
-                <Stack spacing={2}>
-                    <TextField label="Base URL" value={baseUrl} onChange={e => setBaseUrl(e.target.value)} />
-                    <TextField label="Endpoint" value={endpoint} onChange={e => setEndpoint(e.target.value)} />
-                    <Divider />
-                    <Typography variant="subtitle2">Parameters</Typography>
-                    <Stack spacing={1}>
-                        {params.map((p, i) => (
-                            <Stack key={i} direction={{ xs: "column", sm: "row" }} spacing={1}>
-                                <TextField
-                                    label="key"
-                                    value={p.key}
-                                    onChange={e => updateParam(i, "key", e.target.value)}
-                                    sx={{ flex: 1 }}
-                                />
-                                <TextField
-                                    label="value"
-                                    value={p.value}
-                                    onChange={e => updateParam(i, "value", e.target.value)}
-                                    sx={{ flex: 2 }}
-                                />
-                                <Button color="error" onClick={() => removeParam(i)}>Remove</Button>
-                            </Stack>
-                        ))}
-                        <Button variant="outlined" onClick={addParam}>Add parameter</Button>
+        <PlaygroundShell
+            title="Query String Mapping Playground"
+            goal="Build a correct query string and see how typed values map to encoded URL parameters."
+            status={{
+                color: url.includes("?") ? "success" : "info",
+                label: parsedPairs.length + " params"
+            }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 700 }}>
+                    <TextField size="small" label="Base URL" value={baseUrl} onChange={(event) => setBaseUrl(event.target.value)} />
+                    <TextField size="small" label="Endpoint" value={endpoint} onChange={(event) => setEndpoint(event.target.value)} />
+                    <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                        <TextField size="small" label="api_key" value={apiKey} onChange={(event) => setApiKey(event.target.value)} fullWidth />
+                        <TextField size="small" label="with_genres" value={genre} onChange={(event) => setGenre(event.target.value)} fullWidth />
                     </Stack>
-
-                    <Divider />
-
-                    <Typography variant="subtitle2">Result</Typography>
-                    <Box
-                        component="pre"
-                        sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflowX: "auto" }}
-                    >
-                        {url}
-                    </Box>
-
+                    <TextField
+                        size="small"
+                        label="query"
+                        value={searchTerm}
+                        onChange={(event) => setSearchTerm(event.target.value)}
+                        helperText="Try spaces or symbols to observe URL encoding."
+                    />
                     <Stack direction="row" spacing={1}>
-                        <Tooltip title="Copy URL">
-                            <IconButton onClick={copy} color="primary">
-                                <ContentCopyIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Box component="code" sx={{ color: "text.secondary" }}>
-                            {`fetch("${url}")
-  .then(r => {
-    if (!r.ok) throw new Error(\`HTTP \${r.status}\`);
-    return r.json();
-  })
-  .then(data => console.log(data))
-  .catch(err => console.error(err));`}
-                        </Box>
+                        <Button variant="outlined" onClick={() => {
+                            setBaseUrl("https://api.themoviedb.org/3");
+                            setEndpoint("discover/movie");
+                            setApiKey("YOUR_API_KEY");
+                            setGenre("28");
+                            setSearchTerm("action movies");
+                        }}>
+                            Reset
+                        </Button>
                     </Stack>
                 </Stack>
-            </CardContent>
-        </Card>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark"
+                            ? alpha(theme.palette.common.white, 0.04)
+                            : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Final URL</Typography>
+                    <Box component="pre" sx={{ m: "8px 0 0", fontSize: 12, lineHeight: 1.55, whiteSpace: "pre-wrap", overflowX: "auto" }}>
+                        {url}
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">
+                        Parameter mapping: {parsedPairs.join(" | ")}
+                    </Alert>
+                    <Alert severity={hasSpaces ? "success" : "info"} variant="outlined">
+                        Encoded `query` value: {encodedSearch}
+                    </Alert>
+                </Stack>
+            }
+            note="Use `encodeURIComponent` for user input so spaces and special characters remain safe and unambiguous in query strings."
+        />
     );
 }

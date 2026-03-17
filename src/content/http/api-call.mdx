@@ -48,7 +48,11 @@ const getGenres = () => {
 
 > Attention: Most APIs require the key to be passed as a header or as `api_key`/`key` query param. Keep secrets out of client-side code in production.
 
-## Query string playground
+## Interactive Playground: Query String Mapping
+**Why this matters:** incorrect query construction or encoding causes silent API request failures.
+
+**What to try:** edit values with spaces/symbols and inspect how encoded parameters appear in the final URL.
+
 import QueryStringBuilder from "./components/api-call/QueryStringBuilder.jsx"
 
 <QueryStringBuilder />

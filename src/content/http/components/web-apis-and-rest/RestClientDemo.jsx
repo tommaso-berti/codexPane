@@ -1,196 +1,254 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
+    Alert,
     Box,
     Button,
-    Card,
-    CardContent,
-    CardHeader,
     Chip,
-    Divider,
     FormControl,
-    InputAdornment,
+    FormHelperText,
     InputLabel,
     MenuItem,
+    Paper,
     Select,
     Stack,
     TextField,
     Typography
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"];
+const SCENARIOS = {
+    listCustomers: {
+        label: "List customers",
+        method: "GET",
+        path: "/customers",
+        body: "",
+        expectedStatus: 200,
+        note: "Collection read"
+    },
+    createCustomer: {
+        label: "Create customer",
+        method: "POST",
+        path: "/customers",
+        body: '{\n  "name": "Ava Stone",\n  "email": "ava@example.com"\n}',
+        expectedStatus: 201,
+        note: "Resource creation"
+    },
+    updateCustomer: {
+        label: "Update customer",
+        method: "PUT",
+        path: "/customers/42",
+        body: '{\n  "email": "ava.new@example.com"\n}',
+        expectedStatus: 200,
+        note: "Resource update"
+    },
+    deleteCustomer: {
+        label: "Delete customer",
+        method: "DELETE",
+        path: "/customers/42",
+        body: "",
+        expectedStatus: 204,
+        note: "Resource removal"
+    }
+};
+
+function buildSimulatedResponse(method, path, body) {
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    const hasId = /^\/customers\/\d+$/.test(normalizedPath);
+
+    if (method === "GET" && normalizedPath === "/customers") {
+        return { status: 200, message: "Returned customer collection.", severity: "success" };
+    }
+
+    if (method === "POST" && normalizedPath === "/customers") {
+        if (!body.trim()) {
+            return { status: 400, message: "Missing JSON payload for POST.", severity: "warning" };
+        }
+        return { status: 201, message: "Created a new customer.", severity: "success" };
+    }
+
+    if (method === "PUT" && hasId) {
+        if (!body.trim()) {
+            return { status: 400, message: "PUT requires a body with updated fields.", severity: "warning" };
+        }
+        return { status: 200, message: "Updated customer 42.", severity: "success" };
+    }
+
+    if (method === "DELETE" && hasId) {
+        return { status: 204, message: "Deleted customer 42.", severity: "info" };
+    }
+
+    return { status: 404, message: "Route not found for this method/path pair.", severity: "error" };
+}
 
 export default function RestClientDemo() {
-    const [method, setMethod] = useState("GET");
-    const [url, setUrl] = useState("https://jsonplaceholder.typicode.com/posts/1");
-    const [headers, setHeaders] = useState('Accept: application/json\n');
-    const [body, setBody] = useState('{\n  "title": "Hello",\n  "body": "Sample",\n  "userId": 1\n}');
-    const [loading, setLoading] = useState(false);
-    const [status, setStatus] = useState(null);
-    const [respHeaders, setRespHeaders] = useState([]);
-    const [respBody, setRespBody] = useState("");
+    const [scenario, setScenario] = useState("listCustomers");
+    const [method, setMethod] = useState(SCENARIOS.listCustomers.method);
+    const [path, setPath] = useState(SCENARIOS.listCustomers.path);
+    const [body, setBody] = useState(SCENARIOS.listCustomers.body);
+    const [result, setResult] = useState(buildSimulatedResponse("GET", "/customers", ""));
 
-    const codePreview = useMemo(() => {
-        const headerLines = headers
-            .split("\n")
-            .filter(Boolean)
-            .map(h => h.split(":").map(s => s.trim()))
-            .filter(([k, v]) => k && v);
+    const expectedStatus = SCENARIOS[scenario].expectedStatus;
 
-        const headerObj = Object.fromEntries(headerLines);
-        const hasBody = !["GET", "HEAD"].includes(method);
+    const doesNeedBody = method === "POST" || method === "PUT" || method === "PATCH";
 
-        const prettyHeaders = JSON.stringify(headerObj, null, 2) || "{}";
-        const prettyBody = hasBody ? `,\n  body: ${isJsonLike(body) ? body : JSON.stringify(body)}` : "";
-
-        return `fetch("${url}", {
-  method: "${method}",
-  headers: ${prettyHeaders}${prettyBody}
-}).then(r => r.json())`;
-    }, [method, url, headers, body]);
-
-    function isJsonLike(text) {
-        try {
-            JSON.parse(text);
-            return true;
-        } catch {
-            return false;
+    const requestLine = useMemo(() => `${method} ${path.startsWith("/") ? path : `/${path}`} HTTP/1.1`, [method, path]);
+    const requestPreview = useMemo(() => {
+        const lines = [requestLine, "Host: api.example.dev", "Accept: application/json"];
+        if (doesNeedBody) {
+            lines.push("Content-Type: application/json");
         }
-    }
-
-    async function send() {
-        setLoading(true);
-        setStatus(null);
-        setRespHeaders([]);
-        setRespBody("");
-
-        try {
-            const headerLines = headers
-                .split("\n")
-                .filter(Boolean)
-                .map(h => h.split(":").map(s => s.trim()))
-                .filter(([k, v]) => k && v);
-
-            const headerObj = Object.fromEntries(headerLines);
-            const init = { method, headers: headerObj };
-
-            if (!["GET", "HEAD"].includes(method)) {
-                init.body = isJsonLike(body) ? body : body.toString();
-            }
-
-            const res = await fetch(url, init);
-            setStatus(`${res.status} ${res.statusText}`);
-
-            const entries = [];
-            res.headers.forEach((v, k) => entries.push([k, v]));
-            setRespHeaders(entries);
-
-            const ct = res.headers.get("content-type") || "";
-            if (ct.includes("application/json")) {
-                const data = await res.json();
-                setRespBody(JSON.stringify(data, null, 2));
-            } else {
-                const text = await res.text();
-                setRespBody(text);
-            }
-        } catch (e) {
-            setStatus("Request failed");
-            setRespBody(String(e));
-        } finally {
-            setLoading(false);
+        if (doesNeedBody && body.trim()) {
+            lines.push("", body);
         }
-    }
+        return lines.join("\n");
+    }, [body, doesNeedBody, requestLine]);
+
+    const checks = [
+        {
+            ok: path.startsWith("/"),
+            text: "Path starts with /"
+        },
+        {
+            ok: !doesNeedBody || body.trim().length > 0,
+            text: doesNeedBody ? "Body is present for write operation" : "No body required for this method"
+        },
+        {
+            ok: result.status === expectedStatus,
+            text: `Status matches scenario expectation (${expectedStatus})`
+        }
+    ];
+
+    const passed = checks.filter((item) => item.ok).length;
 
     return (
-        <Stack spacing={2}>
-            <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
-                <CardHeader title="REST Client" subheader="Experiment with methods, headers, and body" />
-                <CardContent>
-                    <Stack spacing={2}>
-                        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                            <FormControl sx={{ minWidth: 140 }}>
-                                <InputLabel id="method-label">Method</InputLabel>
-                                <Select
-                                    labelId="method-label"
-                                    label="Method"
-                                    value={method}
-                                    onChange={(e) => setMethod(e.target.value)}
-                                >
-                                    {METHODS.map(m => <MenuItem key={m} value={m}>{m}</MenuItem>)}
-                                </Select>
-                            </FormControl>
+        <PlaygroundShell
+            title="REST Request Outcome Playground"
+            goal="Understand how method, path, and body shape API intent and status outcomes."
+            status={{
+                color: result.status === expectedStatus ? "success" : "warning",
+                label: `${result.status} simulated`
+            }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 680 }}>
+                    <FormControl size="small">
+                        <InputLabel id="rest-scenario-label">Scenario preset</InputLabel>
+                        <Select
+                            labelId="rest-scenario-label"
+                            label="Scenario preset"
+                            value={scenario}
+                            onChange={(event) => {
+                                const next = SCENARIOS[event.target.value];
+                                setScenario(event.target.value);
+                                setMethod(next.method);
+                                setPath(next.path);
+                                setBody(next.body);
+                                setResult(buildSimulatedResponse(next.method, next.path, next.body));
+                            }}
+                        >
+                            {Object.entries(SCENARIOS).map(([key, value]) => (
+                                <MenuItem key={key} value={key}>{value.label}</MenuItem>
+                            ))}
+                        </Select>
+                        <FormHelperText>{SCENARIOS[scenario].note}</FormHelperText>
+                    </FormControl>
 
-                            <TextField
-                                fullWidth
-                                label="URL"
-                                value={url}
-                                onChange={(e) => setUrl(e.target.value)}
-                                InputProps={{
-                                    startAdornment: <InputAdornment position="start">{method}</InputAdornment>
-                                }}
-                            />
-                            <Button
-                                variant="contained"
-                                onClick={send}
-                                disabled={loading}
-                                sx={{ borderRadius: 3 }}
+                    <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                        <FormControl size="small" sx={{ minWidth: 150 }}>
+                            <InputLabel id="rest-method-label">Method</InputLabel>
+                            <Select
+                                labelId="rest-method-label"
+                                label="Method"
+                                value={method}
+                                onChange={(event) => setMethod(event.target.value)}
                             >
-                                {loading ? "Sending…" : "Send"}
-                            </Button>
-                        </Stack>
+                                {["GET", "POST", "PUT", "DELETE"].map((entry) => (
+                                    <MenuItem key={entry} value={entry}>{entry}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
 
-                        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                            <TextField
-                                label="Headers"
-                                value={headers}
-                                onChange={(e) => setHeaders(e.target.value)}
-                                multiline
-                                minRows={8}
-                                sx={{ flex: 1 }}
-                                helperText="One header per line, e.g. Accept: application/json"
-                            />
-                            <TextField
-                                label="Body"
-                                value={body}
-                                onChange={(e) => setBody(e.target.value)}
-                                multiline
-                                minRows={8}
-                                sx={{ flex: 1 }}
-                                disabled={["GET", "HEAD"].includes(method)}
-                                helperText="Raw body (JSON recommended)"
-                            />
-                        </Stack>
-
-                        <Card variant="outlined" sx={{ borderRadius: 3 }}>
-                            <CardHeader title="Code preview" />
-                            <CardContent>
-                                <Box component="pre" sx={{ m: 0, whiteSpace: "pre-wrap" }}>
-                                    {codePreview}
-                                </Box>
-                            </CardContent>
-                        </Card>
-
-                        <Divider />
-
-                        <Stack spacing={1}>
-                            <Typography variant="subtitle2">Response</Typography>
-                            <Stack direction="row" spacing={1} alignItems="center">
-                                <Typography variant="body2">Status:</Typography>
-                                {status ? <Chip label={status} color="primary" /> : <Chip label="—" />}
-                            </Stack>
-                            <Typography variant="body2" sx={{ mt: 1 }}>Headers</Typography>
-                            <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                                {respHeaders.length
-                                    ? respHeaders.map(([k, v]) => `${k}: ${v}`).join("\n")
-                                    : "—"}
-                            </Box>
-                            <Typography variant="body2" sx={{ mt: 1 }}>Body</Typography>
-                            <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                                {respBody || "—"}
-                            </Box>
-                        </Stack>
+                        <TextField
+                            size="small"
+                            label="Path"
+                            value={path}
+                            onChange={(event) => setPath(event.target.value)}
+                            fullWidth
+                        />
                     </Stack>
-                </CardContent>
-            </Card>
-        </Stack>
+
+                    <TextField
+                        size="small"
+                        label="JSON body"
+                        value={body}
+                        onChange={(event) => setBody(event.target.value)}
+                        multiline
+                        minRows={4}
+                        disabled={!doesNeedBody}
+                        helperText={doesNeedBody ? "Add payload fields for create/update." : "This method normally uses an empty body."}
+                    />
+
+                    <Stack direction="row" spacing={1}>
+                        <Button
+                            variant="contained"
+                            onClick={() => setResult(buildSimulatedResponse(method, path, body))}
+                        >
+                            Run
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => {
+                                const base = SCENARIOS[scenario];
+                                setMethod(base.method);
+                                setPath(base.path);
+                                setBody(base.body);
+                                setResult(buildSimulatedResponse(base.method, base.path, base.body));
+                            }}
+                        >
+                            Reset
+                        </Button>
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark"
+                            ? alpha(theme.palette.common.white, 0.04)
+                            : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Request preview</Typography>
+                    <Box component="pre" sx={{ m: "8px 0 0", fontSize: 12, lineHeight: 1.55, whiteSpace: "pre-wrap" }}>
+                        {requestPreview}
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity={result.severity} variant="outlined">
+                        Simulated response: <strong>{result.status}</strong> - {result.message}
+                    </Alert>
+                    <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+                        {checks.map((item) => (
+                            <Chip
+                                key={item.text}
+                                label={item.text}
+                                color={item.ok ? "success" : "warning"}
+                                variant="outlined"
+                                size="small"
+                            />
+                        ))}
+                    </Stack>
+                    <Alert severity={passed === checks.length ? "success" : "info"} variant="outlined">
+                        {passed}/{checks.length} request checks passed.
+                    </Alert>
+                </Stack>
+            }
+            note="Choose method and path as a pair: REST semantics come from both the verb and the resource route."
+        />
     );
 }

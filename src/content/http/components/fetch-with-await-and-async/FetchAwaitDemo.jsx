@@ -1,201 +1,167 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
-    Box,
+    Alert,
     Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Chip,
-    Divider,
     FormControl,
-    InputAdornment,
+    FormControlLabel,
     InputLabel,
     MenuItem,
+    Paper,
     Select,
     Stack,
-    TextField,
+    Switch,
     Typography
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const METHODS = ["GET", "POST"];
+const SCENARIOS = {
+    success: { label: "200 success", status: 200, networkError: false },
+    http500: { label: "500 response", status: 500, networkError: false },
+    network: { label: "Network error", status: 0, networkError: true }
+};
 
 export default function FetchAwaitDemo() {
-    const [method, setMethod] = useState("GET");
-    const [url, setUrl] = useState("https://jsonplaceholder.typicode.com/posts/1");
-    const [headers, setHeaders] = useState("Accept: application/json\n");
-    const [body, setBody] = useState('{\n  "title": "Hello",\n  "body": "Sample",\n  "userId": 1\n}');
-    const [status, setStatus] = useState("");
-    const [respHeaders, setRespHeaders] = useState([]);
-    const [respBody, setRespBody] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [errorMsg, setErrorMsg] = useState("");
+    const [draftScenario, setDraftScenario] = useState("success");
+    const [draftGuardResponseOk, setDraftGuardResponseOk] = useState(true);
+    const [applied, setApplied] = useState({ scenario: "success", guardResponseOk: true });
 
-    const codePreview = useMemo(() => {
-        const headerLines = headers
-            .split("\n")
-            .filter(Boolean)
-            .map(h => h.split(":").map(s => s.trim()))
-            .filter(([k, v]) => k && v);
-        const headerObj = Object.fromEntries(headerLines);
-        const headerJson = JSON.stringify(headerObj, null, 2) || "{}";
-        const bodyPart = method === "POST" ? `,\n    body: ${isJsonLike(body) ? body : JSON.stringify(body)}` : "";
+    const result = useMemo(() => {
+        const selected = SCENARIOS[applied.scenario];
 
-        return `async function send() {
-  try {
-    const res = await fetch("${url}", {
-      method: "${method}",
-      headers: ${headerJson}${bodyPart}
-    });
-    if (!res.ok) throw new Error(\`HTTP \${res.status}\`);
-    const ct = res.headers.get("content-type") || "";
-    const data = ct.includes("application/json") ? await res.json() : await res.text();
-    // use data
-  } catch (err) {
-    console.error(err);
-  }
-}`;
-    }, [method, url, headers, body]);
-
-    function isJsonLike(text) {
-        try { JSON.parse(text); return true; } catch { return false; }
-    }
-
-    function parseHeaderInput() {
-        return Object.fromEntries(
-            headers
-                .split("\n")
-                .filter(Boolean)
-                .map(h => h.split(":").map(s => s.trim()))
-                .filter(([k, v]) => k && v)
-        );
-    }
-
-    async function send() {
-        setLoading(true);
-        setErrorMsg("");
-        setRespBody("");
-        setRespHeaders([]);
-        setStatus("");
-
-        try {
-            const init = { method, headers: parseHeaderInput() };
-            if (method === "POST") {
-                if (!Object.keys(init.headers).some(k => k.toLowerCase() === "content-type")) {
-                    init.headers["Content-Type"] = "application/json";
-                }
-                init.body = isJsonLike(body) ? body : body.toString();
-            }
-
-            const res = await fetch(url, init);
-            setStatus(`${res.status} ${res.statusText}`);
-
-            const entries = [];
-            res.headers.forEach((v, k) => entries.push([k, v]));
-            setRespHeaders(entries);
-
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-            const ct = res.headers.get("content-type") || "";
-            const data = ct.includes("application/json") ? await res.json() : await res.text();
-            setRespBody(typeof data === "string" ? data : JSON.stringify(data, null, 2));
-        } catch (e) {
-            setErrorMsg(e?.message || "Request failed");
-        } finally {
-            setLoading(false);
+        if (selected.networkError) {
+            return {
+                finalState: "catch",
+                message: "fetch throws before a response object exists.",
+                severity: "error",
+                trace: ["try {", "  await fetch(...) throws network error", "} catch (err) { handle err }"]
+            };
         }
-    }
+
+        const hasHttpError = selected.status >= 400;
+        if (hasHttpError && applied.guardResponseOk) {
+            return {
+                finalState: "catch",
+                message: "Guard catches non-OK HTTP and routes to catch.",
+                severity: "warning",
+                trace: [
+                    "try {",
+                    "  const res = await fetch(...)",
+                    `  if (!res.ok) throw Error('HTTP ${selected.status}')`,
+                    "} catch (err) { handle err }"
+                ]
+            };
+        }
+
+        if (hasHttpError && !applied.guardResponseOk) {
+            return {
+                finalState: "data path",
+                message: "Without the guard, async flow continues as if request succeeded.",
+                severity: "warning",
+                trace: [
+                    "try {",
+                    "  const res = await fetch(...)",
+                    "  // missing !res.ok guard",
+                    "  const data = await res.json()",
+                    "}"
+                ]
+            };
+        }
+
+        return {
+            finalState: "data path",
+            message: "Request is OK and data is parsed in the happy path.",
+            severity: "success",
+            trace: [
+                "try {",
+                "  const res = await fetch(...)",
+                "  if (!res.ok) throw Error(...)",
+                "  const data = await res.json()",
+                "}"
+            ]
+        };
+    }, [applied.guardResponseOk, applied.scenario]);
 
     return (
-        <Stack spacing={2}>
-            <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
-                <CardHeader title="Async/Await Fetch Client" subheader="Clear flow, easy debugging" />
-                <CardContent>
-                    <Stack spacing={2}>
-                        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                            <FormControl sx={{ minWidth: 140 }}>
-                                <InputLabel id="method-label">Method</InputLabel>
-                                <Select
-                                    labelId="method-label"
-                                    label="Method"
-                                    value={method}
-                                    onChange={(e) => {
-                                        const m = e.target.value;
-                                        setMethod(m);
-                                        setUrl(
-                                            m === "GET"
-                                                ? "https://jsonplaceholder.typicode.com/posts/1"
-                                                : "https://jsonplaceholder.typicode.com/posts"
-                                        );
-                                    }}
-                                >
-                                    {METHODS.map(m => <MenuItem key={m} value={m}>{m}</MenuItem>)}
-                                </Select>
-                            </FormControl>
+        <PlaygroundShell
+            title="Async/Await Error Guard Playground"
+            goal="Understand why `if (!response.ok) throw ...` is essential inside async/await flows."
+            status={{
+                color: result.severity === "success" ? "success" : "warning",
+                label: result.finalState
+            }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 620 }}>
+                    <FormControl size="small">
+                        <InputLabel id="await-scenario-label">Scenario</InputLabel>
+                        <Select
+                            labelId="await-scenario-label"
+                            label="Scenario"
+                            value={draftScenario}
+                            onChange={(event) => setDraftScenario(event.target.value)}
+                        >
+                            {Object.entries(SCENARIOS).map(([key, value]) => (
+                                <MenuItem key={key} value={key}>{value.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-                            <TextField
-                                fullWidth
-                                label="URL"
-                                value={url}
-                                onChange={(e) => setUrl(e.target.value)}
-                                InputProps={{ startAdornment: <InputAdornment position="start">{method}</InputAdornment> }}
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={draftGuardResponseOk}
+                                onChange={(event) => setDraftGuardResponseOk(event.target.checked)}
                             />
+                        }
+                        label="Use response.ok guard"
+                    />
 
-                            <Button variant="contained" onClick={send} disabled={loading} sx={{ borderRadius: 3 }}>
-                                {loading ? "Sending…" : "Send"}
-                            </Button>
-                        </Stack>
-
-                        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                            <TextField
-                                label="Headers"
-                                value={headers}
-                                onChange={(e) => setHeaders(e.target.value)}
-                                multiline
-                                minRows={6}
-                                sx={{ flex: 1 }}
-                                helperText="One per line, e.g. Accept: application/json"
-                            />
-                            <TextField
-                                label="Body"
-                                value={body}
-                                onChange={(e) => setBody(e.target.value)}
-                                multiline
-                                minRows={6}
-                                sx={{ flex: 1 }}
-                                disabled={method === "GET"}
-                                helperText="JSON body for POST"
-                            />
-                        </Stack>
-
-                        <Card variant="outlined" sx={{ borderRadius: 3 }}>
-                            <CardHeader title="Code preview (async/await)" />
-                            <CardContent>
-                                <Box component="pre" sx={{ m: 0, whiteSpace: "pre-wrap" }}>
-                                    {codePreview}
-                                </Box>
-                            </CardContent>
-                        </Card>
-
-                        <Divider />
-
-                        <Stack direction="row" spacing={2} alignItems="center">
-                            <Typography variant="body2">Status:</Typography>
-                            <Chip label={status || "—"} color={status ? "primary" : "default"} />
-                            {errorMsg && <Chip label={errorMsg} color="error" />}
-                        </Stack>
-
-                        <Typography variant="body2">Response headers</Typography>
-                        <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                            {respHeaders.length ? respHeaders.map(([k, v]) => `${k}: ${v}`).join("\n") : "—"}
-                        </Box>
-
-                        <Typography variant="body2" sx={{ mt: 1 }}>Response body</Typography>
-                        <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                            {respBody || "—"}
-                        </Box>
+                    <Stack direction="row" spacing={1}>
+                        <Button
+                            variant="contained"
+                            onClick={() => setApplied({ scenario: draftScenario, guardResponseOk: draftGuardResponseOk })}
+                        >
+                            Run
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => {
+                                setDraftScenario("success");
+                                setDraftGuardResponseOk(true);
+                                setApplied({ scenario: "success", guardResponseOk: true });
+                            }}
+                        >
+                            Reset
+                        </Button>
                     </Stack>
-                </CardContent>
-            </Card>
-        </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark"
+                            ? alpha(theme.palette.common.white, 0.04)
+                            : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Flow trace</Typography>
+                    <pre style={{ margin: "8px 0 0", fontSize: 12, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{result.trace.join("\n")}</pre>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity={result.severity} variant="outlined">
+                        {result.message}
+                    </Alert>
+                    <Alert severity="info" variant="outlined">
+                        Async/await improves readability, but correctness still depends on explicit HTTP status checks.
+                    </Alert>
+                </Stack>
+            }
+            note="`try/catch` catches thrown errors and network failures. Add `response.ok` checks to include HTTP failures too."
+        />
     );
 }

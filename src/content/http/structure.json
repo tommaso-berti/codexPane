@@ -17,7 +17,7 @@
         { "id": "responses-and-status-codes", "type": "subSection", "title": "Responses and status codes", "slug": "http/http-https#responses-and-status-codes", "order": 4 },
         { "id": "http-versions", "type": "subSection", "title": "Http versions", "slug": "http/http-https#http-versions", "order": 5 },
         { "id": "https-and-certificates", "type": "subSection", "title": "Https and certificates", "slug": "http/http-https#https-and-certificates", "order": 6 },
-        { "id": "httpdemo-playground", "type": "subSection", "title": "Httpdemo playground", "slug": "http/http-https#httpdemo-playground", "order": 7 },
+        { "id": "interactive-playground-http-connection-reuse", "type": "subSection", "title": "Interactive Playground: HTTP Connection Reuse", "slug": "http/http-https#interactive-playground-http-connection-reuse", "order": 7 },
         { "id": "additional-examples", "type": "subSection", "title": "Additional Examples", "slug": "http/http-https#additional-examples", "order": 8 }
       ]
     },
@@ -45,7 +45,7 @@
         { "id": "sending-responses", "type": "subSection", "title": "Sending responses", "slug": "http/web-apis-and-rest#sending-responses", "order": 15 },
         { "id": "response-codes", "type": "subSection", "title": "Response codes", "slug": "http/web-apis-and-rest#response-codes", "order": 16 },
         { "id": "restful-api-example-customer-management", "type": "subSection", "title": "Restful api example customer management", "slug": "http/web-apis-and-rest#restful-api-example-customer-management", "order": 17 },
-        { "id": "rest-client-playground", "type": "subSection", "title": "Rest client playground", "slug": "http/web-apis-and-rest#rest-client-playground", "order": 18 }
+        { "id": "interactive-playground-rest-request-outcomes", "type": "subSection", "title": "Interactive Playground: REST Request Outcomes", "slug": "http/web-apis-and-rest#interactive-playground-rest-request-outcomes", "order": 18 }
       ]
     },
     {
@@ -60,7 +60,7 @@
         { "id": "json-object-vs-javascript-object", "type": "subSection", "title": "Json object vs javascript object", "slug": "http/json#json-object-vs-javascript-object", "order": 3 },
         { "id": "reading-a-json-string", "type": "subSection", "title": "Reading a json string", "slug": "http/json#reading-a-json-string", "order": 4 },
         { "id": "writing-a-json-string", "type": "subSection", "title": "Writing a json string", "slug": "http/json#writing-a-json-string", "order": 5 },
-        { "id": "json-playground", "type": "subSection", "title": "Json playground", "slug": "http/json#json-playground", "order": 6 }
+        { "id": "interactive-playground-json-parse-and-stringify", "type": "subSection", "title": "Interactive Playground: JSON Parse and Stringify", "slug": "http/json#interactive-playground-json-parse-and-stringify", "order": 6 }
       ]
     },
     {
@@ -75,7 +75,7 @@
         { "id": "error-handling", "type": "subSection", "title": "Error handling", "slug": "http/fetch-with-then#error-handling", "order": 4 },
         { "id": "parsing-json", "type": "subSection", "title": "Parsing json", "slug": "http/fetch-with-then#parsing-json", "order": 5 },
         { "id": "tips-and-pitfalls", "type": "subSection", "title": "Tips and pitfalls", "slug": "http/fetch-with-then#tips-and-pitfalls", "order": 6 },
-        { "id": "fetch-then-playground", "type": "subSection", "title": "Fetch then playground", "slug": "http/fetch-with-then#fetch-then-playground", "order": 7 }
+        { "id": "interactive-playground-fetch-promise-chain-flow", "type": "subSection", "title": "Interactive Playground: Fetch Promise Chain Flow", "slug": "http/fetch-with-then#interactive-playground-fetch-promise-chain-flow", "order": 7 }
       ]
     },
     {
@@ -90,7 +90,7 @@
         { "id": "await-async-error-handling", "type": "subSection", "title": "Await Async error handling", "slug": "http/fetch-with-await-and-async#await-async-error-handling", "order": 4 },
         { "id": "tips-and-pitfalls", "type": "subSection", "title": "Tips and pitfalls", "slug": "http/fetch-with-await-and-async#tips-and-pitfalls", "order": 5 },
         { "id": "additional-resources", "type": "subSection", "title": "Additional resources", "slug": "http/fetch-with-await-and-async#additional-resources", "order": 6 },
-        { "id": "fetch-await-playground", "type": "subSection", "title": "Fetch await playground", "slug": "http/fetch-with-await-and-async#fetch-await-playground", "order": 7 }
+        { "id": "interactive-playground-async-await-error-guard", "type": "subSection", "title": "Interactive Playground: Async Await Error Guard", "slug": "http/fetch-with-await-and-async#interactive-playground-async-await-error-guard", "order": 7 }
       ]
     },
     {
@@ -102,7 +102,7 @@
       "items": [
         { "id": "query-strings", "type": "subSection", "title": "Query strings", "slug": "http/api-call#query-strings", "order": 2 },
         { "id": "examples", "type": "subSection", "title": "Examples", "slug": "http/api-call#examples", "order": 3 },
-        { "id": "query-string-playground", "type": "subSection", "title": "Query string playground", "slug": "http/api-call#query-string-playground", "order": 4 }
+        { "id": "interactive-playground-query-string-mapping", "type": "subSection", "title": "Interactive Playground: Query String Mapping", "slug": "http/api-call#interactive-playground-query-string-mapping", "order": 4 }
       ]
     }
   ]

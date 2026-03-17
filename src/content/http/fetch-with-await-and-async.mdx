@@ -72,7 +72,11 @@ const getData = async () => {
 - Documentation: MDN: Using the Fetch API
 - Resource: MDN’s Guide to Third-party APIs
 
-## Fetch await playground
+## Interactive Playground: Async Await Error Guard
+**Why this matters:** `try/catch` alone is not enough if you skip `response.ok` checks.
+
+**What to try:** run the same scenario with and without the `response.ok` guard and compare the final flow.
+
 import FetchAwaitDemo from "./components/fetch-with-await-and-async/FetchAwaitDemo.jsx"
 
 <FetchAwaitDemo />

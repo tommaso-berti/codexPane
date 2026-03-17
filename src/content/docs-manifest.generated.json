@@ -2448,9 +2448,9 @@
               "order": 6
             },
             {
-              "id": "httpdemo-playground",
-              "title": "Httpdemo playground",
-              "slug": "http/http-https#httpdemo-playground",
+              "id": "interactive-playground-http-connection-reuse",
+              "title": "Interactive Playground: HTTP Connection Reuse",
+              "slug": "http/http-https#interactive-playground-http-connection-reuse",
               "order": 7
             },
             {
@@ -2577,9 +2577,9 @@
               "order": 17
             },
             {
-              "id": "rest-client-playground",
-              "title": "Rest client playground",
-              "slug": "http/web-apis-and-rest#rest-client-playground",
+              "id": "interactive-playground-rest-request-outcomes",
+              "title": "Interactive Playground: REST Request Outcomes",
+              "slug": "http/web-apis-and-rest#interactive-playground-rest-request-outcomes",
               "order": 18
             }
           ],
@@ -2622,9 +2622,9 @@
               "order": 5
             },
             {
-              "id": "json-playground",
-              "title": "Json playground",
-              "slug": "http/json#json-playground",
+              "id": "interactive-playground-json-parse-and-stringify",
+              "title": "Interactive Playground: JSON Parse and Stringify",
+              "slug": "http/json#interactive-playground-json-parse-and-stringify",
               "order": 6
             }
           ],
@@ -2667,9 +2667,9 @@
               "order": 5
             },
             {
-              "id": "fetch-then-playground",
-              "title": "Fetch then playground",
-              "slug": "http/fetch-with-then#fetch-then-playground",
+              "id": "interactive-playground-fetch-promise-chain-flow",
+              "title": "Interactive Playground: Fetch Promise Chain Flow",
+              "slug": "http/fetch-with-then#interactive-playground-fetch-promise-chain-flow",
               "order": 6
             }
           ],
@@ -2712,9 +2712,9 @@
               "order": 5
             },
             {
-              "id": "fetch-await-playground",
-              "title": "Fetch await playground",
-              "slug": "http/fetch-with-await-and-async#fetch-await-playground",
+              "id": "interactive-playground-async-await-error-guard",
+              "title": "Interactive Playground: Async Await Error Guard",
+              "slug": "http/fetch-with-await-and-async#interactive-playground-async-await-error-guard",
               "order": 6
             }
           ],
@@ -2739,9 +2739,9 @@
               "order": 2
             },
             {
-              "id": "query-string-playground",
-              "title": "Query string playground",
-              "slug": "http/api-call#query-string-playground",
+              "id": "interactive-playground-query-string-mapping",
+              "title": "Interactive Playground: Query String Mapping",
+              "slug": "http/api-call#interactive-playground-query-string-mapping",
               "order": 3
             }
           ],

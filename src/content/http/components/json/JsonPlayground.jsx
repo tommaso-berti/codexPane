@@ -1,137 +1,147 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
+    Alert,
     Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
     FormControl,
     InputLabel,
     MenuItem,
+    Paper,
     Select,
     Stack,
     TextField,
     Typography
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
+
+function parseWithMessage(value) {
+    try {
+        const parsed = JSON.parse(value);
+        return { ok: true, parsed, message: "Valid JSON" };
+    } catch (error) {
+        return { ok: false, parsed: null, message: error?.message || "Invalid JSON" };
+    }
+}
 
 export default function JsonPlayground() {
-    const [input, setInput] = useState(
-        '{ "book": { "name": "JSON Primer", "price": 29.99, "inStock": true, "rating": null } }'
-    );
+    const [input, setInput] = useState('{\n  "book": {\n    "name": "JSON Primer",\n    "price": 29.99,\n    "inStock": true\n  }\n}');
     const [indent, setIndent] = useState(2);
-    const [output, setOutput] = useState("");
-    const [error, setError] = useState("");
+    const [mode, setMode] = useState("validate");
 
-    const prettyPreview = useMemo(() => {
-        try {
-            const v = JSON.parse(input);
-            return JSON.stringify(v, null, indent);
-        } catch {
+    const parsedResult = useMemo(() => parseWithMessage(input), [input]);
+
+    const outputText = useMemo(() => {
+        if (!parsedResult.ok) {
             return "";
         }
-    }, [input, indent]);
 
-    function onValidate() {
-        try {
-            JSON.parse(input);
-            setError("");
-            setOutput("Valid JSON ✅");
-        } catch (e) {
-            setError(String(e.message || e));
-            setOutput("");
+        if (mode === "minify") {
+            return JSON.stringify(parsedResult.parsed);
         }
-    }
 
-    function onPretty() {
-        try {
-            const v = JSON.parse(input);
-            setOutput(JSON.stringify(v, null, indent));
-            setError("");
-        } catch (e) {
-            setError(String(e.message || e));
-            setOutput("");
-        }
-    }
+        return JSON.stringify(parsedResult.parsed, null, indent);
+    }, [indent, mode, parsedResult]);
 
-    function onMinify() {
-        try {
-            const v = JSON.parse(input);
-            setOutput(JSON.stringify(v));
-            setError("");
-        } catch (e) {
-            setError(String(e.message || e));
-            setOutput("");
-        }
-    }
-
-    function onStringifyExample() {
-        const jsValue = { book: "JSON Primer", price: 29.99, inStock: true, rating: null };
-        setOutput(JSON.stringify(jsValue, null, indent));
-        setError("");
-    }
+    const keysCount = parsedResult.ok && parsedResult.parsed && typeof parsedResult.parsed === "object"
+        ? Object.keys(parsedResult.parsed).length
+        : 0;
 
     return (
-        <Stack spacing={2}>
-            <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
-                <CardHeader
-                    title="JSON Playground"
-                    subheader="Validate, pretty-print, and minify JSON. See stringify in action."
-                />
-                <CardContent>
-                    <Stack spacing={2}>
-                        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                            <TextField
-                                label="JSON input"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                multiline
-                                minRows={8}
-                                sx={{ flex: 1 }}
-                                placeholder='{"key":"value"}'
-                            />
-                            <Stack sx={{ minWidth: 240 }} spacing={2}>
-                                <FormControl>
-                                    <InputLabel id="indent-label">Indentation</InputLabel>
-                                    <Select
-                                        labelId="indent-label"
-                                        label="Indentation"
-                                        value={indent}
-                                        variant="outlined"
-                                        onChange={(e) => setIndent(Number(e.target.value))}
-                                    >
-                                        <MenuItem value={0}>0 (minify)</MenuItem>
-                                        <MenuItem value={2}>2 spaces</MenuItem>
-                                        <MenuItem value={4}>4 spaces</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <Button variant="contained" onClick={onValidate}>Validate</Button>
-                                <Button variant="outlined" onClick={onPretty}>Pretty print</Button>
-                                <Button variant="outlined" onClick={onMinify}>Minify</Button>
-                                <Button variant="text" onClick={onStringifyExample}>Stringify example object</Button>
-                            </Stack>
-                        </Stack>
+        <PlaygroundShell
+            title="JSON Parse & Format Playground"
+            goal="Understand when JSON is valid and how parse/stringify formatting changes output."
+            status={{
+                color: parsedResult.ok ? "success" : "error",
+                label: parsedResult.ok ? "JSON valid" : "JSON invalid"
+            }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 680 }}>
+                    <TextField
+                        label="JSON input"
+                        value={input}
+                        onChange={(event) => setInput(event.target.value)}
+                        multiline
+                        minRows={8}
+                        size="small"
+                    />
 
-                        {error && (
-                            <Typography color="error" variant="body2">
-                                {error}
-                            </Typography>
-                        )}
+                    <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                        <FormControl size="small" sx={{ minWidth: 180 }}>
+                            <InputLabel id="json-action-label">Action</InputLabel>
+                            <Select
+                                labelId="json-action-label"
+                                label="Action"
+                                value={mode}
+                                onChange={(event) => setMode(event.target.value)}
+                            >
+                                <MenuItem value="validate">Validate only</MenuItem>
+                                <MenuItem value="format">Format (pretty)</MenuItem>
+                                <MenuItem value="minify">Minify</MenuItem>
+                            </Select>
+                        </FormControl>
 
-                        <Divider />
-
-                        <Typography variant="subtitle2">Live preview</Typography>
-                        <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                            {prettyPreview || "—"}
-                        </Box>
-
-                        <Typography variant="subtitle2" sx={{ mt: 1 }}>Output</Typography>
-                        <Box component="pre" sx={{ m: 0, p: 1, bgcolor: "#0a0a0a", color: "#eaeaea", borderRadius: 2, overflow: "auto" }}>
-                            {output || "—"}
-                        </Box>
+                        <FormControl size="small" sx={{ minWidth: 180 }} disabled={mode === "minify" || mode === "validate"}>
+                            <InputLabel id="json-indent-label">Indent size</InputLabel>
+                            <Select
+                                labelId="json-indent-label"
+                                label="Indent size"
+                                value={indent}
+                                onChange={(event) => setIndent(Number(event.target.value))}
+                            >
+                                <MenuItem value={2}>2 spaces</MenuItem>
+                                <MenuItem value={4}>4 spaces</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Stack>
-                </CardContent>
-            </Card>
-        </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark"
+                            ? alpha(theme.palette.common.white, 0.04)
+                            : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Parser feedback</Typography>
+                    <Box sx={{ mt: 1 }}>
+                        <Alert severity={parsedResult.ok ? "success" : "error"} variant="outlined">
+                            {parsedResult.message}
+                        </Alert>
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    {parsedResult.ok ? (
+                        <Alert severity="info" variant="outlined">
+                            Root keys: {keysCount}. Current action: {mode === "format" ? "Format" : mode === "minify" ? "Minify" : "Validate"}.
+                        </Alert>
+                    ) : null}
+
+                    <Paper
+                        variant="outlined"
+                        sx={(theme) => ({
+                            p: 1.2,
+                            borderRadius: 2,
+                            bgcolor: theme.palette.mode === "dark"
+                                ? alpha(theme.palette.common.white, 0.04)
+                                : alpha(theme.palette.common.black, 0.02)
+                        })}
+                    >
+                        <Typography variant="caption" color="text.secondary">Output</Typography>
+                        <Box component="pre" sx={{ m: "8px 0 0", fontSize: 12, lineHeight: 1.55, whiteSpace: "pre-wrap" }}>
+                            {parsedResult.ok
+                                ? (mode === "validate" ? "Valid JSON (no transformation selected)." : outputText)
+                                : "Fix syntax errors to get transformed output."}
+                        </Box>
+                    </Paper>
+                </Stack>
+            }
+            note="`JSON.parse` validates structure; `JSON.stringify` controls how that structure is serialized for transport or readability."
+        />
     );
 }
