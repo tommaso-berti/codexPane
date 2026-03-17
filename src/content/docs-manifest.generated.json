@@ -61,6 +61,12 @@
               "title": "Make directory",
               "slug": "bash/navigation#make-directory",
               "order": 8
+            },
+            {
+              "id": "interactive-playground-relative-cd-paths",
+              "title": "Interactive Playground: Relative cd paths",
+              "slug": "bash/navigation#interactive-playground-relative-cd-paths",
+              "order": 9
             }
           ],
           "order": 1
@@ -136,6 +142,12 @@
               "title": "Remove directories recursively",
               "slug": "bash/file-manipulation#remove-directories-recursively",
               "order": 11
+            },
+            {
+              "id": "interactive-playground-file-operations",
+              "title": "Interactive Playground: File operations",
+              "slug": "bash/file-manipulation#interactive-playground-file-operations",
+              "order": 12
             }
           ],
           "order": 2
@@ -211,6 +223,12 @@
               "title": "Sed in place",
               "slug": "bash/redirection#sed-in-place",
               "order": 11
+            },
+            {
+              "id": "interactive-playground-redirection-flow",
+              "title": "Interactive Playground: Redirection flow",
+              "slug": "bash/redirection#interactive-playground-redirection-flow",
+              "order": 12
             }
           ],
           "order": 3
@@ -268,6 +286,12 @@
               "title": "Env",
               "slug": "bash/environment-nano-text-editor#env",
               "order": 8
+            },
+            {
+              "id": "interactive-playground-environment-session-changes",
+              "title": "Interactive Playground: Environment session changes",
+              "slug": "bash/environment-nano-text-editor#interactive-playground-environment-session-changes",
+              "order": 9
             }
           ],
           "order": 4

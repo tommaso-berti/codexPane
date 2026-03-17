@@ -14,7 +14,7 @@ import {
     TableRow,
     Typography
 } from "@mui/material";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const rows = [
     { period: "Morning", saturday: 73, sunday: 68 },
@@ -40,7 +40,7 @@ export default function TablePlayground() {
     const total = rows.reduce((acc, row) => acc + row.saturday + row.sunday, 0);
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Table Playground"
             goal="Understand the semantic anatomy of a table: caption, head, body, and footer."
             controls={

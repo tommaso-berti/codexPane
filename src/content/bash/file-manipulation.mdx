@@ -81,3 +81,11 @@ The `-r` (recursive) option is used to delete a directory and all of its child d
 rm -r unwanted_directory
 ~~~
 > Attention: `rm -r` is destructive. Consider adding `-i` (interactive) or double-checking the path before running.
+
+## Interactive Playground: File operations
+Why this matters: command effects are easier to learn when you can see before/after filesystem changes.
+What to try: Switch between `cp`, `mv`, `rm`, and `mkdir`, then compare the tree diff after each action.
+
+import FileManipulationPlayground from "./components/file-manipulation/FileManipulationPlayground.jsx"
+
+<FileManipulationPlayground />

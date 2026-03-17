@@ -18,7 +18,8 @@
         { "id": "change-directory", "type": "subSection", "title": "Change directory", "slug": "bash/navigation#change-directory", "order": 5 },
         { "id": "move-up-directories", "type": "subSection", "title": "Move up directories", "slug": "bash/navigation#move-up-directories", "order": 6 },
         { "id": "relative-paths-and-chaining", "type": "subSection", "title": "Relative paths and chaining", "slug": "bash/navigation#relative-paths-and-chaining", "order": 7 },
-        { "id": "make-directory", "type": "subSection", "title": "Make directory", "slug": "bash/navigation#make-directory", "order": 8 }
+        { "id": "make-directory", "type": "subSection", "title": "Make directory", "slug": "bash/navigation#make-directory", "order": 8 },
+        { "id": "interactive-playground-relative-cd-paths", "type": "subSection", "title": "Interactive Playground: Relative cd paths", "slug": "bash/navigation#interactive-playground-relative-cd-paths", "order": 9 }
       ]
     },
     {
@@ -38,7 +39,8 @@
         { "id": "move-files", "type": "subSection", "title": "Move files", "slug": "bash/file-manipulation#move-files", "order": 8 },
         { "id": "current-directory-dot", "type": "subSection", "title": "Current directory dot", "slug": "bash/file-manipulation#current-directory-dot", "order": 9 },
         { "id": "remove-files", "type": "subSection", "title": "Remove files", "slug": "bash/file-manipulation#remove-files", "order": 10 },
-        { "id": "remove-directories-recursively", "type": "subSection", "title": "Remove directories recursively", "slug": "bash/file-manipulation#remove-directories-recursively", "order": 11 }
+        { "id": "remove-directories-recursively", "type": "subSection", "title": "Remove directories recursively", "slug": "bash/file-manipulation#remove-directories-recursively", "order": 11 },
+        { "id": "interactive-playground-file-operations", "type": "subSection", "title": "Interactive Playground: File operations", "slug": "bash/file-manipulation#interactive-playground-file-operations", "order": 12 }
       ]
     },
     {
@@ -58,7 +60,8 @@
         { "id": "grep-case-insensitive", "type": "subSection", "title": "Grep case insensitive", "slug": "bash/redirection#grep-case-insensitive", "order": 8 },
         { "id": "grep-recursive-and-list-filenames", "type": "subSection", "title": "Grep recursive and list filenames", "slug": "bash/redirection#grep-recursive-and-list-filenames", "order": 9 },
         { "id": "sed-substitution", "type": "subSection", "title": "Sed substitution", "slug": "bash/redirection#sed-substitution", "order": 10 },
-        { "id": "sed-in-place", "type": "subSection", "title": "Sed in place", "slug": "bash/redirection#sed-in-place", "order": 11 }
+        { "id": "sed-in-place", "type": "subSection", "title": "Sed in place", "slug": "bash/redirection#sed-in-place", "order": 11 },
+        { "id": "interactive-playground-redirection-flow", "type": "subSection", "title": "Interactive Playground: Redirection flow", "slug": "bash/redirection#interactive-playground-redirection-flow", "order": 12 }
       ]
     },
     {
@@ -75,7 +78,8 @@
         { "id": "ps1", "type": "subSection", "title": "PS1", "slug": "bash/environment-nano-text-editor#ps1", "order": 5 },
         { "id": "home", "type": "subSection", "title": "Home", "slug": "bash/environment-nano-text-editor#home", "order": 6 },
         { "id": "path", "type": "subSection", "title": "Path", "slug": "bash/environment-nano-text-editor#path", "order": 7 },
-        { "id": "env", "type": "subSection", "title": "Env", "slug": "bash/environment-nano-text-editor#env", "order": 8 }
+        { "id": "env", "type": "subSection", "title": "Env", "slug": "bash/environment-nano-text-editor#env", "order": 8 },
+        { "id": "interactive-playground-environment-session-changes", "type": "subSection", "title": "Interactive Playground: Environment session changes", "slug": "bash/environment-nano-text-editor#interactive-playground-environment-session-changes", "order": 9 }
       ]
     },
     {

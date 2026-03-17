@@ -106,3 +106,11 @@ By default `sed` prints the modified stream but does **not** change the file. Us
 $ sed -i 's/snow/rain/g' forests.txt
 ~~~
 > Attention: In-place edits are irreversible. Consider backing up first (e.g., `-i.bak` to keep a backup).
+
+## Interactive Playground: Redirection flow
+Why this matters: pipes and redirects define where data goes; visualizing the flow prevents command mistakes.
+What to try: Change the preset and toggle overwrite/append to observe stdout, file output, and final content.
+
+import RedirectionPlayground from "./components/redirection/RedirectionPlayground.jsx"
+
+<RedirectionPlayground />

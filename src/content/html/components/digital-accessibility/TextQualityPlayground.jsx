@@ -9,7 +9,7 @@ import {
     Stack,
     Typography
 } from "@mui/material";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const ALT_OPTIONS = [
     {
@@ -71,7 +71,7 @@ export default function TextQualityPlayground() {
         : { color: "warning", label: "Improve text clarity" };
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Text Quality Playground"
             goal="Compare strong and weak alt/link text choices for assistive reading."
             status={status}

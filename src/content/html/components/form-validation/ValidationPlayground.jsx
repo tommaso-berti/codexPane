@@ -9,7 +9,7 @@ import {
     Typography
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const INITIAL_VALUES = {
     allergies: "",
@@ -74,7 +74,7 @@ export default function ValidationPlayground() {
         : { color: "info", label: "Not validated" };
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Validation Playground"
             goal="See how required, text length, and pattern attributes drive native browser validation."
             status={status}

@@ -12,7 +12,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const INITIAL = {
     fullName: "Ada Lovelace",
@@ -41,7 +41,7 @@ export default function FormPlayground() {
     }), [form]);
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Form Input Playground"
             goal="Understand how field name + input type map to submitted form data."
             controls={

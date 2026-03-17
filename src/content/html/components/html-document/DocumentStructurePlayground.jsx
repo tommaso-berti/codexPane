@@ -9,7 +9,7 @@ import {
     Typography
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const INITIAL = {
     doctype: true,
@@ -53,7 +53,7 @@ export default function DocumentStructurePlayground() {
     const score = checks.filter((check) => check.level === "success").length;
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Document Structure Playground"
             goal="See how HTML metadata placement affects document validity and clarity."
             status={{

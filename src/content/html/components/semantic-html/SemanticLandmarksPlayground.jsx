@@ -12,7 +12,7 @@ import {
     Switch,
     Typography
 } from "@mui/material";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 const INITIAL = {
     topBanner: "header",
@@ -85,7 +85,7 @@ export default function SemanticLandmarksPlayground() {
     const validCount = audit.filter((item) => item.ok).length;
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Semantic Landmarks Playground"
             goal="Pick the right semantic element for each page block and check landmark quality."
             status={{

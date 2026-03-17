@@ -9,7 +9,7 @@ import {
     Typography
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import HtmlPlaygroundShell from "../HtmlPlaygroundShell.jsx";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 function hexToRgb(hex) {
     const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
@@ -64,7 +64,7 @@ export default function ContrastPlayground() {
     };
 
     return (
-        <HtmlPlaygroundShell
+        <PlaygroundShell
             title="Contrast Playground"
             goal="Evaluate whether text and UI colors meet WCAG contrast thresholds."
             status={{

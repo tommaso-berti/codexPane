@@ -90,3 +90,11 @@ Filter a specific variable:
 env | grep PATH
 ~~~
 > Tip: Combine with `sort`/`uniq` for readable listings, or `printenv VAR` to show a single value.
+
+## Interactive Playground: Environment session changes
+Why this matters: `export`, `PATH`, aliases, and `source` all change shell behavior in different ways.
+What to try: Apply exported values, then source an alias and inspect how the session snapshot updates.
+
+import EnvironmentPlayground from "./components/environment-nano-text-editor/EnvironmentPlayground.jsx"
+
+<EnvironmentPlayground />
