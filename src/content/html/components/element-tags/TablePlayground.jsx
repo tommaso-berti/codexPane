@@ -65,14 +65,23 @@ export default function TablePlayground() {
             }
             preview={
                 <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 2 }}>
-                    <Table size="small">
+                    <Table
+                        size="small"
+                        sx={{
+                            "& .MuiTableCell-root": {
+                                color: "text.primary",
+                                borderColor: "divider",
+                                bgcolor: "background.paper"
+                            }
+                        }}
+                    >
                         {showCaption ? (
                             <caption
                                 style={{
                                     captionSide: "top",
                                     textAlign: "left",
                                     padding: "12px 16px",
-                                    color: "#475569",
+                                    color: "var(--callout-muted-fg)",
                                     fontWeight: 600
                                 }}
                             >
