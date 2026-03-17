@@ -1,5 +1,7 @@
 # Stash
 
+import StashWorkflowPlayground from "./components/stash/StashWorkflowPlayground.jsx"
+
 While working on a file, you might spot a small bug in another file from a previous commit that you need to fix first. `git stash` lets you shelve your in-progress work, switch tasks, and come back later.
 
 > **Note**
@@ -101,3 +103,13 @@ git stash clear
 > 1) Save work → `git stash`
 > 2) Fix the bug on another branch
 > 3) Return to your task → `git stash pop`
+
+## Interactive Playground: Stash Workflow
+
+**Why this matters**  
+Stash is powerful when you need context switching, but behavior changes with `-u`, patch mode, and apply/pop.
+
+**What to try**  
+Create stashes with different options, then compare restoring with `apply` versus `pop`.
+
+<StashWorkflowPlayground />

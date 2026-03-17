@@ -2,12 +2,14 @@ import { useMemo, useState } from "react";
 import {
     Alert,
     Box,
+    Button,
     FormControl,
     InputLabel,
     MenuItem,
     Paper,
     Select,
     Stack,
+    TextField,
     Typography
 } from "@mui/material";
 import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
@@ -52,9 +54,11 @@ function matchesSelector(node, selector) {
 export default function SelectorsPlayground() {
     const [scenario, setScenario] = useState("basic");
     const [selector, setSelector] = useState(SELECTOR_PRESETS[0].value);
+    const [customSelector, setCustomSelector] = useState(SELECTOR_PRESETS[0].value);
+    const [appliedSelector, setAppliedSelector] = useState(SELECTOR_PRESETS[0].value);
 
     const nodes = SCENARIOS[scenario];
-    const matchCount = useMemo(() => nodes.filter((node) => matchesSelector(node, selector)).length, [nodes, selector]);
+    const matchCount = useMemo(() => nodes.filter((node) => matchesSelector(node, appliedSelector)).length, [appliedSelector, nodes]);
 
     return (
         <PlaygroundShell
@@ -82,13 +86,37 @@ export default function SelectorsPlayground() {
                             labelId="selectors-value-label"
                             label="Selector preset"
                             value={selector}
-                            onChange={(event) => setSelector(event.target.value)}
+                            onChange={(event) => {
+                                const value = event.target.value;
+                                setSelector(value);
+                                setCustomSelector(value);
+                            }}
                         >
                             {SELECTOR_PRESETS.map((preset) => (
                                 <MenuItem key={preset.value} value={preset.value}>{preset.label}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
+
+                    <TextField
+                        size="small"
+                        label="Custom selector"
+                        value={customSelector}
+                        onChange={(event) => setCustomSelector(event.target.value)}
+                        placeholder=".primary or article.card"
+                    />
+
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setAppliedSelector(selector)}>
+                            Apply preset
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => setAppliedSelector((customSelector || "").trim())}
+                        >
+                            Run custom
+                        </Button>
+                    </Stack>
                 </Stack>
             }
             preview={
@@ -96,7 +124,7 @@ export default function SelectorsPlayground() {
                     <Typography variant="caption" color="text.secondary">DOM preview</Typography>
                     <Stack spacing={0.8} sx={{ mt: 1 }}>
                         {nodes.map((node, index) => {
-                            const isMatch = matchesSelector(node, selector);
+                            const isMatch = appliedSelector ? matchesSelector(node, appliedSelector) : false;
                             const descriptor = "<" + node.tag + (node.id ? " id=\"" + node.id + "\"" : "") + (node.className ? " class=\"" + node.className + "\"" : "") + ">";
                             return (
                                 <Box
@@ -122,10 +150,10 @@ export default function SelectorsPlayground() {
             }
             output={
                 <Alert severity={matchCount > 0 ? "success" : "warning"} variant="outlined">
-                    Selector `{selector}` matches {matchCount} element{matchCount === 1 ? "" : "s"}.
+                    Selector `{appliedSelector || "(empty)"}` matches {matchCount} element{matchCount === 1 ? "" : "s"}.
                 </Alert>
             }
-            note="Read selectors left-to-right, then verify matches directly on element tag, classes, and id."
+            note="Use presets to learn the pattern, then type your own selector and validate matches immediately."
         />
     );
 }

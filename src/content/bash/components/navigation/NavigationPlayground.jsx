@@ -1,12 +1,14 @@
 import { useMemo, useState } from "react";
 import {
     Alert,
+    Button,
     FormControl,
     InputLabel,
     MenuItem,
     Paper,
     Select,
     Stack,
+    TextField,
     Typography
 } from "@mui/material";
 import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
@@ -58,9 +60,11 @@ function resolveCd(base, input) {
 export default function NavigationPlayground() {
     const [startPath, setStartPath] = useState(START_PATHS[0]);
     const [command, setCommand] = useState(COMMANDS[0].value);
+    const [customCommand, setCustomCommand] = useState("../archive");
+    const [appliedCommand, setAppliedCommand] = useState(COMMANDS[0].value);
 
     const result = useMemo(() => {
-        const target = resolveCd(startPath, command);
+        const target = resolveCd(startPath, appliedCommand);
         const exists = DIRECTORIES.has(target);
         return {
             target,
@@ -69,7 +73,7 @@ export default function NavigationPlayground() {
                 ? `Directory exists. You moved to ${target}`
                 : `Directory not found: ${target}`
         };
-    }, [startPath, command]);
+    }, [appliedCommand, startPath]);
 
     return (
         <PlaygroundShell
@@ -105,6 +109,26 @@ export default function NavigationPlayground() {
                             ))}
                         </Select>
                     </FormControl>
+
+                    <TextField
+                        size="small"
+                        label="Custom path (without `cd`)"
+                        value={customCommand}
+                        onChange={(event) => setCustomCommand(event.target.value)}
+                        placeholder="../.. or /workspace/projects"
+                    />
+
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setAppliedCommand(command)}>
+                            Run preset
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => setAppliedCommand((customCommand || ".").trim())}
+                        >
+                            Apply custom
+                        </Button>
+                    </Stack>
                 </Stack>
             }
             preview={
@@ -116,7 +140,7 @@ export default function NavigationPlayground() {
                         {startPath}
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 0.9, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
-                        $ cd {command}
+                        $ cd {appliedCommand}
                     </Typography>
                     <Typography variant="body2" sx={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
                         $ pwd
@@ -127,7 +151,7 @@ export default function NavigationPlayground() {
                 </Paper>
             }
             output={<Alert severity={result.exists ? "success" : "warning"} variant="outlined">{result.message}</Alert>}
-            note="Relative paths are resolved from the current directory. `cd .` keeps you in place, while `..` moves upward."
+            note="Use presets to learn common moves, then type a custom path to test your mental model of relative resolution."
         />
     );
 }

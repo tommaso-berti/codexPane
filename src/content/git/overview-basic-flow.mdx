@@ -1,5 +1,7 @@
 # Overview basic flow
 
+import GitWorkflowPlayground from "./components/overview-basic-flow/GitWorkflowPlayground.jsx"
+
 Git is the industry-standard version control system for web developers.
 
 > **Note**
@@ -150,3 +152,13 @@ Date:   Sun Oct 27 22:00:38 2024 +0000
 
 > **Tip**
 > Press `q` to exit the log pager. Use `git log --oneline --graph --decorate --all` for a compact view of history.
+
+## Interactive Playground: Git Workflow
+
+**Why this matters**  
+Most Git confusion comes from mixing up working tree, staging area, and commit history.
+
+**What to try**  
+Run `add` and `commit` actions in order, then inspect how state changes after each command.
+
+<GitWorkflowPlayground />

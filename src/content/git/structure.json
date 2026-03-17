@@ -16,7 +16,8 @@
         { "id": "stage-files", "type": "subSection", "title": "Stage files", "slug": "git/overview-basic-flow#stage-files", "order": 3 },
         { "id": "view-differences", "type": "subSection", "title": "View differences", "slug": "git/overview-basic-flow#view-differences", "order": 4 },
         { "id": "commit-changes", "type": "subSection", "title": "Commit changes", "slug": "git/overview-basic-flow#commit-changes", "order": 5 },
-        { "id": "view-history", "type": "subSection", "title": "View history", "slug": "git/overview-basic-flow#view-history", "order": 6 }
+        { "id": "view-history", "type": "subSection", "title": "View history", "slug": "git/overview-basic-flow#view-history", "order": 6 },
+        { "id": "interactive-playground-git-workflow", "type": "subSection", "title": "Interactive Playground: Git Workflow", "slug": "git/overview-basic-flow#interactive-playground-git-workflow", "order": 7 }
       ]
     },
     {
@@ -31,7 +32,8 @@
         { "id": "reset-staging-file", "type": "subSection", "title": "Reset staging file", "slug": "git/backtrack#reset-staging-file", "order": 3 },
         { "id": "reset-to-commit", "type": "subSection", "title": "Reset to commit", "slug": "git/backtrack#reset-to-commit", "order": 4 },
         { "id": "checkout-working-directory", "type": "subSection", "title": "Checkout working directory", "slug": "git/backtrack#checkout-working-directory", "order": 5 },
-        { "id": "safety-notes", "type": "subSection", "title": "Safety notes", "slug": "git/backtrack#safety-notes", "order": 6 }
+        { "id": "safety-notes", "type": "subSection", "title": "Safety notes", "slug": "git/backtrack#safety-notes", "order": 6 },
+        { "id": "interactive-playground-undo-safely", "type": "subSection", "title": "Interactive Playground: Undo Safely", "slug": "git/backtrack#interactive-playground-undo-safely", "order": 7 }
       ]
     },
     {
@@ -46,7 +48,8 @@
         { "id": "apply-and-pop", "type": "subSection", "title": "Apply and pop", "slug": "git/stash#apply-and-pop", "order": 3 },
         { "id": "partial-stash", "type": "subSection", "title": "Partial stash", "slug": "git/stash#partial-stash", "order": 4 },
         { "id": "include-untracked-files", "type": "subSection", "title": "Include untracked files", "slug": "git/stash#include-untracked-files", "order": 5 },
-        { "id": "clean up", "type": "subSection", "title": "Clean up", "slug": "git/stash#clean-up", "order": 6 }
+        { "id": "clean-up", "type": "subSection", "title": "Clean up", "slug": "git/stash#clean-up", "order": 6 },
+        { "id": "interactive-playground-stash-workflow", "type": "subSection", "title": "Interactive Playground: Stash Workflow", "slug": "git/stash#interactive-playground-stash-workflow", "order": 7 }
       ]
     },
     {
@@ -58,7 +61,8 @@
       "items": [
         { "id": "log", "type": "subSection", "title": "Log", "slug": "git/advanced-commands#log", "order": 1 },
         { "id": "commit", "type": "subSection", "title": "Commit", "slug": "git/advanced-commands#commit", "order": 2 },
-        { "id": "alias", "type": "subSection", "title": "Alias", "slug": "git/advanced-commands#alias", "order": 3 }
+        { "id": "alias", "type": "subSection", "title": "Alias", "slug": "git/advanced-commands#alias", "order": 3 },
+        { "id": "interactive-playground-history-and-amend", "type": "subSection", "title": "Interactive Playground: History And Amend", "slug": "git/advanced-commands#interactive-playground-history-and-amend", "order": 4 }
       ]
     }
   ]

@@ -1,5 +1,7 @@
 # Backtrack
 
+import UndoSafelyPlayground from "./components/backtrack/UndoSafelyPlayground.jsx"
+
 When working on a Git project, sometimes we make changes that we want to get rid of. Git offers eraser-like features to undo mistakes during project creation.
 
 > **Note**
@@ -118,3 +120,13 @@ git checkout -- .
 
 > **Tip**
 > If you’ve already pushed commits that you want to undo, prefer `git revert <commit>` to create a new commit that reverses the change without rewriting history.
+
+## Interactive Playground: Undo Safely
+
+**Why this matters**  
+Undo commands can target different Git layers and have very different risk levels.
+
+**What to try**  
+Compare `restore`, `reset --soft`, `--mixed`, and `--hard`, then observe the impact matrix.
+
+<UndoSafelyPlayground />

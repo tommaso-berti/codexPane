@@ -1,5 +1,7 @@
 # Advanced commands
 
+import HistoryAmendPlayground from "./components/advanced-commands/HistoryAmendPlayground.jsx"
+
 Quick helpers for peeking at history, fixing recent commits, and shortening common commands.
 
 ## Log
@@ -76,3 +78,13 @@ git checkout example_branch
 
 > **Note**
 > Aliases live in your global `~/.gitconfig` (or repository `.git/config` if you omit `--global`). They behave like Git subcommands, e.g., `git glop`.
+
+## Interactive Playground: History And Amend
+
+**Why this matters**  
+Reading history and rewriting the last commit are common advanced tasks with real impact on collaboration.
+
+**What to try**  
+Switch log presets, then run amend with and without `--no-edit` to see how the latest commit is replaced.
+
+<HistoryAmendPlayground />

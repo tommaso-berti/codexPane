@@ -1417,6 +1417,12 @@
               "title": "View history",
               "slug": "git/overview-basic-flow#view-history",
               "order": 6
+            },
+            {
+              "id": "interactive-playground-git-workflow",
+              "title": "Interactive Playground: Git Workflow",
+              "slug": "git/overview-basic-flow#interactive-playground-git-workflow",
+              "order": 7
             }
           ],
           "order": 1
@@ -1462,6 +1468,12 @@
               "title": "Safety notes",
               "slug": "git/backtrack#safety-notes",
               "order": 6
+            },
+            {
+              "id": "interactive-playground-undo-safely",
+              "title": "Interactive Playground: Undo Safely",
+              "slug": "git/backtrack#interactive-playground-undo-safely",
+              "order": 7
             }
           ],
           "order": 2
@@ -1507,6 +1519,12 @@
               "title": "Clean up",
               "slug": "git/stash#clean-up",
               "order": 6
+            },
+            {
+              "id": "interactive-playground-stash-workflow",
+              "title": "Interactive Playground: Stash Workflow",
+              "slug": "git/stash#interactive-playground-stash-workflow",
+              "order": 7
             }
           ],
           "order": 3
@@ -1534,6 +1552,12 @@
               "title": "Alias",
               "slug": "git/advanced-commands#alias",
               "order": 3
+            },
+            {
+              "id": "interactive-playground-history-and-amend",
+              "title": "Interactive Playground: History And Amend",
+              "slug": "git/advanced-commands#interactive-playground-history-and-amend",
+              "order": 4
             }
           ],
           "order": 4
