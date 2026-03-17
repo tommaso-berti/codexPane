@@ -7,7 +7,7 @@ import ICONS, { getIconColor } from '../../icons.js';
 export default function DocMenu() {
     const { docs } = useDocs();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [buttonMenu, setButtonMenu] = useState({ iconKey: 'ImageNotSupportedIcon', label: 'Choose topic' });
+    const [buttonMenu, setButtonMenu] = useState({ iconKey: 'PublicIcon', label: 'Choose topic' });
     const navigate = useNavigate();
     const params = useParams();
     const triggerRef = useRef(null);
@@ -17,7 +17,7 @@ export default function DocMenu() {
         setButtonMenu(prev => ({
             ...prev,
             label: found?.title || 'Choose topic',
-            iconKey: found?.icon || 'ImageNotSupportedIcon'
+            iconKey: found?.icon || 'PublicIcon'
         }));
     }, [params.docs, docs]);
 

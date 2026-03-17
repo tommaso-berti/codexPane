@@ -1215,7 +1215,7 @@
     {
       "id": "demo",
       "title": "Demo",
-      "icon": "ImageNotSupportedIcon",
+      "icon": "PublicIcon",
       "slug": "demo",
       "introPath": "../../content/demo/introduction.mdx",
       "sections": [
@@ -1250,9 +1250,9 @@
               "order": 4
             },
             {
-              "id": "links-and-images",
-              "title": "Links and images",
-              "slug": "demo/style-showcase#links-and-images",
+              "id": "links",
+              "title": "Links",
+              "slug": "demo/style-showcase#links",
               "order": 5
             },
             {
