@@ -19,7 +19,8 @@
         { "id": "file-extensions", "type": "subSection", "title": "File extensions", "slug": "github/markdown#file-extensions", "order": 6 },
         { "id": "parsers-and-tools", "type": "subSection", "title": "Parsers and tools", "slug": "github/markdown#parsers-and-tools", "order": 7 },
         { "id": "readme-essentials", "type": "subSection", "title": "Readme essentials", "slug": "github/markdown#readme-essentials", "order": 8 },
-        { "id": "markdown-resources", "type": "subSection", "title": "Markdown resources", "slug": "github/markdown#markdown-resources", "order": 9 }
+        { "id": "markdown-resources", "type": "subSection", "title": "Markdown resources", "slug": "github/markdown#markdown-resources", "order": 9 },
+        { "id": "interactive-playground-readme-structure", "type": "subSection", "title": "Interactive Playground: README Structure", "slug": "github/markdown#interactive-playground-readme-structure", "order": 10 }
       ]
     },
     {
@@ -35,7 +36,8 @@
         { "id": "git-log-graph", "type": "subSection", "title": "Git log graph", "slug": "github/git-flow#git-log-graph", "order": 4 },
         { "id": "gitignore", "type": "subSection", "title": "Gitignore", "slug": "github/git-flow#gitignore", "order": 5 },
         { "id": "fork", "type": "subSection", "title": "Fork", "slug": "github/git-flow#fork", "order": 6 },
-        { "id": "repository-template", "type": "subSection", "title": "Repository template", "slug": "github/git-flow#repository-template", "order": 7 }
+        { "id": "repository-template", "type": "subSection", "title": "Repository template", "slug": "github/git-flow#repository-template", "order": 7 },
+        { "id": "interactive-playground-branch-workflow", "type": "subSection", "title": "Interactive Playground: Branch Workflow", "slug": "github/git-flow#interactive-playground-branch-workflow", "order": 8 }
       ]
     },
     {
@@ -56,7 +58,8 @@
         { "id": "aliases", "type": "subSection", "title": "Aliases", "slug": "github/github-cli#aliases", "order": 9 },
         { "id": "configuration", "type": "subSection", "title": "Configuration", "slug": "github/github-cli#configuration", "order": 10 },
         { "id": "tips-and-tricks", "type": "subSection", "title": "Tips and tricks", "slug": "github/github-cli#tips-and-tricks", "order": 11 },
-        { "id": "cli-resources", "type": "subSection", "title": "CLI Resources", "slug": "github/github-cli#cli-resources", "order": 12 }
+        { "id": "cli-resources", "type": "subSection", "title": "CLI Resources", "slug": "github/github-cli#cli-resources", "order": 12 },
+        { "id": "interactive-playground-gh-command-builder", "type": "subSection", "title": "Interactive Playground: GH Command Builder", "slug": "github/github-cli#interactive-playground-gh-command-builder", "order": 13 }
       ]
     },
     {
@@ -71,7 +74,8 @@
         { "id": "tutorial-add-automated-tests", "type": "subSection", "title": "Tutorial add automated tests", "slug": "github/github-actions-and-automated-testing#tutorial-add-automated-tests", "order": 4 },
         { "id": "tutorial-simple-workflow", "type": "subSection", "title": "Tutorial simple workflow", "slug": "github/github-actions-and-automated-testing#tutorial-simple-workflow", "order": 5 },
         { "id": "tips-and-troubleshooting", "type": "subSection", "title": "Tips and troubleshooting", "slug": "github/github-actions-and-automated-testing#tips-and-troubleshooting", "order": 6 },
-        { "id": "actions-resources", "type": "subSection", "title": "Actions resources", "slug": "github/github-actions-and-automated-testing#actions-resources", "order": 7 }
+        { "id": "actions-resources", "type": "subSection", "title": "Actions resources", "slug": "github/github-actions-and-automated-testing#actions-resources", "order": 7 },
+        { "id": "interactive-playground-workflow-triggers", "type": "subSection", "title": "Interactive Playground: Workflow Triggers", "slug": "github/github-actions-and-automated-testing#interactive-playground-workflow-triggers", "order": 8 }
       ]
     },
     {

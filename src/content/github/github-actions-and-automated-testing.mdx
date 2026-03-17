@@ -1,3 +1,5 @@
+import WorkflowTriggerPlayground from "./components/github-actions-and-automated-testing/WorkflowTriggerPlayground.jsx"
+
 # GitHub Actions and Automated Testing
 
 GitHub Actions lets you automate workflows in response to repository events (for example, a push or a pull request). Workflows run on ephemeral runners hosted by GitHub and execute jobs composed of steps and actions.
@@ -118,3 +120,13 @@ jobs:
 
 - Actions marketplace for prebuilt actions
 - Official docs on events, runners, and workflow syntax
+
+## Interactive Playground: Workflow Triggers
+
+**Why this matters**  
+Workflow triggers and job selection define CI cost, speed, and deployment safety.
+
+**What to try**  
+Adjust trigger, branch pattern, and jobs, then verify the workflow checks summary.
+
+<WorkflowTriggerPlayground />

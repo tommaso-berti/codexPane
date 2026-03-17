@@ -1,3 +1,5 @@
+import GhCommandBuilderPlayground from "./components/github-cli/GhCommandBuilderPlayground.jsx"
+
 # GitHub CLI
 
 ## Authentication
@@ -200,3 +202,13 @@ gh auth login -h github.mycorp.com
 
 - GitHub CLI manual: https://cli.github.com/manual/
 - Getting started: https://cli.github.com/
+
+## Interactive Playground: GH Command Builder
+
+**Why this matters**  
+Choosing the wrong `gh` command context (repo/issue/PR) leads to noisy failures.
+
+**What to try**  
+Switch command family, edit inputs, and generate the final command before running it in a real terminal.
+
+<GhCommandBuilderPlayground />

@@ -1631,6 +1631,12 @@
               "title": "Markdown resources",
               "slug": "github/markdown#markdown-resources",
               "order": 9
+            },
+            {
+              "id": "interactive-playground-readme-structure",
+              "title": "Interactive Playground: README Structure",
+              "slug": "github/markdown#interactive-playground-readme-structure",
+              "order": 10
             }
           ],
           "order": 1
@@ -1682,6 +1688,12 @@
               "title": "Repository template",
               "slug": "github/git-flow#repository-template",
               "order": 7
+            },
+            {
+              "id": "interactive-playground-branch-workflow",
+              "title": "Interactive Playground: Branch Workflow",
+              "slug": "github/git-flow#interactive-playground-branch-workflow",
+              "order": 8
             }
           ],
           "order": 2
@@ -1763,6 +1775,12 @@
               "title": "CLI resources",
               "slug": "github/github-cli#cli-resources",
               "order": 12
+            },
+            {
+              "id": "interactive-playground-gh-command-builder",
+              "title": "Interactive Playground: GH Command Builder",
+              "slug": "github/github-cli#interactive-playground-gh-command-builder",
+              "order": 13
             }
           ],
           "order": 3
@@ -1808,6 +1826,12 @@
               "title": "Actions Resources",
               "slug": "github/github-actions-and-automated-testing#actions-resources",
               "order": 6
+            },
+            {
+              "id": "interactive-playground-workflow-triggers",
+              "title": "Interactive Playground: Workflow Triggers",
+              "slug": "github/github-actions-and-automated-testing#interactive-playground-workflow-triggers",
+              "order": 7
             }
           ],
           "order": 4
