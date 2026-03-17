@@ -112,3 +112,55 @@ Always append this line at the end of your user prompt when pasting text from Ap
 ```text
 Convert this text into a CodexPane MDX page ready to save.
 ```
+
+## 7) Playground directives (for interactive docs sections)
+
+Use these rules whenever a page includes an interactive playground.
+
+### 7.1 Core objective
+- The chatbot must first evaluate whether an interactive example is actually needed for that section.
+- Create a playground only if interaction improves understanding more than a static example.
+- If a static snippet/checklist is enough, do not force a playground.
+- Each playground must teach one thing only (single learning goal).
+- Prioritize learning clarity over number of controls.
+- If scope becomes broad, split into multiple focused playgrounds.
+
+### 7.2 Standard structure (mandatory)
+Every playground section must follow this order:
+1. Playground title
+2. One-line learning goal
+3. Interactive controls area
+4. Output/preview area
+5. Short takeaway note
+
+For MDX integration, add before the component:
+- `## Interactive Playground: <specific topic>`
+- `Why this matters:` (1 short sentence)
+- `What to try:` (1 short actionable sentence, e.g. “Change X and observe Y.”)
+
+### 7.3 UX + visual consistency
+- Keep controls minimal (target: 2-4 controls unless strictly necessary).
+- Use clear control labels and immediate feedback.
+- Keep naming consistent for actions: `Run`, `Reset`, `Apply`.
+- Keep spacing, hierarchy, borders, and component style coherent with MUI theme.
+- Ensure readable states in both light and dark mode (text, chip, alert, tooltip, inline code contrast).
+
+### 7.4 Scope guidance by playground type
+- Form playgrounds: focus on data mapping/constraints, not every input type.
+- Validation playgrounds: show native constraints and explicit pass/fail feedback.
+- Semantic/structure playgrounds: show concise checks/audit output.
+- Accessibility playgrounds: emphasize readability/compliance outcomes (e.g., ratio + AA/AAA).
+
+### 7.5 Navigation and anchors (important)
+- Do not reuse generic repeated H2 titles like only `Interactive Playground`.
+- Use unique subsection titles, e.g. `Interactive Playground: Native Constraints`.
+- Keep structure metadata (`structure.json` / manifest) aligned with generated heading slugs.
+- Avoid duplicate anchor ids across sections to prevent sidebar selection bugs.
+
+### 7.6 Playground quality checklist
+Before final output, verify:
+- Learning goal is explicit and singular.
+- No redundant controls or noisy UI.
+- Output clearly explains what changed.
+- Dark mode readability is acceptable for callouts/chips/code snippets.
+- Sidebar anchor and subsection title are unique and clickable.
