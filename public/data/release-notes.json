@@ -1,82 +1,180 @@
 {
-  "generatedAt": "2026-03-16T16:24:03.057Z",
-  "latestTag": "v2.1.0",
-  "latestVersion": "2.1.0",
-  "previousTag": "v2.0.1",
+  "generatedAt": "2026-03-17T00:43:37.621Z",
+  "latestTag": "v2.2.0",
+  "latestVersion": "2.2.0",
+  "previousTag": "v2.1.0",
   "releaseType": "minor",
   "entries": [
     {
-      "sha": "193f5ad2caad462fa8915e4ea6560c97a25b275a",
-      "subject": "feat: implement static data refresh workflow and update related scripts #minor",
-      "url": "https://github.com/tommaso-berti/codexPane/commit/193f5ad2caad462fa8915e4ea6560c97a25b275a",
+      "sha": "c85e606b5e7adcfc181fdd08fde1aea500522f08",
+      "subject": "feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/c85e606b5e7adcfc181fdd08fde1aea500522f08",
       "author": "Tommaso Berti",
-      "date": "2026-03-16T17:22:34+01:00"
+      "date": "2026-03-17T01:40:56+01:00"
     },
     {
-      "sha": "8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+      "sha": "ccc799803160ff64fd0c420305d6271f9f16e2a9",
+      "subject": "feat: enhance TablePlayground styling for improved readability",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/ccc799803160ff64fd0c420305d6271f9f16e2a9",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T01:24:20+01:00"
+    },
+    {
+      "sha": "35eddc918b874559c9d86a2311f68143ecf62ac9",
+      "subject": "feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/35eddc918b874559c9d86a2311f68143ecf62ac9",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T01:22:31+01:00"
+    },
+    {
+      "sha": "2a37efe3ac8b2b9376d9a4f01095419fc38dba13",
       "subject": "Merge remote-tracking branch 'origin/main'",
-      "url": "https://github.com/tommaso-berti/codexPane/commit/8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/2a37efe3ac8b2b9376d9a4f01095419fc38dba13",
       "author": "Tommaso Berti",
-      "date": "2026-03-16T17:18:36+01:00"
+      "date": "2026-03-17T01:12:24+01:00"
     },
     {
-      "sha": "e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
-      "subject": "feat: add static release notes generation and deployment synchronization #patch",
-      "url": "https://github.com/tommaso-berti/codexPane/commit/e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+      "sha": "ed1fe39aaeae12802bbf421f1cbd06cfa545ec52",
+      "subject": "feat: add guidelines for interactive playgrounds in documentation",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/ed1fe39aaeae12802bbf421f1cbd06cfa545ec52",
       "author": "Tommaso Berti",
-      "date": "2026-03-16T17:18:16+01:00"
+      "date": "2026-03-17T01:12:17+01:00"
     },
     {
-      "sha": "eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
-      "subject": "docs(release): v2.0.1 artifacts #skip-deploy [skip ci]",
-      "url": "https://github.com/tommaso-berti/codexPane/commit/eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+      "sha": "ffcac9dd292e164d2fc4c3324804a467c6008101",
+      "subject": "feat: update demo section titles and icons for consistency",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/ffcac9dd292e164d2fc4c3324804a467c6008101",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T01:08:02+01:00"
+    },
+    {
+      "sha": "003d531d6a0575c80a1b00e61d97a5ad52c865f2",
+      "subject": "feat: update interactive playground sections with specific titles for clarity",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/003d531d6a0575c80a1b00e61d97a5ad52c865f2",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T01:00:30+01:00"
+    },
+    {
+      "sha": "533f39fa4a2663b388d1e7377cb37f23f027f728",
+      "subject": "fix: refine CSS selector for hiding first heading in markdown body",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/533f39fa4a2663b388d1e7377cb37f23f027f728",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T00:57:00+01:00"
+    },
+    {
+      "sha": "5963b7a3e4390ceffd2382df89e9114f0f448e53",
+      "subject": "feat: enhance Callout component with dynamic styling and theming support",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/5963b7a3e4390ceffd2382df89e9114f0f448e53",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T00:53:54+01:00"
+    },
+    {
+      "sha": "e5e416ba9306ed435eba713baaa659a2544b60b5",
+      "subject": "feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/e5e416ba9306ed435eba713baaa659a2544b60b5",
+      "author": "Tommaso Berti",
+      "date": "2026-03-17T00:43:35+01:00"
+    },
+    {
+      "sha": "23f71d6f9c4782191f32202f6d32098c952f0f42",
+      "subject": "docs(release): v2.1.0 artifacts #skip-deploy [skip ci]",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/23f71d6f9c4782191f32202f6d32098c952f0f42",
       "author": "github-actions[bot]",
-      "date": "2026-03-16T16:14:22Z"
+      "date": "2026-03-16T16:24:07Z"
     }
   ],
-  "bodyMarkdown": "# Release Notes v2.1.0\n\n## Italiano\n### Panoramica\n- Versione: v2.1.0\n- Tipo rilascio: minor\n- Intervallo commit: v2.0.1..v2.1.0\n- Generato: 2026-03-16T16:23:19.759Z\n\n### Novita\n- Implementata la workflow di refresh dei dati statici e aggiornati gli script correlati (193f5ad).\n  - File coinvolti principali: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Aggiunta generazione statica delle release notes e sincronizzazione di deployment (e10ca37).\n  - File coinvolti principali: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Correzioni\n- Nessuna correzione specifica registrata in questo rilascio.\n\n### Migliorie Tecniche\n- Aggiunti artefatti di release per v2.0.1 (docs) tramite commit di bot (eeeb5fa).\n  - File coinvolti: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata.\n\n### Note di Migrazione\n- Nessuna migrazione necessaria. Aggiornamenti apportati a workflow e script sono inclusi nel pacchetto.\n\n### Limiti Noti\n- Nessun limite noto documentato in questo set di commit.\n\n### Confronto e Intervallo Commit\n- Confronto: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Intervallo: v2.0.1..v2.1.0\n- Commit inclusi:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- File cambiati (selezione): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs\n\n---\n\n## English\n### Overview\n- Version: v2.1.0\n- Release type: minor\n- Commit range: v2.0.1..v2.1.0\n- Generated: 2026-03-16T16:23:19.759Z\n\n### New Features\n- Implemented static data refresh workflow and updated related scripts (193f5ad).\n  - Key files: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Added static release notes generation and deployment synchronization (e10ca37).\n  - Key files: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Bug Fixes\n- No bug fixes recorded in this release.\n\n### Refactor & Engineering\n- Added release artifacts for v2.0.1 (docs) via bot commit (eeeb5fa).\n  - Files: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Breaking Changes\n- No breaking changes detected.\n\n### Migration Notes\n- No migration required. Workflow and script updates are included in the release.\n\n### Known Limitations\n- No known limitations documented in this set of commits.\n\n### Diff & Commit Range\n- Compare: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Range: v2.0.1..v2.1.0\n- Commits:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- Changed files (selection): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs",
-  "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.1.0",
-  "publishedAt": "2026-03-16T16:24:03.057Z",
+  "bodyMarkdown": "# Release Notes v2.2.0\n\n## Italiano\n\n### Panoramica\n- Tipo di rilascio: minor (payload.releaseType = \"minor\").  \n- Aggiunte numerose playground interattive per CSS, HTML e Bash; miglioramenti visivi e refactor dei componenti playground; aggiornamenti documentazione e correzione CSS mirata.\n\n### Novita\n- Aggiunte playground interattive per concetti CSS: box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors e responsive units. (c85e606)\n- Nuove playground interattive per form, tabelle e accessibilità con linee guida dettagliate. (e5e416b)\n- Migliorata leggibilità e styling del componente TablePlayground. (ccc7998)\n- Migliorato componente Callout con styling dinamico e supporto theming. (5963b7a)\n- Refactor: i componenti playground ora usano PlaygroundShell; aggiunte sezioni e titoli più chiari per le demo. (35eddc9, 003d531, ffcac9d)\n- Aggiunte linee guida per playground interattive nella documentazione. (ed1fe39)\n\n### Correzioni\n- Rifinito il selettore CSS per nascondere il primo heading nel corpo markdown. (533f39f)\n\n### Migliorie Tecniche\n- Introduzione/uso di PlaygroundShell per uniformare i playground. (src/components/PlaygroundShell.jsx, 35eddc9)\n- Aggiornamenti a file di stile e tema (src/styles/mdx.css, src/styles/theme.js).\n- Aggiornamenti di struttura/controllo contenuti e nuovi file playground aggiunti in src/content/* per CSS, HTML e Bash.\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata in questo intervallo di commit.\n\n### Note di Migrazione\n- Nessuna azione di migrazione specifica richiesta.\n\n### Limiti Noti\n- Nessun limite noto segnalato nei commit o nei file cambiati.\n\n### Confronto e Intervallo Commit\n- Diff: https://github.com/tommaso-berti/codexPane/compare/v2.1.0...v2.2.0  \n- Intervallo: v2.1.0..v2.2.0\n\nCommits inclusi:\n- c85e606 — feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units\n- ccc7998 — feat: enhance TablePlayground styling for improved readability\n- 35eddc9 — feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds\n- 2a37efe — Merge remote-tracking branch 'origin/main'\n- ed1fe39 — feat: add guidelines for interactive playgrounds in documentation\n- ffcac9d — feat: update demo section titles and icons for consistency\n- 003d531 — feat: update interactive playground sections with specific titles for clarity\n- 533f39f — fix: refine CSS selector for hiding first heading in markdown body\n- 5963b7a — feat: enhance Callout component with dynamic styling and theming support\n- e5e416b — feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance\n- 23f71d6 — docs(release): v2.1.0 artifacts #skip-deploy [skip ci]\n\n---\n\n## English\n\n### Overview\n- Release type: minor (payload.releaseType = \"minor\").  \n- This release adds multiple interactive playgrounds for CSS, HTML and Bash, improves styling for table/playground components, refactors playground components to use a PlaygroundShell, updates documentation, and includes a targeted CSS fix.\n\n### New Features\n- Added interactive CSS playgrounds for: box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units. (c85e606)\n- Added interactive playgrounds for forms, tables and accessibility with guidance. (e5e416b)\n- Enhanced Callout component with dynamic styling and theming support. (5963b7a)\n- Improved TablePlayground styling for readability. (ccc7998)\n- Updated demo section titles/icons and clearer interactive playground section titles. (ffcac9d, 003d531)\n- Added documentation guidelines for interactive playgrounds. (ed1fe39)\n- Refactor: playground components now use PlaygroundShell. (35eddc9)\n\n### Bug Fixes\n- Refined CSS selector used to hide the first heading in markdown body. (533f39f)\n\n### Refactor & Engineering\n- Introduced PlaygroundShell and migrated playground components to it. (src/components/PlaygroundShell.jsx, 35eddc9)\n- Multiple new/updated playground component files under src/content/* (CSS, HTML, Bash).\n- Style and theme updates (src/styles/mdx.css, src/styles/theme.js).\n- Documentation updates and demo structure changes.\n\n### Breaking Changes\n- None identified in this release.\n\n### Migration Notes\n- No migration steps required.\n\n### Known Limitations\n- No known limitations recorded in the commits/files for this release.\n\n### Diff & Commit Range\n- Diff: https://github.com/tommaso-berti/codexPane/compare/v2.1.0...v2.2.0  \n- Range: v2.1.0..v2.2.0\n\nIncluded commits:\n- c85e606 — feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units\n- ccc7998 — feat: enhance TablePlayground styling for improved readability\n- 35eddc9 — feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds\n- 2a37efe — Merge remote-tracking branch 'origin/main'\n- ed1fe39 — feat: add guidelines for interactive playgrounds in documentation\n- ffcac9d — feat: update demo section titles and icons for consistency\n- 003d531 — feat: update interactive playground sections with specific titles for clarity\n- 533f39f — fix: refine CSS selector for hiding first heading in markdown body\n- 5963b7a — feat: enhance Callout component with dynamic styling and theming support\n- e5e416b — feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance\n- 23f71d6 — docs(release): v2.1.0 artifacts #skip-deploy [skip ci]",
+  "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.2.0",
+  "publishedAt": "2026-03-17T00:43:37.621Z",
   "history": [
     {
-      "tag": "v2.1.0",
-      "version": "2.1.0",
-      "previousTag": "v2.0.1",
+      "tag": "v2.2.0",
+      "version": "2.2.0",
+      "previousTag": "v2.1.0",
       "releaseType": "minor",
       "entries": [
         {
-          "sha": "193f5ad2caad462fa8915e4ea6560c97a25b275a",
-          "subject": "feat: implement static data refresh workflow and update related scripts #minor",
-          "url": "https://github.com/tommaso-berti/codexPane/commit/193f5ad2caad462fa8915e4ea6560c97a25b275a",
+          "sha": "c85e606b5e7adcfc181fdd08fde1aea500522f08",
+          "subject": "feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/c85e606b5e7adcfc181fdd08fde1aea500522f08",
           "author": "Tommaso Berti",
-          "date": "2026-03-16T17:22:34+01:00"
+          "date": "2026-03-17T01:40:56+01:00"
         },
         {
-          "sha": "8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+          "sha": "ccc799803160ff64fd0c420305d6271f9f16e2a9",
+          "subject": "feat: enhance TablePlayground styling for improved readability",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/ccc799803160ff64fd0c420305d6271f9f16e2a9",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T01:24:20+01:00"
+        },
+        {
+          "sha": "35eddc918b874559c9d86a2311f68143ecf62ac9",
+          "subject": "feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/35eddc918b874559c9d86a2311f68143ecf62ac9",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T01:22:31+01:00"
+        },
+        {
+          "sha": "2a37efe3ac8b2b9376d9a4f01095419fc38dba13",
           "subject": "Merge remote-tracking branch 'origin/main'",
-          "url": "https://github.com/tommaso-berti/codexPane/commit/8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/2a37efe3ac8b2b9376d9a4f01095419fc38dba13",
           "author": "Tommaso Berti",
-          "date": "2026-03-16T17:18:36+01:00"
+          "date": "2026-03-17T01:12:24+01:00"
         },
         {
-          "sha": "e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
-          "subject": "feat: add static release notes generation and deployment synchronization #patch",
-          "url": "https://github.com/tommaso-berti/codexPane/commit/e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+          "sha": "ed1fe39aaeae12802bbf421f1cbd06cfa545ec52",
+          "subject": "feat: add guidelines for interactive playgrounds in documentation",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/ed1fe39aaeae12802bbf421f1cbd06cfa545ec52",
           "author": "Tommaso Berti",
-          "date": "2026-03-16T17:18:16+01:00"
+          "date": "2026-03-17T01:12:17+01:00"
         },
         {
-          "sha": "eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
-          "subject": "docs(release): v2.0.1 artifacts #skip-deploy [skip ci]",
-          "url": "https://github.com/tommaso-berti/codexPane/commit/eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+          "sha": "ffcac9dd292e164d2fc4c3324804a467c6008101",
+          "subject": "feat: update demo section titles and icons for consistency",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/ffcac9dd292e164d2fc4c3324804a467c6008101",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T01:08:02+01:00"
+        },
+        {
+          "sha": "003d531d6a0575c80a1b00e61d97a5ad52c865f2",
+          "subject": "feat: update interactive playground sections with specific titles for clarity",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/003d531d6a0575c80a1b00e61d97a5ad52c865f2",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T01:00:30+01:00"
+        },
+        {
+          "sha": "533f39fa4a2663b388d1e7377cb37f23f027f728",
+          "subject": "fix: refine CSS selector for hiding first heading in markdown body",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/533f39fa4a2663b388d1e7377cb37f23f027f728",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T00:57:00+01:00"
+        },
+        {
+          "sha": "5963b7a3e4390ceffd2382df89e9114f0f448e53",
+          "subject": "feat: enhance Callout component with dynamic styling and theming support",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/5963b7a3e4390ceffd2382df89e9114f0f448e53",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T00:53:54+01:00"
+        },
+        {
+          "sha": "e5e416ba9306ed435eba713baaa659a2544b60b5",
+          "subject": "feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/e5e416ba9306ed435eba713baaa659a2544b60b5",
+          "author": "Tommaso Berti",
+          "date": "2026-03-17T00:43:35+01:00"
+        },
+        {
+          "sha": "23f71d6f9c4782191f32202f6d32098c952f0f42",
+          "subject": "docs(release): v2.1.0 artifacts #skip-deploy [skip ci]",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/23f71d6f9c4782191f32202f6d32098c952f0f42",
           "author": "github-actions[bot]",
-          "date": "2026-03-16T16:14:22Z"
+          "date": "2026-03-16T16:24:07Z"
         }
       ],
       "source": "local",
-      "bodyMarkdown": "# Release Notes v2.1.0\n\n## Italiano\n### Panoramica\n- Versione: v2.1.0\n- Tipo rilascio: minor\n- Intervallo commit: v2.0.1..v2.1.0\n- Generato: 2026-03-16T16:23:19.759Z\n\n### Novita\n- Implementata la workflow di refresh dei dati statici e aggiornati gli script correlati (193f5ad).\n  - File coinvolti principali: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Aggiunta generazione statica delle release notes e sincronizzazione di deployment (e10ca37).\n  - File coinvolti principali: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Correzioni\n- Nessuna correzione specifica registrata in questo rilascio.\n\n### Migliorie Tecniche\n- Aggiunti artefatti di release per v2.0.1 (docs) tramite commit di bot (eeeb5fa).\n  - File coinvolti: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata.\n\n### Note di Migrazione\n- Nessuna migrazione necessaria. Aggiornamenti apportati a workflow e script sono inclusi nel pacchetto.\n\n### Limiti Noti\n- Nessun limite noto documentato in questo set di commit.\n\n### Confronto e Intervallo Commit\n- Confronto: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Intervallo: v2.0.1..v2.1.0\n- Commit inclusi:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- File cambiati (selezione): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs\n\n---\n\n## English\n### Overview\n- Version: v2.1.0\n- Release type: minor\n- Commit range: v2.0.1..v2.1.0\n- Generated: 2026-03-16T16:23:19.759Z\n\n### New Features\n- Implemented static data refresh workflow and updated related scripts (193f5ad).\n  - Key files: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Added static release notes generation and deployment synchronization (e10ca37).\n  - Key files: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Bug Fixes\n- No bug fixes recorded in this release.\n\n### Refactor & Engineering\n- Added release artifacts for v2.0.1 (docs) via bot commit (eeeb5fa).\n  - Files: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Breaking Changes\n- No breaking changes detected.\n\n### Migration Notes\n- No migration required. Workflow and script updates are included in the release.\n\n### Known Limitations\n- No known limitations documented in this set of commits.\n\n### Diff & Commit Range\n- Compare: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Range: v2.0.1..v2.1.0\n- Commits:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- Changed files (selection): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs",
-      "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.1.0",
-      "publishedAt": "2026-03-16T16:24:03.057Z"
+      "bodyMarkdown": "# Release Notes v2.2.0\n\n## Italiano\n\n### Panoramica\n- Tipo di rilascio: minor (payload.releaseType = \"minor\").  \n- Aggiunte numerose playground interattive per CSS, HTML e Bash; miglioramenti visivi e refactor dei componenti playground; aggiornamenti documentazione e correzione CSS mirata.\n\n### Novita\n- Aggiunte playground interattive per concetti CSS: box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors e responsive units. (c85e606)\n- Nuove playground interattive per form, tabelle e accessibilità con linee guida dettagliate. (e5e416b)\n- Migliorata leggibilità e styling del componente TablePlayground. (ccc7998)\n- Migliorato componente Callout con styling dinamico e supporto theming. (5963b7a)\n- Refactor: i componenti playground ora usano PlaygroundShell; aggiunte sezioni e titoli più chiari per le demo. (35eddc9, 003d531, ffcac9d)\n- Aggiunte linee guida per playground interattive nella documentazione. (ed1fe39)\n\n### Correzioni\n- Rifinito il selettore CSS per nascondere il primo heading nel corpo markdown. (533f39f)\n\n### Migliorie Tecniche\n- Introduzione/uso di PlaygroundShell per uniformare i playground. (src/components/PlaygroundShell.jsx, 35eddc9)\n- Aggiornamenti a file di stile e tema (src/styles/mdx.css, src/styles/theme.js).\n- Aggiornamenti di struttura/controllo contenuti e nuovi file playground aggiunti in src/content/* per CSS, HTML e Bash.\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata in questo intervallo di commit.\n\n### Note di Migrazione\n- Nessuna azione di migrazione specifica richiesta.\n\n### Limiti Noti\n- Nessun limite noto segnalato nei commit o nei file cambiati.\n\n### Confronto e Intervallo Commit\n- Diff: https://github.com/tommaso-berti/codexPane/compare/v2.1.0...v2.2.0  \n- Intervallo: v2.1.0..v2.2.0\n\nCommits inclusi:\n- c85e606 — feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units\n- ccc7998 — feat: enhance TablePlayground styling for improved readability\n- 35eddc9 — feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds\n- 2a37efe — Merge remote-tracking branch 'origin/main'\n- ed1fe39 — feat: add guidelines for interactive playgrounds in documentation\n- ffcac9d — feat: update demo section titles and icons for consistency\n- 003d531 — feat: update interactive playground sections with specific titles for clarity\n- 533f39f — fix: refine CSS selector for hiding first heading in markdown body\n- 5963b7a — feat: enhance Callout component with dynamic styling and theming support\n- e5e416b — feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance\n- 23f71d6 — docs(release): v2.1.0 artifacts #skip-deploy [skip ci]\n\n---\n\n## English\n\n### Overview\n- Release type: minor (payload.releaseType = \"minor\").  \n- This release adds multiple interactive playgrounds for CSS, HTML and Bash, improves styling for table/playground components, refactors playground components to use a PlaygroundShell, updates documentation, and includes a targeted CSS fix.\n\n### New Features\n- Added interactive CSS playgrounds for: box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units. (c85e606)\n- Added interactive playgrounds for forms, tables and accessibility with guidance. (e5e416b)\n- Enhanced Callout component with dynamic styling and theming support. (5963b7a)\n- Improved TablePlayground styling for readability. (ccc7998)\n- Updated demo section titles/icons and clearer interactive playground section titles. (ffcac9d, 003d531)\n- Added documentation guidelines for interactive playgrounds. (ed1fe39)\n- Refactor: playground components now use PlaygroundShell. (35eddc9)\n\n### Bug Fixes\n- Refined CSS selector used to hide the first heading in markdown body. (533f39f)\n\n### Refactor & Engineering\n- Introduced PlaygroundShell and migrated playground components to it. (src/components/PlaygroundShell.jsx, 35eddc9)\n- Multiple new/updated playground component files under src/content/* (CSS, HTML, Bash).\n- Style and theme updates (src/styles/mdx.css, src/styles/theme.js).\n- Documentation updates and demo structure changes.\n\n### Breaking Changes\n- None identified in this release.\n\n### Migration Notes\n- No migration steps required.\n\n### Known Limitations\n- No known limitations recorded in the commits/files for this release.\n\n### Diff & Commit Range\n- Diff: https://github.com/tommaso-berti/codexPane/compare/v2.1.0...v2.2.0  \n- Range: v2.1.0..v2.2.0\n\nIncluded commits:\n- c85e606 — feat: add interactive playgrounds for CSS concepts including box sizing, positioning, font stack readability, grid templates, button states, flex axes, transition timing, HSL controls, breadcrumb patterns, specificity, selectors, and responsive units\n- ccc7998 — feat: enhance TablePlayground styling for improved readability\n- 35eddc9 — feat: refactor playground components to use PlaygroundShell and add new interactive playgrounds\n- 2a37efe — Merge remote-tracking branch 'origin/main'\n- ed1fe39 — feat: add guidelines for interactive playgrounds in documentation\n- ffcac9d — feat: update demo section titles and icons for consistency\n- 003d531 — feat: update interactive playground sections with specific titles for clarity\n- 533f39f — fix: refine CSS selector for hiding first heading in markdown body\n- 5963b7a — feat: enhance Callout component with dynamic styling and theming support\n- e5e416b — feat: introduce interactive playgrounds for forms, tables, and accessibility with detailed guidance\n- 23f71d6 — docs(release): v2.1.0 artifacts #skip-deploy [skip ci]",
+      "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.2.0",
+      "publishedAt": "2026-03-17T00:43:37.621Z"
     }
   ]
 }
