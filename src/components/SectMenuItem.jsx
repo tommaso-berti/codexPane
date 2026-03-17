@@ -56,7 +56,21 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
             >
                 <ListItemText
                     sx={{ minWidth: 0, pr: 0.6, pl: 0.6 }}
-                    primary={<Typography noWrap>{section.title}</Typography>}
+                    primary={
+                        <Typography
+                            sx={{
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflowWrap: 'anywhere',
+                                lineHeight: 1.25,
+                            }}
+                        >
+                            {section.title}
+                        </Typography>
+                    }
                 />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -76,7 +90,8 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                                 mr: 0,
                                 mt: 0.12,
                                 minWidth: 0,
-                                minHeight: 34,
+                                py: 0.7,
+                                alignItems: 'flex-start',
                                 borderRadius: 1.2,
                                 position: 'relative',
                                 overflow: 'hidden',
@@ -106,7 +121,21 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                         >
                             <ListItemText
                                 sx={{ minWidth: 0, pr: 0.5, pl: 0.8 }}
-                                primary={<Typography noWrap>{subsection.title}</Typography>}
+                                primary={
+                                    <Typography
+                                        sx={{
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            display: '-webkit-box',
+                                            WebkitLineClamp: 2,
+                                            WebkitBoxOrient: 'vertical',
+                                            overflowWrap: 'anywhere',
+                                            lineHeight: 1.22,
+                                        }}
+                                    >
+                                        {subsection.title}
+                                    </Typography>
+                                }
                             />
                         </ListItemButton>
                         );

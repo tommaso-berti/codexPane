@@ -29,8 +29,23 @@ export default function SectMenu() {
     }, [docsParam]);
 
     const selected = useMemo(() => {
-        for (const section of currentSections) {
-            if (anchor) {
+        const currentSection = currentSections.find((section) => {
+            const isInPath = !!section.slug && pathname.includes(`/${section.slug}`);
+            const isParamMatch = sectionParam === section.id;
+            return isInPath || isParamMatch;
+        });
+
+        if (anchor && currentSection) {
+            const subsection = currentSection?.subSections?.find(
+                (sub) => sub.id === anchor || sub.id === normalizedAnchor
+            );
+            if (subsection) {
+                return { type: 'subsection', value: subsection.id, sectionId: currentSection.id };
+            }
+        }
+
+        if (anchor) {
+            for (const section of currentSections) {
                 const subsection = section?.subSections?.find(
                     (sub) => sub.id === anchor || sub.id === normalizedAnchor
                 );
@@ -38,6 +53,9 @@ export default function SectMenu() {
                     return { type: 'subsection', value: subsection.id, sectionId: section.id };
                 }
             }
+        }
+
+        for (const section of currentSections) {
             const isInPath = !!section.slug && pathname.includes(`/${section.slug}`);
             const isParamMatch = sectionParam === section.id;
             if (isInPath || isParamMatch) {

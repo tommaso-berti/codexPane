@@ -15,7 +15,7 @@
         { "id": "website-common-document-hierarchy", "type": "subSection", "title": "Website Common Document Hierarchy", "slug": "html/html-document#website-common-document-hierarchy", "order": 2 },
         { "id": "document-structure", "type": "subSection", "title": "Document Structure", "slug": "html/html-document#document-structure", "order": 3 },
         { "id": "elements-overview", "type": "subSection", "title": "Elements Overview", "slug": "html/html-document#elements-overview", "order": 4 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/html-document#interactive-playground", "order": 5 }
+        { "id": "interactive-playground-document-structure", "type": "subSection", "title": "Interactive Playground: Document Structure", "slug": "html/html-document#interactive-playground-document-structure", "order": 5 }
       ]
     },
     {
@@ -35,7 +35,7 @@
         { "id": "rowspan-and-colspan", "type": "subSection", "title": "Rowspan And Colspan", "slug": "html/element-tags#rowspan-and-colspan", "order": 8 },
         { "id": "multiple-classes", "type": "subSection", "title": "Multiple Classes", "slug": "html/element-tags#multiple-classes", "order": 9 },
         { "id": "table-sections", "type": "subSection", "title": "Table Sections", "slug": "html/element-tags#table-sections", "order": 10 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/element-tags#interactive-playground", "order": 11 }
+        { "id": "interactive-playground-table-semantics", "type": "subSection", "title": "Interactive Playground: Table Semantics", "slug": "html/element-tags#interactive-playground-table-semantics", "order": 11 }
       ]
     },
     {
@@ -59,7 +59,7 @@
         { "id": "datalist", "type": "subSection", "title": "Datalist", "slug": "html/form-input#datalist", "order": 12 },
         { "id": "textarea", "type": "subSection", "title": "Textarea", "slug": "html/form-input#textarea", "order": 13 },
         { "id": "submit", "type": "subSection", "title": "Submit", "slug": "html/form-input#submit", "order": 14 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/form-input#interactive-playground", "order": 15 }
+        { "id": "interactive-playground-form-name-value-mapping", "type": "subSection", "title": "Interactive Playground: Form Name/Value Mapping", "slug": "html/form-input#interactive-playground-form-namevalue-mapping", "order": 15 }
       ]
     },
     {
@@ -74,7 +74,7 @@
         { "id": "matching-a-pattern", "type": "subSection", "title": "Matching A Pattern", "slug": "html/form-validation#matching-a-pattern", "order": 3 },
         { "id": "client-side-validation", "type": "subSection", "title": "Client Side Validation", "slug": "html/form-validation#client-side-validation", "order": 4 },
         { "id": "back-end-validation", "type": "subSection", "title": "Back End Validation", "slug": "html/form-validation#back-end-validation", "order": 5 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/form-validation#interactive-playground", "order": 6 }
+        { "id": "interactive-playground-native-constraints", "type": "subSection", "title": "Interactive Playground: Native Constraints", "slug": "html/form-validation#interactive-playground-native-constraints", "order": 6 }
       ]
     },
     {
@@ -95,7 +95,7 @@
         { "id": "figure", "type": "subSection", "title": "Figure", "slug": "html/semantic-html#figure", "order": 10 },
         { "id": "figcaption", "type": "subSection", "title": "Figcaption", "slug": "html/semantic-html#figcaption", "order": 11 },
         { "id": "audio", "type": "subSection", "title": "Audio", "slug": "html/semantic-html#audio", "order": 12 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/semantic-html#interactive-playground", "order": 13 }
+        { "id": "interactive-playground-semantic-landmarks", "type": "subSection", "title": "Interactive Playground: Semantic Landmarks", "slug": "html/semantic-html#interactive-playground-semantic-landmarks", "order": 13 }
       ]
     },
     {
@@ -116,7 +116,7 @@
         { "id": "alt-attribute", "type": "subSection", "title": "Alt Attribute", "slug": "html/digital-accessibility#alt-attribute", "order": 10 },
         { "id": "screen-readers", "type": "subSection", "title": "Screen Readers", "slug": "html/digital-accessibility#screen-readers", "order": 11 },
         { "id": "tools-and-resources", "type": "subSection", "title": "Tools And Resources", "slug": "html/digital-accessibility#tools-and-resources", "order": 12 },
-        { "id": "interactive-playground", "type": "subSection", "title": "Interactive Playground", "slug": "html/digital-accessibility#interactive-playground", "order": 13 },
+        { "id": "interactive-playground-contrast-checker", "type": "subSection", "title": "Interactive Playground: Contrast Checker", "slug": "html/digital-accessibility#interactive-playground-contrast-checker", "order": 13 },
         { "id": "interactive-playground-text-quality", "type": "subSection", "title": "Interactive Playground: Text Quality", "slug": "html/digital-accessibility#interactive-playground-text-quality", "order": 14 }
       ]
     },

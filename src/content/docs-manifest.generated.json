@@ -1883,9 +1883,9 @@
               "order": 4
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/html-document#interactive-playground",
+              "id": "interactive-playground-document-structure",
+              "title": "Interactive Playground: Document Structure",
+              "slug": "html/html-document#interactive-playground-document-structure",
               "order": 5
             }
           ],
@@ -1958,9 +1958,9 @@
               "order": 10
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/element-tags#interactive-playground",
+              "id": "interactive-playground-table-semantics",
+              "title": "Interactive Playground: Table Semantics",
+              "slug": "html/element-tags#interactive-playground-table-semantics",
               "order": 11
             }
           ],
@@ -2057,9 +2057,9 @@
               "order": 14
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/form-input#interactive-playground",
+              "id": "interactive-playground-form-namevalue-mapping",
+              "title": "Interactive Playground: Form Name/Value Mapping",
+              "slug": "html/form-input#interactive-playground-form-namevalue-mapping",
               "order": 15
             }
           ],
@@ -2102,9 +2102,9 @@
               "order": 5
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/form-validation#interactive-playground",
+              "id": "interactive-playground-native-constraints",
+              "title": "Interactive Playground: Native Constraints",
+              "slug": "html/form-validation#interactive-playground-native-constraints",
               "order": 6
             }
           ],
@@ -2183,9 +2183,9 @@
               "order": 11
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/semantic-html#interactive-playground",
+              "id": "interactive-playground-semantic-landmarks",
+              "title": "Interactive Playground: Semantic Landmarks",
+              "slug": "html/semantic-html#interactive-playground-semantic-landmarks",
               "order": 12
             }
           ],
@@ -2264,9 +2264,9 @@
               "order": 11
             },
             {
-              "id": "interactive-playground",
-              "title": "Interactive Playground",
-              "slug": "html/digital-accessibility#interactive-playground",
+              "id": "interactive-playground-contrast-checker",
+              "title": "Interactive Playground: Contrast Checker",
+              "slug": "html/digital-accessibility#interactive-playground-contrast-checker",
               "order": 12
             },
             {
