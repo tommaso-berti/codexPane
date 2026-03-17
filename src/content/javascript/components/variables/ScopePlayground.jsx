@@ -1,84 +1,123 @@
-import * as React from "react";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Switch, Typography, Paper } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    Button,
+    FormControl,
+    FormControlLabel,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    Switch,
+    Typography
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 export default function ScopePlayground() {
-    const [kind, setKind] = React.useState("let");
-    const [useBlock, setUseBlock] = React.useState(true);
-    const [reassign, setReassign] = React.useState(true);
-    const [output, setOutput] = React.useState("");
+    const [kind, setKind] = useState("let");
+    const [useBlock, setUseBlock] = useState(true);
+    const [reassign, setReassign] = useState(true);
+    const [result, setResult] = useState({ output: "Run to evaluate", checks: [] });
 
-    const code = React.useMemo(() => {
-        const decl = kind === "const" ? `const x = 1;` : `${kind} x = 1;`;
-        const reassignLine = reassign ? `x = 2;` : `// no reassignment`;
-        if (useBlock) {
-            return `// ${kind} inside a block vs outside
-${decl}
-{
-  ${kind} x = 99; // shadowing if let/const, redeclare if var
-  console.log("inner x =", x);
-}
-${reassignLine}
-console.log("outer x =", x);`;
-        }
-        return `// single scope with ${kind}
-${decl}
-${reassignLine}
-console.log("x =", x);`;
-    }, [kind, useBlock, reassign]);
+    const code = useMemo(() => {
+        const declaration = kind === "const" ? "const x = 1;" : `${kind} x = 1;`;
+        const blockLine = useBlock ? `${kind} x = 99;\n  console.log('inner x =', x);` : "console.log('no inner block');";
+        const reassignLine = reassign ? "x = 2;" : "// no reassignment";
 
-    function run() {
+        return `${declaration}\n${useBlock ? `{\n  ${blockLine}\n}` : ""}\n${reassignLine}\nconsole.log('outer x =', x);`;
+    }, [kind, reassign, useBlock]);
+
+    const run = () => {
         const logs = [];
+        const checks = [];
         const originalLog = console.log;
+
         try {
             console.log = (...args) => logs.push(args.join(" "));
             // eslint-disable-next-line no-new-func
-            const fn = new Function(code);
-            fn();
-            setOutput(logs.join("\n") || "(no output)");
-        } catch (e) {
-            setOutput(`${e.name}: ${e.message}`);
+            new Function(code)();
+            checks.push({ ok: true, text: "Code executed successfully" });
+        } catch (error) {
+            logs.push(`${error.name}: ${error.message}`);
+            checks.push({ ok: false, text: `${error.name}: ${error.message}` });
         } finally {
             console.log = originalLog;
         }
-    }
+
+        checks.push({
+            ok: !(kind === "const" && reassign),
+            text: kind === "const" && reassign ? "const cannot be reassigned" : "Reassignment rule respected"
+        });
+
+        setResult({ output: logs.join("\n") || "(no output)", checks });
+    };
 
     return (
-        <Paper elevation={2} sx={{ p: 2, borderRadius: 3 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Scope Playground</Typography>
-            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 2, mb: 2 }}>
-                <FormControl size="small">
-                    <InputLabel id="kind">Declaration</InputLabel>
-                    <Select labelId="kind" value={kind} label="Declaration" onChange={(e) => setKind(e.target.value)}>
-                        <MenuItem value="var">var</MenuItem>
-                        <MenuItem value="let">let</MenuItem>
-                        <MenuItem value="const">const</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl size="small">
-                    <InputLabel id="reassign">Reassign</InputLabel>
-                    <Select labelId="reassign" value={String(reassign)} label="Reassign" onChange={(e) => setReassign(e.target.value === "true")}>
-                        <MenuItem value="true">Yes</MenuItem>
-                        <MenuItem value="false">No</MenuItem>
-                    </Select>
-                </FormControl>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <Typography variant="body2">Use block</Typography>
-                    <Switch checked={useBlock} onChange={(e) => setUseBlock(e.target.checked)} />
-                </Box>
-            </Box>
+        <PlaygroundShell
+            title="Scope and Hoisting Playground"
+            goal="See how declaration type, block scope, and reassignment rules change runtime behavior."
+            status={{ color: kind === "const" && reassign ? "warning" : "info", label: kind }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 640 }}>
+                    <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                        <FormControl size="small" sx={{ minWidth: 180 }}>
+                            <InputLabel id="scope-kind-label">Declaration</InputLabel>
+                            <Select labelId="scope-kind-label" label="Declaration" value={kind} onChange={(event) => setKind(event.target.value)}>
+                                <MenuItem value="var">var</MenuItem>
+                                <MenuItem value="let">let</MenuItem>
+                                <MenuItem value="const">const</MenuItem>
+                            </Select>
+                        </FormControl>
 
-            <Box sx={{ display: "grid", gridTemplateColumns: "1fr", gap: 2 }}>
-                <Box component="pre" sx={{ p: 2, bgcolor: "#0b1020", color: "#e6e6e6", borderRadius: 2, overflowX: "auto" }}>
-                    {`${code}`}
-                </Box>
-                <Button variant="contained" onClick={run}>Run</Button>
-                <Box>
-                    <Typography variant="subtitle2" gutterBottom>Output</Typography>
-                    <Box component="pre" sx={{ p: 2, bgcolor: "#0f172a", color: "#d1d5db", borderRadius: 2, minHeight: 80, whiteSpace: "pre-wrap" }}>
-                        {output}
-                    </Box>
-                </Box>
-            </Box>
-        </Paper>
+                        <FormControlLabel
+                            control={<Switch checked={useBlock} onChange={(event) => setUseBlock(event.target.checked)} />}
+                            label="Use inner block"
+                        />
+
+                        <FormControlLabel
+                            control={<Switch checked={reassign} onChange={(event) => setReassign(event.target.checked)} />}
+                            label="Try reassignment"
+                        />
+                    </Stack>
+
+                    <Button variant="contained" onClick={run} sx={{ width: "fit-content" }}>Run</Button>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Generated code</Typography>
+                    <Box component="pre" sx={{ m: "8px 0 0", fontSize: 12, lineHeight: 1.55, whiteSpace: "pre-wrap" }}>{code}</Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Paper
+                        variant="outlined"
+                        sx={(theme) => ({
+                            p: 1.2,
+                            borderRadius: 2,
+                            bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                        })}
+                    >
+                        <Typography variant="caption" color="text.secondary">Runtime output</Typography>
+                        <Box component="pre" sx={{ m: "8px 0 0", fontSize: 12, lineHeight: 1.55, whiteSpace: "pre-wrap" }}>{result.output}</Box>
+                    </Paper>
+                    {result.checks.map((item) => (
+                        <Alert key={item.text} severity={item.ok ? "success" : "warning"} variant="outlined">{item.text}</Alert>
+                    ))}
+                </Stack>
+            }
+            note="`var` is function-scoped, while `let` and `const` are block-scoped. `const` also forbids reassignment."
+        />
     );
 }

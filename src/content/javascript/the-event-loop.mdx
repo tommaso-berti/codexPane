@@ -172,7 +172,11 @@ console.log('B');
 
 **Attention:** A long-running synchronous loop blocks *everything*, preventing even microtasks from running until it finishes.
 
-## Event loop playground
+## Interactive Playground: Event Loop Ordering
+**Why this matters:** understanding queue order prevents timing bugs in asynchronous code.
+
+**What to try:** run each scenario and compare sync, microtask, and macrotask ordering.
+
 import EventLoopPlayground from "./components/the-event-loop/EventLoopPlayground.jsx"
 
 <EventLoopPlayground />
@@ -366,7 +370,11 @@ Garbage collection frequency and pauses affect performance. High **object churn*
 
 ---
 
-## Memory leaks playground
+## Interactive Playground: Memory Reachability
+**Why this matters:** memory leaks happen when objects stay reachable longer than intended.
+
+**What to try:** toggle references A/B and observe when the object becomes collectible.
+
 import MemoryGraphDemo from "./components/the-event-loop/MemoryGraphDemo.jsx"
 
 <MemoryGraphDemo />

@@ -1,144 +1,82 @@
-import React, { useMemo, useState } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
-
-function makePerson(name) {
-    return { name };
-}
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Button,
+    Paper,
+    Stack,
+    Typography
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 export default function MemoryGraphDemo() {
-    const [log, setLog] = useState([]);
-    const [personRefA, setPersonRefA] = useState(null);
-    const [personRefB, setPersonRefB] = useState(null);
-    const [primitiveA, setPrimitiveA] = useState("Hi");
-    const [primitiveB, setPrimitiveB] = useState("Hi");
+    const [hasARef, setHasARef] = useState(true);
+    const [hasBRef, setHasBRef] = useState(false);
+    const [shareRef, setShareRef] = useState(false);
 
-    const heap = useMemo(() => {
-        const entries = [];
-        if (personRefA) entries.push({ id: "obj1", label: JSON.stringify(personRefA) });
-        if (personRefB && personRefB === personRefA) {
-            // same object — do not duplicate in list
-        } else if (personRefB) {
-            entries.push({ id: "obj2", label: JSON.stringify(personRefB) });
-        }
-        return entries;
-    }, [personRefA, personRefB]);
+    const state = useMemo(() => {
+        const reachableFromA = hasARef;
+        const reachableFromB = hasBRef;
+        const totalRefs = (hasARef ? 1 : 0) + (hasBRef ? 1 : 0);
 
-    function append(msg) {
-        setLog((l) => [...l, msg]);
-    }
+        return {
+            totalRefs,
+            collectible: totalRefs === 0,
+            description:
+                totalRefs === 0
+                    ? "No references remain: object is eligible for garbage collection."
+                    : `Object is still reachable through ${totalRefs} reference${totalRefs > 1 ? "s" : ""}.`,
+            relation: shareRef && hasARef && hasBRef ? "A and B point to the same heap object." : "References are independent or missing."
+        };
+    }, [hasARef, hasBRef, shareRef]);
 
     return (
-        <Stack spacing={2}>
-            <Typography variant="h6">Stack vs heap quick demo</Typography>
-
-            <Box>
-                <Typography variant="subtitle2">Primitives copy by value</Typography>
-                <Stack direction="row" spacing={1}>
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            setPrimitiveB(primitiveA); // copy current value
-                            append(`primitiveB = "${primitiveA}" (copied)`);
-                        }}
-                    >
-                        copy primitive
-                    </Button>
+        <PlaygroundShell
+            title="Memory Reachability Playground"
+            goal="Understand when heap objects become collectible based on active references."
+            status={{ color: state.collectible ? "success" : "warning", label: `${state.totalRefs} refs` }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 640 }}>
+                    <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+                        <Button variant={hasARef ? "contained" : "outlined"} onClick={() => setHasARef((v) => !v)}>Toggle ref A</Button>
+                        <Button variant={hasBRef ? "contained" : "outlined"} onClick={() => setHasBRef((v) => !v)}>Toggle ref B</Button>
+                        <Button variant={shareRef ? "contained" : "outlined"} onClick={() => setShareRef((v) => !v)}>Toggle shared ref</Button>
+                    </Stack>
                     <Button
                         variant="outlined"
                         onClick={() => {
-                            setPrimitiveA((s) => s + "!");
-                            append("primitiveA mutated (B unaffected)");
+                            setHasARef(true);
+                            setHasBRef(false);
+                            setShareRef(false);
                         }}
+                        sx={{ width: "fit-content" }}
                     >
-                        mutate A
+                        Reset
                     </Button>
                 </Stack>
-                <Typography variant="body2">A: {primitiveA} — B: {primitiveB}</Typography>
-            </Box>
-
-            <Box>
-                <Typography variant="subtitle2">Objects copy references</Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap">
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            const p = makePerson("Aaliyah");
-                            setPersonRefA(p);
-                            append("created obj and stored reference in A");
-                        }}
-                    >
-                        new object → A
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => {
-                            setPersonRefB(personRefA);
-                            append("B now references the same object as A");
-                        }}
-                        disabled={!personRefA}
-                    >
-                        B = A
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => {
-                            if (personRefA) {
-                                personRefA.name = "Sarah";
-                                setPersonRefA({ ...personRefA }); // re-render
-                                if (personRefB) setPersonRefB({ ...personRefA });
-                                append("mutated heap object via A (B sees change if same ref)");
-                            }
-                        }}
-                        disabled={!personRefA}
-                    >
-                        mutate object
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        color="warning"
-                        onClick={() => {
-                            setPersonRefA(null);
-                            append("A dropped its reference (object collectible if no others)");
-                        }}
-                        disabled={!personRefA}
-                    >
-                        drop A
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        color="warning"
-                        onClick={() => {
-                            setPersonRefB(null);
-                            append("B dropped its reference");
-                        }}
-                        disabled={!personRefB}
-                    >
-                        drop B
-                    </Button>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Reference graph</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                        A =&gt; {hasARef ? "object" : "null"} | B =&gt; {hasBRef ? (shareRef && hasARef ? "same object" : "object") : "null"}
+                    </Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity={state.collectible ? "success" : "warning"} variant="outlined">{state.description}</Alert>
+                    <Alert severity="info" variant="outlined">{state.relation}</Alert>
                 </Stack>
-
-                <Box sx={{ mt: 1, p: 2, bgcolor: "#f9fafb", borderRadius: 2 }}>
-                    <Typography variant="subtitle2">Heap objects</Typography>
-                    {heap.length === 0 ? (
-                        <Typography variant="body2">∅ (no reachable objects)</Typography>
-                    ) : (
-                        heap.map((n) => (
-                            <Typography key={n.id} variant="body2">• {n.label}</Typography>
-                        ))
-                    )}
-                </Box>
-            </Box>
-
-            <Box sx={{ mt: 1, p: 2, bgcolor: "#fff7ed", borderRadius: 2 }}>
-                <Typography variant="subtitle2">Log</Typography>
-                <Box component="pre" sx={{ whiteSpace: "pre-wrap", fontSize: 12, m: 0 }}>
-                    {log.map((l, i) => `${i + 1}. ${l}`).join("\n")}
-                </Box>
-            </Box>
-
-            <Typography variant="caption" color="text.secondary">
-                Tip: clear intervals and remove listeners when not needed to avoid leaks.
-            </Typography>
-        </Stack>
+            }
+            note="Garbage collection depends on reachability, not on whether a variable name still exists in source code."
+        />
     );
 }

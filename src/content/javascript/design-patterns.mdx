@@ -284,7 +284,11 @@ Anti-patterns are ineffective solutions that lead to problems like namespace pol
 - **Global namespace pollution** — too many globals.
 - **Modifying the object prototype** — altering the root `Object.prototype` affects all objects; avoid this.
 
-## Proxy playground
+## Interactive Playground: Proxy Cache Interception
+**Why this matters:** proxies add behavior like caching and logging without changing core objects.
+
+**What to try:** query the same key twice to compare cache miss and cache hit paths.
+
 import ProxyPlayground from "./components/design-patterns/ProxyPlayground.jsx"
 
 <ProxyPlayground />

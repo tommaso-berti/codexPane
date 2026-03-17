@@ -1,52 +1,84 @@
 import { useMemo, useState } from "react";
+import {
+    Alert,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    TextField,
+    Typography
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const card = { border: "1px solid #e5e7eb", borderRadius: "12px", padding: "12px" };
-const code = { background: "#0b1020", color: "#e5e7eb", borderRadius: 8, padding: "10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace", fontSize: 13, overflowX: "auto" };
-const label = { fontSize: 12, color: "#374151" };
-
-function addTwo(x){ return x + 2; }
-function double(x){ return x * 2; }
+const CALLBACKS = {
+    addTwo: { label: "addTwo(x)", fn: (x) => x + 2 },
+    double: { label: "double(x)", fn: (x) => x * 2 }
+};
 
 export default function CallbackTracer() {
-    const [fn, setFn] = useState("addTwo");
-    const [val, setVal] = useState(5);
+    const [callbackKey, setCallbackKey] = useState("addTwo");
+    const [value, setValue] = useState(5);
 
     const trace = useMemo(() => {
-        const cb = fn === "addTwo" ? addTwo : double;
-        const before = Number(val);
-        const after = cb(before);
+        const callback = CALLBACKS[callbackKey].fn;
+        const input = Number(value);
+        const output = callback(input);
+
         return [
-            `higherOrderFunc(cb, ${before})`,
-            `↳ invoking ${cb.name}(${before})`,
-            `↳ ${cb.name} returned ${after}`,
-            `→ final result: ${after}`
-        ].join("\n");
-    }, [fn, val]);
+            `higherOrderFunc(callback, ${input})`,
+            `-> callback(${input})`,
+            `-> returns ${output}`,
+            `final result = ${output}`
+        ];
+    }, [callbackKey, value]);
 
     return (
-        <div style={card}>
-            <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:8}}>
-                <div>
-                    <div style={label}>Callback function</div>
-                    <select value={fn} onChange={e=>setFn(e.target.value)} style={{width:"100%"}}>
-                        <option value="addTwo">addTwo(x) → x + 2</option>
-                        <option value="double">double(x) → x * 2</option>
-                    </select>
-                </div>
-                <div>
-                    <div style={label}>Value</div>
-                    <input type="number" value={val} onChange={e=>setVal(e.target.value)} style={{width:"100%"}} />
-                </div>
-            </div>
+        <PlaygroundShell
+            title="Callback Invocation Trace Playground"
+            goal="See how a higher-order function receives and invokes a callback reference."
+            status={{ color: "info", label: CALLBACKS[callbackKey].label }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 620 }}>
+                    <FormControl size="small" sx={{ minWidth: 220 }}>
+                        <InputLabel id="callback-label">Callback</InputLabel>
+                        <Select labelId="callback-label" label="Callback" value={callbackKey} onChange={(event) => setCallbackKey(event.target.value)}>
+                            {Object.entries(CALLBACKS).map(([key, valueItem]) => (
+                                <MenuItem key={key} value={key}>{valueItem.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-            <div style={{marginTop:10}}>
-                <div style={{...label, marginBottom:6}}><strong>Invocation trace</strong></div>
-                <pre style={code}>{trace}</pre>
-            </div>
-
-            <div style={{...label, marginTop:6}}>
-                Pass the <em>function itself</em> (no parentheses) to avoid passing its return value.
-            </div>
-        </div>
+                    <TextField size="small" type="number" label="Input value" value={value} onChange={(event) => setValue(Number(event.target.value))} />
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Invocation trace</Typography>
+                    <Stack spacing={0.4} sx={{ mt: 1 }}>
+                        {trace.map((line) => (
+                            <Typography key={line} variant="body2" sx={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+                                {line}
+                            </Typography>
+                        ))}
+                    </Stack>
+                </Paper>
+            }
+            output={
+                <Alert severity="success" variant="outlined">
+                    Callback output: {trace[trace.length - 1].replace("final result = ", "")}
+                </Alert>
+            }
+            note="Pass the function reference (without parentheses). Calling it immediately passes a value, not a callback."
+        />
     );
 }

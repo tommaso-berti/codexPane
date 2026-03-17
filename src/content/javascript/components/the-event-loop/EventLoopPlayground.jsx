@@ -1,211 +1,101 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import {
-    Box,
-    Stack,
-    Button,
-    Card,
-    CardHeader,
-    CardContent,
-    CardActions,
-    Tabs,
-    Tab,
-    Paper,
-    Typography,
-    Divider,
-    IconButton,
-    Chip,
-    Snackbar,
     Alert,
-    Tooltip
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    Typography
 } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import ClearAllIcon from "@mui/icons-material/ClearAll";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import BoltIcon from "@mui/icons-material/Bolt";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const SCENES = [
-    {
-        id: "timers",
-        label: "Timers and microtasks",
-        icon: <AccessTimeIcon fontSize="small" />,
-        code: `// Timers vs microtasks ordering
-console.log("A: start");
-setTimeout(() => console.log("timeout (0ms)"), 0);          // macrotask
-setTimeout(() => console.log("timeout (10ms)"), 10);        // macrotask
-Promise.resolve().then(() => console.log("microtask: then"));// microtask
-queueMicrotask(() => console.log("microtask: queueMicrotask"));
-console.log("B: end of synchronous code");`,
+const SCENARIOS = {
+    timers: {
+        label: "Timers + microtasks",
+        order: ["sync: A", "sync: B", "microtask: Promise.then", "macrotask: setTimeout"],
+        summary: "Microtasks run before timers once the stack is empty."
     },
-    {
-        id: "io",
-        label: "Simulated fetch",
-        icon: <CloudDownloadIcon fontSize="small" />,
-        code: `// A fake fetch that resolves after 100ms
-console.log("fetch: start (simulated)");
-await new Promise(r => setTimeout(r, 100)); // macrotask completes later
-console.log("fetch: response ready");
-await Promise.resolve().then(() => console.log("then after fetch (microtask)"));`,
+    io: {
+        label: "Async I/O callback",
+        order: ["sync: request start", "macrotask: response callback", "microtask: follow-up then"],
+        summary: "I/O callback enters queue later, then microtasks flush before the next macrotask."
     },
-    {
-        id: "block",
-        label: "Block the thread",
-        icon: <BoltIcon fontSize="small" />,
-        code: `// Busy loop that blocks the event loop ~300ms
-console.log("⚠ blocking for ~300ms...");
-const start = performance.now();
-while (performance.now() - start < 300) { /* blocking */ }
-console.log("✅ block finished");`,
-    },
-];
-
-function CodeBlock({ code, onCopy }) {
-    return (
-        <Paper variant="outlined" sx={{ p: 2, bgcolor: "grey.50", position: "relative", overflow: "auto" }}>
-            <Box sx={{ position: "absolute", top: 8, right: 8 }}>
-                <Tooltip title="Copy code">
-                    <IconButton size="small" onClick={onCopy}>
-                        <ContentCopyIcon fontSize="inherit" />
-                    </IconButton>
-                </Tooltip>
-            </Box>
-            <Typography component="pre" sx={{ m: 0, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 13, whiteSpace: "pre" }}>
-                {code.split("\n").map((line, i) => (
-                    `${String(i + 1).padStart(2, " ")}  ${line}`
-                )).join("\n")}
-            </Typography>
-        </Paper>
-    );
-}
+    blocking: {
+        label: "Blocking loop",
+        order: ["sync: start block", "sync: long loop running", "sync: block ends", "queued callbacks run after block"],
+        summary: "Long synchronous work delays all queued tasks."
+    }
+};
 
 export default function EventLoopPlayground() {
-    const [scene, setScene] = useState(SCENES[0].id);
-    const [logs, setLogs] = useState([]);
-    const [snack, setSnack] = useState("");
-    const idRef = useRef(0);
+    const [scenario, setScenario] = useState("timers");
+    const [ran, setRan] = useState(false);
 
-    const current = useMemo(() => SCENES.find(s => s.id === scene), [scene]);
-
-    const push = useCallback((msg, kind = "sync") => {
-        setLogs(prev => [...prev, { id: idRef.current++, msg, kind, t: new Date().toLocaleTimeString() }]);
-    }, []);
-
-    // Runners implement the behavior reflected in the code preview
-    const runTimers = useCallback(() => {
-        push("A: start", "sync");
-        setTimeout(() => push("timeout (0ms)", "macro"), 0);
-        setTimeout(() => push("timeout (10ms)", "macro"), 10);
-        Promise.resolve().then(() => push("microtask: then", "micro"));
-        queueMicrotask(() => push("microtask: queueMicrotask", "micro"));
-        push("B: end of synchronous code", "sync");
-    }, [push]);
-
-    const runIO = useCallback(async () => {
-        push("fetch: start (simulated)", "sync");
-        await new Promise(r => setTimeout(r, 100));
-        push("fetch: response ready", "macro");
-        await Promise.resolve().then(() => push("then after fetch (microtask)", "micro"));
-    }, [push]);
-
-    const runBlock = useCallback(() => {
-        push("⚠ blocking for ~300ms...", "sync");
-        const start = performance.now();
-        while (performance.now() - start < 300) { /* busy */ }
-        push("✅ block finished", "sync");
-    }, [push]);
-
-    const run = useCallback(() => {
-        if (scene === "timers") runTimers();
-        else if (scene === "io") runIO();
-        else runBlock();
-    }, [scene, runTimers, runIO, runBlock]);
-
-    const clear = () => setLogs([]);
-
-    const chipColor = (kind) =>
-        kind === "micro" ? "success" : kind === "macro" ? "primary" : "default";
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(current.code);
-        setSnack("Code copied to clipboard");
-    };
+    const selected = useMemo(() => SCENARIOS[scenario], [scenario]);
 
     return (
-        <Card sx={{ borderRadius: 3, boxShadow: 3 }}>
-            <CardHeader
-                title="Event loop playground"
-                subheader="Preview the code, then run it and observe the order (sync → microtasks → macrotasks)."
-            />
-            <CardContent>
-                <Tabs
-                    value={scene}
-                    onChange={(_, v) => setScene(v)}
-                    variant="scrollable"
-                    allowScrollButtonsMobile
-                    sx={{ mb: 2 }}
+        <PlaygroundShell
+            title="Event Loop Ordering Playground"
+            goal="See the execution order between synchronous code, microtasks, and macrotasks."
+            status={{ color: ran ? "success" : "info", label: selected.label }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 620 }}>
+                    <FormControl size="small" sx={{ minWidth: 240 }}>
+                        <InputLabel id="event-loop-scenario-label">Scenario</InputLabel>
+                        <Select
+                            labelId="event-loop-scenario-label"
+                            label="Scenario"
+                            value={scenario}
+                            onChange={(event) => setScenario(event.target.value)}
+                        >
+                            {Object.entries(SCENARIOS).map(([key, value]) => (
+                                <MenuItem key={key} value={key}>{value.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setRan(true)}>Run</Button>
+                        <Button variant="outlined" onClick={() => setRan(false)}>Clear</Button>
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
                 >
-                    {SCENES.map((s) => (
-                        <Tab key={s.id} value={s.id} icon={s.icon} iconPosition="start" label={s.label} />
-                    ))}
-                </Tabs>
-
-                <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                    {/* Code preview */}
-                    <Box sx={{ flex: 1, minWidth: 280 }}>
-                        <Typography variant="subtitle2" gutterBottom>Code preview</Typography>
-                        <CodeBlock code={current.code} onCopy={handleCopy} />
-                    </Box>
-
-                    {/* Output log */}
-                    <Box sx={{ flex: 1, minWidth: 280 }}>
-                        <Typography variant="subtitle2" gutterBottom>Log</Typography>
-                        <Paper variant="outlined" sx={{ p: 1.5, height: 240, overflow: "auto", bgcolor: "grey.50" }}>
-                            {logs.length === 0 ? (
-                                <Typography variant="body2" color="text.secondary">No events yet. Click “Run”.</Typography>
-                            ) : (
-                                <Stack spacing={0.75}>
-                                    {logs.map((l) => (
-                                        <Stack key={l.id} direction="row" alignItems="center" spacing={1}>
-                                            <Typography variant="caption" color="text.secondary" sx={{ minWidth: 82 }}>{l.t}</Typography>
-                                            <Chip size="small" label={l.kind} color={chipColor(l.kind)} variant="outlined" />
-                                            <Typography variant="body2" sx={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
-                                                {l.msg}
-                                            </Typography>
-                                        </Stack>
-                                    ))}
-                                </Stack>
-                            )}
+                    <Typography variant="caption" color="text.secondary">Ordering rule</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>{selected.summary}</Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    {!ran ? (
+                        <Alert severity="info" variant="outlined">Run the scenario to reveal execution order.</Alert>
+                    ) : (
+                        <Paper variant="outlined" sx={{ p: 1.2, borderRadius: 2 }}>
+                            <Typography variant="caption" color="text.secondary">Observed order</Typography>
+                            <Stack spacing={0.4} sx={{ mt: 1 }}>
+                                {selected.order.map((line, index) => (
+                                    <Typography key={line} variant="body2" sx={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+                                        {index + 1}. {line}
+                                    </Typography>
+                                ))}
+                            </Stack>
                         </Paper>
-                    </Box>
+                    )}
                 </Stack>
-            </CardContent>
-
-            <Divider />
-            <CardActions sx={{ p: 2, justifyContent: "space-between" }}>
-                <Stack direction="row" spacing={1.5}>
-                    <Button variant="contained" color="primary" startIcon={<PlayArrowIcon />} onClick={run}>
-                        Run
-                    </Button>
-                    <Button variant="outlined" color="inherit" startIcon={<ClearAllIcon />} onClick={clear}>
-                        Clear
-                    </Button>
-                </Stack>
-                <Typography variant="caption" color="text.secondary">
-                    Tip: microtasks (Promises) run before timers once the call stack is clear.
-                </Typography>
-            </CardActions>
-
-            <Snackbar
-                open={!!snack}
-                autoHideDuration={2000}
-                onClose={() => setSnack("")}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            >
-                <Alert severity="success" variant="filled" sx={{ width: "100%" }}>
-                    {snack}
-                </Alert>
-            </Snackbar>
-        </Card>
+            }
+            note="Reasoning about task queues helps prevent timing bugs and UI jank."
+        />
     );
 }

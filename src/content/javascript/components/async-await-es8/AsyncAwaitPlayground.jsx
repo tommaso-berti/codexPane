@@ -1,251 +1,122 @@
 import { useMemo, useState } from "react";
 import {
-    Button,
-    Stack,
-    Snackbar,
     Alert,
-    Typography,
-    Chip,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    IconButton,
-    Tooltip
+    Button,
+    FormControl,
+    FormControlLabel,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    Switch,
+    Typography
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const ms = (n) => new Promise((r) => setTimeout(r, n));
-
-function task(label, time, ok = 0.8) {
-    return new Promise(async (resolve, reject) => {
-        await ms(time);
-        Math.random() < ok ? resolve(`${label} ✓ (${time}ms)`) : reject(new Error(`${label} ✗ (${time}ms)`));
-    });
-}
-
-const EXAMPLES = {
-    sequential: `// Sequential: waits for t1 then starts t2 (total ≈ t1 + t2)
-async function run() {
-  const v1 = await task("T1", 600);
-  const v2 = await task("T2", 800);
-  console.log("sequential:", v1, "|", v2);
-}
-run();`,
-    concurrent: `// Concurrent: starts both, waits for both (total ≈ max(t1,t2))
-async function run() {
-  const p1 = task("T1", 600);
-  const p2 = task("T2", 800);
-  console.log("concurrent:", await p1, "|", await p2);
-}
-run();`,
-    trycatch: `// Try/catch in async function
-async function run() {
-  try {
-    const v = await task("MayFail", 700, 0.5);
-    console.log("ok:", v);
-  } catch (e) {
-    console.error("caught:", e.message);
-  }
-}
-run();`,
-    all: `// Await Promise.all (fails fast)
-async function run() {
-  try {
-    const results = await Promise.all([
-      task("A", 500, 0.9),
-      task("B", 700, 0.9),
-      task("C", 900, 0.9)
-    ]);
-    console.log("all resolved:", results);
-  } catch (e) {
-    console.error("one failed:", e.message);
-  }
-}
-run();`
+const SCENARIOS = {
+    sequential: {
+        label: "Sequential awaits",
+        trace: ["await task A", "await task B", "total time ~ A + B"],
+        summary: "Sequential awaits are simpler but accumulate latency."
+    },
+    concurrent: {
+        label: "Concurrent awaits",
+        trace: ["start task A and B", "await both promises", "total time ~ max(A, B)"],
+        summary: "Concurrent awaits reduce total waiting when tasks are independent."
+    },
+    error: {
+        label: "Error handling",
+        trace: ["await request", "response not ok", "throw Error", "catch handles failure"],
+        summary: "Use try/catch plus response.ok guard for robust async flows."
+    }
 };
 
 export default function AsyncAwaitPlayground() {
-    const [log, setLog] = useState([]);
-    const [status, setStatus] = useState("idle"); // idle | pending | fulfilled | rejected
-    const [open, setOpen] = useState(false);
-    const [example, setExample] = useState(null); // 'sequential' | 'concurrent' | 'trycatch' | 'all'
+    const [scenario, setScenario] = useState("sequential");
+    const [useGuard, setUseGuard] = useState(true);
+    const [ran, setRan] = useState(false);
 
-    const add = (msg) =>
-        setLog((l) => [`${new Date().toLocaleTimeString()}: ${msg}`, ...l].slice(0, 14));
-
-    const copyCode = async () => {
-        if (!example) return;
-        try {
-            await navigator.clipboard.writeText(EXAMPLES[example]);
-            setOpen(true);
-        } catch {}
-    };
-
-    const runSequential = async () => {
-        setExample("sequential");
-        setStatus("pending");
-        add("Sequential: start T1, then T2 after T1 finishes");
-        try {
-            const v1 = await task("T1", 600);
-            add(`then: ${v1}`);
-            const v2 = await task("T2", 800);
-            add(`then: ${v2}`);
-            setStatus("fulfilled");
-        } catch (e) {
-            add(`catch: ${e.message}`);
-            setStatus("rejected");
-        } finally {
-            setOpen(true);
+    const result = useMemo(() => {
+        const selected = SCENARIOS[scenario];
+        if (scenario !== "error") {
+            return {
+                severity: "info",
+                trace: selected.trace,
+                message: selected.summary
+            };
         }
-    };
 
-    const runConcurrent = async () => {
-        setExample("concurrent");
-        setStatus("pending");
-        add("Concurrent: start T1 and T2 together");
-        try {
-            const p1 = task("T1", 600);
-            const p2 = task("T2", 800);
-            const v1 = await p1;
-            add(`then: ${v1}`);
-            const v2 = await p2;
-            add(`then: ${v2}`);
-            setStatus("fulfilled");
-        } catch (e) {
-            add(`catch: ${e.message}`);
-            setStatus("rejected");
-        } finally {
-            setOpen(true);
+        if (useGuard) {
+            return {
+                severity: "success",
+                trace: selected.trace,
+                message: "Guard enabled: HTTP failure is converted into a catchable error."
+            };
         }
-    };
 
-    const runTryCatch = async () => {
-        setExample("trycatch");
-        setStatus("pending");
-        add("Try/catch demo: may fail");
-        try {
-            const v = await task("MayFail", 700, 0.5);
-            add(`then: ${v}`);
-            setStatus("fulfilled");
-        } catch (e) {
-            add(`catch: ${e.message}`);
-            setStatus("rejected");
-        } finally {
-            setOpen(true);
-        }
-    };
-
-    const runAll = async () => {
-        setExample("all");
-        setStatus("pending");
-        add("Promise.all: run A, B, C together");
-        try {
-            const results = await Promise.all([
-                task("A", 500, 0.9),
-                task("B", 700, 0.9),
-                task("C", 900, 0.9)
-            ]);
-            add(`all resolved: ${results.join(" | ")}`);
-            setStatus("fulfilled");
-        } catch (e) {
-            add(`all rejected: ${e.message}`);
-            setStatus("rejected");
-        } finally {
-            setOpen(true);
-        }
-    };
-
-    const color =
-        status === "fulfilled"
-            ? "success"
-            : status === "rejected"
-                ? "error"
-                : status === "pending"
-                    ? "warning"
-                    : "default";
-
-    const code = useMemo(
-        () => (example ? EXAMPLES[example] : "// Choose an example to run…"),
-        [example]
-    );
+        return {
+            severity: "warning",
+            trace: ["await request", "response not ok", "no guard used", "flow continues incorrectly"],
+            message: "Without response.ok guard, non-2xx responses may be treated as success."
+        };
+    }, [scenario, useGuard]);
 
     return (
-        <Stack spacing={2}>
-            <Typography variant="h6">Async/await experiments</Typography>
+        <PlaygroundShell
+            title="Async Await Execution Flow Playground"
+            goal="Compare sequential/concurrent awaits and understand why response guards matter."
+            status={{ color: ran ? "success" : "info", label: ran ? "last run ready" : "not run" }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 640 }}>
+                    <FormControl size="small" sx={{ minWidth: 240 }}>
+                        <InputLabel id="await-scenario-label">Scenario</InputLabel>
+                        <Select labelId="await-scenario-label" label="Scenario" value={scenario} onChange={(event) => setScenario(event.target.value)}>
+                            {Object.entries(SCENARIOS).map(([key, value]) => (
+                                <MenuItem key={key} value={key}>{value.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-            <Stack direction="row" spacing={1} flexWrap="wrap" alignItems="center">
-                <Button variant="contained" onClick={runSequential}>Sequential</Button>
-                <Button variant="contained" onClick={runConcurrent}>Concurrent</Button>
-                <Button variant="contained" onClick={runTryCatch}>Try/catch</Button>
-                <Button variant="contained" color="secondary" onClick={runAll}>Promise.all</Button>
-                <Chip label={status} color={color} />
-            </Stack>
+                    <FormControlLabel
+                        control={<Switch checked={useGuard} onChange={(event) => setUseGuard(event.target.checked)} />}
+                        label="Use response.ok guard"
+                    />
 
-            <Card variant="outlined" sx={{ borderRadius: 3 }}>
-                <CardHeader
-                    title="Currently running code"
-                    subheader={example ? `Example: ${example}` : "Pick an action to preview and run the code"}
-                    action={
-                        <Tooltip title="Copy code">
-              <span>
-                <IconButton onClick={copyCode} disabled={!example} size="small">
-                  <ContentCopyIcon fontSize="small" />
-                </IconButton>
-              </span>
-                        </Tooltip>
-                    }
-                />
-                <Divider />
-                <CardContent>
-          <pre
-              style={{
-                  margin: 0,
-                  background: "#0B1020",
-                  color: "#E6EDF3",
-                  borderRadius: 12,
-                  padding: "14px 16px",
-                  overflowX: "auto",
-                  fontSize: 13,
-                  lineHeight: 1.45,
-                  fontFamily:
-                      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-              }}
-          >
-            <code>{code}</code>
-          </pre>
-                    <Typography variant="body2" sx={{ mt: 1.5 }} color="text.secondary">
-                        The snippet above mirrors exactly what runs when you click a button.
-                    </Typography>
-                </CardContent>
-            </Card>
-
-            <Card variant="outlined" sx={{ borderRadius: 3 }}>
-                <CardHeader title="Logs" subheader="Latest first" />
-                <Divider />
-                <CardContent>
-                    <Stack spacing={0.5}>
-                        {log.length === 0 ? (
-                            <Typography color="text.secondary">Logs will appear here…</Typography>
-                        ) : (
-                            log.map((line, i) => (
-                                <Typography key={i} sx={{ fontFamily: "ui-monospace, SF Mono, Menlo, monospace" }}>
-                                    {line}
-                                </Typography>
-                            ))
-                        )}
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setRan(true)}>Run</Button>
+                        <Button variant="outlined" onClick={() => { setScenario("sequential"); setUseGuard(true); setRan(false); }}>Reset</Button>
                     </Stack>
-                </CardContent>
-            </Card>
-
-            <Snackbar open={open} autoHideDuration={1600} onClose={() => setOpen(false)}>
-                <Alert
-                    severity={status === "fulfilled" ? "success" : status === "rejected" ? "error" : "info"}
-                    variant="filled"
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
                 >
-                    {status === "fulfilled" ? "Fulfilled" : status === "rejected" ? "Rejected" : "Pending / Copied"}
-                </Alert>
-            </Snackbar>
-        </Stack>
+                    <Typography variant="caption" color="text.secondary">Flow summary</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>{result.message}</Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Paper variant="outlined" sx={{ p: 1.2, borderRadius: 2 }}>
+                        <Typography variant="caption" color="text.secondary">Execution trace</Typography>
+                        <Stack spacing={0.4} sx={{ mt: 1 }}>
+                            {result.trace.map((line) => (
+                                <Typography key={line} variant="body2" sx={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>{line}</Typography>
+                            ))}
+                        </Stack>
+                    </Paper>
+                    <Alert severity={result.severity} variant="outlined">{result.message}</Alert>
+                </Stack>
+            }
+            note="`await` improves readability, but explicit error checks still define correctness."
+        />
     );
 }

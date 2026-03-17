@@ -1,136 +1,149 @@
 import { useMemo, useState } from "react";
-
-const controlsStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
-    gap: "8px",
-    marginBottom: "12px"
-};
-const card = { border: "1px solid #e5e7eb", borderRadius: "12px", padding: "12px" };
-const label = { fontSize: 12, color: "#374151" };
-const code = { background: "#0b1020", color: "#e5e7eb", borderRadius: 8, padding: "10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace", fontSize: 13, overflowX: "auto" };
+import {
+    Alert,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    TextField,
+    Typography
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 export default function ArrayMethodsPlayground() {
-    const [raw, setRaw] = useState('["a","b","c","d","e"]');
-    const [method, setMethod] = useState("map");
-    const [mapOp, setMapOp] = useState("upper");
-    const [filterVal, setFilterVal] = useState("c");
-    const [sliceStart, setSliceStart] = useState(1);
-    const [sliceEnd, setSliceEnd] = useState(3);
-    const [spliceStart, setSpliceStart] = useState(1);
-    const [spliceDelete, setSpliceDelete] = useState(1);
+    const [rawArray, setRawArray] = useState('["a","b","c","d"]');
+    const [method, setMethod] = useState("slice");
+    const [value, setValue] = useState("1");
 
     const parsed = useMemo(() => {
-        try { return JSON.parse(raw); } catch { return null; }
-    }, [raw]);
-
-    const destructive = method === "splice";
-    const result = useMemo(() => {
-        if (!Array.isArray(parsed)) return { error: "Input must be a JSON array." };
-        const input = destructive ? [...parsed] : parsed; // show original intact but demonstrate mutation conceptually
         try {
-            switch (method) {
-                case "map":
-                    return {
-                        output: input.map(v => mapOp === "upper" && typeof v === "string" ? v.toUpperCase()
-                            : mapOp === "double" && typeof v === "number" ? v * 2
-                                : v),
-                    };
-                case "filter":
-                    return {
-                        output: input.filter(v => String(v) !== String(filterVal)),
-                    };
-                case "reduce":
-                    return {
-                        output: input.reduce((acc, v) => (typeof v === "number" ? acc + v : acc), 0),
-                    };
-                case "slice":
-                    return { output: input.slice(Number(sliceStart), Number(sliceEnd)) };
-                case "splice":
-                    const clone = [...input];
-                    const deleted = clone.splice(Number(spliceStart), Number(spliceDelete));
-                    return { output: clone, deleted };
-                default:
-                    return { output: input };
-            }
-        } catch (e) {
-            return { error: e.message };
+            const arr = JSON.parse(rawArray);
+            return Array.isArray(arr) ? arr : null;
+        } catch {
+            return null;
         }
-    }, [parsed, method, mapOp, filterVal, sliceStart, sliceEnd, spliceStart, spliceDelete, destructive]);
+    }, [rawArray]);
+
+    const analysis = useMemo(() => {
+        if (!parsed) {
+            return { error: "Input must be a valid JSON array." };
+        }
+
+        const before = [...parsed];
+
+        if (method === "slice") {
+            const start = Number(value) || 0;
+            return {
+                before,
+                after: before.slice(start),
+                mutated: false,
+                summary: "slice returns a new array and keeps the original unchanged."
+            };
+        }
+
+        if (method === "map") {
+            return {
+                before,
+                after: before.map((item) => `${item}-x`),
+                mutated: false,
+                summary: "map returns a new transformed array."
+            };
+        }
+
+        const clone = [...before];
+        clone.push(value);
+        return {
+            before,
+            after: clone,
+            mutated: true,
+            summary: "push mutates the original array by adding one element at the end."
+        };
+    }, [method, parsed, value]);
 
     return (
-        <div style={{...card}}>
-            <div style={controlsStyle}>
-                <div>
-                    <div style={label}>Input array (JSON)</div>
-                    <textarea value={raw} onChange={e=>setRaw(e.target.value)} rows={3} style={{width:"100%", fontFamily:"monospace"}} />
-                </div>
-                <div>
-                    <div style={label}>Method</div>
-                    <select value={method} onChange={e=>setMethod(e.target.value)} style={{width:"100%"}}>
-                        <option value="map">map (non-destructive)</option>
-                        <option value="filter">filter (non-destructive)</option>
-                        <option value="reduce">reduce (non-destructive)</option>
-                        <option value="slice">slice (non-destructive)</option>
-                        <option value="splice">splice (destructive)</option>
-                    </select>
-                </div>
-                {method === "map" && (
-                    <div>
-                        <div style={label}>Map operation</div>
-                        <select value={mapOp} onChange={e=>setMapOp(e.target.value)} style={{width:"100%"}}>
-                            <option value="upper">toUpperCase (strings)</option>
-                            <option value="double">×2 (numbers)</option>
-                        </select>
-                    </div>
-                )}
-                {method === "filter" && (
-                    <div>
-                        <div style={label}>Filter: remove equals</div>
-                        <input value={filterVal} onChange={e=>setFilterVal(e.target.value)} style={{width:"100%"}} />
-                    </div>
-                )}
-                {method === "slice" && (
-                    <>
-                        <div>
-                            <div style={label}>start</div>
-                            <input type="number" value={sliceStart} onChange={e=>setSliceStart(e.target.value)} style={{width:"100%"}} />
-                        </div>
-                        <div>
-                            <div style={label}>end (excluded)</div>
-                            <input type="number" value={sliceEnd} onChange={e=>setSliceEnd(e.target.value)} style={{width:"100%"}} />
-                        </div>
-                    </>
-                )}
-                {method === "splice" && (
-                    <>
-                        <div>
-                            <div style={label}>start</div>
-                            <input type="number" value={spliceStart} onChange={e=>setSpliceStart(e.target.value)} style={{width:"100%"}} />
-                        </div>
-                        <div>
-                            <div style={label}>delete count</div>
-                            <input type="number" value={spliceDelete} onChange={e=>setSpliceDelete(e.target.value)} style={{width:"100%"}} />
-                        </div>
-                    </>
-                )}
-            </div>
-            <div style={{marginTop:8}}>
-                <div style={{...label, marginBottom:6}}><strong>Before</strong> (original):</div>
-                <pre style={code}>{Array.isArray(parsed) ? JSON.stringify(parsed) : "Invalid JSON array"}</pre>
-            </div>
-            <div style={{marginTop:8}}>
-                <div style={{...label, marginBottom:6}}>
-                    <strong>After</strong> {destructive ? "(splice: destructive)" : "(non-destructive)"}:
-                </div>
-                <pre style={code}>{result.error ? result.error : JSON.stringify(result.output)}</pre>
-                {method === "splice" && (
-                    <>
-                        <div style={{...label, marginTop:6}}><strong>Deleted (splice return):</strong></div>
-                        <pre style={code}>{JSON.stringify(result.deleted)}</pre>
-                    </>
-                )}
-            </div>
-        </div>
+        <PlaygroundShell
+            title="Array Mutation vs Copy Playground"
+            goal="Compare non-destructive and destructive array methods on the same input."
+            status={{
+                color: analysis.error ? "error" : analysis.mutated ? "warning" : "success",
+                label: analysis.error ? "invalid input" : analysis.mutated ? "mutates array" : "returns copy"
+            }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 680 }}>
+                    <TextField
+                        size="small"
+                        label="Input array (JSON)"
+                        value={rawArray}
+                        onChange={(event) => setRawArray(event.target.value)}
+                    />
+
+                    <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                        <FormControl size="small" sx={{ minWidth: 180 }}>
+                            <InputLabel id="array-method-label">Method</InputLabel>
+                            <Select
+                                labelId="array-method-label"
+                                label="Method"
+                                value={method}
+                                onChange={(event) => setMethod(event.target.value)}
+                            >
+                                <MenuItem value="slice">slice (copy)</MenuItem>
+                                <MenuItem value="map">map (copy)</MenuItem>
+                                <MenuItem value="push">push (mutate)</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        <TextField
+                            size="small"
+                            label={method === "slice" ? "Slice start index" : "Value"}
+                            value={value}
+                            onChange={(event) => setValue(event.target.value)}
+                            fullWidth
+                        />
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Method behavior</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>{analysis.error || analysis.summary}</Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    {analysis.error ? (
+                        <Alert severity="error" variant="outlined">{analysis.error}</Alert>
+                    ) : (
+                        <>
+                            <Paper variant="outlined" sx={{ p: 1.2, borderRadius: 2 }}>
+                                <Typography variant="caption" color="text.secondary">Before</Typography>
+                                <Typography variant="body2" sx={{ mt: 0.5, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+                                    {JSON.stringify(analysis.before)}
+                                </Typography>
+                            </Paper>
+                            <Paper variant="outlined" sx={{ p: 1.2, borderRadius: 2 }}>
+                                <Typography variant="caption" color="text.secondary">After</Typography>
+                                <Typography variant="body2" sx={{ mt: 0.5, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+                                    {JSON.stringify(analysis.after)}
+                                </Typography>
+                            </Paper>
+                            <Alert severity={analysis.mutated ? "warning" : "success"} variant="outlined">
+                                {analysis.mutated ? "This method mutates the source array." : "This method keeps the source array unchanged."}
+                            </Alert>
+                        </>
+                    )}
+                </Stack>
+            }
+            note="Prefer non-destructive methods when you need predictable state updates, especially in UI state management."
+        />
     );
 }

@@ -2857,9 +2857,9 @@
               "order": 10
             },
             {
-              "id": "scope-playground",
-              "title": "Scope playground",
-              "slug": "javascript/variables#scope-playground",
+              "id": "interactive-playground-scope-and-hoisting-checks",
+              "title": "Interactive Playground: Scope and Hoisting Checks",
+              "slug": "javascript/variables#interactive-playground-scope-and-hoisting-checks",
               "order": 11
             }
           ],
@@ -2914,9 +2914,9 @@
               "order": 7
             },
             {
-              "id": "array-methods-playground",
-              "title": "Array methods playground",
-              "slug": "javascript/arrays#array-methods-playground",
+              "id": "interactive-playground-array-mutation-vs-copy",
+              "title": "Interactive Playground: Array Mutation vs Copy",
+              "slug": "javascript/arrays#interactive-playground-array-mutation-vs-copy",
               "order": 8
             }
           ],
@@ -2965,9 +2965,9 @@
               "order": 6
             },
             {
-              "id": "loop-visualizer-playground",
-              "title": "Loop visualizer playground",
-              "slug": "javascript/loops#loop-visualizer-playground",
+              "id": "interactive-playground-loop-traversal-trace",
+              "title": "Interactive Playground: Loop Traversal Trace",
+              "slug": "javascript/loops#interactive-playground-loop-traversal-trace",
               "order": 7
             }
           ],
@@ -3040,15 +3040,15 @@
               "order": 10
             },
             {
-              "id": "function-forms-playground",
-              "title": "Function forms playground",
-              "slug": "javascript/functions#function-forms-playground",
+              "id": "interactive-playground-function-forms-equivalence",
+              "title": "Interactive Playground: Function Forms Equivalence",
+              "slug": "javascript/functions#interactive-playground-function-forms-equivalence",
               "order": 11
             },
             {
-              "id": "callback-tracer-playground",
-              "title": "Callback tracer playground",
-              "slug": "javascript/functions#callback-tracer-playground",
+              "id": "interactive-playground-callback-invocation-trace",
+              "title": "Interactive Playground: Callback Invocation Trace",
+              "slug": "javascript/functions#interactive-playground-callback-invocation-trace",
               "order": 12
             },
             {
@@ -3625,9 +3625,9 @@
               "order": 14
             },
             {
-              "id": "event-loop-playground",
-              "title": "Event loop playground",
-              "slug": "javascript/the-event-loop#event-loop-playground",
+              "id": "interactive-playground-event-loop-ordering",
+              "title": "Interactive Playground: Event Loop Ordering",
+              "slug": "javascript/the-event-loop#interactive-playground-event-loop-ordering",
               "order": 15
             },
             {
@@ -3697,9 +3697,9 @@
               "order": 26
             },
             {
-              "id": "memory-leaks-playground",
-              "title": "Memory leaks playground",
-              "slug": "javascript/the-event-loop#memory-leaks-playground",
+              "id": "interactive-playground-memory-reachability",
+              "title": "Interactive Playground: Memory Reachability",
+              "slug": "javascript/the-event-loop#interactive-playground-memory-reachability",
               "order": 27
             }
           ],
@@ -3748,9 +3748,9 @@
               "order": 6
             },
             {
-              "id": "promises-playground",
-              "title": "Promises Playground",
-              "slug": "javascript/promises#promises-playground",
+              "id": "interactive-playground-promise-state-flow",
+              "title": "Interactive Playground: Promise State Flow",
+              "slug": "javascript/promises#interactive-playground-promise-state-flow",
               "order": 7
             }
           ],
@@ -3793,9 +3793,9 @@
               "order": 5
             },
             {
-              "id": "asyncawait-playground",
-              "title": "AsyncAwait Playground",
-              "slug": "javascript/async-await-es8#asyncawait-playground",
+              "id": "interactive-playground-async-await-execution-flow",
+              "title": "Interactive Playground: Async Await Execution Flow",
+              "slug": "javascript/async-await-es8#interactive-playground-async-await-execution-flow",
               "order": 6
             }
           ],
@@ -3898,9 +3898,9 @@
               "order": 15
             },
             {
-              "id": "proxy-playground",
-              "title": "Proxy playground",
-              "slug": "javascript/design-patterns#proxy-playground",
+              "id": "interactive-playground-proxy-cache-interception",
+              "title": "Interactive Playground: Proxy Cache Interception",
+              "slug": "javascript/design-patterns#interactive-playground-proxy-cache-interception",
               "order": 16
             }
           ],

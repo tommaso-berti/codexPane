@@ -1,68 +1,98 @@
-import React, { useMemo, useState } from "react";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Button,
+    Paper,
+    Stack,
+    TextField,
+    Typography
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-function makeCachingProxy() {
-    const store = {};
+function createProxyWithCache() {
+    const store = new Map();
+
     const target = {
-        fetchCity(code) {
-            // pretend network latency
-            return new Promise((resolve) =>
-                setTimeout(() => resolve(`Result for ${code}`), 400)
-            );
-        },
+        getData(key) {
+            return `network:${key.toUpperCase()}`;
+        }
     };
 
-    const cache = {};
-    const handler = {
-        get(t, prop, receiver) {
-            if (prop === "get") {
-                return async (code) => {
-                    if (cache[code]) return `cache → ${cache[code]}`;
-                    const res = await t.fetchCity(code);
-                    cache[code] = res;
-                    return `network → ${res}`;
-                };
+    return new Proxy(target, {
+        get(targetObj, prop, receiver) {
+            if (prop !== "read") {
+                return Reflect.get(targetObj, prop, receiver);
             }
-            return Reflect.get(t, prop, receiver);
-        },
-    };
 
-    return new Proxy(target, handler);
+            return (key) => {
+                if (store.has(key)) {
+                    return { source: "cache", value: store.get(key), cacheSize: store.size };
+                }
+                const value = targetObj.getData(key);
+                store.set(key, value);
+                return { source: "network", value, cacheSize: store.size };
+            };
+        }
+    });
 }
 
 export default function ProxyPlayground() {
-    const api = useMemo(() => makeCachingProxy(), []);
-    const [code, setCode] = useState("city1");
-    const [log, setLog] = useState([]);
+    const proxyApi = useMemo(() => createProxyWithCache(), []);
+    const [key, setKey] = useState("city1");
+    const [result, setResult] = useState({ source: "none", value: "Run a request", cacheSize: 0 });
 
-    const run = async () => {
-        const res = await api.get(code.trim());
-        setLog((l) => [`${new Date().toLocaleTimeString()}: ${res}`, ...l]);
+    const run = () => {
+        const normalized = key.trim() || "city1";
+        setResult(proxyApi.read(normalized));
     };
 
     return (
-        <Stack spacing={2}>
-            <Typography variant="h6">Proxy demo: intercept and cache</Typography>
-            <Stack direction="row" spacing={1} alignItems="center">
-                <TextField
-                    size="small"
-                    label="Key"
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                />
-                <Button variant="contained" onClick={run}>
-                    get
-                </Button>
-            </Stack>
-            <Box sx={{ p: 2, bgcolor: "#f9fafb", borderRadius: 2 }}>
-                <Typography variant="subtitle2">Logs</Typography>
-                <Box component="pre" sx={{ m: 0, whiteSpace: "pre-wrap", fontSize: 12 }}>
-                    {log.length ? log.join("\n") : "Try the same key twice to see caching."}
-                </Box>
-            </Box>
-            <Typography variant="caption" color="text.secondary">
-                Tip: Proxies can add logging, validation, rate-limits, and lazy loading without changing the target object.
-            </Typography>
-        </Stack>
+        <PlaygroundShell
+            title="Proxy Cache Interception Playground"
+            goal="Observe how a Proxy intercepts calls and adds caching without changing target logic."
+            status={{ color: result.source === "cache" ? "success" : "info", label: result.source }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 520 }}>
+                    <TextField size="small" label="Lookup key" value={key} onChange={(event) => setKey(event.target.value)} />
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={run}>Run</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => {
+                                setKey("city1");
+                                setResult({ source: "none", value: "Run a request", cacheSize: 0 });
+                            }}
+                        >
+                            Reset
+                        </Button>
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper
+                    variant="outlined"
+                    sx={(theme) => ({
+                        p: 1.3,
+                        borderRadius: 2,
+                        bgcolor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.04) : alpha(theme.palette.common.black, 0.02)
+                    })}
+                >
+                    <Typography variant="caption" color="text.secondary">Interception result</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                        Source: <strong>{result.source}</strong> | Value: <strong>{result.value}</strong>
+                    </Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity={result.source === "cache" ? "success" : "info"} variant="outlined">
+                        {result.source === "cache" ? "Cache hit: response returned without calling the target fetch." : "Cache miss: proxy delegated to target and stored the value."}
+                    </Alert>
+                    <Alert severity="info" variant="outlined">Cache size: {result.cacheSize}</Alert>
+                </Stack>
+            }
+            note="Proxy is useful when you need cross-cutting behavior (cache, logging, validation) around an existing object."
+        />
     );
 }
