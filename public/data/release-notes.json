@@ -1,24 +1,82 @@
 {
-  "generatedAt": "2026-03-16T16:21:18.324Z",
-  "latestTag": "v2.0.0",
-  "latestVersion": "2.0.0",
-  "previousTag": null,
-  "releaseType": "patch",
-  "entries": [],
-  "bodyMarkdown": "# Release Notes v2.0.0\n\n## Italiano\n\n### Panoramica\nRilascio di tipo: patch (payload.releaseType = patch). Versione: v2.0.0. Nessuna nuova funzionalità viene introdotta nel canale \"features\" per questo rilascio; le modifiche concrete sono elencate nelle sezioni sottostanti.\n\n### Novita\n- Nessuna nuova funzionalità in questo rilascio.\n\n### Correzioni\n- f3542b3 — Aggiornato l'anno del copyright nel footer a 2026.\n- f13cea4 — Correzioni relative al tema scuro e miglioramenti di styling tramite refactor dei componenti layout (menzionato come fix(#3-darkmode)).\n- 1985d9d — Corretto script di deploy.\n\n### Migliorie Tecniche\n(Comprende commit etichettati feat/refactor — elencati qui come miglioramenti tecnici per questo patch)\n- 196d6ed — Migliorato workflow di deployment: versioning, note di rilascio manuali, gestione SSH migliorata.\n- 256e3d6 — Implementata generazione e validazione del docs manifest; migliorata la resa Markdown.\n- 7011ce3 — Aggiunto supporto al colore delle icone in DocMenu e nel modulo icone.\n- 76496e9 — Migliorata la component SearchResults con raggruppamento gerarchico e rendering degli item.\n- 45ed8cc — Implementata copia link di sezione e migliorata la funzionalità breadcrumb nella documentazione.\n- 2681dd2 — Aggiunti nuovi tipi di callout e migliorata la funzionalità breadcrumb nei componenti di documentazione.\n- d17316e — Aggiunte linee guida e template per la documentazione di CodexPane.\n- 2b48ae9 — Refactor: aggiornati percorsi di import e ottimizzata gestione dello stato nei componenti di documentazione.\n- fc225c6, a073fee, bcd5f6e — Miglioramenti e workflow relativi al deploy (script, Vite, GitHub Actions).\n\n### Modifiche Incompatibili\n- Nessuna modifica di rottura identificata in questo intervallo di commit.\n\n### Note di Migrazione\n- Nessuna azione di migrazione richiesta per questo rilascio.\n\n### Limiti Noti\n- Nessun limite specifico registrato nel metadata dei commit.\n\n### Confronto e Intervallo Commit\n- Intervallo commit: 1606cb8c2fff23048569b5d5fae0777ce6c90337..v2.0.0  \n- Diff/Confronto: https://github.com/tommaso-berti/codexPane/compare/1606cb8c2fff23048569b5d5fae0777ce6c90337...v2.0.0\n\n---\n\n## English\n\n### Overview\nRelease type: patch (payload.releaseType = patch). Version: v2.0.0. No new features are presented under the \"New Features\" section for this patch; concrete changes are listed below.\n\n### New Features\n- No new features in this release.\n\n### Bug Fixes\n- f3542b3 — Update copyright year in footer to 2026.\n- f13cea4 — Dark-mode fixes and improved table/layout styling (fix(#3-darkmode)).\n- 1985d9d — Fixed deploy script.\n\n### Refactor & Engineering\n(Contains commits labeled feat/refactor consolidated as technical improvements for this patch)\n- 196d6ed — Enhanced deployment workflow: versioning, manual release notes, improved SSH handling.\n- 256e3d6 — Implemented docs manifest generation and validation; improved markdown rendering.\n- 7011ce3 — Added icon color support in DocMenu and icons module.\n- 76496e9 — Enhanced SearchResults component with hierarchical grouping and improved item rendering.\n- 45ed8cc — Implemented section link copying and enhanced breadcrumb functionality.\n- 2681dd2 — Added new callout types and improved breadcrumb behavior in documentation components.\n- d17316e — Added comprehensive documentation guidelines and templates for CodexPane.\n- 2b48ae9 — Refactor: updated import paths and optimized state management in documentation components.\n- fc225c6, a073fee, bcd5f6e — Deployment-related improvements (scripts, Vite workflow, GitHub Actions).\n\n### Breaking Changes\n- No breaking changes identified in this commit range.\n\n### Migration Notes\n- No migration steps required for this release.\n\n### Known Limitations\n- No known limitations recorded in the provided commit metadata.\n\n### Diff & Commit Range\n- Commit range: 1606cb8c2fff23048569b5d5fae0777ce6c90337..v2.0.0  \n- Compare: https://github.com/tommaso-berti/codexPane/compare/1606cb8c2fff23048569b5d5fae0777ce6c90337...v2.0.0",
-  "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.0.0",
-  "publishedAt": "2026-03-16T16:21:18.324Z",
+  "generatedAt": "2026-03-16T16:24:03.057Z",
+  "latestTag": "v2.1.0",
+  "latestVersion": "2.1.0",
+  "previousTag": "v2.0.1",
+  "releaseType": "minor",
+  "entries": [
+    {
+      "sha": "193f5ad2caad462fa8915e4ea6560c97a25b275a",
+      "subject": "feat: implement static data refresh workflow and update related scripts #minor",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/193f5ad2caad462fa8915e4ea6560c97a25b275a",
+      "author": "Tommaso Berti",
+      "date": "2026-03-16T17:22:34+01:00"
+    },
+    {
+      "sha": "8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+      "subject": "Merge remote-tracking branch 'origin/main'",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+      "author": "Tommaso Berti",
+      "date": "2026-03-16T17:18:36+01:00"
+    },
+    {
+      "sha": "e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+      "subject": "feat: add static release notes generation and deployment synchronization #patch",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+      "author": "Tommaso Berti",
+      "date": "2026-03-16T17:18:16+01:00"
+    },
+    {
+      "sha": "eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+      "subject": "docs(release): v2.0.1 artifacts #skip-deploy [skip ci]",
+      "url": "https://github.com/tommaso-berti/codexPane/commit/eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+      "author": "github-actions[bot]",
+      "date": "2026-03-16T16:14:22Z"
+    }
+  ],
+  "bodyMarkdown": "# Release Notes v2.1.0\n\n## Italiano\n### Panoramica\n- Versione: v2.1.0\n- Tipo rilascio: minor\n- Intervallo commit: v2.0.1..v2.1.0\n- Generato: 2026-03-16T16:23:19.759Z\n\n### Novita\n- Implementata la workflow di refresh dei dati statici e aggiornati gli script correlati (193f5ad).\n  - File coinvolti principali: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Aggiunta generazione statica delle release notes e sincronizzazione di deployment (e10ca37).\n  - File coinvolti principali: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Correzioni\n- Nessuna correzione specifica registrata in questo rilascio.\n\n### Migliorie Tecniche\n- Aggiunti artefatti di release per v2.0.1 (docs) tramite commit di bot (eeeb5fa).\n  - File coinvolti: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata.\n\n### Note di Migrazione\n- Nessuna migrazione necessaria. Aggiornamenti apportati a workflow e script sono inclusi nel pacchetto.\n\n### Limiti Noti\n- Nessun limite noto documentato in questo set di commit.\n\n### Confronto e Intervallo Commit\n- Confronto: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Intervallo: v2.0.1..v2.1.0\n- Commit inclusi:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- File cambiati (selezione): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs\n\n---\n\n## English\n### Overview\n- Version: v2.1.0\n- Release type: minor\n- Commit range: v2.0.1..v2.1.0\n- Generated: 2026-03-16T16:23:19.759Z\n\n### New Features\n- Implemented static data refresh workflow and updated related scripts (193f5ad).\n  - Key files: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Added static release notes generation and deployment synchronization (e10ca37).\n  - Key files: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Bug Fixes\n- No bug fixes recorded in this release.\n\n### Refactor & Engineering\n- Added release artifacts for v2.0.1 (docs) via bot commit (eeeb5fa).\n  - Files: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Breaking Changes\n- No breaking changes detected.\n\n### Migration Notes\n- No migration required. Workflow and script updates are included in the release.\n\n### Known Limitations\n- No known limitations documented in this set of commits.\n\n### Diff & Commit Range\n- Compare: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Range: v2.0.1..v2.1.0\n- Commits:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- Changed files (selection): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs",
+  "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.1.0",
+  "publishedAt": "2026-03-16T16:24:03.057Z",
   "history": [
     {
-      "tag": "v2.0.0",
-      "version": "2.0.0",
-      "previousTag": null,
-      "releaseType": "patch",
-      "entries": [],
+      "tag": "v2.1.0",
+      "version": "2.1.0",
+      "previousTag": "v2.0.1",
+      "releaseType": "minor",
+      "entries": [
+        {
+          "sha": "193f5ad2caad462fa8915e4ea6560c97a25b275a",
+          "subject": "feat: implement static data refresh workflow and update related scripts #minor",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/193f5ad2caad462fa8915e4ea6560c97a25b275a",
+          "author": "Tommaso Berti",
+          "date": "2026-03-16T17:22:34+01:00"
+        },
+        {
+          "sha": "8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+          "subject": "Merge remote-tracking branch 'origin/main'",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/8776ec8c317e70cb788ae601564b9b94d7ea07b9",
+          "author": "Tommaso Berti",
+          "date": "2026-03-16T17:18:36+01:00"
+        },
+        {
+          "sha": "e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+          "subject": "feat: add static release notes generation and deployment synchronization #patch",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/e10ca37a61857164f6a8dcb09fd80b8d50c55ca6",
+          "author": "Tommaso Berti",
+          "date": "2026-03-16T17:18:16+01:00"
+        },
+        {
+          "sha": "eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+          "subject": "docs(release): v2.0.1 artifacts #skip-deploy [skip ci]",
+          "url": "https://github.com/tommaso-berti/codexPane/commit/eeeb5faa0caeb9b2a0f6a82c6845003775c34c7a",
+          "author": "github-actions[bot]",
+          "date": "2026-03-16T16:14:22Z"
+        }
+      ],
       "source": "local",
-      "bodyMarkdown": "# Release Notes v2.0.0\n\n## Italiano\n\n### Panoramica\nRilascio di tipo: patch (payload.releaseType = patch). Versione: v2.0.0. Nessuna nuova funzionalità viene introdotta nel canale \"features\" per questo rilascio; le modifiche concrete sono elencate nelle sezioni sottostanti.\n\n### Novita\n- Nessuna nuova funzionalità in questo rilascio.\n\n### Correzioni\n- f3542b3 — Aggiornato l'anno del copyright nel footer a 2026.\n- f13cea4 — Correzioni relative al tema scuro e miglioramenti di styling tramite refactor dei componenti layout (menzionato come fix(#3-darkmode)).\n- 1985d9d — Corretto script di deploy.\n\n### Migliorie Tecniche\n(Comprende commit etichettati feat/refactor — elencati qui come miglioramenti tecnici per questo patch)\n- 196d6ed — Migliorato workflow di deployment: versioning, note di rilascio manuali, gestione SSH migliorata.\n- 256e3d6 — Implementata generazione e validazione del docs manifest; migliorata la resa Markdown.\n- 7011ce3 — Aggiunto supporto al colore delle icone in DocMenu e nel modulo icone.\n- 76496e9 — Migliorata la component SearchResults con raggruppamento gerarchico e rendering degli item.\n- 45ed8cc — Implementata copia link di sezione e migliorata la funzionalità breadcrumb nella documentazione.\n- 2681dd2 — Aggiunti nuovi tipi di callout e migliorata la funzionalità breadcrumb nei componenti di documentazione.\n- d17316e — Aggiunte linee guida e template per la documentazione di CodexPane.\n- 2b48ae9 — Refactor: aggiornati percorsi di import e ottimizzata gestione dello stato nei componenti di documentazione.\n- fc225c6, a073fee, bcd5f6e — Miglioramenti e workflow relativi al deploy (script, Vite, GitHub Actions).\n\n### Modifiche Incompatibili\n- Nessuna modifica di rottura identificata in questo intervallo di commit.\n\n### Note di Migrazione\n- Nessuna azione di migrazione richiesta per questo rilascio.\n\n### Limiti Noti\n- Nessun limite specifico registrato nel metadata dei commit.\n\n### Confronto e Intervallo Commit\n- Intervallo commit: 1606cb8c2fff23048569b5d5fae0777ce6c90337..v2.0.0  \n- Diff/Confronto: https://github.com/tommaso-berti/codexPane/compare/1606cb8c2fff23048569b5d5fae0777ce6c90337...v2.0.0\n\n---\n\n## English\n\n### Overview\nRelease type: patch (payload.releaseType = patch). Version: v2.0.0. No new features are presented under the \"New Features\" section for this patch; concrete changes are listed below.\n\n### New Features\n- No new features in this release.\n\n### Bug Fixes\n- f3542b3 — Update copyright year in footer to 2026.\n- f13cea4 — Dark-mode fixes and improved table/layout styling (fix(#3-darkmode)).\n- 1985d9d — Fixed deploy script.\n\n### Refactor & Engineering\n(Contains commits labeled feat/refactor consolidated as technical improvements for this patch)\n- 196d6ed — Enhanced deployment workflow: versioning, manual release notes, improved SSH handling.\n- 256e3d6 — Implemented docs manifest generation and validation; improved markdown rendering.\n- 7011ce3 — Added icon color support in DocMenu and icons module.\n- 76496e9 — Enhanced SearchResults component with hierarchical grouping and improved item rendering.\n- 45ed8cc — Implemented section link copying and enhanced breadcrumb functionality.\n- 2681dd2 — Added new callout types and improved breadcrumb behavior in documentation components.\n- d17316e — Added comprehensive documentation guidelines and templates for CodexPane.\n- 2b48ae9 — Refactor: updated import paths and optimized state management in documentation components.\n- fc225c6, a073fee, bcd5f6e — Deployment-related improvements (scripts, Vite workflow, GitHub Actions).\n\n### Breaking Changes\n- No breaking changes identified in this commit range.\n\n### Migration Notes\n- No migration steps required for this release.\n\n### Known Limitations\n- No known limitations recorded in the provided commit metadata.\n\n### Diff & Commit Range\n- Commit range: 1606cb8c2fff23048569b5d5fae0777ce6c90337..v2.0.0  \n- Compare: https://github.com/tommaso-berti/codexPane/compare/1606cb8c2fff23048569b5d5fae0777ce6c90337...v2.0.0",
-      "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.0.0",
-      "publishedAt": "2026-03-16T16:21:18.324Z"
+      "bodyMarkdown": "# Release Notes v2.1.0\n\n## Italiano\n### Panoramica\n- Versione: v2.1.0\n- Tipo rilascio: minor\n- Intervallo commit: v2.0.1..v2.1.0\n- Generato: 2026-03-16T16:23:19.759Z\n\n### Novita\n- Implementata la workflow di refresh dei dati statici e aggiornati gli script correlati (193f5ad).\n  - File coinvolti principali: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Aggiunta generazione statica delle release notes e sincronizzazione di deployment (e10ca37).\n  - File coinvolti principali: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Correzioni\n- Nessuna correzione specifica registrata in questo rilascio.\n\n### Migliorie Tecniche\n- Aggiunti artefatti di release per v2.0.1 (docs) tramite commit di bot (eeeb5fa).\n  - File coinvolti: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Modifiche Incompatibili\n- Nessuna modifica incompatibile rilevata.\n\n### Note di Migrazione\n- Nessuna migrazione necessaria. Aggiornamenti apportati a workflow e script sono inclusi nel pacchetto.\n\n### Limiti Noti\n- Nessun limite noto documentato in questo set di commit.\n\n### Confronto e Intervallo Commit\n- Confronto: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Intervallo: v2.0.1..v2.1.0\n- Commit inclusi:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- File cambiati (selezione): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs\n\n---\n\n## English\n### Overview\n- Version: v2.1.0\n- Release type: minor\n- Commit range: v2.0.1..v2.1.0\n- Generated: 2026-03-16T16:23:19.759Z\n\n### New Features\n- Implemented static data refresh workflow and updated related scripts (193f5ad).\n  - Key files: .github/workflows/refresh-static-data.yml, scripts/static-data/refresh-static-data.mjs\n- Added static release notes generation and deployment synchronization (e10ca37).\n  - Key files: public/data/release-notes.json, release-notes/v2.0.1.md, .github/workflows/deploy.yml, package.json, README.md\n\n### Bug Fixes\n- No bug fixes recorded in this release.\n\n### Refactor & Engineering\n- Added release artifacts for v2.0.1 (docs) via bot commit (eeeb5fa).\n  - Files: release-notes/v2.0.1.md, public/data/release-notes.json\n\n### Breaking Changes\n- No breaking changes detected.\n\n### Migration Notes\n- No migration required. Workflow and script updates are included in the release.\n\n### Known Limitations\n- No known limitations documented in this set of commits.\n\n### Diff & Commit Range\n- Compare: https://github.com/tommaso-berti/codexPane/compare/v2.0.1...v2.1.0\n- Range: v2.0.1..v2.1.0\n- Commits:\n  - 193f5ad — feat: implement static data refresh workflow and update related scripts #minor (Tommaso Berti)\n  - e10ca37 — feat: add static release notes generation and deployment synchronization #patch (Tommaso Berti)\n  - eeeb5fa — docs(release): v2.0.1 artifacts #skip-deploy [skip ci] (github-actions[bot])\n  - 8776ec8 — Merge remote-tracking branch 'origin/main' (Tommaso Berti)\n- Changed files (selection): .github/workflows/deploy.yml, .github/workflows/refresh-static-data.yml, README.md, package.json, public/data/release-notes.json, release-notes/v2.0.1.md, scripts/static-data/refresh-static-data.mjs",
+      "releaseUrl": "https://github.com/tommaso-berti/codexPane/releases/tag/v2.1.0",
+      "publishedAt": "2026-03-16T16:24:03.057Z"
     }
   ]
 }
