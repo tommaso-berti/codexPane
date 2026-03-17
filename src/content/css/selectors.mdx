@@ -133,3 +133,15 @@ Adjacent siblings `+` select the next element that shares the same parent. Pseud
 - `::before` inserts generated content before the element’s content.
 
 > **Attention:** Prefer utility classes or low-specificity selectors for scalability; avoid over-qualifying selectors (e.g., `ul.nav li a.button`) which increases specificity and coupling.
+
+## Interactive Playground: Selector Matching
+
+**Why this matters**  
+Selectors become easier when you can immediately verify what gets matched.
+
+**What to try**  
+Change selector presets and DOM scenarios, then observe which elements are highlighted.
+
+import SelectorsPlayground from "./components/selectors/SelectorsPlayground.jsx"
+
+<SelectorsPlayground />

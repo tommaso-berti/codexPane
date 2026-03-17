@@ -1,181 +1,139 @@
 import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
+
+const TEMPLATE_OPTIONS = [
+    { value: "1fr 1fr", label: "2 equal columns" },
+    { value: "2fr 1fr", label: "main + sidebar" },
+    { value: "120px 1fr 1fr", label: "fixed + fluid" }
+];
+
+const GAP_OPTIONS = [0, 8, 16, 24];
+const AUTO_FLOW_OPTIONS = ["row", "column", "row dense"];
+
+const CARDS = ["Card A", "Card B", "Card C", "Card D", "Card E"];
 
 export default function GridPlayground() {
-    const [cols, setCols] = useState("repeat(3, 1fr)");
-    const [rows, setRows] = useState("repeat(2, 120px)");
-    const [gapR, setGapR] = useState(12);
-    const [gapC, setGapC] = useState(12);
-    const [jItems, setJItems] = useState("stretch");
-    const [aItems, setAItems] = useState("stretch");
-    const [jContent, setJContent] = useState("start");
-    const [aContent, setAContent] = useState("start");
+    const [templateColumns, setTemplateColumns] = useState(TEMPLATE_OPTIONS[0].value);
+    const [gap, setGap] = useState(16);
     const [autoFlow, setAutoFlow] = useState("row");
-    const [autoRows, setAutoRows] = useState("100px");
-    const [autoCols, setAutoCols] = useState("100px");
-    const [spanItem, setSpanItem] = useState(3); // which card spans
-    const [rowSpan, setRowSpan] = useState(1);
-    const [colSpan, setColSpan] = useState(2);
 
-    const items = useMemo(() => Array.from({ length: 8 }, (_, i) => i + 1), []);
-
-    const containerStyle = {
-        display: "grid",
-        gridTemplateColumns: cols,
-        gridTemplateRows: rows,
-        rowGap: `${gapR}px`,
-        columnGap: `${gapC}px`,
-        justifyItems: jItems,
-        alignItems: aItems,
-        justifyContent: jContent,
-        alignContent: aContent,
-        gridAutoFlow: autoFlow,
-        gridAutoRows: autoRows,
-        gridAutoColumns: autoCols,
-        height: "min(420px, 60vh)",
-        padding: 12,
-        border: "1px solid #e5e7eb",
-        borderRadius: 12,
-        background: "#fafafa",
-        overflow: "auto"
-    };
-
-    const cardBase = {
-        background: "linear-gradient(180deg,#eef2ff,#e0e7ff)",
-        color: "#111827",
-        border: "1px solid #c7d2fe",
-        borderRadius: 10,
-        padding: 12,
-        fontWeight: 600,
-        boxShadow: "0 1px 0 rgba(0,0,0,.04)"
-    };
+    const anatomy = useMemo(() => {
+        const tracks = templateColumns.split(" ").length;
+        return [
+            `Columns: ${tracks} tracks (${templateColumns})`,
+            `Gap: ${gap}px between rows and columns`,
+            `Auto-placement: ${autoFlow}`
+        ];
+    }, [autoFlow, gap, templateColumns]);
 
     return (
-        <div style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(220px, 1fr))", gap: 12, marginBottom: 16 }}>
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span>grid-template-columns</span>
-                    <input value={cols} onChange={e => setCols(e.target.value)} placeholder="e.g. repeat(3, 1fr)" />
-                    <small>Examples: <code>repeat(3, 1fr)</code>, <code>200px 1fr 2fr</code>, <code>100px minmax(120px, 1fr)</code></small>
-                </label>
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span>grid-template-rows</span>
-                    <input value={rows} onChange={e => setRows(e.target.value)} placeholder="e.g. repeat(2, 120px)" />
-                    <small>Examples: <code>repeat(2, 120px)</code>, <code>auto 1fr</code></small>
-                </label>
-
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>row-gap</span>
-                    <input type="range" min="0" max="40" value={gapR} onChange={e => setGapR(Number(e.target.value))} />
-                    <span>{gapR}px</span>
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>column-gap</span>
-                    <input type="range" min="0" max="40" value={gapC} onChange={e => setGapC(Number(e.target.value))} />
-                    <span>{gapC}px</span>
-                </label>
-
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>justify-items</span>
-                    <select value={jItems} onChange={e => setJItems(e.target.value)}>
-                        {["start","end","center","stretch"].map(v => <option key={v}>{v}</option>)}
-                    </select>
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>align-items</span>
-                    <select value={aItems} onChange={e => setAItems(e.target.value)}>
-                        {["start","end","center","stretch"].map(v => <option key={v}>{v}</option>)}
-                    </select>
-                </label>
-
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>justify-content</span>
-                    <select value={jContent} onChange={e => setJContent(e.target.value)}>
-                        {["start","end","center","stretch","space-around","space-between","space-evenly"].map(v => <option key={v}>{v}</option>)}
-                    </select>
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>align-content</span>
-                    <select value={aContent} onChange={e => setAContent(e.target.value)}>
-                        {["start","end","center","stretch","space-around","space-between","space-evenly"].map(v => <option key={v}>{v}</option>)}
-                    </select>
-                </label>
-
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>grid-auto-flow</span>
-                    <select value={autoFlow} onChange={e => setAutoFlow(e.target.value)}>
-                        {["row","column","row dense","column dense"].map(v => <option key={v}>{v}</option>)}
-                    </select>
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>grid-auto-rows</span>
-                    <input value={autoRows} onChange={e => setAutoRows(e.target.value)} />
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 130 }}>grid-auto-columns</span>
-                    <input value={autoCols} onChange={e => setAutoCols(e.target.value)} />
-                </label>
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
-                    <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <span>span item</span>
-                        <select value={spanItem} onChange={e => setSpanItem(Number(e.target.value))}>
-                            {items.map(i => <option key={i} value={i}>{i}</option>)}
-                        </select>
-                    </label>
-                    <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <span>row span</span>
-                        <input type="number" min="1" max="6" value={rowSpan} onChange={e => setRowSpan(Math.max(1, Number(e.target.value)))} />
-                    </label>
-                    <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <span>col span</span>
-                        <input type="number" min="1" max="6" value={colSpan} onChange={e => setColSpan(Math.max(1, Number(e.target.value)))} />
-                    </label>
-                </div>
-            </div>
-
-            <div style={containerStyle} aria-label="Grid preview">
-                {items.map(n => {
-                    const isSpan = n === spanItem;
-                    return (
-                        <div
-                            key={n}
-                            style={{
-                                ...cardBase,
-                                ...(isSpan ? { gridRow: `span ${rowSpan}`, gridColumn: `span ${colSpan}`, background: "linear-gradient(180deg,#cffafe,#a5f3fc)", borderColor: "#22d3ee" } : {})
-                            }}
+        <PlaygroundShell
+            title="Grid Template Playground"
+            goal="Understand how template columns, gap, and auto-flow shape grid placement."
+            status={{ color: "info", label: `${templateColumns.split(" ").length} columns` }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 520 }}>
+                    <FormControl size="small">
+                        <InputLabel id="grid-template-label">grid-template-columns</InputLabel>
+                        <Select
+                            labelId="grid-template-label"
+                            label="grid-template-columns"
+                            value={templateColumns}
+                            onChange={(event) => setTemplateColumns(event.target.value)}
                         >
-                            Item {n}{isSpan ? " (span)" : ""}
-                        </div>
-                    );
-                })}
-            </div>
+                            {TEMPLATE_OPTIONS.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-            <details style={{ marginTop: 14 }}>
-                <summary style={{ cursor: "pointer", fontWeight: 600 }}>Generated CSS (copy-ready)</summary>
-                <pre style={{ background: "#0b1020", color: "#e2e8f0", padding: 12, borderRadius: 8, overflow: "auto" }}>
-{`/* container */
-.grid {
-  display: grid;
-  grid-template-columns: ${cols};
-  grid-template-rows: ${rows};
-  row-gap: ${gapR}px;
-  column-gap: ${gapC}px;
-  justify-items: ${jItems};
-  align-items: ${aItems};
-  justify-content: ${jContent};
-  align-content: ${aContent};
-  grid-auto-flow: ${autoFlow};
-  grid-auto-rows: ${autoRows};
-  grid-auto-columns: ${autoCols};
-}
+                    <FormControl size="small">
+                        <InputLabel id="grid-gap-label">gap</InputLabel>
+                        <Select
+                            labelId="grid-gap-label"
+                            label="gap"
+                            value={gap}
+                            onChange={(event) => setGap(Number(event.target.value))}
+                        >
+                            {GAP_OPTIONS.map((value) => (
+                                <MenuItem key={value} value={value}>{value}px</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-/* example spanned item */
-.item-span {
-  grid-row: span ${rowSpan};
-  grid-column: span ${colSpan};
-}`}
-        </pre>
-            </details>
-        </div>
+                    <FormControl size="small">
+                        <InputLabel id="grid-flow-label">grid-auto-flow</InputLabel>
+                        <Select
+                            labelId="grid-flow-label"
+                            label="grid-auto-flow"
+                            value={autoFlow}
+                            onChange={(event) => setAutoFlow(event.target.value)}
+                        >
+                            {AUTO_FLOW_OPTIONS.map((value) => (
+                                <MenuItem key={value} value={value}>{value}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Grid preview</Typography>
+                    <Box
+                        sx={(theme) => ({
+                            mt: 1,
+                            display: "grid",
+                            gridTemplateColumns: templateColumns,
+                            gridAutoFlow: autoFlow,
+                            gap: `${gap}px`,
+                            p: 1,
+                            borderRadius: 1.5,
+                            border: "1px dashed",
+                            borderColor: theme.palette.divider,
+                            bgcolor: theme.palette.background.default
+                        })}
+                    >
+                        {CARDS.map((card) => (
+                            <Box
+                                key={card}
+                                sx={(theme) => ({
+                                    minHeight: 56,
+                                    borderRadius: 1,
+                                    px: 1,
+                                    display: "grid",
+                                    placeItems: "center",
+                                    bgcolor: theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[100],
+                                    border: "1px solid",
+                                    borderColor: theme.palette.divider,
+                                    color: theme.palette.text.primary,
+                                    fontWeight: 600
+                                })}
+                            >
+                                {card}
+                            </Box>
+                        ))}
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    {anatomy.map((item) => (
+                        <Alert key={item} severity="info" variant="outlined">{item}</Alert>
+                    ))}
+                </Stack>
+            }
+            note="Use this core model for layout decisions; move advanced spanning (`grid-row`/`grid-column`) to dedicated examples."
+        />
     );
 }

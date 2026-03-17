@@ -1,146 +1,131 @@
 import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Slider,
+    Stack,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const EASES = [
-    "ease",
-    "linear",
-    "ease-in",
-    "ease-out",
-    "ease-in-out",
-    "cubic-bezier(0.4, 0, 0.2, 1)"
+const PROPERTIES = [
+    { value: "transform", label: "transform" },
+    { value: "background-color", label: "background-color" },
+    { value: "border-radius", label: "border-radius" }
 ];
 
-const PROPS = [
-    { key: "background-color", label: "background-color" },
-    { key: "color", label: "color" },
-    { key: "font-size", label: "font-size" },
-    { key: "transform", label: "transform (scale)" },
-    { key: "border-radius", label: "border-radius" },
-];
+const EASINGS = ["ease", "linear", "ease-in", "ease-out", "ease-in-out"];
 
 export default function TransitionPlayground() {
-    const [selected, setSelected] = useState(["background-color", "font-size"]);
-    const [duration, setDuration] = useState(800); // ms
-    const [delay, setDelay] = useState(0); // ms
-    const [ease, setEase] = useState("ease");
-    const [hovered, setHovered] = useState(false);
+    const [property, setProperty] = useState("transform");
+    const [duration, setDuration] = useState(500);
+    const [easing, setEasing] = useState("ease");
+    const [delay, setDelay] = useState(0);
+    const [active, setActive] = useState(false);
 
-    const transitionString = useMemo(() => {
-        const dur = `${duration}ms`;
-        const del = `${delay}ms`;
-        return selected
-            .map((p) => `${p} ${dur} ${ease} ${del}`)
-            .join(", ");
-    }, [selected, duration, delay, ease]);
+    const transitionValue = `${property} ${duration}ms ${easing} ${delay}ms`;
 
-    const baseStyle = {
-        transition: transitionString,
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 180,
-        height: 96,
-        borderRadius: 12,
-        border: "1px solid #d0d7de",
-        cursor: "pointer",
-        userSelect: "none",
-        gap: 8,
-        padding: 16,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-        background: hovered ? "#16a34a" : "#2563eb",
-        color: hovered ? "white" : "white",
-        fontSize: hovered ? 24 : 18,
-        transform: selected.includes("transform")
-            ? (hovered ? "scale(1.07)" : "scale(1)")
-            : "none",
-        borderTopLeftRadius: selected.includes("border-radius")
-            ? (hovered ? 28 : 12)
-            : 12,
-    };
+    const targetStyle = useMemo(() => {
+        const style = {
+            transition: transitionValue,
+            width: 180,
+            height: 96,
+            borderRadius: 12,
+            display: "grid",
+            placeItems: "center",
+            fontWeight: 700,
+            border: "1px solid",
+            transform: "none",
+            backgroundColor: "#2563eb",
+            color: "#ffffff"
+        };
 
-    function toggleSelected(key) {
-        setSelected((prev) =>
-            prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-        );
-    }
+        if (!active) return style;
+        if (property === "transform") style.transform = "translateX(24px) scale(1.05)";
+        if (property === "background-color") style.backgroundColor = "#16a34a";
+        if (property === "border-radius") style.borderRadius = 30;
+        return style;
+    }, [active, property, transitionValue]);
 
     return (
-        <div style={{ display: "grid", gap: 16 }}>
-            <div
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                style={baseStyle}
-                title="Hover me"
-            >
-                Hover me
-            </div>
+        <PlaygroundShell
+            title="Transition Timing Playground"
+            goal="See how property, duration, easing, and delay combine in a single transition."
+            status={{ color: "info", label: active ? "State: active" : "State: base" }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 560 }}>
+                    <FormControl size="small">
+                        <InputLabel id="transition-property-label">Property</InputLabel>
+                        <Select
+                            labelId="transition-property-label"
+                            label="Property"
+                            value={property}
+                            onChange={(event) => setProperty(event.target.value)}
+                        >
+                            {PROPERTIES.map((item) => (
+                                <MenuItem key={item.value} value={item.value}>{item.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-            <div style={{ display: "grid", gap: 10, gridTemplateColumns: "1fr 1fr", alignItems: "center" }}>
-                <label style={{ fontWeight: 600 }}>Duration (ms)</label>
-                <input
-                    type="range"
-                    min="0"
-                    max="3000"
-                    step="50"
-                    value={duration}
-                    onChange={(e) => setDuration(parseInt(e.target.value, 10))}
-                />
-                <div />
-                <div style={{ fontSize: 12, color: "#666" }}>{duration} ms</div>
+                    <Typography variant="caption" color="text.secondary">Duration: {duration}ms</Typography>
+                    <Slider
+                        value={duration}
+                        onChange={(_, value) => setDuration(Number(value))}
+                        min={0}
+                        max={2000}
+                        step={50}
+                        valueLabelDisplay="auto"
+                    />
 
-                <label style={{ fontWeight: 600 }}>Delay (ms)</label>
-                <input
-                    type="range"
-                    min="0"
-                    max="2000"
-                    step="50"
-                    value={delay}
-                    onChange={(e) => setDelay(parseInt(e.target.value, 10))}
-                />
-                <div />
-                <div style={{ fontSize: 12, color: "#666" }}>{delay} ms</div>
+                    <FormControl size="small">
+                        <InputLabel id="transition-easing-label">Timing function</InputLabel>
+                        <Select
+                            labelId="transition-easing-label"
+                            label="Timing function"
+                            value={easing}
+                            onChange={(event) => setEasing(event.target.value)}
+                        >
+                            {EASINGS.map((value) => (
+                                <MenuItem key={value} value={value}>{value}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-                <label style={{ fontWeight: 600 }}>Timing function</label>
-                <select value={ease} onChange={(e) => setEase(e.target.value)}>
-                    {EASES.map((e) => (
-                        <option key={e} value={e}>
-                            {e}
-                        </option>
-                    ))}
-                </select>
+                    <Typography variant="caption" color="text.secondary">Delay: {delay}ms</Typography>
+                    <Slider
+                        value={delay}
+                        onChange={(_, value) => setDelay(Number(value))}
+                        min={0}
+                        max={1200}
+                        step={50}
+                        valueLabelDisplay="auto"
+                    />
 
-                <label style={{ fontWeight: 600 }}>Properties</label>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                    {PROPS.map((p) => (
-                        <label key={p.key} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14 }}>
-                            <input
-                                type="checkbox"
-                                checked={selected.includes(p.key)}
-                                onChange={() => toggleSelected(p.key)}
-                            />
-                            {p.label}
-                        </label>
-                    ))}
-                </div>
-            </div>
-
-            <pre
-                style={{
-                    margin: 0,
-                    padding: 12,
-                    background: "#0b1020",
-                    color: "#e2e8f0",
-                    borderRadius: 12,
-                    overflowX: "auto",
-                    fontSize: 12,
-                }}
-            >
-            {
-                `/* Resulting CSS */
-                .selector {
-                  transition: ${transitionString};
-                }`
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setActive((prev) => !prev)}>Apply</Button>
+                        <Button variant="outlined" onClick={() => setActive(false)}>Reset</Button>
+                    </Stack>
+                </Stack>
             }
-            </pre>
-        </div>
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Hover is not required; use Apply/Reset</Typography>
+                    <Box sx={{ mt: 1.2, minHeight: 130, display: "grid", placeItems: "center" }}>
+                        <Box sx={targetStyle}>
+                            Preview
+                        </Box>
+                    </Box>
+                </Paper>
+            }
+            output={<Alert severity="info" variant="outlined">transition: {transitionValue};</Alert>}
+            note="A transition is only visible when the selected property actually changes between states."
+        />
     );
 }

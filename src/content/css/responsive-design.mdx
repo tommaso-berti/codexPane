@@ -6,8 +6,6 @@
 
 import ResponsiveUnitsDemo from "./components/responsive-design/ResponsiveUnitsDemo.jsx"
 
-<ResponsiveUnitsDemo />
-
 ## Relative measurements
 Responsive design means content adapts to context: the size of *other* content and the size of the *screen*. Prefer **relative units** (em, rem, %) over hard-coded pixels so proportions stay consistent across layouts and devices.
 
@@ -156,3 +154,13 @@ Typical content-driven breakpoint plan:
 ~~~
 
 > Tip: Prefer **mobile-first** queries (`min-width`) so the base CSS stays small and progressive enhancements layer on as space grows.
+
+## Interactive Playground: Relative Units
+
+**Why this matters**  
+Responsive sizing only becomes intuitive when you see each unit react to its own reference.
+
+**What to try**  
+Change root size, parent scale, and container width to compare `rem`, `em`, and `%` effects.
+
+<ResponsiveUnitsDemo />

@@ -67,3 +67,15 @@ Descendant combinator (a space) targets elements **inside** another selector.
 ~~~
 
 > **Attention:** Avoid escalating specificity with long chains. If overriding becomes hard, consider refactoring selectors or extracting utilities instead of adding `!important`.
+
+## Interactive Playground: Specificity Winner
+
+**Why this matters**  
+Most CSS conflicts come from not knowing why one selector wins over another.
+
+**What to try**  
+Compare two rules, then change source order in tie cases and watch the winner update.
+
+import SpecificityPlayground from "./components/specificity/SpecificityPlayground.jsx"
+
+<SpecificityPlayground />

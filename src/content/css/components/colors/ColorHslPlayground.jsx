@@ -1,88 +1,86 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Slider,
+    Stack,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-function Slider({ label, min, max, step = 1, value, onChange, suffix = "" }) {
-    const id = label.replace(/\s+/g, "-").toLowerCase();
-    return (
-        <label htmlFor={id} style={{ display: "grid", gap: 6 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12 }}>
-                <span style={{ color: "#374151" }}>{label}</span>
-                <span style={{ color: "#6B7280" }}>{value}{suffix}</span>
-            </div>
-            <input
-                id={id}
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                onChange={(e) => onChange(Number(e.target.value))}
-                style={{ width: "100%" }}
-            />
-        </label>
-    );
-}
+const PRESETS = [
+    { label: "Sky", h: 204, s: 80, l: 56 },
+    { label: "Lime", h: 96, s: 65, l: 49 },
+    { label: "Coral", h: 12, s: 82, l: 62 }
+];
 
 export default function ColorHslPlayground() {
-    const [h, setH] = useState(200);
-    const [s, setS] = useState(70);
-    const [l, setL] = useState(50);
-    const [a, setA] = useState(1);
+    const [hue, setHue] = useState(PRESETS[0].h);
+    const [saturation, setSaturation] = useState(PRESETS[0].s);
+    const [lightness, setLightness] = useState(PRESETS[0].l);
 
-    const hsla = useMemo(() => `hsla(${h}, ${s}%, ${l}%, ${a})`, [h, s, l, a]);
-    const hsl = useMemo(() => `hsl(${h}, ${s}%, ${l}%)`, [h, s, l]);
+    const hslColor = useMemo(() => "hsl(" + hue + " " + saturation + "% " + lightness + "%)", [hue, saturation, lightness]);
 
     return (
-        <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: 1.4 }}>
-            <div
-                style={{
-                    display: "grid",
-                    gap: 14,
-                    gridTemplateColumns: "1fr",
-                    maxWidth: 560,
-                    border: "1px solid #E5E7EB",
-                    borderRadius: 12,
-                    padding: 16,
-                    boxShadow: "0 2px 10px rgba(0,0,0,.04)",
-                    background: "#fff"
-                }}
-            >
-                <div style={{ display: "grid", gap: 12 }}>
-                    <Slider label="Hue" min={0} max={360} value={h} onChange={setH} />
-                    <Slider label="Saturation" min={0} max={100} value={s} onChange={setS} suffix="%" />
-                    <Slider label="Lightness" min={0} max={100} value={l} onChange={setL} suffix="%" />
-                    <Slider label="Alpha" min={0} max={1} step={0.01} value={a} onChange={setA} />
-                </div>
+        <PlaygroundShell
+            title="HSL Playground"
+            goal="Learn how hue, saturation, and lightness each change the final color."
+            status={{ color: "info", label: "HSL color" }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <FormControl size="small">
+                        <InputLabel id="hsl-preset-label">Preset</InputLabel>
+                        <Select
+                            labelId="hsl-preset-label"
+                            label="Preset"
+                            value={PRESETS.find((preset) => preset.h === hue && preset.s === saturation && preset.l === lightness)?.label || "Custom"}
+                            onChange={(event) => {
+                                const next = PRESETS.find((preset) => preset.label === event.target.value);
+                                if (!next) return;
+                                setHue(next.h);
+                                setSaturation(next.s);
+                                setLightness(next.l);
+                            }}
+                        >
+                            {PRESETS.map((preset) => (
+                                <MenuItem key={preset.label} value={preset.label}>{preset.label}</MenuItem>
+                            ))}
+                            <MenuItem value="Custom">Custom</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                <div
-                    role="img"
-                    aria-label={`Preview swatch in ${hsla}`}
-                    style={{
-                        height: 120,
-                        borderRadius: 12,
-                        background: `linear-gradient(45deg, #fff 25%, #f3f4f6 25%, #f3f4f6 50%, #fff 50%, #fff 75%, #f3f4f6 75%)`,
-                        backgroundSize: "16px 16px",
-                        display: "grid",
-                        placeItems: "center",
-                        border: "1px solid #E5E7EB",
-                        overflow: "hidden"
-                    }}
-                >
-                    <div style={{ width: "90%", height: "80%", background: hsla, borderRadius: 10 }} />
-                </div>
+                    <Typography variant="caption" color="text.secondary">Hue: {hue}</Typography>
+                    <Slider value={hue} onChange={(_, value) => setHue(Number(value))} min={0} max={360} valueLabelDisplay="auto" />
 
-                <div style={{ display: "grid", gap: 8 }}>
-                    <code style={{ background: "#F3F4F6", padding: "8px 10px", borderRadius: 8 }}>
-                        {`background-color: ${hsl};`}
-                    </code>
-                    <code style={{ background: "#F3F4F6", padding: "8px 10px", borderRadius: 8 }}>
-                        {`background-color: ${hsla};`}
-                    </code>
-                </div>
+                    <Typography variant="caption" color="text.secondary">Saturation: {saturation}%</Typography>
+                    <Slider value={saturation} onChange={(_, value) => setSaturation(Number(value))} min={0} max={100} valueLabelDisplay="auto" />
 
-                <p style={{ color: "#6B7280", fontSize: 12, margin: 0 }}>
-                    Tip: keep S and L fixed and rotate H to build a palette.
-                </p>
-            </div>
-        </div>
+                    <Typography variant="caption" color="text.secondary">Lightness: {lightness}%</Typography>
+                    <Slider value={lightness} onChange={(_, value) => setLightness(Number(value))} min={0} max={100} valueLabelDisplay="auto" />
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Swatch</Typography>
+                    <Box
+                        sx={{
+                            mt: 1,
+                            minHeight: 120,
+                            borderRadius: 2,
+                            border: "1px solid",
+                            borderColor: "divider",
+                            bgcolor: hslColor
+                        }}
+                    />
+                </Paper>
+            }
+            output={<Alert severity="info" variant="outlined">background-color: {hslColor};</Alert>}
+            note="Lock saturation/lightness and rotate hue to generate balanced color families."
+        />
     );
 }

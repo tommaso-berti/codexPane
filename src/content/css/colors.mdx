@@ -39,8 +39,13 @@ RGB has an alpha variant too: `rgba(r, g, b, a)`.
 
 > **Note**: Prefer HSL/HSLA when you iterate on tints and shades; prefer RGB/RGBA when you already know channel values or work with image pixels.
 
-## HSL playground
-Play with hue, saturation, lightness, and alpha to see the resulting color and the generated CSS.
+## Interactive Playground: HSL Controls
+
+**Why this matters**  
+HSL is easiest to reason about when each axis is changed independently.
+
+**What to try**  
+Adjust one channel at a time and observe the generated `background-color` value.
 
 import ColorHslPlayground from "./components/colors/ColorHslPlayground.jsx"
 

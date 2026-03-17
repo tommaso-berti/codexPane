@@ -419,6 +419,12 @@
               "title": "Sibling combinators and pseudo elements",
               "slug": "css/selectors#sibling-combinators-and-pseudo-elements",
               "order": 9
+            },
+            {
+              "id": "interactive-playground-selector-matching",
+              "title": "Interactive Playground: Selector Matching",
+              "slug": "css/selectors#interactive-playground-selector-matching",
+              "order": 10
             }
           ],
           "order": 2
@@ -452,6 +458,12 @@
               "title": "Descendant",
               "slug": "css/specificity#descendant",
               "order": 4
+            },
+            {
+              "id": "interactive-playground-specificity-winner",
+              "title": "Interactive Playground: Specificity Winner",
+              "slug": "css/specificity#interactive-playground-specificity-winner",
+              "order": 5
             }
           ],
           "order": 3
@@ -529,9 +541,9 @@
               "order": 11
             },
             {
-              "id": "box-sizing-playground",
-              "title": "Box-sizing playground",
-              "slug": "css/box-model#box-sizing-playground",
+              "id": "interactive-playground-box-sizing",
+              "title": "Interactive Playground: Box Sizing",
+              "slug": "css/box-model#interactive-playground-box-sizing",
               "order": 12
             }
           ],
@@ -616,9 +628,9 @@
               "order": 12
             },
             {
-              "id": "position-playground",
-              "title": "Position playground",
-              "slug": "css/flow-of-html#position-playground",
+              "id": "interactive-playground-positioning",
+              "title": "Interactive Playground: Positioning",
+              "slug": "css/flow-of-html#interactive-playground-positioning",
               "order": 13
             }
           ],
@@ -661,9 +673,9 @@
               "order": 5
             },
             {
-              "id": "font-stack-playground",
-              "title": "Font stack playground",
-              "slug": "css/fonts#font-stack-playground",
+              "id": "interactive-playground-font-stack-readability",
+              "title": "Interactive Playground: Font Stack Readability",
+              "slug": "css/fonts#interactive-playground-font-stack-readability",
               "order": 6
             }
           ],
@@ -694,9 +706,9 @@
               "order": 3
             },
             {
-              "id": "hsl-playground",
-              "title": "HSL playground",
-              "slug": "css/colors#hsl-playground",
+              "id": "interactive-playground-hsl-controls",
+              "title": "Interactive Playground: HSL Controls",
+              "slug": "css/colors#interactive-playground-hsl-controls",
               "order": 4
             }
           ],
@@ -797,6 +809,12 @@
               "title": "Breakpoints",
               "slug": "css/responsive-design#breakpoints",
               "order": 15
+            },
+            {
+              "id": "interactive-playground-relative-units",
+              "title": "Interactive Playground: Relative Units",
+              "slug": "css/responsive-design#interactive-playground-relative-units",
+              "order": 16
             }
           ],
           "order": 8
@@ -898,9 +916,9 @@
               "order": 15
             },
             {
-              "id": "flex-playground",
-              "title": "Flex Playground",
-              "slug": "css/flexbox#flex-playground",
+              "id": "interactive-playground-flex-axes",
+              "title": "Interactive Playground: Flex Axes",
+              "slug": "css/flexbox#interactive-playground-flex-axes",
               "order": 16
             }
           ],
@@ -955,9 +973,9 @@
               "order": 7
             },
             {
-              "id": "transition-playground",
-              "title": "Transition Playground",
-              "slug": "css/transitions#transition-playground",
+              "id": "interactive-playground-transition-timing",
+              "title": "Interactive Playground: Transition Timing",
+              "slug": "css/transitions#interactive-playground-transition-timing",
               "order": 8
             }
           ],
@@ -1045,9 +1063,9 @@
               "order": 4
             },
             {
-              "id": "buttons-playground",
-              "title": "Buttons Playground",
-              "slug": "css/buttons#buttons-playground",
+              "id": "interactive-playground-button-states",
+              "title": "Interactive Playground: Button States",
+              "slug": "css/buttons#interactive-playground-button-states",
               "order": 5
             }
           ],
@@ -1084,9 +1102,9 @@
               "order": 4
             },
             {
-              "id": "breadcrumb-playground",
-              "title": "Breadcrumb Playground",
-              "slug": "css/breadcrumb-navigation#breadcrumb-playground",
+              "id": "interactive-playground-breadcrumb-patterns",
+              "title": "Interactive Playground: Breadcrumb Patterns",
+              "slug": "css/breadcrumb-navigation#interactive-playground-breadcrumb-patterns",
               "order": 5
             }
           ],
@@ -1225,9 +1243,9 @@
               "order": 21
             },
             {
-              "id": "grid-playground",
-              "title": "Grid Playground",
-              "slug": "css/grid#grid-playground",
+              "id": "interactive-playground-grid-templates",
+              "title": "Interactive Playground: Grid Templates",
+              "slug": "css/grid#interactive-playground-grid-templates",
               "order": 22
             }
           ],

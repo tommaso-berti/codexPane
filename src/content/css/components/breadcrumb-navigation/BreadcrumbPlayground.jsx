@@ -1,254 +1,103 @@
 import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    FormControl,
+    FormControlLabel,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    Switch,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const fieldStyle = {
-    flex: 1,
-    padding: "8px 10px",
-    border: "1px solid #d1d5db",
-    borderRadius: 6,
-    outline: "none",
-};
-
-const focusRing = {
-    boxShadow: "0 0 0 3px rgba(59,130,246,0.3)",
-    borderColor: "#60a5fa",
-};
+const SEPARATORS = ["/", ">", "›"];
 
 export default function BreadcrumbPlayground() {
     const [separator, setSeparator] = useState(">");
-    const [style, setStyle] = useState("simple"); // simple | arrows
-    const [segments, setSegments] = useState("Home, Fashion, Shoes, Sneakers");
-    const [abbreviate, setAbbreviate] = useState(false); // checkbox: abbreviate head
+    const [style, setStyle] = useState("simple");
+    const [collapse, setCollapse] = useState(false);
 
-    const items = useMemo(
-        () => segments.split(",").map((s) => s.trim()).filter(Boolean),
-        [segments]
-    );
-
-    const visible = useMemo(() => {
-        if (!abbreviate) return items;
-        if (items.length <= 3) return items; // niente ellissi per liste corte
-        // mostra ellissi + ultime 2 voci
-        return ["…", ...items.slice(-2)];
-    }, [items, abbreviate]);
-
-    // handler per focus ring
-    const onFocus = (e) => (e.currentTarget.style.boxShadow = focusRing.boxShadow);
-    const onBlur = (e) => (e.currentTarget.style.boxShadow = "none");
+    const path = ["Home", "Catalog", "Shoes", "Sneakers"];
+    const visiblePath = useMemo(() => {
+        if (collapse) return ["…", path[path.length - 2], path[path.length - 1]];
+        return path;
+    }, [collapse]);
 
     return (
-        <div style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" }}>
-            <div style={{ display: "grid", gap: 12, marginBottom: 16 }}>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 150 }}>Segments</span>
-                    <input
-                        style={fieldStyle}
-                        value={segments}
-                        onChange={(e) => setSegments(e.target.value)}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        aria-label="breadcrumb segments"
-                    />
-                </label>
-
-                <div style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr" }}>
-                    <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <span>Separator</span>
-                        <select
+        <PlaygroundShell
+            title="Breadcrumb Playground"
+            goal="Compare separator, style, and truncation while preserving clear path context."
+            status={{ color: "info", label: collapse ? "Collapsed path" : "Full path" }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 520 }}>
+                    <FormControl size="small">
+                        <InputLabel id="breadcrumb-separator-label">Separator</InputLabel>
+                        <Select
+                            labelId="breadcrumb-separator-label"
+                            label="Separator"
                             value={separator}
-                            onChange={(e) => setSeparator(e.target.value)}
-                            style={{ ...fieldStyle, flex: "unset" }}
-                            onFocus={onFocus}
-                            onBlur={onBlur}
-                            aria-label="breadcrumb separator"
+                            onChange={(event) => setSeparator(event.target.value)}
                         >
-                            <option value="/">{"/"}</option>
-                            <option value=">">{">"}</option>
-                            <option value="›">{"›"}</option>
-                            <option value="»">{"»"}</option>
-                        </select>
-                    </label>
+                            {SEPARATORS.map((value) => (
+                                <MenuItem key={value} value={value}>{value}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-                    <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <span>Style</span>
-                        <select
+                    <FormControl size="small">
+                        <InputLabel id="breadcrumb-style-label">Style</InputLabel>
+                        <Select
+                            labelId="breadcrumb-style-label"
+                            label="Style"
                             value={style}
-                            onChange={(e) => setStyle(e.target.value)}
-                            style={{ ...fieldStyle, flex: "unset" }}
-                            onFocus={onFocus}
-                            onBlur={onBlur}
-                            aria-label="breadcrumb style"
+                            onChange={(event) => setStyle(event.target.value)}
                         >
-                            <option value="simple">Simple</option>
-                            <option value="arrows">Arrows</option>
-                        </select>
-                    </label>
-                </div>
+                            <MenuItem value="simple">Simple text</MenuItem>
+                            <MenuItem value="chips">Chip style</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                {/* Checkbox al posto del number input */}
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ width: 150 }}>Abbreviate first</span>
-                    <input
-                        type="checkbox"
-                        checked={abbreviate}
-                        onChange={(e) => setAbbreviate(e.target.checked)}
-                        aria-label="abbreviate head items"
-                        style={{
-                            width: 18,
-                            height: 18,
-                            cursor: "pointer",
-                            border: "1px solid #d1d5db",
-                            borderRadius: 4,
-                            accentColor: "#2563eb",
-                        }}
+                    <FormControlLabel
+                        control={<Switch checked={collapse} onChange={(event) => setCollapse(event.target.checked)} />}
+                        label="Collapse early levels"
                     />
-                </label>
-            </div>
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Preview</Typography>
+                    <Box component="nav" aria-label="Breadcrumb" sx={{ mt: 1 }}>
+                        <Box component="ol" sx={{ p: 0, m: 0, display: "flex", gap: 0.8, alignItems: "center", listStyle: "none", flexWrap: "wrap" }}>
+                            {visiblePath.map((item, index) => {
+                                const isLast = index === visiblePath.length - 1;
+                                const color = isLast ? "text.primary" : "primary.main";
+                                const itemNode = style === "chips"
+                                    ? (
+                                        <Box sx={(theme) => ({ px: 1, py: 0.4, borderRadius: 10, border: "1px solid", borderColor: theme.palette.divider, color, fontWeight: isLast ? 700 : 500 })}>
+                                            {item}
+                                        </Box>
+                                    )
+                                    : (
+                                        <Typography sx={{ color, fontWeight: isLast ? 700 : 500 }}>{item}</Typography>
+                                    );
 
-            {/* Preview */}
-            {style === "simple" ? (
-                <nav aria-label="Breadcrumb">
-                    <ol
-                        style={{
-                            display: "flex",
-                            gap: 6,
-                            alignItems: "center",
-                            padding: 0,
-                            margin: 0,
-                            listStyle: "none",
-                        }}
-                    >
-                        {visible.map((label, i) => {
-                            const isLast = i === visible.length - 1;
-                            const isEllipsis = label === "…";
-                            return (
-                                <li
-                                    key={i}
-                                    style={{
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        color: isLast ? "#111827" : "#2563eb",
-                                    }}
-                                >
-                                    {isEllipsis ? (
-                                        <span aria-hidden="true">…</span>
-                                    ) : isLast ? (
-                                        <span aria-current="page" style={{ fontWeight: 600 }}>
-                      {label}
-                    </span>
-                                    ) : (
-                                        <a href="#" style={{ color: "#2563eb", textDecoration: "none" }}>
-                                            {label}
-                                        </a>
-                                    )}
-                                    {!isLast && (
-                                        <span style={{ margin: "0 6px", color: "#6b7280" }}>{separator}</span>
-                                    )}
-                                </li>
-                            );
-                        })}
-                    </ol>
-                </nav>
-            ) : (
-                <nav aria-label="Breadcrumb">
-                    <ol style={{ padding: 0, margin: 0, listStyle: "none", overflow: "hidden" }}>
-                        <style>{`
-              .bc a {
-                float: left;
-                color: #fff;
-                background: darkcyan;
-                text-decoration: none;
-                position: relative;
-                height: 30px;
-                line-height: 30px;
-                text-align: center;
-                margin-right: 15px;
-                padding: 0 10px;
-                font-weight: 600;
-                border: 1px solid rgba(0,0,0,0.1); /* bordo */
-                border-radius: 4px; /* leggero arrotondamento */
-              }
-              .bc a::before,
-              .bc a::after {
-                content: "";
-                position: absolute;
-                border-color: darkcyan;
-                border-style: solid;
-                border-width: 15px 5px;
-              }
-              .bc a::before {
-                left: -10px;
-                border-left-color: transparent;
-              }
-              .bc a::after {
-                left: 100%;
-                border-color: transparent;
-                border-left-color: darkcyan;
-              }
-              .bc a:hover { background: blue; }
-              .bc a:hover::before { border-color: blue; border-left-color: transparent; }
-              .bc a:hover::after { border-left-color: blue; }
-              .bc span.current {
-                float: left;
-                background: #e5e7eb;
-                color: #111827;
-                position: relative;
-                height: 30px;
-                line-height: 30px;
-                padding: 0 10px;
-                margin-right: 15px;
-                border: 1px solid #d1d5db; /* bordo visibile */
-                border-radius: 4px;
-              }
-              .bc span.current::before,
-              .bc span.current::after {
-                content: "";
-                position: absolute;
-                border-style: solid;
-                border-width: 15px 5px;
-              }
-              .bc span.current::before {
-                border-color: #e5e7eb;
-                left: -10px;
-                border-left-color: transparent;
-              }
-              .bc span.current::after {
-                left: 100%;
-                border-color: transparent;
-                border-left-color: #e5e7eb;
-              }
-            `}</style>
-                        <li className="bc" style={{ overflow: "hidden" }}>
-                            {visible.map((label, i) => {
-                                const isLast = i === visible.length - 1;
-                                const isEllipsis = label === "…";
                                 return (
-                                    <span key={i} style={{ display: "inline" }}>
-                    {isEllipsis ? (
-                        <span className="current" aria-hidden="true">
-                        …
-                      </span>
-                    ) : isLast ? (
-                        <span className="current" aria-current="page">
-                        {label}
-                      </span>
-                    ) : (
-                        <a href="#">{label}</a>
-                    )}
-                  </span>
+                                    <Box component="li" key={item + index} sx={{ display: "inline-flex", alignItems: "center", gap: 0.8 }}>
+                                        {itemNode}
+                                        {isLast ? null : <Typography color="text.secondary">{separator}</Typography>}
+                                    </Box>
                                 );
                             })}
-                        </li>
-                    </ol>
-                </nav>
-            )}
-
-            <div style={{ marginTop: 16, fontSize: 12, color: "#374151" }}>
-                <p>
-                    <strong>Accessibility tips:</strong> usa <code>aria-label="Breadcrumb"</code>, marca
-                    la pagina corrente con <code>aria-current="page"</code>, assicurati del contrasto e
-                    che la checkbox sia etichettata.
-                </p>
-            </div>
-        </div>
+                        </Box>
+                    </Box>
+                </Paper>
+            }
+            output={<Alert severity="info" variant="outlined">Current path depth shown: {visiblePath.length} levels.</Alert>}
+            note="Breadcrumbs should preserve orientation first; truncate only when the path becomes too long."
+        />
     );
 }

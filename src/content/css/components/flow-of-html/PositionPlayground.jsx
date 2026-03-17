@@ -1,110 +1,127 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Box,
+    FormControl,
+    FormControlLabel,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Slider,
+    Stack,
+    Switch,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
+
+const POSITION_OPTIONS = ["static", "relative", "absolute", "fixed"];
 
 export default function PositionPlayground() {
-    const [pos, setPos] = useState("relative"); // static | relative | absolute | fixed | sticky
-    const [top, setTop] = useState(16);
-    const [left, setLeft] = useState(16);
-    const [ancestor, setAncestor] = useState(true);
+    const [position, setPosition] = useState("relative");
+    const [offset, setOffset] = useState(24);
+    const [withAncestor, setWithAncestor] = useState(true);
 
-    const code = useMemo(() => {
-        const lines = [];
-        lines.push(".box {");
-        lines.push(`  position: ${pos};`);
-        if (pos !== "static") {
-            lines.push(`  top: ${top}px;`);
-            lines.push(`  left: ${left}px;`);
+    const explanation = useMemo(() => {
+        if (position === "static") return "Offsets have no effect on static elements.";
+        if (position === "fixed") return "Fixed elements are anchored to the viewport.";
+        if (position === "absolute") {
+            return withAncestor
+                ? "Absolute element is anchored to the nearest positioned ancestor."
+                : "Without a positioned ancestor, absolute element falls back to the page container.";
         }
-        if (pos === "sticky") lines.push("  /* sticks when scrolling past top */");
-        lines.push("}");
-        if (ancestor) lines.push(".anchor { position: relative; }");
-        return lines.join("\n");
-    }, [pos, top, left, ancestor]);
-
-    const boxStyle = {
-        position: pos,
-        top: pos !== "static" ? top : undefined,
-        left: pos !== "static" ? left : undefined,
-        background: "#22c55e",
-        color: "#052e16",
-        border: "2px solid #14532d",
-        borderRadius: 8,
-        padding: "8px 12px",
-        width: 160,
-        boxShadow: "0 2px 6px rgba(0,0,0,.08)",
-        zIndex: 1
-    };
+        return "Relative element keeps its original space, then shifts visually.";
+    }, [position, withAncestor]);
 
     return (
-        <div style={{ display: "grid", gap: 12 }}>
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
-                <label>position:&nbsp;
-                    <select value={pos} onChange={e=>setPos(e.target.value)}>
-                        <option>static</option>
-                        <option>relative</option>
-                        <option>absolute</option>
-                        <option>fixed</option>
-                        <option>sticky</option>
-                    </select>
-                </label>
-                <label>top:&nbsp;
-                    <input type="range" min="-40" max="160" value={top} onChange={e=>setTop(+e.target.value)} />
-                    <span style={{ fontSize: 12, marginLeft: 6 }}>{top}px</span>
-                </label>
-                <label>left:&nbsp;
-                    <input type="range" min="-40" max="160" value={left} onChange={e=>setLeft(+e.target.value)} />
-                    <span style={{ fontSize: 12, marginLeft: 6 }}>{left}px</span>
-                </label>
-                <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <input type="checkbox" checked={ancestor} onChange={e=>setAncestor(e.target.checked)} />
-                    positioned ancestor
-                </label>
-            </div>
+        <PlaygroundShell
+            title="Positioning Playground"
+            goal="Understand how position and offsets depend on a positioned ancestor."
+            status={{ color: position === "absolute" && !withAncestor ? "warning" : "info", label: `position: ${position}` }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 520 }}>
+                    <FormControl size="small">
+                        <InputLabel id="position-type-label">position</InputLabel>
+                        <Select
+                            labelId="position-type-label"
+                            label="position"
+                            value={position}
+                            onChange={(event) => setPosition(event.target.value)}
+                        >
+                            {POSITION_OPTIONS.map((value) => (
+                                <MenuItem key={value} value={value}>{value}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-            <div style={{
-                height: 280,
-                border: "1px solid #e5e7eb",
-                borderRadius: 12,
-                overflow: "auto",
-                position: "relative",
-                background: "linear-gradient(180deg,#fff, #f8fafc)"
-            }}>
-                <div style={{
-                    position: "sticky",
-                    top: 0,
-                    background: "#fff",
-                    borderBottom: "1px solid #e5e7eb",
-                    padding: 8,
-                    zIndex: 2
-                }}>
-                    Scroll inside this area — sticky header
-                </div>
+                    <Typography variant="caption" color="text.secondary">offset (top/left): {offset}px</Typography>
+                    <Slider
+                        value={offset}
+                        onChange={(_, value) => setOffset(Number(value))}
+                        min={0}
+                        max={80}
+                        step={4}
+                        disabled={position === "static"}
+                        valueLabelDisplay="auto"
+                    />
 
-                <div className={ancestor ? "anchor" : undefined} style={{
-                    position: ancestor ? "relative" : "static",
-                    border: ancestor ? "1px dashed #94a3b8" : "none",
-                    margin: 16,
-                    padding: 16,
-                    borderRadius: 8,
-                    minHeight: 180,
-                    background: "rgba(148,163,184,.08)"
-                }}>
-                    <div style={boxStyle} className="box">
-                        I am {pos}
-                    </div>
-                    <p style={{ maxWidth: 420, color: "#334155", fontSize: 14, marginTop: 8 }}>
-                        Toggle “positioned ancestor” to see how <code>absolute</code> changes its anchor.
-                        Try switching to <code>fixed</code> and scroll — notice it pins to the viewport.
-                    </p>
-                    <div style={{ height: 360 }} />
-                </div>
-            </div>
-
-            <pre style={{
-                margin: 0, background: "#0b1220", color: "#e2e8f0",
-                padding: 12, borderRadius: 8, overflow: "auto"
-            }}>
-        <code>{code}</code>
-      </pre>
-        </div>
+                    <FormControlLabel
+                        control={<Switch checked={withAncestor} onChange={(event) => setWithAncestor(event.target.checked)} />}
+                        label="Use positioned ancestor"
+                        disabled={position === "fixed"}
+                    />
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Layout preview</Typography>
+                    <Box
+                        sx={(theme) => ({
+                            mt: 1,
+                            minHeight: 210,
+                            p: 1,
+                            borderRadius: 1.5,
+                            border: "1px dashed",
+                            borderColor: theme.palette.divider,
+                            bgcolor: theme.palette.background.default,
+                            position: "relative",
+                            overflow: "hidden"
+                        })}
+                    >
+                        <Box
+                            sx={(theme) => ({
+                                minHeight: 160,
+                                borderRadius: 1,
+                                p: 1,
+                                border: withAncestor ? "1px dashed" : "none",
+                                borderColor: theme.palette.mode === "dark" ? theme.palette.grey[700] : theme.palette.grey[400],
+                                position: withAncestor ? "relative" : "static"
+                            })}
+                        >
+                            <Typography variant="caption" color="text.secondary">{withAncestor ? "positioned ancestor" : "normal flow container"}</Typography>
+                            <Box
+                                sx={(theme) => ({
+                                    mt: 1,
+                                    position,
+                                    top: position === "static" ? undefined : offset,
+                                    left: position === "static" ? undefined : offset,
+                                    width: 150,
+                                    py: 0.8,
+                                    borderRadius: 1,
+                                    textAlign: "center",
+                                    fontWeight: 700,
+                                    color: theme.palette.primary.contrastText,
+                                    bgcolor: theme.palette.primary.main
+                                })}
+                            >
+                                box
+                            </Box>
+                        </Box>
+                    </Box>
+                </Paper>
+            }
+            output={<Alert severity={position === "absolute" && !withAncestor ? "warning" : "info"} variant="outlined">{explanation}</Alert>}
+            note="For absolute positioning, define an explicit anchor (`position: relative`) on the intended parent."
+        />
     );
 }

@@ -30,7 +30,8 @@
         { "id": "pseudo-class-selectors", "type": "subSection", "title": "Pseudo class selectors", "slug": "css/selectors#pseudo-class-selectors", "order": 6 },
         { "id": "descendant-and-child-combinators", "type": "subSection", "title": "Descendant and child combinators", "slug": "css/selectors#descendant-and-child-combinators", "order": 7 },
         { "id": "grouping-selectors", "type": "subSection", "title": "Grouping selectors", "slug": "css/selectors#grouping-selectors", "order": 8 },
-        { "id": "sibling-combinators-and-pseudo-elements", "type": "subSection", "title": "Sibling combinators and pseudo elements", "slug": "css/selectors#sibling-combinators-and-pseudo-elements", "order": 9 }
+        { "id": "sibling-combinators-and-pseudo-elements", "type": "subSection", "title": "Sibling combinators and pseudo elements", "slug": "css/selectors#sibling-combinators-and-pseudo-elements", "order": 9 },
+        { "id": "interactive-playground-selector-matching", "type": "subSection", "title": "Interactive Playground: Selector Matching", "slug": "css/selectors#interactive-playground-selector-matching", "order": 10 }
       ]
     },
     {
@@ -43,7 +44,8 @@
         { "id": "specificity-basics", "type": "subSection", "title": "Specificity basics", "slug": "css/specificity#specificity-basics", "order": 1 },
         { "id": "multiple-classes", "type": "subSection", "title": "Multiple classes", "slug": "css/specificity#multiple-classes", "order": 2 },
         { "id": "chaining", "type": "subSection", "title": "Chaining", "slug": "css/specificity#chaining", "order": 3 },
-        { "id": "descendant", "type": "subSection", "title": "Descendant", "slug": "css/specificity#descendant", "order": 4 }
+        { "id": "descendant", "type": "subSection", "title": "Descendant", "slug": "css/specificity#descendant", "order": 4 },
+        { "id": "interactive-playground-specificity-winner", "type": "subSection", "title": "Interactive Playground: Specificity Winner", "slug": "css/specificity#interactive-playground-specificity-winner", "order": 5 }
       ]
     },
     {
@@ -64,7 +66,7 @@
         { "id": "visibility", "type": "subSection", "title": "Visibility", "slug": "css/box-model#visibility", "order": 9 },
         { "id": "content-box", "type": "subSection", "title": "Content box", "slug": "css/box-model#content-box", "order": 10 },
         { "id": "box-sizing-border-box", "type": "subSection", "title": "Box sizing border box", "slug": "css/box-model#box-sizing-border-box", "order": 11 },
-        { "id": "box-sizing-playground", "type": "subSection", "title": "Box-sizing Playground", "slug": "css/box-model#box-sizing-playground", "order": 12 }
+        { "id": "interactive-playground-box-sizing", "type": "subSection", "title": "Interactive Playground: Box Sizing", "slug": "css/box-model#interactive-playground-box-sizing", "order": 12 }
       ]
     },
     {
@@ -86,7 +88,7 @@
         { "id": "inline-block", "type": "subSection", "title": "Inline block", "slug": "css/flow-of-html#inline-block", "order": 10 },
         { "id": "float", "type": "subSection", "title": "Float", "slug": "css/flow-of-html#float", "order": 11 },
         { "id": "clear", "type": "subSection", "title": "Clear", "slug": "css/flow-of-html#clear", "order": 12 },
-        { "id": "position-playground", "type": "subSection", "title": "Position Playground", "slug": "css/flow-of-html#position-playground", "order": 13 }
+        { "id": "interactive-playground-positioning", "type": "subSection", "title": "Interactive Playground: Positioning", "slug": "css/flow-of-html#interactive-playground-positioning", "order": 13 }
       ]
     },
     {
@@ -101,7 +103,7 @@
         { "id": "fallback-fonts-and-font-stacks", "type": "subSection", "title": "Fallback fonts and font stacks", "slug": "css/fonts#fallback-fonts-and-font-stacks", "order": 3 },
         { "id": "serif-and-sans-serif", "type": "subSection", "title": "Serif and sans serif", "slug": "css/fonts#serif-and-sans-serif", "order": 4 },
         { "id": "font-weight", "type": "subSection", "title": "Font weight", "slug": "css/fonts#font-weight", "order": 5 },
-        { "id": "font-stack-playground", "type": "subSection", "title": "Font stack playground", "slug": "css/fonts#font-stack-playground", "order": 6 }
+        { "id": "interactive-playground-font-stack-readability", "type": "subSection", "title": "Interactive Playground: Font Stack Readability", "slug": "css/fonts#interactive-playground-font-stack-readability", "order": 6 }
       ]
     },
     {
@@ -114,7 +116,7 @@
         { "id": "hsl", "type": "subSection", "title": "hsl", "slug": "css/colors#hsl", "order": 1 },
         { "id": "hsla", "type": "subSection", "title": "hsla", "slug": "css/colors#hsla", "order": 2 },
         { "id": "rgba", "type": "subSection", "title": "rgba", "slug": "css/colors#rgba", "order": 3 },
-        { "id": "hsl-playground", "type": "subSection", "title": "HSL playground", "slug": "css/colors#hsl-playground", "order": 4 }
+        { "id": "interactive-playground-hsl-controls", "type": "subSection", "title": "Interactive Playground: HSL Controls", "slug": "css/colors#interactive-playground-hsl-controls", "order": 4 }
       ]
     },
     {
@@ -138,7 +140,8 @@
         { "id": "dots-per-inch-dpi", "type": "subSection", "title": "Dots per inch dpi", "slug": "css/responsive-design#dots-per-inch-dpi", "order": 12 },
         { "id": "and-operator", "type": "subSection", "title": "and operator", "slug": "css/responsive-design#and-operator", "order": 13 },
         { "id": "comma-operator", "type": "subSection", "title": "comma operator", "slug": "css/responsive-design#comma-operator", "order": 14 },
-        { "id": "breakpoints", "type": "subSection", "title": "Breakpoints", "slug": "css/responsive-design#breakpoints", "order": 15 }
+        { "id": "breakpoints", "type": "subSection", "title": "Breakpoints", "slug": "css/responsive-design#breakpoints", "order": 15 },
+        { "id": "interactive-playground-relative-units", "type": "subSection", "title": "Interactive Playground: Relative Units", "slug": "css/responsive-design#interactive-playground-relative-units", "order": 16 }
       ]
     },
     {
@@ -163,7 +166,7 @@
         { "id": "flex-flow", "type": "subSection", "title": "flex flow", "slug": "css/flexbox#flex-flow", "order": 13 },
         { "id": "nested-flexboxes", "type": "subSection", "title": "Nested flexboxes", "slug": "css/flexbox#nested-flexboxes", "order": 14 },
         { "id": "review", "type": "subSection", "title": "Review", "slug": "css/flexbox#review", "order": 15 },
-        { "id": "flexbox-playground", "type": "subSection", "title": "Flexbox Playground", "slug": "css/flexbox#flexbox-playground", "order": 16 }
+        { "id": "interactive-playground-flex-axes", "type": "subSection", "title": "Interactive Playground: Flex Axes", "slug": "css/flexbox#interactive-playground-flex-axes", "order": 16 }
       ]
     },
 
@@ -181,7 +184,7 @@
         { "id": "combination", "type": "subSection", "title": "Combination", "slug": "css/transitions#combination", "order": 5 },
         { "id": "all", "type": "subSection", "title": "All", "slug": "css/transitions#all", "order": 6 },
         { "id": "tips", "type": "subSection", "title": "Animation tips", "slug": "css/transitions#animation-tips", "order": 7 },
-        { "id": "transition-playground", "type": "subSection", "title": "Transition Playground", "slug": "css/transitions#transition-playground", "order": 8 }
+        { "id": "interactive-playground-transition-timing", "type": "subSection", "title": "Interactive Playground: Transition Timing", "slug": "css/transitions#interactive-playground-transition-timing", "order": 8 }
       ]
     },
     {
@@ -211,7 +214,7 @@
         { "id": "flat-design", "type": "subSection", "title": "Flat design", "slug": "css/buttons#flat-design", "order": 2 },
         { "id": "hover-states", "type": "subSection", "title": "Hover states", "slug": "css/buttons#hover-states", "order": 3 },
         { "id": "affordances-signifiers-and-clickability", "type": "subSection", "title": "Affordances signifiers and clickability", "slug": "css/buttons#affordances-signifiers-and-clickability", "order": 4 },
-        { "id": "buttons-playground", "type": "subSection", "title": "Buttons Playground", "slug": "css/buttons#buttons-playground", "order": 5 }
+        { "id": "interactive-playground-button-states", "type": "subSection", "title": "Interactive Playground: Button States", "slug": "css/buttons#interactive-playground-button-states", "order": 5 }
       ]
     },
     {
@@ -225,7 +228,7 @@
         { "id": "pseudo-element", "type": "subSection", "title": "Pseudo element", "slug": "css/breadcrumb-navigation#pseudo-element", "order": 2 },
         { "id": "arrow-style", "type": "subSection", "title": "Arrow style", "slug": "css/breadcrumb-navigation#arrow-style", "order": 3 },
         { "id": "abbreviated-breadcrumb", "type": "subSection", "title": "Abbreviated breadcrumb", "slug": "css/breadcrumb-navigation#abbreviated-breadcrumb", "order": 4 },
-        { "id": "breadcrumb-playground", "type": "subSection", "title": "Breadcrumb Playground", "slug": "css/breadcrumb-navigation#breadcrumb-playground", "order": 5 }
+        { "id": "interactive-playground-breadcrumb-patterns", "type": "subSection", "title": "Interactive Playground: Breadcrumb Patterns", "slug": "css/breadcrumb-navigation#interactive-playground-breadcrumb-patterns", "order": 5 }
       ]
     },
     {
@@ -256,7 +259,7 @@
         { "id": "implicit-grid", "type": "subSection", "title": "Implicit grid", "slug": "css/grid#implicit-grid", "order": 19 },
         { "id": "grid-auto-rows-and-columns", "type": "subSection", "title": "Grid auto rows and columns", "slug": "css/grid#grid-auto-rows-and-columns", "order": 20 },
         { "id": "grid-auto-flow", "type": "subSection", "title": "Grid auto flow", "slug": "css/grid#grid-auto-flow", "order": 21 },
-        { "id": "grid-playground", "type": "subSection", "title": "Grid Playground", "slug": "css/grid#grid-playground", "order": 22 }
+        { "id": "interactive-playground-grid-templates", "type": "subSection", "title": "Interactive Playground: Grid Templates", "slug": "css/grid#interactive-playground-grid-templates", "order": 22 }
       ]
     }
   ]
