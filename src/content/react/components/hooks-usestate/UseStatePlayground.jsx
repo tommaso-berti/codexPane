@@ -104,6 +104,15 @@ export default function UseStatePlayground() {
                     <Alert severity="success" variant="outlined">Each update uses a new value/object/array instead of mutation.</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`const [state, setState] = useState(${shape === "primitive" ? "0" : shape === "array" ? '["alpha"]' : '{ firstName: "", role: "user" }'});
+
+${shape === "primitive"
+    ? "setState((prev) => prev + 1);"
+    : shape === "array"
+        ? `setState((prev) => [...prev, "${itemInput.trim() || "item"}"]);`
+        : 'setState((prev) => ({ ...prev, role: prev.role === "user" ? "admin" : "user" }));'}`}</pre>
+            }
             note="Choose state shape by domain needs, then keep updates immutable for predictable renders."
         />
     );

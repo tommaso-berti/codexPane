@@ -117,6 +117,7 @@ export default function ScopePlayground() {
                     ))}
                 </Stack>
             }
+            code={<pre>{code}</pre>}
             note="`var` is function-scoped, while `let` and `const` are block-scoped. `const` also forbids reassignment."
         />
     );

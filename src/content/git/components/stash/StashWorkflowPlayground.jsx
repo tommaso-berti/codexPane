@@ -159,6 +159,14 @@ export default function StashWorkflowPlayground() {
                 </Paper>
             }
             output={<Alert severity="info" variant="outlined">{feedback}</Alert>}
+            code={
+                <pre>{`git stash push ${includeUntracked ? "-u " : ""}${usePatch ? "-p " : ""}-m "WIP"
+git stash list
+git stash ${retrieveMode}
+
+# top stash
+${stashList[0] ? `${stashList[0].id}: ${stashList[0].message}` : "(none)"}`}</pre>
+            }
             note="Use `apply` when you want to reuse a stash later; use `pop` when the stash should be consumed immediately."
         />
     );

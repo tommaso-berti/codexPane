@@ -141,6 +141,17 @@ export default function TablePlayground() {
                     </Alert>
                 </Paper>
             }
+            code={
+                <pre>{`<table>
+  ${showCaption ? "<caption>Weekend temperatures (°F)</caption>" : ""}
+  ${showHead ? "<thead>...</thead>" : ""}
+  <tbody>...</tbody>
+  ${showFoot ? "<tfoot>...</tfoot>" : ""}
+</table>
+
+// header cells scope
+${useScope ? 'scope="col" / scope="row"' : "no scope attributes"}`}</pre>
+            }
             note="Toggle one section at a time and observe how semantics change even when visual layout looks similar."
         />
     );

@@ -98,6 +98,16 @@ export default function FolderMappingPlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`const folderMap = {
+  store: "src/app/store.js",
+  slice: "src/features/todos/todosSlice.js",
+  ui: "src/components/Button.jsx"
+};
+
+const expectedPath = folderMap["${scenario}"];
+const isCorrect = "${pathInput.trim()}" === expectedPath;`}</pre>
+            }
             note="A predictable folder map keeps Redux setup scalable as feature count grows."
         />
     );

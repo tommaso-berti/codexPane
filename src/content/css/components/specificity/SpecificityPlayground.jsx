@@ -105,6 +105,13 @@ export default function SpecificityPlayground() {
                     <Alert severity="warning" variant="outlined">{result.reason} {data.orderNote}</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`.rule-1 { /* ${data.one.label} */ }   /* score ${scoreToText(data.one.score)} */
+.rule-2 { /* ${data.two.label} */ }   /* score ${scoreToText(data.two.score)} */
+
+/* winner */
+${result.winner === "one" ? data.one.label : data.two.label}`}</pre>
+            }
             note="Specificity compares ID, class/attribute/pseudo-class, then element selectors. Source order breaks ties."
         />
     );

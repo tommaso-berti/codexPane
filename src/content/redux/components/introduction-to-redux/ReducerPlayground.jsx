@@ -46,6 +46,9 @@ export default function ReducerPlayground() {
         ],
         [input, items.length, lastAction]
     );
+    const actionSnippet = lastAction.includes("dispatch")
+        ? lastAction.replace("dispatch(", "").slice(0, -1)
+        : '{ type: "todos/addTodo", payload: "Take selfies" }';
 
     return (
         <PlaygroundShell
@@ -86,6 +89,22 @@ export default function ReducerPlayground() {
                         </Alert>
                     ))}
                 </Stack>
+            }
+            code={
+                <pre>{`const action = ${actionSnippet};
+
+const todoReducer = (state, action) => {
+  switch (action.type) {
+    case "todos/addTodo":
+      return [...state, action.payload];
+    case "todos/removeAll":
+      return [];
+    default:
+      return state;
+  }
+};
+
+// current todos count: ${items.length}`}</pre>
             }
             note="Reducers stay deterministic when actions are explicit and state updates are immutable."
         />

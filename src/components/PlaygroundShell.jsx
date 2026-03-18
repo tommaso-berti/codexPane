@@ -6,6 +6,7 @@ import {
     CardHeader,
     Chip,
     Divider,
+    Paper,
     Stack,
     Typography
 } from "@mui/material";
@@ -17,11 +18,13 @@ export default function PlaygroundShell({
     controlsLabel = "Try it",
     previewLabel = "Preview",
     outputLabel = "What changed",
+    codeLabel = "Code behind this behavior",
     note,
     status,
     controls,
     preview,
-    output
+    output,
+    code
 }) {
     const statusColor = status?.color || "default";
     const tone = ["success", "warning", "error", "info", "primary", "secondary"].includes(statusColor)
@@ -79,6 +82,44 @@ export default function PlaygroundShell({
                         </Typography>
                         <Box sx={{ mt: 0.75 }}>{output}</Box>
                     </Box>
+
+                    {code ? (
+                        <Box>
+                            <Typography variant="overline" color="text.secondary">
+                                {codeLabel}
+                            </Typography>
+                            <Paper
+                                variant="outlined"
+                                sx={(theme) => ({
+                                    mt: 0.75,
+                                    p: 1.25,
+                                    borderRadius: 2,
+                                    borderColor:
+                                        theme.palette.mode === "dark"
+                                            ? alpha(theme.palette.info.light, 0.35)
+                                            : alpha(theme.palette.info.main, 0.25),
+                                    bgcolor:
+                                        theme.palette.mode === "dark"
+                                            ? alpha(theme.palette.common.white, 0.04)
+                                            : alpha(theme.palette.info.main, 0.04),
+                                    "& pre": {
+                                        m: 0,
+                                        overflowX: "auto",
+                                        fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+                                        fontSize: 12.5,
+                                        lineHeight: 1.6,
+                                        color: "text.primary"
+                                    },
+                                    "& code": {
+                                        fontFamily: "inherit",
+                                        color: "inherit"
+                                    }
+                                })}
+                            >
+                                {code}
+                            </Paper>
+                        </Box>
+                    ) : null}
 
                     {note ? (
                         <Alert severity="info" variant="outlined">

@@ -125,6 +125,14 @@ export default function FormPlayground() {
                     )}
                 </Stack>
             }
+            code={
+                <pre>{`const nameError = validateName("${name}");
+const emailError = validateEmail("${email}");
+const canSubmit = ${isValid};
+
+<TextField error={Boolean(nameError)} helperText={nameError} />
+<TextField error={Boolean(emailError)} helperText={emailError} />`}</pre>
+            }
             note="Good UX combines immediate field hints with one clear form-level state before submission."
         />
     );

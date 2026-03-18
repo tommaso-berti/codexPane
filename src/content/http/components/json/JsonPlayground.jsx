@@ -141,6 +141,15 @@ export default function JsonPlayground() {
                     </Paper>
                 </Stack>
             }
+            code={
+                <pre>{`const raw = ${JSON.stringify(input)};
+const parsed = JSON.parse(raw); // ${parsedResult.ok ? "ok" : "error"}
+const serialized = JSON.stringify(
+  parsed,
+  null,
+  ${mode === "format" ? indent : 0}
+);`}</pre>
+            }
             note="`JSON.parse` validates structure; `JSON.stringify` controls how that structure is serialized for transport or readability."
         />
     );

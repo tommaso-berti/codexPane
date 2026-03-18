@@ -185,6 +185,14 @@ export default function ValidationPlayground() {
                     </Typography>
                 </Paper>
             }
+            code={
+                <pre>{`<input name="allergies" required />
+<input name="username" minlength="3" maxlength="15" />
+<input name="code" pattern="^[cC]odexPane$" />
+
+form.checkValidity(); // ${fieldStatus.allValid}
+// browser message: ${browserMessage}`}</pre>
+            }
             note="Native validation is useful UX guidance, but real applications must still validate again on the server."
         />
     );

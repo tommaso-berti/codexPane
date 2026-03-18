@@ -180,6 +180,14 @@ export default function UndoSafelyPlayground() {
                 </Paper>
             }
             output={<Alert severity={feedback.severity} variant="outlined">{feedback.message}</Alert>}
+            code={
+                <pre>{`${command === "restore-file" ? `git restore ${targetFile}` : `git reset ${command.replace("reset-", "--")} ${targetRef}`}
+
+# resulting state
+# working: ${state.working ? "changed" : "clean"}
+# staged: ${state.staged ? "yes" : "no"}
+# commits ahead: ${state.commitsAhead}`}</pre>
+            }
             note="Add the exact target (file or ref) before running undo: most mistakes come from the right command with the wrong target."
         />
     );

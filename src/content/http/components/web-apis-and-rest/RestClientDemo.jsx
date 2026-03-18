@@ -248,6 +248,15 @@ export default function RestClientDemo() {
                     </Alert>
                 </Stack>
             }
+            code={
+                <pre>{`fetch("${path.startsWith("/") ? path : `/${path}`}", {
+  method: "${method}",
+  headers: { "Content-Type": "application/json" },
+  ${doesNeedBody ? `body: JSON.stringify(${body.trim() || "{}"})` : "// no body"}
+});
+
+// simulated status => ${result.status}`}</pre>
+            }
             note="Choose method and path as a pair: REST semantics come from both the verb and the resource route."
         />
     );

@@ -189,6 +189,15 @@ export default function GitWorkflowPlayground() {
                 </Paper>
             }
             output={<Alert severity="info" variant="outlined">{message}</Alert>}
+            code={
+                <pre>{`git status
+${state.working ? "# working tree has changes" : "# working tree clean"}
+
+git add ${fileName}
+git commit -m "${commitMessage}"
+git log --oneline
+# commits: ${state.commits}`}</pre>
+            }
             note="Run workflow steps in sequence, then tweak file/message inputs to reinforce what each command actually consumes."
         />
     );

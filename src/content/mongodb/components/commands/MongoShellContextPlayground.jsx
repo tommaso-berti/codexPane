@@ -180,6 +180,14 @@ export default function MongoShellContextPlayground() {
                     </Paper>
                 </Stack>
             }
+            code={
+                <pre>{`mongosh
+> ${selectedCommand}
+> db
+${state.currentDb}
+
+// known dbs: ${state.knownDbs.join(", ")}`}</pre>
+            }
             note="`use <db>` changes context immediately, but MongoDB creates the database only when you perform the first write."
         />
     );

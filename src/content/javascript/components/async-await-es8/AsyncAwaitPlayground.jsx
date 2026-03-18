@@ -116,6 +116,18 @@ export default function AsyncAwaitPlayground() {
                     <Alert severity={result.severity} variant="outlined">{result.message}</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`async function runFlow() {
+  try {
+    ${scenario === "concurrent" ? "const [a, b] = await Promise.all([taskA(), taskB()]);" : "const a = await taskA();\n    const b = await taskB();"}
+    const response = await fetch("/api/data");
+    ${useGuard ? "if (!response.ok) throw new Error(\"Request failed\");" : "// no response.ok guard"}
+    return await response.json();
+  } catch (error) {
+    return { error: error.message };
+  }
+}`}</pre>
+            }
             note="`await` improves readability, but explicit error checks still define correctness."
         />
     );

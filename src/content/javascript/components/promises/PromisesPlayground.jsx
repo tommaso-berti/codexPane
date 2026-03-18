@@ -110,6 +110,13 @@ export default function PromisesPlayground() {
                     </Alert>
                 </Stack>
             }
+            code={
+                <pre>{`Promise.resolve()
+  .then(() => "${visibleTrace[0] || "start"}")
+  .then(() => "${visibleTrace[1] || "next"}")
+  ${current.finalState === "rejected" ? '.catch((error) => "handled: " + error)' : ""}
+  .finally(() => "final state: ${current.finalState}");`}</pre>
+            }
             note="Promise chains are easier to reason about when you model state transitions explicitly: pending -> fulfilled/rejected."
         />
     );

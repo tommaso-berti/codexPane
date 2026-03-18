@@ -103,6 +103,13 @@ export default function GhCommandBuilderPlayground() {
                     {output === "Run to generate command output." ? output : output + " -> " + FAMILIES[family].response}
                 </Alert>
             }
+            code={
+                <pre>{`# gh command template
+${FAMILIES[family].template}
+
+# generated command
+${previewCommand}`}</pre>
+            }
             note="Choose the command family first, then fill repository and target id to avoid wrong-context CLI calls."
         />
     );

@@ -151,6 +151,15 @@ export default function NavigationPlayground() {
                 </Paper>
             }
             output={<Alert severity={result.exists ? "success" : "warning"} variant="outlined">{result.message}</Alert>}
+            code={
+                <pre>{`# start
+pwd
+# ${startPath}
+
+cd ${appliedCommand}
+pwd
+# ${result.target}`}</pre>
+            }
             note="Use presets to learn common moves, then type a custom path to test your mental model of relative resolution."
         />
     );

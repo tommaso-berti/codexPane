@@ -221,6 +221,16 @@ export default function FileManipulationPlayground() {
                 </Paper>
             }
             output={<Alert severity={lastResult.severity} variant="outlined">{lastResult.message}</Alert>}
+            code={
+                <pre>{`# simulated command
+${commandPreview}
+
+# before tree
+${beforeTree}
+
+# after tree
+${renderTree(fs)}`}</pre>
+            }
             note="`rm` is destructive. Prefer `rm -i` when learning or when deleting uncertain paths."
         />
     );

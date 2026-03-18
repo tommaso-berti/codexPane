@@ -52,6 +52,9 @@ export default function ReduxStorePlayground() {
         ],
         [log.length, state]
     );
+    const reducerExpression = action === ACTIONS.toggle
+        ? "state === \"on\" ? \"off\" : \"on\""
+        : `payload === "on" ? "on" : "off" // payload: "${payload}"`;
 
     return (
         <PlaygroundShell
@@ -108,6 +111,21 @@ export default function ReduxStorePlayground() {
                         </Typography>
                     </Paper>
                 </Stack>
+            }
+            code={
+                <pre>{`const store = createStore(lightSwitchReducer);
+store.subscribe(() => console.log(store.getState()));
+
+store.dispatch({ type: "${action}", payload: "${payload}" });
+
+function lightSwitchReducer(state = "on", action) {
+  if (action.type === "toggle" || action.type === "set") {
+    return ${reducerExpression};
+  }
+  return state;
+}
+
+// current state: "${state}"`}</pre>
             }
             note="Redux store APIs are simple: state changes are observable when actions are explicit and traceable."
         />

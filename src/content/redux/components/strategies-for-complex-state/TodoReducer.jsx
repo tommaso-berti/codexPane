@@ -57,6 +57,7 @@ export default function TodoReducer() {
         setFilter("ALL");
         setBeforeAfter("Reset to initial todo reducer state.");
     };
+    const visibleIds = visible.map((todo) => todo.id).join(", ") || "(none)";
 
     return (
         <PlaygroundShell
@@ -114,6 +115,22 @@ export default function TodoReducer() {
                     <Alert severity="success" variant="outlined">Reducer updates create new array/object references.</Alert>
                     <Alert severity="info" variant="outlined">Total todos in state: {todos.length}</Alert>
                 </Stack>
+            }
+            code={
+                <pre>{`const addTodo = (state, action) => [
+  ...state,
+  { id: Date.now(), text: action.payload, completed: false }
+];
+
+const toggleTodo = (state, action) =>
+  state.map((todo) =>
+    todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo
+  );
+
+const selectVisible = (state, filter) =>
+  state.filter((todo) => filter === "ALL" ? true : filter === "DONE" ? todo.completed : !todo.completed);
+
+// filter: "${filter}" | visible ids: ${visibleIds}`}</pre>
             }
             note="For complex state, keep updates explicit and immutable so each reducer step stays predictable."
         />

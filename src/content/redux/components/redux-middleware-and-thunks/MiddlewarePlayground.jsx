@@ -95,6 +95,19 @@ export default function MiddlewarePlayground() {
                     <Alert severity="info" variant="outlined">Simulation runs: {runCount}</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`export const fetchUserById = createAsyncThunk(
+  "users/fetchUserById",
+  async (id) => {
+    ${scenario === "success" ? 'return { id, name: "Ada" };' : 'throw new Error("Request failed");'}
+  }
+);
+
+dispatch(fetchUserById("42"));
+// lifecycle
+${selected.steps.map((step) => `// -> ${step}`).join("\n")}
+`}</pre>
+            }
             note="For teaching async flow, deterministic scenarios are clearer than random network timing."
         />
     );

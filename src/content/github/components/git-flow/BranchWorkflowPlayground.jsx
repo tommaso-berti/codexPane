@@ -139,6 +139,15 @@ export default function BranchWorkflowPlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`git checkout -b ${branchName}
+git commit -m "feat: update ${branchName.split("/").pop() || "feature"}"
+git fetch origin
+git rebase origin/main
+git checkout main && git merge ${branchName}
+
+# progress: ${passed}/4 steps`}</pre>
+            }
             note="Use a focused feature branch and linearize with rebase before merging to keep history readable."
         />
     );

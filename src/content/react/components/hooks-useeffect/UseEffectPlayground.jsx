@@ -76,6 +76,14 @@ export default function UseEffectPlayground() {
                     <Alert severity="success" variant="outlined">Cleanup runs before the next effect or on unmount.</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`useEffect(() => {
+  // setup: ${timeline[0]}
+  return () => {
+    // cleanup: ${timeline[timeline.length - 1]}
+  };
+}, ${scenario === "mount" ? "[]" : scenario === "dependency" ? "[dep]" : "[subscription]"});`}</pre>
+            }
             note="Model effects as synchronization steps: setup first, cleanup symmetry second."
         />
     );

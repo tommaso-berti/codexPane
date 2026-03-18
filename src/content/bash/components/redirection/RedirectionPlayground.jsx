@@ -150,6 +150,14 @@ export default function RedirectionPlayground() {
                     ) : null}
                 </Stack>
             }
+            code={
+                <pre>{`$ ${simulation.command}
+
+stdout:
+${simulation.stdout || "(empty)"}
+
+${simulation.fileName ? `${simulation.fileName}:\n${simulation.fileContent}` : "no file write"}`}</pre>
+            }
             note="Use `>` to overwrite and `>>` to append. Pipes (`|`) connect stdout from one command to stdin of the next."
         />
     );

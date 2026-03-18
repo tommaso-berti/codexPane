@@ -90,6 +90,14 @@ export default function WorkflowTriggerPlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`on:
+  ${trigger}:
+    branches: [${branchPattern || "main"}]
+
+jobs:
+  ${runLint ? "lint:\n    runs-on: ubuntu-latest\n" : ""}${runTests ? "test:\n    runs-on: ubuntu-latest\n" : ""}${runDeploy ? "deploy:\n    runs-on: ubuntu-latest\n" : ""}`}</pre>
+            }
             note="Keep deployment conditions stricter than CI checks: trigger deploy only on trusted events and branches."
         />
     );

@@ -144,6 +144,15 @@ export default function FlexPlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`.container {
+  display: flex;
+  flex-direction: ${direction};
+  justify-content: ${justifyContent};
+  align-items: ${alignItems};
+  flex-wrap: ${wrap ? "wrap" : "nowrap"};
+}`}</pre>
+            }
             note="Change flex-direction first, then compare how justify-content and align-items switch roles across axes."
         />
     );

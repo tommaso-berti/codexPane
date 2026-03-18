@@ -140,6 +140,15 @@ ${renderAliases(session.aliases)}`}
                     <Alert severity="info" variant="outlined">{commandResolution.node}</Alert>
                 </Stack>
             }
+            code={
+                <pre>{`export USER="${session.USER}"
+export PATH="${session.PATH}"
+alias ${aliasName}="${session.aliases[aliasName] || aliasCommand}"
+source ~/.bashrc
+
+# active alias table
+${renderAliases(session.aliases)}`}</pre>
+            }
             note="`export` affects the current shell immediately. `source` applies profile content (such as aliases) to the current session."
         />
     );

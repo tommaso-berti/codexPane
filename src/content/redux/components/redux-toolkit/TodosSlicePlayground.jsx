@@ -56,6 +56,7 @@ export default function TodosSlicePlayground() {
         setText("");
         setSummary("Reset to initial RTK slice state.");
     };
+    const firstVisibleId = visible[0]?.id || "(none)";
 
     return (
         <PlaygroundShell
@@ -113,6 +114,25 @@ export default function TodosSlicePlayground() {
                     <Alert severity="success" variant="outlined">Slice updates remain predictable with explicit action types.</Alert>
                     <Alert severity="info" variant="outlined">Slice state size: {todos.length}</Alert>
                 </Stack>
+            }
+            code={
+                <pre>{`const todosSlice = createSlice({
+  name: "todos",
+  initialState,
+  reducers: {
+    addTodo: (state, action) => {
+      state.push({ id: Date.now().toString(), text: action.payload, completed: false });
+    },
+    toggleTodo: (state, action) => {
+      const todo = state.find((item) => item.id === action.payload);
+      if (todo) todo.completed = !todo.completed;
+    }
+  }
+});
+
+dispatch(addTodo("${text.trim() || "new todo"}"));
+dispatch(toggleTodo("${firstVisibleId}"));
+// active filter: "${filter}"`}</pre>
             }
             note="RTK keeps reducer logic concise, but action semantics and state shape still drive correctness."
         />

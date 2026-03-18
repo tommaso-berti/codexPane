@@ -133,6 +133,17 @@ export default function FormPlayground() {
                     </pre>
                 </Paper>
             }
+            code={
+                <pre>{`<form>
+  <input type="text" name="full-name" value="${form.fullName}" />
+  <input type="number" name="years" value="${form.years}" />
+  <select name="lunch"><option value="${form.lunch}" /></select>
+  <input type="checkbox" name="subscribe" ${form.subscribe ? "checked" : ""} />
+</form>
+
+// submitted query string
+${queryString}`}</pre>
+            }
             note="Checkbox fields are submitted only when checked. Every submitted pair is sent as name=value."
         />
     );

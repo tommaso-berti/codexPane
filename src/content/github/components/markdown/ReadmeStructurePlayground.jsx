@@ -131,6 +131,12 @@ export default function ReadmeStructurePlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`# ${project || "project-name"}
+${description || "Short project description."}
+
+${includeInstall ? "## Installation\nnpm install\n" : ""}${includeUsage ? "## Usage\nnpm run dev\n" : ""}${includeLicense ? "## License\nMIT\n" : ""}`}</pre>
+            }
             note="A strong README explains what the project is, how to run it, and where to find practical usage details."
         />
     );

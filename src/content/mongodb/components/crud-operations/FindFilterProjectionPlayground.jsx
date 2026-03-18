@@ -137,6 +137,13 @@ export default function FindFilterProjectionPlayground() {
                     </Paper>
                 </Stack>
             }
+            code={
+                <pre>{`db.users.find(
+  ${result.filterPreview},
+  { _id: 1, name: ${includeName ? 1 : 0}, city: ${includeCity ? 1 : 0}, score: ${includeScore ? 1 : 0} }
+)
+// matched docs: ${result.matched.length}`}</pre>
+            }
             note="Use filter to choose which documents to return, and projection to control which fields are sent back."
         />
     );

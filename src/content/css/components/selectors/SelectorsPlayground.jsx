@@ -153,6 +153,14 @@ export default function SelectorsPlayground() {
                     Selector `{appliedSelector || "(empty)"}` matches {matchCount} element{matchCount === 1 ? "" : "s"}.
                 </Alert>
             }
+            code={
+                <pre>{`/* selector under test */
+${appliedSelector || "(empty selector)"}
+
+/* simplified matcher */
+document.querySelectorAll("${appliedSelector || "*"}");
+// match count: ${matchCount}`}</pre>
+            }
             note="Use presets to learn the pattern, then type your own selector and validate matches immediately."
         />
     );

@@ -152,6 +152,14 @@ export default function SemanticLandmarksPlayground() {
                     ))}
                 </Stack>
             }
+            code={
+                <pre>{`<${assignment.topBanner}>Top banner</${assignment.topBanner}>
+<${assignment.primaryNav}>Primary nav</${assignment.primaryNav}>
+<${assignment.pageContent}>Main content</${assignment.pageContent}>
+<${assignment.relatedLinks}>Related links</${assignment.relatedLinks}>
+<${assignment.storyBlock}>Story block${storyHasHeading ? " + heading" : ""}</${assignment.storyBlock}>
+<${assignment.pageFooter}>Footer</${assignment.pageFooter}>`}</pre>
+            }
             note="Landmarks help both assistive technologies and developers understand page structure quickly."
         />
     );
