@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
@@ -6,9 +6,23 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
+import { useActiveSection } from '../features/docs/useActiveSection.js';
+
+function parseSlugDestination(slug) {
+    if (!slug) return null;
+    const absolute = slug.startsWith('/') ? slug : `/${slug}`;
+    const [pathname = '/', rawHash = ''] = absolute.split('#');
+    return {
+        to: absolute,
+        pathname,
+        hashId: rawHash ? decodeURIComponent(rawHash) : '',
+    };
+}
 
 export default function SectMenuItem({ section, subsections, selected, open, onToggle }) {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { setActiveSectionId } = useActiveSection();
     const isSectionActive = selected?.type === "section" && selected?.value === section.id;
 
     const handleClick = () => {
@@ -16,8 +30,26 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
     };
 
     const handleSelect = (slug) => {
-        if (!slug) return;
-        navigate(slug.startsWith('/') ? slug : `/${slug}`);
+        const destination = parseSlugDestination(slug);
+        if (!destination) return;
+
+        const currentHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : '';
+        const isSamePath = location.pathname === destination.pathname;
+        const isSameHash = currentHash === destination.hashId;
+
+        if (isSamePath && destination.hashId && isSameHash) {
+            const heading = document.getElementById(destination.hashId);
+            if (heading) {
+                heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            setActiveSectionId(destination.hashId);
+            return;
+        }
+
+        if (destination.hashId) {
+            setActiveSectionId(destination.hashId);
+        }
+        navigate(destination.to);
     };
 
     return (
