@@ -189,7 +189,11 @@ store.subscribe(render);
 > **Note**
 > For idiomatic React integration, consider the `react-redux` bindings (`<Provider>`, `useSelector`, `useDispatch`). This removes manual `subscribe`/`render` plumbing.
 
-## Redux store playground
+## Interactive Playground: Store Dispatch Cycle
+
+**Why this matters:** Redux APIs are simple, but understanding their order (`dispatch`, reducer, `subscribe`, `getState`) is essential.
+
+**What to try:** switch action mode, run dispatches, and inspect event log/state snapshots.
 
 import ReduxStorePlayground from "./components/redux-api/ReduxStorePlayground.jsx"
 

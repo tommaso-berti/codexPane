@@ -5327,9 +5327,9 @@
               "order": 7
             },
             {
-              "id": "reducer-playground",
-              "title": "Reducer playground",
-              "slug": "redux/introduction-to-redux#reducer-playground",
+              "id": "interactive-playground-reducer-action-flow",
+              "title": "Interactive Playground: Reducer Action Flow",
+              "slug": "redux/introduction-to-redux#interactive-playground-reducer-action-flow",
               "order": 8
             }
           ],
@@ -5378,9 +5378,9 @@
               "order": 6
             },
             {
-              "id": "redux-store-playground",
-              "title": "Redux store playground",
-              "slug": "redux/redux-api#redux-store-playground",
+              "id": "interactive-playground-store-dispatch-cycle",
+              "title": "Interactive Playground: Store Dispatch Cycle",
+              "slug": "redux/redux-api#interactive-playground-store-dispatch-cycle",
               "order": 7
             }
           ],
@@ -5441,9 +5441,9 @@
               "order": 8
             },
             {
-              "id": "todo-reducer-playground",
-              "title": "Todo reducer playground",
-              "slug": "redux/strategies-for-complex-state#todo-reducer-playground",
+              "id": "interactive-playground-todo-reducer-updates",
+              "title": "Interactive Playground: Todo Reducer Updates",
+              "slug": "redux/strategies-for-complex-state#interactive-playground-todo-reducer-updates",
               "order": 9
             }
           ],
@@ -5490,6 +5490,12 @@
               "title": "Index wiring and props",
               "slug": "redux/file-structure#index-wiring-and-props",
               "order": 6
+            },
+            {
+              "id": "interactive-playground-redux-folder-mapping",
+              "title": "Interactive Playground: Redux Folder Mapping",
+              "slug": "redux/file-structure#interactive-playground-redux-folder-mapping",
+              "order": 7
             }
           ],
           "order": 4
@@ -5537,9 +5543,9 @@
               "order": 6
             },
             {
-              "id": "todos-slice-playground",
-              "title": "Todos slice playground",
-              "slug": "redux/redux-toolkit#todos-slice-playground",
+              "id": "interactive-playground-slice-actions-and-filtering",
+              "title": "Interactive Playground: Slice Actions and Filtering",
+              "slug": "redux/redux-toolkit#interactive-playground-slice-actions-and-filtering",
               "order": 7
             }
           ],
@@ -5594,9 +5600,9 @@
               "order": 7
             },
             {
-              "id": "middleware-pipeline-playground",
-              "title": "Middleware pipeline playground",
-              "slug": "redux/redux-middleware-and-thunks#middleware-pipeline-playground",
+              "id": "interactive-playground-thunk-lifecycle-pipeline",
+              "title": "Interactive Playground: Thunk Lifecycle Pipeline",
+              "slug": "redux/redux-middleware-and-thunks#interactive-playground-thunk-lifecycle-pipeline",
               "order": 8
             }
           ],

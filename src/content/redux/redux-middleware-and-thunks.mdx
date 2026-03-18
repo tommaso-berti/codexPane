@@ -227,9 +227,12 @@ const usersSlice = createSlice({
 })
 ~~~
 
-## Middleware pipeline playground
+## Interactive Playground: Thunk Lifecycle Pipeline
+
+**Why this matters:** middleware/thunk debugging depends on understanding lifecycle action order.
+
+**What to try:** run fulfilled and rejected scenarios and compare deterministic lifecycle traces.
+
 import MiddlewarePlayground from "./components/redux-middleware-and-thunks/MiddlewarePlayground.jsx"
 
 <MiddlewarePlayground />
-
-> Tip: Open the browser console to see the logger middleware print previous and next state around each thunk lifecycle action.

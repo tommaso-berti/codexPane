@@ -18,7 +18,7 @@
         { "id": "rules-of-reducers", "type": "subSection", "title": "Rules of reducers", "slug": "redux/introduction-to-redux#rules-of-reducers", "order": 5 },
         { "id": "immutable-updates-and-pure-functions", "type": "subSection", "title": "Immutable updates and pure functions", "slug": "redux/introduction-to-redux#immutable-updates-and-pure-functions", "order": 6 },
         { "id": "store", "type": "subSection", "title": "Store", "slug": "redux/introduction-to-redux#store", "order": 7 },
-        { "id": "reducer-playground", "type": "subSection", "title": "Reducer playground", "slug": "redux/introduction-to-redux#reducer-playground", "order": 8 }
+        { "id": "interactive-playground-reducer-action-flow", "type": "subSection", "title": "Interactive Playground: Reducer Action Flow", "slug": "redux/introduction-to-redux#interactive-playground-reducer-action-flow", "order": 8 }
       ]
     },
     {
@@ -34,7 +34,7 @@
         { "id": "action-creators", "type": "subSection", "title": "Action Creators", "slug": "redux/redux-api#action-creators", "order": 4 },
         { "id": "respond-to-state-changes", "type": "subSection", "title": "Respond To State Changes", "slug": "redux/redux-api#respond-to-state-changes", "order": 5 },
         { "id": "connect-the-redux-store-to-a-ui", "type": "subSection", "title": "Connect The Redux Store To A Ui", "slug": "redux/redux-api#connect-the-redux-store-to-a-ui", "order": 6 },
-        { "id": "redux-store-playground", "type": "subSection", "title": "Redux Store Playground", "slug": "redux/redux-api#redux-store-playground", "order": 7 }
+        { "id": "interactive-playground-store-dispatch-cycle", "type": "subSection", "title": "Interactive Playground: Store Dispatch Cycle", "slug": "redux/redux-api#interactive-playground-store-dispatch-cycle", "order": 7 }
       ]
     },
     {
@@ -52,7 +52,7 @@
         { "id": "reducer-composition", "type": "subSection", "title": "Reducer composition", "slug": "redux/strategies-for-complex-state#reducer-composition", "order": 6 },
         { "id": "separate-slice-state-initialization", "type": "subSection", "title": "Separate slice state initialization", "slug": "redux/strategies-for-complex-state#separate-slice-state-initialization", "order": 7 },
         { "id": "combinereducers", "type": "subSection", "title": "Combinereducers", "slug": "redux/strategies-for-complex-state#combinereducers", "order": 8 },
-        { "id": "todo-reducer-playground", "type": "subSection", "title": "Todo reducer playground", "slug": "redux/strategies-for-complex-state#todo-reducer-playground", "order": 9 }
+        { "id": "interactive-playground-todo-reducer-updates", "type": "subSection", "title": "Interactive Playground: Todo Reducer Updates", "slug": "redux/strategies-for-complex-state#interactive-playground-todo-reducer-updates", "order": 9 }
       ]
     },
     {
@@ -68,7 +68,7 @@
         { "id": "component-colocation-with-slices", "type": "subSection", "title": "Component colocation with slices", "slug": "redux/file-structure#component-colocation-with-slices", "order": 4 },
         { "id": "app-component-responsibilities", "type": "subSection", "title": "App component responsibilities", "slug": "redux/file-structure#app-component-responsibilities", "order": 5 },
         { "id": "index-wiring-and-props", "type": "subSection", "title": "Index wiring and props", "slug": "redux/file-structure#index-wiring-and-props", "order": 6 },
-        { "id": "file-structure-playground", "type": "subSection", "title": "File structure playground", "slug": "redux/file-structure#file-structure-playground", "order": 7 }
+        { "id": "interactive-playground-redux-folder-mapping", "type": "subSection", "title": "Interactive Playground: Redux Folder Mapping", "slug": "redux/file-structure#interactive-playground-redux-folder-mapping", "order": 7 }
       ]
     },
     {
@@ -84,7 +84,7 @@
         { "id": "returned-objects-and-auto-generated-actions", "type": "subSection", "title": "Returned objects and auto generated actions", "slug": "redux/redux-toolkit#returned-objects-and-auto-generated-actions", "order": 4 },
         { "id": "returned-objects-and-reducers", "type": "subSection", "title": "Returned objects and reducers", "slug": "redux/redux-toolkit#returned-objects-and-reducers", "order": 5 },
         { "id": "configure-store", "type": "subSection", "title": "Configure store", "slug": "redux/redux-toolkit#configure-store", "order": 6 },
-        { "id": "todos-slice-playground", "type": "subSection", "title": "Todos slice playground", "slug": "redux/redux-toolkit#todos-slice-playground", "order": 7 }
+        { "id": "interactive-playground-slice-actions-and-filtering", "type": "subSection", "title": "Interactive Playground: Slice Actions and Filtering", "slug": "redux/redux-toolkit#interactive-playground-slice-actions-and-filtering", "order": 7 }
       ]
     },
 
@@ -102,7 +102,7 @@
         { "id": "create-async-thunk", "type": "subSection", "title": "Create async thunk", "slug": "redux/redux-middleware-and-thunks#create-async-thunk", "order": 5 },
         { "id": "actions-generated-by-create-asyncthunk", "type": "subSection", "title": "Actions generated by create asyncthunk", "slug": "redux/redux-middleware-and-thunks#actions-generated-by-create-asyncthunk", "order": 6 },
         { "id": "using-createslice-with-async-action-creators", "type": "subSection", "title": "Using createslice with async action creators", "slug": "redux/redux-middleware-and-thunks#using-createslice-with-async-action-creators", "order": 7 },
-        { "id": "middleware-pipeline-playground", "type": "subSection", "title": "Middleware pipeline playground", "slug": "redux/redux-middleware-and-thunks#middleware-pipeline-playground", "order": 8 }
+        { "id": "interactive-playground-thunk-lifecycle-pipeline", "type": "subSection", "title": "Interactive Playground: Thunk Lifecycle Pipeline", "slug": "redux/redux-middleware-and-thunks#interactive-playground-thunk-lifecycle-pipeline", "order": 8 }
       ]
     }
   ]

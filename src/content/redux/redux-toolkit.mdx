@@ -242,9 +242,12 @@ Because of how much boilerplate code we’re able to bypass with `configureStore
 
 Since this is as simple as switching out the store setup code, all of the application’s existing feature code will work just fine!
 
-## Todos slice playground
+## Interactive Playground: Slice Actions and Filtering
+
+**Why this matters:** RTK reduces boilerplate, but reducer intent and derived views still need to be explicit.
+
+**What to try:** add todos, change filter, then toggle the first visible item and inspect output.
+
 import TodosSlicePlayground from "./components/redux-toolkit/TodosSlicePlayground.jsx"
 
 <TodosSlicePlayground />
-
-> Tip: Open Redux DevTools to observe action types like `todos/addTodo` and `todos/toggleTodo` as you interact with the UI.
