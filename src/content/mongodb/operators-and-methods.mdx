@@ -95,3 +95,11 @@ db.products.find({
 ~~~
 
 > Attention: `use <db>` creates the database **lazily**—it is created on the **first write** (e.g., an insert), not by the `use` command alone.
+## Interactive Playground: Query Matching
+**Why this matters:** understanding matching semantics is key to writing precise MongoDB queries.
+
+**What to try:** compare numeric operators, array contains, and dot notation against the same sample data.
+
+import QueryMatchingPlayground from "./components/operators-and-methods/QueryMatchingPlayground.jsx"
+
+<QueryMatchingPlayground />

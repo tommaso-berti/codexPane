@@ -46,3 +46,11 @@ db.<collection>.find(
   { "<parent_field>.<embedded_field>": { $lte: <value> } }
 )
 ~~~
+## Interactive Playground: Find Filter and Projection
+**Why this matters:** filters and projections together control both correctness and response payload size.
+
+**What to try:** change filter preset and projection switches to see how returned documents change.
+
+import FindFilterProjectionPlayground from "./components/crud-operations/FindFilterProjectionPlayground.jsx"
+
+<FindFilterProjectionPlayground />

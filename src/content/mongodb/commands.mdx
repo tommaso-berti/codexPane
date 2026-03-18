@@ -55,3 +55,11 @@ List all collections in the current database:
 ~~~mongosh
 show collections
 ~~~
+## Interactive Playground: Mongo Shell Context
+**Why this matters:** shell context mistakes are a common source of confusion when listing or writing data.
+
+**What to try:** execute `use`, `db`, `show dbs`, `show collections`, and an insert to observe lazy creation.
+
+import MongoShellContextPlayground from "./components/commands/MongoShellContextPlayground.jsx"
+
+<MongoShellContextPlayground />
