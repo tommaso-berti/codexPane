@@ -4,6 +4,7 @@ import { execSync } from "child_process";
 
 const SEMVER_TAG_REGEX = /^v(\d+)\.(\d+)\.(\d+)$/;
 const MAX_RELEASE_ENTRIES = 12;
+const MAX_RELEASE_HISTORY = 10;
 
 function parseArgs(argv) {
     const args = {};
@@ -76,6 +77,42 @@ function mapEntriesFromPayload(payload, repoUrl) {
     }));
 }
 
+function resolvePublishedAt(markdownPath, fallback) {
+    try {
+        const stat = fs.statSync(markdownPath);
+        return stat.mtime.toISOString();
+    } catch {
+        return fallback;
+    }
+}
+
+function buildHistoryItem({ tag, tags, repoRoot, repoUrl, fallbackPublishedAt }) {
+    const tagIndex = tags.findIndex((candidate) => candidate === tag);
+    const previousTag = tagIndex === -1 ? null : (tags[tagIndex + 1] ?? null);
+    const releaseType = resolveReleaseType(tag, previousTag);
+
+    const markdownPath = path.join(repoRoot, "release-notes", `${tag}.md`);
+    const payloadPath = path.join(repoRoot, "release-notes", `.payload-${tag}.json`);
+    const bodyMarkdown = readMarkdownIfExists(markdownPath);
+    if (!bodyMarkdown) return null;
+
+    const payload = readJsonIfExists(payloadPath);
+    const entries = mapEntriesFromPayload(payload, repoUrl);
+    const publishedAt = resolvePublishedAt(markdownPath, fallbackPublishedAt);
+
+    return {
+        tag,
+        version: tag.replace(/^v/i, ""),
+        previousTag,
+        releaseType,
+        entries,
+        source: payload ? "local" : "markdown",
+        bodyMarkdown,
+        releaseUrl: `${repoUrl}/releases/tag/${tag}`,
+        publishedAt,
+    };
+}
+
 function main() {
     const args = parseArgs(process.argv);
     const forcedTag = `${args.tag || ""}`.trim();
@@ -90,47 +127,33 @@ function main() {
     if (latestIndex === -1) {
         throw new Error(`Tag not found in repository: ${latestTag}`);
     }
-    const previousTag = tags[latestIndex + 1] ?? null;
-    const releaseType = resolveReleaseType(latestTag, previousTag);
-
     const repoRoot = process.cwd();
     const repoUrl = getRepoUrl();
-    const markdownPath = path.join(repoRoot, "release-notes", `${latestTag}.md`);
-    const payloadPath = path.join(repoRoot, "release-notes", `.payload-${latestTag}.json`);
     const outputPath = path.join(repoRoot, "public", "data", "release-notes.json");
 
-    const bodyMarkdown = readMarkdownIfExists(markdownPath);
-    if (!bodyMarkdown) {
-        throw new Error(`Missing release notes markdown: ${markdownPath}`);
+    const now = new Date().toISOString();
+    const historyTags = tags.slice(latestIndex, latestIndex + MAX_RELEASE_HISTORY);
+    const history = historyTags
+        .map((tag) => buildHistoryItem({ tag, tags, repoRoot, repoUrl, fallbackPublishedAt: now }))
+        .filter(Boolean);
+
+    if (history.length === 0) {
+        throw new Error("No release notes markdown files found for selected tag history.");
     }
 
-    const payload = readJsonIfExists(payloadPath);
-    const entries = mapEntriesFromPayload(payload, repoUrl);
-    const now = new Date().toISOString();
+    const latest = history[0];
 
     const json = {
         generatedAt: now,
-        latestTag,
-        latestVersion: latestTag.replace(/^v/i, ""),
-        previousTag,
-        releaseType,
-        entries,
-        bodyMarkdown,
-        releaseUrl: `${repoUrl}/releases/tag/${latestTag}`,
-        publishedAt: now,
-        history: [
-            {
-                tag: latestTag,
-                version: latestTag.replace(/^v/i, ""),
-                previousTag,
-                releaseType,
-                entries,
-                source: "local",
-                bodyMarkdown,
-                releaseUrl: `${repoUrl}/releases/tag/${latestTag}`,
-                publishedAt: now,
-            },
-        ],
+        latestTag: latest.tag,
+        latestVersion: latest.version,
+        previousTag: latest.previousTag,
+        releaseType: latest.releaseType,
+        entries: latest.entries,
+        bodyMarkdown: latest.bodyMarkdown,
+        releaseUrl: latest.releaseUrl,
+        publishedAt: latest.publishedAt || now,
+        history,
     };
 
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });

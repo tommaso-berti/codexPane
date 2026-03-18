@@ -491,7 +491,16 @@ jobs:
               cp "$TMP_STATIC" public/data/release-notes.json
             fi
 
-            git add "release-notes/${RELEASE_TAG}.md" public/data/release-notes.json
+            # Keep only the 10 most recent semver release notes in repo.
+            OLD_RELEASE_NOTES="$(ls -1 release-notes/v*.md 2>/dev/null | sort -V -r | tail -n +11 || true)"
+            if [ -n "$OLD_RELEASE_NOTES" ]; then
+              while IFS= read -r stale_file; do
+                [ -n "$stale_file" ] || continue
+                rm -f "$stale_file"
+              done <<< "$OLD_RELEASE_NOTES"
+            fi
+
+            git add -A release-notes public/data/release-notes.json
             if git diff --cached --quiet; then
               echo "No release artifact changes."
               exit 0
