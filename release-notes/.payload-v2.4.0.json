@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-03-18T11:32:06.333Z",
+  "repositoryPath": "/home/runner/work/codexPane/codexPane",
+  "version": "v2.4.0",
+  "releaseType": "minor",
+  "fromRef": "v2.3.1",
+  "toRef": "v2.4.0",
+  "range": "v2.3.1..v2.4.0",
+  "compareUrl": "https://github.com/tommaso-berti/codexPane/compare/v2.3.1...v2.4.0",
+  "commits": [
+    {
+      "sha": "c442245e416e52f75875149af9021ed2083a7b8f",
+      "shortSha": "c442245",
+      "subject": "feat: implement release notes history management and enhance ReleaseNotesModal for better user experience #minor",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-18T12:31:22+01:00"
+    },
+    {
+      "sha": "9e4a7dccd76daf3a38373f0a14a684a639d3e061",
+      "shortSha": "9e4a7dc",
+      "subject": "docs(release): v2.3.1 artifacts #skip-deploy [skip ci]",
+      "body": "",
+      "author": "github-actions[bot]",
+      "date": "2026-03-18T11:19:18Z"
+    }
+  ],
+  "changedFiles": [
+    ".github/workflows/deploy.yml",
+    "public/data/release-notes.json",
+    "release-notes/v2.3.1.md",
+    "scripts/static-data/refresh-static-data.mjs",
+    "src/components/ReleaseNotesModal.jsx"
+  ]
+}
