@@ -1,77 +1,88 @@
-import * as React from "react";
+import { useMemo, useState } from "react";
 import {
-    ThemeProvider,
-    createTheme,
-    ScopedCssBaseline,
-    Stack,
+    Alert,
     Box,
+    FormControl,
+    InputLabel,
+    MenuItem,
     Paper,
+    Select,
     Slider,
+    Stack,
     ToggleButton,
     ToggleButtonGroup,
-    Typography,
-    Button
+    Typography
 } from "@mui/material";
+import { createTheme, getContrastRatio } from "@mui/material/styles";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const hues = [
-    { name: "Blue", main: "#1976d2" },
-    { name: "Purple", main: "#7c4dff" },
-    { name: "Teal", main: "#009688" },
-    { name: "Pink", main: "#d81b60" },
-    { name: "Orange", main: "#f57c00" }
+const PALETTES = [
+    { label: "Blue", main: "#1976d2" },
+    { label: "Teal", main: "#00897b" },
+    { label: "Orange", main: "#ef6c00" },
+    { label: "Pink", main: "#c2185b" }
 ];
 
 export default function ThemePlayground() {
-    const [mode, setMode] = React.useState("light");
-    const [hueIndex, setHueIndex] = React.useState(0);
-    const [radius, setRadius] = React.useState(10);
+    const [mode, setMode] = useState("light");
+    const [paletteIndex, setPaletteIndex] = useState(0);
+    const [radius, setRadius] = useState(10);
 
-    const theme = React.useMemo(
+    const selected = PALETTES[paletteIndex];
+
+    const theme = useMemo(
         () =>
             createTheme({
-                palette: { mode, primary: { main: hues[hueIndex].main } },
-                shape: { borderRadius: radius },
-                typography: {
-                    fontFamily: '"Inter", system-ui, Arial, sans-serif',
-                    button: { textTransform: "none", fontWeight: 600 }
-                }
+                palette: {
+                    mode,
+                    primary: { main: selected.main }
+                },
+                shape: { borderRadius: radius }
             }),
-        [mode, hueIndex, radius]
+        [mode, radius, selected.main]
     );
 
-    return (
-        <ThemeProvider theme={theme}>
-            <ScopedCssBaseline>
-                <Stack spacing={2}>
-                    <Typography variant="h6">Theme controls</Typography>
+    const contrastText = theme.palette.getContrastText(selected.main);
+    const ratio = getContrastRatio(selected.main, contrastText);
 
+    const contrastState = ratio >= 7 ? "AAA" : ratio >= 4.5 ? "AA" : "Low";
+    const statusColor = contrastState === "AAA" ? "success" : contrastState === "AA" ? "info" : "warning";
+
+    return (
+        <PlaygroundShell
+            title="Theme Tokens Playground"
+            goal="Understand how mode, primary color, and shape radius affect theme output."
+            status={{ color: statusColor, label: `${contrastState} contrast` }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 540 }}>
                     <ToggleButtonGroup
                         size="small"
                         color="primary"
                         exclusive
                         value={mode}
-                        onChange={(_, v) => v && setMode(v)}
-                        aria-label="color scheme"
+                        onChange={(_, value) => value && setMode(value)}
+                        aria-label="Color mode"
                     >
                         <ToggleButton value="light">Light</ToggleButton>
                         <ToggleButton value="dark">Dark</ToggleButton>
                     </ToggleButtonGroup>
 
-                    <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ flexWrap: "wrap" }}>
-                        {hues.map((h, i) => (
-                            <Button
-                                key={h.name}
-                                variant={i === hueIndex ? "contained" : "outlined"}
-                                onClick={() => setHueIndex(i)}
-                                sx={{ minWidth: 88 }}
-                            >
-                                {h.name}
-                            </Button>
-                        ))}
-                    </Stack>
+                    <FormControl size="small">
+                        <InputLabel id="theme-palette-label">Primary palette</InputLabel>
+                        <Select
+                            labelId="theme-palette-label"
+                            label="Primary palette"
+                            value={paletteIndex}
+                            onChange={(event) => setPaletteIndex(event.target.value)}
+                        >
+                            {PALETTES.map((palette, index) => (
+                                <MenuItem key={palette.label} value={index}>{palette.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-                    <Stack spacing={1} sx={{ maxWidth: 360 }}>
-                        <Typography variant="body2">Border radius</Typography>
+                    <Stack spacing={0.3}>
+                        <Typography variant="body2">Shape radius: {radius}px</Typography>
                         <Slider
                             size="small"
                             value={radius}
@@ -79,41 +90,44 @@ export default function ThemePlayground() {
                             max={24}
                             step={2}
                             valueLabelDisplay="auto"
-                            onChange={(_, v) => setRadius(v)}
+                            onChange={(_, value) => setRadius(value)}
                         />
                     </Stack>
-
-                    <Paper sx={{ p: 2 }}>
-                        <Typography variant="overline">Preview</Typography>
-                        <Box sx={{ display: "grid", gap: 2, gridTemplateColumns: "repeat(3, 1fr)", mt: 1 }}>
-                            {[1, 2, 3].map((i) => (
-                                <Box
-                                    key={i}
-                                    sx={{
-                                        bgcolor: "primary.main",
-                                        color: "primary.contrastText",
-                                        borderRadius: 2,
-                                        p: 2,
-                                        textAlign: "center"
-                                    }}
-                                >
-                                    Card {i}
-                                </Box>
-                            ))}
-                        </Box>
-                    </Paper>
-
-                    <Paper sx={{ p: 2, bgcolor: "grey.50" }}>
-                        <Typography variant="overline">Theme snippet</Typography>
-                        <pre style={{ margin: 0, overflowX: "auto" }}>
-{`createTheme({
-  palette: { mode: "${mode}", primary: { main: "${hues[hueIndex].main}" } },
-  shape: { borderRadius: ${radius} },
-})`}
-            </pre>
-                    </Paper>
                 </Stack>
-            </ScopedCssBaseline>
-        </ThemeProvider>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.3, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Theme sample</Typography>
+                    <Box sx={{ mt: 1, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 1 }}>
+                        {["Card", "Action", "Badge"].map((label) => (
+                            <Box
+                                key={label}
+                                sx={{
+                                    bgcolor: selected.main,
+                                    color: contrastText,
+                                    borderRadius: `${radius}px`,
+                                    px: 1,
+                                    py: 1.3,
+                                    textAlign: "center",
+                                    fontWeight: 700
+                                }}
+                            >
+                                {label}
+                            </Box>
+                        ))}
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">Mode: {mode} | Primary: {selected.main} | Radius: {radius}px</Alert>
+                    <Alert severity={statusColor} variant="outlined">
+                        Contrast ratio for primary text: {ratio.toFixed(2)}:1 ({contrastState})
+                    </Alert>
+                    <Alert severity="info" variant="outlined">Token snippet: palette.mode, palette.primary.main, shape.borderRadius.</Alert>
+                </Stack>
+            }
+            note="A small token change can affect many components. Validate contrast whenever you customize primary colors."
+        />
     );
 }

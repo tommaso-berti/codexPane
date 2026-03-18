@@ -1,115 +1,129 @@
-import * as React from "react";
 import { useMemo, useState } from "react";
 import {
+    Alert,
     Box,
-    Stack,
-    Slider,
     FormControl,
     InputLabel,
-    Select,
     MenuItem,
-    Typography,
     Paper,
-    Divider
+    Select,
+    Slider,
+    Stack,
+    Typography
 } from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
+
+const TOKEN_PRESETS = {
+    card: {
+        label: "Card surface",
+        bgcolor: "background.paper",
+        color: "text.primary",
+        borderColor: "divider"
+    },
+    primary: {
+        label: "Primary emphasis",
+        bgcolor: "primary.main",
+        color: "primary.contrastText",
+        borderColor: "primary.dark"
+    },
+    success: {
+        label: "Success highlight",
+        bgcolor: "success.main",
+        color: "success.contrastText",
+        borderColor: "success.dark"
+    }
+};
 
 export default function SxPlayground() {
+    const [preset, setPreset] = useState("card");
     const [radius, setRadius] = useState(12);
-    const [bg, setBg] = useState("primary.main");
-    const [gap, setGap] = useState(12);
+    const [spacing, setSpacing] = useState(2);
+
+    const current = TOKEN_PRESETS[preset];
 
     const liveSx = useMemo(
         () => ({
-            p: 2,
-            borderRadius: radius / 4,
-            bgcolor: bg,
-            color: "primary.contrastText",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: `${gap / 8}rem`,
+            p: spacing,
+            borderRadius: radius,
+            bgcolor: current.bgcolor,
+            color: current.color,
+            border: "1px solid",
+            borderColor: current.borderColor,
+            display: "grid",
+            gap: 1,
             minHeight: 120
         }),
-        [radius, bg, gap]
+        [current, radius, spacing]
     );
 
-    const code = `// Live sx object
-const sx = {
-  p: 2,
-  borderRadius: ${radius} / 4,
-  bgcolor: "${bg}",
-  color: "primary.contrastText",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "${(gap / 8).toFixed(2)}rem",
-  minHeight: 120
-};`;
+    const sxObject = `const sx = {\n  p: ${spacing},\n  borderRadius: ${radius},\n  bgcolor: "${current.bgcolor}",\n  color: "${current.color}",\n  border: "1px solid",\n  borderColor: "${current.borderColor}"\n};`;
 
     return (
-        <Stack spacing={2}>
-            <Typography variant="h6">Tune theme-aware styles</Typography>
-            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                <FormControl size="small" sx={{ minWidth: 180 }}>
-                    <InputLabel>Background</InputLabel>
-                    <Select
-                        label="Background"
-                        value={bg}
-                        onChange={(e) => setBg(e.target.value)}
-                    >
-                        <MenuItem value="primary.main">primary.main</MenuItem>
-                        <MenuItem value="secondary.main">secondary.main</MenuItem>
-                        <MenuItem value="success.main">success.main</MenuItem>
-                        <MenuItem value="warning.main">warning.main</MenuItem>
-                        <MenuItem value="error.main">error.main</MenuItem>
-                        <MenuItem value="info.main">info.main</MenuItem>
-                    </Select>
-                </FormControl>
+        <PlaygroundShell
+            title="SX Token Mapping Playground"
+            goal="Map token choices to the visual result of one component surface."
+            status={{ color: "info", label: TOKEN_PRESETS[preset].label }}
+            controls={
+                <Stack spacing={1.4} sx={{ maxWidth: 520 }}>
+                    <FormControl size="small">
+                        <InputLabel id="sx-preset-label">Token preset</InputLabel>
+                        <Select
+                            labelId="sx-preset-label"
+                            label="Token preset"
+                            value={preset}
+                            onChange={(event) => setPreset(event.target.value)}
+                        >
+                            {Object.entries(TOKEN_PRESETS).map(([value, item]) => (
+                                <MenuItem key={value} value={value}>{item.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
-                <Stack sx={{ minWidth: 240 }}>
-                    <Typography variant="caption">Border radius</Typography>
-                    <Slider
-                        size="small"
-                        value={radius}
-                        min={4}
-                        max={32}
-                        step={2}
-                        valueLabelDisplay="auto"
-                        onChange={(_, v) => setRadius(v)}
-                    />
+                    <Stack spacing={0.3}>
+                        <Typography variant="body2">Border radius: {radius}px</Typography>
+                        <Slider
+                            size="small"
+                            value={radius}
+                            min={4}
+                            max={24}
+                            step={2}
+                            valueLabelDisplay="auto"
+                            onChange={(_, value) => setRadius(value)}
+                        />
+                    </Stack>
+
+                    <Stack spacing={0.3}>
+                        <Typography variant="body2">Spacing scale (p): {spacing}</Typography>
+                        <Slider
+                            size="small"
+                            value={spacing}
+                            min={1}
+                            max={4}
+                            step={1}
+                            marks
+                            valueLabelDisplay="auto"
+                            onChange={(_, value) => setSpacing(value)}
+                        />
+                    </Stack>
                 </Stack>
-
-                <Stack sx={{ minWidth: 240 }}>
-                    <Typography variant="caption">Gap</Typography>
-                    <Slider
-                        size="small"
-                        value={gap}
-                        min={0}
-                        max={48}
-                        step={4}
-                        valueLabelDisplay="auto"
-                        onChange={(_, v) => setGap(v)}
-                    />
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.3, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Surface preview</Typography>
+                    <Box sx={{ mt: 1, ...liveSx }}>
+                        <Typography variant="subtitle2">Product card</Typography>
+                        <Typography variant="body2">Token-driven style reacts to palette and spacing scale.</Typography>
+                    </Box>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">{sxObject}</Alert>
+                    <Alert severity="success" variant="outlined">Changed token preset: {TOKEN_PRESETS[preset].label}</Alert>
+                    <Alert severity="info" variant="outlined">Spacing `p` is {spacing}, border radius is {radius}px.</Alert>
                 </Stack>
-            </Stack>
-
-            <Paper sx={{ p: 2 }}>
-                <Typography variant="overline">Preview</Typography>
-                <Box sx={liveSx}>
-                    <Box sx={{ bgcolor: "rgba(255,255,255,.2)", px: 1, py: 0.5, borderRadius: 1 }}>Item 1</Box>
-                    <Box sx={{ bgcolor: "rgba(255,255,255,.2)", px: 1, py: 0.5, borderRadius: 1 }}>Item 2</Box>
-                    <Box sx={{ bgcolor: "rgba(255,255,255,.2)", px: 1, py: 0.5, borderRadius: 1 }}>Item 3</Box>
-                </Box>
-            </Paper>
-
-            <Divider />
-
-            <Paper sx={{ p: 2, bgcolor: "grey.50" }}>
-                <Typography variant="overline">Code</Typography>
-                <pre style={{ margin: 0 }}>
-        <code>{code}</code>
-      </pre>
-            </Paper>
-        </Stack>
+            }
+            note="Use semantic tokens first, then tune shape and spacing. This keeps style consistent across themes."
+        />
     );
 }

@@ -4158,9 +4158,9 @@
               "order": 6
             },
             {
-              "id": "sx-playground",
-              "title": "Sx playground",
-              "slug": "mui/getting-started#sx-playground",
+              "id": "interactive-playground-sx-token-mapping",
+              "title": "Interactive Playground: SX Token Mapping",
+              "slug": "mui/getting-started#interactive-playground-sx-token-mapping",
               "order": 7
             }
           ],
@@ -4215,9 +4215,9 @@
               "order": 7
             },
             {
-              "id": "theme-playground",
-              "title": "Theme playground",
-              "slug": "mui/theme#theme-playground",
+              "id": "interactive-playground-theme-tokens",
+              "title": "Interactive Playground: Theme Tokens",
+              "slug": "mui/theme#interactive-playground-theme-tokens",
               "order": 8
             }
           ],
@@ -4266,9 +4266,9 @@
               "order": 6
             },
             {
-              "id": "flex-playground",
-              "title": "Flex playground",
-              "slug": "mui/layout#flex-playground",
+              "id": "interactive-playground-flex-axes",
+              "title": "Interactive Playground: Flex Axes",
+              "slug": "mui/layout#interactive-playground-flex-axes",
               "order": 7
             }
           ],
@@ -4317,9 +4317,9 @@
               "order": 6
             },
             {
-              "id": "form-playground",
-              "title": "Form playground",
-              "slug": "mui/forms#form-playground",
+              "id": "interactive-playground-form-validation-feedback",
+              "title": "Interactive Playground: Form Validation Feedback",
+              "slug": "mui/forms#interactive-playground-form-validation-feedback",
               "order": 7
             }
           ],
@@ -4374,9 +4374,9 @@
               "order": 7
             },
             {
-              "id": "nav-playground",
-              "title": "Nav playground",
-              "slug": "mui/navigation#nav-playground",
+              "id": "interactive-playground-navigation-patterns",
+              "title": "Interactive Playground: Navigation Patterns",
+              "slug": "mui/navigation#interactive-playground-navigation-patterns",
               "order": 8
             }
           ],
@@ -4431,9 +4431,9 @@
               "order": 7
             },
             {
-              "id": "data-display-playground",
-              "title": "Data display playground",
-              "slug": "mui/data-display#data-display-playground",
+              "id": "interactive-playground-data-display-choices",
+              "title": "Interactive Playground: Data Display Choices",
+              "slug": "mui/data-display#interactive-playground-data-display-choices",
               "order": 8
             }
           ],
@@ -4476,9 +4476,9 @@
               "order": 5
             },
             {
-              "id": "feedback-playground",
-              "title": "Feedback playground",
-              "slug": "mui/feedback#feedback-playground",
+              "id": "interactive-playground-feedback-channels",
+              "title": "Interactive Playground: Feedback Channels",
+              "slug": "mui/feedback#interactive-playground-feedback-channels",
               "order": 6
             }
           ],
@@ -4533,9 +4533,9 @@
               "order": 7
             },
             {
-              "id": "utilities-playground",
-              "title": "Utilities playground",
-              "slug": "mui/utilities#utilities-playground",
+              "id": "interactive-playground-overlay-behavior",
+              "title": "Interactive Playground: Overlay Behavior",
+              "slug": "mui/utilities#interactive-playground-overlay-behavior",
               "order": 8
             }
           ],

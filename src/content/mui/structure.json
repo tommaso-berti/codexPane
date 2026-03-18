@@ -17,7 +17,7 @@
         { "id": "the-sx-prop-basics", "type": "subSection", "title": "The sx prop basics", "slug": "mui/getting-started#the-sx-prop-basics", "order": 4 },
         { "id": "icons-and-svg", "type": "subSection", "title": "Icons and svg", "slug": "mui/getting-started#icons-and-svg", "order": 5 },
         { "id": "typescript-tips", "type": "subSection", "title": "Typescript tips", "slug": "mui/getting-started#typescript-tips", "order": 6 },
-        { "id": "sx-playground", "type": "subSection", "title": "Sx playground", "slug": "mui/getting-started#sx-playground", "order": 7 }
+        { "id": "interactive-playground-sx-token-mapping", "type": "subSection", "title": "Interactive Playground: SX Token Mapping", "slug": "mui/getting-started#interactive-playground-sx-token-mapping", "order": 7 }
       ]
     },
     {
@@ -34,7 +34,7 @@
         { "id": "spacing-and-shape", "type": "subSection", "title": "Spacing and shape", "slug": "mui/theme#spacing-and-shape", "order": 5 },
         { "id": "css-variables-and-sx", "type": "subSection", "title": "Css variables and sx", "slug": "mui/theme#css-variables-and-sx", "order": 6 },
         { "id": "theming-pitfalls", "type": "subSection", "title": "Theming pitfalls", "slug": "mui/theme#theming-pitfalls", "order": 7 },
-        { "id": "theme-playground", "type": "subSection", "title": "Theme playground", "slug": "mui/theme#theme-playground", "order": 8 }
+        { "id": "interactive-playground-theme-tokens", "type": "subSection", "title": "Interactive Playground: Theme Tokens", "slug": "mui/theme#interactive-playground-theme-tokens", "order": 8 }
       ]
     },
     {
@@ -50,7 +50,7 @@
         { "id": "responsive-breakpoints", "type": "subSection", "title": "Responsive breakpoints", "slug": "mui/layout#responsive-breakpoints", "order": 4 },
         { "id": "container", "type": "subSection", "title": "Container", "slug": "mui/layout#container", "order": 5 },
         { "id": "hidden-and-use-media-query", "type": "subSection", "title": "Hidden and use media query", "slug": "mui/layout#hidden-and-use-media-query", "order": 6 },
-        { "id": "flex-playground", "type": "subSection", "title": "Flex playground", "slug": "mui/layout#flex-playground", "order": 7 }
+        { "id": "interactive-playground-flex-axes", "type": "subSection", "title": "Interactive Playground: Flex Axes", "slug": "mui/layout#interactive-playground-flex-axes", "order": 7 }
       ]
     },
     {
@@ -66,7 +66,7 @@
         { "id": "input-adornments-and-mask", "type": "subSection", "title": "Input adornments and mask", "slug": "mui/forms#input-adornments-and-mask", "order": 4 },
         { "id": "date-and-time-pickers", "type": "subSection", "title": "Date and time pickers", "slug": "mui/forms#date-and-time-pickers", "order": 5 },
         { "id": "accessibility-and-ux", "type": "subSection", "title": "Accessibility and ux", "slug": "mui/forms#accessibility-and-ux", "order": 6 },
-        { "id": "form-playground", "type": "subSection", "title": "Form playground", "slug": "mui/forms#form-playground", "order": 7 }
+        { "id": "interactive-playground-form-validation-feedback", "type": "subSection", "title": "Interactive Playground: Form Validation Feedback", "slug": "mui/forms#interactive-playground-form-validation-feedback", "order": 7 }
       ]
     },
     {
@@ -83,7 +83,7 @@
         { "id": "menu", "type": "subSection", "title": "Menu", "slug": "mui/navigation#menu", "order": 5 },
         { "id": "bottom-navigation", "type": "subSection", "title": "Bottom navigation", "slug": "mui/navigation#bottom-navigation", "order": 6 },
         { "id": "navigation-patterns", "type": "subSection", "title": "Navigation patterns", "slug": "mui/navigation#navigation-patterns", "order": 7 },
-        { "id": "nav-playground", "type": "subSection", "title": "Nav playground", "slug": "mui/navigation#nav-playground", "order": 8 }
+        { "id": "interactive-playground-navigation-patterns", "type": "subSection", "title": "Interactive Playground: Navigation Patterns", "slug": "mui/navigation#interactive-playground-navigation-patterns", "order": 8 }
       ]
     },
     {
@@ -100,7 +100,7 @@
         { "id": "divider-and-typography", "type": "subSection", "title": "Divider and typography", "slug": "mui/data-display#divider-and-typography", "order": 5 },
         { "id": "cards", "type": "subSection", "title": "Cards", "slug": "mui/data-display#cards", "order": 6 },
         { "id": "data-display-patterns", "type": "subSection", "title": "Data display patterns", "slug": "mui/data-display#data-display-patterns", "order": 7 },
-        { "id": "data-display-playground", "type": "subSection", "title": "Data display playground", "slug": "mui/data-display#data-display-playground", "order": 8 }
+        { "id": "interactive-playground-data-display-choices", "type": "subSection", "title": "Interactive Playground: Data Display Choices", "slug": "mui/data-display#interactive-playground-data-display-choices", "order": 8 }
       ]
     },
     {
@@ -115,7 +115,7 @@
         { "id": "progress-and-skeleton", "type": "subSection", "title": "Progress and skeleton", "slug": "mui/feedback#progress-and-skeleton", "order": 3 },
         { "id": "backdrop", "type": "subSection", "title": "Backdrop", "slug": "mui/feedback#backdrop", "order": 4 },
         { "id": "toast-patterns", "type": "subSection", "title": "Toast patterns", "slug": "mui/feedback#toast-patterns", "order": 5 },
-        { "id": "feedback-playground", "type": "subSection", "title": "Feedback playground", "slug": "mui/feedback#feedback-playground", "order": 6 }
+        { "id": "interactive-playground-feedback-channels", "type": "subSection", "title": "Interactive Playground: Feedback Channels", "slug": "mui/feedback#interactive-playground-feedback-channels", "order": 6 }
       ]
     },
     {
@@ -132,7 +132,7 @@
         { "id": "popover-anchoring", "type": "subSection", "title": "Popover anchoring", "slug": "mui/utilities#popover-anchoring", "order": 5 },
         { "id": "styled-api-basics", "type": "subSection", "title": "Styled api basics", "slug": "mui/utilities#styled-api-basics", "order": 6 },
         { "id": "z-index-and-layers", "type": "subSection", "title": "Z index and layers", "slug": "mui/utilities#z-index-and-layers", "order": 7 },
-        { "id": "utilities-playground", "type": "subSection", "title": "Utilities playground", "slug": "mui/utilities#utilities-playground", "order": 8 }
+        { "id": "interactive-playground-overlay-behavior", "type": "subSection", "title": "Interactive Playground: Overlay Behavior", "slug": "mui/utilities#interactive-playground-overlay-behavior", "order": 8 }
       ]
     }
   ]
