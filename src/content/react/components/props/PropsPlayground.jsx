@@ -1,94 +1,88 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
-    Card, CardContent, CardHeader, CardActions,
-    Typography, TextField, Switch, FormControlLabel,
-    Button, Select, MenuItem, Box, Divider
+    Alert,
+    Button,
+    FormControlLabel,
+    Paper,
+    Stack,
+    Switch,
+    TextField,
+    Typography
 } from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-function FancyBox({ title = "Default title", color = "#1976d2", children, onPing }) {
+function MessageBox({ title = "Default title", children, onPing }) {
     return (
-        <Box sx={{ borderRadius: 2, p: 2, border: "1px solid #ddd", background: "#fafafa" }}>
-            <Typography variant="h6" sx={{ mb: 1, color }}>{title}</Typography>
-            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                {children || <Typography variant="body2">No children passed.</Typography>}
-                <Button size="small" variant="contained" onClick={() => onPing?.("pong")} sx={{ ml: "auto" }}>
-                    Ping
-                </Button>
-            </Box>
-        </Box>
+        <Paper variant="outlined" sx={{ p: 1.2, borderRadius: 1.5 }}>
+            <Typography variant="subtitle2">{title}</Typography>
+            <Typography variant="body2" color="text.secondary">{children || "No children provided."}</Typography>
+            <Button size="small" sx={{ mt: 1 }} onClick={() => onPing("pong")}>Ping callback</Button>
+        </Paper>
     );
 }
 
 export default function PropsPlayground() {
+    const [title, setTitle] = useState("");
     const [name, setName] = useState("Jamel");
-    const [title, setTitle] = useState("Greetings");
-    const [color, setColor] = useState("#1976d2");
     const [excited, setExcited] = useState(true);
+    const [trace, setTrace] = useState("No callback fired yet.");
 
-    const code = useMemo(() => {
-        const child = excited ? `<strong>Hello, ${name}!</strong>` : `Hello, ${name}.`;
-        return `function FancyBox({ title = "Default title", color = "#1976d2", children, onPing }) {
-  return (
-    <div style={{ border: "1px solid #ddd", padding: 12 }}>
-      <h3 style={{ color }}>{title}</h3>
-      <div>{children}</div>
-      <button onClick={() => onPing?.("pong")}>Ping</button>
-    </div>
-  );
-}
+    const childText = excited ? `Hello, ${name}!` : `Hello, ${name}.`;
 
-<FancyBox title="${title}" color="${color}" onPing={(msg) => alert(msg)}>
-  ${child}
-</FancyBox>`;
-    }, [title, color, name, excited]);
+    const checks = useMemo(
+        () => [
+            { ok: true, text: `Resolved title: ${title.trim() ? "custom prop" : "default prop"}.` },
+            { ok: childText.trim().length > 0, text: "props.children carries readable content." },
+            { ok: trace !== "No callback fired yet.", text: "Callback prop was invoked." }
+        ],
+        [childText, title, trace]
+    );
 
     return (
-        <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
-            <CardHeader title="Props Playground" subheader="Pass values, children, and event handlers" />
-            <CardContent>
-                <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-                    <Box sx={{ display: "grid", gap: 2 }}>
-                        <TextField
-                            label="Name prop"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            size="small"
-                        />
-                        <TextField
-                            label="title (default prop)"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            size="small"
-                        />
-                        <TextField
-                            label="color prop"
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)}
-                            size="small"
-                        />
-                        <FormControlLabel
-                            control={<Switch checked={excited} onChange={(e) => setExcited(e.target.checked)} />}
-                            label="excited child"
-                        />
-                    </Box>
-                    <Box>
-                        <Typography variant="subtitle2" sx={{ mb: 1 }}>Live preview</Typography>
-                        <FancyBox title={title} color={color} onPing={(msg) => alert(`Received: ${msg}`)}>
-                            {excited ? <strong>Hello, {name}!</strong> : <>Hello, {name}.</>}
-                        </FancyBox>
-                        <Divider sx={{ my: 2 }} />
-                        <Typography variant="subtitle2" sx={{ mb: 1 }}>Rendered code</Typography>
-                        <Box component="pre" sx={{ whiteSpace: "pre-wrap", p: 1.5, borderRadius: 1, bgcolor: "#0b1021", color: "#e6e6e6", fontSize: 12 }}>
-                            {code}
-                        </Box>
-                    </Box>
-                </Box>
-            </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end" }}>
-                <Button variant="outlined" size="small" onClick={() => { setName("Jamel"); setTitle("Greetings"); setColor("#1976d2"); setExcited(true); }}>
-                    Reset
-                </Button>
-            </CardActions>
-        </Card>
+        <PlaygroundShell
+            title="Props Flow Playground"
+            goal="Understand default props, children content, and callback props in one component."
+            status={{ color: "info", label: title.trim() ? "Custom title" : "Default title" }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <TextField
+                        size="small"
+                        label="Title prop (leave empty for default)"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
+                    <TextField
+                        size="small"
+                        label="Name in children"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                    <FormControlLabel
+                        control={<Switch checked={excited} onChange={(event) => setExcited(event.target.checked)} />}
+                        label="Excited punctuation"
+                    />
+                    <Button variant="outlined" onClick={() => setTrace("No callback fired yet.")}>Reset trace</Button>
+                </Stack>
+            }
+            preview={
+                <MessageBox
+                    title={title || undefined}
+                    onPing={(msg) => setTrace(`Received callback payload: ${msg}`)}
+                >
+                    {childText}
+                </MessageBox>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">{trace}</Alert>
+                    {checks.map((item) => (
+                        <Alert key={item.text} severity={item.ok ? "success" : "warning"} variant="outlined">
+                            {item.text}
+                        </Alert>
+                    ))}
+                </Stack>
+            }
+            note="Props define what a component receives: defaults, children, and callbacks are complementary tools."
+        />
     );
 }

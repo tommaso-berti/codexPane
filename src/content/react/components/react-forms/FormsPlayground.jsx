@@ -1,172 +1,94 @@
-import React, { useMemo, useState } from "react";
-import { Card, CardContent, Button } from "@mui/material";
-import { TextField, FormControlLabel, Switch, MenuItem } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    TextField,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-/**
- * FormsPlayground
- * - Demonstrates controlled inputs (value + onChange)
- * - Shows current state object and the exact JSX snippet being executed
- * - Toggles required, disabled, and input type to observe controlled behavior
- */
 export default function FormsPlayground() {
-    const [form, setForm] = useState({
-        email: "",
-        password: "",
-        remember: false,
-        role: "user",
-    });
-    const [disabled, setDisabled] = useState(false);
-    const [required, setRequired] = useState(true);
-    const [pwdType, setPwdType] = useState("password");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setRole] = useState("user");
+    const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setForm((f) => ({
-            ...f,
-            [name]: type === "checkbox" ? checked : value,
-        }));
-    };
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const passwordValid = password.length >= 6;
+    const formValid = emailValid && passwordValid;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert(`Submitted:\n${JSON.stringify(form, null, 2)}`);
-    };
-
-    const snippet = useMemo(
-        () => `<form onSubmit={handleSubmit}>
-  <TextField
-    label="Email"
-    name="email"
-    type="email"
-    value={form.email}
-    onChange={handleChange}
-    required={${required}}
-    disabled={${disabled}}
-  />
-  <TextField
-    label="Password"
-    name="password"
-    type="${pwdType}"
-    value={form.password}
-    onChange={handleChange}
-    required={${required}}
-    disabled={${disabled}}
-  />
-  <TextField
-    select
-    label="Role"
-    name="role"
-    value={form.role}
-    onChange={handleChange}
-  >
-    <MenuItem value="user">user</MenuItem>
-    <MenuItem value="admin">admin</MenuItem>
-  </TextField>
-  <FormControlLabel
-    control={<Switch checked={form.remember} name="remember" onChange={handleChange} />}
-    label="remember me"
-  />
-  <Button type="submit">Submit</Button>
-</form>`,
-        [form, required, disabled, pwdType]
-    );
+    const payload = useMemo(() => ({ email, password: password ? "******" : "", role }), [email, password, role]);
 
     return (
-        <div className="grid gap-4">
-            <div className="flex flex-wrap items-center gap-4">
-                <FormControlLabel
-                    control={
-                        <Switch checked={required} onChange={() => setRequired((v) => !v)} />
-                    }
-                    label="required"
-                />
-                <FormControlLabel
-                    control={
-                        <Switch checked={disabled} onChange={() => setDisabled((v) => !v)} />
-                    }
-                    label="disabled"
-                />
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={pwdType === "text"}
-                            onChange={() => setPwdType((t) => (t === "password" ? "text" : "password"))}
-                        />
-                    }
-                    label={`password type: ${pwdType}`}
-                />
-            </div>
-
-            <Card className="rounded-2xl shadow-sm">
-                <CardContent className="p-4">
-                    <form onSubmit={handleSubmit} className="grid gap-4">
-                        <TextField
-                            label="Email"
-                            name="email"
-                            type="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            required={required}
-                            disabled={disabled}
-                        />
-                        <TextField
-                            label="Password"
-                            name="password"
-                            type={pwdType}
-                            value={form.password}
-                            onChange={handleChange}
-                            required={required}
-                            disabled={disabled}
-                        />
-                        <TextField
-                            select
+        <PlaygroundShell
+            title="Controlled Forms Playground"
+            goal="Understand how controlled inputs drive validation and submit readiness."
+            status={{ color: formValid ? "success" : "warning", label: formValid ? "Ready" : "Invalid" }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <TextField
+                        size="small"
+                        label="Email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                    <TextField
+                        size="small"
+                        label="Password (min 6)"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <FormControl size="small">
+                        <InputLabel id="forms-role-label">Role</InputLabel>
+                        <Select
+                            labelId="forms-role-label"
                             label="Role"
-                            name="role"
-                            value={form.role}
-                            onChange={handleChange}
+                            value={role}
+                            onChange={(event) => setRole(event.target.value)}
                         >
-                            <MenuItem value="user">user</MenuItem>
-                            <MenuItem value="admin">admin</MenuItem>
-                        </TextField>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={form.remember}
-                                    name="remember"
-                                    onChange={handleChange}
-                                />
-                            }
-                            label="remember me"
-                        />
-                        <div className="flex gap-2">
-                            <Button type="submit" className="rounded-2xl">Submit</Button>
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="rounded-2xl"
-                                onClick={() =>
-                                    setForm({ email: "", password: "", remember: false, role: "user" })
-                                }
-                            >
-                                Reset
-                            </Button>
-                        </div>
-                    </form>
-                </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-sm">
-                <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground mb-2">State</div>
-                    <pre className="text-xs overflow-auto p-3 rounded-xl bg-neutral-900 text-neutral-50">
-{JSON.stringify(form, null, 2)}
-          </pre>
-                    <div className="text-xs text-muted-foreground mt-4 mb-2">JSX being executed</div>
-                    <pre className="text-xs overflow-auto p-3 rounded-xl bg-neutral-900 text-neutral-50">
-{snippet}
-          </pre>
-                </CardContent>
-            </Card>
-        </div>
+                            <MenuItem value="user">User</MenuItem>
+                            <MenuItem value="admin">Admin</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={() => setSubmitted(true)} disabled={!formValid}>Run</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => {
+                                setEmail("");
+                                setPassword("");
+                                setRole("user");
+                                setSubmitted(false);
+                            }}
+                        >
+                            Reset
+                        </Button>
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.4, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Form payload preview</Typography>
+                    <Typography component="pre" sx={{ m: "8px 0 0", fontSize: 12 }}>{JSON.stringify(payload, null, 2)}</Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity={emailValid ? "success" : "warning"} variant="outlined">Email format {emailValid ? "valid" : "invalid"}.</Alert>
+                    <Alert severity={passwordValid ? "success" : "warning"} variant="outlined">Password length {passwordValid ? "valid" : "too short"}.</Alert>
+                    <Alert severity={submitted ? "success" : "info"} variant="outlined">
+                        {submitted ? "Submit simulation completed." : "Click Run when form is valid."}
+                    </Alert>
+                </Stack>
+            }
+            note="In controlled forms, React state is the source of truth for both UI and validation."
+        />
     );
 }

@@ -73,10 +73,12 @@ In summary, here’s what happens when you try to update the DOM in React:
 * The changed objects, and the changed objects only, get updated on the real DOM.
 * Changes on the real DOM cause the screen to change.
 
-## Diffing playground
+## Interactive Playground: Diffing and Keys
+
+**Why this matters:** unstable keys can cause unnecessary remounts and confusing UI behavior.
+
+**What to try:** reorder items with stable vs unstable keys and compare the audit output.
+
 import DiffingDemo from "./components/virtual-dom/DiffingDemo.jsx"
 
 <DiffingDemo />
-
-> **Note**
-> The playground simulates React’s idea of producing a minimal patch set by comparing previous and next arrays and showing which indices would update.

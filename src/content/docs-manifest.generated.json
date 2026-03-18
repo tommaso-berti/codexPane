@@ -4582,9 +4582,9 @@
               "order": 4
             },
             {
-              "id": "diffing-playground",
-              "title": "Diffing playground",
-              "slug": "react/virtual-dom#diffing-playground",
+              "id": "interactive-playground-diffing-and-keys",
+              "title": "Interactive Playground: Diffing and Keys",
+              "slug": "react/virtual-dom#interactive-playground-diffing-and-keys",
               "order": 5
             }
           ],
@@ -4687,9 +4687,9 @@
               "order": 15
             },
             {
-              "id": "jsx-playground",
-              "title": "jsx playground",
-              "slug": "react/jsx#jsx-playground",
+              "id": "interactive-playground-jsx-outcomes",
+              "title": "Interactive Playground: JSX Outcomes",
+              "slug": "react/jsx#interactive-playground-jsx-outcomes",
               "order": 16
             }
           ],
@@ -4768,9 +4768,9 @@
               "order": 11
             },
             {
-              "id": "components-playground",
-              "title": "Components playground",
-              "slug": "react/react-components#components-playground",
+              "id": "interactive-playground-component-composition",
+              "title": "Interactive Playground: Component Composition",
+              "slug": "react/react-components#interactive-playground-component-composition",
               "order": 12
             }
           ],
@@ -4855,9 +4855,9 @@
               "order": 12
             },
             {
-              "id": "props-playground",
-              "title": "Props playground",
-              "slug": "react/props#props-playground",
+              "id": "interactive-playground-props-flow",
+              "title": "Interactive Playground: Props Flow",
+              "slug": "react/props#interactive-playground-props-flow",
               "order": 13
             }
           ],
@@ -4918,9 +4918,9 @@
               "order": 8
             },
             {
-              "id": "use-state-playground",
-              "title": "Use state playground",
-              "slug": "react/hooks-usestate#use-state-playground",
+              "id": "interactive-playground-usestate-update-shapes",
+              "title": "Interactive Playground: useState Update Shapes",
+              "slug": "react/hooks-usestate#interactive-playground-usestate-update-shapes",
               "order": 9
             }
           ],
@@ -4969,9 +4969,9 @@
               "order": 6
             },
             {
-              "id": "use-effect-playground",
-              "title": "Use effect playground",
-              "slug": "react/hooks-useeffect#use-effect-playground",
+              "id": "interactive-playground-useeffect-timeline",
+              "title": "Interactive Playground: useEffect Timeline",
+              "slug": "react/hooks-useeffect#interactive-playground-useeffect-timeline",
               "order": 7
             }
           ],
@@ -5008,9 +5008,9 @@
               "order": 4
             },
             {
-              "id": "container-presentational-playground",
-              "title": "Container presentational playground",
-              "slug": "react/programming-patterns#container-presentational-playground",
+              "id": "interactive-playground-container-vs-presentational",
+              "title": "Interactive Playground: Container vs Presentational",
+              "slug": "react/programming-patterns#interactive-playground-container-vs-presentational",
               "order": 5
             }
           ],
@@ -5047,9 +5047,9 @@
               "order": 4
             },
             {
-              "id": "styles-playground",
-              "title": "Styles playground",
-              "slug": "react/inline-styles-and-style-object-variables#styles-playground",
+              "id": "interactive-playground-style-source-choices",
+              "title": "Interactive Playground: Style Source Choices",
+              "slug": "react/inline-styles-and-style-object-variables#interactive-playground-style-source-choices",
               "order": 5
             }
           ],
@@ -5092,9 +5092,9 @@
               "order": 5
             },
             {
-              "id": "forms-playground",
-              "title": "Forms playground",
-              "slug": "react/react-forms#forms-playground",
+              "id": "interactive-playground-controlled-forms",
+              "title": "Interactive Playground: Controlled Forms",
+              "slug": "react/react-forms#interactive-playground-controlled-forms",
               "order": 6
             }
           ],
@@ -5203,9 +5203,9 @@
               "order": 16
             },
             {
-              "id": "routing-playground",
-              "title": "Routing playground",
-              "slug": "react/routing#routing-playground",
+              "id": "interactive-playground-route-matching",
+              "title": "Interactive Playground: Route Matching",
+              "slug": "react/routing#interactive-playground-route-matching",
               "order": 17
             }
           ],

@@ -73,9 +73,11 @@ Using this pattern also indirectly results in communication between sibling comp
 
 The container component should render the presentational components instead of rendering JSX directly for the UI. The container component’s state is passed down as props to the presentation components to keep them reactive.
 
-## Container presentational playground
+## Interactive Playground: Container vs Presentational
 
-An interactive demo that separates stateful logic (container) from stateless presentation, and shows parent to child and sibling updates.
+**Why this matters:** separating stateful logic from rendering logic improves reuse and testability.
+
+**What to try:** toggle state and run actions to inspect parent-to-child data flow.
 
 import ContainerPresentationalDemo from "./components/programming-patterns/ContainerPresentationalDemo.jsx"
 

@@ -1,151 +1,82 @@
-import React, { useMemo, useState } from "react";
-import { Card, CardContent, Button, Slider } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+    Alert,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Slider,
+    Stack,
+    Typography
+} from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-/**
- * StylesPlayground
- * - Toggle dark mode (style object variable)
- * - Adjust font size (numeric vs string values)
- * - Toggle inline style vs className
- * - Shows the exact JSX snippet being executed
- */
+const SOURCES = {
+    inline: "Inline style",
+    object: "Style object variable",
+    classBased: "Class/module intent"
+};
+
 export default function StylesPlayground() {
-    const [dark, setDark] = useState(false);
-    const [useInline, setUseInline] = useState(true);
-    const [font, setFont] = useState(18); // number => 'px' implied
+    const [source, setSource] = useState("inline");
+    const [font, setFont] = useState(18);
     const [radius, setRadius] = useState(8);
 
-    const darkMode = useMemo(
+    const stylePreview = useMemo(
         () => ({
-            color: "white",
-            background: "black",
+            fontSize: font,
+            borderRadius: radius,
+            padding: 12,
+            border: "1px solid",
+            borderColor: "divider"
         }),
-        []
+        [font, radius]
     );
-
-    const lightMode = useMemo(
-        () => ({
-            color: "#111",
-            background: "white",
-        }),
-        []
-    );
-
-    const boxInlineStyle = useMemo(
-        () => ({
-            ...(!dark ? lightMode : darkMode),
-            fontSize: font, // numeric => px
-            padding: 16,
-            borderRadius: radius, // px
-            border: `1px solid ${dark ? "#555" : "#ddd"}`,
-            transition: "all .2s ease",
-        }),
-        [dark, font, radius, darkMode, lightMode]
-    );
-
-    // Fallback simple class styles (inlined for demo)
-    const classStyles = `
-  .box {
-    transition: all .2s ease;
-    padding: 16px;
-    border: 1px solid #ddd;
-  }
-  .box.dark {
-    color: white;
-    background: black;
-    border-color: #555;
-  }
-  .box.light {
-    color: #111;
-    background: white;
-  }
-  `;
-
-    const snippet = useMemo(() => {
-        if (useInline) {
-            return `<div style={{
-  ${dark ? `color: 'white', background: 'black'` : `color: '#111', background: 'white'`},
-  fontSize: ${font},
-  padding: 16,
-  borderRadius: ${radius},
-  border: '1px solid ${dark ? "#555" : "#ddd"}',
-  transition: 'all .2s ease'
-}}>
-  Inline style with numeric px
-</div>`;
-        }
-        return `<div className={\`box ${dark ? "dark" : "light"}\`}>
-  Class styles (could be CSS Module)
-</div>`;
-    }, [useInline, dark, font, radius]);
 
     return (
-        <div className="grid gap-4">
-            <div className="flex items-center gap-2">
-                <Button
-                    variant={dark ? "secondary" : "default"}
-                    onClick={() => setDark((d) => !d)}
-                    className="rounded-2xl"
-                >
-                    Toggle {dark ? "Light" : "Dark"} mode
-                </Button>
-                <Button
-                    variant="outline"
-                    onClick={() => setUseInline((v) => !v)}
-                    className="rounded-2xl"
-                >
-                    Use {useInline ? "className" : "inline style"}
-                </Button>
-            </div>
+        <PlaygroundShell
+            title="Style Source Playground"
+            goal="Compare when to use inline styles, style objects, or class-based styling."
+            status={{ color: "info", label: SOURCES[source] }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <FormControl size="small">
+                        <InputLabel id="style-source-label">Style source</InputLabel>
+                        <Select
+                            labelId="style-source-label"
+                            label="Style source"
+                            value={source}
+                            onChange={(event) => setSource(event.target.value)}
+                        >
+                            <MenuItem value="inline">Inline style</MenuItem>
+                            <MenuItem value="object">Style object variable</MenuItem>
+                            <MenuItem value="classBased">Class/module intent</MenuItem>
+                        </Select>
+                    </FormControl>
 
-            <div className="flex items-center gap-4">
-                <label className="text-sm w-28">Font size: {font}px</label>
-                <Slider
-                    min={12}
-                    max={40}
-                    step={1}
-                    value={font}
-                    onChange={(_, v) => setFont(v)}
-                    sx={{ width: 260 }}
-                />
-            </div>
-
-            <div className="flex items-center gap-4">
-                <label className="text-sm w-28">Border radius: {radius}px</label>
-                <Slider
-                    min={0}
-                    max={24}
-                    step={1}
-                    value={radius}
-                    onChange={(_, v) => setRadius(v)}
-                    sx={{ width: 260 }}
-                />
-            </div>
-
-            <Card className="rounded-2xl shadow-sm">
-                <CardContent className="p-4">
-                    {useInline ? (
-                        <div style={boxInlineStyle}>Inline style with numeric px</div>
-                    ) : (
-                        <>
-                            <style>{classStyles}</style>
-                            <div className={`box ${dark ? "dark" : "light"}`}>
-                                Class styles (could be CSS Module)
-                            </div>
-                        </>
-                    )}
-                </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-sm">
-                <CardContent className="p-4">
-                    <div className="text-xs text-muted-foreground mb-2">
-                        JSX being executed:
-                    </div>
-                    <pre className="text-xs overflow-auto p-3 rounded-xl bg-neutral-900 text-neutral-50">
-{snippet}
-          </pre>
-                </CardContent>
-            </Card>
-        </div>
+                    <Typography variant="body2">Font size: {font}px</Typography>
+                    <Slider min={12} max={32} value={font} onChange={(_, value) => setFont(value)} />
+                    <Typography variant="body2">Border radius: {radius}px</Typography>
+                    <Slider min={0} max={20} value={radius} onChange={(_, value) => setRadius(value)} />
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.4, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Computed preview</Typography>
+                    <Typography sx={{ mt: 1, ...stylePreview }}>
+                        Visual result using {SOURCES[source].toLowerCase()}.
+                    </Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">Source selected: {SOURCES[source]}</Alert>
+                    <Alert severity="success" variant="outlined">Computed size: {font}px, radius: {radius}px.</Alert>
+                    <Alert severity="info" variant="outlined">Use class/module patterns for reusable styles across components.</Alert>
+                </Stack>
+            }
+            note="Choose style source by reuse needs: quick local tweaks vs reusable styling strategy."
+        />
     );
 }

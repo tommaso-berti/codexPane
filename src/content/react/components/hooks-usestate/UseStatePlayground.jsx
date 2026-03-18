@@ -1,184 +1,110 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
-    Card, CardHeader, CardContent, CardActions,
-    TextField, Button, Switch, FormControlLabel,
-    Chip, Stack, Divider, Typography, Box
+    Alert,
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    TextField,
+    Typography
 } from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-const TOPPINGS = ["Bell Pepper", "Sausage", "Pepperoni", "Pineapple"];
-
-function CodeBlock({ code }) {
-    return (
-        <Box component="pre" sx={{
-            p: 1.5, borderRadius: 1, bgcolor: "#0b1021", color: "#e6e6e6",
-            fontSize: 12, whiteSpace: "pre-wrap", overflowX: "auto", m: 0
-        }}>
-            {code}
-        </Box>
-    );
-}
-
-export default function UseStatePlayground() {
-    // primitives
-    const [email, setEmail] = useState("");
-    const [toggle, setToggle] = useState("Off");
-
-    // previous state update
-    const [count, setCount] = useState(0);
-
-    // array state
-    const [selected, setSelected] = useState([]);
-
-    // object state
-    const [form, setForm] = useState({ firstName: "", password: "" });
-
-    const toggleTopping = (value) => {
-        setSelected(prev =>
-            prev.includes(value) ? prev.filter(t => t !== value) : [value, ...prev]
-        );
-    };
-
-    const code = useMemo(() => {
-        return `// primitives
-const [email, setEmail] = useState("");
-const [toggle, setToggle] = useState("Off");
-
-// previous state
-const [count, setCount] = useState(0);
-const increment = () => setCount(prev => prev + 1);
-
-// array state
-const [selected, setSelected] = useState([]);
-const toggleTopping = (value) => {
-  setSelected(prev =>
-    prev.includes(value) ? prev.filter(t => t !== value) : [value, ...prev]
-  );
+const SHAPES = {
+    primitive: { label: "Primitive counter" },
+    array: { label: "Array list" },
+    object: { label: "Object form" }
 };
 
-// object state
-const [form, setForm] = useState({ firstName: "", password: "" });
-const handleChange = ({ target: { name, value } }) =>
-  setForm(prev => ({ ...prev, [name]: value }));`;
-    }, []);
+export default function UseStatePlayground() {
+    const [shape, setShape] = useState("primitive");
+    const [count, setCount] = useState(0);
+    const [itemInput, setItemInput] = useState("alpha");
+    const [list, setList] = useState(["alpha"]);
+    const [form, setForm] = useState({ firstName: "", role: "user" });
+
+    const beforeAfter = useMemo(() => {
+        if (shape === "primitive") return `before: ${count} -> after: ${count + 1}`;
+        if (shape === "array") return `before length: ${list.length} -> after length: ${list.length + 1}`;
+        return `before role: ${form.role} -> after role: ${form.role === "user" ? "admin" : "user"}`;
+    }, [count, form.role, list.length, shape]);
+
+    const apply = () => {
+        if (shape === "primitive") setCount((prev) => prev + 1);
+        if (shape === "array" && itemInput.trim()) setList((prev) => [...prev, itemInput.trim()]);
+        if (shape === "object") setForm((prev) => ({ ...prev, role: prev.role === "user" ? "admin" : "user" }));
+    };
+
+    const reset = () => {
+        setCount(0);
+        setItemInput("alpha");
+        setList(["alpha"]);
+        setForm({ firstName: "", role: "user" });
+    };
 
     return (
-        <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
-            <CardHeader
-                title="useState Playground"
-                subheader="Try primitives, functional updates, arrays and objects"
-            />
-            <CardContent sx={{ display: "grid", gap: 2 }}>
-                {/* Primitives */}
-                <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-                    <Box sx={{ display: "grid", gap: 1 }}>
-                        <Typography variant="subtitle2">Controlled input</Typography>
+        <PlaygroundShell
+            title="useState Update Shapes Playground"
+            goal="Compare immutable updates across primitive, array, and object state shapes."
+            status={{ color: "info", label: SHAPES[shape].label }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <FormControl size="small">
+                        <InputLabel id="state-shape-label">State shape</InputLabel>
+                        <Select
+                            labelId="state-shape-label"
+                            label="State shape"
+                            value={shape}
+                            onChange={(event) => setShape(event.target.value)}
+                        >
+                            {Object.entries(SHAPES).map(([value, item]) => (
+                                <MenuItem key={value} value={value}>{item.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    {shape === "array" ? (
                         <TextField
-                            label="Email"
                             size="small"
-                            value={email}
-                            onChange={({ target }) => setEmail(target.value)}
+                            label="New item"
+                            value={itemInput}
+                            onChange={(event) => setItemInput(event.target.value)}
                         />
-                        <Typography variant="body2">Value: {email || <em>(empty)</em>}</Typography>
-                    </Box>
-                    <Box sx={{ display: "grid", gap: 1 }}>
-                        <Typography variant="subtitle2">Toggle</Typography>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={toggle === "On"}
-                                    onChange={(e) => setToggle(e.target.checked ? "On" : "Off")}
-                                />
-                            }
-                            label={`The toggle is ${toggle}`}
-                        />
-                    </Box>
-                </Box>
+                    ) : null}
 
-                <Divider />
-
-                {/* Previous state */}
-                <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                    <Typography variant="subtitle2">Counter (functional update)</Typography>
-                    <Button variant="contained" size="small" onClick={() => setCount(p => p + 1)}>
-                        Increment
-                    </Button>
-                    <Chip label={`Count: ${count}`} color="primary" variant="outlined" />
-                </Box>
-
-                <Divider />
-
-                {/* Array state */}
-                <Box sx={{ display: "grid", gap: 1 }}>
-                    <Typography variant="subtitle2">Select toppings (array state)</Typography>
-                    <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
-                        {TOPPINGS.map(t => (
-                            <Chip
-                                key={t}
-                                label={t}
-                                color={selected.includes(t) ? "success" : "default"}
-                                variant={selected.includes(t) ? "filled" : "outlined"}
-                                onClick={() => toggleTopping(t)}
-                                sx={{ mb: 1 }}
-                            />
-                        ))}
-                    </Stack>
-                    <Typography variant="body2">
-                        Selected: {selected.length ? selected.join(", ") : "(none)"}
-                    </Typography>
-                </Box>
-
-                <Divider />
-
-                {/* Object state */}
-                <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-                    <Box sx={{ display: "grid", gap: 1 }}>
-                        <Typography variant="subtitle2">Login form (object state)</Typography>
+                    {shape === "object" ? (
                         <TextField
+                            size="small"
                             label="First name"
-                            name="firstName"
-                            size="small"
                             value={form.firstName}
-                            onChange={({ target: { name, value } }) =>
-                                setForm(prev => ({ ...prev, [name]: value }))
-                            }
+                            onChange={(event) => setForm((prev) => ({ ...prev, firstName: event.target.value }))}
                         />
-                        <TextField
-                            label="Password"
-                            name="password"
-                            type="password"
-                            size="small"
-                            value={form.password}
-                            onChange={({ target: { name, value } }) =>
-                                setForm(prev => ({ ...prev, [name]: value }))
-                            }
-                        />
-                        <Typography variant="body2">
-                            Preview: {JSON.stringify(form)}
-                        </Typography>
-                    </Box>
-                    <Box>
-                        <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                            Code snippet
-                        </Typography>
-                        <CodeBlock code={code} />
-                    </Box>
-                </Box>
-            </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end" }}>
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => {
-                        setEmail("");
-                        setToggle("Off");
-                        setCount(0);
-                        setSelected([]);
-                        setForm({ firstName: "", password: "" });
-                    }}
-                >
-                    Reset
-                </Button>
-            </CardActions>
-        </Card>
+                    ) : null}
+
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={apply}>Apply</Button>
+                        <Button variant="outlined" onClick={reset}>Reset</Button>
+                    </Stack>
+                </Stack>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.4, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Current state</Typography>
+                    {shape === "primitive" ? <Typography sx={{ mt: 1 }}>count: {count}</Typography> : null}
+                    {shape === "array" ? <Typography sx={{ mt: 1 }}>items: {list.join(", ")}</Typography> : null}
+                    {shape === "object" ? <Typography sx={{ mt: 1 }}>form: {JSON.stringify(form)}</Typography> : null}
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    <Alert severity="info" variant="outlined">{beforeAfter}</Alert>
+                    <Alert severity="success" variant="outlined">Each update uses a new value/object/array instead of mutation.</Alert>
+                </Stack>
+            }
+            note="Choose state shape by domain needs, then keep updates immutable for predictable renders."
+        />
     );
 }

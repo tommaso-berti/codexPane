@@ -1,83 +1,77 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
-    Card, CardHeader, CardContent, CardActions,
-    Button, Chip, Stack, Typography, Box, Divider, Switch, FormControlLabel
+    Alert,
+    Button,
+    Paper,
+    Stack,
+    ToggleButton,
+    ToggleButtonGroup,
+    Typography
 } from "@mui/material";
+import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
-function StatusPanel({ active }) {
-    return (
-        <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 2, bgcolor: "#fafafa" }}>
-            <Typography variant="h6" sx={{ mb: 0.5 }}>Engine status</Typography>
-            <Chip
-                label={active ? "on" : "off"}
-                color={active ? "success" : "default"}
-                variant={active ? "filled" : "outlined"}
-            />
-        </Box>
-    );
-}
-
-function ToggleControls({ active, onToggle }) {
-    return (
-        <Stack direction="row" spacing={1} alignItems="center">
-            <Button variant="contained" color="primary" onClick={() => onToggle(true)}>Turn on</Button>
-            <Button variant="outlined" color="inherit" onClick={() => onToggle(false)}>Turn off</Button>
-            <FormControlLabel
-                control={<Switch checked={active} onChange={(e) => onToggle(e.target.checked)} />}
-                label={active ? "on" : "off"}
-            />
-        </Stack>
-    );
-}
-
-// Container: holds state and passes it to presentational children
 export default function ContainerPresentationalDemo() {
-    const [isActive, setIsActive] = useState(false);
+    const [mode, setMode] = useState("off");
+    const [events, setEvents] = useState(["Container initialized."]);
 
-    const snippet = useMemo(() => {
-        return `function Container() {
-  const [isActive, setIsActive] = useState(false);
-  return (
-    <>
-      <Presentational active={isActive} toggle={setIsActive} />
-      <OtherPresentational active={isActive} />
-    </>
-  );
-}
+    const pushEvent = (line) => setEvents((prev) => [line, ...prev].slice(0, 4));
 
-function Presentational({ active, toggle }) {
-  return (
-    <>
-      <h1>Engines are {active ? "on" : "off"}</h1>
-      <button onClick={() => toggle(!active)}>Engine Toggle</button>
-    </>
-  );
-}`;
-    }, []);
+    const apply = () => {
+        const next = mode === "off" ? "on" : "off";
+        setMode(next);
+        pushEvent(`Container set active=${next}.`);
+    };
+
+    const checks = useMemo(
+        () => [
+            { ok: true, text: "Container owns the source state." },
+            { ok: true, text: "Presentational children receive derived props." },
+            { ok: events.length > 1, text: "Interaction generated a parent-to-child update." }
+        ],
+        [events.length]
+    );
 
     return (
-        <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
-            <CardHeader
-                title="Container ↔ Presentational Pattern"
-                subheader="Container manages state; children render UI and receive props"
-            />
-            <CardContent sx={{ display: "grid", gap: 2 }}>
-                <ToggleControls active={isActive} onToggle={setIsActive} />
-                <Divider />
-                <Typography variant="subtitle2">Siblings reflecting shared state</Typography>
-                <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
-                    <StatusPanel active={isActive} />
-                    <StatusPanel active={isActive} />
+        <PlaygroundShell
+            title="Container vs Presentational Playground"
+            goal="Understand how container state flows into presentational components as props."
+            status={{ color: mode === "on" ? "success" : "info", label: `active=${mode}` }}
+            controls={
+                <Stack spacing={1.2} sx={{ maxWidth: 560 }}>
+                    <ToggleButtonGroup
+                        exclusive
+                        size="small"
+                        value={mode}
+                        onChange={(_, value) => value && setMode(value)}
+                    >
+                        <ToggleButton value="off">Off</ToggleButton>
+                        <ToggleButton value="on">On</ToggleButton>
+                    </ToggleButtonGroup>
+                    <Stack direction="row" spacing={1}>
+                        <Button variant="contained" onClick={apply}>Run</Button>
+                        <Button variant="outlined" onClick={() => { setMode("off"); setEvents(["Reset complete."]); }}>Reset</Button>
+                    </Stack>
                 </Stack>
-                <Divider />
-                <Typography variant="subtitle2" sx={{ mb: 1 }}>Pattern snippet</Typography>
-                <Box component="pre" sx={{ p: 1.5, borderRadius: 1, bgcolor: "#0b1021", color: "#e6e6e6", fontSize: 12, whiteSpace: "pre-wrap", m: 0 }}>
-                    {snippet}
-                </Box>
-            </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end" }}>
-                <Button variant="outlined" size="small" onClick={() => setIsActive(false)}>Reset</Button>
-            </CardActions>
-        </Card>
+            }
+            preview={
+                <Paper variant="outlined" sx={{ p: 1.4, borderRadius: 2 }}>
+                    <Typography variant="caption" color="text.secondary">Data flow map</Typography>
+                    <Typography sx={{ mt: 1 }}>Container state: active={mode}</Typography>
+                    <Typography variant="body2" color="text.secondary">Child A prop: status={mode}</Typography>
+                    <Typography variant="body2" color="text.secondary">Child B prop: badge={mode === "on" ? "visible" : "hidden"}</Typography>
+                </Paper>
+            }
+            output={
+                <Stack spacing={1}>
+                    {checks.map((item) => (
+                        <Alert key={item.text} severity={item.ok ? "success" : "warning"} variant="outlined">
+                            {item.text}
+                        </Alert>
+                    ))}
+                    <Alert severity="info" variant="outlined">Latest event: {events[0]}</Alert>
+                </Stack>
+            }
+            note="Keep logic in containers and keep presentational components focused on rendering."
+        />
     );
 }
