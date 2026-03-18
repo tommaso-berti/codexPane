@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-03-18T11:50:17.596Z",
+  "repositoryPath": "/home/runner/work/codexPane/codexPane",
+  "version": "v2.5.0",
+  "releaseType": "minor",
+  "fromRef": "v2.4.0",
+  "toRef": "v2.5.0",
+  "range": "v2.4.0..v2.5.0",
+  "compareUrl": "https://github.com/tommaso-berti/codexPane/compare/v2.4.0...v2.5.0",
+  "commits": [
+    {
+      "sha": "96a50218447e98f47e27495f61f1d7329b7e2f40",
+      "shortSha": "96a5021",
+      "subject": "feat: remove previous tag comparison from ReleaseNotesModal and add history to release notes payload #minor",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-18T12:49:27+01:00"
+    },
+    {
+      "sha": "2d991984427f6a6754199b55e0cdf5d33b9fc335",
+      "shortSha": "2d99198",
+      "subject": "docs(release): v2.4.0 artifacts #skip-deploy [skip ci]",
+      "body": "",
+      "author": "github-actions[bot]",
+      "date": "2026-03-18T11:32:36Z"
+    }
+  ],
+  "changedFiles": [
+    "public/data/release-notes.json",
+    "release-notes/.payload-v2.4.0.json",
+    "release-notes/v2.4.0.md",
+    "src/components/ReleaseNotesModal.jsx",
+    "src/hooks/useLatestReleaseNotes.js"
+  ]
+}
