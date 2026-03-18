@@ -176,12 +176,6 @@ export default function ReleaseNotesModal({ open, onClose }) {
                         {`Latest deployed version: v${visibleVersion}`}
                     </Typography>
 
-                    {data?.previousTag && data?.tag && (
-                        <Typography variant="caption" color="text.secondary">
-                            {`Compared from ${data.previousTag} to ${data.tag}`}
-                        </Typography>
-                    )}
-
                     {isLoading && (
                         <Stack spacing={1.5}>
                             <Skeleton variant="text" width="35%" />
