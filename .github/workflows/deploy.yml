@@ -367,11 +367,24 @@ jobs:
         if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
         shell: bash
         run: |
-          ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" '
+          set -euo pipefail
+          SSH_OPTS="-o BatchMode=yes -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
+          ATTEMPT=1
+          MAX_ATTEMPTS=4
+
+          until ssh $SSH_OPTS -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" '
             set -e
             cd "'"${{ env.REMOTE_BASE }}"'/releases" 2>/dev/null || exit 0
             ls -1dt v* 2>/dev/null | tail -n +6 | xargs -r rm -rf --
-          '
+          '; do
+            if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+              echo "Prune old releases failed after ${MAX_ATTEMPTS} attempts." >&2
+              exit 1
+            fi
+            echo "Prune old releases failed (attempt ${ATTEMPT}/${MAX_ATTEMPTS}), retrying in 5s..."
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 5
+          done
 
       - name: Create and push release tag
         if: env.SKIP_DEPLOY != 'true' && github.event_name != 'pull_request'
