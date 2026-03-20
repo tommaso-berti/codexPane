@@ -3,6 +3,8 @@ title: OAuth 2.0
 order: 9
 ---
 
+import OAuthGrantFlowPlayground from "./components/oauth-2-0/OAuthGrantFlowPlayground.jsx"
+
 # OAuth 2.0
 
 When the user enters their username and password on a website and hits “Submit”, what happens? Your web browser submits that information to the server's API to authenticate you. An *API* is the part of a server that sends and receives data. There are three main types of API authentication:
@@ -50,6 +52,16 @@ The *Device Code Grant* is used for devices that have no browser and/or have lim
 
 ### Resource Owner Password Credential Grant - Deprecated
 This grant is used when an application exchanges the user's username and password for an access token. It's important to note that third-party applications should never be allowed to ask the user for their password! The Resource Owner Password Credential flow would only be used if you had a high trust relationship with the client application. The Resource Owner Password Credential flow is deprecated, but might still be seen in legacy code.
+
+## Interactive Playground: OAuth Grant Flow Simulator
+
+**Why this matters**  
+Different grant types solve different trust and client capabilities. Simulating the flow makes token issuance boundaries explicit.
+
+**What to try**  
+Switch between Authorization Code + PKCE, Client Credentials, and Device Code, then run step-by-step to compare where user consent appears.
+
+<OAuthGrantFlowPlayground />
 
 ## Threats to OAuth
 OAuth tokens are great at defending users against data breaches because, even if websites that use OAuth to log in are hacked, there are no passwords contained in databases. Even if an attacker were to obtain the access tokens, the usually short-lived nature of the access tokens means an attacker would not be able to do much with them.
@@ -142,7 +154,9 @@ module.exports = {
 
 ```
 
-## getClient() OAuth2Server requires certain functions implemented in the model regardless of the authorization flow used. The getClient() function is an example of a required model function for all flows. The function is used to retrieve a client using a Client ID and/or a Client Secret combination.
+## getClient()
+
+OAuth2Server requires certain functions implemented in the model regardless of the authorization flow used. The getClient() function is an example of a required model function for all flows. The function is used to retrieve a client using a Client ID and/or a Client Secret combination.
 The [getClient() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html#model-getclient) takes two arguments: clientId and clientSecret. We must write a database query to match the provided arguments and its implementation will vary depending on the type of database used. Since we are using JavaScript as our in-memory database, we can use the .filter() method to evaluate if the clientId and clientSecret match any confidential clients in **db.js** and return the matching client.
 
 ```
@@ -165,7 +179,9 @@ module.exports = {
 
 ```
 
-## saveToken() The [saveToken() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html#savetoken-token-client-user-callback) must be implemented for all grant types in the model used by OAuth2Server. This function stores the access token as an object to a database when an access token is obtained.
+## saveToken()
+
+The [saveToken() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html#savetoken-token-client-user-callback) must be implemented for all grant types in the model used by OAuth2Server. This function stores the access token as an object to a database when an access token is obtained.
 The saveToken() function is implemented with three arguments: token, client, and user.
 - We set the token.client equal an object in which the id attribute is equal to the passed client's clientId.
 - The token.user is set equal to an object with the username attribute. We set the username attribute equal to the username of the passed user object.
@@ -185,7 +201,9 @@ const saveToken = (token, client, user) => {
 
 ```
 
-## getUserFromClient() Certain grant types have specific functions that must be implemented for them to work. The Client Credentials grant type must have the [getUserFromClient() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html?highlight=token#getuserfromclient-client-callback) implemented to be used.
+## getUserFromClient()
+
+Certain grant types have specific functions that must be implemented for them to work. The Client Credentials grant type must have the [getUserFromClient() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html?highlight=token#getuserfromclient-client-callback) implemented to be used.
 The getUserFromClient() function is invoked to retrieve the user associated with the specified client. We are not using a user in our application so we can return an empty object. However, leaving out this function declaration will throw an error when using the Client Credentials grant type!
 
 ```
@@ -245,7 +263,9 @@ app.all('/auth', obtainToken);
 
 ```
 
-## getAccessToken() Now that we've written the code to obtain an access token, we can use it to restrict access to content unless a user is authenticated with a valid access token. Inside **model.js**, we implement the [getAccessToken() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html#getaccesstoken-accesstoken-callback) to retrieve existing tokens that were previously saved when the saveToken() function is invoked.
+## getAccessToken()
+
+Now that we've written the code to obtain an access token, we can use it to restrict access to content unless a user is authenticated with a valid access token. Inside **model.js**, we implement the [getAccessToken() function](https://oauth2-server.readthedocs.io/en/latest/model/spec.html#getaccesstoken-accesstoken-callback) to retrieve existing tokens that were previously saved when the saveToken() function is invoked.
 The getAccessToken() function is required when the [.authenticate() method](https://oauth2-server.readthedocs.io/en/latest/api/oauth2-server.html#authenticate-request-response-options-callback) is used on an OAuth2Server instance. getAccessToken() is declared with one parameter-accessToken.
 When the function is invoked the accessToken is checked against the tokens stored inside the **db.js** to see if there is a match. We can use JavaScript's .filter() method to each token in the database against the access token that is passed. If there is a match, the access token can be returned.
 

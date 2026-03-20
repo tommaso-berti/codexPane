@@ -13,7 +13,7 @@ Postgres is currently used in production by many modern technology companies, be
 Postgres itself is a database “server.” There are several ways to connect to Postgres via “clients,” including [GUIs](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLIs](https://en.wikipedia.org/wiki/Command-line_interface), and programming languages often via [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping). In order to run and use Postgres on your own computer, you will need to set up both a Postgres server and a client.
 ![98D5DE47-D223-4012-BDB2-A584442424FE](images/98D5DE47-D223-4012-BDB2-A584442424FE.png)
 
-## Setting Up Postgres (server)
+## Setting up Postgres (server)
 
 **Windows**
 Follow the instructions for the Interactive Installer by EDB as described on [Postgres Download: Windows installers](https://www.postgresql.org/download/windows/); you'll be prompted to enter in a password for the postgres user: for now, set the password as “postgres”. If you are asked to enter a port, you can use the default of “5432”.
@@ -51,7 +51,9 @@ sudo pg_ctlcluster 12 main start
 
 ```
 
-## Setting up Postgres (client) Now that Postgres is running locally, we can connect to it via a “client” - a graphical or command-line interface that enables us to connect to the Postgres server, write and execute SQL commands as input, and see the resulting output.
+## Setting up Postgres (client)
+
+Now that Postgres is running locally, we can connect to it via a “client” - a graphical or command-line interface that enables us to connect to the Postgres server, write and execute SQL commands as input, and see the resulting output.
 While you can have only one instance of Postgres running per port (typically 5432), you can have multiple open connections to the same database with different interfaces. There are many options; our preferences are listed below!
 
 ## GUI
@@ -77,7 +79,7 @@ sudo snap install postbird
 
 ```
 
-## Command Line
+## Command line
 We'll primarily be using Postbird as our client for connecting to Postgres, but you can also connect using the command line tool psql! [psql](https://www.postgresql.org/docs/9.3/app-psql.html) is the standard interactive CLI used by both hobbyists and professionals.
 According to the Postgres documentation, psql “enables you to type in queries interactively, issue them to PostgreSQL, and see the query results. Alternatively, input can be from a file. In addition, it provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.”
 When using psql, you can use the \q command to quit out of psql and return to your normal terminal.

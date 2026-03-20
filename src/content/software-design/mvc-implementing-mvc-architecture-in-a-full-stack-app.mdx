@@ -5,13 +5,13 @@ order: 11
 
 # Implementing MVC Architecture in a Full-Stack App
 
-## **Implementing MVC Architecture in a Full-Stack App**
+## Implementing MVC architecture in a full-stack app
 Example available on [https://github.com/tommaso-berti/mvc-architecture-for-full-stack-app-react](https://github.com/tommaso-berti/mvc-architecture-for-full-stack-app-react) Or [https://github.com/tommaso-berti/mvc-to-do-list](https://github.com/tommaso-berti/mvc-to-do-list)
 
 **Stack:** React + Express + Node + PostgreSQL
 **Goal:** Structure the app using MVC so UI, logic and data stay independent.
 
-## Architecture Overview
+## Architecture overview
 MVC divides responsibilities into 3 layers:
 
 ```
@@ -19,7 +19,7 @@ View        → UI (React) Controller  → Business logic (Express routes + hand
 
 ```
 
-## Data Flow
+## Data flow
 
 ```
 User action
@@ -39,7 +39,7 @@ React updates UI
 Key idea:
 The View never talks directly to the database.
 
-## Project Structure
+## Project structure
 
 ```
 root
@@ -52,7 +52,9 @@ root
 
 ```
 
-## Database Layer (Model) PostgreSQL table:
+## Database layer (model)
+
+PostgreSQL table:
 | column       | purpose      |
 |--------------|--------------|
 | expense_id   | primary key  |
@@ -70,7 +72,7 @@ It should:
 * return raw data
 * never handle HTTP or UI logic
 
-## Controller Layer
+## Controller layer
 Controllers receive requests from routes and decide what happens.
 Typical responsibilities:
 * validate input
@@ -94,7 +96,9 @@ CRUD operations implemented:
 * delete expense
 * list by date
 
-### Routes (Connecting Controller ↔ Model) Routes map HTTP endpoints to controller functions.
+### Routes (Connecting Controller ↔ Model)
+
+Routes map HTTP endpoints to controller functions.
 | Method              | Endpoint            | Action              |
 |---------------------|---------------------|---------------------|
 | POST                | /expense/create     | create expense      |
@@ -106,7 +110,9 @@ CRUD operations implemented:
 Important detail:
 Routes do not contain logic — they only forward to controllers.
 
-## View Layer (React) The React app represents the View.
+## View layer (React)
+
+The React app represents the View.
 
 ### Responsibilities
 * collect user input
@@ -115,7 +121,7 @@ Routes do not contain logic — they only forward to controllers.
 * update state
 The UI never contains SQL or business logic.
 
-### View ↔ Controller Communication
+### View ↔ controller communication
 All communication happens through fetch/HTTP helpers (utils).
 Typical lifecycle:
 
@@ -129,7 +135,7 @@ User clicks button
 
 ```
 
-### Example Interaction
+### Example interaction
 Create expense:
 
 ```
@@ -160,7 +166,7 @@ UI removes item from state
 
 ```
 
-## Why MVC Matters
+## Why MVC matters
 ### Without MVC
 * frontend logic mixed with DB logic
 * hard to scale

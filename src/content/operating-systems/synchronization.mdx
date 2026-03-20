@@ -5,7 +5,7 @@ order: 6
 
 # Synchronization
 
-## The Increment a Number Problem
+## The increment-a-number problem
 Consider the following problem. Given a number,x, which has been initialized with the value 0, create a program that increments x one-hundred times so that when the program is finished executing, x equals 100.
 We could implement this program without concurrency, using a single thread which increments x once, then again, and again until it has done so one-hundred times.
 Alternatively, we could write a program that spawns one-hundred threads which will individually increment x once, but collectively increment x one hundred times.
@@ -40,7 +40,9 @@ That
      x
   at a given time. In the next exercise, we discuss one way to do this.
 
-## Locking (mutex) Our program from the last exercise failed because multiple threads were allowed to access
+## Locking (mutex)
+
+Our program from the last exercise failed because multiple threads were allowed to access
      x
   at the same time in defiance of the mutual exclusion condition. Remember that condition says that there must only be one thread at a time with access to a critical section.
 A common way to fix this issue is with a mutual exclusion lock, or mutex.
@@ -72,7 +74,7 @@ This pattern of receiving the mutex, incrementing
      increment()
  , completing the program.
 
-## Condition Variables
+## Condition variables
 ![1283C7CE-7DA6-4F42-80E5-0A47DC0C158C](images/1283C7CE-7DA6-4F42-80E5-0A47DC0C158C.png)
 
 We create two threads representing a maker and a seller. When the maker thread calls make_guitar(), the num_guitars variable is incremented. When seller thread calls sell_guitar(), num_guitars is decremented as long as num_guitars is greater than 0.
@@ -87,7 +89,7 @@ The biggest advantage here is that the seller thread is not constantly requestin
 If you use only locks, the seller thread would have to keep checking if guitars are available, which is inefficient.
 With a condition variable, the seller thread waits until it is notified that guitars are available. When the maker thread increases num_guitars, it sends a notification to the seller thread, which can then continue. This way, the seller thread does not need to check all the time, but just waits for the notification.
 
-## Atomic Variables
+## Atomic variables
 Recall the increment-a-number problem. In the no-locks solution, the race condition arose because the x = x + 1 operation actually takes place in three atomic steps. If two threads try to complete those steps at the same time, the value of x will not be set properly.
 The solution from exercise three was to use locks to ensure that only one thread at a time had access to x. But there is another solution which is far simpler: make x an *atomic variable*.
 An atomic variable is a variable that can be modified in an inherently thread-safe manner without the use of locks or any other synchronization mechanism. The variable is atomic because the operations required to modify it take place, from our threads’ perspective, in exactly one atomic step.
@@ -120,7 +122,7 @@ As a result, the adding and removing of items from the buffer and corresponding 
 Locks provide mutual exclusion on the critical sections of our code; they guarantee that only one thread at a time may enter areas of our code that contain shared resources. But while mutual exclusion is a necessary condition for our programs to be *synchronized*, it is not a sufficient one. There are two others, *progress* and *bounded waiting*.
 The bounded waiting condition states that each thread that asks for permission to enter a critical section will, eventually, receive it. In other words, no thread should ever get stuck waiting indefinitely. This might seem simple to implement. Can’t we very easily make sure that threads give up their locks? A difficult problem, though, arises when multiple locks exist in our program. A situation known as a *deadlock* can occur, and it has the potential to cripple our multi-threaded programs.
 
-### Causes of Deadlocks
+### Causes of deadlocks
 The following diagram shows very simply how one can occur. Let us briefly walk through it.
 | thread_1        | thread_2        |
 |-----------------|-----------------|

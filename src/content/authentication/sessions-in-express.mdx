@@ -3,6 +3,8 @@ title: Sessions in Express
 order: 4
 ---
 
+import SessionLifecyclePlayground from "./components/sessions-in-express/SessionLifecyclePlayground.jsx"
+
 # Sessions in Express
 
 Whether you are browsing through an online shop or accessing your bank account online, your user data persisted across page loads thanks to sessions. Without them, every time you reloaded the window you would be logged out or lose your cart!
@@ -32,7 +34,7 @@ const session = require("express-session")
 
 ```
 
-### express-session Configuration
+### express-session configuration
 Now that we have
      express-session
   installed, we can configure the middleware and implement it in
@@ -58,7 +60,7 @@ app.use(
 Note that we are using a hardcoded string of characters for the secret property. Usually, this random string should be stored securely in an environment variable, not in the code.
 The resave and saveUninitialized properties are set to false in order to avoid saving or storing unmodified sessions. With those options put in place, we have the most basic setup of our middleware!
 
-### Storing Session Data
+### Storing session data
 Sessions are typically stored in three different ways:
 * In memory (this is the default storage)
 * In a [database](https://owasp.org/www-community/) like MongoDB or MySQL
@@ -87,7 +89,7 @@ app.use(
 
 *Note: Storing in-memory sessions is something that should be done only during development, NOT during production due to security risks.*
 
-### Authentication and Sessions: Cookies
+### Authentication and sessions: cookies
 We should make use of client-side storage so that the user's browser can automatically send over the session identifier with each incoming HTTP request.
 
 ```
@@ -116,7 +118,7 @@ Other cookie properties include:
 * cookie.httpOnly
 * cookie.sameSite
 
-### Sessions and Authentication: Logging In
+### Sessions and authentication: logging in
 On the right, we have a login form that takes a username and password. If a user logs in with the correct credentials, we want to initiate a session.
 We can do this by first looking up the user in our database and then verifying that the password is correct. Once credentials are confirmed, we'll add data to our session.
 Once the user is logged in we'll add a property, authenticated within our session object and assign it to true. We'll also set user in the session data and assign it the username and password we received:
@@ -138,7 +140,7 @@ if (password == "codec@demy10") {
 ***Note****: we are demonstrating using a hardcoded password. However, in production, you always want to encrypt your password.*
 Once the user is logged in, their session is created and stored in memory. The properties authenticated and user will be accessible and changeable as session data.
 
-### Accessing Session Data
+### Accessing session data
 We're able to store and access data in nested objects. Let's say we had saved the number of items in a user's cart in the session data:
 
 ```
@@ -171,3 +173,13 @@ app.get("/protected", authorizedUser, (req, res, next) => {
 ```
 
 NOTE: res.render() takes in a view page as the first argument and an object whose properties define local variables for the view as the second argument.
+
+## Interactive Playground: Session Lifecycle in Express
+
+**Why this matters**  
+Session auth bugs usually come from cookie flags, expiry, or stale server state. A lifecycle simulation makes these failure paths easy to reason about.
+
+**What to try**  
+Create a session, force expiry, then toggle secure cookie behavior to see how protected-route access changes.
+
+<SessionLifecyclePlayground />

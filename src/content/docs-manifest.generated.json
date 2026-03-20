@@ -63,20 +63,20 @@
           "filePath": "../../content/algorithms/asymptotic-notation.mdx",
           "subSections": [
             {
-              "id": "big-theta-θ-the-first-subtype-of-asymptotic-notation-we-will-explore-is-big-theta-denoted-by-θ-we-use-big-theta-when-a-program-has-only-one-case-in-terms-of-runtime-but-what-exactly-does-that-mean-take-a-look-at-the-pseudocode-for-a-function-that-prints-the-values-in-a-list-below",
-              "title": "Big Theta (Θ) The first subtype of asymptotic notation we will explore is big Theta (denoted by Θ). We use big Theta when a program has only one case in terms of runtime. But what exactly does that mean? Take a look at the pseudocode for a function that prints the values in a list below:",
-              "slug": "algorithms/asymptotic-notation#big-theta-θ-the-first-subtype-of-asymptotic-notation-we-will-explore-is-big-theta-denoted-by-θ-we-use-big-theta-when-a-program-has-only-one-case-in-terms-of-runtime-but-what-exactly-does-that-mean-take-a-look-at-the-pseudocode-for-a-function-that-prints-the-values-in-a-list-below",
+              "id": "big-theta-θ",
+              "title": "Big theta (Θ)",
+              "slug": "algorithms/asymptotic-notation#big-theta-θ",
               "order": 1
             },
             {
-              "id": "big-omega-ω-and-big-o-o-sometimes-a-program-may-have-a-different-runtime-for-the-best-case-and-worst-case-for-instance-a-program-could-have-a-best-case-runtime-of-θ1-and-a-worst-case-of-θn-we-use-a-different-notation-when-this-is-the-case-we-use-big-omega-or-ω-to-describe-the-best-case-and-big-o-or-o-to-describe-the-worst-case-take-a-look-at-the-following-pseudocode-that-returns-true-if-12-is-in-the-list-and-false-otherwise",
-              "title": "Big Omega (Ω) and Big O (O) Sometimes, a program may have a different runtime for the best case and worst case. For instance, a program could have a best case runtime of Θ(1) and a worst case of Θ(N). We use a different notation when this is the case. We use big Omega or Ω to describe the best case and big O or O to describe the worst case. Take a look at the following pseudocode that returns True if 12 is in the list and False otherwise:",
-              "slug": "algorithms/asymptotic-notation#big-omega-ω-and-big-o-o-sometimes-a-program-may-have-a-different-runtime-for-the-best-case-and-worst-case-for-instance-a-program-could-have-a-best-case-runtime-of-θ1-and-a-worst-case-of-θn-we-use-a-different-notation-when-this-is-the-case-we-use-big-omega-or-ω-to-describe-the-best-case-and-big-o-or-o-to-describe-the-worst-case-take-a-look-at-the-following-pseudocode-that-returns-true-if-12-is-in-the-list-and-false-otherwise",
+              "id": "big-omega-ω-and-big-o-o",
+              "title": "Big omega (Ω) and big O (O)",
+              "slug": "algorithms/asymptotic-notation#big-omega-ω-and-big-o-o",
               "order": 2
             },
             {
               "id": "adding-runtimes",
-              "title": "Adding Runtimes",
+              "title": "Adding runtimes",
               "slug": "algorithms/asymptotic-notation#adding-runtimes",
               "order": 3
             }
@@ -91,7 +91,7 @@
           "subSections": [
             {
               "id": "analyzing-algorithm-runtime",
-              "title": "Analyzing Algorithm Runtime",
+              "title": "Analyzing algorithm runtime",
               "slug": "algorithms/js-asymptotic-notation#analyzing-algorithm-runtime",
               "order": 1
             },
@@ -103,73 +103,73 @@
             },
             {
               "id": "linked-list-example---finding-maximum",
-              "title": "Linked List Example - Finding Maximum",
+              "title": "Linked list example - finding maximum",
               "slug": "algorithms/js-asymptotic-notation#linked-list-example---finding-maximum",
               "order": 3
             },
             {
               "id": "sorting-a-linked-list",
-              "title": "Sorting a Linked List",
+              "title": "Sorting a linked list",
               "slug": "algorithms/js-asymptotic-notation#sorting-a-linked-list",
               "order": 4
             },
             {
               "id": "queue-vs-stack-runtime",
-              "title": "Queue vs Stack Runtime",
+              "title": "Queue vs stack runtime",
               "slug": "algorithms/js-asymptotic-notation#queue-vs-stack-runtime",
               "order": 5
             },
             {
-              "id": "queue-fifo---first-in-first-out-removing-the-first-inserted-element",
-              "title": "Queue (FIFO - First In First Out) Removing the first inserted element:",
-              "slug": "algorithms/js-asymptotic-notation#queue-fifo---first-in-first-out-removing-the-first-inserted-element",
+              "id": "queue-fifo---first-in-first-out",
+              "title": "Queue (FIFO - First In First Out)",
+              "slug": "algorithms/js-asymptotic-notation#queue-fifo---first-in-first-out",
               "order": 6
             },
             {
-              "id": "stack-filo---first-in-last-out-removing-the-first-inserted-element-requires-reaching-the-bottom-of-the-stack",
-              "title": "Stack (FILO - First In Last Out) Removing the first inserted element requires reaching the bottom of the stack.",
-              "slug": "algorithms/js-asymptotic-notation#stack-filo---first-in-last-out-removing-the-first-inserted-element-requires-reaching-the-bottom-of-the-stack",
+              "id": "stack-filo---first-in-last-out",
+              "title": "Stack (FILO - First In Last Out)",
+              "slug": "algorithms/js-asymptotic-notation#stack-filo---first-in-last-out",
               "order": 7
             },
             {
               "id": "linked-list-vs-hash-map-search",
-              "title": "Linked List vs Hash Map Search",
+              "title": "Linked list vs hash map search",
               "slug": "algorithms/js-asymptotic-notation#linked-list-vs-hash-map-search",
               "order": 8
             },
             {
               "id": "linked-list-search",
-              "title": "Linked List Search",
+              "title": "Linked list search",
               "slug": "algorithms/js-asymptotic-notation#linked-list-search",
               "order": 9
             },
             {
               "id": "hash-map-search",
-              "title": "Hash Map Search",
+              "title": "Hash map search",
               "slug": "algorithms/js-asymptotic-notation#hash-map-search",
               "order": 10
             },
             {
               "id": "hash-collisions",
-              "title": "Hash Collisions",
+              "title": "Hash collisions",
               "slug": "algorithms/js-asymptotic-notation#hash-collisions",
               "order": 11
             },
             {
               "id": "separate-chaining",
-              "title": "Separate Chaining",
+              "title": "Separate chaining",
               "slug": "algorithms/js-asymptotic-notation#separate-chaining",
               "order": 12
             },
             {
-              "id": "open-addressing-linear-probing-if-a-collision-occurs-the-algorithm-searches-the-next-available-index",
-              "title": "Open Addressing (Linear Probing) If a collision occurs, the algorithm searches the next available index.",
-              "slug": "algorithms/js-asymptotic-notation#open-addressing-linear-probing-if-a-collision-occurs-the-algorithm-searches-the-next-available-index",
+              "id": "open-addressing-linear-probing",
+              "title": "Open addressing (linear probing)",
+              "slug": "algorithms/js-asymptotic-notation#open-addressing-linear-probing",
               "order": 13
             },
             {
               "id": "key-big-o-patterns",
-              "title": "Key Big-O Patterns",
+              "title": "Key Big-O patterns",
               "slug": "algorithms/js-asymptotic-notation#key-big-o-patterns",
               "order": 14
             }
@@ -238,20 +238,20 @@
           "subSections": [
             {
               "id": "splitting-base-case",
-              "title": "Splitting: Base Case",
+              "title": "Splitting: base case",
               "slug": "algorithms/js-merge-sort#splitting-base-case",
               "order": 1
             },
             {
               "id": "splitting-recursive-case",
-              "title": "Splitting: Recursive Case",
+              "title": "Splitting: recursive case",
               "slug": "algorithms/js-merge-sort#splitting-recursive-case",
               "order": 2
             },
             {
-              "id": "call-merge-from-mergesort-at-this-point-we-have-a-function-that-recursively-splits-the-input-array-until-each-element-is-in-a-single-element-array-the-final-step-is-to-call-the-function-that-is-responsible-for-merging-the-leftarray-and-rightarray",
-              "title": "Call merge() from mergeSort() At this point, we have a function that recursively splits the input array until each element is in a single-element array. The final step is to call the function that is responsible for merging the leftArray and rightArray.",
-              "slug": "algorithms/js-merge-sort#call-merge-from-mergesort-at-this-point-we-have-a-function-that-recursively-splits-the-input-array-until-each-element-is-in-a-single-element-array-the-final-step-is-to-call-the-function-that-is-responsible-for-merging-the-leftarray-and-rightarray",
+              "id": "call-merge-from-mergesort",
+              "title": "Call merge() from mergeSort()",
+              "slug": "algorithms/js-merge-sort#call-merge-from-mergesort",
               "order": 3
             },
             {
@@ -426,33 +426,33 @@
           "filePath": "../../content/algorithms/search-and-graph-search-algorithms-js-graph-traversals.mdx",
           "subSections": [
             {
-              "id": "depth-first-traversal-one-path-traversals-are-incredibly-useful-when-you-are-trying-to-find-a-particular-value-or-a-particular-path-in-a-graph-well-first-explore-the-depth-first-traversal-function-for-traversing-through-a-directed-graph-to-recap-depth-first-traversals-iterate-down-each-vertex-one-neighbor-at-a-time-before-going-back-up-and-looking-at-the-neighbors-connected-vertices-in-this-exercise-we-will-focus-on-traversing-down-the-full-length-of-one-path-and-logging-each-vertexs-data-value",
-              "title": "Depth-First Traversal (One path) Traversals are incredibly useful when you are trying to find a particular value or a particular path in a graph. We'll first explore the depth-first traversal function for traversing through a directed graph. To recap, depth-first traversals iterate down each vertex, one neighbor at a time, before going back up and looking at the neighbor's connected vertices. In this exercise, we will focus on traversing down the full length of one path and logging each vertex's .data value.",
-              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-one-path-traversals-are-incredibly-useful-when-you-are-trying-to-find-a-particular-value-or-a-particular-path-in-a-graph-well-first-explore-the-depth-first-traversal-function-for-traversing-through-a-directed-graph-to-recap-depth-first-traversals-iterate-down-each-vertex-one-neighbor-at-a-time-before-going-back-up-and-looking-at-the-neighbors-connected-vertices-in-this-exercise-we-will-focus-on-traversing-down-the-full-length-of-one-path-and-logging-each-vertexs-data-value",
+              "id": "depth-first-traversal-one-path",
+              "title": "Depth-first traversal (one path)",
+              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-one-path",
               "order": 1
             },
             {
-              "id": "depth-first-traversal-all-paths-weve-gotten-the-hang-of-traversing-down-one-path-but-we-want-to-traverse-down-all-the-paths-not-just-the-first-possible-path-we-will-modify-our-existing-implementation-to-iterate-down-all-the-other-paths-by-using-a-foreach-loop-to-iterate-through-all-of-the-start-vertexs-edges",
-              "title": "Depth-First Traversal (All paths) We've gotten the hang of traversing down one path, but we want to traverse down all the paths (not just the first possible path). We will modify our existing implementation to iterate down all the other paths by using a .forEach() loop to iterate through all of the start vertex's edges.",
-              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-all-paths-weve-gotten-the-hang-of-traversing-down-one-path-but-we-want-to-traverse-down-all-the-paths-not-just-the-first-possible-path-we-will-modify-our-existing-implementation-to-iterate-down-all-the-other-paths-by-using-a-foreach-loop-to-iterate-through-all-of-the-start-vertexs-edges",
+              "id": "depth-first-traversal-all-paths",
+              "title": "Depth-first traversal (all paths)",
+              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-all-paths",
               "order": 2
             },
             {
-              "id": "depth-first-traversal-callbacks-our-current-implementation-of-the-depth-first-traversal-simply-prints-out-the-vertices-of-the-graph-as-they-are-traversed-this-would-be-useful-in-scenarios-where-we-want-to-see-the-order-that-the-traversal-occurs-in-for-example-if-the-graph-was-an-instruction-list-we-need-the-exact-order-that-the-steps-will-occur-to-determine-which-dependencies-need-to-be-resolved-first",
-              "title": "Depth-First Traversal (Callbacks) Our current implementation of the depth-first traversal simply prints out the vertices of the graph as they are traversed. This would be useful in scenarios where we want to see the order that the traversal occurs in. For example, if the graph was an instruction list, we need the exact order that the steps will occur to determine which dependencies need to be resolved first.",
-              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-callbacks-our-current-implementation-of-the-depth-first-traversal-simply-prints-out-the-vertices-of-the-graph-as-they-are-traversed-this-would-be-useful-in-scenarios-where-we-want-to-see-the-order-that-the-traversal-occurs-in-for-example-if-the-graph-was-an-instruction-list-we-need-the-exact-order-that-the-steps-will-occur-to-determine-which-dependencies-need-to-be-resolved-first",
+              "id": "depth-first-traversal-callbacks",
+              "title": "Depth-first traversal (callbacks)",
+              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-callbacks",
               "order": 3
             },
             {
-              "id": "breadth-first-traversal-first-layer-now-its-time-to-focus-on-breadth-first-traversal-just-as-a-reminder-breadth-first-iterates-through-the-whole-graph-in-layers-by-going-down-one-layer-which-comprises-the-start-vertexs-direct-neighbors-then-it-proceeds-down-to-the-next-layer-which-consists-of-all-the-vertices-that-are-neighbors-of-the-vertices-in-the-previous-layer",
-              "title": "Breadth-First Traversal (First Layer) Now it's time to focus on breadth-first traversal! Just as a reminder, breadth-first iterates through the whole graph in layers by going down one layer, which comprises the start vertex's direct neighbors. Then it proceeds down to the next layer which consists of all the vertices that are neighbors of the vertices in the previous layer.",
-              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-first-layer-now-its-time-to-focus-on-breadth-first-traversal-just-as-a-reminder-breadth-first-iterates-through-the-whole-graph-in-layers-by-going-down-one-layer-which-comprises-the-start-vertexs-direct-neighbors-then-it-proceeds-down-to-the-next-layer-which-consists-of-all-the-vertices-that-are-neighbors-of-the-vertices-in-the-previous-layer",
+              "id": "breadth-first-traversal-first-layer",
+              "title": "Breadth-first traversal (first layer)",
+              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-first-layer",
               "order": 4
             },
             {
-              "id": "breadth-first-traversal-all-layers-so-far-we-can-iterate-down-one-layer-but-we-have-yet-to-iterate-down-the-remaining-layers-in-order-to-do-so-we-will-introduce-a-queue-that-will-keep-track-of-all-of-the-vertices-to-visit",
-              "title": "Breadth-First Traversal (All Layers) So far, we can iterate down one layer, but we have yet to iterate down the remaining layers. In order to do so, we will introduce a queue that will keep track of all of the vertices to visit.",
-              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-all-layers-so-far-we-can-iterate-down-one-layer-but-we-have-yet-to-iterate-down-the-remaining-layers-in-order-to-do-so-we-will-introduce-a-queue-that-will-keep-track-of-all-of-the-vertices-to-visit",
+              "id": "breadth-first-traversal-all-layers",
+              "title": "Breadth-first traversal (all layers)",
+              "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-all-layers",
               "order": 5
             },
             {
@@ -475,6 +475,12 @@
               "title": "Complexity",
               "slug": "algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm#complexity",
               "order": 1
+            },
+            {
+              "id": "interactive-playground-dijkstra-relaxation-trace",
+              "title": "Interactive Playground: Dijkstra Relaxation Trace",
+              "slug": "algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm#interactive-playground-dijkstra-relaxation-trace",
+              "order": 2
             }
           ],
           "order": 18
@@ -894,7 +900,7 @@
           "subSections": [
             {
               "id": "common-security-headers",
-              "title": "Common Security Headers",
+              "title": "Common security headers",
               "slug": "authentication/security-related-http-headers#common-security-headers",
               "order": 1
             },
@@ -912,7 +918,7 @@
             },
             {
               "id": "how-to-add-security-headers",
-              "title": "How to Add Security Headers",
+              "title": "How to add security headers",
               "slug": "authentication/security-related-http-headers#how-to-add-security-headers",
               "order": 4
             }
@@ -930,6 +936,12 @@
               "title": "Installing express-session",
               "slug": "authentication/sessions-in-express#installing-express-session",
               "order": 1
+            },
+            {
+              "id": "interactive-playground-session-lifecycle-in-express",
+              "title": "Interactive Playground: Session Lifecycle in Express",
+              "slug": "authentication/sessions-in-express#interactive-playground-session-lifecycle-in-express",
+              "order": 2
             }
           ],
           "order": 4
@@ -1151,70 +1163,76 @@
               "order": 5
             },
             {
+              "id": "interactive-playground-oauth-grant-flow-simulator",
+              "title": "Interactive Playground: OAuth Grant Flow Simulator",
+              "slug": "authentication/oauth-2-0#interactive-playground-oauth-grant-flow-simulator",
+              "order": 6
+            },
+            {
               "id": "threats-to-oauth",
               "title": "Threats to OAuth",
               "slug": "authentication/oauth-2-0#threats-to-oauth",
-              "order": 6
+              "order": 7
             },
             {
               "id": "installing-oauth2-server",
               "title": "Installing oauth2-server",
               "slug": "authentication/oauth-2-0#installing-oauth2-server",
-              "order": 7
+              "order": 8
             },
             {
               "id": "creating-an-oauth-20-server-instance",
               "title": "Creating an OAuth 2.0 Server Instance",
               "slug": "authentication/oauth-2-0#creating-an-oauth-20-server-instance",
-              "order": 8
+              "order": 9
             },
             {
               "id": "registering-client-to-application",
               "title": "Registering Client to Application",
               "slug": "authentication/oauth-2-0#registering-client-to-application",
-              "order": 9
-            },
-            {
-              "id": "getclient-oauth2server-requires-certain-functions-implemented-in-the-model-regardless-of-the-authorization-flow-used-the-getclient-function-is-an-example-of-a-required-model-function-for-all-flows-the-function-is-used-to-retrieve-a-client-using-a-client-id-andor-a-client-secret-combination",
-              "title": "getClient() OAuth2Server requires certain functions implemented in the model regardless of the authorization flow used. The getClient() function is an example of a required model function for all flows. The function is used to retrieve a client using a Client ID and/or a Client Secret combination.",
-              "slug": "authentication/oauth-2-0#getclient-oauth2server-requires-certain-functions-implemented-in-the-model-regardless-of-the-authorization-flow-used-the-getclient-function-is-an-example-of-a-required-model-function-for-all-flows-the-function-is-used-to-retrieve-a-client-using-a-client-id-andor-a-client-secret-combination",
               "order": 10
             },
             {
-              "id": "savetoken-the-savetoken-function-must-be-implemented-for-all-grant-types-in-the-model-used-by-oauth2server-this-function-stores-the-access-token-as-an-object-to-a-database-when-an-access-token-is-obtained",
-              "title": "saveToken() The saveToken() function must be implemented for all grant types in the model used by OAuth2Server. This function stores the access token as an object to a database when an access token is obtained.",
-              "slug": "authentication/oauth-2-0#savetoken-the-savetoken-function-must-be-implemented-for-all-grant-types-in-the-model-used-by-oauth2server-this-function-stores-the-access-token-as-an-object-to-a-database-when-an-access-token-is-obtained",
+              "id": "getclient",
+              "title": "getClient()",
+              "slug": "authentication/oauth-2-0#getclient",
               "order": 11
             },
             {
-              "id": "getuserfromclient-certain-grant-types-have-specific-functions-that-must-be-implemented-for-them-to-work-the-client-credentials-grant-type-must-have-the-getuserfromclient-function-implemented-to-be-used",
-              "title": "getUserFromClient() Certain grant types have specific functions that must be implemented for them to work. The Client Credentials grant type must have the getUserFromClient() function implemented to be used.",
-              "slug": "authentication/oauth-2-0#getuserfromclient-certain-grant-types-have-specific-functions-that-must-be-implemented-for-them-to-work-the-client-credentials-grant-type-must-have-the-getuserfromclient-function-implemented-to-be-used",
+              "id": "savetoken",
+              "title": "saveToken()",
+              "slug": "authentication/oauth-2-0#savetoken",
               "order": 12
+            },
+            {
+              "id": "getuserfromclient",
+              "title": "getUserFromClient()",
+              "slug": "authentication/oauth-2-0#getuserfromclient",
+              "order": 13
             },
             {
               "id": "obtaining-token-handler",
               "title": "Obtaining Token Handler",
               "slug": "authentication/oauth-2-0#obtaining-token-handler",
-              "order": 13
+              "order": 14
             },
             {
-              "id": "getaccesstoken-now-that-weve-written-the-code-to-obtain-an-access-token-we-can-use-it-to-restrict-access-to-content-unless-a-user-is-authenticated-with-a-valid-access-token-inside-modeljs-we-implement-the-getaccesstoken-function-to-retrieve-existing-tokens-that-were-previously-saved-when-the-savetoken-function-is-invoked",
-              "title": "getAccessToken() Now that we've written the code to obtain an access token, we can use it to restrict access to content unless a user is authenticated with a valid access token. Inside model.js, we implement the getAccessToken() function to retrieve existing tokens that were previously saved when the saveToken() function is invoked.",
-              "slug": "authentication/oauth-2-0#getaccesstoken-now-that-weve-written-the-code-to-obtain-an-access-token-we-can-use-it-to-restrict-access-to-content-unless-a-user-is-authenticated-with-a-valid-access-token-inside-modeljs-we-implement-the-getaccesstoken-function-to-retrieve-existing-tokens-that-were-previously-saved-when-the-savetoken-function-is-invoked",
-              "order": 14
+              "id": "getaccesstoken",
+              "title": "getAccessToken()",
+              "slug": "authentication/oauth-2-0#getaccesstoken",
+              "order": 15
             },
             {
               "id": "authentication-middleware",
               "title": "Authentication Middleware",
               "slug": "authentication/oauth-2-0#authentication-middleware",
-              "order": 15
+              "order": 16
             },
             {
               "id": "testing-endpoints-with-http",
               "title": "Testing Endpoints with HTTP",
               "slug": "authentication/oauth-2-0#testing-endpoints-with-http",
-              "order": 16
+              "order": 17
             }
           ],
           "order": 9
@@ -1359,7 +1377,7 @@
             },
             {
               "id": "hash-function",
-              "title": "Hash Function",
+              "title": "Hash function",
               "slug": "data-structures/complex-data-structure-js-hash-maps#hash-function",
               "order": 3
             },
@@ -1377,15 +1395,21 @@
             },
             {
               "id": "collision-handling",
-              "title": "Collision Handling",
+              "title": "Collision handling",
               "slug": "data-structures/complex-data-structure-js-hash-maps#collision-handling",
               "order": 6
             },
             {
               "id": "time-complexity",
-              "title": "Time Complexity",
+              "title": "Time complexity",
               "slug": "data-structures/complex-data-structure-js-hash-maps#time-complexity",
               "order": 7
+            },
+            {
+              "id": "interactive-playground-collision-path-trace",
+              "title": "Interactive Playground: Collision Path Trace",
+              "slug": "data-structures/complex-data-structure-js-hash-maps#interactive-playground-collision-path-trace",
+              "order": 8
             }
           ],
           "order": 4
@@ -1419,7 +1443,7 @@
           "subSections": [
             {
               "id": "choosing-the-right-data-structure",
-              "title": "Choosing the Right Data Structure",
+              "title": "Choosing the right data structure",
               "slug": "data-structures/linear-data-structure-data-structure-apis#choosing-the-right-data-structure",
               "order": 1
             },
@@ -1430,26 +1454,26 @@
               "order": 2
             },
             {
-              "id": "example-storing-and-checking-numbers-using-an-array-suppose-we-receive-numbers-one-at-a-time-and-want-to",
-              "title": "Example: Storing and Checking Numbers (Using an Array) Suppose we receive numbers one at a time and want to:",
-              "slug": "data-structures/linear-data-structure-data-structure-apis#example-storing-and-checking-numbers-using-an-array-suppose-we-receive-numbers-one-at-a-time-and-want-to",
+              "id": "example-storing-and-checking-numbers-using-an-array",
+              "title": "Example: Storing and Checking Numbers (Using an Array)",
+              "slug": "data-structures/linear-data-structure-data-structure-apis#example-storing-and-checking-numbers-using-an-array",
               "order": 3
             },
             {
               "id": "alternative-implementation-using-an-object",
-              "title": "Alternative Implementation: Using an Object",
+              "title": "Alternative implementation: using an object",
               "slug": "data-structures/linear-data-structure-data-structure-apis#alternative-implementation-using-an-object",
               "order": 4
             },
             {
               "id": "what-is-an-api",
-              "title": "What Is an API?",
+              "title": "What is an API?",
               "slug": "data-structures/linear-data-structure-data-structure-apis#what-is-an-api",
               "order": 5
             },
             {
               "id": "creating-your-own-apis",
-              "title": "Creating Your Own APIs",
+              "title": "Creating your own APIs",
               "slug": "data-structures/linear-data-structure-data-structure-apis#creating-your-own-apis",
               "order": 6
             },
@@ -1461,7 +1485,7 @@
             },
             {
               "id": "key-concept-api-vs-implementation",
-              "title": "Key Concept: API vs Implementation",
+              "title": "Key concept: API vs implementation",
               "slug": "data-structures/linear-data-structure-data-structure-apis#key-concept-api-vs-implementation",
               "order": 8
             },
@@ -1563,21 +1587,27 @@
           "subSections": [
             {
               "id": "heap-representations",
-              "title": "Heap Representations",
+              "title": "Heap representations",
               "slug": "data-structures/complex-data-structure-heaps#heap-representations",
               "order": 1
             },
             {
               "id": "adding-an-element-heapify-up",
-              "title": "Adding an Element: Heapify Up",
+              "title": "Adding an element: heapify up",
               "slug": "data-structures/complex-data-structure-heaps#adding-an-element-heapify-up",
               "order": 2
             },
             {
               "id": "removing-an-element-heapify-down",
-              "title": "Removing an Element: Heapify Down",
+              "title": "Removing an element: heapify down",
               "slug": "data-structures/complex-data-structure-heaps#removing-an-element-heapify-down",
               "order": 3
+            },
+            {
+              "id": "interactive-playground-heapify-up-trace",
+              "title": "Interactive Playground: Heapify Up Trace",
+              "slug": "data-structures/complex-data-structure-heaps#interactive-playground-heapify-up-trace",
+              "order": 4
             }
           ],
           "order": 8
@@ -1611,7 +1641,7 @@
           "subSections": [
             {
               "id": "internal-structure",
-              "title": "Internal Structure",
+              "title": "Internal structure",
               "slug": "data-structures/complex-data-structure-js-heaps#internal-structure",
               "order": 1
             },
@@ -1628,9 +1658,9 @@
               "order": 3
             },
             {
-              "id": "bubbleup-restores-heap-property-after-insertion",
-              "title": "bubbleUp() Restores heap property after insertion.",
-              "slug": "data-structures/complex-data-structure-js-heaps#bubbleup-restores-heap-property-after-insertion",
+              "id": "bubbleup",
+              "title": "bubbleUp()",
+              "slug": "data-structures/complex-data-structure-js-heaps#bubbleup",
               "order": 4
             },
             {
@@ -1640,9 +1670,9 @@
               "order": 5
             },
             {
-              "id": "heapify-restores-heap-property-from-the-root-downward",
-              "title": "heapify() Restores heap property from the root downward.",
-              "slug": "data-structures/complex-data-structure-js-heaps#heapify-restores-heap-property-from-the-root-downward",
+              "id": "heapify",
+              "title": "heapify()",
+              "slug": "data-structures/complex-data-structure-js-heaps#heapify",
               "order": 6
             },
             {
@@ -1652,20 +1682,20 @@
               "order": 7
             },
             {
-              "id": "canswap-determines-if-a-swap-is-needed",
-              "title": "canSwap() Determines if a swap is needed.",
-              "slug": "data-structures/complex-data-structure-js-heaps#canswap-determines-if-a-swap-is-needed",
+              "id": "canswap",
+              "title": "canSwap()",
+              "slug": "data-structures/complex-data-structure-js-heaps#canswap",
               "order": 8
             },
             {
-              "id": "swapab-swaps-two-elements",
-              "title": "swap(a,b) Swaps two elements.",
-              "slug": "data-structures/complex-data-structure-js-heaps#swapab-swaps-two-elements",
+              "id": "swapab",
+              "title": "swap(a,b)",
+              "slug": "data-structures/complex-data-structure-js-heaps#swapab",
               "order": 9
             },
             {
               "id": "index-helper-functions",
-              "title": "Index Helper Functions",
+              "title": "Index helper functions",
               "slug": "data-structures/complex-data-structure-js-heaps#index-helper-functions",
               "order": 10
             },
@@ -2004,25 +2034,25 @@
           "subSections": [
             {
               "id": "two-pointers-moving-in-parallel",
-              "title": "Two Pointers Moving in Parallel",
+              "title": "Two pointers moving in parallel",
               "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#two-pointers-moving-in-parallel",
               "order": 1
             },
             {
               "id": "two-pointers-at-different-speeds",
-              "title": "Two Pointers at Different Speeds",
+              "title": "Two pointers at different speeds",
               "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#two-pointers-at-different-speeds",
               "order": 2
             },
             {
-              "id": "alternate-middle-solution-half-speed-another-valid-solution",
-              "title": "Alternate Middle Solution (Half-Speed) Another valid solution:",
-              "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#alternate-middle-solution-half-speed-another-valid-solution",
+              "id": "alternate-middle-solution-half-speed",
+              "title": "Alternate middle solution (half-speed)",
+              "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#alternate-middle-solution-half-speed",
               "order": 3
             },
             {
               "id": "key-takeaways",
-              "title": "Key Takeaways",
+              "title": "Key takeaways",
               "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#key-takeaways",
               "order": 4
             }
@@ -2928,25 +2958,25 @@
             },
             {
               "id": "using-multiple-router-files",
-              "title": "Using Multiple Router Files",
+              "title": "Using multiple router files",
               "slug": "express/routers#using-multiple-router-files",
               "order": 2
             },
             {
               "id": "matching-in-nested-routers",
-              "title": "Matching In Nested Routers",
+              "title": "Matching in nested routers",
               "slug": "express/routers#matching-in-nested-routers",
               "order": 3
             },
             {
-              "id": "control-flow-with-next-rather-were-going-to-explore-why-it-is-useful-to-have-next-as-a-separate-function-call-the-biggest-reason-is-that-we-dont-always-want-to-pass-control-to-the-next-middleware-in-the-stack",
-              "title": "Control Flow With next() Rather, we're going to explore why it is useful to have next() as a separate function call. The biggest reason is that we don't always want to pass control to the next middleware in the stack.",
-              "slug": "express/routers#control-flow-with-next-rather-were-going-to-explore-why-it-is-useful-to-have-next-as-a-separate-function-call-the-biggest-reason-is-that-we-dont-always-want-to-pass-control-to-the-next-middleware-in-the-stack",
+              "id": "control-flow-with-next",
+              "title": "Control flow with next()",
+              "slug": "express/routers#control-flow-with-next",
               "order": 4
             },
             {
               "id": "route-level-appuse---multiple-paths",
-              "title": "Route-Level app.use() - Multiple Paths",
+              "title": "Route-level app.use() - multiple paths",
               "slug": "express/routers#route-level-appuse---multiple-paths",
               "order": 5
             }
@@ -2961,55 +2991,55 @@
           "subSections": [
             {
               "id": "drying-code-with-functions",
-              "title": "DRYing Code With Functions",
+              "title": "DRYing code with functions",
               "slug": "express/middleware#drying-code-with-functions",
               "order": 1
             },
             {
-              "id": "drying-routes-with-appuse-middleware-is-code-that-executes-between-a-server-receiving-a-request-and-sending-a-response-it-operates-on-the-boundary-so-to-speak-between-those-two-http-actions",
-              "title": "DRYing Routes With app.use() Middleware is code that executes between a server receiving a request and sending a response. It operates on the boundary, so to speak, between those two HTTP actions.",
-              "slug": "express/middleware#drying-routes-with-appuse-middleware-is-code-that-executes-between-a-server-receiving-a-request-and-sending-a-response-it-operates-on-the-boundary-so-to-speak-between-those-two-http-actions",
+              "id": "drying-routes-with-appuse",
+              "title": "DRYing routes with app.use()",
+              "slug": "express/middleware#drying-routes-with-appuse",
               "order": 2
             },
             {
-              "id": "next-most-of-expresss-functionality-is-chaining-middleware-this-chain-of-middleware-is-referred-to-as-the-middleware-stack",
-              "title": "next() Most of Express's functionality is chaining middleware. This chain of middleware is referred to as the middleware stack.",
-              "slug": "express/middleware#next-most-of-expresss-functionality-is-chaining-middleware-this-chain-of-middleware-is-referred-to-as-the-middleware-stack",
+              "id": "next",
+              "title": "next()",
+              "slug": "express/middleware#next",
               "order": 3
             },
             {
               "id": "route-level-appuse---single-path",
-              "title": "Route-Level app.use() - Single Path",
+              "title": "Route-level app.use() - single path",
               "slug": "express/middleware#route-level-appuse---single-path",
               "order": 4
             },
             {
               "id": "middleware-stacks",
-              "title": "Middleware Stacks",
+              "title": "Middleware stacks",
               "slug": "express/middleware#middleware-stacks",
               "order": 5
             },
             {
-              "id": "open-source-middleware-logging-morgan-there-is-a-huge-ecosystem-of-javascript-packages-that-will-solve-so-many-of-the-problems-that-developers-frequently-run-into",
-              "title": "Open-Source Middleware: Logging (Morgan) There is a huge ecosystem of JavaScript packages that will solve so many of the problems that developers frequently run into.",
-              "slug": "express/middleware#open-source-middleware-logging-morgan-there-is-a-huge-ecosystem-of-javascript-packages-that-will-solve-so-many-of-the-problems-that-developers-frequently-run-into",
+              "id": "open-source-middleware-logging-morgan",
+              "title": "Open-source middleware: logging (Morgan)",
+              "slug": "express/middleware#open-source-middleware-logging-morgan",
               "order": 6
             },
             {
               "id": "open-source-middleware-body-parsing",
-              "title": "Open-Source Middleware: Body Parsing",
+              "title": "Open-source middleware: body parsing",
               "slug": "express/middleware#open-source-middleware-body-parsing",
               "order": 7
             },
             {
               "id": "error-handling-middleware",
-              "title": "Error-Handling Middleware",
+              "title": "Error-handling middleware",
               "slug": "express/middleware#error-handling-middleware",
               "order": 8
             },
             {
               "id": "discovering-open-source-middleware",
-              "title": "Discovering Open-Source Middleware",
+              "title": "Discovering open-source middleware",
               "slug": "express/middleware#discovering-open-source-middleware",
               "order": 9
             },
@@ -3050,14 +3080,14 @@
               "order": 1
             },
             {
-              "id": "cors-cross-origin-resource-sharing-a-request-for-a-resource-like-an-image-or-a-font-outside-of-the-origin-is-known-as-a-cross-origin-request-cors-cross-origin-resource-sharing-manages-cross-origin-requests",
-              "title": "CORS (Cross-origin resource sharing) A request for a resource (like an image or a font) outside of the origin is known as a cross-origin request. CORS (cross-origin resource sharing) manages cross-origin requests.",
-              "slug": "express/cors#cors-cross-origin-resource-sharing-a-request-for-a-resource-like-an-image-or-a-font-outside-of-the-origin-is-known-as-a-cross-origin-request-cors-cross-origin-resource-sharing-manages-cross-origin-requests",
+              "id": "cors-cross-origin-resource-sharing",
+              "title": "CORS (cross-origin resource sharing)",
+              "slug": "express/cors#cors-cross-origin-resource-sharing",
               "order": 2
             },
             {
               "id": "pre-flight-requests",
-              "title": "Pre-flight Requests",
+              "title": "Pre-flight requests",
               "slug": "express/cors#pre-flight-requests",
               "order": 3
             },
@@ -3103,19 +3133,19 @@
           "subSections": [
             {
               "id": "the-console-module",
-              "title": "The Console Module",
+              "title": "The console module",
               "slug": "node/core-global-modules#the-console-module",
               "order": 1
             },
             {
               "id": "the-process-module",
-              "title": "The Process Module",
+              "title": "The process module",
               "slug": "node/core-global-modules#the-process-module",
               "order": 2
             },
             {
               "id": "user-inputoutput",
-              "title": "User Input/Output",
+              "title": "User input/output",
               "slug": "node/core-global-modules#user-inputoutput",
               "order": 3
             },
@@ -3127,7 +3157,7 @@
             },
             {
               "id": "the-timers-module",
-              "title": "The Timers Module",
+              "title": "The timers module",
               "slug": "node/core-global-modules#the-timers-module",
               "order": 5
             }
@@ -3142,31 +3172,31 @@
           "subSections": [
             {
               "id": "the-os-module",
-              "title": "The OS Module",
+              "title": "The OS module",
               "slug": "node/imported-modules#the-os-module",
               "order": 1
             },
             {
               "id": "the-util-module",
-              "title": "The Util Module",
+              "title": "The util module",
               "slug": "node/imported-modules#the-util-module",
               "order": 2
             },
             {
               "id": "the-events-module",
-              "title": "The Events Module",
+              "title": "The events module",
               "slug": "node/imported-modules#the-events-module",
               "order": 3
             },
             {
               "id": "the-buffer-module",
-              "title": "The Buffer Module",
+              "title": "The buffer module",
               "slug": "node/imported-modules#the-buffer-module",
               "order": 4
             },
             {
               "id": "the-fs-module",
-              "title": "The FS Module",
+              "title": "The FS module",
               "slug": "node/imported-modules#the-fs-module",
               "order": 5
             },
@@ -3184,9 +3214,15 @@
             },
             {
               "id": "the-prompt-sync-module",
-              "title": "The prompt-sync Module",
+              "title": "The prompt-sync module",
               "slug": "node/imported-modules#the-prompt-sync-module",
               "order": 8
+            },
+            {
+              "id": "interactive-playground-node-core-module-selector",
+              "title": "Interactive Playground: Node Core Module Selector",
+              "slug": "node/imported-modules#interactive-playground-node-core-module-selector",
+              "order": 9
             }
           ],
           "order": 3
@@ -3199,13 +3235,13 @@
           "subSections": [
             {
               "id": "implementations-of-modules-in-javascript-commonjs-vs-es6",
-              "title": "Implementations of Modules in JavaScript: CommonJS vs ES6",
+              "title": "Implementations of modules in JavaScript: CommonJS vs ES6",
               "slug": "node/modules#implementations-of-modules-in-javascript-commonjs-vs-es6",
               "order": 1
             },
             {
               "id": "implementing-commonjs-modules",
-              "title": "Implementing CommonJS Modules",
+              "title": "Implementing CommonJS modules",
               "slug": "node/modules#implementing-commonjs-modules",
               "order": 2
             },
@@ -3226,7 +3262,7 @@
           "subSections": [
             {
               "id": "how-does-a-package-manager-help-in-nodejs",
-              "title": "How does a package manager help in Node.js",
+              "title": "How does a package manager help in Node.js?",
               "slug": "node/node-package-manager#how-does-a-package-manager-help-in-nodejs",
               "order": 1
             },
@@ -3249,9 +3285,9 @@
               "order": 4
             },
             {
-              "id": "how-to-install-devdependencies-in-npm",
-              "title": "How to install devDependencies in npm",
-              "slug": "node/node-package-manager#how-to-install-devdependencies-in-npm",
+              "id": "how-to-install-dev-dependencies-in-npm",
+              "title": "How to install dev dependencies in npm",
+              "slug": "node/node-package-manager#how-to-install-dev-dependencies-in-npm",
               "order": 5
             },
             {
@@ -3265,6 +3301,12 @@
               "title": "How to install all project dependencies at once",
               "slug": "node/node-package-manager#how-to-install-all-project-dependencies-at-once",
               "order": 7
+            },
+            {
+              "id": "interactive-playground-npm-lifecycle-commands",
+              "title": "Interactive Playground: npm Lifecycle Commands",
+              "slug": "node/node-package-manager#interactive-playground-npm-lifecycle-commands",
+              "order": 8
             }
           ],
           "order": 5
@@ -3527,25 +3569,25 @@
           "subSections": [
             {
               "id": "the-increment-a-number-problem",
-              "title": "The Increment a Number Problem",
+              "title": "The increment-a-number problem",
               "slug": "operating-systems/synchronization#the-increment-a-number-problem",
               "order": 1
             },
             {
-              "id": "locking-mutex-our-program-from-the-last-exercise-failed-because-multiple-threads-were-allowed-to-access",
-              "title": "Locking (mutex) Our program from the last exercise failed because multiple threads were allowed to access",
-              "slug": "operating-systems/synchronization#locking-mutex-our-program-from-the-last-exercise-failed-because-multiple-threads-were-allowed-to-access",
+              "id": "locking-mutex",
+              "title": "Locking (mutex)",
+              "slug": "operating-systems/synchronization#locking-mutex",
               "order": 2
             },
             {
               "id": "condition-variables",
-              "title": "Condition Variables",
+              "title": "Condition variables",
               "slug": "operating-systems/synchronization#condition-variables",
               "order": 3
             },
             {
               "id": "atomic-variables",
-              "title": "Atomic Variables",
+              "title": "Atomic variables",
               "slug": "operating-systems/synchronization#atomic-variables",
               "order": 4
             },
@@ -3741,14 +3783,14 @@
           "subSections": [
             {
               "id": "setting-up-postgres-server",
-              "title": "Setting Up Postgres (server)",
+              "title": "Setting up Postgres (server)",
               "slug": "postgresql/postgres#setting-up-postgres-server",
               "order": 1
             },
             {
-              "id": "setting-up-postgres-client-now-that-postgres-is-running-locally-we-can-connect-to-it-via-a-client---a-graphical-or-command-line-interface-that-enables-us-to-connect-to-the-postgres-server-write-and-execute-sql-commands-as-input-and-see-the-resulting-output",
-              "title": "Setting up Postgres (client) Now that Postgres is running locally, we can connect to it via a “client” - a graphical or command-line interface that enables us to connect to the Postgres server, write and execute SQL commands as input, and see the resulting output.",
-              "slug": "postgresql/postgres#setting-up-postgres-client-now-that-postgres-is-running-locally-we-can-connect-to-it-via-a-client---a-graphical-or-command-line-interface-that-enables-us-to-connect-to-the-postgres-server-write-and-execute-sql-commands-as-input-and-see-the-resulting-output",
+              "id": "setting-up-postgres-client",
+              "title": "Setting up Postgres (client)",
+              "slug": "postgresql/postgres#setting-up-postgres-client",
               "order": 2
             },
             {
@@ -3759,7 +3801,7 @@
             },
             {
               "id": "command-line",
-              "title": "Command Line",
+              "title": "Command line",
               "slug": "postgresql/postgres#command-line",
               "order": 4
             }
@@ -4492,14 +4534,14 @@
           "filePath": "../../content/software-design/deploying-web-applications-deployment.mdx",
           "subSections": [
             {
-              "id": "deployment-in-the-software-development-life-cycle-sdlc-before-an-application-can-be-deployed-several-steps-must-occur-for-example-for-our-e-commerce-application-we-likely-spent-a-large-chunk-of-time-planning-features-writing-code-and-testing-that-the-code-works-these-steps-are-part-of-a-process-known-as-the-software-development-life-cycle-sdlc-the-sdlc-is-a-structured-cycle-of-steps-used-to-create-high-quality-software-while-a-few-slightly-different-variations-of-the-life-cycle-are-used-by-software-engineering-teams-the-phases-typically-include",
-              "title": "Deployment in the Software Development Life Cycle (SDLC) Before an application can be deployed, several steps must occur. For example, for our e-commerce application, we likely spent a large chunk of time planning features, writing code, and testing that the code works. These steps are part of a process known as the Software Development Life Cycle (SDLC). The SDLC is a structured cycle of steps used to create high-quality software. While a few slightly different variations of the life cycle are used by software engineering teams, the phases typically include:",
-              "slug": "software-design/deploying-web-applications-deployment#deployment-in-the-software-development-life-cycle-sdlc-before-an-application-can-be-deployed-several-steps-must-occur-for-example-for-our-e-commerce-application-we-likely-spent-a-large-chunk-of-time-planning-features-writing-code-and-testing-that-the-code-works-these-steps-are-part-of-a-process-known-as-the-software-development-life-cycle-sdlc-the-sdlc-is-a-structured-cycle-of-steps-used-to-create-high-quality-software-while-a-few-slightly-different-variations-of-the-life-cycle-are-used-by-software-engineering-teams-the-phases-typically-include",
+              "id": "deployment-in-the-software-development-life-cycle-sdlc",
+              "title": "Deployment in the Software Development Life Cycle (SDLC)",
+              "slug": "software-design/deploying-web-applications-deployment#deployment-in-the-software-development-life-cycle-sdlc",
               "order": 1
             },
             {
               "id": "typical-deployment-process",
-              "title": "Typical Deployment Process",
+              "title": "Typical deployment process",
               "slug": "software-design/deploying-web-applications-deployment#typical-deployment-process",
               "order": 2
             },
@@ -4519,9 +4561,9 @@
           "filePath": "../../content/software-design/deploying-web-applications-deployment-with-render.mdx",
           "subSections": [
             {
-              "id": "platform-as-a-service-paas-one-popular-type-of-cloud-based-deployment-solution-is-called-a-platform-as-a-service-paas-a-paas-is-an-all-in-one-platform-for-building-deploying-and-managing-applications-over-the-internet-a-paas-often-uses-a-set-of-assumptions-about-the-things-most-software-teams-need-as-a-way-of-simplifying-the-complex-task-of-setting-up-infrastructure",
-              "title": "Platform as a Service (PaaS) One popular type of cloud-based deployment solution is called a Platform as a Service (PaaS). A PaaS is an all-in-one platform for building, deploying, and managing applications over the internet. A PaaS often uses a set of assumptions about the things most software teams need as a way of simplifying the complex task of setting up infrastructure.",
-              "slug": "software-design/deploying-web-applications-deployment-with-render#platform-as-a-service-paas-one-popular-type-of-cloud-based-deployment-solution-is-called-a-platform-as-a-service-paas-a-paas-is-an-all-in-one-platform-for-building-deploying-and-managing-applications-over-the-internet-a-paas-often-uses-a-set-of-assumptions-about-the-things-most-software-teams-need-as-a-way-of-simplifying-the-complex-task-of-setting-up-infrastructure",
+              "id": "platform-as-a-service-paas",
+              "title": "Platform as a service (PaaS)",
+              "slug": "software-design/deploying-web-applications-deployment-with-render#platform-as-a-service-paas",
               "order": 1
             },
             {
@@ -4580,49 +4622,49 @@
           "subSections": [
             {
               "id": "implementing-mvc-architecture-in-a-full-stack-app",
-              "title": "Implementing MVC Architecture in a Full-Stack App",
+              "title": "Implementing MVC architecture in a full-stack app",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#implementing-mvc-architecture-in-a-full-stack-app",
               "order": 1
             },
             {
               "id": "architecture-overview",
-              "title": "Architecture Overview",
+              "title": "Architecture overview",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#architecture-overview",
               "order": 2
             },
             {
               "id": "data-flow",
-              "title": "Data Flow",
+              "title": "Data flow",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#data-flow",
               "order": 3
             },
             {
               "id": "project-structure",
-              "title": "Project Structure",
+              "title": "Project structure",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#project-structure",
               "order": 4
             },
             {
-              "id": "database-layer-model-postgresql-table",
-              "title": "Database Layer (Model) PostgreSQL table:",
-              "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#database-layer-model-postgresql-table",
+              "id": "database-layer-model",
+              "title": "Database layer (model)",
+              "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#database-layer-model",
               "order": 5
             },
             {
               "id": "controller-layer",
-              "title": "Controller Layer",
+              "title": "Controller layer",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#controller-layer",
               "order": 6
             },
             {
-              "id": "view-layer-react-the-react-app-represents-the-view",
-              "title": "View Layer (React) The React app represents the View.",
-              "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#view-layer-react-the-react-app-represents-the-view",
+              "id": "view-layer-react",
+              "title": "View layer (React)",
+              "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#view-layer-react",
               "order": 7
             },
             {
               "id": "why-mvc-matters",
-              "title": "Why MVC Matters",
+              "title": "Why MVC matters",
               "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#why-mvc-matters",
               "order": 8
             }
@@ -4798,9 +4840,9 @@
               "order": 3
             },
             {
-              "id": "xml-external-entities-xxe-computers-take-things-very-literally-give-them-an-instruction-and-theyll-follow-it-exactly-even-when-its-not-actually-what-you-wanted-servers-are-computers-that-have-been-instructed-to-respond-to-requests-for-data-and-if-youre-not-careful-theyll-respond-to-requests-like-details-of-every-account-on-the-os-the-server-is-running-or-what-happens-if-you-run-this-piece-of-code",
-              "title": "XML External Entities (XXE) Computers take things very literally; give them an instruction and they’ll follow it exactly, even when it’s not actually what you wanted. Servers are computers that have been instructed to respond to requests for data, and if you’re not careful, they’ll respond to requests like “details of every account on the OS the server is running” or “what happens if you run this piece of code?”.",
-              "slug": "software-design/security-owasp-top-10#xml-external-entities-xxe-computers-take-things-very-literally-give-them-an-instruction-and-theyll-follow-it-exactly-even-when-its-not-actually-what-you-wanted-servers-are-computers-that-have-been-instructed-to-respond-to-requests-for-data-and-if-youre-not-careful-theyll-respond-to-requests-like-details-of-every-account-on-the-os-the-server-is-running-or-what-happens-if-you-run-this-piece-of-code",
+              "id": "xml-external-entities-xxe",
+              "title": "XML External Entities (XXE)",
+              "slug": "software-design/security-owasp-top-10#xml-external-entities-xxe",
               "order": 4
             },
             {
@@ -5228,33 +5270,33 @@
               "order": 4
             },
             {
-              "id": "null-is-unknown-values-are-indicated-by-null",
-              "title": "NULL (is) Unknown values are indicated by NULL.",
-              "slug": "sql/keywords#null-is-unknown-values-are-indicated-by-null",
+              "id": "null-is",
+              "title": "NULL (is)",
+              "slug": "sql/keywords#null-is",
               "order": 5
             },
             {
-              "id": "between-where-the-between-operator-is-used-in-a-where-clause-to-filter-the-result-set-within-a-certain-range-it-accepts-two-values-that-are-either-numbers-text-or-dates",
-              "title": "Between (where) The BETWEEN operator is used in a WHERE clause to filter the result set within a certain range. It accepts two values that are either numbers, text, or dates.",
-              "slug": "sql/keywords#between-where-the-between-operator-is-used-in-a-where-clause-to-filter-the-result-set-within-a-certain-range-it-accepts-two-values-that-are-either-numbers-text-or-dates",
+              "id": "between-where",
+              "title": "Between (where)",
+              "slug": "sql/keywords#between-where",
               "order": 6
             },
             {
-              "id": "and-where-sometimes-we-want-to-combine-multiple-conditions-in-a-where-clause-to-make-the-result-set-more-specific-and-useful-one-way-of-doing-this-is-to-use-the-and-operator-here-we-use-the-and-operator-to-only-return-90s-romance-movies",
-              "title": "AND (where) Sometimes we want to combine multiple conditions in a WHERE clause to make the result set more specific and useful. One way of doing this is to use the AND operator. Here, we use the AND operator to only return 90's romance movies.",
-              "slug": "sql/keywords#and-where-sometimes-we-want-to-combine-multiple-conditions-in-a-where-clause-to-make-the-result-set-more-specific-and-useful-one-way-of-doing-this-is-to-use-the-and-operator-here-we-use-the-and-operator-to-only-return-90s-romance-movies",
+              "id": "and-where",
+              "title": "AND (where)",
+              "slug": "sql/keywords#and-where",
               "order": 7
             },
             {
-              "id": "or-where-with-or-if-any-of-the-conditions-are-true-then-the-row-is-added-to-the-result",
-              "title": "OR (where) With OR, if any of the conditions are true, then the row is added to the result.",
-              "slug": "sql/keywords#or-where-with-or-if-any-of-the-conditions-are-true-then-the-row-is-added-to-the-result",
+              "id": "or-where",
+              "title": "OR (where)",
+              "slug": "sql/keywords#or-where",
               "order": 8
             },
             {
-              "id": "order-by-only-after-where-we-can-sort-the-results-using-order-by-either-alphabetically-or-numerically-sorting-the-results-often-makes-the-data-more-useful-and-easier-to-analyze",
-              "title": "Order By (only after where) We can sort the results using ORDER BY, either alphabetically or numerically. Sorting the results often makes the data more useful and easier to analyze.",
-              "slug": "sql/keywords#order-by-only-after-where-we-can-sort-the-results-using-order-by-either-alphabetically-or-numerically-sorting-the-results-often-makes-the-data-more-useful-and-easier-to-analyze",
+              "id": "order-by-only-after-where",
+              "title": "Order By (only after where)",
+              "slug": "sql/keywords#order-by-only-after-where",
               "order": 9
             },
             {
@@ -5264,9 +5306,9 @@
               "order": 10
             },
             {
-              "id": "case-select-a-case-statement-allows-us-to-create-different-outputs-usually-in-the-select-statement-it-is-sqls-way-of-handling-if-then-logic",
-              "title": "Case (select) A CASE statement allows us to create different outputs (usually in the SELECT statement). It is SQL's way of handling if-then) logic.",
-              "slug": "sql/keywords#case-select-a-case-statement-allows-us-to-create-different-outputs-usually-in-the-select-statement-it-is-sqls-way-of-handling-if-then-logic",
+              "id": "case-select",
+              "title": "Case (select)",
+              "slug": "sql/keywords#case-select",
               "order": 11
             }
           ],
@@ -5531,15 +5573,15 @@
           "filePath": "../../content/sql/functions.mdx",
           "subSections": [
             {
-              "id": "strftime-a-very-powerful-function-that-allows-you-to-return-a-formatted-dateit-takes-two-arguments",
-              "title": "strftime() A very powerful function that allows you to return a formatted date.It takes two arguments:",
-              "slug": "sql/functions#strftime-a-very-powerful-function-that-allows-you-to-return-a-formatted-dateit-takes-two-arguments",
+              "id": "strftime",
+              "title": "strftime()",
+              "slug": "sql/functions#strftime",
               "order": 1
             },
             {
-              "id": "date_part-returns-a-portion-of-the-date-as-an-integer",
-              "title": "date_part() Returns a portion of the date as an integer",
-              "slug": "sql/functions#date_part-returns-a-portion-of-the-date-as-an-integer",
+              "id": "date_part",
+              "title": "date_part()",
+              "slug": "sql/functions#date_part",
               "order": 2
             }
           ],
@@ -9213,13 +9255,13 @@
             },
             {
               "id": "node-modules-require-and-module-exports",
-              "title": "Node modules require and module exports",
+              "title": "Node modules: require and module exports",
               "slug": "javascript/modules-export-import#node-modules-require-and-module-exports",
               "order": 2
             },
             {
               "id": "es6-named-export-syntax",
-              "title": "Es6 named export syntax",
+              "title": "ES6 named export syntax",
               "slug": "javascript/modules-export-import#es6-named-export-syntax",
               "order": 3
             },
@@ -9243,7 +9285,7 @@
             },
             {
               "id": "export-and-import-example",
-              "title": "Export and Import example",
+              "title": "Export and import example",
               "slug": "javascript/modules-export-import#export-and-import-example",
               "order": 7
             },
@@ -9252,6 +9294,12 @@
               "title": "Inline export",
               "slug": "javascript/modules-export-import#inline-export",
               "order": 8
+            },
+            {
+              "id": "interactive-playground-importexport-resolution",
+              "title": "Interactive Playground: Import/Export Resolution",
+              "slug": "javascript/modules-export-import#interactive-playground-importexport-resolution",
+              "order": 9
             }
           ],
           "order": 10
@@ -11170,6 +11218,12 @@
               "title": "Common mistakes",
               "slug": "react/react-methods#common-mistakes",
               "order": 4
+            },
+            {
+              "id": "interactive-playground-react-memoization-trace",
+              "title": "Interactive Playground: React Memoization Trace",
+              "slug": "react/react-methods#interactive-playground-react-memoization-trace",
+              "order": 5
             }
           ],
           "order": 12
@@ -11209,6 +11263,12 @@
               "title": "Practical guidelines",
               "slug": "react/rest-api-endpoints#practical-guidelines",
               "order": 5
+            },
+            {
+              "id": "interactive-playground-rest-request-lifecycle",
+              "title": "Interactive Playground: REST Request Lifecycle",
+              "slug": "react/rest-api-endpoints#interactive-playground-rest-request-lifecycle",
+              "order": 6
             }
           ],
           "order": 13

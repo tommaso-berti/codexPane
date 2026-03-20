@@ -3,9 +3,11 @@ title: Imported modules
 order: 3
 ---
 
+import NodeModuleSelectorPlayground from "./components/imported-modules/NodeModuleSelectorPlayground.jsx"
+
 # Imported modules
 
-## The OS Module
+## The OS module
 When developing or debugging an app, it can be helpful to have information about the computer, operating system, and network on which the program is running. Before Node, this information could not be retrieved using JavaScript due to the language being confined to the browser
 Unlike process and console, the os module is not global, so it must be imported into a file in order to gain access to its methods. We can include the os module like this:
 
@@ -26,7 +28,7 @@ With the
 * hostname - returns the hostname of the operating system
 * uptime - returns the system uptime, in seconds
 
-## The Util Module
+## The util module
 Developers sometimes use the term **utility function** to describe outlier functions that are used to maintain code and debug certain aspects of a program's functionality. Utility functions don't necessarily create new features in a program, but we can think of them as internal tools used to maintain and debug code.
 
 ```
@@ -111,7 +113,7 @@ tryToGetUser(5); // Prints: User found! Their nickname is: Teddy
 
 We declare a getUserPromise variable that stores the getUser method turned into a promise using the .promisify() method. With that in place, we're able to use getUserPromise() with async/await syntax (or we could also use the .then() and .catch() methods) to resolve the promise returned or catch any errors.
 
-## The Events Module
+## The events module
 In traditional imperative programming, we give the computer a series of instructions to execute in a pre-defined order. In contrast, when we write web applications, we often need to write logic to handle situations without knowing exactly when they'll occur. For example, when programming a website, we might provide functionality for a click event without knowing when a user will trigger it. When Node was created, it applied this same concept of event-driven principles to the back-end environment.
 Node provides an EventEmitter class, which we can access by importing the events core module:
 
@@ -142,7 +144,7 @@ We have a new user: Lily Pad.
 
 ```
 
-## The Buffer Module
+## The buffer module
 In Node.js, the Buffer module is used to handle binary data. A Buffer object represents a fixed amount of memory that cannot be resized. Buffer objects are similar to an array of integers, where each element in the array is a byte of data, represented by a two-digit hexadecimal value. In decimal values, a two-digit hexadecimal value will represent an integer between 0 and 255, inclusive.
 
 ```
@@ -238,7 +240,7 @@ console.log(bufferConcat.toString()); // Prints: helloworl
 
 ```
 
-## The FS Module
+## The FS module
 All of the data on a computer is organized and accessed through a file system. When running JavaScript code on a browser, it's important for a script to only have limited access to a user's file system. This technique of isolating some applications from others is known as “sandboxing”. Sandboxing protects users from malicious programs and invasions of privacy.
 In the back-end, however, it is essential to interact with the file system in a less restricted way. The Node fs core module is an API for interacting with the **f**ile **s**ystem. It was modeled after the [POSIX](https://en.wikipedia.org/wiki/POSIX) standard for interacting with the file system.
 
@@ -340,7 +342,7 @@ fileStream.end();
 *Note: The* .write() *method does not add newline characters at the end of each line, so we made sure to insert them ourselves!*
 In the code above, we set the output file as output.txt. Then we .write() lines to the file. Unlike a readable stream, which ends when it has no more data to read, a writable stream could remain open indefinitely. We can indicate the end of a writable stream with the .end() method.
 
-## The prompt-sync Module
+## The prompt-sync module
 When writing JavaScript that runs in Node.js, it is sometimes useful to collect **input directly from the user**, in the same way that the browser's
      prompt() function works. Unlike browsers, however, **Node.js does not natively provide a prompt API**.
 To allow synchronous user input, we can use the third-party module
@@ -391,7 +393,7 @@ With
      ^C
  .
 
-### How the Prompt Function Works
+### How the prompt function works
 Once imported,
      prompt() behaves similarly to the browser's
      prompt()
@@ -403,7 +405,7 @@ console.log(`You are ${age} years old.`);
 
 ```
 
-### Important Characteristics:
+### Important characteristics
 * **Synchronous**: the program *stops and waits* for input.
 * **Returns a string** (you must convert to numbers manually):
 
@@ -414,7 +416,7 @@ const number = Number(prompt('Enter a number: '));
 
 * **Displays the provided text** as a message to the user.
 
-### Common Usage Examples:
+### Common usage examples
 **Input validation**
 
 ```
@@ -438,3 +440,13 @@ const width = parseInt(prompt('Enter width: '), 10);
 const prompt = require('prompt-sync')({ sigint: true });
 
 ```
+
+## Interactive Playground: Node Core Module Selector
+
+**Why this matters**  
+Node ships many modules, but picking the wrong one leads to unnecessary custom code. This simulator maps common tasks to the right built-in module quickly.
+
+**What to try**  
+Choose different backend tasks and compare expected outcomes and code snippets for `fs`, `path`, `events`, and `util`.
+
+<NodeModuleSelectorPlayground />

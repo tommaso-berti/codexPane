@@ -9,10 +9,12 @@ Source: [https://expressjs.com/en/resources/middleware.html](https://expressjs.c
 
 In programming in general, this often means putting the reused code into reusable containers, like functions and objects. In Express specifically, this will also mean composing our desired functionality into a series of middleware functions.
 
-## DRYing Code With Functions
+## DRYing code with functions
 Code that performs the same task in multiple places is repetitive, and the quality coder's credo is “Don't Repeat Yourself” (DRY). If a program performs similar tasks without refactoring into a function, it is said to “violate DRY”. “Violating DRY” is a programmer's way of complaining: “This script is saying the same thing over and over! We can do the same thing with less code!”
 
-## DRYing Routes With app.use() Middleware is code that executes between a server receiving a request and sending a response. It operates on the boundary, so to speak, between those two HTTP actions.
+## DRYing routes with app.use()
+
+Middleware is code that executes between a server receiving a request and sending a response. It operates on the boundary, so to speak, between those two HTTP actions.
 In Express, middleware is a function. Middleware can perform logic on the request and response objects, such as: inspecting a request, performing some logic based on the request, attaching information to the response, attaching a status to the response, sending the response back to the user, or simply passing the request and response to another middleware. Middleware can do any combination of those things or anything else a Javascript function can do.
 
 ```
@@ -27,7 +29,9 @@ app.use((req, res, next) => {
 
 app.use() takes a callback function that it will call for every received request. In this example, every time the server receives a request, it will find the first registered middleware function and call it. In this case, the server will find the callback function specified above, call it, and print out 'Request received'.
 
-## next() Most of Express's functionality is chaining middleware. This chain of middleware is referred to as the **middleware stack**.
+## next()
+
+Most of Express's functionality is chaining middleware. This chain of middleware is referred to as the **middleware stack**.
 The middleware stack is processed in the order they appear in the application file, such that middleware defined later happens after middleware defined before. It's important to note that this is regardless of method - an app.use() that occurs after an app.get() will get called after the app.get(). Observe the following code:
 
 ```
@@ -66,7 +70,7 @@ An Express middleware is a function with three parameters: (req, res, next). The
 
 Every route created in Express is also a middleware function handling the request and response objects at that part of the stack. Express routes also have the option of sending a response body and status code and closing the connection. These two features are a byproduct of Express routes being middleware, because all Express middleware functions have access to the request, the response, and the next middleware in the stack.
 
-## Route-Level app.use() - Single Path
+## Route-level app.use() - single path
 app.use() takes an optional path parameter as its first argument. We can now write middleware that will run for every request at a specific path.
 
 ```
@@ -80,7 +84,7 @@ app.use('/books', (req, res, next) => {
 Since the path was given as an argument to app.use(), this middleware function will not execute if the client requests a different base path, such as '/authors' or '/categories'.
 In addition to matching any /books requests, the preceding middleware will also match any requests that build off of that base path, such as /books/:title or /books/authors. When no path is specified, the default value is '/', the root path. As we discovered in the previous exercise, this results in middleware matching ALL requests when no path is specified.
 
-## Middleware Stacks
+## Middleware stacks
 There is nothing stopping us from defining functions and using them as middleware, though. That is to say:
 
 ```
@@ -130,7 +134,9 @@ app.put('/books/:isbn', authenticate, validateData, updateBook);
 
 In the preceding code sample, we created reusable middleware for authentication and data validation. We use the authenticate() middleware to verify that a user is logged in before proceeding with the request, and we use the validateData() middleware before performing the appropriate create or update function. Additional middleware can be placed at any point in this chain.
 
-## Open-Source Middleware: Logging (Morgan) There is a huge ecosystem of JavaScript packages that will solve so many of the problems that developers frequently run into.
+## Open-source middleware: logging (Morgan)
+
+There is a huge ecosystem of JavaScript packages that will solve so many of the problems that developers frequently run into.
 We will replace the logging code in the workspace with &lt;a href="https://github.com/expressjs/morgan" target=_blank&gt;morgan&lt;/a&gt;, an open-source library for logging information about the HTTP request-response cycle in a server application. morgan() is a function that will *return a middleware function*. To reiterate: the return value of morgan() will be a function - that function will have the function signature (req, res, next) that can be inserted into an app.use(), and that function will be called before all following middleware functions.
 morgan() takes an argument to describe the formatting of the logging output. For example, morgan('tiny') will return a middleware function that does a “tiny” amount of logging. With morgan in place, we'll be able to remove the existing logging code. Once we see how fast it is to add logging with morgan, we won't have to spend time in the future trying to figure out how to replicate that functionality.
 morgan() can also take an optional second argument, which is an object that can be used to further customize the logging behavior. By default, a morgan instance will output to the console, but by passing a stream property in the second argument, we can specify an alternative logging location, such as a file.
@@ -146,7 +152,7 @@ app.use(morgan('tiny', { stream: createWriteStream('./app.log', { flags: 'a' }) 
 
 ```
 
-## Open-Source Middleware: Body Parsing
+## Open-source middleware: body parsing
 When we implement middleware, we take in the req object, so that we can see information about the request. This object includes a good deal of important information about the request that we can use to inform our response. However, for some requests, it misses a fundamental piece. An HTTP request can include a *body*, a set of information to be transmitted to the server for processing. This is useful when the end user needs to send information to the server. If you've ever uploaded a post onto a social media website or filled out a registration form, chances are you've sent an HTTP request with a body. The lucky thing about using open-source middleware is that even though parsing the body of an HTTP request is a tricky operation requiring knowledge about network data transfer concepts, we easily manage it by importing a library to do it for us.
 If we look at our bodyParser, we see a simplified version of how one might perform request body parsing. Take a look at [body-parser](https://github.com/expressjs/body-parser#body-parser). “Node.js body parsing middleware”, that's just what we needed! Let's see if we can use this *dependency* instead of trying to manage our own body-parsing logic.
 
@@ -155,7 +161,7 @@ const bodyParser = require('body-parser') app.use(bodyParser.json())
 
 ```
 
-## Error-Handling Middleware
+## Error-handling middleware
 The middleware stack progresses through routes as they are presented in a file, therefore the error handler should sit at the bottom of the file.
 
 ```
@@ -187,7 +193,7 @@ app.use((err, req, res, next) => {
 
 In this segment, we assign the return value of the function possiblyProblematicOperation() to newValue. Then we check to see if this function returned anything at all. If it didn't, we create a new error and pass it to next(). This prompts the error-handling middleware to send a response back to the user, but many other error-handling techniques could be employed (like logging, re-attempting the failed operation, and/or emailing the developer).
 
-## Discovering Open-Source Middleware
+## Discovering open-source middleware
 One of the modules listed, errorhandler, is perfect for our current use case, error-handling.
 
 ```

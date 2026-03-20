@@ -43,7 +43,9 @@ In this case, the weakest link was a “temporary” admin account that was crea
 ## Sensitive Data Exposure
 When data breaches happen, that’s not the end of the story. The stolen information gets sold and resold on the dark web, often ending up in sets of personal information known as *fullz*. Fullz contain information someone could use to commit the kinds of fraud that can ruin a victim’s life for years, and most of this information is on sale for $25 or less.
 
-## XML External Entities (XXE) Computers take things very literally; give them an instruction and they’ll follow it exactly, even when it’s not actually what you wanted. Servers are computers that have been instructed to respond to requests for data, and if you’re not careful, they’ll respond to requests like “details of every account on the OS the server is running” or “what happens if you run this piece of code?”.
+## XML External Entities (XXE)
+
+Computers take things very literally; give them an instruction and they’ll follow it exactly, even when it’s not actually what you wanted. Servers are computers that have been instructed to respond to requests for data, and if you’re not careful, they’ll respond to requests like “details of every account on the OS the server is running” or “what happens if you run this piece of code?”.
 Similar to Injection, *XML External Entities (XXE)* is a type of vulnerability that allows maliciously crafted data to produce unintended behavior on the backend of a website.
 Unlike injection, where the malicious input is usually from an input field, XXE involves an attacker uploading a maliciously crafted [XML](https://owasp.org/www-community/) file. XML is a markup language that supports potentially insecure features, and if a website is using an XML processor with those features enabled, an attacker can use XXE to wreak havoc. In the worst case, the attacker may be able to execute arbitrary code - just about the worst case scenario for security.
 ![C51625F1-DC99-4BBC-878D-F9FCC20862D1](images/C51625F1-DC99-4BBC-878D-F9FCC20862D1.png)

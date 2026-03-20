@@ -3,12 +3,14 @@ title: Node Package Manager
 order: 5
 ---
 
+import NpmLifecyclePlayground from "./components/node-package-manager/NpmLifecyclePlayground.jsx"
+
 # Node Package Manager
 
 As you may have learned, when developing [Node.js](https://developer.mozilla.org/en-US/search?q=Node.js) applications, developers have access to a number of core modules that come preshipped when you install Node.js onto your machine.
 In addition to these core Node.js modules, developers can also take advantage of modules created by other developers, many of which are [shared freely](https://en.wikipedia.org/wiki/MIT_License). These third-party modules often solve common problems and simplify the development process. When we use these modules in our code, they are referred to as **dependencies**.
 
-## How does a package manager help in Node.js
+## How does a package manager help in Node.js?
 So, where do you go to find these dependencies? Most of the time, these dependencies are installed in **packages** handled by a **package manager**. A package is simply a third-party module wrapped up with the list of that module's own dependencies.However, managing modules that are dependent on other modules that are dependent on even further modules can be quite cumbersome to handle on your own.
 We avoid these troubles by using a package manager, an indispensable tool that:
 * downloads and installs the packages to be used as dependencies on a project
@@ -79,7 +81,7 @@ The npm i &lt;package name&gt; command installs a package *locally* in a folder 
 
 ```
 
-## How to install devDependencies in npm
+## How to install dev dependencies in npm
 While most dependencies play a direct role in the functionality of your application, **development dependencies** are used for the purpose of making development easier or more efficient.
 In fact, the nodemon package is actually better suited as a development dependency since it makes developers' lives easier, but makes no changes to the app itself. To install nodemon as a development dependency, we can add the flag --save-dev, or its -D alias.
 
@@ -138,3 +140,13 @@ Running this command will automatically install all packages listed as dependenc
 npm i --production
 
 ```
+
+## Interactive Playground: npm Lifecycle Commands
+
+**Why this matters**  
+Dependency hygiene depends on using the right command and scope (`dependencies` vs `devDependencies`) so teammates and CI get reproducible installs.
+
+**What to try**  
+Switch action and scope, apply changes, then verify how command output and lockfile impact change.
+
+<NpmLifecyclePlayground />

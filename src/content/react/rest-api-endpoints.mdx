@@ -1,3 +1,5 @@
+import RestApiLifecyclePlayground from "./components/rest-api-endpoints/RestApiLifecyclePlayground.jsx"
+
 # REST API Endpoints
 
 This page explains how to consume REST endpoints from React while keeping the frontend clean and maintainable.
@@ -69,3 +71,13 @@ export default function BookList() {
 - Normalize response and error handling in the API layer.
 - Keep components focused on rendering and state transitions.
 - Add loading/empty/error states for each request-driven view.
+
+## Interactive Playground: REST Request Lifecycle
+
+**Why this matters**  
+Good API UX depends on predictable state transitions (`idle`, `loading`, `success`, `error`) and clear retry behavior.
+
+**What to try**  
+Change endpoint and outcome, then run the lifecycle to compare when you should retry automatically versus manually.
+
+<RestApiLifecyclePlayground />

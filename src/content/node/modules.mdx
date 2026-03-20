@@ -17,14 +17,14 @@ Instead of having the entire program written within
   module may contain functions designed to easily convert date values from one format to another (a common headache among programmers!).
 This modular strategy is sometimes called **separation of concerns**.
 
-## Implementations of Modules in JavaScript: CommonJS vs ES6
+## Implementations of modules in JavaScript: CommonJS vs ES6
 Before we dive in, it should be noted that there are multiple ways of implementing modules depending on the *runtime environment* in which your code is executed. In JavaScript, there are two primary runtime environments, and each has a preferred module implementation:
 * The [Node](https://nodejs.org/en/about/) runtime environment supports CommonJS modules by default.
 * The browser's runtime environment uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), which use a different import/export syntax.
 For more information about runtime environments and ES6 modules, you can read the following two articles:
 * [Introduction to JavaScript Runtime Environments](https://developer.mozilla.org/en-US/search?q=Introduction+to+JavaScript+Runtime+Environments)
 * [Implementing modules using ES6 Syntax](https://developer.mozilla.org/en-US/search?q=Implementing+modules+using+ES6+Syntax)
-## Implementing CommonJS Modules
+## Implementing CommonJS modules
 Every JavaScript file that runs in a Node environment is treated as a distinct module. The functions and data defined within each module can be used by any other module, as long as those resources are properly exported and imported. Since CommonJS Modules are most common in the Node runtime environment, we will discuss them in terms of Node.
 
 ### module.exports
@@ -49,7 +49,9 @@ module.exports.fahrenheitToCelsius = function(fahrenheit) {
 
 module.exports is an object built into the Node.js runtime environment. Other files can now import this object and use these two functions using another feature that is built into the Node.js runtime environment: the require() function.
 
-### require() The require() function accepts a string as an argument. That string provides the file path to the module you would like to import, generally using the relative path based on the file where require() is being called.
+### require()
+
+The require() function accepts a string as an argument. That string provides the file path to the module you would like to import, generally using the relative path based on the file where require() is being called.
 
 ```
 /* water-limits.js */
@@ -71,7 +73,9 @@ console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
 
 When you use require(), the entire module.exports object is returned and stored in the variable converters. This means that both the .celsiusToFahrenheit() and .fahrenheitToCelsius() methods can be used in this program!
 
-### **Using Object Destructuring to be more Selective With** require() In many cases, modules will export a large number of data and functions, but only one or two of them are needed in a given file. You can use object destructuring to extract only the needed functions.
+### Using object destructuring to be more selective with `require()`
+
+In many cases, modules will export a large number of data and functions, but only one or two of them are needed in a given file. You can use object destructuring to extract only the needed functions.
 
 ```
 /* celsius-to-fahrenheit.js */

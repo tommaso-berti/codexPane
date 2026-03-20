@@ -3,6 +3,8 @@ title: Js hash maps
 order: 4
 ---
 
+import HashMapCollisionTracePlayground from "./components/complex-data-structure-js-hash-maps/HashMapCollisionTracePlayground.jsx"
+
 # Js hash maps
 
 A value is stored at an array [index](https://en.wikipedia.org/wiki/Special:Search?search=index) determined by plugging the key into a hash function. Because we always know exactly where to find values in a hash map, we have constant access to any of the values it contains.
@@ -107,7 +109,7 @@ hashmap
 
 Each array index = **bucket**.
 
-## Hash Function
+## Hash function
 
 ```
 hash(key) {
@@ -241,7 +243,7 @@ Returns the value associated with a key.
   ```
   Return `null` when the key does not exist.
 
-## Collision Handling
+## Collision handling
 This implementation uses **separate chaining**:
 
 ```
@@ -268,7 +270,7 @@ Stored as:
 
 ```
 
-## Time Complexity
+## Time complexity
 | Operation | Average   | Worst     |
 |-----------|-----------|-----------|
 | Insert    | O(1)      | O(n)      |
@@ -276,3 +278,13 @@ Stored as:
 | Delete    | O(1)      | O(n)      |
 
 Worst case occurs if **all keys collide**.
+
+## Interactive Playground: Collision Path Trace
+
+**Why this matters**  
+Hash maps feel constant-time until collisions happen. A step trace shows exactly when lookup falls back to linked-list traversal.
+
+**What to try**  
+Use an intentionally small table size and two similar keys to force a collision, then compare against a no-collision run.
+
+<HashMapCollisionTracePlayground />

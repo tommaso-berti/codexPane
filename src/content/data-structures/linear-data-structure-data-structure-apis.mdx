@@ -5,7 +5,7 @@ order: 6
 
 # Data Structure APIs
 
-## Choosing the Right Data Structure
+## Choosing the right data structure
 Data structures are about choosing the right tool for the job. Depending on the use case, you might care more about:
 * Ordered storage
 * Fast retrieval
@@ -31,7 +31,9 @@ Arrays also provide helpful built-in methods such as:
      .includes()
  ) may require iterating through the entire array. With very large datasets (e.g., 10,000,000 elements), this can become slow.
 
-## Example: Storing and Checking Numbers (Using an Array) Suppose we receive numbers one at a time and want to:
+## Example: Storing and Checking Numbers (Using an Array)
+
+Suppose we receive numbers one at a time and want to:
 1. Store each number
 2. Later check whether a specific number was received
 Given the numbers:
@@ -57,7 +59,7 @@ const doYouHaveThisNumber = num => listOfNumbers.includes(num);
 This works, but
      .includes() may be slow for large arrays because it checks elements sequentially.
 
-## Alternative Implementation: Using an Object
+## Alternative implementation: using an object
 If we only care about whether a number exists, we can use an object instead:
 
 ```
@@ -72,12 +74,12 @@ const doYouHaveThisNumber = num => receivedNumbers[num] === true;
 In this case:
 * We store numbers as object keys.
 * Retrieving a value from an object is significantly faster than iterating through an array.
-### Important Point
+### Important point
 The **public API** remains the same:
 * storeNumber()
 * doYouHaveThisNumber() Only the **underlying implementation** changes.
 
-## What Is an API?
+## What is an API?
 API stands for **Application Programming Interface**.
 An API allows end users to interact with a data structure through exposed methods and properties, without needing to understand the internal implementation.
 For example, when adding an element to the end of an array:
@@ -96,10 +98,10 @@ The array API provides many built-in capabilities:
 * Transforming data
 However, some functionality (like finding the smallest number in an array) must still be implemented manually.
 
-## Creating Your Own APIs
+## Creating your own APIs
 When building your own data structures, you define a **public API** that users interact with.
 The same public API can have different internal implementations. Therefore, it's important to consider trade-offs in performance and memory usage.
-### Public vs Private
+### Public vs private
 In some languages:
 * **Public methods** can be accessed from outside the class.
 * **Private methods** can only be accessed internally.
@@ -161,7 +163,7 @@ stack._array.unshift('value');
 
 This technically works, but it breaks the intended design of the Stack.
 
-## Key Concept: API vs Implementation
+## Key concept: API vs implementation
 * **Implementation** = how the data structure works internally
 * **Public API** = how users are supposed to interact with it
 If you change the internal implementation but keep the public API the same, user code should continue working.

@@ -7,7 +7,7 @@ order: 4
 
 # Js **Asymptotic Notation**
 
-## Analyzing Algorithm Runtime
+## Analyzing algorithm runtime
 To determine runtime, we usually analyze:
 * **Number of loops****Number of iterations****Operations performed relative to input size (n)**
 ## Example: Dividing by Two
@@ -45,7 +45,7 @@ O(log n)
 
 Algorithms that **halve the input each iteration** usually have **logarithmic complexity**.
 
-## Linked List Example - Finding Maximum
+## Linked list example - finding maximum
 Algorithm steps:
 1. Start at the head of the list
 2. Traverse the list
@@ -68,7 +68,7 @@ Where
      n
   = number of nodes.
 
-## Sorting a Linked List
+## Sorting a linked list
 Algorithm process:
 1. Create a new linked list
 2. Find the **maximum element**Insert it at the **head of the new list**Remove it from the original list
@@ -84,8 +84,10 @@ O(n * n) = O(n²)
 
 This is **quadratic complexity**.
 
-## Queue vs Stack Runtime
-## Queue (FIFO - First In First Out) Removing the first inserted element:
+## Queue vs stack runtime
+## Queue (FIFO - First In First Out)
+
+Removing the first inserted element:
 
 ```
 O(1)
@@ -94,7 +96,9 @@ O(1)
 
 Because it is **already at the front**.
 
-## Stack (FILO - First In Last Out) Removing the first inserted element requires reaching the **bottom of the stack**.
+## Stack (FILO - First In Last Out)
+
+Removing the first inserted element requires reaching the **bottom of the stack**.
 
 ```
 O(n)
@@ -103,8 +107,8 @@ O(n)
 
 Because the structure must be traversed.
 
-## Linked List vs Hash Map Search
-## Linked List Search
+## Linked list vs hash map search
+## Linked list search
 To find a value:
 
 ```
@@ -119,7 +123,7 @@ O(n)
 
 ```
 
-## Hash Map Search
+## Hash map search
 Hash maps store data using **key-value pairs** and a **hash function**.
 Finding a value by key normally takes:
 
@@ -128,10 +132,10 @@ O(1)
 
 ```
 
-## Hash Collisions
+## Hash collisions
 Sometimes **multiple keys hash to the same index**.
 Two common collision strategies:
-## Separate Chaining
+## Separate chaining
 Each bucket stores a **linked list** of values.
 Worst case:
 
@@ -142,7 +146,9 @@ O(n)
 
 If all elements are in the same bucket.
 
-## Open Addressing (Linear Probing) If a collision occurs, the algorithm searches the **next available index**.
+## Open addressing (linear probing)
+
+If a collision occurs, the algorithm searches the **next available index**.
 Worst case:
 
 ```
@@ -152,7 +158,7 @@ O(n)
 
 If the correct value is near the end of the array.
 
-## Key Big-O Patterns
+## Key Big-O patterns
 | Pattern                     | Complexity                  |
 |-----------------------------|-----------------------------|
 | Single traversal            | O(n)                        |

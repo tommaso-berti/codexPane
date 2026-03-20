@@ -1,3 +1,5 @@
+import ReactMethodsTracePlayground from "./components/react-methods/ReactMethodsTracePlayground.jsx"
+
 # React Methods
 
 React exposes utility APIs that help you control re-rendering and improve runtime performance.
@@ -70,3 +72,13 @@ function ContactsPage() {
 - Assuming memoization always improves performance.
 
 Measure first with React DevTools Profiler, then optimize the specific bottleneck.
+
+## Interactive Playground: React Memoization Trace
+
+**Why this matters**  
+Memoization only helps when it prevents real re-render work. This trace shows how parent updates can propagate to children under different strategies.
+
+**What to try**  
+Compare “no memoization” vs “React.memo + useCallback” with the same parent update count and inspect avoided child renders.
+
+<ReactMethodsTracePlayground />

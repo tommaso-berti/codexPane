@@ -98,7 +98,9 @@ WHERE name LIKE '%man%';
 
 LIKE is not case sensitive. ‘Batman' and ‘Man of Steel' will both appear in the result of the query above.
 
-## NULL (is) Unknown values are indicated by NULL.
+## NULL (is)
+
+Unknown values are indicated by NULL.
 It is not possible to test for NULL values with comparison operators, such as = and !=
 Instead, we will have to use these operators:
 * [IS NULL](https://www.postgresql.org/search/?q=IS+NULL)
@@ -112,7 +114,9 @@ WHERE imdb_rating IS NOT NULL;
 
 Please, note that is commonly used only to match NULL values. If a match with other values types is required, use = instead of IS
 
-## Between (where) The [BETWEEN](https://www.postgresql.org/search/?q=BETWEEN) operator is used in a [WHERE](https://www.postgresql.org/search/?q=WHERE) clause to filter the result set within a certain *range*. It accepts two values that are either numbers, text, or dates.
+## Between (where)
+
+The [BETWEEN](https://www.postgresql.org/search/?q=BETWEEN) operator is used in a [WHERE](https://www.postgresql.org/search/?q=WHERE) clause to filter the result set within a certain *range*. It accepts two values that are either numbers, text, or dates.
 For example, this statement filters the result set to only include movies with years from 1990 up to, *and including* 1999.
 
 ```
@@ -133,7 +137,9 @@ WHERE name BETWEEN 'A' AND 'J';
 
 However, if a movie has a name of simply ‘J', it would actually match. This is because BETWEEN goes *up to* the second value - up to ‘J'. So the movie named ‘J' would be included in the result set but not ‘Jaws'.
 
-## AND (where) Sometimes we want to *combine multiple conditions* in a [WHERE](https://www.postgresql.org/search/?q=WHERE) clause to make the result set more specific and useful. One way of doing this is to use the [AND](https://www.postgresql.org/search/?q=AND) operator. Here, we use the AND operator to only return 90's romance movies.
+## AND (where)
+
+Sometimes we want to *combine multiple conditions* in a [WHERE](https://www.postgresql.org/search/?q=WHERE) clause to make the result set more specific and useful. One way of doing this is to use the [AND](https://www.postgresql.org/search/?q=AND) operator. Here, we use the AND operator to only return 90's romance movies.
 
 ```
 SELECT *
@@ -148,7 +154,9 @@ WHERE year BETWEEN 1990 AND 1999
 * AND combines the two conditions.
 With AND, *both* conditions must be true for the row to be included in the result.
 
-## OR (where) With OR, if *any* of the conditions are true, then the row is added to the result.
+## OR (where)
+
+With OR, if *any* of the conditions are true, then the row is added to the result.
 
 ```
 SELECT *
@@ -162,7 +170,9 @@ WHERE year > 2014
 * genre = 'action' is the 2nd condition.
 * OR combines the two conditions.
 
-## Order By (only after where) We can *sort* the results using [ORDER BY](https://www.postgresql.org/search/?q=ORDER+BY), either alphabetically or numerically. Sorting the results often makes the data more useful and easier to analyze.
+## Order By (only after where)
+
+We can *sort* the results using [ORDER BY](https://www.postgresql.org/search/?q=ORDER+BY), either alphabetically or numerically. Sorting the results often makes the data more useful and easier to analyze.
 
 ```
 SELECT *
@@ -200,7 +210,9 @@ LIMIT 10;
 
 LIMIT always goes at the very end of the query. Also, it is not supported in all SQL databases.
 
-## Case (select) A [CASE](https://www.postgresql.org/search/?q=CASE) statement allows us to create different outputs (usually in the SELECT statement). It is SQL's way of handling [if-then](https://en.wikipedia.org/wiki/Conditional_(computer_programming)) logic.
+## Case (select)
+
+A [CASE](https://www.postgresql.org/search/?q=CASE) statement allows us to create different outputs (usually in the SELECT statement). It is SQL's way of handling [if-then](https://en.wikipedia.org/wiki/Conditional_(computer_programming)) logic.
 Suppose we want to condense the ratings in
      movies
   to three levels:

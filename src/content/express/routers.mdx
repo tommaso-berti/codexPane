@@ -58,7 +58,7 @@ monstersRouter.get('/:id', (req, res, next) => {
 Inside the monstersRouter, all matching routes are assumed to have /monsters prepended, as it is mounted at that path. monstersRouter.get('/:id') matches the full path /monsters/:id.
 When a GET /monsters/1 request arrives, Express matches /monsters in app.use() because the beginning of the path ('/monsters') matches. Express' route-matching algorithm looks through the routes of monstersRouter to search for full path matches. Since the GET /:id route is mounted at /monsters, the two paths combined match the entire request path (/monsters/1), so the route matches and the callback is invoked. The monster named 'godzilla' is fetched from the monsters object and sent back.
 
-## Using Multiple Router Files
+## Using multiple router files
 Generally, we will keep each router in its own file and import it into the application file. This allows us to keep our code clean and our files short.
 
 ```
@@ -107,7 +107,7 @@ module.exports = { app };
 
 ```
 
-## Matching In Nested Routers
+## Matching in nested routers
 Given
 
 ```
@@ -141,10 +141,12 @@ Express' route matching algorithm then enters the expressionsRouter instance whi
 Because the path is /1, the path does not match the first .get() method at /. The Express server moves on to the next route, which has a route parameter of /:id, so it matches! This route handles the necessary logic and sends the response.
 Routers can be nested as many times as necessary for an application, so understanding nested route matching is important for creating complicated APIs.
 
-## Control Flow With next() Rather, we're going to explore why it is useful to have next() as a separate function call. The biggest reason is that we don't always want to pass control to the next middleware in the stack.
+## Control flow with next()
+
+Rather, we're going to explore why it is useful to have next() as a separate function call. The biggest reason is that we don't always want to pass control to the next middleware in the stack.
 For example, when designing a system with confidential information, we want to be able to selectively show that information to authorized users. To do that, we would create middleware that tests a user's permissions. If the user has the necessary permission, we would continue through the middleware stack by calling next(). If it fails, we would want to let the user know that they're not allowed to see the information they're trying to access.
 
-## Route-Level app.use() - Multiple Paths
+## Route-level app.use() - multiple paths
 Per the Express documentation for
      app.use()
  , the

@@ -3,6 +3,8 @@ title: Dijkstra's Algorithm
 order: 18
 ---
 
+import DijkstraRelaxationPlayground from "./components/search-and-graph-search-algorithms-dijkstra-s-algorithm/DijkstraRelaxationPlayground.jsx"
+
 # Dijkstra's Algorithm
 
 Fortunately, there is an [algorithm](https://en.wikipedia.org/wiki/Special:Search?search=algorithm) that computes the shortest distance from a given vertex to the rest of the vertices in a graph. This is called ***Dijkstra's Algorithm***.
@@ -23,3 +25,13 @@ How efficient is Dijkstra's algorithm? Let's break it into different parts:
 Just like breadth-first search and depth-first search, to search through an entire graph, in the worst case, we would go through all of the edges and all of the vertices resulting in a [runtime](https://en.wikipedia.org/wiki/Special:Search?search=runtime) of O(E + V).
 For Dijkstra's, we use a min-heap to keep track of all the distances. Searching through and updating a min-heap with V nodes takes O(log V) because in each layer of the min-heap, we reduce the number of nodes we are looking at by a factor of 2.
 In the worst case, we would update the min-heap every iteration. Since there are at most E + V iterations of Dijkstra's and it takes log V to update a min-heap in the worst case, then the runtime of Dijkstra's is **O((E+V) log V)**.
+
+## Interactive Playground: Dijkstra Relaxation Trace
+
+**Why this matters**  
+The algorithm is easier to trust when you can see exactly when a candidate path updates the best-known distance and when it gets discarded.
+
+**What to try**  
+Run the same neighbor with different current distances and compare when relaxation updates the priority queue estimate.
+
+<DijkstraRelaxationPlayground />

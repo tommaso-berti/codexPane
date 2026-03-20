@@ -116,7 +116,7 @@ parent ≤ children
 
 So the **smallest value is always at the root**.
 
-## Internal Structure
+## Internal structure
 
 ```
 this.heap = [null];
@@ -193,7 +193,9 @@ becomes
 
 ```
 
-## bubbleUp() Restores heap property after insertion.
+## bubbleUp()
+
+Restores heap property after insertion.
 
 ```
 while (current > 1 && parent > current)
@@ -276,7 +278,9 @@ swap 7 and 5
 
 ```
 
-## heapify() Restores heap property **from the root downward**.
+## heapify()
+
+Restores heap property **from the root downward**.
 Steps:
 1. Compare node with children
 2. Swap with **smallest child**Continue downward
@@ -320,7 +324,9 @@ index <= size
 
 ```
 
-## canSwap() Determines if a swap is needed.
+## canSwap()
+
+Determines if a swap is needed.
 Conditions:
 
 ```
@@ -332,7 +338,9 @@ parent > rightChild
 
 Meaning heap property is broken.
 
-## swap(a,b) Swaps two elements.
+## swap(a,b)
+
+Swaps two elements.
 
 ```
 [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
@@ -346,7 +354,7 @@ swap(1,2)
 
 ```
 
-## Index Helper Functions
+## Index helper functions
 Heap relationships:
 ## Parent
 

@@ -3,6 +3,8 @@ title: Heaps
 order: 8
 ---
 
+import HeapifyPlayground from "./components/complex-data-structure-heaps/HeapifyPlayground.jsx"
+
 # Heaps
 
 Heaps are another variation of the tree data structure and are adept at keeping track of the maximum or minimum value held within, referred to as max-heaps and min-heaps, respectively. Specifically, heaps are a type of binary tree, since each child node is either greater or less than its parent (depending on if it's a max-heap or min-heap). They are efficient for accessing the root value, which will either be the max or min (again, depending on the type of heap) and inserting new values.
@@ -15,7 +17,7 @@ Think of the min-heap as a [binary](https://en.wikipedia.org/wiki/Special:Search
 * Every child's value is **greater than or equal to its parent**.
 These two properties are the defining characteristics of the min-heap. By maintaining these two properties, we can efficiently retrieve and update the minimum value.
 
-## Heap Representations
+## Heap representations
 We can picture min-heaps as [binary](https://en.wikipedia.org/wiki/Special:Search?search=binary) trees, where each node has **at most** two children. As we add elements to the heap, they're added from left to right until we've filled the entire level.
 At the top, we've filled the level containing
      12
@@ -33,12 +35,12 @@ Notice how by filling the tree from left to right; we're leaving no gaps in the 
 * parent: (index - 1) / 2 - **not used on the root!**
 
 ![B702489B-91FC-4247-BE25-915AD7B69D36](images/B702489B-91FC-4247-BE25-915AD7B69D36.png)
-## Adding an Element: Heapify Up
+## Adding an element: heapify up
 Sometimes you will add an element to the heap that violates the heap's essential properties.
 We therefore need to restore the fundamental heap properties. This restoration is known as *heapify* or *heapifying*. We're adding an element to the bottom of the tree and moving upwards, so we're *heapifying up*.
 As long as we've violated the heap properties, we'll swap the offending child with its parent until we restore the properties, or until there's no parent left. If there is no parent left, that element becomes the new root of the tree.
 
-## Removing an Element: Heapify Down
+## Removing an element: heapify down
 This process is similar to heapifying up, except we have two options (
      5
   and
@@ -54,3 +56,13 @@ This process is similar to heapifying up, except we have two options (
  , then the minimum value would **not** be at the root. With
      5
   at the root, the root node is the minimum value in the heap again.
+
+## Interactive Playground: Heapify Up Trace
+
+**Why this matters**  
+Heap operations are fast because they only swap along a parent path. Seeing each swap step makes the `O(log n)` behavior concrete.
+
+**What to try**  
+Insert values smaller than the root and compare the number of swaps against values that already satisfy heap order.
+
+<HeapifyPlayground />

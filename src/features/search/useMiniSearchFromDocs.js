@@ -4,24 +4,32 @@ import { useDocs } from '../../contexts/useDocs.js';
 
 function flattenDocs(docs) {
     const out = [];
+    const toSearchText = (value) =>
+        String(value || '')
+            .replace(/[-_/#:]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
     for (const topic of docs) {
         const topicTitle = topic.title;
         for (const section of (topic.sections || [])) {
+            const sectionBreadcrumb = [topicTitle, section.title];
             out.push({
                 id: `${topic.id}/${section.id}`,
                 title: section.title,
-                body: '',
+                body: toSearchText(`${sectionBreadcrumb.join(' ')} ${section.slug}`),
                 path: `/${section.slug}`,
-                breadcrumb: [topicTitle, section.title],
+                breadcrumb: sectionBreadcrumb,
                 topictitle: topicTitle,
             });
             for (const sub of (section.subSections || [])) {
+                const subBreadcrumb = [topicTitle, section.title, sub.title];
                 out.push({
                     id: `${topic.id}/${section.id}#${sub.id}`,
                     title: sub.title,
-                    body: '',
+                    body: toSearchText(`${subBreadcrumb.join(' ')} ${sub.slug}`),
                     path: `/${sub.slug}`,
-                    breadcrumb: [topicTitle, section.title, sub.title],
+                    breadcrumb: subBreadcrumb,
                     topictitle: topicTitle,
                 });
             }

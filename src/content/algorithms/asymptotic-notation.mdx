@@ -29,7 +29,9 @@ public class Main() {
 
 ```
 
-## Big Theta (Θ) The first subtype of asymptotic notation we will explore is big Theta (denoted by Θ). We use big Theta when a program has only one case in terms of runtime. But what exactly does that mean? Take a look at the pseudocode for a function that prints the values in a list below:
+## Big theta (Θ)
+
+The first subtype of asymptotic notation we will explore is big Theta (denoted by Θ). We use big Theta when a program has only one case in terms of runtime. But what exactly does that mean? Take a look at the pseudocode for a function that prints the values in a list below:
 
 ```
 Function with input that is a list of size N:
@@ -101,7 +103,9 @@ As we can see, in every case, with an integer N, the loop will iterate log2(N) t
 * **Θ(N!)**. This is *factorial* runtime. You will often see this runtime when you have to generate all of the different permutations of something. For instance, a program that generates all the different ways to order the letters “abcd” would run in this runtime.
 ![A55AA00C-698D-4365-8051-CB43C5C64BF0](images/A55AA00C-698D-4365-8051-CB43C5C64BF0.png)
 
-## Big Omega (Ω) and Big O (O) Sometimes, a program may have a different [runtime](https://en.wikipedia.org/wiki/Special:Search?search=runtime) for the best case and worst case. For instance, a program could have a best case runtime of Θ(1) and a worst case of Θ(N). We use a different notation when this is the case. We use big Omega or Ω to describe the best case and big O or O to describe the worst case. Take a look at the following [pseudocode](https://en.wikipedia.org/wiki/Special:Search?search=pseudocode) that returns True if 12 is in the list and False otherwise:
+## Big omega (Ω) and big O (O)
+
+Sometimes, a program may have a different [runtime](https://en.wikipedia.org/wiki/Special:Search?search=runtime) for the best case and worst case. For instance, a program could have a best case runtime of Θ(1) and a worst case of Θ(N). We use a different notation when this is the case. We use big Omega or Ω to describe the best case and big O or O to describe the worst case. Take a look at the following [pseudocode](https://en.wikipedia.org/wiki/Special:Search?search=pseudocode) that returns True if 12 is in the list and False otherwise:
 
 ```
 Function with input that is a list of size N:
@@ -120,7 +124,7 @@ There are many ways we could describe the runtime of this program:
 * This program has a runtime O(N).
 In fact, when describing runtime, people typically discuss the worst case because you should always prepare for the worst case scenario! **Often times, in technical interviews, they will only ask you for the big O of a program.**
 
-## Adding Runtimes
+## Adding runtimes
 Sometimes, a program has so much going on that it's hard to find the [runtime](https://en.wikipedia.org/wiki/Special:Search?search=runtime) of it. Take a look at the [pseudocode](https://en.wikipedia.org/wiki/Special:Search?search=pseudocode) program that first prints all the positive values up to N and then returns the number of times it takes to divide N by 2 until N is 1.
 
 ```

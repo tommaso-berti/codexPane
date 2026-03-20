@@ -12,9 +12,13 @@ Having security headers configured well also increases a website's trustworthine
 Take a look at the headers on the HTTP response from www.example.com when the homepage is loaded. The security-related headers are highlighted.
 ![512A7108-BEBD-497D-BE19-A0F6FCC2CFF6](images/512A7108-BEBD-497D-BE19-A0F6FCC2CFF6.png)
 
-## Common Security Headers
+## Common security headers
 
-### **Strict-Transportation-Security** [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) This header lets the server tell the browser that only the HTTPS version of the requested site is available. This enforces the use of HTTPS, which is encrypted compared to plain HTTP, ensuring that all communication between the client and the server occurs on a more secure transport layer.
+### Strict-Transportation-Security
+
+[MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+
+This header lets the server tell the browser that only the HTTPS version of the requested site is available. This enforces the use of HTTPS, which is encrypted compared to plain HTTP, ensuring that all communication between the client and the server occurs on a more secure transport layer.
 Here's an example of the Strict-Transport-Security header:
 
 ```
@@ -64,9 +68,9 @@ Some other common headers include:
 * [Referrer-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) Additional Resources on security headers:
 * [OWASP HTTP Security Headers Guide](https://owasp.org/www-project-secure-headers/)
 * [Mozilla resource on HTTP security-related headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#security)
-## How to Add Security Headers
+## How to add security headers
 
-### nginx
+### Nginx
 The following line is added to an nginx server's config file to add the Strict-Transport-Security header to all HTTP responses.
 
 ```

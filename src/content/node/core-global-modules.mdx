@@ -31,7 +31,7 @@ require('module').builtinModules
 
 ```
 
-## The Console Module
+## The console module
 One of the most commonly used Node.js core modules is the [console](https://nodejs.org/api/console.html) module. In Node.js, the terminal is used to send and receive text feedback to and from a program, often for debugging purposes.
 The
      console
@@ -43,7 +43,7 @@ The
   is a global module, its methods can be accessed from anywhere, and the
      require() function is not necessary.
 
-## The Process Module
+## The process module
 In computer science, a **process** is the instance of a computer program that is being executed. You can open Task Manager if you're on a Windows machine or Activity Monitor from a Mac to see information about the various processes running on your computer right now. Node has a global [process](https://nodejs.org/api/process.html) object with useful methods and information about the current process.
 
 ### process.argv
@@ -90,7 +90,9 @@ if (process.argv[2] && process.argv[2] === 'dev') {
 
 ```
 
-### process.memoryUsage() The process.memoryUsage() method returns information on the CPU demands of the current process. It returns a property that looks similar to this:
+### process.memoryUsage()
+
+The process.memoryUsage() method returns information on the CPU demands of the current process. It returns a property that looks similar to this:
 
 ```
 {
@@ -103,7 +105,7 @@ if (process.argv[2] && process.argv[2] === 'dev') {
 
 ```
 
-## User Input/Output
+## User input/output
 When we use console.log(), we prompt the computer to *output* information to the console. In the Node environment, the console is the terminal, and the console.log() method is a “thin wrapper” on the .stdout.write() method of the process object. stdout stands for “standard output”.
 In Node, we can also receive *input* from a user through the terminal using the stdin.on() method (stdin stands for “standard input”) on the process object:
 
@@ -133,12 +135,14 @@ const errorFirstCallback = (err, data)  => {
 
 ```
 
-## The Timers Module
+## The timers module
 There are times when we want some of our code to be executed at some point in the future. This is what the [timers module](https://nodejs.org/api/timers.html#timers_class_immediate) is used for.
 You may already be familiar with some timer functions, such as setTimeout() and setInterval(), which exist in the browser runtime environment.
 Timer functions in Node.js behave similarly to their browser-based counterparts, but the difference is that they are added to the Node.js [event loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/). This means that the timer functions are scheduled and put into a queue. This queue is processed at every iteration of the event loop.
 
-### setImmediate() The setImmediate() function is often compared with the setTimeout() function. When setImmediate() is called, it executes the specified callback function after the current [poll phase](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout) of the event loop is completed.
+### setImmediate()
+
+The setImmediate() function is often compared with the setTimeout() function. When setImmediate() is called, it executes the specified callback function after the current [poll phase](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout) of the event loop is completed.
 
      setImmediate() accepts one to many parameters:
 * callback (required): the function that will be executed once the poll phase is complete
@@ -154,7 +158,9 @@ console.log('Will this line print before or after?');
 
 ```
 
-### setTimeout() and setInterval() setTimeout() and
+### setTimeout() and setInterval()
+
+setTimeout() and
      setInterval() work similarly to each other and accept the same parameters:
 * callback (required): the function that will be executed after the delay is complete
 * delay (optional): the amount of time, in milliseconds, to wait before executing the callback function - defaults to 1
@@ -175,7 +181,9 @@ setInterval(() => {
 
 Here, the callback for setTimeout() will execute once after a single second has elapsed. On the other hand, the callback for setInterval() will continuously execute every five seconds.
 
-### clearImmediate() and clearTimeout() What if we need to stop an interval, though, or cancel a timeout or immediate before it executes? For each of the timer functions, there is a corresponding clearing function, which allows us to cancel the timer. Let's inspect an example:
+### clearImmediate() and clearTimeout()
+
+What if we need to stop an interval, though, or cancel a timeout or immediate before it executes? For each of the timer functions, there is a corresponding clearing function, which allows us to cancel the timer. Let's inspect an example:
 
 ```
 let iterations = 0;

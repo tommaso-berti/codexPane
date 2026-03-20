@@ -1,3 +1,5 @@
+import ModuleResolutionPlayground from "./components/modules-export-import/ModuleResolutionPlayground.jsx"
+
 # Modules export import
 
 Organize code into small, reusable files that you can **export** and **import** across projects.
@@ -11,7 +13,7 @@ Organize code into small, reusable files that you can **export** and **import** 
 
 Modules are reusable pieces of code in a file that can be exported and then imported for use in another file. A **modular** program has components that can be separated, used individually, and recombined.
 
-## Node modules require and module exports
+## Node modules: require and module exports
 
 In Node.js (CommonJS), export values from a file and require them elsewhere.
 
@@ -30,7 +32,7 @@ console.log(add(2, 3), PI);
 > **Tip**
 > Prefer ES modules in modern Node by using `"type": "module"` in `package.json`, or `.mjs` files.
 
-## Es6 named export syntax
+## ES6 named export syntax
 
 Place the module file where both projects can access it, e.g.:
 
@@ -133,7 +135,7 @@ Shorthand for renaming default:
 import { default as importedResources } from "./module.js";
 ~~~
 
-## Export and Import example
+## Export and import example
 
 **Export**
 
@@ -191,3 +193,13 @@ export class Circle { constructor(r) { this.r = r; } }
 
 > **Tip**
 > A file can have **many named exports** but **only one default** export.
+
+## Interactive Playground: Import/Export Resolution
+
+**Why this matters**  
+Most module bugs are wiring issues, not syntax complexity. Seeing valid and invalid import combinations helps you debug quickly.
+
+**What to try**  
+Switch between named/default import cases and the missing `type="module"` scenario to compare expected outcomes.
+
+<ModuleResolutionPlayground />
