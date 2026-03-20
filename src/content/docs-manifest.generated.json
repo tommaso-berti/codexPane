@@ -5635,12 +5635,6 @@
               "title": "Analyzing Time and Space Complexity",
               "slug": "tech-interview/technical-interviews-whiteboarding#analyzing-time-and-space-complexity",
               "order": 6
-            },
-            {
-              "id": "interactive-playground-whiteboard-time-allocation",
-              "title": "Interactive Playground: Whiteboard Time Allocation",
-              "slug": "tech-interview/technical-interviews-whiteboarding#interactive-playground-whiteboard-time-allocation",
-              "order": 7
             }
           ],
           "order": 2
@@ -7365,12 +7359,6 @@
               "title": "Markdown resources",
               "slug": "github/markdown#markdown-resources",
               "order": 9
-            },
-            {
-              "id": "interactive-playground-readme-structure",
-              "title": "Interactive Playground: README Structure",
-              "slug": "github/markdown#interactive-playground-readme-structure",
-              "order": 10
             }
           ],
           "order": 1
@@ -11486,12 +11474,6 @@
               "title": "Index wiring and props",
               "slug": "redux/file-structure#index-wiring-and-props",
               "order": 6
-            },
-            {
-              "id": "interactive-playground-redux-folder-mapping",
-              "title": "Interactive Playground: Redux Folder Mapping",
-              "slug": "redux/file-structure#interactive-playground-redux-folder-mapping",
-              "order": 7
             }
           ],
           "order": 4
@@ -11786,9 +11768,9 @@
               "order": 14
             },
             {
-              "id": "chmod-playground",
-              "title": "Chmod playground",
-              "slug": "vps/linux-ubuntu-basics#chmod-playground",
+              "id": "interactive-playground-chmod-converter",
+              "title": "Interactive Playground: chmod converter",
+              "slug": "vps/linux-ubuntu-basics#interactive-playground-chmod-converter",
               "order": 15
             }
           ],
@@ -11837,9 +11819,9 @@
               "order": 6
             },
             {
-              "id": "ssh-keygen-playground",
-              "title": "Ssh keygen playground",
-              "slug": "vps/security#ssh-keygen-playground",
+              "id": "interactive-playground-ssh-keygen-command-builder",
+              "title": "Interactive Playground: SSH keygen command builder",
+              "slug": "vps/security#interactive-playground-ssh-keygen-command-builder",
               "order": 7
             }
           ],

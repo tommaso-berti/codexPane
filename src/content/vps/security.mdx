@@ -93,9 +93,11 @@ ssh -i my_vps_key.pem root@INDIRIZZO_IP
 
 > Note: Consider creating a non-root sudo user and disabling password logins after confirming key-based access works.
 
-## Ssh keygen playground
+## Interactive Playground: SSH keygen command builder
 
-A small interactive to compose the correct `ssh-keygen` command for your needs.
+**Why this matters:** key generation flags impact compatibility, security, and automation scripts.
+
+**What to try:** switch between `ed25519` and `rsa`, then apply and inspect the generated command.
 
 import SshKeygenPlayground from "./components/security/SshKeygenPlayground.jsx"
 

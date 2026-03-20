@@ -52,7 +52,7 @@ export default function StackOperationsPlayground() {
                     />
                     <Stack direction="row" spacing={1}>
                         <Button variant="contained" onClick={runPush}>Run</Button>
-                        <Button variant="outlined" color="warning" onClick={runPop}>Apply pop</Button>
+                        <Button variant="outlined" color="warning" onClick={runPop}>Apply</Button>
                         <Button variant="text" onClick={() => { setStack(["A", "B"]); setInput("C"); setLastAction("Reset to initial stack."); }}>Reset</Button>
                     </Stack>
                 </Stack>
@@ -75,6 +75,13 @@ export default function StackOperationsPlayground() {
                         </Typography>
                     </Paper>
                 </Stack>
+            }
+            code={
+                <pre>
+{`stack.push(value);      // add at top
+const out = stack.pop(); // remove from top (LIFO)
+const top = stack.at(-1);// peek without removing`}
+                </pre>
             }
             note="Stacks are LIFO: the most recently pushed item is the first one popped."
         />

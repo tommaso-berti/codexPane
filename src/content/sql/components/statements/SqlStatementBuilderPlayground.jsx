@@ -3,9 +3,15 @@ import { Alert, Button, FormControl, InputLabel, MenuItem, Paper, Select, Stack,
 import PlaygroundShell from "../../../../components/PlaygroundShell.jsx";
 
 export default function SqlStatementBuilderPlayground() {
-    const [command, setCommand] = useState("SELECT");
-    const [tableName, setTableName] = useState("users");
-    const [whereClause, setWhereClause] = useState("id = 42");
+    const INITIAL_COMMAND = "SELECT";
+    const INITIAL_TABLE = "users";
+    const INITIAL_WHERE = "id = 42";
+    const [commandDraft, setCommandDraft] = useState(INITIAL_COMMAND);
+    const [tableDraft, setTableDraft] = useState(INITIAL_TABLE);
+    const [whereDraft, setWhereDraft] = useState(INITIAL_WHERE);
+    const [command, setCommand] = useState(INITIAL_COMMAND);
+    const [tableName, setTableName] = useState(INITIAL_TABLE);
+    const [whereClause, setWhereClause] = useState(INITIAL_WHERE);
 
     const sql = useMemo(() => {
         const table = tableName.trim() || "table_name";
@@ -29,23 +35,43 @@ export default function SqlStatementBuilderPlayground() {
                         <Select
                             labelId="sql-command-label"
                             label="Command"
-                            value={command}
-                            onChange={(event) => setCommand(event.target.value)}
+                            value={commandDraft}
+                            onChange={(event) => setCommandDraft(event.target.value)}
                         >
                             <MenuItem value="SELECT">SELECT</MenuItem>
                             <MenuItem value="UPDATE">UPDATE</MenuItem>
                             <MenuItem value="DELETE">DELETE</MenuItem>
                         </Select>
                     </FormControl>
-                    <TextField size="small" label="Table name" value={tableName} onChange={(event) => setTableName(event.target.value)} />
+                    <TextField size="small" label="Table name" value={tableDraft} onChange={(event) => setTableDraft(event.target.value)} />
                     <TextField
                         size="small"
                         label="WHERE clause (optional)"
-                        value={whereClause}
-                        onChange={(event) => setWhereClause(event.target.value)}
+                        value={whereDraft}
+                        onChange={(event) => setWhereDraft(event.target.value)}
                     />
                     <Stack direction="row" spacing={1}>
-                        <Button variant="outlined" onClick={() => { setCommand("SELECT"); setTableName("users"); setWhereClause("id = 42"); }}>
+                        <Button
+                            variant="contained"
+                            onClick={() => {
+                                setCommand(commandDraft);
+                                setTableName(tableDraft);
+                                setWhereClause(whereDraft);
+                            }}
+                        >
+                            Apply
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => {
+                                setCommandDraft(INITIAL_COMMAND);
+                                setTableDraft(INITIAL_TABLE);
+                                setWhereDraft(INITIAL_WHERE);
+                                setCommand(INITIAL_COMMAND);
+                                setTableName(INITIAL_TABLE);
+                                setWhereClause(INITIAL_WHERE);
+                            }}
+                        >
                             Reset
                         </Button>
                     </Stack>
@@ -68,6 +94,15 @@ export default function SqlStatementBuilderPlayground() {
                         Clause check: {command} + FROM + optional WHERE.
                     </Alert>
                 </Stack>
+            }
+            code={
+                <pre>
+{`switch (command) {
+  case "SELECT": return \`SELECT * FROM \${table} WHERE ...;\`;
+  case "UPDATE": return \`UPDATE \${table} SET ... WHERE ...;\`;
+  default:       return \`DELETE FROM \${table} WHERE ...;\`;
+}`}
+                </pre>
             }
             note="Treat SQL statements as structured templates: command, table target, optional filters, and terminator."
         />

@@ -68,6 +68,14 @@ export default function RecursionTracePlayground() {
                     )}
                 </Stack>
             }
+            code={
+                <pre>
+{`function trace(word) {
+  if (!word.length) return ["base case"];
+  return [\`frame: \${word}\`, ...trace(word.slice(1))];
+}`}
+                </pre>
+            }
             note="Recursive calls must make progress toward a base case to terminate safely."
         />
     );

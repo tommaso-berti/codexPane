@@ -226,8 +226,11 @@ $ neofetch  # apt install neofetch
 $ systemctl is-active nginx && systemctl is-enabled nginx
 ~~~
 
-## Chmod playground
-A small interactive to convert symbolic permissions to octal and vice versa.
+## Interactive Playground: chmod converter
+
+**Why this matters:** Linux permission mistakes can break deployment and expose sensitive files.
+
+**What to try:** apply `644`, `755`, and `600` to compare symbolic flags and command output.
 
 import ChmodPlayground from "./components/linux-ubuntu-basics/ChmodPlayground.jsx"
 
