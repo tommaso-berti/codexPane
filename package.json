@@ -7,6 +7,7 @@
     "docs:build-manifest": "node ./scripts/docs-manifest.mjs && node ./scripts/docs-sync-images.mjs",
     "docs:check-nbsp-content": "node ./scripts/docs-check-nbsp-content.mjs",
     "docs:normalize-raw": "node ./scripts/docs-normalize-raw-nbsp.mjs",
+    "docs:coverage-report": "node ./scripts/docs-import-coverage-report.mjs",
     "docs:validate": "npm run docs:check-nbsp-content && node ./scripts/docs-manifest.mjs --validate",
     "data:refresh": "node ./scripts/static-data/refresh-static-data.mjs",
     "dev": "npm run docs:build-manifest && vite",
