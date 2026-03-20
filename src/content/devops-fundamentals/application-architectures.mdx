@@ -25,7 +25,9 @@ A three-tier application is the most common type of n-tier architecture. This ap
 * Presentation layer: This layer is what the user sees and interacts with.
 * Logic layer: This layer contains all the business logic and decision making.
 * Data layer: This layer handles interacting with a database.
-![DCDEBE19-A4AD-49F4-9D82-76B9B635181F](images/DCDEBE19-A4AD-49F4-9D82-76B9B635181F.png) Plant Pals could implement an n-tier architecture by maintaining their website front-end in the presentation layer, handling payments in the logic layer, and managing user data and inventory in the data layer.
+![DCDEBE19-A4AD-49F4-9D82-76B9B635181F](images/DCDEBE19-A4AD-49F4-9D82-76B9B635181F.png)
+
+Plant Pals could implement an n-tier architecture by maintaining their website front-end in the presentation layer, handling payments in the logic layer, and managing user data and inventory in the data layer.
 N-tier architecture, like the monolithic architecture, has been around for a long time. It is a time-tested approach for enterprise applications. Let’s see why n-tier could be used over a monolithic architecture.
 
 An **n-tier architecture** improves on monolithic design by separating the application into layers with distinct responsibilities. This creates **clear separation of concerns**, allowing teams to work independently and safely. It also enables **better scalability**, since each tier can be scaled separately based on demand.
@@ -39,7 +41,9 @@ The final architecture we’ll examine is the most complex. It is known as micro
 
 ## Microservices Architecture
 **Microservices architecture** refers to an application where features are spread across different services. Each service is responsible for a tightly defined component of business logic. Services should aim to have smaller, independent codebases. These aspects make microservices a more granular approach than architectures like n-tier.
-![46714D8D-F094-4CDD-8852-36497EEBB8D0](images/46714D8D-F094-4CDD-8852-36497EEBB8D0.png) The microservices architecture is relatively new compared to monolithic and n-tier architectures. It is closely associated with DevOps and cloud-based infrastructure. Let’s see how microservices solve many of the issues faced by other architectures.
+![46714D8D-F094-4CDD-8852-36497EEBB8D0](images/46714D8D-F094-4CDD-8852-36497EEBB8D0.png)
+
+The microservices architecture is relatively new compared to monolithic and n-tier architectures. It is closely associated with DevOps and cloud-based infrastructure. Let’s see how microservices solve many of the issues faced by other architectures.
 
 A **microservices architecture** breaks an application into many small, independent services. Its benefits include **high fault tolerance** (no single point of failure), **independent and efficient scalability**, **flexibility in technology choices**, and **smaller, more maintainable codebases** managed by separate teams.
 However, this architecture is more complex. It has **slower initial development**, **complicated deployment** (due to inter-service communication, monitoring, etc.), and **more difficult testing**, since services depend on each other and often require mocking other components.

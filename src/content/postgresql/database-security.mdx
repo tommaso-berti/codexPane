@@ -184,7 +184,9 @@ For example, alice, bob, and charlie can each be login roles, and they can also 
 This is a useful feature for maintaining databases with many users, but only a few “types” of users. You could have a DB with hundreds of users, but if their permissions are managed through just a few group roles, the job of maintaining permissions is far simpler.
 However, members in a group don't necessarily all share the exact same permissions.
 ![017C1C24-1143-4D55-B0A6-49515E544F2D](images/017C1C24-1143-4D55-B0A6-49515E544F2D.png)
-![80FB3732-3DD9-4A65-8F2C-7104D1B05C68](images/80FB3732-3DD9-4A65-8F2C-7104D1B05C68.png) For security reasons, PostgreSQL disallows the inheritance of certain powerful permissions such as LOGIN, SUPERUSER, CREATEDB, and CREATEROLE. This prevents a developer from accidentally granting high-level permissions to a wide group of users.
+![80FB3732-3DD9-4A65-8F2C-7104D1B05C68](images/80FB3732-3DD9-4A65-8F2C-7104D1B05C68.png)
+
+For security reasons, PostgreSQL disallows the inheritance of certain powerful permissions such as LOGIN, SUPERUSER, CREATEDB, and CREATEROLE. This prevents a developer from accidentally granting high-level permissions to a wide group of users.
 There are several ways to create a new group role:
 * Using CREATE ROLE and the WITH ROLE option when creating a role - this automatically adds the listed names to the role.
 

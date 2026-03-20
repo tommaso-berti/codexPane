@@ -11,7 +11,9 @@ A database relationship establishes the way in which connected tables are depend
 There are three types: one-to-one, one-to-many and many-to-many.
 
 ## One-to-One Relationship
-![316BD66E-F6D7-4608-8E9C-B0D7D925980E](images/316BD66E-F6D7-4608-8E9C-B0D7D925980E.png) In a one-to-one relationship, a row of table A is associated with exactly one row of table B and vice-versa.
+![316BD66E-F6D7-4608-8E9C-B0D7D925980E](images/316BD66E-F6D7-4608-8E9C-B0D7D925980E.png)
+
+In a one-to-one relationship, a row of table A is associated with exactly one row of table B and vice-versa.
 To establish a one-to-one relationship in PostgreSQL between these two tables, we need to designate a foreign key in one of the tables.
 To enforce a strictly one-to-one relationship in PostgreSQL, we need another keyword,
      UNIQUE
@@ -43,7 +45,9 @@ CREATE TABLE license (
 ```
 
 ## One-to-Many Relationship
-![EB9038C0-247C-42D2-A946-1D93D4592480](images/EB9038C0-247C-42D2-A946-1D93D4592480.png) As opposed to one-to-one, a one-to-many relationship cannot be represented in a single table. Why? Because there will be multiple rows that need to exist for a primary key and this will result in redundant data that breaks the constraint placed upon a primary key.
+![EB9038C0-247C-42D2-A946-1D93D4592480](images/EB9038C0-247C-42D2-A946-1D93D4592480.png)
+
+As opposed to one-to-one, a one-to-many relationship cannot be represented in a single table. Why? Because there will be multiple rows that need to exist for a primary key and this will result in redundant data that breaks the constraint placed upon a primary key.
 
 ```
 CREATE TABLE chapter (

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "docs:build-manifest": "node ./scripts/docs-manifest.mjs",
+    "docs:build-manifest": "node ./scripts/docs-manifest.mjs && node ./scripts/docs-sync-images.mjs",
     "docs:check-nbsp-content": "node ./scripts/docs-check-nbsp-content.mjs",
     "docs:normalize-raw": "node ./scripts/docs-normalize-raw-nbsp.mjs",
     "docs:validate": "npm run docs:check-nbsp-content && node ./scripts/docs-manifest.mjs --validate",

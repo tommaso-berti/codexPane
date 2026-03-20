@@ -1,0 +1,38 @@
+# Codespaces and GitHub.dev
+
+Both tools provide a browser-based VS Code experience, but they target different use cases.
+
+## Core difference
+
+- **GitHub Codespaces**: cloud development environment with compute, terminal, and full runtime.
+- **GitHub.dev**: lightweight browser editor for fast edits and reviews without compute.
+
+## Comparison
+
+| Aspect | GitHub Codespaces | GitHub.dev |
+| --- | --- | --- |
+| Compute | Dedicated VM per codespace | No VM |
+| Terminal | Yes | No |
+| Startup | Slower (environment provisioning) | Immediate |
+| Extension support | Broad VS Code support | Limited |
+| Cost model | Quotas/paid usage after limits | Free browser editing |
+
+## When to use Codespaces
+
+Use Codespaces when you need to:
+- run tests and build commands in cloud terminal
+- install dependencies
+- reproduce full dev environments with `devcontainer` config
+
+## When to use GitHub.dev
+
+Use GitHub.dev when you need to:
+- perform quick edits
+- review code and propose changes
+- update docs/config files without a full local setup
+
+## Practical workflow
+
+1. Start in GitHub.dev for a quick text-level fix.
+2. Switch to Codespaces if you need execution, debugging, or package install.
+3. Open PR from the same branch once validation is complete.

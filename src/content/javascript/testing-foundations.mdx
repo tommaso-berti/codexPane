@@ -1,0 +1,50 @@
+# Testing Foundations
+
+Automated tests improve confidence and reduce regressions when code evolves.
+
+## Why automated testing
+
+Compared to manual checks, automated tests are:
+- faster to run repeatedly
+- more reliable for repeated scenarios
+- easier to maintain alongside implementation code
+
+## Test levels
+
+- **Unit tests**: verify isolated functions/components.
+- **Integration tests**: verify collaboration between internal modules.
+- **End-to-end tests**: verify full user flows with realistic environment.
+
+## Coverage concepts
+
+### Code coverage
+Measures executed code (functions, statements, branches/conditions).
+
+### Test coverage
+Measures required features/specs actually tested.
+
+High code coverage alone does not guarantee correctness.
+
+## Mocking strategy
+
+Mocking replaces external dependencies (APIs, DBs, network services) so tests stay deterministic.
+
+- In unit tests, mock aggressively.
+- In integration tests, mock external systems but keep internal collaboration real.
+
+## TDD loop
+
+Use red-green-refactor:
+1. Write a failing test (red).
+2. Write minimal code to pass (green).
+3. Refactor safely with tests as guardrail.
+
+## Jest and Mocha in practice
+
+- **Jest**: all-in-one runner for modern JS/React projects.
+- **Mocha**: flexible runner often paired with `chai` and `sinon`.
+
+Use spies (e.g., Sinon) when you need to assert call behavior:
+- called or not
+- called with arguments
+- return value / invocation count

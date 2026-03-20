@@ -3,5 +3,50 @@
   "title": "jQuery",
   "slug": "jquery",
   "icon": "CustomjQueryIcon",
-  "items": []
+  "items": [
+    {
+      "id": "manipulating-dom",
+      "type": "section",
+      "title": "Manipulating DOM",
+      "slug": "jquery/manipulating-dom",
+      "order": 1,
+      "items": [
+        {
+          "id": "selecting-elements",
+          "type": "subSection",
+          "title": "Selecting elements",
+          "slug": "jquery/manipulating-dom#selecting-elements",
+          "order": 1
+        },
+        {
+          "id": "reading-and-updating-content",
+          "type": "subSection",
+          "title": "Reading and updating content",
+          "slug": "jquery/manipulating-dom#reading-and-updating-content",
+          "order": 2
+        },
+        {
+          "id": "classes-and-style-updates",
+          "type": "subSection",
+          "title": "Classes and style updates",
+          "slug": "jquery/manipulating-dom#classes-and-style-updates",
+          "order": 3
+        },
+        {
+          "id": "dom-insertion-and-removal",
+          "type": "subSection",
+          "title": "DOM insertion and removal",
+          "slug": "jquery/manipulating-dom#dom-insertion-and-removal",
+          "order": 4
+        },
+        {
+          "id": "event-handling",
+          "type": "subSection",
+          "title": "Event handling",
+          "slug": "jquery/manipulating-dom#event-handling",
+          "order": 5
+        }
+      ]
+    }
+  ]
 }

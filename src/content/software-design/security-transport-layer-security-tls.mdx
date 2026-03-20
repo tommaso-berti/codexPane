@@ -4,7 +4,9 @@ title: Transport Layer Security (TLS) order: 19
 
 # Transport Layer Security (TLS) Transport Layer Security (TLS) is a protocol for establishing secure connections between computers. TLS’s largest claim to fame is that it powers [HTTPS](https://owasp.org/www-community/), the protocol that lets us browse the web securely.
 As suggested by its name, TLS provides security for data that is sent through transport layer protocols. It does this by creating a secure connection (often conceptualized as a *tunnel*) through which data can be transmitted to its destination. You can think of TLS as a wrapper for transport layer protocols. TLS makes use of other [algorithms](https://owasp.org/www-community/) and protocols to handle things like encryption and key exchange. However, TLS is not itself an encryption algorithm.
-![23AC92BF-1B71-4E98-8AFE-4B77AA1CA3DD](images/23AC92BF-1B71-4E98-8AFE-4B77AA1CA3DD.png) TLS uses public-key *certificates* in order to make sure that [servers](https://owasp.org/www-community/) (and sometimes clients) are who they say they are. These certificates are created using the ability of asymmetric cryptography to digitally sign data, verifying its authenticity and provenance.
+![23AC92BF-1B71-4E98-8AFE-4B77AA1CA3DD](images/23AC92BF-1B71-4E98-8AFE-4B77AA1CA3DD.png)
+
+TLS uses public-key *certificates* in order to make sure that [servers](https://owasp.org/www-community/) (and sometimes clients) are who they say they are. These certificates are created using the ability of asymmetric cryptography to digitally sign data, verifying its authenticity and provenance.
 
 ## TLS vs SSL
 [Secure Sockets Layer (SSL)](https://owasp.org/www-community/) is the predecessor of TLS. Like TLS, it is a protocol meant to establish secure communications between computers. The primary difference between SSL and TLS is that SSL has a history of serious security vulnerabilities, with the final version being deprecated in 2015.

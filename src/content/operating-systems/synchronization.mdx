@@ -73,7 +73,9 @@ This pattern of receiving the mutex, incrementing
  , completing the program.
 
 ## Condition Variables
-![1283C7CE-7DA6-4F42-80E5-0A47DC0C158C](images/1283C7CE-7DA6-4F42-80E5-0A47DC0C158C.png) We create two threads representing a maker and a seller. When the maker thread calls make_guitar(), the num_guitars variable is incremented. When seller thread calls sell_guitar(), num_guitars is decremented as long as num_guitars is greater than 0.
+![1283C7CE-7DA6-4F42-80E5-0A47DC0C158C](images/1283C7CE-7DA6-4F42-80E5-0A47DC0C158C.png)
+
+We create two threads representing a maker and a seller. When the maker thread calls make_guitar(), the num_guitars variable is incremented. When seller thread calls sell_guitar(), num_guitars is decremented as long as num_guitars is greater than 0.
 Both threads must access the shared variable num_guitars which means, in order to synchronize our program, we must enforce mutual exclusion on num_guitars.
 Up until now, locking was our only tool to achieve this. Using locks, the seller thread could continuously request a lock on num_guitars, check whether it was greater than one, and then unlock it. This lock, check, unlock cycle is incredibly inefficient.
 A more efficient way to handle this is to notify the seller thread when num_guitars is greater than 0. We can do this by using what is called a condition variable.

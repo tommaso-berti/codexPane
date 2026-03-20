@@ -1,0 +1,43 @@
+# React Testing with Jest and Enzyme
+
+Jest is the standard JavaScript test runner in React ecosystems. Enzyme is a legacy utility for component testing that still appears in older projects.
+
+## Tooling snapshot
+
+- **Jest**: test runner, assertions, mocks, snapshots.
+- **Enzyme**: component traversal APIs (`shallow`, `mount`) for older React stacks.
+
+## Install (legacy Enzyme stack)
+
+~~~bash
+npm install --save-dev jest enzyme enzyme-adapter-react-16
+~~~
+
+Modern React projects usually prefer Testing Library over Enzyme.
+
+## Running tests
+
+~~~bash
+npm run test
+~~~
+
+## Example test goal
+
+A useful test checks that a component renders expected output after props/state changes.
+
+~~~js
+import { render, screen } from '@testing-library/react';
+import BookList from './BookList';
+
+test('renders book titles', () => {
+  render(<BookList books={[{ id: 1, title: 'Clean Code' }]} />);
+  expect(screen.getByText('Clean Code')).toBeInTheDocument();
+});
+~~~
+
+## Migration note
+
+If you maintain an Enzyme codebase:
+- keep existing tests stable
+- write new tests with Testing Library when possible
+- migrate gradually per component

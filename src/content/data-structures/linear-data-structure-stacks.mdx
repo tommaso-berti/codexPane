@@ -17,7 +17,9 @@ Stacks provide three methods for interaction:
 * Pop - returns and removes data from the “top” of the stack
 * Peek - returns data from the “top” of the stack without removing it
 At any point, the only weight you can remove, or *pop*, from the stack is the top one. You can *peek* and read the top weight **without removing it from the stack.**
-![261BA7B6-F9C9-46B8-87C9-EE232E5D8D76](images/261BA7B6-F9C9-46B8-87C9-EE232E5D8D76.png) Stacks can be implemented using a linked list as the underlying data structure.
+![261BA7B6-F9C9-46B8-87C9-EE232E5D8D76](images/261BA7B6-F9C9-46B8-87C9-EE232E5D8D76.png)
+
+Stacks can be implemented using a linked list as the underlying data structure.
 Depending on the implementation, the top of the stack is equivalent to the head node of a linked list and the bottom of the stack is equivalent to the tail node.
 A constraint that may be placed on a stack is its size. This is done to limit and quantify the resources the data structure will take up when it is “full”.
 Attempting to push data onto an already full stack will result in a *stack overflow*. Similarly, if you attempt to pop data from an empty stack, it will result in a *stack underflow*.

@@ -57,10 +57,14 @@ For example, let's say we wanted to store product information for customers who 
 
 **Graph**
 A graph database stores data using a [graph structure](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)). In a graph structure, data is stored in individual nodes (also called vertices) and establishes relationships via edges (also called links or lines). The advantage of the relationships built using a graph database as opposed to a relational database is that they are much simpler to set up, manage, and query. For example, let's say we wanted to build a recommendation engine for our e-commerce store. We could establish relationships between similar items our customers searched for to create recommendations.
-![5CCD4392-8914-4E95-AF87-1D5380638829](images/5CCD4392-8914-4E95-AF87-1D5380638829.svg) In the graph above, we can see that there are four nodes: “Neo”, “Hiking”, “Cameras”, and “Hiking Camera Backpack”. Because the user, “Neo”, searched for “Hiking” and “Cameras”, there are edges connecting all 3 nodes. More edges are created after the search, linking a new node, “Hiking Camera Backpack”.
+![5CCD4392-8914-4E95-AF87-1D5380638829](images/5CCD4392-8914-4E95-AF87-1D5380638829.svg)
+
+In the graph above, we can see that there are four nodes: “Neo”, “Hiking”, “Cameras”, and “Hiking Camera Backpack”. Because the user, “Neo”, searched for “Hiking” and “Cameras”, there are edges connecting all 3 nodes. More edges are created after the search, linking a new node, “Hiking Camera Backpack”.
 [Neo4j](https://neo4j.com/) is a popular option for developers looking to work with a graph database.
 
 **Column Oriented**
 A column-oriented NoSQL database stores data similar to a relational database. However, instead of storing data as rows, it is stored as columns. Column-oriented databases aim to provide faster read speeds by being able to quickly aggregate data for a specific column. For example, take a look at the following e-commerce database of products:
-![E46AB78A-4D72-49C8-AF4B-E6ADC5C7237E](images/E46AB78A-4D72-49C8-AF4B-E6ADC5C7237E.svg) If we wanted to analyze the total sales for all the products, all we would need to do is aggregate data from the sales column. This is in contrast to a relational model that would have to pull data from each row. We would also be pulling adjacent data (like size information in the above example) that isn't relevant to our query.
+![E46AB78A-4D72-49C8-AF4B-E6ADC5C7237E](images/E46AB78A-4D72-49C8-AF4B-E6ADC5C7237E.svg)
+
+If we wanted to analyze the total sales for all the products, all we would need to do is aggregate data from the sales column. This is in contrast to a relational model that would have to pull data from each row. We would also be pulling adjacent data (like size information in the above example) that isn't relevant to our query.
 Amazon's [Redshift](https://aws.amazon.com/redshift/) is a popular option for developers looking to work with a column-oriented database.

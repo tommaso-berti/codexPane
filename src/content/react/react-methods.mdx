@@ -1,0 +1,72 @@
+# React Methods
+
+React exposes utility APIs that help you control re-rendering and improve runtime performance.
+
+## React.memo
+
+`React.memo` memoizes a function component. React reuses the previous render output if props are shallow-equal.
+
+~~~jsx
+import React from 'react';
+
+const TileList = React.memo(function TileList({ contactList }) {
+  return (
+    <ul>
+      {contactList.map((c) => (
+        <li key={c.id}>{c.name}</li>
+      ))}
+    </ul>
+  );
+});
+~~~
+
+Use it when:
+- the component is pure (same props -> same output)
+- parent updates often
+- child rendering is moderately expensive
+
+## useMemo
+
+`useMemo` memoizes a computed value.
+
+~~~jsx
+import { useMemo } from 'react';
+
+function ContactStats({ contacts }) {
+  const grouped = useMemo(() => {
+    return contacts.reduce((acc, c) => {
+      const k = c.group || 'other';
+      acc[k] = (acc[k] || 0) + 1;
+      return acc;
+    }, {});
+  }, [contacts]);
+
+  return <pre>{JSON.stringify(grouped, null, 2)}</pre>;
+}
+~~~
+
+## useCallback
+
+`useCallback` memoizes a function reference. It is useful when passing callbacks to memoized children.
+
+~~~jsx
+import { useCallback, useState } from 'react';
+
+function ContactsPage() {
+  const [query, setQuery] = useState('');
+
+  const onSearch = useCallback((value) => {
+    setQuery(value.trim());
+  }, []);
+
+  return <SearchBox onSearch={onSearch} value={query} />;
+}
+~~~
+
+## Common mistakes
+
+- Wrapping everything with memoization APIs.
+- Missing dependencies in `useMemo`/`useCallback`.
+- Assuming memoization always improves performance.
+
+Measure first with React DevTools Profiler, then optimize the specific bottleneck.

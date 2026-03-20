@@ -24,7 +24,9 @@ Asymmetric encryption is the most secure way to transmit data; however, it is sl
 
 ## Hashing
 Hashing does not encrypt data. Instead, *hashing* is a one-way process that takes a piece of data of any size and uses a mathematical function to represent that data with a unique hash value of a fixed size. You cannot compute the original data from its hash.
-![2181B5B5-F087-4778-9823-BDF068312B23](images/2181B5B5-F087-4778-9823-BDF068312B23.png) Because each hash should be unique, hashing allows us to see if changes have been made to documents.
+![2181B5B5-F087-4778-9823-BDF068312B23](images/2181B5B5-F087-4778-9823-BDF068312B23.png)
+
+Because each hash should be unique, hashing allows us to see if changes have been made to documents.
 Ideally, hash functions always generate unique values for different inputs. When they don't it's called a *hash collision*. While it's hypothetically possible to encounter a hash collision with nearly any hashing algorithm, with modern algorithms like SHA-256, it would take so long to result in a collision that it's functionally impossible.
 
 ### Using Hashes to Protect Data

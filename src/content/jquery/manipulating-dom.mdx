@@ -1,0 +1,56 @@
+# Manipulating DOM
+
+jQuery was designed to simplify DOM selection, traversal, and updates with concise, chainable syntax.
+
+## Selecting elements
+
+Use CSS-like selectors through `$()`.
+
+~~~js
+const body = $('body');
+const cards = $('.card');
+const firstInput = $('form input:first');
+~~~
+
+## Reading and updating content
+
+~~~js
+$('#title').text('Dashboard');
+$('#subtitle').html('<strong>Live data</strong>');
+~~~
+
+Use `.text()` for plain text and `.html()` only when you trust the source.
+
+## Classes and style updates
+
+~~~js
+$('#panel').addClass('open');
+$('#panel').removeClass('hidden');
+$('#panel').toggleClass('active');
+
+$('body').css('color', 'blue');
+~~~
+
+## DOM insertion and removal
+
+~~~js
+$('.list').append('<li>New item</li>');
+$('.list').prepend('<li>First item</li>');
+$('.empty-state').remove();
+~~~
+
+## Event handling
+
+~~~js
+$('#saveBtn').on('click', function () {
+  $('#status').text('Saved');
+});
+~~~
+
+For dynamic content, use delegated events:
+
+~~~js
+$(document).on('click', '.item-remove', function () {
+  $(this).closest('li').remove();
+});
+~~~

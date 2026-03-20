@@ -9,7 +9,9 @@ Cross-Site Scripting ([XSS](https://owasp.org/www-community/attacks/xss/)) is a 
 
 ## Stored XSS
 A [stored XSS](https://owasp.org/www-community/attacks/xss/#stored-xss-attacks) vulnerability occurs when a web server stores an unsanitized user input and displays it to other users. In a worst-case scenario, an attacker can input a malicious script and store it to the vulnerable website, making the script run for all other users on that page.
-![4C4596FD-DFAD-4A4C-BA3D-B840C50BDC37](images/4C4596FD-DFAD-4A4C-BA3D-B840C50BDC37.png) Let’s say a website has a poorly designed comment function where the backend does not sanitize user comments. It may be possible for an attacker to add dangerous JavaScript to their comment. Now, any time another user loads the page and the server displays the comment with the bad code to the HTML, that user’s browser will execute the JavaScript code. This is an example of a Stored XSS attack.
+![4C4596FD-DFAD-4A4C-BA3D-B840C50BDC37](images/4C4596FD-DFAD-4A4C-BA3D-B840C50BDC37.png)
+
+Let’s say a website has a poorly designed comment function where the backend does not sanitize user comments. It may be possible for an attacker to add dangerous JavaScript to their comment. Now, any time another user loads the page and the server displays the comment with the bad code to the HTML, that user’s browser will execute the JavaScript code. This is an example of a Stored XSS attack.
 
 One example could be, instead of writing a review, the attacker writes the following:
 
@@ -44,7 +46,9 @@ The site might send a GET request to /profile for example. Within that GET reque
 ## DOM-Based XSS
 The DOM, short for Document Object Model, is used to help scripts and the underlying webpage interact. When user input is interpreted by the DOM, an attacker is able to inject malicious code there. These types of vulnerabilities do not cause any changes in how the server responds. Rather, these attacks are completely client-side.
 For example, a web page may use client-side Javascript to customize a welcome page, displaying their name based on a value in the URL. Depending on how the Javascript runs, a [DOM-Based XSS attack](https://owasp.org/www-community/attacks/DOM_Based_XSS) may be able to replace the name value with a malicious script. If a victim loaded the page with the attacker’s code, the vulnerable webpage may execute the code!
-![92111CDD-F032-4AC2-83B5-9A83C834A22B](images/92111CDD-F032-4AC2-83B5-9A83C834A22B.png) Let’s assume that a site is running code to render a name dynamically, and this code lives within dashboard.html. The code to render the name dynamically might look something like this:
+![92111CDD-F032-4AC2-83B5-9A83C834A22B](images/92111CDD-F032-4AC2-83B5-9A83C834A22B.png)
+
+Let’s assume that a site is running code to render a name dynamically, and this code lives within dashboard.html. The code to render the name dynamically might look something like this:
 
 ```
 greeting.innerHTML = "Welcome " + name + "!";

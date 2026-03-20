@@ -1,0 +1,55 @@
+# Visual Rules
+
+These CSS properties are simple but high-impact when polishing interface presentation.
+
+## Font family
+
+Choose readable fallback stacks and quote multi-word font names.
+
+~~~css
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+}
+~~~
+
+Use web-safe fallbacks when custom fonts are unavailable.
+
+## Opacity
+
+`opacity` controls transparency from `0` to `1`.
+
+~~~css
+.overlay {
+  opacity: 0.5;
+}
+~~~
+
+## Background image
+
+Use `background-image` for decorative surfaces.
+
+~~~css
+.main-banner {
+  background-image: url('/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+}
+~~~
+
+## Box shadow
+
+`box-shadow` adds depth and visual hierarchy.
+
+~~~css
+.card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+~~~
+
+Syntax:
+
+~~~css
+box-shadow: offset-x offset-y blur-radius spread-radius color;
+~~~
+
+Add `inset` for inner shadows.

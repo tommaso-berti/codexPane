@@ -11,11 +11,41 @@
       "slug": "react/virtual-dom",
       "order": 2,
       "items": [
-        { "id": "why-frequent-dom-updates-are-slow", "type": "subSection", "title": "Why frequent dom updates are slow", "slug": "react/virtual-dom#why-frequent-dom-updates-are-slow", "order": 1 },
-        { "id": "virtual-dom-in-react", "type": "subSection", "title": "Virtual dom in react", "slug": "react/virtual-dom#virtual-dom-in-react", "order": 2 },
-        { "id": "how-it-works", "type": "subSection", "title": "How it works", "slug": "react/virtual-dom#how-it-works", "order": 3 },
-        { "id": "summary", "type": "subSection", "title": "Summary", "slug": "react/virtual-dom#summary", "order": 4 },
-        { "id": "interactive-playground-diffing-and-keys", "type": "subSection", "title": "Interactive Playground: Diffing and Keys", "slug": "react/virtual-dom#interactive-playground-diffing-and-keys", "order": 5 }
+        {
+          "id": "why-frequent-dom-updates-are-slow",
+          "type": "subSection",
+          "title": "Why frequent dom updates are slow",
+          "slug": "react/virtual-dom#why-frequent-dom-updates-are-slow",
+          "order": 1
+        },
+        {
+          "id": "virtual-dom-in-react",
+          "type": "subSection",
+          "title": "Virtual dom in react",
+          "slug": "react/virtual-dom#virtual-dom-in-react",
+          "order": 2
+        },
+        {
+          "id": "how-it-works",
+          "type": "subSection",
+          "title": "How it works",
+          "slug": "react/virtual-dom#how-it-works",
+          "order": 3
+        },
+        {
+          "id": "summary",
+          "type": "subSection",
+          "title": "Summary",
+          "slug": "react/virtual-dom#summary",
+          "order": 4
+        },
+        {
+          "id": "interactive-playground-diffing-and-keys",
+          "type": "subSection",
+          "title": "Interactive Playground: Diffing and Keys",
+          "slug": "react/virtual-dom#interactive-playground-diffing-and-keys",
+          "order": 5
+        }
       ]
     },
     {
@@ -25,22 +55,118 @@
       "slug": "react/jsx",
       "order": 3,
       "items": [
-        { "id": "elements", "type": "subSection", "title": "Elements", "slug": "react/jsx#elements", "order": 1 },
-        { "id": "attributes", "type": "subSection", "title": "Attributes", "slug": "react/jsx#attributes", "order": 2 },
-        { "id": "classes", "type": "subSection", "title": "Classes", "slug": "react/jsx#classes", "order": 3 },
-        { "id": "self-closing-tags", "type": "subSection", "title": "Self closing tags", "slug": "react/jsx#self-closing-tags", "order": 4 },
-        { "id": "nested-jsx", "type": "subSection", "title": "Nested jsx", "slug": "react/jsx#nested-jsx", "order": 5 },
-        { "id": "rendering", "type": "subSection", "title": "Rendering", "slug": "react/jsx#rendering", "order": 6 },
-        { "id": "render-method", "type": "subSection", "title": "Render method", "slug": "react/jsx#render-method", "order": 7 },
-        { "id": "curly-braces", "type": "subSection", "title": "Curly braces", "slug": "react/jsx#curly-braces", "order": 8 },
-        { "id": "variable-attributes", "type": "subSection", "title": "Variable attributes", "slug": "react/jsx#variable-attributes", "order": 9 },
-        { "id": "event-listeners", "type": "subSection", "title": "Event listeners", "slug": "react/jsx#event-listeners", "order": 10 },
-        { "id": "conditionals-ternary-operator", "type": "subSection", "title": "Conditionals ternary operator", "slug": "react/jsx#conditionals-ternary-operator", "order": 11 },
-        { "id": "conditionals-and", "type": "subSection", "title": "Conditionals and", "slug": "react/jsx#conditionals-and", "order": 12 },
-        { "id": "map", "type": "subSection", "title": "Map", "slug": "react/jsx#map", "order": 13 },
-        { "id": "keys", "type": "subSection", "title": "Keys", "slug": "react/jsx#keys", "order": 14 },
-        { "id": "react-createelement", "type": "subSection", "title": "React createelement", "slug": "react/jsx#react-createelement", "order": 15 },
-        { "id": "interactive-playground-jsx-outcomes", "type": "subSection", "title": "Interactive Playground: JSX Outcomes", "slug": "react/jsx#interactive-playground-jsx-outcomes", "order": 16 }
+        {
+          "id": "elements",
+          "type": "subSection",
+          "title": "Elements",
+          "slug": "react/jsx#elements",
+          "order": 1
+        },
+        {
+          "id": "attributes",
+          "type": "subSection",
+          "title": "Attributes",
+          "slug": "react/jsx#attributes",
+          "order": 2
+        },
+        {
+          "id": "classes",
+          "type": "subSection",
+          "title": "Classes",
+          "slug": "react/jsx#classes",
+          "order": 3
+        },
+        {
+          "id": "self-closing-tags",
+          "type": "subSection",
+          "title": "Self closing tags",
+          "slug": "react/jsx#self-closing-tags",
+          "order": 4
+        },
+        {
+          "id": "nested-jsx",
+          "type": "subSection",
+          "title": "Nested jsx",
+          "slug": "react/jsx#nested-jsx",
+          "order": 5
+        },
+        {
+          "id": "rendering",
+          "type": "subSection",
+          "title": "Rendering",
+          "slug": "react/jsx#rendering",
+          "order": 6
+        },
+        {
+          "id": "render-method",
+          "type": "subSection",
+          "title": "Render method",
+          "slug": "react/jsx#render-method",
+          "order": 7
+        },
+        {
+          "id": "curly-braces",
+          "type": "subSection",
+          "title": "Curly braces",
+          "slug": "react/jsx#curly-braces",
+          "order": 8
+        },
+        {
+          "id": "variable-attributes",
+          "type": "subSection",
+          "title": "Variable attributes",
+          "slug": "react/jsx#variable-attributes",
+          "order": 9
+        },
+        {
+          "id": "event-listeners",
+          "type": "subSection",
+          "title": "Event listeners",
+          "slug": "react/jsx#event-listeners",
+          "order": 10
+        },
+        {
+          "id": "conditionals-ternary-operator",
+          "type": "subSection",
+          "title": "Conditionals ternary operator",
+          "slug": "react/jsx#conditionals-ternary-operator",
+          "order": 11
+        },
+        {
+          "id": "conditionals-and",
+          "type": "subSection",
+          "title": "Conditionals and",
+          "slug": "react/jsx#conditionals-and",
+          "order": 12
+        },
+        {
+          "id": "map",
+          "type": "subSection",
+          "title": "Map",
+          "slug": "react/jsx#map",
+          "order": 13
+        },
+        {
+          "id": "keys",
+          "type": "subSection",
+          "title": "Keys",
+          "slug": "react/jsx#keys",
+          "order": 14
+        },
+        {
+          "id": "react-createelement",
+          "type": "subSection",
+          "title": "React createelement",
+          "slug": "react/jsx#react-createelement",
+          "order": 15
+        },
+        {
+          "id": "interactive-playground-jsx-outcomes",
+          "type": "subSection",
+          "title": "Interactive Playground: JSX Outcomes",
+          "slug": "react/jsx#interactive-playground-jsx-outcomes",
+          "order": 16
+        }
       ]
     },
     {
@@ -50,18 +176,90 @@
       "slug": "react/react-components",
       "order": 4,
       "items": [
-        { "id": "import-react", "type": "subSection", "title": "Import react", "slug": "react/react-components#import-react", "order": 1 },
-        { "id": "import-reactdom", "type": "subSection", "title": "Import reactdom", "slug": "react/react-components#import-reactdom", "order": 2 },
-        { "id": "function-component", "type": "subSection", "title": "Function component", "slug": "react/react-components#function-component", "order": 3 },
-        { "id": "using-and-rendering-a-component", "type": "subSection", "title": "Using and rendering a component", "slug": "react/react-components#using-and-rendering-a-component", "order": 4 },
-        { "id": "use-multiline-jsx-in-a-component", "type": "subSection", "title": "Use multiline jsx in a component", "slug": "react/react-components#use-multiline-jsx-in-a-component", "order": 5 },
-        { "id": "use-a-variable-attribute-in-a-component", "type": "subSection", "title": "Use a variable attribute in a component", "slug": "react/react-components#use-a-variable-attribute-in-a-component", "order": 6 },
-        { "id": "putting-logic-in-a-function-component", "type": "subSection", "title": "Putting logic in a function component", "slug": "react/react-components#putting-logic-in-a-function-component", "order": 7 },
-        { "id": "use-a-conditional-in-a-function-component", "type": "subSection", "title": "Use a conditional in a function component", "slug": "react/react-components#use-a-conditional-in-a-function-component", "order": 8 },
-        { "id": "event-listener-and-event-handlers-in-a-component", "type": "subSection", "title": "Event listener and event handlers in a component", "slug": "react/react-components#event-listener-and-event-handlers-in-a-component", "order": 9 },
-        { "id": "returning-another-component", "type": "subSection", "title": "Returning another component", "slug": "react/react-components#returning-another-component", "order": 10 },
-        { "id": "apply-a-component-in-a-render-function", "type": "subSection", "title": "Apply a component in a render function", "slug": "react/react-components#apply-a-component-in-a-render-function", "order": 11 },
-        { "id": "interactive-playground-component-composition", "type": "subSection", "title": "Interactive Playground: Component Composition", "slug": "react/react-components#interactive-playground-component-composition", "order": 12 }
+        {
+          "id": "import-react",
+          "type": "subSection",
+          "title": "Import react",
+          "slug": "react/react-components#import-react",
+          "order": 1
+        },
+        {
+          "id": "import-reactdom",
+          "type": "subSection",
+          "title": "Import reactdom",
+          "slug": "react/react-components#import-reactdom",
+          "order": 2
+        },
+        {
+          "id": "function-component",
+          "type": "subSection",
+          "title": "Function component",
+          "slug": "react/react-components#function-component",
+          "order": 3
+        },
+        {
+          "id": "using-and-rendering-a-component",
+          "type": "subSection",
+          "title": "Using and rendering a component",
+          "slug": "react/react-components#using-and-rendering-a-component",
+          "order": 4
+        },
+        {
+          "id": "use-multiline-jsx-in-a-component",
+          "type": "subSection",
+          "title": "Use multiline jsx in a component",
+          "slug": "react/react-components#use-multiline-jsx-in-a-component",
+          "order": 5
+        },
+        {
+          "id": "use-a-variable-attribute-in-a-component",
+          "type": "subSection",
+          "title": "Use a variable attribute in a component",
+          "slug": "react/react-components#use-a-variable-attribute-in-a-component",
+          "order": 6
+        },
+        {
+          "id": "putting-logic-in-a-function-component",
+          "type": "subSection",
+          "title": "Putting logic in a function component",
+          "slug": "react/react-components#putting-logic-in-a-function-component",
+          "order": 7
+        },
+        {
+          "id": "use-a-conditional-in-a-function-component",
+          "type": "subSection",
+          "title": "Use a conditional in a function component",
+          "slug": "react/react-components#use-a-conditional-in-a-function-component",
+          "order": 8
+        },
+        {
+          "id": "event-listener-and-event-handlers-in-a-component",
+          "type": "subSection",
+          "title": "Event listener and event handlers in a component",
+          "slug": "react/react-components#event-listener-and-event-handlers-in-a-component",
+          "order": 9
+        },
+        {
+          "id": "returning-another-component",
+          "type": "subSection",
+          "title": "Returning another component",
+          "slug": "react/react-components#returning-another-component",
+          "order": 10
+        },
+        {
+          "id": "apply-a-component-in-a-render-function",
+          "type": "subSection",
+          "title": "Apply a component in a render function",
+          "slug": "react/react-components#apply-a-component-in-a-render-function",
+          "order": 11
+        },
+        {
+          "id": "interactive-playground-component-composition",
+          "type": "subSection",
+          "title": "Interactive Playground: Component Composition",
+          "slug": "react/react-components#interactive-playground-component-composition",
+          "order": 12
+        }
       ]
     },
     {
@@ -71,19 +269,97 @@
       "slug": "react/props",
       "order": 5,
       "items": [
-        { "id": "access-component-props", "type": "subSection", "title": "Access component props", "slug": "react/props#access-component-props", "order": 1 },
-        { "id": "pass-props-to-a-component", "type": "subSection", "title": "Pass props to a component", "slug": "react/props#pass-props-to-a-component", "order": 2 },
-        { "id": "render-component-props", "type": "subSection", "title": "Render component props", "slug": "react/props#render-component-props", "order": 3 },
-        { "id": "pass-props-from-component-to-component", "type": "subSection", "title": "Pass props from component to component", "slug": "react/props#pass-props-from-component-to-component", "order": 4 },
-        { "id": "render-different-ui-based-on-props", "type": "subSection", "title": "Render different ui based on props", "slug": "react/props#render-different-ui-based-on-props", "order": 5 },
-        { "id": "event-handler-in-a-function-component", "type": "subSection", "title": "Event handler in a function component", "slug": "react/props#event-handler-in-a-function-component", "order": 6 },
-        { "id": "pass-an-event-handler-as-a-prop", "type": "subSection", "title": "Pass an event handler as a prop", "slug": "react/props#pass-an-event-handler-as-a-prop", "order": 7 },
-        { "id": "receive-an-event-handler-as-a-prop", "type": "subSection", "title": "Receive an event handler as a prop", "slug": "react/props#receive-an-event-handler-as-a-prop", "order": 8 },
-        { "id": "naming-conventions", "type": "subSection", "title": "Naming conventions", "slug": "react/props#naming-conventions", "order": 9 },
-        { "id": "be-careful", "type": "subSection", "title": "Be careful", "slug": "react/props#be-careful", "order": 10 },
-        { "id": "props-children", "type": "subSection", "title": "Props children", "slug": "react/props#props-children", "order": 11 },
-        { "id": "default-values-for-props", "type": "subSection", "title": "Default values for props", "slug": "react/props#default-values-for-props", "order": 12 },
-        { "id": "interactive-playground-props-flow", "type": "subSection", "title": "Interactive Playground: Props Flow", "slug": "react/props#interactive-playground-props-flow", "order": 13 }
+        {
+          "id": "access-component-props",
+          "type": "subSection",
+          "title": "Access component props",
+          "slug": "react/props#access-component-props",
+          "order": 1
+        },
+        {
+          "id": "pass-props-to-a-component",
+          "type": "subSection",
+          "title": "Pass props to a component",
+          "slug": "react/props#pass-props-to-a-component",
+          "order": 2
+        },
+        {
+          "id": "render-component-props",
+          "type": "subSection",
+          "title": "Render component props",
+          "slug": "react/props#render-component-props",
+          "order": 3
+        },
+        {
+          "id": "pass-props-from-component-to-component",
+          "type": "subSection",
+          "title": "Pass props from component to component",
+          "slug": "react/props#pass-props-from-component-to-component",
+          "order": 4
+        },
+        {
+          "id": "render-different-ui-based-on-props",
+          "type": "subSection",
+          "title": "Render different ui based on props",
+          "slug": "react/props#render-different-ui-based-on-props",
+          "order": 5
+        },
+        {
+          "id": "event-handler-in-a-function-component",
+          "type": "subSection",
+          "title": "Event handler in a function component",
+          "slug": "react/props#event-handler-in-a-function-component",
+          "order": 6
+        },
+        {
+          "id": "pass-an-event-handler-as-a-prop",
+          "type": "subSection",
+          "title": "Pass an event handler as a prop",
+          "slug": "react/props#pass-an-event-handler-as-a-prop",
+          "order": 7
+        },
+        {
+          "id": "receive-an-event-handler-as-a-prop",
+          "type": "subSection",
+          "title": "Receive an event handler as a prop",
+          "slug": "react/props#receive-an-event-handler-as-a-prop",
+          "order": 8
+        },
+        {
+          "id": "naming-conventions",
+          "type": "subSection",
+          "title": "Naming conventions",
+          "slug": "react/props#naming-conventions",
+          "order": 9
+        },
+        {
+          "id": "be-careful",
+          "type": "subSection",
+          "title": "Be careful",
+          "slug": "react/props#be-careful",
+          "order": 10
+        },
+        {
+          "id": "props-children",
+          "type": "subSection",
+          "title": "Props children",
+          "slug": "react/props#props-children",
+          "order": 11
+        },
+        {
+          "id": "default-values-for-props",
+          "type": "subSection",
+          "title": "Default values for props",
+          "slug": "react/props#default-values-for-props",
+          "order": 12
+        },
+        {
+          "id": "interactive-playground-props-flow",
+          "type": "subSection",
+          "title": "Interactive Playground: Props Flow",
+          "slug": "react/props#interactive-playground-props-flow",
+          "order": 13
+        }
       ]
     },
     {
@@ -93,15 +369,69 @@
       "slug": "react/hooks-usestate",
       "order": 6,
       "items": [
-        { "id": "update-function-component-state", "type": "subSection", "title": "Update function component state", "slug": "react/hooks-usestate#update-function-component-state", "order": 1 },
-        { "id": "initialize-state", "type": "subSection", "title": "Initialize state", "slug": "react/hooks-usestate#initialize-state", "order": 2 },
-        { "id": "use-state-setter-outside-of-jsx", "type": "subSection", "title": "Use state setter outside of jsx", "slug": "react/hooks-usestate#use-state-setter-outside-of-jsx", "order": 3 },
-        { "id": "set-from-previous-state", "type": "subSection", "title": "Set from previous state", "slug": "react/hooks-usestate#set-from-previous-state", "order": 4 },
-        { "id": "arrays-in-state", "type": "subSection", "title": "Arrays in state", "slug": "react/hooks-usestate#arrays-in-state", "order": 5 },
-        { "id": "array-example", "type": "subSection", "title": "Array example", "slug": "react/hooks-usestate#array-example", "order": 6 },
-        { "id": "objects-in-state", "type": "subSection", "title": "Objects in state", "slug": "react/hooks-usestate#objects-in-state", "order": 7 },
-        { "id": "Separate hooks for separate states", "type": "subSection", "title": "Separate hooks for separate states", "slug": "react/hooks-usestate#separate-hooks-for-separate-states", "order": 8 },
-        { "id": "interactive-playground-usestate-update-shapes", "type": "subSection", "title": "Interactive Playground: useState Update Shapes", "slug": "react/hooks-usestate#interactive-playground-usestate-update-shapes", "order": 9 }
+        {
+          "id": "update-function-component-state",
+          "type": "subSection",
+          "title": "Update function component state",
+          "slug": "react/hooks-usestate#update-function-component-state",
+          "order": 1
+        },
+        {
+          "id": "initialize-state",
+          "type": "subSection",
+          "title": "Initialize state",
+          "slug": "react/hooks-usestate#initialize-state",
+          "order": 2
+        },
+        {
+          "id": "use-state-setter-outside-of-jsx",
+          "type": "subSection",
+          "title": "Use state setter outside of jsx",
+          "slug": "react/hooks-usestate#use-state-setter-outside-of-jsx",
+          "order": 3
+        },
+        {
+          "id": "set-from-previous-state",
+          "type": "subSection",
+          "title": "Set from previous state",
+          "slug": "react/hooks-usestate#set-from-previous-state",
+          "order": 4
+        },
+        {
+          "id": "arrays-in-state",
+          "type": "subSection",
+          "title": "Arrays in state",
+          "slug": "react/hooks-usestate#arrays-in-state",
+          "order": 5
+        },
+        {
+          "id": "array-example",
+          "type": "subSection",
+          "title": "Array example",
+          "slug": "react/hooks-usestate#array-example",
+          "order": 6
+        },
+        {
+          "id": "objects-in-state",
+          "type": "subSection",
+          "title": "Objects in state",
+          "slug": "react/hooks-usestate#objects-in-state",
+          "order": 7
+        },
+        {
+          "id": "Separate hooks for separate states",
+          "type": "subSection",
+          "title": "Separate hooks for separate states",
+          "slug": "react/hooks-usestate#separate-hooks-for-separate-states",
+          "order": 8
+        },
+        {
+          "id": "interactive-playground-usestate-update-shapes",
+          "type": "subSection",
+          "title": "Interactive Playground: useState Update Shapes",
+          "slug": "react/hooks-usestate#interactive-playground-usestate-update-shapes",
+          "order": 9
+        }
       ]
     },
     {
@@ -111,13 +441,55 @@
       "slug": "react/hooks-useeffect",
       "order": 7,
       "items": [
-        { "id": "function-component-effects", "type": "subSection", "title": "Function component effects", "slug": "react/hooks-useeffect#function-component-effects", "order": 1 },
-        { "id": "clean up effects", "type": "subSection", "title": "Clean up effects", "slug": "react/hooks-useeffect#clean-up-effects", "order": 2 },
-        { "id": "control when effects are called", "type": "subSection", "title": "Control when effects are called", "slug": "react/hooks-useeffect#control-when-effects-are-called", "order": 3 },
-        { "id": "fetch data", "type": "subSection", "title": "Fetch data", "slug": "react/hooks-useeffect#fetch-data", "order": 4 },
-        { "id": "rules of hooks", "type": "subSection", "title": "Rules of hooks", "slug": "react/hooks-useeffect#rules-of-hooks", "order": 5 },
-        { "id": "separate hooks for separate effects", "type": "subSection", "title": "Separate hooks for separate effects", "slug": "react/hooks-useeffect#separate-hooks-for-separate-effects", "order": 6 },
-        { "id": "interactive-playground-useeffect-timeline", "type": "subSection", "title": "Interactive Playground: useEffect Timeline", "slug": "react/hooks-useeffect#interactive-playground-useeffect-timeline", "order": 7 }
+        {
+          "id": "function-component-effects",
+          "type": "subSection",
+          "title": "Function component effects",
+          "slug": "react/hooks-useeffect#function-component-effects",
+          "order": 1
+        },
+        {
+          "id": "clean up effects",
+          "type": "subSection",
+          "title": "Clean up effects",
+          "slug": "react/hooks-useeffect#clean-up-effects",
+          "order": 2
+        },
+        {
+          "id": "control when effects are called",
+          "type": "subSection",
+          "title": "Control when effects are called",
+          "slug": "react/hooks-useeffect#control-when-effects-are-called",
+          "order": 3
+        },
+        {
+          "id": "fetch data",
+          "type": "subSection",
+          "title": "Fetch data",
+          "slug": "react/hooks-useeffect#fetch-data",
+          "order": 4
+        },
+        {
+          "id": "rules of hooks",
+          "type": "subSection",
+          "title": "Rules of hooks",
+          "slug": "react/hooks-useeffect#rules-of-hooks",
+          "order": 5
+        },
+        {
+          "id": "separate hooks for separate effects",
+          "type": "subSection",
+          "title": "Separate hooks for separate effects",
+          "slug": "react/hooks-useeffect#separate-hooks-for-separate-effects",
+          "order": 6
+        },
+        {
+          "id": "interactive-playground-useeffect-timeline",
+          "type": "subSection",
+          "title": "Interactive Playground: useEffect Timeline",
+          "slug": "react/hooks-useeffect#interactive-playground-useeffect-timeline",
+          "order": 7
+        }
       ]
     },
     {
@@ -127,11 +499,41 @@
       "slug": "react/programming-patterns",
       "order": 8,
       "items": [
-        { "id": "Separate container components", "type": "subSection", "title": "Separate container components", "slug": "react/programming-patterns#separate-container-components", "order": 1 },
-        { "id": "Create presentational component", "type": "subSection", "title": "Create presentational component", "slug": "react/programming-patterns#create-presentational-component", "order": 2 },
-        { "id": "Parent child and sibling sibling communication", "type": "subSection", "title": "Parent child and sibling sibling communication", "slug": "react/programming-patterns#parent-child-and-sibling-sibling-communication", "order": 3 },
-        { "id": "Render presentational components in container component", "type": "subSection", "title": "Render presentational components in container component", "slug": "react/programming-patterns#render-presentational-components-in-container-component", "order": 4 },
-        { "id": "interactive-playground-container-vs-presentational", "type": "subSection", "title": "Interactive Playground: Container vs Presentational", "slug": "react/programming-patterns#interactive-playground-container-vs-presentational", "order": 5 }
+        {
+          "id": "Separate container components",
+          "type": "subSection",
+          "title": "Separate container components",
+          "slug": "react/programming-patterns#separate-container-components",
+          "order": 1
+        },
+        {
+          "id": "Create presentational component",
+          "type": "subSection",
+          "title": "Create presentational component",
+          "slug": "react/programming-patterns#create-presentational-component",
+          "order": 2
+        },
+        {
+          "id": "Parent child and sibling sibling communication",
+          "type": "subSection",
+          "title": "Parent child and sibling sibling communication",
+          "slug": "react/programming-patterns#parent-child-and-sibling-sibling-communication",
+          "order": 3
+        },
+        {
+          "id": "Render presentational components in container component",
+          "type": "subSection",
+          "title": "Render presentational components in container component",
+          "slug": "react/programming-patterns#render-presentational-components-in-container-component",
+          "order": 4
+        },
+        {
+          "id": "interactive-playground-container-vs-presentational",
+          "type": "subSection",
+          "title": "Interactive Playground: Container vs Presentational",
+          "slug": "react/programming-patterns#interactive-playground-container-vs-presentational",
+          "order": 5
+        }
       ]
     },
     {
@@ -141,11 +543,41 @@
       "slug": "react/inline-styles-and-style-object-variables",
       "order": 9,
       "items": [
-        { "id": "inline-styles", "type": "subSection", "title": "Inline styles", "slug": "react/inline-styles-and-style-object-variables#inline-styles", "order": 1 },
-        { "id": "style-object-variables", "type": "subSection", "title": "Style object variables", "slug": "react/inline-styles-and-style-object-variables#style-object-variables", "order": 2 },
-        { "id": "style-syntax", "type": "subSection", "title": "Style syntax", "slug": "react/inline-styles-and-style-object-variables#style-syntax", "order": 3 },
-        { "id": "stylesheet-and-modules", "type": "subSection", "title": "Stylesheet and modules", "slug": "react/inline-styles-and-style-object-variables#stylesheet-and-modules", "order": 4 },
-        { "id": "interactive-playground-style-source-choices", "type": "subSection", "title": "Interactive Playground: Style Source Choices", "slug": "react/inline-styles-and-style-object-variables#interactive-playground-style-source-choices", "order": 5 }
+        {
+          "id": "inline-styles",
+          "type": "subSection",
+          "title": "Inline styles",
+          "slug": "react/inline-styles-and-style-object-variables#inline-styles",
+          "order": 1
+        },
+        {
+          "id": "style-object-variables",
+          "type": "subSection",
+          "title": "Style object variables",
+          "slug": "react/inline-styles-and-style-object-variables#style-object-variables",
+          "order": 2
+        },
+        {
+          "id": "style-syntax",
+          "type": "subSection",
+          "title": "Style syntax",
+          "slug": "react/inline-styles-and-style-object-variables#style-syntax",
+          "order": 3
+        },
+        {
+          "id": "stylesheet-and-modules",
+          "type": "subSection",
+          "title": "Stylesheet and modules",
+          "slug": "react/inline-styles-and-style-object-variables#stylesheet-and-modules",
+          "order": 4
+        },
+        {
+          "id": "interactive-playground-style-source-choices",
+          "type": "subSection",
+          "title": "Interactive Playground: Style Source Choices",
+          "slug": "react/inline-styles-and-style-object-variables#interactive-playground-style-source-choices",
+          "order": 5
+        }
       ]
     },
     {
@@ -155,12 +587,48 @@
       "slug": "react/react-forms",
       "order": 10,
       "items": [
-        { "id": "how-react-handles-form-state", "type": "subSection", "title": "How react handles form state", "slug": "react/react-forms#how-react-handles-form-state", "order": 1 },
-        { "id": "controlled-inputs", "type": "subSection", "title": "Controlled inputs", "slug": "react/react-forms#controlled-inputs", "order": 2 },
-        { "id": "controlled-vs-uncontrolled", "type": "subSection", "title": "Controlled vs uncontrolled", "slug": "react/react-forms#controlled-vs-uncontrolled", "order": 3 },
-        { "id": "form-submission", "type": "subSection", "title": "Form submission", "slug": "react/react-forms#form-submission", "order": 4 },
-        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "react/react-forms#examples", "order": 5 },
-        { "id": "interactive-playground-controlled-forms", "type": "subSection", "title": "Interactive Playground: Controlled Forms", "slug": "react/react-forms#interactive-playground-controlled-forms", "order": 6 }
+        {
+          "id": "how-react-handles-form-state",
+          "type": "subSection",
+          "title": "How react handles form state",
+          "slug": "react/react-forms#how-react-handles-form-state",
+          "order": 1
+        },
+        {
+          "id": "controlled-inputs",
+          "type": "subSection",
+          "title": "Controlled inputs",
+          "slug": "react/react-forms#controlled-inputs",
+          "order": 2
+        },
+        {
+          "id": "controlled-vs-uncontrolled",
+          "type": "subSection",
+          "title": "Controlled vs uncontrolled",
+          "slug": "react/react-forms#controlled-vs-uncontrolled",
+          "order": 3
+        },
+        {
+          "id": "form-submission",
+          "type": "subSection",
+          "title": "Form submission",
+          "slug": "react/react-forms#form-submission",
+          "order": 4
+        },
+        {
+          "id": "examples",
+          "type": "subSection",
+          "title": "Examples",
+          "slug": "react/react-forms#examples",
+          "order": 5
+        },
+        {
+          "id": "interactive-playground-controlled-forms",
+          "type": "subSection",
+          "title": "Interactive Playground: Controlled Forms",
+          "slug": "react/react-forms#interactive-playground-controlled-forms",
+          "order": 6
+        }
       ]
     },
     {
@@ -170,23 +638,125 @@
       "slug": "react/routing",
       "order": 11,
       "items": [
-        { "id": "what-is-routing", "type": "subSection", "title": "What is routing", "slug": "react/routing#what-is-routing", "order": 1 },
-        { "id": "installation", "type": "subSection", "title": "Installation", "slug": "react/routing#installation", "order": 2 },
-        { "id": "provide-a-router", "type": "subSection", "title": "Provide a router", "slug": "react/routing#provide-a-router", "order": 3 },
-        { "id": "basic-routing", "type": "subSection", "title": "Basic routing", "slug": "react/routing#basic-routing", "order": 4 },
-        { "id": "linking-to-routes", "type": "subSection", "title": "Linking to routes", "slug": "react/routing#linking-to-routes", "order": 5 },
-        { "id": "dynamic-routes", "type": "subSection", "title": "Dynamic routes", "slug": "react/routing#dynamic-routes", "order": 6 },
-        { "id": "use-params", "type": "subSection", "title": "Use params", "slug": "react/routing#use-params", "order": 7 },
-        { "id": "nested-routes", "type": "subSection", "title": "Nested routes", "slug": "react/routing#nested-routes", "order": 8 },
-        { "id": "outlet", "type": "subSection", "title": "Outlet", "slug": "react/routing#outlet", "order": 9 },
-        { "id": "index-route", "type": "subSection", "title": "Index route", "slug": "react/routing#index-route", "order": 10 },
-        { "id": "navigate", "type": "subSection", "title": "Navigate", "slug": "react/routing#navigate", "order": 11 },
-        { "id": "use-navigate", "type": "subSection", "title": "Use navigate", "slug": "react/routing#use-navigate", "order": 12 },
-        { "id": "history", "type": "subSection", "title": "History", "slug": "react/routing#history", "order": 13 },
-        { "id": "query-parameters", "type": "subSection", "title": "Query parameters", "slug": "react/routing#query-parameters", "order": 14 },
-        { "id": "use-search-params", "type": "subSection", "title": "Use search params", "slug": "react/routing#use-search-params", "order": 15 },
-        { "id": "create-search-params", "type": "subSection", "title": "Create search params", "slug": "react/routing#create-search-params", "order": 16 },
-        { "id": "interactive-playground-route-matching", "type": "subSection", "title": "Interactive Playground: Route Matching", "slug": "react/routing#interactive-playground-route-matching", "order": 17 }
+        {
+          "id": "what-is-routing",
+          "type": "subSection",
+          "title": "What is routing",
+          "slug": "react/routing#what-is-routing",
+          "order": 1
+        },
+        {
+          "id": "installation",
+          "type": "subSection",
+          "title": "Installation",
+          "slug": "react/routing#installation",
+          "order": 2
+        },
+        {
+          "id": "provide-a-router",
+          "type": "subSection",
+          "title": "Provide a router",
+          "slug": "react/routing#provide-a-router",
+          "order": 3
+        },
+        {
+          "id": "basic-routing",
+          "type": "subSection",
+          "title": "Basic routing",
+          "slug": "react/routing#basic-routing",
+          "order": 4
+        },
+        {
+          "id": "linking-to-routes",
+          "type": "subSection",
+          "title": "Linking to routes",
+          "slug": "react/routing#linking-to-routes",
+          "order": 5
+        },
+        {
+          "id": "dynamic-routes",
+          "type": "subSection",
+          "title": "Dynamic routes",
+          "slug": "react/routing#dynamic-routes",
+          "order": 6
+        },
+        {
+          "id": "use-params",
+          "type": "subSection",
+          "title": "Use params",
+          "slug": "react/routing#use-params",
+          "order": 7
+        },
+        {
+          "id": "nested-routes",
+          "type": "subSection",
+          "title": "Nested routes",
+          "slug": "react/routing#nested-routes",
+          "order": 8
+        },
+        {
+          "id": "outlet",
+          "type": "subSection",
+          "title": "Outlet",
+          "slug": "react/routing#outlet",
+          "order": 9
+        },
+        {
+          "id": "index-route",
+          "type": "subSection",
+          "title": "Index route",
+          "slug": "react/routing#index-route",
+          "order": 10
+        },
+        {
+          "id": "navigate",
+          "type": "subSection",
+          "title": "Navigate",
+          "slug": "react/routing#navigate",
+          "order": 11
+        },
+        {
+          "id": "use-navigate",
+          "type": "subSection",
+          "title": "Use navigate",
+          "slug": "react/routing#use-navigate",
+          "order": 12
+        },
+        {
+          "id": "history",
+          "type": "subSection",
+          "title": "History",
+          "slug": "react/routing#history",
+          "order": 13
+        },
+        {
+          "id": "query-parameters",
+          "type": "subSection",
+          "title": "Query parameters",
+          "slug": "react/routing#query-parameters",
+          "order": 14
+        },
+        {
+          "id": "use-search-params",
+          "type": "subSection",
+          "title": "Use search params",
+          "slug": "react/routing#use-search-params",
+          "order": 15
+        },
+        {
+          "id": "create-search-params",
+          "type": "subSection",
+          "title": "Create search params",
+          "slug": "react/routing#create-search-params",
+          "order": 16
+        },
+        {
+          "id": "interactive-playground-route-matching",
+          "type": "subSection",
+          "title": "Interactive Playground: Route Matching",
+          "slug": "react/routing#interactive-playground-route-matching",
+          "order": 17
+        }
       ]
     },
     {
@@ -196,14 +766,173 @@
       "slug": "react/creating-a-react-app-using-vite",
       "order": 12,
       "items": [
-        { "id": "getting-ready", "type": "subSection", "title": "Getting ready", "slug": "react/creating-a-react-app-using-vite#getting-ready", "order": 1 },
-        { "id": "setting-up-the-boilerplate-application", "type": "subSection", "title": "Setting up the boilerplate application", "slug": "react/creating-a-react-app-using-vite#setting-up-the-boilerplate-application", "order": 2 },
-        { "id": "recap", "type": "subSection", "title": "Recap", "slug": "react/creating-a-react-app-using-vite#recap", "order": 3 },
-        { "id": "react-app-structure", "type": "subSection", "title": "React app structure", "slug": "react/creating-a-react-app-using-vite#react-app-structure", "order": 4 },
-        { "id": "key-directories", "type": "subSection", "title": "Key directories", "slug": "react/creating-a-react-app-using-vite#key-directories", "order": 5 },
-        { "id": "key-files", "type": "subSection", "title": "Key files", "slug": "react/creating-a-react-app-using-vite#key-files", "order": 6 },
-        { "id": "starting-the-react-app-development-server", "type": "subSection", "title": "Starting the react app development server", "slug": "react/creating-a-react-app-using-vite#starting-the-react-app-development-server", "order": 7 },
-        { "id": "react-devtools-sandbox", "type": "subSection", "title": "React devtools sandbox", "slug": "react/creating-a-react-app-using-vite#react-devtools-sandbox", "order": 8 }
+        {
+          "id": "getting-ready",
+          "type": "subSection",
+          "title": "Getting ready",
+          "slug": "react/creating-a-react-app-using-vite#getting-ready",
+          "order": 1
+        },
+        {
+          "id": "setting-up-the-boilerplate-application",
+          "type": "subSection",
+          "title": "Setting up the boilerplate application",
+          "slug": "react/creating-a-react-app-using-vite#setting-up-the-boilerplate-application",
+          "order": 2
+        },
+        {
+          "id": "recap",
+          "type": "subSection",
+          "title": "Recap",
+          "slug": "react/creating-a-react-app-using-vite#recap",
+          "order": 3
+        },
+        {
+          "id": "react-app-structure",
+          "type": "subSection",
+          "title": "React app structure",
+          "slug": "react/creating-a-react-app-using-vite#react-app-structure",
+          "order": 4
+        },
+        {
+          "id": "key-directories",
+          "type": "subSection",
+          "title": "Key directories",
+          "slug": "react/creating-a-react-app-using-vite#key-directories",
+          "order": 5
+        },
+        {
+          "id": "key-files",
+          "type": "subSection",
+          "title": "Key files",
+          "slug": "react/creating-a-react-app-using-vite#key-files",
+          "order": 6
+        },
+        {
+          "id": "starting-the-react-app-development-server",
+          "type": "subSection",
+          "title": "Starting the react app development server",
+          "slug": "react/creating-a-react-app-using-vite#starting-the-react-app-development-server",
+          "order": 7
+        },
+        {
+          "id": "react-devtools-sandbox",
+          "type": "subSection",
+          "title": "React devtools sandbox",
+          "slug": "react/creating-a-react-app-using-vite#react-devtools-sandbox",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "react-methods",
+      "type": "section",
+      "title": "React methods",
+      "slug": "react/react-methods",
+      "order": 13,
+      "items": [
+        {
+          "id": "react-memo",
+          "type": "subSection",
+          "title": "React.memo",
+          "slug": "react/react-methods#reactmemo",
+          "order": 1
+        },
+        {
+          "id": "usememo",
+          "type": "subSection",
+          "title": "useMemo",
+          "slug": "react/react-methods#usememo",
+          "order": 2
+        },
+        {
+          "id": "usecallback",
+          "type": "subSection",
+          "title": "useCallback",
+          "slug": "react/react-methods#usecallback",
+          "order": 3
+        },
+        {
+          "id": "common-mistakes",
+          "type": "subSection",
+          "title": "Common mistakes",
+          "slug": "react/react-methods#common-mistakes",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "rest-api-endpoints",
+      "type": "section",
+      "title": "REST API Endpoints",
+      "slug": "react/rest-api-endpoints",
+      "order": 14,
+      "items": [
+        {
+          "id": "frontend-and-backend-split",
+          "type": "subSection",
+          "title": "Frontend and backend split",
+          "slug": "react/rest-api-endpoints#frontend-and-backend-split",
+          "order": 1
+        },
+        {
+          "id": "endpoint-design-baseline",
+          "type": "subSection",
+          "title": "Endpoint design baseline",
+          "slug": "react/rest-api-endpoints#endpoint-design-baseline",
+          "order": 2
+        },
+        {
+          "id": "api-module-pattern",
+          "type": "subSection",
+          "title": "API module pattern",
+          "slug": "react/rest-api-endpoints#api-module-pattern",
+          "order": 3
+        },
+        {
+          "id": "integrating-in-components",
+          "type": "subSection",
+          "title": "Integrating in components",
+          "slug": "react/rest-api-endpoints#integrating-in-components",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "react-testing-with-jest-and-enzyme",
+      "type": "section",
+      "title": "React testing with Jest and Enzyme",
+      "slug": "react/react-testing-with-jest-and-enzyme",
+      "order": 15,
+      "items": [
+        {
+          "id": "tooling-snapshot",
+          "type": "subSection",
+          "title": "Tooling snapshot",
+          "slug": "react/react-testing-with-jest-and-enzyme#tooling-snapshot",
+          "order": 1
+        },
+        {
+          "id": "install-legacy-enzyme-stack",
+          "type": "subSection",
+          "title": "Install (legacy Enzyme stack)",
+          "slug": "react/react-testing-with-jest-and-enzyme#install-legacy-enzyme-stack",
+          "order": 2
+        },
+        {
+          "id": "running-tests",
+          "type": "subSection",
+          "title": "Running tests",
+          "slug": "react/react-testing-with-jest-and-enzyme#running-tests",
+          "order": 3
+        },
+        {
+          "id": "migration-note",
+          "type": "subSection",
+          "title": "Migration note",
+          "slug": "react/react-testing-with-jest-and-enzyme#migration-note",
+          "order": 4
+        }
       ]
     }
   ]

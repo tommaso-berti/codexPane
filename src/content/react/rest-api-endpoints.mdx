@@ -1,0 +1,71 @@
+# REST API Endpoints
+
+This page explains how to consume REST endpoints from React while keeping the frontend clean and maintainable.
+
+## Frontend and backend split
+
+A common setup is:
+- `backend/` for Express routes and controllers
+- `frontend/` for React views and API client helpers
+
+Keep request code in a dedicated API layer instead of scattering `fetch` calls in UI components.
+
+## Endpoint design baseline
+
+Use predictable resources and HTTP verbs:
+- `GET /books`
+- `GET /books/:id`
+- `POST /books`
+- `PUT /books/:id`
+- `DELETE /books/:id`
+
+## API module pattern
+
+Create a small API client module under `src/api/`.
+
+~~~js
+// src/api/books.js
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export async function listBooks() {
+  const res = await fetch(`${BASE_URL}/books`);
+  if (!res.ok) throw new Error('Failed to load books');
+  return res.json();
+}
+
+export async function createBook(payload) {
+  const res = await fetch(`${BASE_URL}/books`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('Failed to create book');
+  return res.json();
+}
+~~~
+
+## Integrating in components
+
+~~~jsx
+import { useEffect, useState } from 'react';
+import { listBooks } from '../api/books';
+
+export default function BookList() {
+  const [books, setBooks] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    listBooks().then(setBooks).catch((e) => setError(e.message));
+  }, []);
+
+  if (error) return <p>{error}</p>;
+  return <ul>{books.map((b) => <li key={b.id}>{b.title}</li>)}</ul>;
+}
+~~~
+
+## Practical guidelines
+
+- Use environment variables for API base URLs.
+- Normalize response and error handling in the API layer.
+- Keep components focused on rendering and state transitions.
+- Add loading/empty/error states for each request-driven view.

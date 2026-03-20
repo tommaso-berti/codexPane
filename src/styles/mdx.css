@@ -116,6 +116,20 @@
     margin: 0.25rem 0;
 }
 
+.markdown-body :is(img, video) {
+    display: block;
+    width: auto;
+    max-width: min(100%, 860px);
+    height: auto;
+    max-height: 560px;
+    margin: 1rem auto;
+    border-radius: 10px;
+}
+
+.markdown-body video {
+    background: #000;
+}
+
 .markdown-body :target {
     animation: sectionPulse 1300ms ease;
     border-radius: 6px;

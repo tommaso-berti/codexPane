@@ -38,13 +38,17 @@ Because our operating system cannot anticipate the future needs of our processes
 As the size of these contiguous blocks of memory gets smaller, we say our memory is becoming more fragmented. Fragmentation is a main cause of memory inefficiency since fragmented memory stalls processes with large allocation needs.
 
 ## Virtual Memory and Privilege Separation
-![792971EC-8992-4ACA-8AF6-4C43FDD0729C](images/792971EC-8992-4ACA-8AF6-4C43FDD0729C.png) Like any other of the computer’s shared hardware resources, the OS must protect memory so that rogue processes cannot disrupt the computer’s (and the other processes running on it) ability to run. Consider that the operating system itself exists in memory.
+![792971EC-8992-4ACA-8AF6-4C43FDD0729C](images/792971EC-8992-4ACA-8AF6-4C43FDD0729C.png)
+
+Like any other of the computer’s shared hardware resources, the OS must protect memory so that rogue processes cannot disrupt the computer’s (and the other processes running on it) ability to run. Consider that the operating system itself exists in memory.
 The kernel space (the area where the core of the operating system is stored) is a section of memory just like the others, but the information stored here is absolutely essential for our computer to be able to run safely and securely (or really, run at all). Therefore, the information here must never be accessed by any user-space (or non-kernel) process.
 If a user-space process had access to kernel memory, it could corrupt the OS and take our whole computer down. A malevolent process with access to the kernel-space could try to steal information like passwords or, even worse, seize control of the computer and undertake rogue tasks. A cell-phone whose OS is hijacked is one thing, but consider the implications if the computer whose kernel is compromised is responsible for the functioning of an airplane or a nuclear plant.
 To protect processes from each other and to protect the kernel, we can use virtual memory. Virtualization gives the OS the ability to start a process, give it a certain amount of memory to work with, and have it seem to the process as though that is the only memory that exists.
 
 ## Paging
-## ![4D1E4E14-8A94-4F3A-BF31-79049BEDFB05](images/4D1E4E14-8A94-4F3A-BF31-79049BEDFB05.png) Recall that, as memory is allocated and freed using segmentation, the size of contiguous blocks of free memory tends to decrease. In other words, our memory becomes fragmented.
+![4D1E4E14-8A94-4F3A-BF31-79049BEDFB05](images/4D1E4E14-8A94-4F3A-BF31-79049BEDFB05.png)
+
+Recall that, as memory is allocated and freed using segmentation, the size of contiguous blocks of free memory tends to decrease. In other words, our memory becomes fragmented.
 A far more efficient memory management technique is called paging. Paging differs from segmentation in two fundamental respects.
 1. Process information is stored in equal-sized blocks of memory known as pages
 2. Pages belonging to a given process are stored at non-contiguous addresses in physical memory

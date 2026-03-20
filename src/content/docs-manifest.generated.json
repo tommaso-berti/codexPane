@@ -3268,6 +3268,27 @@
             }
           ],
           "order": 5
+        },
+        {
+          "id": "console-commands",
+          "title": "Console commands",
+          "slug": "node/console-commands",
+          "filePath": "../../content/node/console-commands.mdx",
+          "subSections": [
+            {
+              "id": "processargv",
+              "title": "process.argv",
+              "slug": "node/console-commands#processargv",
+              "order": 1
+            },
+            {
+              "id": "typical-use-case",
+              "title": "Typical use case",
+              "slug": "node/console-commands#typical-use-case",
+              "order": 2
+            }
+          ],
+          "order": 6
         }
       ],
       "order": 8
@@ -3580,22 +3601,16 @@
               "order": 5
             },
             {
-              "id": "4d1e4e14-8a94-4f3a-bf31-79049bedfb05-recall-that-as-memory-is-allocated-and-freed-using-segmentation-the-size-of-contiguous-blocks-of-free-memory-tends-to-decrease-in-other-words-our-memory-becomes-fragmented",
-              "title": "!4D1E4E14-8A94-4F3A-BF31-79049BEDFB05 Recall that, as memory is allocated and freed using segmentation, the size of contiguous blocks of free memory tends to decrease. In other words, our memory becomes fragmented.",
-              "slug": "operating-systems/memory-management#4d1e4e14-8a94-4f3a-bf31-79049bedfb05-recall-that-as-memory-is-allocated-and-freed-using-segmentation-the-size-of-contiguous-blocks-of-free-memory-tends-to-decrease-in-other-words-our-memory-becomes-fragmented",
-              "order": 6
-            },
-            {
               "id": "linkers-and-loaders",
               "title": "Linkers and Loaders",
               "slug": "operating-systems/memory-management#linkers-and-loaders",
-              "order": 7
+              "order": 6
             },
             {
               "id": "interactive-playground-paging-capacity-estimator",
               "title": "Interactive Playground: Paging Capacity Estimator",
               "slug": "operating-systems/memory-management#interactive-playground-paging-capacity-estimator",
-              "order": 8
+              "order": 7
             }
           ],
           "order": 7
@@ -6909,6 +6924,66 @@
             }
           ],
           "order": 14
+        },
+        {
+          "id": "animations-tips",
+          "title": "Animations tips",
+          "slug": "css/animations-tips",
+          "filePath": "../../content/css/animations-tips.mdx",
+          "subSections": [
+            {
+              "id": "slide-down-and-fade-in",
+              "title": "Slide-down and fade-in",
+              "slug": "css/animations-tips#slide-down-and-fade-in",
+              "order": 1
+            },
+            {
+              "id": "practical-guidance",
+              "title": "Practical guidance",
+              "slug": "css/animations-tips#practical-guidance",
+              "order": 2
+            },
+            {
+              "id": "when-to-avoid-motion",
+              "title": "When to avoid motion",
+              "slug": "css/animations-tips#when-to-avoid-motion",
+              "order": 3
+            }
+          ],
+          "order": 15
+        },
+        {
+          "id": "visual-rules-to-do",
+          "title": "Visual rules",
+          "slug": "css/visual-rules-to-do",
+          "filePath": "../../content/css/visual-rules-to-do.mdx",
+          "subSections": [
+            {
+              "id": "font-family",
+              "title": "Font family",
+              "slug": "css/visual-rules-to-do#font-family",
+              "order": 1
+            },
+            {
+              "id": "opacity",
+              "title": "Opacity",
+              "slug": "css/visual-rules-to-do#opacity",
+              "order": 2
+            },
+            {
+              "id": "background-image",
+              "title": "Background image",
+              "slug": "css/visual-rules-to-do#background-image",
+              "order": 3
+            },
+            {
+              "id": "box-shadow",
+              "title": "Box shadow",
+              "slug": "css/visual-rules-to-do#box-shadow",
+              "order": 4
+            }
+          ],
+          "order": 16
         }
       ],
       "order": 16
@@ -7590,6 +7665,45 @@
             }
           ],
           "order": 6
+        },
+        {
+          "id": "codespace-and-github-dev",
+          "title": "Codespace and GitHub.dev",
+          "slug": "github/codespace-and-github-dev",
+          "filePath": "../../content/github/codespace-and-github-dev.mdx",
+          "subSections": [
+            {
+              "id": "core-difference",
+              "title": "Core difference",
+              "slug": "github/codespace-and-github-dev#core-difference",
+              "order": 1
+            },
+            {
+              "id": "comparison",
+              "title": "Comparison",
+              "slug": "github/codespace-and-github-dev#comparison",
+              "order": 2
+            },
+            {
+              "id": "when-to-use-codespaces",
+              "title": "When to use Codespaces",
+              "slug": "github/codespace-and-github-dev#when-to-use-codespaces",
+              "order": 3
+            },
+            {
+              "id": "when-to-use-githubdev",
+              "title": "When to use GitHub.dev",
+              "slug": "github/codespace-and-github-dev#when-to-use-githubdev",
+              "order": 4
+            },
+            {
+              "id": "practical-workflow",
+              "title": "Practical workflow",
+              "slug": "github/codespace-and-github-dev#practical-workflow",
+              "order": 5
+            }
+          ],
+          "order": 7
         }
       ],
       "order": 19
@@ -9564,6 +9678,78 @@
             }
           ],
           "order": 15
+        },
+        {
+          "id": "libraries-and-runtime-utilities",
+          "title": "Libraries and runtime utilities",
+          "slug": "javascript/libraries-and-runtime-utilities",
+          "filePath": "../../content/javascript/libraries-and-runtime-utilities.mdx",
+          "subSections": [
+            {
+              "id": "uuid-generation",
+              "title": "UUID generation",
+              "slug": "javascript/libraries-and-runtime-utilities#uuid-generation",
+              "order": 1
+            },
+            {
+              "id": "node-fs-module-basics",
+              "title": "Node fs module basics",
+              "slug": "javascript/libraries-and-runtime-utilities#node-fs-module-basics",
+              "order": 2
+            },
+            {
+              "id": "choosing-external-vs-built-in-utilities",
+              "title": "Choosing external vs built-in utilities",
+              "slug": "javascript/libraries-and-runtime-utilities#choosing-external-vs-built-in-utilities",
+              "order": 3
+            }
+          ],
+          "order": 16
+        },
+        {
+          "id": "testing-foundations",
+          "title": "Testing foundations",
+          "slug": "javascript/testing-foundations",
+          "filePath": "../../content/javascript/testing-foundations.mdx",
+          "subSections": [
+            {
+              "id": "why-automated-testing",
+              "title": "Why automated testing",
+              "slug": "javascript/testing-foundations#why-automated-testing",
+              "order": 1
+            },
+            {
+              "id": "test-levels",
+              "title": "Test levels",
+              "slug": "javascript/testing-foundations#test-levels",
+              "order": 2
+            },
+            {
+              "id": "coverage-concepts",
+              "title": "Coverage concepts",
+              "slug": "javascript/testing-foundations#coverage-concepts",
+              "order": 3
+            },
+            {
+              "id": "mocking-strategy",
+              "title": "Mocking strategy",
+              "slug": "javascript/testing-foundations#mocking-strategy",
+              "order": 4
+            },
+            {
+              "id": "tdd-loop",
+              "title": "TDD loop",
+              "slug": "javascript/testing-foundations#tdd-loop",
+              "order": 5
+            },
+            {
+              "id": "jest-and-mocha-in-practice",
+              "title": "Jest and Mocha in practice",
+              "slug": "javascript/testing-foundations#jest-and-mocha-in-practice",
+              "order": 6
+            }
+          ],
+          "order": 17
         }
       ],
       "order": 22
@@ -9574,7 +9760,47 @@
       "icon": "CustomjQueryIcon",
       "slug": "jquery",
       "introPath": "../../content/jquery/introduction.mdx",
-      "sections": [],
+      "sections": [
+        {
+          "id": "manipulating-dom",
+          "title": "Manipulating DOM",
+          "slug": "jquery/manipulating-dom",
+          "filePath": "../../content/jquery/manipulating-dom.mdx",
+          "subSections": [
+            {
+              "id": "selecting-elements",
+              "title": "Selecting elements",
+              "slug": "jquery/manipulating-dom#selecting-elements",
+              "order": 1
+            },
+            {
+              "id": "reading-and-updating-content",
+              "title": "Reading and updating content",
+              "slug": "jquery/manipulating-dom#reading-and-updating-content",
+              "order": 2
+            },
+            {
+              "id": "classes-and-style-updates",
+              "title": "Classes and style updates",
+              "slug": "jquery/manipulating-dom#classes-and-style-updates",
+              "order": 3
+            },
+            {
+              "id": "dom-insertion-and-removal",
+              "title": "DOM insertion and removal",
+              "slug": "jquery/manipulating-dom#dom-insertion-and-removal",
+              "order": 4
+            },
+            {
+              "id": "event-handling",
+              "title": "Event handling",
+              "slug": "jquery/manipulating-dom#event-handling",
+              "order": 5
+            }
+          ],
+          "order": 1
+        }
+      ],
       "order": 23
     },
     {
@@ -10926,6 +11152,117 @@
             }
           ],
           "order": 11
+        },
+        {
+          "id": "react-methods",
+          "title": "React methods",
+          "slug": "react/react-methods",
+          "filePath": "../../content/react/react-methods.mdx",
+          "subSections": [
+            {
+              "id": "reactmemo",
+              "title": "React.memo",
+              "slug": "react/react-methods#reactmemo",
+              "order": 1
+            },
+            {
+              "id": "usememo",
+              "title": "useMemo",
+              "slug": "react/react-methods#usememo",
+              "order": 2
+            },
+            {
+              "id": "usecallback",
+              "title": "useCallback",
+              "slug": "react/react-methods#usecallback",
+              "order": 3
+            },
+            {
+              "id": "common-mistakes",
+              "title": "Common mistakes",
+              "slug": "react/react-methods#common-mistakes",
+              "order": 4
+            }
+          ],
+          "order": 12
+        },
+        {
+          "id": "rest-api-endpoints",
+          "title": "REST API Endpoints",
+          "slug": "react/rest-api-endpoints",
+          "filePath": "../../content/react/rest-api-endpoints.mdx",
+          "subSections": [
+            {
+              "id": "frontend-and-backend-split",
+              "title": "Frontend and backend split",
+              "slug": "react/rest-api-endpoints#frontend-and-backend-split",
+              "order": 1
+            },
+            {
+              "id": "endpoint-design-baseline",
+              "title": "Endpoint design baseline",
+              "slug": "react/rest-api-endpoints#endpoint-design-baseline",
+              "order": 2
+            },
+            {
+              "id": "api-module-pattern",
+              "title": "API module pattern",
+              "slug": "react/rest-api-endpoints#api-module-pattern",
+              "order": 3
+            },
+            {
+              "id": "integrating-in-components",
+              "title": "Integrating in components",
+              "slug": "react/rest-api-endpoints#integrating-in-components",
+              "order": 4
+            },
+            {
+              "id": "practical-guidelines",
+              "title": "Practical guidelines",
+              "slug": "react/rest-api-endpoints#practical-guidelines",
+              "order": 5
+            }
+          ],
+          "order": 13
+        },
+        {
+          "id": "react-testing-with-jest-and-enzyme",
+          "title": "React testing with Jest and Enzyme",
+          "slug": "react/react-testing-with-jest-and-enzyme",
+          "filePath": "../../content/react/react-testing-with-jest-and-enzyme.mdx",
+          "subSections": [
+            {
+              "id": "tooling-snapshot",
+              "title": "Tooling snapshot",
+              "slug": "react/react-testing-with-jest-and-enzyme#tooling-snapshot",
+              "order": 1
+            },
+            {
+              "id": "install-legacy-enzyme-stack",
+              "title": "Install (legacy Enzyme stack)",
+              "slug": "react/react-testing-with-jest-and-enzyme#install-legacy-enzyme-stack",
+              "order": 2
+            },
+            {
+              "id": "running-tests",
+              "title": "Running tests",
+              "slug": "react/react-testing-with-jest-and-enzyme#running-tests",
+              "order": 3
+            },
+            {
+              "id": "example-test-goal",
+              "title": "Example test goal",
+              "slug": "react/react-testing-with-jest-and-enzyme#example-test-goal",
+              "order": 4
+            },
+            {
+              "id": "migration-note",
+              "title": "Migration note",
+              "slug": "react/react-testing-with-jest-and-enzyme#migration-note",
+              "order": 5
+            }
+          ],
+          "order": 14
         }
       ],
       "order": 26

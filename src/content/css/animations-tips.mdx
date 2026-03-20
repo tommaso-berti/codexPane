@@ -1,0 +1,40 @@
+# Animations Tips
+
+Use transitions to improve perceived responsiveness without overwhelming the UI.
+
+## Slide-down and fade-in
+
+A common pattern combines vertical movement and opacity.
+
+~~~css
+.panel {
+  position: absolute;
+  top: -100%;
+  opacity: 0;
+  transition: top 0.5s ease-out, opacity 0.3s linear;
+}
+
+.panel:hover {
+  top: 0;
+  opacity: 1;
+}
+~~~
+
+## Practical guidance
+
+- Keep durations short (150ms to 500ms in most UI interactions).
+- Animate transform/opacity when possible for smoother rendering.
+- Avoid large layout-shifting animations on dense pages.
+
+## When to avoid motion
+
+Reduce or disable non-essential animations for accessibility-sensitive contexts.
+
+~~~css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+~~~

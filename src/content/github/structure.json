@@ -11,16 +11,76 @@
       "slug": "github/markdown",
       "order": 1,
       "items": [
-        { "id": "headings", "type": "subSection", "title": "Headings", "slug": "github/markdown#headings", "order": 1 },
-        { "id": "lists", "type": "subSection", "title": "Lists", "slug": "github/markdown#lists", "order": 2 },
-        { "id": "blockquotes", "type": "subSection", "title": "Blockquotes", "slug": "github/markdown#blockquotes", "order": 3 },
-        { "id": "inline-emphasis", "type": "subSection", "title": "Inline emphasis", "slug": "github/markdown#inline-emphasis", "order": 4 },
-        { "id": "html-in-markdown", "type": "subSection", "title": "Html in markdown", "slug": "github/markdown#html-in-markdown", "order": 5 },
-        { "id": "file-extensions", "type": "subSection", "title": "File extensions", "slug": "github/markdown#file-extensions", "order": 6 },
-        { "id": "parsers-and-tools", "type": "subSection", "title": "Parsers and tools", "slug": "github/markdown#parsers-and-tools", "order": 7 },
-        { "id": "readme-essentials", "type": "subSection", "title": "Readme essentials", "slug": "github/markdown#readme-essentials", "order": 8 },
-        { "id": "markdown-resources", "type": "subSection", "title": "Markdown resources", "slug": "github/markdown#markdown-resources", "order": 9 },
-        { "id": "interactive-playground-readme-structure", "type": "subSection", "title": "Interactive Playground: README Structure", "slug": "github/markdown#interactive-playground-readme-structure", "order": 10 }
+        {
+          "id": "headings",
+          "type": "subSection",
+          "title": "Headings",
+          "slug": "github/markdown#headings",
+          "order": 1
+        },
+        {
+          "id": "lists",
+          "type": "subSection",
+          "title": "Lists",
+          "slug": "github/markdown#lists",
+          "order": 2
+        },
+        {
+          "id": "blockquotes",
+          "type": "subSection",
+          "title": "Blockquotes",
+          "slug": "github/markdown#blockquotes",
+          "order": 3
+        },
+        {
+          "id": "inline-emphasis",
+          "type": "subSection",
+          "title": "Inline emphasis",
+          "slug": "github/markdown#inline-emphasis",
+          "order": 4
+        },
+        {
+          "id": "html-in-markdown",
+          "type": "subSection",
+          "title": "Html in markdown",
+          "slug": "github/markdown#html-in-markdown",
+          "order": 5
+        },
+        {
+          "id": "file-extensions",
+          "type": "subSection",
+          "title": "File extensions",
+          "slug": "github/markdown#file-extensions",
+          "order": 6
+        },
+        {
+          "id": "parsers-and-tools",
+          "type": "subSection",
+          "title": "Parsers and tools",
+          "slug": "github/markdown#parsers-and-tools",
+          "order": 7
+        },
+        {
+          "id": "readme-essentials",
+          "type": "subSection",
+          "title": "Readme essentials",
+          "slug": "github/markdown#readme-essentials",
+          "order": 8
+        },
+        {
+          "id": "markdown-resources",
+          "type": "subSection",
+          "title": "Markdown resources",
+          "slug": "github/markdown#markdown-resources",
+          "order": 9
+        },
+        {
+          "id": "interactive-playground-readme-structure",
+          "type": "subSection",
+          "title": "Interactive Playground: README Structure",
+          "slug": "github/markdown#interactive-playground-readme-structure",
+          "order": 10
+        }
       ]
     },
     {
@@ -30,14 +90,62 @@
       "slug": "github/git-flow",
       "order": 2,
       "items": [
-        { "id": "branching", "type": "subSection", "title": "Branching", "slug": "github/git-flow#branching", "order": 1 },
-        { "id": "clone", "type": "subSection", "title": "Clone", "slug": "github/git-flow#clone", "order": 2 },
-        { "id": "rebase", "type": "subSection", "title": "Rebase", "slug": "github/git-flow#rebase", "order": 3 },
-        { "id": "git-log-graph", "type": "subSection", "title": "Git log graph", "slug": "github/git-flow#git-log-graph", "order": 4 },
-        { "id": "gitignore", "type": "subSection", "title": "Gitignore", "slug": "github/git-flow#gitignore", "order": 5 },
-        { "id": "fork", "type": "subSection", "title": "Fork", "slug": "github/git-flow#fork", "order": 6 },
-        { "id": "repository-template", "type": "subSection", "title": "Repository template", "slug": "github/git-flow#repository-template", "order": 7 },
-        { "id": "interactive-playground-branch-workflow", "type": "subSection", "title": "Interactive Playground: Branch Workflow", "slug": "github/git-flow#interactive-playground-branch-workflow", "order": 8 }
+        {
+          "id": "branching",
+          "type": "subSection",
+          "title": "Branching",
+          "slug": "github/git-flow#branching",
+          "order": 1
+        },
+        {
+          "id": "clone",
+          "type": "subSection",
+          "title": "Clone",
+          "slug": "github/git-flow#clone",
+          "order": 2
+        },
+        {
+          "id": "rebase",
+          "type": "subSection",
+          "title": "Rebase",
+          "slug": "github/git-flow#rebase",
+          "order": 3
+        },
+        {
+          "id": "git-log-graph",
+          "type": "subSection",
+          "title": "Git log graph",
+          "slug": "github/git-flow#git-log-graph",
+          "order": 4
+        },
+        {
+          "id": "gitignore",
+          "type": "subSection",
+          "title": "Gitignore",
+          "slug": "github/git-flow#gitignore",
+          "order": 5
+        },
+        {
+          "id": "fork",
+          "type": "subSection",
+          "title": "Fork",
+          "slug": "github/git-flow#fork",
+          "order": 6
+        },
+        {
+          "id": "repository-template",
+          "type": "subSection",
+          "title": "Repository template",
+          "slug": "github/git-flow#repository-template",
+          "order": 7
+        },
+        {
+          "id": "interactive-playground-branch-workflow",
+          "type": "subSection",
+          "title": "Interactive Playground: Branch Workflow",
+          "slug": "github/git-flow#interactive-playground-branch-workflow",
+          "order": 8
+        }
       ]
     },
     {
@@ -47,19 +155,97 @@
       "slug": "github/github-cli",
       "order": 3,
       "items": [
-        { "id": "authentication", "type": "subSection", "title": "Authentication", "slug": "github/github-cli#authentication", "order": 1 },
-        { "id": "repositories", "type": "subSection", "title": "Repositories", "slug": "github/github-cli#repositories", "order": 2 },
-        { "id": "issues", "type": "subSection", "title": "Issues", "slug": "github/github-cli#issues", "order": 3 },
-        { "id": "pull-requests", "type": "subSection", "title": "Pull requests", "slug": "github/github-cli#pull-requests", "order": 4 },
-        { "id": "actions", "type": "subSection", "title": "Actions", "slug": "github/github-cli#actions", "order": 5 },
-        { "id": "releases", "type": "subSection", "title": "Releases", "slug": "github/github-cli#releases", "order": 6 },
-        { "id": "codespaces", "type": "subSection", "title": "Codespaces", "slug": "github/github-cli#codespaces", "order": 7 },
-        { "id": "gists", "type": "subSection", "title": "Gists", "slug": "github/github-cli#gists", "order": 8 },
-        { "id": "aliases", "type": "subSection", "title": "Aliases", "slug": "github/github-cli#aliases", "order": 9 },
-        { "id": "configuration", "type": "subSection", "title": "Configuration", "slug": "github/github-cli#configuration", "order": 10 },
-        { "id": "tips-and-tricks", "type": "subSection", "title": "Tips and tricks", "slug": "github/github-cli#tips-and-tricks", "order": 11 },
-        { "id": "cli-resources", "type": "subSection", "title": "CLI Resources", "slug": "github/github-cli#cli-resources", "order": 12 },
-        { "id": "interactive-playground-gh-command-builder", "type": "subSection", "title": "Interactive Playground: GH Command Builder", "slug": "github/github-cli#interactive-playground-gh-command-builder", "order": 13 }
+        {
+          "id": "authentication",
+          "type": "subSection",
+          "title": "Authentication",
+          "slug": "github/github-cli#authentication",
+          "order": 1
+        },
+        {
+          "id": "repositories",
+          "type": "subSection",
+          "title": "Repositories",
+          "slug": "github/github-cli#repositories",
+          "order": 2
+        },
+        {
+          "id": "issues",
+          "type": "subSection",
+          "title": "Issues",
+          "slug": "github/github-cli#issues",
+          "order": 3
+        },
+        {
+          "id": "pull-requests",
+          "type": "subSection",
+          "title": "Pull requests",
+          "slug": "github/github-cli#pull-requests",
+          "order": 4
+        },
+        {
+          "id": "actions",
+          "type": "subSection",
+          "title": "Actions",
+          "slug": "github/github-cli#actions",
+          "order": 5
+        },
+        {
+          "id": "releases",
+          "type": "subSection",
+          "title": "Releases",
+          "slug": "github/github-cli#releases",
+          "order": 6
+        },
+        {
+          "id": "codespaces",
+          "type": "subSection",
+          "title": "Codespaces",
+          "slug": "github/github-cli#codespaces",
+          "order": 7
+        },
+        {
+          "id": "gists",
+          "type": "subSection",
+          "title": "Gists",
+          "slug": "github/github-cli#gists",
+          "order": 8
+        },
+        {
+          "id": "aliases",
+          "type": "subSection",
+          "title": "Aliases",
+          "slug": "github/github-cli#aliases",
+          "order": 9
+        },
+        {
+          "id": "configuration",
+          "type": "subSection",
+          "title": "Configuration",
+          "slug": "github/github-cli#configuration",
+          "order": 10
+        },
+        {
+          "id": "tips-and-tricks",
+          "type": "subSection",
+          "title": "Tips and tricks",
+          "slug": "github/github-cli#tips-and-tricks",
+          "order": 11
+        },
+        {
+          "id": "cli-resources",
+          "type": "subSection",
+          "title": "CLI Resources",
+          "slug": "github/github-cli#cli-resources",
+          "order": 12
+        },
+        {
+          "id": "interactive-playground-gh-command-builder",
+          "type": "subSection",
+          "title": "Interactive Playground: GH Command Builder",
+          "slug": "github/github-cli#interactive-playground-gh-command-builder",
+          "order": 13
+        }
       ]
     },
     {
@@ -69,13 +255,55 @@
       "slug": "github/github-actions-and-automated-testing",
       "order": 4,
       "items": [
-        { "id": "when-to-use-github-actions", "type": "subSection", "title": "When to use github actions", "slug": "github/github-actions-and-automated-testing#when-to-use-github-actions", "order": 2 },
-        { "id": "workflow-anatomy", "type": "subSection", "title": "Workflow anatomy", "slug": "github/github-actions-and-automated-testing#workflow-anatomy", "order": 3 },
-        { "id": "tutorial-add-automated-tests", "type": "subSection", "title": "Tutorial add automated tests", "slug": "github/github-actions-and-automated-testing#tutorial-add-automated-tests", "order": 4 },
-        { "id": "tutorial-simple-workflow", "type": "subSection", "title": "Tutorial simple workflow", "slug": "github/github-actions-and-automated-testing#tutorial-simple-workflow", "order": 5 },
-        { "id": "tips-and-troubleshooting", "type": "subSection", "title": "Tips and troubleshooting", "slug": "github/github-actions-and-automated-testing#tips-and-troubleshooting", "order": 6 },
-        { "id": "actions-resources", "type": "subSection", "title": "Actions resources", "slug": "github/github-actions-and-automated-testing#actions-resources", "order": 7 },
-        { "id": "interactive-playground-workflow-triggers", "type": "subSection", "title": "Interactive Playground: Workflow Triggers", "slug": "github/github-actions-and-automated-testing#interactive-playground-workflow-triggers", "order": 8 }
+        {
+          "id": "when-to-use-github-actions",
+          "type": "subSection",
+          "title": "When to use github actions",
+          "slug": "github/github-actions-and-automated-testing#when-to-use-github-actions",
+          "order": 2
+        },
+        {
+          "id": "workflow-anatomy",
+          "type": "subSection",
+          "title": "Workflow anatomy",
+          "slug": "github/github-actions-and-automated-testing#workflow-anatomy",
+          "order": 3
+        },
+        {
+          "id": "tutorial-add-automated-tests",
+          "type": "subSection",
+          "title": "Tutorial add automated tests",
+          "slug": "github/github-actions-and-automated-testing#tutorial-add-automated-tests",
+          "order": 4
+        },
+        {
+          "id": "tutorial-simple-workflow",
+          "type": "subSection",
+          "title": "Tutorial simple workflow",
+          "slug": "github/github-actions-and-automated-testing#tutorial-simple-workflow",
+          "order": 5
+        },
+        {
+          "id": "tips-and-troubleshooting",
+          "type": "subSection",
+          "title": "Tips and troubleshooting",
+          "slug": "github/github-actions-and-automated-testing#tips-and-troubleshooting",
+          "order": 6
+        },
+        {
+          "id": "actions-resources",
+          "type": "subSection",
+          "title": "Actions resources",
+          "slug": "github/github-actions-and-automated-testing#actions-resources",
+          "order": 7
+        },
+        {
+          "id": "interactive-playground-workflow-triggers",
+          "type": "subSection",
+          "title": "Interactive Playground: Workflow Triggers",
+          "slug": "github/github-actions-and-automated-testing#interactive-playground-workflow-triggers",
+          "order": 8
+        }
       ]
     },
     {
@@ -85,15 +313,69 @@
       "slug": "github/github-pages",
       "order": 5,
       "items": [
-        { "id": "types-of-sites", "type": "subSection", "title": "Types of sites", "slug": "github/github-pages#types-of-sites", "order": 2 },
-        { "id": "quick-start", "type": "subSection", "title": "Quick start", "slug": "github/github-pages#quick-start", "order": 3 },
-        { "id": "jekyll-basics", "type": "subSection", "title": "Jekyll basics", "slug": "github/github-pages#jekyll-basics", "order": 4 },
-        { "id": "custom-domain-and-https", "type": "subSection", "title": "Custom domain and https", "slug": "github/github-pages#custom-domain-and-https", "order": 5 },
-        { "id": "project-configuration", "type": "subSection", "title": "Project configuration", "slug": "github/github-pages#project-configuration", "order": 6 },
-        { "id": "deploy-with-actions", "type": "subSection", "title": "Deploy with actions", "slug": "github/github-pages#deploy-with-actions", "order": 7 },
-        { "id": "spa-routing-and-404", "type": "subSection", "title": "Spa routing and 404", "slug": "github/github-pages#spa-routing-and-404", "order": 8 },
-        { "id": "troubleshooting", "type": "subSection", "title": "Troubleshooting", "slug": "github/github-pages#troubleshooting", "order": 9 },
-        { "id": "github-resources", "type": "subSection", "title": "GitHub resources", "slug": "github/github-pages#github-resources", "order": 10 }
+        {
+          "id": "types-of-sites",
+          "type": "subSection",
+          "title": "Types of sites",
+          "slug": "github/github-pages#types-of-sites",
+          "order": 2
+        },
+        {
+          "id": "quick-start",
+          "type": "subSection",
+          "title": "Quick start",
+          "slug": "github/github-pages#quick-start",
+          "order": 3
+        },
+        {
+          "id": "jekyll-basics",
+          "type": "subSection",
+          "title": "Jekyll basics",
+          "slug": "github/github-pages#jekyll-basics",
+          "order": 4
+        },
+        {
+          "id": "custom-domain-and-https",
+          "type": "subSection",
+          "title": "Custom domain and https",
+          "slug": "github/github-pages#custom-domain-and-https",
+          "order": 5
+        },
+        {
+          "id": "project-configuration",
+          "type": "subSection",
+          "title": "Project configuration",
+          "slug": "github/github-pages#project-configuration",
+          "order": 6
+        },
+        {
+          "id": "deploy-with-actions",
+          "type": "subSection",
+          "title": "Deploy with actions",
+          "slug": "github/github-pages#deploy-with-actions",
+          "order": 7
+        },
+        {
+          "id": "spa-routing-and-404",
+          "type": "subSection",
+          "title": "Spa routing and 404",
+          "slug": "github/github-pages#spa-routing-and-404",
+          "order": 8
+        },
+        {
+          "id": "troubleshooting",
+          "type": "subSection",
+          "title": "Troubleshooting",
+          "slug": "github/github-pages#troubleshooting",
+          "order": 9
+        },
+        {
+          "id": "github-resources",
+          "type": "subSection",
+          "title": "GitHub resources",
+          "slug": "github/github-pages#github-resources",
+          "order": 10
+        }
       ]
     },
     {
@@ -103,10 +385,71 @@
       "slug": "github/commit-guidelines",
       "order": 6,
       "items": [
-        { "id": "prefix", "type": "subSection", "title": "Prefix", "slug": "github/commit-guidelines#prefix", "order": 1 },
-        { "id": "usage", "type": "subSection", "title": "Usage", "slug": "github/commit-guidelines#usage", "order": 2 },
-        { "id": "examples", "type": "subSection", "title": "Examples", "slug": "github/commit-guidelines#examples", "order": 3 },
-        { "id": "close-issue-with-commit", "type": "subSection", "title": "Close issue with commit", "slug": "github/commit-guidelines#close-issue-with-commit", "order": 4 }
+        {
+          "id": "prefix",
+          "type": "subSection",
+          "title": "Prefix",
+          "slug": "github/commit-guidelines#prefix",
+          "order": 1
+        },
+        {
+          "id": "usage",
+          "type": "subSection",
+          "title": "Usage",
+          "slug": "github/commit-guidelines#usage",
+          "order": 2
+        },
+        {
+          "id": "examples",
+          "type": "subSection",
+          "title": "Examples",
+          "slug": "github/commit-guidelines#examples",
+          "order": 3
+        },
+        {
+          "id": "close-issue-with-commit",
+          "type": "subSection",
+          "title": "Close issue with commit",
+          "slug": "github/commit-guidelines#close-issue-with-commit",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "codespace-and-github-dev",
+      "type": "section",
+      "title": "Codespace and GitHub.dev",
+      "slug": "github/codespace-and-github-dev",
+      "order": 7,
+      "items": [
+        {
+          "id": "core-difference",
+          "type": "subSection",
+          "title": "Core difference",
+          "slug": "github/codespace-and-github-dev#core-difference",
+          "order": 1
+        },
+        {
+          "id": "comparison",
+          "type": "subSection",
+          "title": "Comparison",
+          "slug": "github/codespace-and-github-dev#comparison",
+          "order": 2
+        },
+        {
+          "id": "when-to-use-codespaces",
+          "type": "subSection",
+          "title": "When to use Codespaces",
+          "slug": "github/codespace-and-github-dev#when-to-use-codespaces",
+          "order": 3
+        },
+        {
+          "id": "when-to-use-githubdev",
+          "type": "subSection",
+          "title": "When to use GitHub.dev",
+          "slug": "github/codespace-and-github-dev#when-to-use-githubdev",
+          "order": 4
+        }
       ]
     }
   ]

@@ -181,10 +181,25 @@ export default function DocContent({ status, Content, error }) {
             <Content
                 components={(() => {
                     let firstH1Skipped = false;
+                    const renderImage = ({ src = '', alt = '', ...props }) => {
+                        if (typeof src !== 'string') {
+                            return <img src={src} alt={alt} {...props} />;
+                        }
+
+                        // Resolve markdown-local image refs (images/...) against the active docs topic.
+                        // MDX emits plain <img src="...">, so we map them to a static public path.
+                        if (docsParam && /^(?:\.\/)?images\//.test(src)) {
+                            const filename = src.replace(/^(?:\.\/)?images\//, '');
+                            return <img src={`/content-images/${docsParam}/${filename}`} alt={alt} {...props} />;
+                        }
+
+                        return <img src={src} alt={alt} {...props} />;
+                    };
                     return {
                         pre: PreWithCopy,
                         table: MdxTable,
                         blockquote: MdxBlockquote,
+                        img: renderImage,
                         h1: (props) => {
                             if (pageMeta.hasDocs && !firstH1Skipped) {
                                 firstH1Skipped = true;

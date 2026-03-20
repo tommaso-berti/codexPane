@@ -6,7 +6,9 @@ order: 8
 # Heaps
 
 Heaps are another variation of the tree data structure and are adept at keeping track of the maximum or minimum value held within, referred to as max-heaps and min-heaps, respectively. Specifically, heaps are a type of binary tree, since each child node is either greater or less than its parent (depending on if it's a max-heap or min-heap). They are efficient for accessing the root value, which will either be the max or min (again, depending on the type of heap) and inserting new values.
-![33570006-05BE-428E-9998-7F6D0CA60884](images/33570006-05BE-428E-9998-7F6D0CA60884.png) You can manage this problem using a **priority queue** to ensure you're always working on the most pressing assignment and heaps are commonly used to create a priority queue.
+![33570006-05BE-428E-9998-7F6D0CA60884](images/33570006-05BE-428E-9998-7F6D0CA60884.png)
+
+You can manage this problem using a **priority queue** to ensure you're always working on the most pressing assignment and heaps are commonly used to create a priority queue.
 Heaps tracking the maximum or minimum value are *max-heaps* or *min-heaps*. We will focus on min-heaps, but the concepts for a max-heap are nearly identical.
 Think of the min-heap as a [binary](https://en.wikipedia.org/wiki/Special:Search?search=binary) tree with two qualities:
 * The root is the **minimum value** of the dataset.
@@ -28,7 +30,9 @@ Conceptually, the tree representation is beneficial for understanding. Practical
 Notice how by filling the tree from left to right; we're leaving no gaps in the array. The location of each child or parent derives from a formula using the [index](https://en.wikipedia.org/wiki/Special:Search?search=index).
 * left child: (index * 2) + 1
 * right child: (index * 2) + 2
-* parent: (index - 1) / 2 - **not used on the root!**![B702489B-91FC-4247-BE25-915AD7B69D36](images/B702489B-91FC-4247-BE25-915AD7B69D36.png)
+* parent: (index - 1) / 2 - **not used on the root!**
+
+![B702489B-91FC-4247-BE25-915AD7B69D36](images/B702489B-91FC-4247-BE25-915AD7B69D36.png)
 ## Adding an Element: Heapify Up
 Sometimes you will add an element to the heap that violates the heap's essential properties.
 We therefore need to restore the fundamental heap properties. This restoration is known as *heapify* or *heapifying*. We're adding an element to the bottom of the tree and moving upwards, so we're *heapifying up*.

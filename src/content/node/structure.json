@@ -216,6 +216,36 @@
           "order": 7
         }
       ]
+    },
+    {
+      "id": "console-commands",
+      "type": "section",
+      "title": "Console commands",
+      "slug": "node/console-commands",
+      "order": 6,
+      "items": [
+        {
+          "id": "processargv",
+          "type": "subSection",
+          "title": "process.argv",
+          "slug": "node/console-commands#processargv",
+          "order": 1
+        },
+        {
+          "id": "accessing-one-argument",
+          "type": "subSection",
+          "title": "Accessing one argument",
+          "slug": "node/console-commands#accessing-one-argument",
+          "order": 2
+        },
+        {
+          "id": "typical-use-case",
+          "type": "subSection",
+          "title": "Typical use case",
+          "slug": "node/console-commands#typical-use-case",
+          "order": 3
+        }
+      ]
     }
   ]
 }

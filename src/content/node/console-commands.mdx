@@ -1,0 +1,36 @@
+---
+title: Console commands
+order: 6
+---
+
+# Console commands
+
+## process.argv
+
+`process.argv` exposes command-line arguments passed to a Node program.
+
+~~~bash
+node celsius-to-fahrenheit.js 100
+~~~
+
+~~~js
+console.log(process.argv);
+// ['node', 'celsius-to-fahrenheit.js', '100']
+~~~
+
+### Accessing one argument
+
+~~~js
+const value = process.argv[2];
+console.log(value); // '100'
+~~~
+
+## Typical use case
+
+Use CLI arguments to control script behavior without editing source code.
+
+~~~js
+const celsius = Number(process.argv[2]);
+const fahrenheit = (celsius * 9) / 5 + 32;
+console.log(fahrenheit);
+~~~

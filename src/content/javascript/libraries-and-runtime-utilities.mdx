@@ -1,0 +1,38 @@
+# Libraries and Runtime Utilities
+
+This section covers practical utilities often used in real JavaScript projects.
+
+## UUID generation
+
+Use UUIDs for stable, collision-resistant identifiers.
+
+~~~js
+import { v4 as uuidv4 } from 'uuid';
+
+const id = uuidv4();
+console.log(id);
+~~~
+
+Use cases:
+- client-side temporary IDs
+- correlation IDs for logs
+- unique keys before persistence
+
+## Node fs module basics
+
+The Node `fs` module handles file system operations.
+
+~~~js
+import { readFile, writeFile } from 'node:fs/promises';
+
+const source = await readFile('./input.txt', 'utf8');
+await writeFile('./output.txt', source.toUpperCase(), 'utf8');
+~~~
+
+Keep file I/O async in server code to avoid blocking the event loop.
+
+## Choosing external vs built-in utilities
+
+- Prefer built-ins (`fs`, `path`, `url`) when they solve the problem.
+- Add third-party packages (`uuid`, validators, parsers) when they reduce risk and maintenance cost.
+- Keep dependency surface small and audited.
