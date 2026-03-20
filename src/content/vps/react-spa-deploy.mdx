@@ -31,8 +31,7 @@ This guide builds and deploys a **React** single-page application (SPA), created
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y nginx git curl ufw
 
-# Node.js LTS (example: Node 20)
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+# Node.js LTS (example: Node 20) curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Firewall
@@ -151,6 +150,7 @@ setup_sudoers_for_nginx() {
   [[ -z "$DEPLOY_USER" ]] && return 0
   local NGINX_BIN SYSTEMCTL_BIN VISUDO SUDOERS_FILE
   NGINX_BIN="$(command -v nginx || echo /usr/sbin/nginx)"
+| --- | --- | --- |
   SYSTEMCTL_BIN="$(command -v systemctl || echo /usr/bin/systemctl)"
   VISUDO="$(command -v visudo || echo /usr/sbin/visudo)"
   SUDOERS_FILE="/etc/sudoers.d/${DEPLOY_USER}-nginx"
@@ -208,8 +208,7 @@ chmod -R a+rX "$BUILD_DIR"
 # Logs must be writable by nginx
 chown -R www-data:www-data "$LOG_DIR"
 
-# If a deploy user is provided, give them ownership of the whole repo (future builds as that user)
-if [[ -n "$DEPLOY_USER" ]]; then
+# If a deploy user is provided, give them ownership of the whole repo (future builds as that user) if [[ -n "$DEPLOY_USER" ]]; then
   chown -R "$DEPLOY_USER":"$DEPLOY_USER" "$ROOT_DIR"
 fi
 
@@ -231,11 +230,9 @@ server {
 }
 EOF
 
-# Disable default site (if present)
-rm -f /etc/nginx/sites-enabled/default || true
+# Disable default site (if present) rm -f /etc/nginx/sites-enabled/default || true
 
-# Symlink the site (lowercase slug)
-ln -sfn "$CONF_FILE" "/etc/nginx/sites-enabled/${PROJECT_SLUG}.conf"
+# Symlink the site (lowercase slug) ln -sfn "$CONF_FILE" "/etc/nginx/sites-enabled/${PROJECT_SLUG}.conf"
 
 # If nginx.conf had a hard-coded include, switch it to wildcard once
 if grep -q '/etc/nginx/sites-enabled/codexPane.conf' /etc/nginx/nginx.conf 2>/dev/null; then
@@ -282,8 +279,7 @@ ssh-copy-id -i ~/.ssh/id_rsa_github.pub <deploy-user>@<VPS-IP>
 **Workflow** `.github/workflows/deploy.yml`:
 
 ~~~yaml
-name: Deploy React (Vite build on VPS)
-on:
+name: Deploy React (Vite build on VPS) on:
   push:
     branches: [ main ]
 concurrency: deploy-react
@@ -292,8 +288,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Build & deploy on VPS (Vite)
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Build & deploy on VPS (Vite) uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -301,8 +296,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            # 1) Vai nella cartella del progetto (gestisci maiuscole)
-            cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
+            # 1) Vai nella cartella del progetto (gestisci maiuscole) cd /srv/www/react-apps/codexpane || cd /srv/www/react-apps/codexPane
 
             # 2) Allinea il repo in modo pulito
             git fetch --all --prune
@@ -311,10 +305,10 @@ jobs:
 
             # 3) (facoltativo) stampa versioni per debug
             node -v || true
+| --- | --- | --- |
             npm -v || true
 
-            # 4) Installa e builda (Vite -> dist)
-            npm ci --no-audit --no-fund || npm install
+            # 4) Installa e builda (Vite -> dist) npm ci --no-audit --no-fund || npm install
             npm run build
 
             # 5) Permessi cartella dist e reload NGINX
@@ -331,8 +325,7 @@ jobs:
 **Workflow** `.github/workflows/deploy.yml`:
 
 ~~~yaml
-name: Deploy React (build in CI)
-on:
+name: Deploy React (build in CI) on:
   push:
     branches: [ main ]
 concurrency: deploy-react
@@ -369,8 +362,7 @@ jobs:
             set -e
             cd /srv/www/react-apps/<app-name>
             mkdir -p releases
-            TS=$(date +%Y%m%d%H%M%S)
-            mkdir "releases/$TS"
+            TS=$(date +%Y%m%d%H%M%S) mkdir "releases/$TS"
             tar -xzf build.tgz -C "releases/$TS"
             ln -sfn "releases/$TS" build
             chown -R www-data:www-data "releases/$TS" build

@@ -1,0 +1,59 @@
+---
+title: Infrastructure Traditional Infrastructure
+order: 2
+---
+
+# Infrastructure Traditional Infrastructure
+
+## Infrastructure
+**Infrastructure** is the hardware and software used to develop, test, and deploy applications. Examples of hardware components include computers, routers, switches, data centers, and cables. Software components include operating systems and web server applications.
+Infrastructure components seek to:
+* Prevent disruptions to web services that are costly to the business.
+* Reduce delays in the flow of data, which can affect user experience.
+* Protect sensitive consumer and business data from cyber-attacks.
+
+## Problems with Traditional Infrastructure
+Historically, businesses managed their infrastructure on company premises with their staff. Due to the complexity of infrastructure components and how they interact, this can be a tall order. Some of the problems that companies run into when managing their infrastructure include:
+* Hardware components such as power supplies, hard drives, and RAM fail over time.
+* Malicious users attempt to disrupt web services and steal sensitive data.
+* Software becomes outdated, requiring consistent patches and upgrades.
+* Differences in development environments can lead to bugs.
+* Taking full advantage of the computing resources of each machine.
+Getting ahead of these problems comes with some costs: staff hours, equipment purchases, and power. Moving to a cloud-based infrastructure mitigates many of these challenges.
+
+## The Role of the Operations Team
+The Operations team’s primary responsibility is managing the business application infrastructure. This role has a massive impact on user experience and the success of the business. There are dozens of tasks that fall under this responsibility, including:
+* Installing and replacing physical components such as servers, switches, hard drives.
+* Performing software/firmware upgrades such as security patches.
+* Configuring infrastructure such as firewalls, user access, and ports.
+* Monitoring network health and alerting personnel when issues arise.
+A vast amount of responsibility falls onto the Operations team. In a DevOps culture, Development and Operations members share some of these responsibilities.
+
+## Environments
+An **environment**, in the context of creating and deploying software, is the subset of infrastructure resources used to execute a program under specific constraints. Throughout the various stages of development, different environments are used to handle the requirements of the Development and Operations team members. Each environment allows developers to test their code under the environment’s specific set of resources and constraints.
+Though the names and number of environments can vary from organization to organization, the five environments we will cover in this article are:
+* The local development environment.
+* The integration environment.
+* The testing/quality assurance (QA) environment.
+* The staging environment.
+* The production environment.
+
+### Local Development Environment
+A **local development environment** is where programmers initially build the features of an application, often on their own computer and with their own unique version of the project. In a local development environment, a programmer can work on their feature without worrying about, or potentially breaking, what other developers may be working on. In this environment, the developer can run unit tests as well as integration tests with mocked external services, while end to end tests are less common.
+
+### Integration Environment
+The **integration environment** is where developers attempt to merge their changes into a unified codebase, often using source-control software like Git. The application is likely to have tests fail during this integration step as multiple developers, who had previously been working in isolation, simultaneously attempt to merge their code. If this happens, developers can work on fixes in their local development environment and attempt to merge again. Integration tests may need to be updated in this environment as well.
+
+### QA / Testing
+The **quality assurance (QA) environment** (a.k.a. the **testing environment**) is where tests are executed to ensure the functionality and usability of each new feature as it is added to a project. These tests include unit tests of individual units of code, integration tests of interactions between internal services, and end-to-end tests which include all internal and external services running. When these tests are written and performed depends on the organization, but new and existing features are typically run against a test environment throughout the development process. The testing environment typically requires less infrastructure than is used in production.
+
+### Staging
+The **staging** environment is an environment that attempts to match production as closely as possible in terms of resources used, including [computational load](https://en.wikipedia.org/wiki/Load_(computing)), hardware, and architecture. This means that when an application is in staging, it should be able to handle the amount of work it is expected to be doing in production. In some cases, an organization may choose to employ a period when the project is used internally (often referred to as [“dogfooding”](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)) before moving to production.
+
+### Production
+The **production environment** refers to the infrastructure resources that support the application accessed by clients. This infrastructure consisted of hardware and software components including databases, servers, APIs, and external services scaled for real-world usage. The infrastructure required in the production environment must be able to handle large amounts of traffic, cyber-attacks, hardware failures, etc.
+Depending on how a company wants to release their project, [deployment strategies](https://harness.io/blog/blue-green-canary-deployment-strategies/) can greatly differ. Some examples of deployment strategies include:
+* completely replacing the existing application with the next version.
+* granting early access to a small group of users before releasing to the full user base (“canary deployment”).
+* executing A/B tests where different versions of the application can be run simultaneously and new features are toggled on or off using feature flags.
+These various approaches allow the development team to test their application in a full production environment, including when the application is released to 100% of users.

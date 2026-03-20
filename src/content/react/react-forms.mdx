@@ -140,12 +140,7 @@ export default StudentForm;
 import React, { useState } from "react";
 
 function FoodOrderForm() {
-const [name, setName] = useState('')
-const [phone, setPhone] = useState('')
-const [address, setAddress] = useState('')
-const [order, setOrder] = useState('')
-
-const handleSubmit = (e) => {
+const [name, setName] = useState('') const [phone, setPhone] = useState('') const [address, setAddress] = useState('') const [order, setOrder] = useState('') const handleSubmit = (e) => {
   e.preventDefault();
   alert(\`Order Successful! Your order was \${order}.Please show your confirmation number for pickup\`)
 }

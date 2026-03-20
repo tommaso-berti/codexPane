@@ -1,0 +1,312 @@
+---
+title: Middleware
+order: 4
+---
+
+# Middleware
+
+Source: [https://expressjs.com/en/resources/middleware.html](https://expressjs.com/en/resources/middleware.html)
+
+In programming in general, this often means putting the reused code into reusable containers, like functions and objects. In Express specifically, this will also mean composing our desired functionality into a series of middleware functions.
+
+## DRYing Code With Functions
+Code that performs the same task in multiple places is repetitive, and the quality coder's credo is “Don't Repeat Yourself” (DRY). If a program performs similar tasks without refactoring into a function, it is said to “violate DRY”. “Violating DRY” is a programmer's way of complaining: “This script is saying the same thing over and over! We can do the same thing with less code!”
+
+## DRYing Routes With app.use() Middleware is code that executes between a server receiving a request and sending a response. It operates on the boundary, so to speak, between those two HTTP actions.
+In Express, middleware is a function. Middleware can perform logic on the request and response objects, such as: inspecting a request, performing some logic based on the request, attaching information to the response, attaching a status to the response, sending the response back to the user, or simply passing the request and response to another middleware. Middleware can do any combination of those things or anything else a Javascript function can do.
+
+```
+app.use((req, res, next) => {
+  console.log('Request received');
+});
+```
+
+```
+
+```
+
+app.use() takes a callback function that it will call for every received request. In this example, every time the server receives a request, it will find the first registered middleware function and call it. In this case, the server will find the callback function specified above, call it, and print out 'Request received'.
+
+## next() Most of Express's functionality is chaining middleware. This chain of middleware is referred to as the **middleware stack**.
+The middleware stack is processed in the order they appear in the application file, such that middleware defined later happens after middleware defined before. It's important to note that this is regardless of method - an app.use() that occurs after an app.get() will get called after the app.get(). Observe the following code:
+
+```
+app.use((req, res, next) => {
+  console.log("A student approaches!");
+  next();
+});
+
+app.get('/books/:title', (req, res, next) => {
+  console.log(`The student is searching for a book titled "${req.params.title}".`);
+  next();
+});
+
+app.get('/books/:title', (req, res, next) => {
+  console.log(`The student has found the book titled "${req.params.title}" and checked it out.`);
+  res.status(200).send();
+});
+
+app.get('/books/:title', (req, res, next) => {
+  console.log("The student is leaving!");
+});
+
+// Accessing http://localhost:4001/books/the_scarlet_letter
+// Console Output:
+// A student approaches!
+// The student is searching for a book titled "the_scarlet_letter"!
+// The student has found the book titled "the_scarlet_letter" and checked it out.
+```
+
+```
+
+```
+
+In the above code, the routes are called in the order that they appear in the file, provided the previous route called next() and thus passed control to the next middleware. We can see that the final matching call was not printed. This is because the previous middleware did not invoke the next() function to run the following middleware.
+An Express middleware is a function with three parameters: (req, res, next). The sequence is expressed by a set of callback functions invoked progressively after each middleware performs its purpose. The third argument to a middleware function, next, should be explicitly called as the last part of the middleware's body. This will hand off the processing of the request and the construction of the response to the next middleware in the stack.
+
+Every route created in Express is also a middleware function handling the request and response objects at that part of the stack. Express routes also have the option of sending a response body and status code and closing the connection. These two features are a byproduct of Express routes being middleware, because all Express middleware functions have access to the request, the response, and the next middleware in the stack.
+
+## Route-Level app.use() - Single Path
+app.use() takes an optional path parameter as its first argument. We can now write middleware that will run for every request at a specific path.
+
+```
+app.use('/books', (req, res, next) => {
+  console.log('User has hit endpoint /books');
+  next();
+});
+
+```
+
+Since the path was given as an argument to app.use(), this middleware function will not execute if the client requests a different base path, such as '/authors' or '/categories'.
+In addition to matching any /books requests, the preceding middleware will also match any requests that build off of that base path, such as /books/:title or /books/authors. When no path is specified, the default value is '/', the root path. As we discovered in the previous exercise, this results in middleware matching ALL requests when no path is specified.
+
+## Middleware Stacks
+There is nothing stopping us from defining functions and using them as middleware, though. That is to say:
+
+```
+const logging = (req, res, next) => {
+  console.log(req);
+  next();
+};
+
+app.use(logging);
+
+```
+
+Up until this point, we've only been giving each middleware-accepting method a single callback. With modular pieces like this, it is useful to know that methods such as app.use(), app.get(), app.post(), and so on all can take multiple callbacks as additional parameters. This results in code that looks like the following:
+
+```
+const authenticate = (req, res, next) => {
+  // middleware logic
+  next();
+};
+
+const validateData = (req, res, next) => {
+  // middleware logic
+  next();
+};
+
+const getBook = (req, res, next) => {
+  res.status(200).send(getBookByIsbn(req.params.isbn));
+};
+
+const createBook = (req, res, next) => {
+  createBookFromRequest(req);
+  res.status(201).send();
+};
+
+const updateBook = (req, res, next) => {
+  updateBookFromRequest(req);
+  res.status(204).send();
+}
+
+app.get('/books/:isbn', authenticate, getBook);
+
+app.post('/books', authenticate, validateData, createBook);
+
+app.put('/books/:isbn', authenticate, validateData, updateBook);
+
+```
+
+In the preceding code sample, we created reusable middleware for authentication and data validation. We use the authenticate() middleware to verify that a user is logged in before proceeding with the request, and we use the validateData() middleware before performing the appropriate create or update function. Additional middleware can be placed at any point in this chain.
+
+## Open-Source Middleware: Logging (Morgan) There is a huge ecosystem of JavaScript packages that will solve so many of the problems that developers frequently run into.
+We will replace the logging code in the workspace with &lt;a href="https://github.com/expressjs/morgan" target=_blank&gt;morgan&lt;/a&gt;, an open-source library for logging information about the HTTP request-response cycle in a server application. morgan() is a function that will *return a middleware function*. To reiterate: the return value of morgan() will be a function - that function will have the function signature (req, res, next) that can be inserted into an app.use(), and that function will be called before all following middleware functions.
+morgan() takes an argument to describe the formatting of the logging output. For example, morgan('tiny') will return a middleware function that does a “tiny” amount of logging. With morgan in place, we'll be able to remove the existing logging code. Once we see how fast it is to add logging with morgan, we won't have to spend time in the future trying to figure out how to replicate that functionality.
+morgan() can also take an optional second argument, which is an object that can be used to further customize the logging behavior. By default, a morgan instance will output to the console, but by passing a stream property in the second argument, we can specify an alternative logging location, such as a file.
+
+```
+const { createWriteStream } = require('fs');
+const morgan = require('morgan');
+
+app.use(express.static('public'));
+
+//logging logging middleware Morgan
+app.use(morgan('tiny', { stream: createWriteStream('./app.log', { flags: 'a' }) }))
+
+```
+
+## Open-Source Middleware: Body Parsing
+When we implement middleware, we take in the req object, so that we can see information about the request. This object includes a good deal of important information about the request that we can use to inform our response. However, for some requests, it misses a fundamental piece. An HTTP request can include a *body*, a set of information to be transmitted to the server for processing. This is useful when the end user needs to send information to the server. If you've ever uploaded a post onto a social media website or filled out a registration form, chances are you've sent an HTTP request with a body. The lucky thing about using open-source middleware is that even though parsing the body of an HTTP request is a tricky operation requiring knowledge about network data transfer concepts, we easily manage it by importing a library to do it for us.
+If we look at our bodyParser, we see a simplified version of how one might perform request body parsing. Take a look at [body-parser](https://github.com/expressjs/body-parser#body-parser). “Node.js body parsing middleware”, that's just what we needed! Let's see if we can use this *dependency* instead of trying to manage our own body-parsing logic.
+
+```
+const bodyParser = require('body-parser') app.use(bodyParser.json())
+
+```
+
+## Error-Handling Middleware
+The middleware stack progresses through routes as they are presented in a file, therefore the error handler should sit at the bottom of the file.
+
+```
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+```
+
+Express has its own error handler, which catches errors that we haven't handled. But if we anticipate an operation might fail, we can invoke our error-handling middleware. We do this by passing an error object as an argument to next(). Usually, next() is called without arguments and will proceed through the middleware stack as expected. When called with an error as the first argument, however, it will call any applicable error-handling middleware.
+
+```
+app.use((req, res, next) => {
+  const newValue = possiblyProblematicOperation();
+  if (newValue === undefined) {
+    let undefinedError = new Error('newValue was not defined!');
+    return next(undefinedError);
+  }
+  next();
+});
+
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).send(err.message);
+});
+
+```
+
+In this segment, we assign the return value of the function possiblyProblematicOperation() to newValue. Then we check to see if this function returned anything at all. If it didn't, we create a new error and pass it to next(). This prompts the error-handling middleware to send a response back to the user, but many other error-handling techniques could be employed (like logging, re-attempting the failed operation, and/or emailing the developer).
+
+## Discovering Open-Source Middleware
+One of the modules listed, errorhandler, is perfect for our current use case, error-handling.
+
+```
+const errorhandler = require('errorhandler') app.post('/beans/:beanName/remove', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  if (req.bean.number < numberOfBeans) {
+    return res.status(400).send('Not enough beans in the jar to remove!');
+  }
+  req.bean.number -= numberOfBeans;
+  res.send(req.bean);
+});
+
+app.use(errorhandler())     ----> to be inserted at the end
+
+module.exports = {
+  app
+};
+
+```
+
+## Complete code
+
+```
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const errorhandler = require('errorhandler') app.use(express.static('public'));
+
+const jellybeanBag = {
+  mystery: {
+    number: 4
+  },
+  lemon: {
+    number: 5
+  },
+  rootBeer: {
+    number: 25
+  },
+  cherry: {
+    number: 3
+  },
+  licorice: {
+    number: 1
+  }
+};
+
+// Body-parsing Middleware
+app.use(bodyParser.json());
+
+// Logging Middleware
+if (!process.env.IS_TEST_ENV) {
+  app.use(morgan('dev'));
+}
+
+app.use('/beans/:beanName', (req, res, next) => {
+  const beanName = req.params.beanName;
+  if (!jellybeanBag[beanName]) {
+    return res.status(404).send('Bean with that name does not exist');
+  }
+  req.bean = jellybeanBag[beanName];
+  req.beanName = beanName;
+  next();
+});
+
+app.get('/beans', (req, res, next) => {
+  res.send(jellybeanBag);
+});
+
+app.post('/beans', (req, res, next) => {
+  const body = req.body;
+  const beanName = body.name;
+  if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+    return res.status(400).send('Bean with that name already exists!');
+  }
+  const numberOfBeans = Number(body.number) || 0;
+  jellybeanBag[beanName] = {
+    number: numberOfBeans
+  };
+  res.send(jellybeanBag[beanName]);
+});
+
+app.get('/beans/:beanName', (req, res, next) => {
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/add', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  req.bean.number += numberOfBeans;
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/remove', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  if (req.bean.number < numberOfBeans) {
+    return res.status(400).send('Not enough beans in the jar to remove!');
+  }
+  req.bean.number -= numberOfBeans;
+  res.send(req.bean);
+});
+
+app.delete('/beans/:beanName', (req, res, next) => {
+  const beanName = req.beanName;
+  jellybeanBag[beanName] = null;
+  res.status(204).send();
+});
+
+app.put('/beans/:beanName/name', (req, res, next) => {
+  const beanName = req.beanName;
+  const newName = req.body.name;
+  jellybeanBag[newName] = req.bean;
+  jellybeanBag[beanName] = null;
+  res.send(jellybeanBag[newName]);
+});
+app.use(errorhandler())
+
+// export app for use in main.js and for testing
+module.exports = {
+  app
+};
+
+```

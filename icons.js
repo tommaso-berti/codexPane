@@ -2,6 +2,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import HttpIcon from '@mui/icons-material/Http';
 import PublicIcon from '@mui/icons-material/Public';
+import ApiIcon from '@mui/icons-material/Api';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import StorageIcon from '@mui/icons-material/Storage';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import DnsIcon from '@mui/icons-material/Dns';
+import SecurityIcon from '@mui/icons-material/Security';
 import Box from '@mui/material/Box';
 import { createElement } from 'react';
 import {
@@ -22,6 +29,13 @@ const ICON_COLORS = {
     GitHubIcon: '#181717',
     HttpIcon: '#0288d1',
     PublicIcon: '#2e7d32',
+    ApiIcon: '#1976d2',
+    AccountTreeIcon: '#8e24aa',
+    DataObjectIcon: '#5e35b1',
+    StorageIcon: '#546e7a',
+    TableChartIcon: '#2e7d32',
+    DnsIcon: '#0277bd',
+    SecurityIcon: '#c62828',
     CustomMuiIcon: '#007fff',
     CustomReactIcon: '#61dafb',
     CustomCssIcon: '#264de4',
@@ -74,6 +88,13 @@ const ICONS = {
     ImageNotSupportedIcon,
     HttpIcon,
     PublicIcon,
+    ApiIcon,
+    AccountTreeIcon,
+    DataObjectIcon,
+    StorageIcon,
+    TableChartIcon,
+    DnsIcon,
+    SecurityIcon,
     CustomMuiIcon,
     CustomReactIcon,
     CustomCssIcon,

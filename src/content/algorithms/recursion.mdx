@@ -1,0 +1,61 @@
+---
+title: Recursion
+order: 1
+---
+
+import RecursionTracePlayground from "./components/recursion/RecursionTracePlayground.jsx"
+
+# Recursion
+
+Recursion is a strategy for solving problems by defining the problem in terms of itself. For example, to **sum the elements of a list** we would take the first element and add it to the **sum of the remaining elements**.
+How would we get that sum of remaining elements? Easy! We'd take the first element of the remaining elements and add it to the... Maybe you can understand why recursion can be a tricky subject!
+In programming, recursion means a function definition will include an invocation of the function **within its own body.**
+Example
+
+```
+define function, speller
+  if there are no more letters
+    print "all done"
+  print the first letter
+  invoke speller with the given name minus the first letter
+
+```
+
+Let's break the function into three chunks:
+
+```
+   if there are no more letters
+     print "all done"
+
+```
+
+This section is the *base case*. We are **NOT** invoking the function under this condition. The equivalent base case from the previous exercise was when we had reached the front of the line.
+
+```
+   print the first letter
+
+```
+
+This section solves **a piece** of the problem. If we want to spell someone's name, we'll have to spell **at least** one letter.
+
+```
+   invoke speller with the given name minus the first letter
+
+```
+
+This section is the *recursive* step, calling the function with arguments which bring us closer to the base case. In this example, we're reducing the length of the name by a single letter. Eventually, there will be a function call with no letters given as the argument.
+
+## Call Stacks and Execution Frames
+A recursive approach requires the function invoking itself **with different arguments.** How does the computer keep track of the various arguments and different function invocations if it's the same function definition?
+Repeatedly invoking functions may be familiar when it occurs sequentially, but it can be jarring to see this invocation occur **within a function definition**.
+Languages make this possible with *call stacks* and *execution contexts*.
+Stacks, a data structure, follow a strict [protocol](https://en.wikipedia.org/wiki/Special:Search?search=protocol) for the order data enters and exits the structure: **the last thing to enter is the first thing to leave**.
+
+Your programming language often manages the call stack, which exists outside of any specific function. This call stack tracks the ordering of the different function invocations, so the **last function to enter the call stack is the first function to exit the call stack**.
+
+## Interactive Playground: Recursion Trace
+**Why this matters:** recursion becomes easier when you can see each frame move toward the base case.
+
+**What to try:** change the input text, run the trace, and inspect when the base case appears.
+
+&lt;RecursionTracePlayground /&gt;

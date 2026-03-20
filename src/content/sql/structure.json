@@ -1,0 +1,483 @@
+{
+  "id": "sql",
+  "title": "SQL",
+  "slug": "sql",
+  "icon": "TableChartIcon",
+  "items": [
+    {
+      "id": "introduction-section",
+      "type": "section",
+      "title": "Introduction",
+      "slug": "sql/introduction-section",
+      "order": 1,
+      "items": [
+        {
+          "id": "relational-database",
+          "type": "subSection",
+          "title": "Relational database",
+          "slug": "sql/introduction-section#relational-database",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "statements",
+      "type": "section",
+      "title": "Statements",
+      "slug": "sql/statements",
+      "order": 2,
+      "items": [
+        {
+          "id": "create",
+          "type": "subSection",
+          "title": "Create",
+          "slug": "sql/statements#create",
+          "order": 1
+        },
+        {
+          "id": "insert",
+          "type": "subSection",
+          "title": "Insert",
+          "slug": "sql/statements#insert",
+          "order": 2
+        },
+        {
+          "id": "select",
+          "type": "subSection",
+          "title": "Select",
+          "slug": "sql/statements#select",
+          "order": 3
+        },
+        {
+          "id": "alter",
+          "type": "subSection",
+          "title": "Alter",
+          "slug": "sql/statements#alter",
+          "order": 4
+        },
+        {
+          "id": "update",
+          "type": "subSection",
+          "title": "Update",
+          "slug": "sql/statements#update",
+          "order": 5
+        },
+        {
+          "id": "delete",
+          "type": "subSection",
+          "title": "Delete",
+          "slug": "sql/statements#delete",
+          "order": 6
+        },
+        {
+          "id": "constraints",
+          "type": "subSection",
+          "title": "Constraints",
+          "slug": "sql/statements#constraints",
+          "order": 7
+        },
+        {
+          "id": "interactive-playground-statement-builder",
+          "type": "subSection",
+          "title": "Interactive Playground: Statement Builder",
+          "slug": "sql/statements#interactive-playground-statement-builder",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "keywords",
+      "type": "section",
+      "title": "Keywords",
+      "slug": "sql/keywords",
+      "order": 3,
+      "items": [
+        {
+          "id": "as-select",
+          "type": "subSection",
+          "title": "As (select)",
+          "slug": "sql/keywords#as-select",
+          "order": 1
+        },
+        {
+          "id": "distinct",
+          "type": "subSection",
+          "title": "Distinct",
+          "slug": "sql/keywords#distinct",
+          "order": 2
+        },
+        {
+          "id": "where",
+          "type": "subSection",
+          "title": "Where",
+          "slug": "sql/keywords#where",
+          "order": 3
+        },
+        {
+          "id": "like",
+          "type": "subSection",
+          "title": "Like",
+          "slug": "sql/keywords#like",
+          "order": 4
+        },
+        {
+          "id": "null-is",
+          "type": "subSection",
+          "title": "NULL (is)",
+          "slug": "sql/keywords#null-is",
+          "order": 5
+        },
+        {
+          "id": "between-where",
+          "type": "subSection",
+          "title": "Between (where)",
+          "slug": "sql/keywords#between-where",
+          "order": 6
+        },
+        {
+          "id": "and-where",
+          "type": "subSection",
+          "title": "AND (where)",
+          "slug": "sql/keywords#and-where",
+          "order": 7
+        },
+        {
+          "id": "or-where",
+          "type": "subSection",
+          "title": "OR (where)",
+          "slug": "sql/keywords#or-where",
+          "order": 8
+        },
+        {
+          "id": "order-by-only-after-where",
+          "type": "subSection",
+          "title": "Order By (only after where)",
+          "slug": "sql/keywords#order-by-only-after-where",
+          "order": 9
+        },
+        {
+          "id": "limit",
+          "type": "subSection",
+          "title": "Limit",
+          "slug": "sql/keywords#limit",
+          "order": 10
+        },
+        {
+          "id": "case-select",
+          "type": "subSection",
+          "title": "Case (select)",
+          "slug": "sql/keywords#case-select",
+          "order": 11
+        }
+      ]
+    },
+    {
+      "id": "aggregate-functions",
+      "type": "section",
+      "title": "Aggregate functions",
+      "slug": "sql/aggregate-functions",
+      "order": 4,
+      "items": [
+        {
+          "id": "count",
+          "type": "subSection",
+          "title": "Count",
+          "slug": "sql/aggregate-functions#count",
+          "order": 1
+        },
+        {
+          "id": "sum",
+          "type": "subSection",
+          "title": "Sum",
+          "slug": "sql/aggregate-functions#sum",
+          "order": 2
+        },
+        {
+          "id": "max-min",
+          "type": "subSection",
+          "title": "Max / Min",
+          "slug": "sql/aggregate-functions#max-min",
+          "order": 3
+        },
+        {
+          "id": "average",
+          "type": "subSection",
+          "title": "Average",
+          "slug": "sql/aggregate-functions#average",
+          "order": 4
+        },
+        {
+          "id": "round",
+          "type": "subSection",
+          "title": "Round",
+          "slug": "sql/aggregate-functions#round",
+          "order": 5
+        },
+        {
+          "id": "group-by",
+          "type": "subSection",
+          "title": "Group By",
+          "slug": "sql/aggregate-functions#group-by",
+          "order": 6
+        },
+        {
+          "id": "having",
+          "type": "subSection",
+          "title": "Having",
+          "slug": "sql/aggregate-functions#having",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "multiple-tables",
+      "type": "section",
+      "title": "Multiple tables",
+      "slug": "sql/multiple-tables",
+      "order": 5,
+      "items": [
+        {
+          "id": "combining-tables-with-sql-join",
+          "type": "subSection",
+          "title": "Combining Tables with SQL - JOIN",
+          "slug": "sql/multiple-tables#combining-tables-with-sql-join",
+          "order": 1
+        },
+        {
+          "id": "inner-joins",
+          "type": "subSection",
+          "title": "Inner Joins",
+          "slug": "sql/multiple-tables#inner-joins",
+          "order": 2
+        },
+        {
+          "id": "left-joins",
+          "type": "subSection",
+          "title": "Left Joins",
+          "slug": "sql/multiple-tables#left-joins",
+          "order": 3
+        },
+        {
+          "id": "cross-join",
+          "type": "subSection",
+          "title": "Cross Join",
+          "slug": "sql/multiple-tables#cross-join",
+          "order": 4
+        },
+        {
+          "id": "union",
+          "type": "subSection",
+          "title": "Union",
+          "slug": "sql/multiple-tables#union",
+          "order": 5
+        },
+        {
+          "id": "with",
+          "type": "subSection",
+          "title": "With",
+          "slug": "sql/multiple-tables#with",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "keys",
+      "type": "section",
+      "title": "Keys",
+      "slug": "sql/keys",
+      "order": 6,
+      "items": [
+        {
+          "id": "create-a-primary-key",
+          "type": "subSection",
+          "title": "Create a primary key",
+          "slug": "sql/keys#create-a-primary-key",
+          "order": 1
+        },
+        {
+          "id": "key-validation",
+          "type": "subSection",
+          "title": "Key Validation",
+          "slug": "sql/keys#key-validation",
+          "order": 2
+        },
+        {
+          "id": "composite-primary-key",
+          "type": "subSection",
+          "title": "Composite Primary Key",
+          "slug": "sql/keys#composite-primary-key",
+          "order": 3
+        },
+        {
+          "id": "foreign-key",
+          "type": "subSection",
+          "title": "Foreign Key",
+          "slug": "sql/keys#foreign-key",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "relationships",
+      "type": "section",
+      "title": "Relationships",
+      "slug": "sql/relationships",
+      "order": 7,
+      "items": [
+        {
+          "id": "one-to-one-relationship",
+          "type": "subSection",
+          "title": "One-to-One Relationship",
+          "slug": "sql/relationships#one-to-one-relationship",
+          "order": 1
+        },
+        {
+          "id": "one-to-many-relationship",
+          "type": "subSection",
+          "title": "One-to-Many Relationship",
+          "slug": "sql/relationships#one-to-many-relationship",
+          "order": 2
+        },
+        {
+          "id": "many-to-many-relationship",
+          "type": "subSection",
+          "title": "Many-to-Many Relationship",
+          "slug": "sql/relationships#many-to-many-relationship",
+          "order": 3
+        },
+        {
+          "id": "complete-example",
+          "type": "subSection",
+          "title": "Complete example",
+          "slug": "sql/relationships#complete-example",
+          "order": 4
+        },
+        {
+          "id": "interactive-playground-relationship-modeling",
+          "type": "subSection",
+          "title": "Interactive Playground: Relationship Modeling",
+          "slug": "sql/relationships#interactive-playground-relationship-modeling",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "triggers",
+      "type": "section",
+      "title": "Triggers",
+      "slug": "sql/triggers",
+      "order": 8,
+      "items": [
+        {
+          "id": "before-and-after",
+          "type": "subSection",
+          "title": "BEFORE AND AFTER",
+          "slug": "sql/triggers#before-and-after",
+          "order": 1
+        },
+        {
+          "id": "for-each-row-statement",
+          "type": "subSection",
+          "title": "FOR EACH ROW/STATEMENT",
+          "slug": "sql/triggers#for-each-row-statement",
+          "order": 2
+        },
+        {
+          "id": "focus-a-trigger",
+          "type": "subSection",
+          "title": "Focus a trigger",
+          "slug": "sql/triggers#focus-a-trigger",
+          "order": 3
+        },
+        {
+          "id": "trigger-cascade",
+          "type": "subSection",
+          "title": "Trigger cascade",
+          "slug": "sql/triggers#trigger-cascade",
+          "order": 4
+        },
+        {
+          "id": "visualize-triggers",
+          "type": "subSection",
+          "title": "Visualize triggers",
+          "slug": "sql/triggers#visualize-triggers",
+          "order": 5
+        },
+        {
+          "id": "removing-triggers",
+          "type": "subSection",
+          "title": "Removing Triggers",
+          "slug": "sql/triggers#removing-triggers",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "seek-vs-scan",
+      "type": "section",
+      "title": "Seek vs Scan",
+      "slug": "sql/seek-vs-scan",
+      "order": 9,
+      "items": [
+        {
+          "id": "scan",
+          "type": "subSection",
+          "title": "Scan",
+          "slug": "sql/seek-vs-scan#scan",
+          "order": 1
+        },
+        {
+          "id": "seek",
+          "type": "subSection",
+          "title": "Seek",
+          "slug": "sql/seek-vs-scan#seek",
+          "order": 2
+        },
+        {
+          "id": "when-does-the-server-decide-to-use-one-over-the-other",
+          "type": "subSection",
+          "title": "When does the server decide to use one over the other?",
+          "slug": "sql/seek-vs-scan#when-does-the-server-decide-to-use-one-over-the-other",
+          "order": 3
+        },
+        {
+          "id": "what-is-out-of-your-hands",
+          "type": "subSection",
+          "title": "What is out of your hands",
+          "slug": "sql/seek-vs-scan#what-is-out-of-your-hands",
+          "order": 4
+        },
+        {
+          "id": "speeding-up-queries",
+          "type": "subSection",
+          "title": "Speeding up queries",
+          "slug": "sql/seek-vs-scan#speeding-up-queries",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "type": "section",
+      "title": "Functions",
+      "slug": "sql/functions",
+      "order": 10,
+      "items": [
+        {
+          "id": "strftime",
+          "type": "subSection",
+          "title": "strftime()",
+          "slug": "sql/functions#strftime",
+          "order": 1
+        },
+        {
+          "id": "date-part",
+          "type": "subSection",
+          "title": "date_part()",
+          "slug": "sql/functions#date-part",
+          "order": 2
+        }
+      ]
+    }
+  ]
+}

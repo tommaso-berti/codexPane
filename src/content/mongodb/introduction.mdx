@@ -18,10 +18,7 @@ MongoDB is a document-oriented NoSQL database built for flexible schemas, high a
 ~~~js
 // In mongosh
 use mydb
-db.users.insertOne({ name: "Ada", email: "ada@example.com", tags: ["math","logic"] })
-db.users.find({ tags: "math" })
-db.users.updateOne({ email: "ada@example.com" }, { $set: { active: true } })
-db.users.createIndex({ email: 1 }, { unique: true })
+db.users.insertOne({ name: "Ada", email: "ada@example.com", tags: ["math","logic"] }) db.users.find({ tags: "math" }) db.users.updateOne({ email: "ada@example.com" }, { $set: { active: true } }) db.users.createIndex({ email: 1 }, { unique: true })
 ~~~
 
 ## When to use it

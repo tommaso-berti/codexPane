@@ -1,0 +1,31 @@
+---
+title: What is a Server-Side Framework
+order: 1
+---
+
+# What is a Server-Side Framework
+
+Let's first start with what a *framework* is - which is a collection of code to make it easier to accomplish a specific task. A framework is particular in that developers must follow the rules and syntax put forth by the framework to use it properly. With that in mind, a *server-side framework* is used to run web applications and handle web development workflows on the server-side or back-end.
+
+## Why Use a Server-Side Framework?
+As you just read, there's a lot to consider when constructing a back-end. A server-side framework can handle a lot of the back-end responsibilities without you needing to come up with a custom solution, which saves a lot of time. Other benefits could include:
+* access to libraries built to work with the framework
+* existing resources and doc
+
+## Node.js and Express.js
+As you recall, Node.js is an open-source runtime environment for executing JavaScript outside of a browser. You can create a back-end entirely with Node.js. However, you can also use [Express.js](https://expressjs.com/), a server-side framework written in JavaScript and built to work with Node.js. The Express.js framework comes with included code that makes implementing some core functionality much quicker than doing it from scratch. By using Express, you have a simpler developer experience and thus can focus more on business logic (functionality).
+Let's take a look at a code snippet that showcases Express code. The code below sets up a route on a server:
+
+```
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('<h1>Hello from your Express.js server!!</h1>');
+});
+
+app.listen(8000, () => {
+  console.log('Server listening on port 8000');
+});
+
+```

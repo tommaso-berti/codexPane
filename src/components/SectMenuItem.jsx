@@ -6,6 +6,8 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
 import { useActiveSection } from '../features/docs/useActiveSection.js';
 
 function parseSlugDestination(slug) {
@@ -24,10 +26,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
     const location = useLocation();
     const { setActiveSectionId } = useActiveSection();
     const isSectionActive = selected?.type === "section" && selected?.value === section.id;
-
-    const handleClick = () => {
-        onToggle?.();
-    };
+    const hasSubsections = (subsections?.length ?? 0) > 0;
 
     const handleSelect = (slug) => {
         const destination = parseSlugDestination(slug);
@@ -48,6 +47,8 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
 
         if (destination.hashId) {
             setActiveSectionId(destination.hashId);
+        } else {
+            setActiveSectionId('');
         }
         navigate(destination.to);
     };
@@ -55,7 +56,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
     return (
         <>
             <ListItemButton
-                onClick={handleClick}
+                onClick={() => handleSelect(section.slug)}
                 sx={{
                     py: 0.78,
                     px: 1.2,
@@ -87,7 +88,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                 }}
             >
                 <ListItemText
-                    sx={{ minWidth: 0, pr: 0.6, pl: 0.6 }}
+                    sx={{ minWidth: 0, pr: hasSubsections ? 0.3 : 0.6, pl: 0.6 }}
                     primary={
                         <Typography
                             sx={{
@@ -104,9 +105,25 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                         </Typography>
                     }
                 />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {hasSubsections ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton
+                            size="small"
+                            edge="end"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                onToggle?.();
+                            }}
+                            sx={{ color: 'text.secondary' }}
+                            aria-label={open ? `Collapse ${section.title}` : `Expand ${section.title}`}
+                        >
+                            {open ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
+                        </IconButton>
+                    </Box>
+                ) : null}
             </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={hasSubsections && open} timeout="auto" unmountOnExit>
                 <List dense={true} component="div" disablePadding sx={{ overflowX: 'hidden' }}>
                     {subsections?.map((subsection) => {
                         const isSubsectionActive =

@@ -1,0 +1,176 @@
+---
+title: Swapping Elements in a Linked List
+order: 16
+---
+
+# Swapping Elements in a Linked List
+
+In a singly linked list, each node only stores a reference to the next node.
+Unlike arrays, we:
+* Do not have index-based access
+* Cannot directly swap elements
+* Must carefully update pointers
+To swap two nodes, we must:
+* Find both nodes
+* Track their previous nodes
+* Update all affected pointers correctly
+
+## Goal
+Given:
+* A linked list list
+* Two values data1 and data2
+Swap the nodes containing those values.
+
+## Overall Strategy
+To perform the swap, we must track four references:
+* node1 → node containing data1
+* node2 → node containing data2
+* node1Prev → node before node1
+* node2Prev → node before node2
+
+- **Step 1 — Find both nodes and their previous nodes**  
+  Traverse from `list.head` and track both current and previous references.
+  ```js
+  let node1 = list.head;
+  let node1Prev = null;
+
+  while (node1 !== null) {
+    if (node1.data === data1) {
+      break;
+    }
+    node1Prev = node1;
+    node1 = node1.getNextNode();
+  }
+  ```
+  Repeat the same logic for `node2`.  
+  At the end:
+  - `node1` and `node2` point to matching nodes
+  - `node1Prev` and `node2Prev` store their preceding nodes
+
+- **Step 2 — Handle missing nodes**
+  ```js
+  if (node1 === null || node2 === null) {
+    console.log('Swap not possible - one or more elements are not in the list.');
+    return;
+  }
+  ```
+  This prevents errors from calling methods on `null`.
+
+- **Step 3 — Handle identical values**
+  ```js
+  if (data1 === data2) {
+    console.log('Elements are the same - no swap needed.');
+    return;
+  }
+  ```
+  If both values are identical, no swap is needed.
+
+- **Step 4 — Update previous nodes pointers**  
+  Update the nodes that currently point to `node1` and `node2`.
+  ```js
+  if (node1Prev === null) {
+    list.head = node2;
+  } else {
+    node1Prev.setNextNode(node2);
+  }
+  ```
+  If `node1Prev` is `null`, `node1` was the head and the head becomes `node2`.
+
+  Repeat the same logic for `node2Prev`:
+  ```js
+  if (node2Prev === null) {
+    list.head = node1;
+  } else {
+    node2Prev.setNextNode(node1);
+  }
+  ```
+  At this point, all incoming pointers are correct.
+
+- **Step 5 — Swap next pointers**
+  ```js
+  let temp = node1.getNextNode();
+  node1.setNextNode(node2.getNextNode());
+  node2.setNextNode(temp);
+  ```
+  This swaps references, not values.
+
+## Final Complete Function
+
+```
+function swapNodes(list, data1, data2) {
+  if (data1 === data2) {
+    console.log('Elements are the same - no swap needed.');
+    return;
+  }
+
+  let node1Prev = null;
+  let node2Prev = null;
+  let node1 = list.head;
+  let node2 = list.head;
+
+  while (node1 !== null) {
+    if (node1.data === data1) break;
+    node1Prev = node1;
+    node1 = node1.getNextNode();
+  }
+
+  while (node2 !== null) {
+    if (node2.data === data2) break;
+    node2Prev = node2;
+    node2 = node2.getNextNode();
+  }
+
+  if (node1 === null || node2 === null) {
+    console.log('Swap not possible - one or more elements are not in the list.');
+    return;
+  }
+
+  if (node1Prev === null) {
+    list.head = node2;
+  } else {
+    node1Prev.setNextNode(node2);
+  }
+
+  if (node2Prev === null) {
+    list.head = node1;
+  } else {
+    node2Prev.setNextNode(node1);
+  }
+
+  let temp = node1.getNextNode();
+  node1.setNextNode(node2.getNextNode());
+  node2.setNextNode(temp);
+}
+
+```
+
+## Time and Space Complexity
+### Time Complexity
+Worst case:
+* Both while loops traverse the entire list.
+* Each loop is O(n).
+Overall time complexity:
+O(n)
+(Constants are dropped in Big-O notation.)
+
+### Space Complexity
+The function creates only a fixed number of variables:
+* node1
+* node2
+* node1Prev
+* node2Prev
+* temp
+Space complexity:
+O(1)
+
+## Key Concepts to Remember
+* In singly linked lists, you must update both:
+	* Incoming pointers (previous nodes)
+	* Outgoing pointers (next references)
+* Always handle edge cases:
+	* Nodes not found
+	* Identical values
+	* Swapping the head node
+* Never lose references before reassigning pointers
+
+If you want, I can also write a visual memory diagram explanation for exam preparation.

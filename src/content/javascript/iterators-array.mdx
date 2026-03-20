@@ -10,11 +10,9 @@ groceries.forEach(function (groceryItem) {
   console.log(' - ' + groceryItem);
 });
 
-// Definition 2 (ES6)
-groceries.forEach(groceryItem => console.log(groceryItem));
+// Definition 2 (ES6) groceries.forEach(groceryItem => console.log(groceryItem));
 
-// Definition 3 (named callback)
-function printGrocery(element) {
+// Definition 3 (named callback) function printGrocery(element) {
   console.log(element);
 }
 groceries.forEach(printGrocery);

@@ -1,0 +1,468 @@
+# 1.1. Collisions
+
+
+Remember hash functions are designed to compress data from a large number of possible keys to a much smaller range. Because of this compression, it’s likely that our hash function might produce the same hash for two different keys. This is known as a *hash collision*. There are several strategies for resolving hash collisions.
+The first strategy we’re going to learn about is called *separate chaining*. The separate chaining strategy avoids collisions by updating the underlying data structure. Instead of an <u>[array](https://www.codecademy.com/resources/docs/general/data-structures/array)</u> of values that are mapped to by hashes, it could be an array of linked lists!
+
+## **Separate Chaining**
+When a **hash map** stores data, multiple keys may produce the **same array index**. This situation is called a **collision**.
+To handle collisions, one common strategy is **separate chaining**.
+
+### **How separate chaining works**
+1. The **key is hashed** to produce a **hash code**.
+6. The hash code is converted to an **array index** using **modulo**.
+11. If the array position is **empty**, create a **linked list** and store the value.
+16. If the array position already has data, **append the new value to the linked list** at that index.
+So each array index stores a **chain of elements**.
+Example structure:
+
+```
+index 0 → value → value → value
+index 1 → value
+index 2 → empty
+index 3 → value → value
+
+```
+
+### **Advantages**
+* Handles collisions without losing data.
+* Efficient when the hash function distributes keys well.
+* Lookup is usually **fast (near O(1))**.
+
+### **Worst case**
+If many keys map to the same index:
+
+```
+index 0 → value → value → value → value → value
+
+```
+
+The structure becomes similar to a **linked list**, making lookup slower (**O(n)**).
+
+## **Saving Keys**
+Each element in the bucket stores:
+
+```
+(key, value)
+
+```
+
+Example bucket:
+
+```
+Index 2
+
+HEAD →
+("blue", "diamond") →
+("red", "ruby") →
+X
+
+```
+
+This allows us to **verify the key when searching**.
+
+### **How Lookup Works**
+To retrieve a value:
+1. **Compute the hash**
+```
+hash = hashFunction(key)
+
+```
+
+1. **Find the array index**
+```
+index = hash % arraySize
+
+```
+
+1. **Go to that bucket****Iterate through the chain**For each element:
+
+```
+if storedKey == key
+    return storedValue
+else
+    continue searching
+
+```
+
+
+### **Example Lookup**
+Searching for:
+
+```
+key = "blue"
+
+```
+
+Steps:
+
+```
+hash("blue") → 2
+index → 2
+
+```
+
+Then iterate:
+
+```
+("blue", "diamond") → match → return "diamond"
+
+```
+
+
+### **Overwriting Existing Keys**
+If inserting a key that **already exists**:
+
+```
+("blue", "diamond")
+
+```
+
+and we insert:
+
+```
+("blue", "sapphire")
+
+```
+
+The hash map should **replace the value**:
+
+```
+("blue", "sapphire")
+
+```
+
+
+### **Why Saving Keys Is Important**
+Without saving the key:
+* collisions become ambiguous
+* lookup becomes unreliable
+Saving the key allows:
+✔ correct lookup
+✔ collision handling
+✔ overwriting existing keys
+
+### **Complexity**
+Average case:
+
+```
+Lookup: O(1)
+Insert: O(1)
+
+```
+
+Worst case (many collisions):
+
+```
+Lookup: O(n)
+
+```
+
+## 
+## **Open Addressing: Linear Probing**
+Instead of storing multiple values in a separate structure (like a linked list), we:
+* keep **all data inside the array**search for another **empty index** if the hashed index is already occupied.
+**Idea**
+
+```
+hash(key) → index
+
+if index is occupied
+    find another index in the array
+
+```
+
+So the array itself stores **all entries**.
+
+### **Probing**
+A common technique in open addressing is **probing**.
+**Probing = searching for the next available array index** using a defined sequence.
+We keep checking indices until we find an **empty slot**.
+
+### **Linear Probing**
+The simplest probing method is **linear probing**.
+We check the **next index sequentially**.
+
+```
+new_index = (hash + i) % array_size
+
+```
+
+where  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     i
+ </span> increases each step.
+Sequence example:
+
+```
+hash = 3
+
+check:
+3 → 4 → 5 → 6 → ...
+
+```
+
+
+### **Example**
+### **Insert 1**
+
+```
+Key: "Bucephalus"
+Value: "Alexander the Great"
+hash → 3
+
+```
+
+Index 3 is empty.
+Store:
+
+```
+3 → (Bucephalus, Alexander the Great)
+
+```
+
+
+### **Insert 2 (collision)**
+
+```
+Key: "Seabiscuit"
+Value: "Charles Howard"
+hash → 3
+
+```
+
+Index 3 is **occupied**.
+Linear probing:
+
+```
+3 → occupied
+4 → empty
+
+```
+
+Store at **index 4**:
+
+```
+4 → (Seabiscuit, Charles Howard)
+
+```
+
+
+### **Lookup Process**
+To find  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     "Seabiscuit"
+ </span>:
+1. Compute hash
+```
+hash("Seabiscuit") = 3
+
+```
+
+1. Check index 3
+```
+key at index 3 = Bucephalus
+
+```
+
+Not a match.
+1. Continue probing
+```
+index 4 → key = Seabiscuit
+
+```
+
+Match → return value.
+
+```
+"Charles Howard"
+
+```
+
+
+### **Important Detail**
+Because of collisions, we **must store the key together with the value**.
+Otherwise we wouldn't know if:
+
+```
+index 3 contains our key
+or someone else's key
+
+```
+
+
+### **Advantages of Linear Probing**
+✔ Simple to implement
+✔ No additional data structures needed
+✔ Good cache performance (array access)
+
+### **Disadvantages -> Clustering problem**
+Elements tend to form long groups of occupied slots.
+Example:
+
+```
+3 4 5 6 7
+X X X X X
+
+```
+
+This slows down lookup.
+Worst case:
+
+```
+O(n)
+
+```
+
+
+### **Quick Comparison**
+| Strategy                         | How collisions are handled       |
+|----------------------------------|----------------------------------|
+| Separate Chaining                | store collisions in linked lists |
+| Open Addressing                  | find another array index         |
+| Linear Probing                   | check next indices sequentially  |
+
+## 
+## Other Open Addressing Techniques
+**Problem With Linear Probing:** in **linear probing**, when a collision happens we check the next index sequentially:
+
+```
+hash → i
+i + 1
+i + 2
+i + 3
+
+```
+
+This can create **clustering**.
+
+## **Clustering**
+**Clustering** occurs when many values end up grouped together in consecutive indices.
+Example:
+
+```
+index:   0 1 2 3 4 5 6
+values:    X X X X
+
+```
+
+Why it happens:
+1. A collision occurs.
+2. Linear probing moves the value to the **next slot**.
+5. Now that slot is occupied.
+6. Future keys that hash nearby collide again.
+This creates a **chain of collisions**, which slows down lookup.
+Worst case:
+
+```
+search → O(n)
+
+```
+
+
+## **Alternative Probing Strategies**
+To reduce clustering, we can change the **probing sequence**.
+Instead of checking indices sequentially, we jump using a different pattern.
+
+## **Quadratic Probing**
+In **quadratic probing**, the jump distance grows **quadratically**.
+Formula idea:
+
+```
+index = (hash + i²) % table_size
+
+```
+
+Probe sequence example:
+
+```
+hash = 3
+
+3
+3 + 1² = 4
+3 + 2² = 7
+3 + 3² = 12
+
+```
+
+Sequence:
+
+```
+3 → 4 → 7 → 12 → ...
+
+```
+
+
+## **Why Quadratic Probing Helps**
+Quadratic probing:
+✔ spreads entries more evenly
+✔ reduces clustering
+✔ avoids long chains of consecutive filled slots
+Because the probe sequence **spreads out faster** than linear probing.
+
+## **Key Insight**
+Hash tables must balance:
+
+```
+collision resolution
+vs
+performance
+
+```
+
+If probing becomes too computationally expensive, it can **slow down the hash map**.
+So probing strategies must remain **simple and fast**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+{
+  "id": "operating-systems",
+  "title": "Operating Systems",
+  "slug": "operating-systems",
+  "icon": "DnsIcon",
+  "items": [
+    {
+      "id": "how-does-a-computer-work",
+      "type": "section",
+      "title": "How does a computer work?",
+      "slug": "operating-systems/how-does-a-computer-work",
+      "order": 1,
+      "items": []
+    },
+    {
+      "id": "the-computer-hardware",
+      "type": "section",
+      "title": "The computer hardware",
+      "slug": "operating-systems/the-computer-hardware",
+      "order": 2,
+      "items": []
+    },
+    {
+      "id": "operating-systems",
+      "type": "section",
+      "title": "Operating Systems",
+      "slug": "operating-systems/operating-systems",
+      "order": 3,
+      "items": []
+    },
+    {
+      "id": "processes-and-threads",
+      "type": "section",
+      "title": "Processes and Threads",
+      "slug": "operating-systems/processes-and-threads",
+      "order": 4,
+      "items": []
+    },
+    {
+      "id": "process-scheduling",
+      "type": "section",
+      "title": "Process Scheduling",
+      "slug": "operating-systems/process-scheduling",
+      "order": 5,
+      "items": []
+    },
+    {
+      "id": "synchronization",
+      "type": "section",
+      "title": "Synchronization",
+      "slug": "operating-systems/synchronization",
+      "order": 6,
+      "items": []
+    },
+    {
+      "id": "memory-management",
+      "type": "section",
+      "title": "Memory management",
+      "slug": "operating-systems/memory-management",
+      "order": 7,
+      "items": []
+    },
+    {
+      "id": "file-system",
+      "type": "section",
+      "title": "File system",
+      "slug": "operating-systems/file-system",
+      "order": 8,
+      "items": []
+    },
+    {
+      "id": "i-o-systems",
+      "type": "section",
+      "title": "I/O systems",
+      "slug": "operating-systems/i-o-systems",
+      "order": 9,
+      "items": []
+    }
+  ]
+}

@@ -110,10 +110,10 @@ Return **HTMLCollections** (array-like).
 
 ~~~js
 // Set first element of .student class as 'Not yet registered'
-document.getElementsByClassName('student')[0].innerHTML = 'Not yet registered';
+document.getElementsByClassName('student'), [0].innerHTML = 'Not yet registered';
 
 // Set second <li> tag as 'Cedric Diggory'
-document.getElementsByTagName('li')[1].innerHTML = 'Cedric Diggory';
+document.getElementsByTagName('li'), [1].innerHTML = 'Cedric Diggory';
 ~~~
 
 > **Tip**
@@ -284,6 +284,4 @@ share.addEventListener('click', sharePhoto);
 
 - `keydown` — key pressed down
 - `keyup` — key released
-- `keypress` — press and release (legacy)
-
-Keyboard events have properties like `.key` with the pressed key value.
+- `keypress` — press and release (legacy) Keyboard events have properties like `.key` with the pressed key value.

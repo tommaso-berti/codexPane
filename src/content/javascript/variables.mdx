@@ -40,8 +40,7 @@ const apiUrl = "https://example.com";
 
 ~~~js
 const cfg = { mode: "dev" };
-cfg.mode = "prod";    // ok (object mutated)
-console.log(cfg.mode); // "prod"
+cfg.mode = "prod";    // ok (object mutated) console.log(cfg.mode); // "prod"
 ~~~
 
 > **Attention:** Declaring `const foo;` without an initializer throws a **SyntaxError**.
@@ -53,8 +52,7 @@ console.log(cfg.mode); // "prod"
 ~~~js
 function f() {
     console.log(a); // undefined (var hoisted)
-    // console.log(b); // ReferenceError (let not initialized yet)
-    var a = 1;
+    // console.log(b); // ReferenceError (let not initialized yet) var a = 1;
     let b = 2;
 }
 f();
@@ -165,8 +163,7 @@ During the compilation phase of code execution, the JavaScript engine allocates 
 console.log(a); // undefined
 var a = 1;
 
-// let/const: name hoisted, NOT initialized (TDZ)
-try {
+// let/const: name hoisted, NOT initialized (TDZ) try {
   console.log(b); // ReferenceError
 } catch (e) {
   console.log(e.name); // "ReferenceError"
@@ -174,8 +171,7 @@ try {
 let b = 2;
 
 try {
-  c = 3;          // ReferenceError (assignment before initialization)
-  const c = 3;
+  c = 3;          // ReferenceError (assignment before initialization) const c = 3;
 } catch (e) {
   console.log(e.name); // "ReferenceError"
 }

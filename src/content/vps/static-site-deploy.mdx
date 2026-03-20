@@ -50,8 +50,7 @@ my-cheat-sheet/
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y nginx git curl ufw
 
-# Create a non-root deploy user (if needed)
-sudo adduser <deploy-user>
+# Create a non-root deploy user (if needed) sudo adduser <deploy-user>
 sudo usermod -aG sudo <deploy-user>
 
 # Open firewall for SSH + HTTP/HTTPS

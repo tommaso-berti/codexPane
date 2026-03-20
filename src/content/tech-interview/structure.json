@@ -1,0 +1,32 @@
+{
+  "id": "tech-interview",
+  "title": "Tech Interview",
+  "slug": "tech-interview",
+  "icon": "PublicIcon",
+  "items": [
+    {
+      "id": "acing-the-technical-interview",
+      "type": "section",
+      "title": "Acing the Technical Interview",
+      "slug": "tech-interview/acing-the-technical-interview",
+      "order": 1,
+      "items": []
+    },
+    {
+      "id": "technical-interviews-whiteboarding",
+      "type": "section",
+      "title": "Technical interviews - Whiteboarding",
+      "slug": "tech-interview/technical-interviews-whiteboarding",
+      "order": 2,
+      "items": []
+    },
+    {
+      "id": "behavioral-interview",
+      "type": "section",
+      "title": "Behavioral Interview",
+      "slug": "tech-interview/behavioral-interview",
+      "order": 3,
+      "items": []
+    }
+  ]
+}

@@ -10,6 +10,17 @@ function normalizeHeadingId(id) {
     return id.replace(/-\d+$/, '');
 }
 
+function normalizePathname(pathname) {
+    if (!pathname) return '/';
+    const trimmed = pathname.replace(/\/+$/, '');
+    return trimmed || '/';
+}
+
+function isSectionPathMatch(pathname, sectionSlug) {
+    if (!sectionSlug) return false;
+    return normalizePathname(pathname) === normalizePathname(`/${sectionSlug}`);
+}
+
 export default function SectMenu() {
     const { docs = [] } = useDocs();
     const { docs: docsParam, section: sectionParam } = useParams();
@@ -30,7 +41,7 @@ export default function SectMenu() {
 
     const selected = useMemo(() => {
         const currentSection = currentSections.find((section) => {
-            const isInPath = !!section.slug && pathname.includes(`/${section.slug}`);
+            const isInPath = isSectionPathMatch(pathname, section.slug);
             const isParamMatch = sectionParam === section.id;
             return isInPath || isParamMatch;
         });
@@ -56,7 +67,7 @@ export default function SectMenu() {
         }
 
         for (const section of currentSections) {
-            const isInPath = !!section.slug && pathname.includes(`/${section.slug}`);
+            const isInPath = isSectionPathMatch(pathname, section.slug);
             const isParamMatch = sectionParam === section.id;
             if (isInPath || isParamMatch) {
                 return { type: 'section', value: section.id, sectionId: section.id };
@@ -67,12 +78,16 @@ export default function SectMenu() {
 
     useEffect(() => {
         if (!selected?.sectionId) return;
+        const selectedSection = currentSections.find((section) => section.id === selected.sectionId);
+        const hasSubsections = (selectedSection?.subSections?.length ?? 0) > 0;
+        if (!hasSubsections) return;
         setOpenSections((previous) =>
             previous.includes(selected.sectionId) ? previous : [...previous, selected.sectionId]
         );
-    }, [selected?.sectionId]);
+    }, [selected?.sectionId, currentSections]);
 
-    const handleToggle = (sectionId) => {
+    const handleToggle = (sectionId, hasSubsections) => {
+        if (!hasSubsections) return;
         setOpenSections((previous) =>
             previous.includes(sectionId)
                 ? previous.filter((id) => id !== sectionId)
@@ -97,6 +112,7 @@ export default function SectMenu() {
         >
             {currentSections.map((section) => {
                 const currentSubsections = section?.subSections ?? [];
+                const hasSubsections = currentSubsections.length > 0;
                 return (
                     <SectionMenuItem
                         key={section.id}
@@ -104,7 +120,7 @@ export default function SectMenu() {
                         subsections={currentSubsections}
                         selected={selected}
                         open={openSections.includes(section.id)}
-                        onToggle={() => handleToggle(section.id)}
+                        onToggle={() => handleToggle(section.id, hasSubsections)}
                     />
                 );
             })}

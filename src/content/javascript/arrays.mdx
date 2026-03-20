@@ -40,8 +40,7 @@ Variables declared with `const` **cannot be reassigned**, but array **contents r
 
 ~~~js
 const nums = [1, 2, 3];
-nums[0] = 99;     // ✅ allowed (mutating contents)
-console.log(nums); // [99, 2, 3]
+nums[0] = 99;     // ✅ allowed (mutating contents) console.log(nums); // [99, 2, 3]
 
 // nums = [4,5,6]; // ❌ TypeError (reassigning the binding)
 ~~~
@@ -89,8 +88,7 @@ These **do not modify** the original array; they return a new value.
 // join: array -> string
 ['a','b','c'].join('-');          // 'a-b-c'
 
-// slice: copy a portion (end not included)
-const letters = ['a','b','c','d','e'];
+// slice: copy a portion (end not included) const letters = ['a','b','c','d','e'];
 const subset = letters.slice(1, 4); // ['b','c','d']; letters unchanged
 
 // concat: merge arrays

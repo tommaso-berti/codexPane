@@ -1,0 +1,181 @@
+---
+title: Nodes in JavaScript
+order: 11
+---
+
+# Nodes in JavaScript
+
+Node configuration example in JavaScript
+
+```
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+
+  setNextNode(node) {
+    if (node instanceof Node || node === null) {
+      this.next = node;
+    } else {
+      throw new Error('Next node must be a member of the Node class.');
+    }
+  }
+
+  getNextNode() {
+    return this.next;
+  }
+}
+
+const strawberryNode = new Node('Berry Tasty');
+const vanillaNode = new Node('Vanilla');
+const coconutNode = new Node('Coconuts for Coconut');
+
+vanillaNode.setNextNode(strawberryNode);
+strawberryNode.setNextNode(coconutNode);
+
+let currentNode = vanillaNode;
+while(currentNode) {
+  console.log(currentNode.data);
+  currentNode = currentNode.getNextNode();
+}
+
+module.exports = Node;
+
+```
+
+Here is a clear explanation in English of how this **Node** works in the JavaScript example.
+
+## How This Node Works
+In this lesson, the
+     Node
+  class represents a single element in a linked structure (like a linked list). Each node has two main parts:
+1. **Data** - the value it stores
+2. **Next reference** - a link to another node
+
+## Structure of the Node
+Although the constructor isn't fully shown here, the class works like this conceptually:
+
+```
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+```
+
+* this.data stores the value (e.g., "Vanilla").
+* this.next stores a reference to the next node.
+* By default, next is null, meaning the node does not point to anything yet.
+
+## setNextNode(node)
+
+```
+setNextNode(node) {
+  if (node instanceof Node || node === null) {
+    this.next = node;
+  } else {
+    throw new Error('Next node must be a member of the Node class.');
+  }
+}
+
+```
+
+This method:
+* Sets the current node's next property.
+* Ensures that the argument is either:
+	* Another Node instance, or
+	* null
+* Throws an error if something invalid is passed.
+This protects the structure and prevents linking to non-node values.
+
+## getNextNode()
+
+```
+getNextNode() {
+  return this.next;
+}
+
+```
+
+This method simply returns the next node reference.
+It allows safe access to the next node instead of directly using
+     .next
+ .
+
+## How the Nodes Are Used in the Example
+- **Step 1 — Create nodes**
+  ```js
+  const strawberryNode = new Node('Berry Tasty');
+  const vanillaNode = new Node('Vanilla');
+  const coconutNode = new Node('Coconuts for Coconut');
+  ```
+  Each node stores its flavor in `data`.
+  At this point:
+  - All nodes exist independently.
+  - Their `next` property is `null`.
+
+- **Step 2 — Link the nodes**
+  ```js
+  vanillaNode.setNextNode(strawberryNode);
+  strawberryNode.setNextNode(coconutNode);
+  ```
+  Now the structure looks like this:
+  ```
+  vanillaNode → strawberryNode → coconutNode → null
+  ```
+  - Vanilla points to Strawberry.
+  - Strawberry points to Coconut.
+  - Coconut points to `null` (end of list).
+
+- **Step 3 — Traverse the nodes**
+  ```js
+  let currentNode = vanillaNode;
+
+  while (currentNode) {
+    console.log(currentNode.data);
+    currentNode = currentNode.getNextNode();
+  }
+  ```
+
+## How Traversal Works
+1. Start at vanillaNode.
+2. Log its data.
+3. Move to its next node.
+4. Repeat until currentNode becomes null.
+The output will be:
+
+```
+Vanilla
+Berry Tasty
+Coconuts for Coconut
+
+```
+
+The loop stops when
+     currentNode
+  becomes
+     null
+ .
+
+## What This Represents
+This is a simple **singly linked list**.
+Each node:
+* Knows its own data.
+* Knows only the next node.
+* Does not know about previous nodes.
+
+## Why This Is Useful
+This structure allows:
+* Dynamic memory usage
+* Easy insertion/removal of nodes
+* Sequential traversal of data
+* Flexible data organization
+It is the foundation for more advanced data structures such as:
+* Linked lists
+* Stacks
+* Queues
+* Trees
+* Graphs

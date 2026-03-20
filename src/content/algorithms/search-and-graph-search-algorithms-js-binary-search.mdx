@@ -1,0 +1,150 @@
+---
+title: Js Binary search
+order: 14
+---
+
+import BinarySearchTracePlayground from "./components/search-and-graph-search-algorithms-js-binary-search/BinarySearchTracePlayground.jsx"
+
+# Js Binary search
+
+## Finding the Middle Index
+A key step in each [binary search](https://en.wikipedia.org/wiki/Special:Search?search=binary+search) iteration is to find the middle value of the current list context. In practice, we do this by tracking the first and last indices, then finding their average.
+The first [index](https://en.wikipedia.org/wiki/Special:Search?search=index) we check will always be the middle value of the original list. Because of this, we start by setting the following first (left) and last (right) indices. Below, we show a
+[pseudocode](https://en.wikipedia.org/wiki/Special:Search?search=pseudocode) example of how to set these [variables](https://en.wikipedia.org/wiki/Special:Search?search=variables).
+
+```
+function binarySearch (arr, target) left = 0
+  right = length of arr
+  . . .
+
+```
+
+Because we pass in an [array](https://en.wikipedia.org/wiki/Special:Search?search=array) of length
+     11
+ , the
+     right
+  variable is set to
+     11
+ .
+Next, we calculate the middle index of the array:
+
+```
+function binarySearch (arr, target) left = 0
+  right = length of arr
+
+  indexToCheck = the floor integer of (left + right) / 2
+  . . .
+
+```
+
+The above function will calculate the middle index of the array by calculating the average of
+     right
+  and
+     left
+  and rounding it to the floor integer.
+So, the first index the function checks is
+     5
+ .
+
+## Checking the Middle Index
+Below, we use [pseudocode](https://en.wikipedia.org/wiki/Special:Search?search=pseudocode) to display two additional steps that will check if the
+     target
+  value is found.
+
+```
+function binarySearch (arr, target) left = 0
+  right = length of arr
+
+  indexToCheck = the floor integer of (left + right) / 2
+
+  checking = value of arr at indexToCheck
+
+  if checking is the target
+    return indexToCheck
+
+```
+
+In the example above, we set a variable called
+     checking
+  to the value in
+     arr
+  at the position
+     indexToCheck
+ . Then, we return the [index](https://en.wikipedia.org/wiki/Special:Search?search=index) if it is equal to the target value.
+
+## Iterative Checking
+Let's consider how to extend the function to iteratively check sublists when the middle value is not equal to target.
+Remember, in our [algorithm](https://en.wikipedia.org/wiki/Special:Search?search=algorithm), the function continues to execute until the left and right indices converge or the target is found. In practice, we can implement this with the following
+     while
+  condition.
+
+```
+while right is greater than left
+ indexToCheck = the floor integer of (left + right) / 2
+ checking = value of arr at indexToCheck
+
+ if checking is the target
+   then return indexToCheck
+
+```
+
+Unfortunately, the above code will execute infinitely because our right and left [variables](https://en.wikipedia.org/wiki/Special:Search?search=variables) do not converge from one iteration to the next. To address this issue, in addition to checking if the current value is the target value, we need to adjust the
+     right
+  or
+     left
+  index with each iteration.
+
+```
+while right is greater than left
+  indexToCheck = the floor integer of (left + right) / 2
+  checking = value of arr at indexToCheck
+
+  if checking is the target
+    then return indexToCheck
+  if target is greater than checking
+    then set left to indexToCheck + 1
+  else
+    set right to indexToCheck
+
+```
+
+In the above code, we set the left or right index to a new value based on whether target is greater than or less than checking. The above while loop will continue to execute until the left index is greater than the right index.
+
+### Full example
+
+```
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+    console.log(`indexToCheck equals: ${indexToCheck}`) if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+const target = 2;
+
+const targetIndex = binarySearch(searchable, target);
+
+console.log(`The target index is ${targetIndex}.`);
+
+module.exports = {binarySearch};
+
+```
+
+## Interactive Playground: Binary Search Trace
+**Why this matters:** binary search is easy to misuse unless you see how bounds shrink at each step.
+
+**What to try:** run with a present target, then with a missing target, and compare trace length.
+
+<BinarySearchTracePlayground />

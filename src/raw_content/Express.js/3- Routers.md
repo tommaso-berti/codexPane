@@ -1,0 +1,202 @@
+# 3. Routers
+
+
+**Routers** are mini versions of Express applications — they provide functionality for handling route matching, requests, and sending responses, but they do not start a separate server or listen on their own ports. Routers use all the .get(), .put(), .post(), and .delete() routes.
+
+## **Express.Router**
+An Express router provides a subset of Express methods. To create an instance of one, we invoke the .Router() method on the top-level Express import.
+To use a router, we mount it at a certain path using app.use() and pass in the router as the second argument. This router will now be used for all paths that begin with that path segment. To create a router to handle all requests beginning with /monsters, we would write code like this:
+
+```
+const express = require('express');
+const app = express();
+
+const monsters = {
+  '1': {
+    name: 'godzilla',
+    age: 250000000
+  },
+  '2': {
+    name: 'manticore',
+    age: 21
+  }
+}
+
+const monstersRouter = express.Router();
+
+app.use('/monsters', monstersRouter);
+
+
+```
+
+
+```
+monstersRouter.get('/', (req, res, next) => {
+  res.send(expressions);
+});
+
+```
+
+
+```
+
+monstersRouter.get('/:id', (req, res, next) => {
+  const monster = monsters[req.params.id];
+  if (monster) {
+    res.send(monster);
+  } else {
+    res.status(404).send();
+  }
+});
+```
+
+
+```
+
+
+```
+
+Inside the monstersRouter, all matching routes are assumed to have /monsters prepended, as it is mounted at that path. monstersRouter.get('/:id') matches the full path /monsters/:id.
+When a GET /monsters/1 request arrives, Express matches /monsters in app.use() because the beginning of the path ('/monsters') matches. Express’ route-matching algorithm looks through the routes of monstersRouter to search for full path matches. Since the GET /:id route is mounted at /monsters, the two paths combined match the entire request path (/monsters/1), so the route matches and the callback is invoked. The monster named 'godzilla' is fetched from the monsters object and sent back.
+
+## **Using Multiple Router Files**
+Generally, we will keep each router in its own file and import it into the application file. This allows us to keep our code clean and our files short.
+
+```
+// monsters.js
+const express = require('express');
+const monstersRouter = express.Router();
+
+const monsters = {
+  '1': {
+    name: 'godzilla',
+    age: 250000000
+  },
+  '2': {
+    Name: 'manticore',
+    age: 21
+  }
+}
+
+monstersRouter.get('/:id', (req, res, next) => {
+  const monster = monsters[req.params.id];
+  if (monster) {
+    res.send(monster);
+  } else {
+    res.status(404).send();
+  }
+});
+
+module.exports = monstersRouter;
+```
+
+
+```
+
+
+```
+
+Our app.js file could then be refactored to import the monstersRouter:
+
+```
+// main.js
+const express = require('express');
+const app = express();
+const monstersRouter = require('./monsters.js');
+
+app.use('/monsters', monstersRouter);
+
+module.exports = { app };
+
+```
+
+
+## **Matching In Nested Routers**
+Given
+
+```
+// app.js
+const expressionsRouter = require('./expressions.js');
+const animalRouter = require('./animals.js');
+
+app.use('/animals', animalRouter);
+app.use('/expressions', expressionsRouter);
+
+```
+
+And
+
+```
+// expressions.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res, next) => {
+  res.send(getAllExpressions());
+})
+
+router.get('/:id', (req, res, next) => {
+  const expression = getExpressionById(req.params.id);
+  res.send(expression);
+})
+
+```
+
+A GET request arrives for /expressions/1. Because the beginning of the path does not match /animals in the first app.use(), the Express server moves on to the next app.use(), which matches /expressions.
+Express’ route matching algorithm then enters the expressionsRouter instance which is imported from expressions.js. Inside this router, the path matching changes. Even though the whole request path is /expressions/1, inside the expressionsRouter, all paths are matched from the parts of the path after /expressions, meaning that in this context, the router is trying to match the path /1.
+Because the path is /1, the path does not match the first .get() method at /. The Express server moves on to the next route, which has a route parameter of /:id, so it matches! This route handles the necessary logic and sends the response.
+Routers can be nested as many times as necessary for an application, so understanding nested route matching is important for creating complicated APIs.
+
+## **Control Flow With next()**
+Rather, we’re going to explore why it is useful to have next() as a separate function call. The biggest reason is that we don’t always want to pass control to the next middleware in the stack.
+For example, when designing a system with confidential information, we want to be able to selectively show that information to authorized users. To do that, we would create middleware that tests a user’s permissions. If the user has the necessary permission, we would continue through the middleware stack by calling next(). If it fails, we would want to let the user know that they’re not allowed to see the information they’re trying to access.
+
+## **Route-Level app.use() - Multiple Paths**
+Per the Express documentation for  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     app.use()
+ </span>, the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     path
+ </span> argument may be any of the following:
+* a <u>[string](https://www.codecademy.com/resources/docs/general/data-types/string)</u> representing a path
+* a path pattern
+* a regular expression pattern to match paths
+* an <u>[array](https://www.codecademy.com/resources/docs/general/data-structures/array)</u> of combinations of any of the above
+So  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     app.use()
+ </span> can take an array of paths! That seems like a handy way to rewrite the code from the last exercise so that we don’t have to put the same code in two different routes with different paths.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

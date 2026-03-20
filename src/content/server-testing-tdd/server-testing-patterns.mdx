@@ -1,0 +1,102 @@
+---
+title: Server testing patterns
+order: 2
+---
+
+import TestScopePlannerPlayground from "./components/server-testing-patterns/TestScopePlannerPlayground.jsx"
+
+# Server testing patterns
+
+As you develop an application, you may realize that you can replace feature tests or reduce them with equal coverage at a lower level. One question to ask when deciding between a full feature test versus a server test is:
+“Is it worth trading a slow feature test for a faster server test that doesn’t test the UI?”
+Based on the context of the different levels of testing, you should aim to pick the set of tests that gives you the best combination of reliable, complete, and fast tests.
+In this lesson, you will use server-level testing technologies to test-drive the development of an Express server.
+Server tests often provide feedback in terms of HTTP domain concepts, like status codes, header keys and values, and the content of the response body.
+
+## Status Codes
+One use of TDD at the server level is to ensure that the HTTP status codes are returned as expected. Verifying status codes provides the most basic level of confidence that the server is functioning correctly. Having a test suite that includes status codes provides a quick check when implementing a new feature to ensure that we haven’t accidentally caused a request for valid routes to respond with not authorized (401) or not found (404). For a full list of status codes, check out the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status).
+
+```
+assert.equal(response.status, 200);
+
+```
+
+If we use the “red, green, refactor” approach to implement our server behavior we would start out with an assertion like this and expect it to fail (“red”). We then implement the behavior to pass the test (“green”) and continue to refactor if needed, ensuring the test remains passing.
+
+## Response Content
+Many servers return dynamic HTML content based on the user, the URL accessed, header values, and more. We use TDD to ensure the server responds correctly for each case. When designing our tests, it is important to consider both the intended and unintended user behavior.
+We can organize our tests into two categories:
+- tests that exercise the “Happy Path” — expected use cases of our application
+- tests that exercise the “Sad Path” — unexpected or invalid use of our application
+For our tests, once we retrieve the response from the server, we use assert.include() from the Chai library to check the response.
+
+```
+response.text = '<div><div id="my-name">My Name</div></div>';
+
+```
+
+You can retrieve the content of #my-name and check it using the following:
+
+```
+assert.include(parseTextFromHTML(response.text, '#my-name'), "My Name"); // True
+
+```
+
+We could also write a separate test to check the corresponding “sad path”. Perhaps there is not yet a page for “Your Name”, so you should not receive a response containing similar HTML. We use .notInclude() to verify that the response does NOTE include “Your Name”:
+
+```
+assert.notInclude(parseTextFromHTML(response.text, '#my-name'), "Your Name"); //True
+
+```
+
+Note that here, we are identifying HTML elements by their ID using our parseTextFromHTML() helper, but you can use any selectors supported by the jsdom library. This helper returns the text content of the corresponding HTML element only, but you could write a separate helper for accessing other attributes.
+
+## Refactoring: Route Parameters
+What if we want to create a profile page that is customized for each user? We can use a variable route parameter. This allows us to put any username into the URL and have the server generate the appropriate response.
+
+```
+'welcome/:username' => '<h1>Your Name is ' + req.params.username +'</h1>'.
+
+```
+
+## Refactoring: Handlebars
+In the code so far, we have been responding with inline HTML strings. On a large project, this could make it difficult for the front-end developer to organize and maintain.
+An improved approach to this is using a templating library like Handlebars to separate the HTML view from the JavaScript controller.
+In the web app that we’ve built in this lesson, we’ve placed the templates in the
+     /views
+  folder and have an extension of
+     .handlebars
+ . Our controller will now use
+     .render() to create the view and pass in any variables:
+
+```
+const param = 'Foo';
+res.render('templateName', { param });
+
+```
+
+The templates are written like regular HTML, but variables can be accessed within the view using double curly braces:
+
+```
+<h1>{{ param }}</h1>
+
+```
+
+When the view is rendered, it will replace {{ param }} with its actual value:
+
+```
+<h1>Foo</h1>
+
+```
+
+## API Errors
+As mentioned earlier, one of the primary use cases for server testing is to verify API responses, particularly “sad path” scenarios, where a user interacts with the server in an unexpected or unauthorized manner. We need to ensure that our server properly handles invalid passwords, form field errors, and other potential issues.
+Ensuring the app is designed to withstand these issues and that the error interactions are well-bounded is important.
+Keep in mind that while there may only be one “happy path” for an interaction (user submits a valid password), there can be many corresponding “sad paths” (password is too short, doesn’t contain special characters, etc). By testing the majority of these on the server level, we save ourselves from testing them at a more resource-intensive level, including the user view.
+
+## Interactive Playground: Test Scope Planner
+**Why this matters:** test pyramid balance drives both confidence and feedback speed.
+
+**What to try:** increase e2e weight and inspect how quickly CI feedback quality may degrade.
+
+<TestScopePlannerPlayground />

@@ -1,0 +1,208 @@
+{
+  "id": "software-design",
+  "title": "Software Design",
+  "slug": "software-design",
+  "icon": "PublicIcon",
+  "items": [
+    {
+      "id": "client-vs-server",
+      "type": "section",
+      "title": "Client vs server",
+      "slug": "software-design/client-vs-server",
+      "order": 1,
+      "items": []
+    },
+    {
+      "id": "create-a-website-wireframe",
+      "type": "section",
+      "title": "Wireframe",
+      "slug": "software-design/create-a-website-wireframe",
+      "order": 2,
+      "items": []
+    },
+    {
+      "id": "create-a-website-design-system",
+      "type": "section",
+      "title": "Design system",
+      "slug": "software-design/create-a-website-design-system",
+      "order": 3,
+      "items": []
+    },
+    {
+      "id": "create-a-website-ui-kit",
+      "type": "section",
+      "title": "UI Kit",
+      "slug": "software-design/create-a-website-ui-kit",
+      "order": 4,
+      "items": []
+    },
+    {
+      "id": "create-a-website-design-guide",
+      "type": "section",
+      "title": "Design guide",
+      "slug": "software-design/create-a-website-design-guide",
+      "order": 5,
+      "items": []
+    },
+    {
+      "id": "create-a-website-mockup",
+      "type": "section",
+      "title": "Mockup",
+      "slug": "software-design/create-a-website-mockup",
+      "order": 6,
+      "items": []
+    },
+    {
+      "id": "create-a-website-grid-layout",
+      "type": "section",
+      "title": "Grid layout",
+      "slug": "software-design/create-a-website-grid-layout",
+      "order": 7,
+      "items": []
+    },
+    {
+      "id": "deploying-web-applications-deployment",
+      "type": "section",
+      "title": "Deployment",
+      "slug": "software-design/deploying-web-applications-deployment",
+      "order": 8,
+      "items": []
+    },
+    {
+      "id": "deploying-web-applications-deployment-with-render",
+      "type": "section",
+      "title": "Deployment with Render",
+      "slug": "software-design/deploying-web-applications-deployment-with-render",
+      "order": 9,
+      "items": []
+    },
+    {
+      "id": "mvc-model-view-controller-mvc",
+      "type": "section",
+      "title": "Model View Controller MVC",
+      "slug": "software-design/mvc-model-view-controller-mvc",
+      "order": 10,
+      "items": []
+    },
+    {
+      "id": "mvc-implementing-mvc-architecture-in-a-full-stack-app",
+      "type": "section",
+      "title": "Implementing MVC Architecture in a Full-Stack App",
+      "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app",
+      "order": 11,
+      "items": []
+    },
+    {
+      "id": "project-schema-basic-schema-website",
+      "type": "section",
+      "title": "Basic schema website",
+      "slug": "software-design/project-schema-basic-schema-website",
+      "order": 12,
+      "items": []
+    },
+    {
+      "id": "project-schema-project-schema-react",
+      "type": "section",
+      "title": "Project schema React",
+      "slug": "software-design/project-schema-project-schema-react",
+      "order": 13,
+      "items": []
+    },
+    {
+      "id": "project-schema-project-schema-complex-web-app",
+      "type": "section",
+      "title": "Project schema complex web app",
+      "slug": "software-design/project-schema-project-schema-complex-web-app",
+      "order": 14,
+      "items": []
+    },
+    {
+      "id": "security-web-security-fundamentals",
+      "type": "section",
+      "title": "Web Security Fundamentals",
+      "slug": "software-design/security-web-security-fundamentals",
+      "order": 15,
+      "items": []
+    },
+    {
+      "id": "security-defensive-coding-in-javascript",
+      "type": "section",
+      "title": "Defensive coding in JavaScript",
+      "slug": "software-design/security-defensive-coding-in-javascript",
+      "order": 16,
+      "items": []
+    },
+    {
+      "id": "security-remediation-and-incident-response",
+      "type": "section",
+      "title": "Remediation and Incident Response",
+      "slug": "software-design/security-remediation-and-incident-response",
+      "order": 17,
+      "items": []
+    },
+    {
+      "id": "security-owasp-top-10",
+      "type": "section",
+      "title": "OWASP TOP 10",
+      "slug": "software-design/security-owasp-top-10",
+      "order": 18,
+      "items": []
+    },
+    {
+      "id": "security-transport-layer-security-tls",
+      "type": "section",
+      "title": "Transport Layer Security (TLS)",
+      "slug": "software-design/security-transport-layer-security-tls",
+      "order": 19,
+      "items": []
+    },
+    {
+      "id": "security-role-based-access-control",
+      "type": "section",
+      "title": "Role-Based Access Control",
+      "slug": "software-design/security-role-based-access-control",
+      "order": 20,
+      "items": []
+    },
+    {
+      "id": "security-managing-environment-variables-api-keys-and-files-in-node-js",
+      "type": "section",
+      "title": "Managing Environment Variables, API Keys, and Files in Node.js",
+      "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js",
+      "order": 21,
+      "items": []
+    },
+    {
+      "id": "security-cross-site-scripting-xss-attacks",
+      "type": "section",
+      "title": "Cross-Site Scripting (XSS) Attacks",
+      "slug": "software-design/security-cross-site-scripting-xss-attacks",
+      "order": 22,
+      "items": []
+    },
+    {
+      "id": "security-cors",
+      "type": "section",
+      "title": "CORS",
+      "slug": "software-design/security-cors",
+      "order": 23,
+      "items": []
+    },
+    {
+      "id": "security-cross-site-request-forgery-csrf-attacks",
+      "type": "section",
+      "title": "Cross-Site Request Forgery (CSRF) Attacks",
+      "slug": "software-design/security-cross-site-request-forgery-csrf-attacks",
+      "order": 24,
+      "items": []
+    },
+    {
+      "id": "security-sql-injection",
+      "type": "section",
+      "title": "SQL Injection",
+      "slug": "software-design/security-sql-injection",
+      "order": 25,
+      "items": []
+    }
+  ]
+}

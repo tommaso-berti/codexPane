@@ -1,0 +1,562 @@
+{
+  "id": "postgresql",
+  "title": "PostgreSQL",
+  "slug": "postgresql",
+  "icon": "DnsIcon",
+  "items": [
+    {
+      "id": "postgres",
+      "type": "section",
+      "title": "Postgres",
+      "slug": "postgresql/postgres",
+      "order": 1,
+      "items": [
+        {
+          "id": "setting-up-postgres-server",
+          "type": "subSection",
+          "title": "Setting Up Postgres (server)",
+          "slug": "postgresql/postgres#setting-up-postgres-server",
+          "order": 1
+        },
+        {
+          "id": "setting-up-postgres-client",
+          "type": "subSection",
+          "title": "Setting up Postgres (client)",
+          "slug": "postgresql/postgres#setting-up-postgres-client",
+          "order": 2
+        },
+        {
+          "id": "gui",
+          "type": "subSection",
+          "title": "GUI",
+          "slug": "postgresql/postgres#gui",
+          "order": 3
+        },
+        {
+          "id": "command-line",
+          "type": "subSection",
+          "title": "Command Line",
+          "slug": "postgresql/postgres#command-line",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "constraints",
+      "type": "section",
+      "title": "Constraints",
+      "slug": "postgresql/constraints",
+      "order": 2,
+      "items": [
+        {
+          "id": "data-type-constraint",
+          "type": "subSection",
+          "title": "Data type Constraint",
+          "slug": "postgresql/constraints#data-type-constraint",
+          "order": 1
+        },
+        {
+          "id": "nullability-constraints",
+          "type": "subSection",
+          "title": "Nullability Constraints",
+          "slug": "postgresql/constraints#nullability-constraints",
+          "order": 2
+        },
+        {
+          "id": "improving-tables-with-constraints-after-its-creation",
+          "type": "subSection",
+          "title": "Improving Tables with Constraints after its creation",
+          "slug": "postgresql/constraints#improving-tables-with-constraints-after-its-creation",
+          "order": 3
+        },
+        {
+          "id": "check-constraints",
+          "type": "subSection",
+          "title": "CHECK Constraints",
+          "slug": "postgresql/constraints#check-constraints",
+          "order": 4
+        },
+        {
+          "id": "advanced-constraints",
+          "type": "subSection",
+          "title": "Advanced Constraints",
+          "slug": "postgresql/constraints#advanced-constraints",
+          "order": 5
+        },
+        {
+          "id": "unique-constraints",
+          "type": "subSection",
+          "title": "UNIQUE Constraints",
+          "slug": "postgresql/constraints#unique-constraints",
+          "order": 6
+        },
+        {
+          "id": "primary-keys",
+          "type": "subSection",
+          "title": "Primary keys",
+          "slug": "postgresql/constraints#primary-keys",
+          "order": 7
+        },
+        {
+          "id": "foreign-keys",
+          "type": "subSection",
+          "title": "Foreign Keys",
+          "slug": "postgresql/constraints#foreign-keys",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "database-security",
+      "type": "section",
+      "title": "Database security",
+      "slug": "postgresql/database-security",
+      "order": 3,
+      "items": [
+        {
+          "id": "database-permissions",
+          "type": "subSection",
+          "title": "Database Permissions",
+          "slug": "postgresql/database-security#database-permissions",
+          "order": 1
+        },
+        {
+          "id": "investigating-superuser-permissions",
+          "type": "subSection",
+          "title": "Investigating Superuser Permissions",
+          "slug": "postgresql/database-security#investigating-superuser-permissions",
+          "order": 2
+        },
+        {
+          "id": "creating-and-modifying-database-roles",
+          "type": "subSection",
+          "title": "Creating and Modifying Database Roles",
+          "slug": "postgresql/database-security#creating-and-modifying-database-roles",
+          "order": 3
+        },
+        {
+          "id": "modifying-permissions-on-existing-schemas-and-tables",
+          "type": "subSection",
+          "title": "Modifying Permissions on Existing Schemas and Tables",
+          "slug": "postgresql/database-security#modifying-permissions-on-existing-schemas-and-tables",
+          "order": 4
+        },
+        {
+          "id": "modifying-default-permissions",
+          "type": "subSection",
+          "title": "Modifying Default Permissions",
+          "slug": "postgresql/database-security#modifying-default-permissions",
+          "order": 5
+        },
+        {
+          "id": "groups-and-inheritance",
+          "type": "subSection",
+          "title": "Groups and Inheritance",
+          "slug": "postgresql/database-security#groups-and-inheritance",
+          "order": 6
+        },
+        {
+          "id": "column-level-security",
+          "type": "subSection",
+          "title": "Column Level Security",
+          "slug": "postgresql/database-security#column-level-security",
+          "order": 7
+        },
+        {
+          "id": "row-level-security",
+          "type": "subSection",
+          "title": "Row Level Security",
+          "slug": "postgresql/database-security#row-level-security",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "acid-properties",
+      "type": "section",
+      "title": "ACID Properties",
+      "slug": "postgresql/acid-properties",
+      "order": 4,
+      "items": [
+        {
+          "id": "an-atomic-database-transaction",
+          "type": "subSection",
+          "title": "An Atomic Database Transaction",
+          "slug": "postgresql/acid-properties#an-atomic-database-transaction",
+          "order": 1
+        },
+        {
+          "id": "a-consistent-database-transaction",
+          "type": "subSection",
+          "title": "A Consistent Database Transaction",
+          "slug": "postgresql/acid-properties#a-consistent-database-transaction",
+          "order": 2
+        },
+        {
+          "id": "isolation-in-a-database",
+          "type": "subSection",
+          "title": "Isolation in a Database",
+          "slug": "postgresql/acid-properties#isolation-in-a-database",
+          "order": 3
+        },
+        {
+          "id": "a-durable-database",
+          "type": "subSection",
+          "title": "A Durable Database",
+          "slug": "postgresql/acid-properties#a-durable-database",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "sql-injections",
+      "type": "section",
+      "title": "SQL Injections",
+      "slug": "postgresql/sql-injections",
+      "order": 5,
+      "items": [
+        {
+          "id": "union-based-injections",
+          "type": "subSection",
+          "title": "Union-Based Injections",
+          "slug": "postgresql/sql-injections#union-based-injections",
+          "order": 1
+        },
+        {
+          "id": "error-based-injections",
+          "type": "subSection",
+          "title": "Error-Based Injections",
+          "slug": "postgresql/sql-injections#error-based-injections",
+          "order": 2
+        },
+        {
+          "id": "boolean-based-injections",
+          "type": "subSection",
+          "title": "Boolean-Based Injections",
+          "slug": "postgresql/sql-injections#boolean-based-injections",
+          "order": 3
+        },
+        {
+          "id": "time-based-injections",
+          "type": "subSection",
+          "title": "Time-Based Injections",
+          "slug": "postgresql/sql-injections#time-based-injections",
+          "order": 4
+        },
+        {
+          "id": "out-of-band-sql-injections",
+          "type": "subSection",
+          "title": "Out-of-Band SQL Injections",
+          "slug": "postgresql/sql-injections#out-of-band-sql-injections",
+          "order": 5
+        },
+        {
+          "id": "sql-injection-prevention",
+          "type": "subSection",
+          "title": "SQL Injection Prevention",
+          "slug": "postgresql/sql-injections#sql-injection-prevention",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "indexes",
+      "type": "section",
+      "title": "Indexes",
+      "slug": "postgresql/indexes",
+      "order": 6,
+      "items": [
+        {
+          "id": "what-is-the-benefit-of-an-index",
+          "type": "subSection",
+          "title": "What is the benefit of an Index?",
+          "slug": "postgresql/indexes#what-is-the-benefit-of-an-index",
+          "order": 1
+        },
+        {
+          "id": "impact-of-indexes",
+          "type": "subSection",
+          "title": "Impact of Indexes",
+          "slug": "postgresql/indexes#impact-of-indexes",
+          "order": 2
+        },
+        {
+          "id": "how-to-build-an-index",
+          "type": "subSection",
+          "title": "How to Build an Index",
+          "slug": "postgresql/indexes#how-to-build-an-index",
+          "order": 3
+        },
+        {
+          "id": "index-filtering",
+          "type": "subSection",
+          "title": "Index Filtering",
+          "slug": "postgresql/indexes#index-filtering",
+          "order": 4
+        },
+        {
+          "id": "multicolumn-indexes",
+          "type": "subSection",
+          "title": "Multicolumn Indexes",
+          "slug": "postgresql/indexes#multicolumn-indexes",
+          "order": 5
+        },
+        {
+          "id": "drop-an-index",
+          "type": "subSection",
+          "title": "Drop an Index",
+          "slug": "postgresql/indexes#drop-an-index",
+          "order": 6
+        },
+        {
+          "id": "why-not-index-every-column",
+          "type": "subSection",
+          "title": "Why not Index every Column?",
+          "slug": "postgresql/indexes#why-not-index-every-column",
+          "order": 7
+        },
+        {
+          "id": "when-should-i-add-an-index",
+          "type": "subSection",
+          "title": "When should I add an Index?",
+          "slug": "postgresql/indexes#when-should-i-add-an-index",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "partial-index",
+      "type": "section",
+      "title": "Partial Index",
+      "slug": "postgresql/partial-index",
+      "order": 7,
+      "items": [
+        {
+          "id": "order-by",
+          "type": "subSection",
+          "title": "Order by",
+          "slug": "postgresql/partial-index#order-by",
+          "order": 1
+        },
+        {
+          "id": "primary-keys-and-indexes",
+          "type": "subSection",
+          "title": "Primary Keys and Indexes",
+          "slug": "postgresql/partial-index#primary-keys-and-indexes",
+          "order": 2
+        },
+        {
+          "id": "clustered-index",
+          "type": "subSection",
+          "title": "Clustered Index",
+          "slug": "postgresql/partial-index#clustered-index",
+          "order": 3
+        },
+        {
+          "id": "non-clustered-index",
+          "type": "subSection",
+          "title": "Non-Clustered Index",
+          "slug": "postgresql/partial-index#non-clustered-index",
+          "order": 4
+        },
+        {
+          "id": "index-only-scans",
+          "type": "subSection",
+          "title": "Index-Only Scans",
+          "slug": "postgresql/partial-index#index-only-scans",
+          "order": 5
+        },
+        {
+          "id": "combining-indexes",
+          "type": "subSection",
+          "title": "Combining Indexes",
+          "slug": "postgresql/partial-index#combining-indexes",
+          "order": 6
+        },
+        {
+          "id": "indexes-based-on-expressions",
+          "type": "subSection",
+          "title": "Indexes Based On Expressions",
+          "slug": "postgresql/partial-index#indexes-based-on-expressions",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "normalization",
+      "type": "section",
+      "title": "Normalization",
+      "slug": "postgresql/normalization",
+      "order": 8,
+      "items": [
+        {
+          "id": "duplicated-data",
+          "type": "subSection",
+          "title": "Duplicated data",
+          "slug": "postgresql/normalization#duplicated-data",
+          "order": 1
+        },
+        {
+          "id": "restructuring-columns",
+          "type": "subSection",
+          "title": "Restructuring columns",
+          "slug": "postgresql/normalization#restructuring-columns",
+          "order": 2
+        },
+        {
+          "id": "academic-normalization",
+          "type": "subSection",
+          "title": "Academic Normalization",
+          "slug": "postgresql/normalization#academic-normalization",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "database-maintenance",
+      "type": "section",
+      "title": "Database maintenance",
+      "slug": "postgresql/database-maintenance",
+      "order": 9,
+      "items": [
+        {
+          "id": "object-size",
+          "type": "subSection",
+          "title": "Object Size",
+          "slug": "postgresql/database-maintenance#object-size",
+          "order": 1
+        },
+        {
+          "id": "updates-and-table-size",
+          "type": "subSection",
+          "title": "Updates and Table Size",
+          "slug": "postgresql/database-maintenance#updates-and-table-size",
+          "order": 2
+        },
+        {
+          "id": "introduction-to-vacuum",
+          "type": "subSection",
+          "title": "Introduction to VACUUM",
+          "slug": "postgresql/database-maintenance#introduction-to-vacuum",
+          "order": 3
+        },
+        {
+          "id": "analyze-and-autovacuum",
+          "type": "subSection",
+          "title": "Analyze and Autovacuum",
+          "slug": "postgresql/database-maintenance#analyze-and-autovacuum",
+          "order": 4
+        },
+        {
+          "id": "deletes-and-table-size",
+          "type": "subSection",
+          "title": "Deletes and Table Size",
+          "slug": "postgresql/database-maintenance#deletes-and-table-size",
+          "order": 5
+        },
+        {
+          "id": "vacuum-full",
+          "type": "subSection",
+          "title": "Vacuum Full",
+          "slug": "postgresql/database-maintenance#vacuum-full",
+          "order": 6
+        },
+        {
+          "id": "truncate",
+          "type": "subSection",
+          "title": "Truncate",
+          "slug": "postgresql/database-maintenance#truncate",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "authentication-and-authorization-in-postgres",
+      "type": "section",
+      "title": "Authentication and authorization in Postgres",
+      "slug": "postgresql/authentication-and-authorization-in-postgres",
+      "order": 10,
+      "items": [
+        {
+          "id": "host-based-authentication",
+          "type": "subSection",
+          "title": "Host-Based Authentication",
+          "slug": "postgresql/authentication-and-authorization-in-postgres#host-based-authentication",
+          "order": 1
+        },
+        {
+          "id": "user-and-role-management",
+          "type": "subSection",
+          "title": "User and Role Management",
+          "slug": "postgresql/authentication-and-authorization-in-postgres#user-and-role-management",
+          "order": 2
+        },
+        {
+          "id": "server-configuration",
+          "type": "subSection",
+          "title": "Server Configuration",
+          "slug": "postgresql/authentication-and-authorization-in-postgres#server-configuration",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "how-to-set-up-a-restful-api-with-node-js-and-postgresql",
+      "type": "section",
+      "title": "How to set up a RESTful API with Node.js and PostgreSQL",
+      "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql",
+      "order": 11,
+      "items": [
+        {
+          "id": "node-js-setup",
+          "type": "subSection",
+          "title": "Node.js setup",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#node-js-setup",
+          "order": 1
+        },
+        {
+          "id": "project-structure",
+          "type": "subSection",
+          "title": "Project structure",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#project-structure",
+          "order": 2
+        },
+        {
+          "id": "comparing-sql-query-builders-and-orms-relational-databases",
+          "type": "subSection",
+          "title": "Comparing SQL, query builders, and ORMs Relational Databases",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#comparing-sql-query-builders-and-orms-relational-databases",
+          "order": 3
+        },
+        {
+          "id": "managing-data-with-raw-sql-or-another-database-native-querying-language",
+          "type": "subSection",
+          "title": "Managing data with raw SQL or another database-native querying language",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#managing-data-with-raw-sql-or-another-database-native-querying-language",
+          "order": 4
+        },
+        {
+          "id": "managing-data-with-query-builders",
+          "type": "subSection",
+          "title": "Managing data with query builders",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#managing-data-with-query-builders",
+          "order": 5
+        },
+        {
+          "id": "managing-data-with-orms",
+          "type": "subSection",
+          "title": "Managing data with ORMs",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#managing-data-with-orms",
+          "order": 6
+        },
+        {
+          "id": "glossary",
+          "type": "subSection",
+          "title": "Glossary",
+          "slug": "postgresql/how-to-set-up-a-restful-api-with-node-js-and-postgresql#glossary",
+          "order": 7
+        }
+      ]
+    }
+  ]
+}

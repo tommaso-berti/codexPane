@@ -5,7 +5,7 @@ Routing is the process by which a web application uses the current browser URL (
 
 Before we dive into the lesson, let’s briefly go over the basic structure of URLs. Consider this URL:
 
-- **Domain** (e.g., `codecademy.com`) — specifies the website that hosts the resource. The domain serves as the entry point for your application.
+- **Domain** (e.g., `example.com`) — specifies the website that hosts the resource. The domain serves as the entry point for your application.
 - **Path** (e.g., `/articles`) — identifies the specific resource or page to be loaded and displayed to the user. This is where routing begins.
 - **Query string** (e.g., `?search=node`) — appears after a `?` and assigns values to parameters. Common uses include search parameters and filters.
 
@@ -22,9 +22,7 @@ To use React Router on the web, install the `react-router-dom` package:
 npm install --save react-router-dom@6
 ~~~
 
-React Router provides multiple routers; the most common is `createBrowserRouter`. (Other options and trade offs are outside the scope of this lesson—see the React Router docs to explore them.)
-
-Import and initialize:
+React Router provides multiple routers; the most common is `createBrowserRouter`. (Other options and trade offs are outside the scope of this lesson—see the React Router docs to explore them.) Import and initialize:
 
 ~~~js
 import { createBrowserRouter } from 'react-router-dom';
@@ -294,7 +292,7 @@ export function ExampleForm() {
 ## Query parameters
 Query parameters start with `?` and are key value pairs:
 
-- Example: `https://www.google.com/search?q=codecademy`
+- Example: `https://www.google.com/search?q=react+router`
   Here, the parameter name is `q`.
 
 Use query parameters to search, sort, and filter resources.

@@ -1,0 +1,121 @@
+# 8. Triggers
+
+
+According to Wikipedia, “a <u>[database trigger](https://en.wikipedia.org/wiki/Database_trigger)</u> is procedural code that is automatically executed in response to certain events on a particular table or view in a <u>[database](https://www.codecademy.com/resources/docs/general/database)</u>. The trigger is mostly used for maintaining the integrity of the information on the database.” Adding a trigger saves people from forgetting to do that action, and ensures consistent rules are applied.
+
+Triggers are very customizable. You have control over when they get called, when they run, along with what happens when they are called. For now we will keep things simple and go with a trigger that calls a function when a table is updated.
+
+```
+CREATE TRIGGER <trigger_name>
+BEFORE UPDATE ON <table_name>
+FOR EACH ROW
+EXECUTE PROCEDURE<function>;
+
+```
+
+For a specific example, say you had your own trigger function you (or someone else) created called  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     check_account_update()
+ </span> that might be written like
+
+```
+CREATE OR REPLACE FUNCTION check_account_update() RETURNS TRIGGER AS $$
+    BEGIN
+        NEW.active:= 1;
+        RETURN NEW;
+    END;
+$$ LANGUAGE PLPGSQL;
+
+```
+
+You could set this function as the target of your trigger like this:
+
+```
+CREATE TRIGGER check_update
+    BEFORE UPDATE ON accounts
+    FOR EACH ROW
+    EXECUTE PROCEDURE check_account_update();
+
+```
+
+So in this case, no matter what your UPDATE statement did to the accounts table, the modified rows would have their active column set to 1 (presumably indicating true).
+You are not limited to setting a trigger only on an UPDATE, it can be set for UPDATE, INSERT, DELETE and TRUNCATE.
+
+## BEFORE AND AFTER
+We have already used BEFORE — this calls your trigger before the query that fired the trigger runs, allowing you to apply the actions in the function previous to the query. Specifically letting you modify the row that is being modified when using an INSERT or UPDATE, like we did in the previous lesson.
+AFTER occurs once the query finishes its work. This allows your trigger to activate once the query it was activated by has finished its work. This will not let you modify the row that is being modified as the process has already finished. This is quite useful for logging purposes, such as inserting into an audit table to track who did a change and when.
+
+## FOR EACH ROW/STATEMENT
+When using FOR EACH ROW, the trigger will fire and call the function for every row that is impacted by the related query. The other option is to have it set to FOR EACH STATEMENT. FOR EACH STATEMENT calls the function in the trigger once for each query, not for each record.
+This option might seem simplistic but depending on the situation, it could have large impacts on efficiency and data integrity. For instance, let’s say you want to put in a new column on all your sales records to account for inflation. You have their historical order_value but now you want order_value_inflation_adjusted. Depending on your table, this could be thousands or millions of records. If you have a trigger set as FOR EACH ROW and calls a small function, this could add up fast.
+
+## Focus a trigger
+We can use a WHEN clause to filter when a trigger calls its related function.
+As a note, with the WHEN clause, you can use NEW and OLD to get records from the table before and after the query. Logically, INSERT can not refer to OLD (nothing existed before the insert) and DELETE can not refer to NEW (nothing exists after the delete).
+
+```
+CREATE TRIGGER insert_trigger_high
+BEFORE INSERT ON clients
+FOR EACH ROW
+WHEN (NEW.total_spent >= 1000)
+EXECUTE PROCEDURE high_spender();
+
+```
+
+Or
+
+```
+CREATE TRIGGER insert_trigger_low
+BEFORE INSERT ON clients
+FOR EACH ROW
+WHEN (NEW.total_spent < 1000)
+EXECUTE PROCEDURE not_a_high_spender();
+
+```
+
+
+## Trigger cascade
+If a statement causes multiple triggers to fire, they are triggered in alphabetical order. We have seen this by implication in our previous exercise where we had more than one trigger for UPDATE and INSERT. In that example, because of the logic of the WHERE clauses, only one trigger called its function, but with different WHERE clause logic, both could have been fired.
+Another point to be aware of is that in PostgreSQL, since SELECT statements do not modify rows, no trigger can be set on a SELECT statement.
+Finally, let’s consider the concept that one SQL command can trigger more than one kind of trigger. For example, an INSERT can fire a trigger that calls a function that updates another record(s), firing an UPDATE trigger.
+Let’s look at a hypothetical example on how this might work. Say you have a DELETE trigger on your customers table. The function associated with this trigger inserts a record into the customers_deleted table. Additionally, the customers_deleted table has an INSERT trigger on it. So when this record is inserted it calls its associated function for the trigger that updates a record in the security table setting the date for next review due to the current date.
+
+## Visualize triggers
+To find that, you just need to look at the information_schema.triggers table.
+
+```
+SELECT * FROM information_schema.triggers;
+
+```
+
+
+## **Removing Triggers**
+Just like everything else in your <u>[database](https://www.codecademy.com/resources/docs/general/database)</u>, triggers need to be maintained, and sometimes that means pruning obsolete triggers. You can use DROP TRIGGER to accomplish this.
+
+```
+DROP TRIGGER <trigger_name> ON <table_name>;
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

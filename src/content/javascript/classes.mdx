@@ -65,8 +65,7 @@ class Dog {
 Create a base (parent) class and extend it with a child class.
 
 ~~~js
-// Abstract class (parent)
-class Animal {
+// Abstract class (parent) class Animal {
   constructor(name) {
     this._name = name;
     this._behavior = 0;
@@ -85,8 +84,7 @@ class Animal {
   }
 }
 
-// Extended class (child)
-class Cat extends Animal {
+// Extended class (child) class Cat extends Animal {
   constructor(name, usesLitter) {
     super(name);
     this._usesLitter = usesLitter;

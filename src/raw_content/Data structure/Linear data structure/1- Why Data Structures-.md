@@ -1,0 +1,49 @@
+# 1. Why Data Structures?
+
+
+At the foundation of every program or software system are two essential components: data and algorithms. Algorithms transform data into forms that programs can effectively use. For this reason, it is crucial to structure data in a way that allows algorithms to maintain, utilize, and iterate through it efficiently.
+Data structures are the systems that allow us to store and retrieve data. Many programmers are already familiar with examples such as Python lists and dictionaries or JavaScript arrays and objects. Lists and arrays store data sequentially and access elements by index. Dictionaries and objects store data using named keys for retrieval.
+Data structures in programming are comparable to organizational systems in the real world. For example, imagine a grocery store where frozen pizza is placed next to bell peppers, and toothbrushes are next to milk, with no signs to guide customers. Finding items would be extremely difficult. In contrast, well-organized grocery stores arrange products logically to make them easy to find. Similarly, data structures organize information (including other data structures) in digital environments so it can be accessed efficiently.
+How Data Structures Are Used
+Data structures handle four main functions:
+1. Inputting information
+2. Processing information
+3. Maintaining information
+4. Retrieving information
+Inputting information refers to how data enters the structure. Important considerations include:
+* What type of data can be included?
+* Will new data be added at the beginning, end, or middle?
+* Does existing data need to be updated or removed?
+Processing information involves how stored data is manipulated. This may happen concurrently or as a result of other operations. The structure must account for how existing data changes when new data is added, updated, or deleted.
+Maintaining information focuses on how data is organized within the structure. This includes:
+* Preserving relationships between pieces of data
+* Managing memory allocation to store the data
+Retrieving information concerns how data is accessed and returned. The structure must define:
+* How the information is accessed
+* What steps are required to return the stored data
+Different types of data and different use cases are better suited to different methods of inputting, processing, maintaining, and retrieving information. This is why multiple data structures exist and why programmers can even create their own.
+Choosing the Best Data Structure
+Selecting the appropriate data structure is critical. Just as different professionals specialize in different tasks, data structures are optimized for different purposes. Choosing the wrong structure can lead to slow or inefficient code.
+When selecting a data structure, consider the following factors:
+1. Intended Purpose
+	* What will the data be used for?
+	* Are there built-in features that suit this purpose?
+	* Will you need to search, sort, or iterate through data?
+	* Are certain structures more efficient for these operations?
+2. Memory Management
+	* Do you need control over memory allocation?
+	* Data structures with static memory allocation (such as stacks or arrays) allocate a fixed amount of memory upon creation and limit how much data can be added.
+	* Data structures with dynamic memory allocation (such as heaps or linked lists) allow memory to be allocated and reallocated during the program’s execution.
+	* In languages like Python or JavaScript, memory management is handled automatically. However, in languages like C, memory allocation is an important consideration.
+3. Runtime Efficiency
+	* How long does it take for a data structure to perform certain tasks compared to others?
+	* Two data structures may accomplish the same task, but one may be significantly faster.
+	* This concept relates to runtime and is analyzed further using asymptotic notation.
+Importance of Understanding Data Structures
+Data structures are essential building blocks for organizing digital information. Choosing the right structure allows algorithms to work efficiently and keeps programs running smoothly.
+A strong understanding of data structures is important in many contexts, including:
+* Technical interviews, where candidates may be asked to evaluate runtime and analyze data structures in relation to algorithms
+* Day-to-day software engineering tasks involving data manipulation
+* Data science, where data is stored and accessed through structured systems
+* Many other practical applications in computing
+In summary, data structures are fundamental tools for organizing, storing, and retrieving data efficiently. Selecting the appropriate structure directly impacts performance, memory usage, and overall program effectiveness.

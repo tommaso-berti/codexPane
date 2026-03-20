@@ -1,0 +1,90 @@
+---
+title: Hash Maps
+order: 1
+---
+
+import HashCollisionPlayground from "./components/complex-data-structure-hash-maps/HashCollisionPlayground.jsx"
+
+# Hash Maps
+
+Hash maps map keys to their related values, and are one of the most efficient data structures when it comes to retrieving stored data. This is because the key associated with every value added allows for faster retrieval later on.
+
+Being a *map* means relating two pieces of information, but a map also has one further requirement. In order for a relationship to be a map, every key that is used can only be the key to a single value. In this example every musician can only have one state that they were born in, so it works. There doesn't need to be a value for every possible key, there just can't be more than one value for a given key. For instance, Miles Davis can't be born in both Illinois and Kentucky.
+
+## Hash Map Methodology
+In the case of a map between two things, we don't really care about the exact *sequence* of the data. We only care that a given input, when fed into the map, gives the accurate output. Developing a data structure that performs this is tricky because computers care much more about values than relationships.
+We perform this trick using a structure that our computer is already familiar with, an [array](https://en.wikipedia.org/wiki/Special:Search?search=array). An array uses indices to keep track of values in memory, so we'll need a way of turning each key in our map to an [index](https://en.wikipedia.org/wiki/Special:Search?search=index) in our array.
+Imagine we want our computer to remember that our good friend Joan McNeil is a Libra. We take her name, and we turn that name into a number. Let's say that the number we correspond with the name “Joan McNeil” is 17. We find the 17th index of the array we're using to store our map and save the value (Libra) there.
+How did we get 17, though? We use a special function that turns data like the [string](https://en.wikipedia.org/wiki/Special:Search?search=string) “Joan McNeil” into a number. This function is called a *hashing function*, or a hash function. Hashing functions are useful in many domains, but for our data structure the most important aspect is that a hashing function returns an array index as output.
+
+## Hash Functions
+A hash function takes a [string](https://en.wikipedia.org/wiki/Special:Search?search=string) (or some other type of data) as input and returns an [array](https://en.wikipedia.org/wiki/Special:Search?search=array), [index](https://en.wikipedia.org/wiki/Special:Search?search=index) Preview: Docs Loading link description as output. In order for it to return an array index, our hash map implementation needs to know the size of our array. If the array we are saving values into only has 4 slots, our hash map's hashing [method](https://en.wikipedia.org/wiki/Special:Search?search=method) should not return an index bigger than that.
+In order for our hash map implementation to guarantee that it returns an index that fits into the underlying array, the hash function will first compute a value using some scoring metric: this is the hash value, hash code, or just the *hash*. Our hash map implementation then takes that hash value [mod](https://en.wikipedia.org/wiki/Modulo_operation) the size of the array. This guarantees that the value returned by the hash function can be used as an index into the array we're using.
+It is actually a defining feature of all hash functions that they greatly reduce any possible inputs (any string you can imagine) into a much smaller range of potential outputs (an integer smaller than the size of our array). For this reason, hash functions are also known as *compression functions*.
+
+## How to Write a Hash Function
+Performing complex mathematical calculations that our hash table needs to compute every time it wants to assign or retrieve a value for a key will significantly damage a hash table's performance for two things that it should be able to do quickly.
+Hash functions also need to be able to take whatever types of data we want to use as a key. We only discussed strings, a very common use case, but it's possible to use numbers as hash table keys as well.
+A very common hash function for integers, for example, is to perform the modular operation on it to make sure it's less than the size of the underlying [array](https://en.wikipedia.org/wiki/Special:Search?search=array). If the integer is already small enough to be an [index](https://en.wikipedia.org/wiki/Special:Search?search=index) into the array, there's nothing to be done.
+Many hash functions implementations for strings take advantage of the fact that strings are represented internally as numerical data. Frequently a hash function will perform a shift of the data bitwise, which is computationally simple for a computer to do but also can predictably assign numbers to strings.
+
+## Basic Hash Maps
+A **hash map** stores data as **key-value pairs**.
+Example used:
+* **Key:** Album name
+* **Value:** Release year
+Example data:
+* The Low End Theory → 1991
+* Midnight Marauders → 1993
+* Beats, Rhymes and Life → 1996
+* The Love Movement → 1998
+
+### Components of a Hash Map
+1. **Data (key-value pairs)**The information we want to store.
+2. **Array**A fixed-size array used to store the values.
+3. **Hash function**Converts the key into a number (
+4. **hash value**).
+
+### Hash function used in the example
+
+```
+hash_value = (# of lowercase 'a') + (# of lowercase 'e')
+
+```
+
+in the album name.
+Example:
+
+```
+"The Low End Theory"
+a = 0
+e = 2
+hash = 2
+
+```
+
+### Converting hash to array index
+The hash value is compressed to an array index using **modulo**:
+
+```
+array_index = hash_value % array_length
+
+```
+
+Example with array length = 4:
+| Album                  | Hash                   | Hash % 4               | Index                  |
+|------------------------|------------------------|------------------------|------------------------|
+| The Low End Theory     | 2                      | 2                      | 2                      |
+| Midnight Marauders     | 3                      | 3                      | 3                      |
+| Beats, Rhymes and Life | 5                      | 1                      | 1                      |
+| The Love Movement      | 4                      | 0                      | 0                      |
+
+**Key idea**
+A **key is hashed → converted to an index → value stored in that array position (hash bucket).**
+
+## Interactive Playground: Hash Collision Strategies
+**Why this matters:** collision handling directly affects correctness and lookup cost.
+
+**What to try:** insert colliding keys and compare bucket state after each operation.
+
+<HashCollisionPlayground />

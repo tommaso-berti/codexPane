@@ -1,0 +1,345 @@
+# 2. Constraints
+
+[https://www.postgresql.org/docs/10/ddl-constraints.html](https://www.postgresql.org/docs/10/ddl-constraints.html)
+
+PostgreSQL offers methods to safeguard a database and maintain *data integrity*. One of these methods is called constraints. Constraints are rules defined as part of the data model to control what values are allowed in specific columns and tables.
+Specifically, constraints:
+* Reject inserts or updates containing values that shouldn’t be inserted into a database table, which can help with preserving data integrity and quality.
+* Raise an error when they’re violated, which can help with debugging applications that write to the DB.
+
+## Data type Constraint
+PostgreSQL offers several ways a DB engineer can ensure that correct data is entered into a column or table. One of the most basic methods is built into the CREATE TABLE syntax that you’ve probably already seen before.
+In a CREATE TABLE statement we specify the *data type* for each column of a table (e.g., int, text, timestamp, etc.). In doing so, we’re telling PostgreSQL which types of values can be inserted into each column in the table. You can refer to the complete list of available data types in the <u>[PostgreSQL documentation](https://www.postgresql.org/docs/10/datatype.html)</u>.
+| Data Type                                         | Representation                                    | Value                                             | Display                                           |
+|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+| integer                                           | whole number                                      | 617                                               | 617                                               |
+| decimal                                           | floating-point number                             | 26.17345                                          | 26.17345                                          |
+| money                                             | fixed floating-point number with 2 decimal places | 6.17                                              | $6.17                                             |
+| boolean                                           | logic                                             | TRUE, FALSE                                       | t, f                                              |
+| char(n)                                           | fixed-length string removes trailing blanks       | ‘123 ‘                                            | ‘123’                                             |
+| varchar(n)                                        | variable-length string                            | ‘123 ‘                                            | ‘123 ‘                                            |
+| text                                              | unlimited-length string                           | ‘123 ‘                                            | ‘123 ‘                                            |
+
+To create a table that stores information about volunteers for the conference we could write the following:
+
+```
+CREATE TABLE volunteers (
+    id integer,
+    name varchar,
+    hours_available integer,
+    phone_number varchar(12),
+    email varchar
+);
+
+```
+
+However, data types don’t prevent all unexpected data from being inserted into a table. For example, we’ve defined  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     phone_number
+ </span> as  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     varchar(12)
+ </span> and might expect a 10-digit phone number formatted as  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     XXX-XXX-XXXX
+ </span>. Consider the following issues that may arise:
+* An incomplete value formatted like XXX-XXXX will be accepted because it’s under 12 characters.
+* A value like +X XXX-XXX-XXXX will cause PostgreSQL to raise an error because it’s longer than 12 characters, even though it’s a valid entry.
+Another potential issue caused by relying only on PostgreSQL data types stems from the fact that PostgreSQL will try to interpret incoming data as the data type the column has been defined as. This process, called *type casting*, can have mixed results.
+* If one tries to insert 1.5 into our table’s hours_available column, PostgreSQL will cast this value to integer, round the data, and insert it into the table as 2.
+* If one tries to insert 1.5 into the email column, PostgreSQL will insert this into the database by casting 1.5 to '1.5' even though '1.5' is not a valid email address.
+
+## **Nullability Constraints**
+In some cases, we might enter data into our database without including a value for every column in each row. For example, this could happen when aggregating data from multiple sources that don’t have the same input columns.
+Missing (NULL) values in certain columns might make our data much less useful. For example, if we’re loading data into a table designed to keep a record of talks, we may want to require fields like title, session_timeslot, and speaker_id to be filled for an entry to be valid.
+Suppose we insert a row that doesn’t contain all desired fields into our current talks table. We can do this with the statement below.
+
+```
+INSERT INTO talks (id, estimated_length)
+VALUES (1, 30);
+
+```
+
+We can query this table to see how this row looks when inserted into PostgreSQL when there are no constraints in place
+
+```
+SELECT * FROM talks
+WHERE id = 1;
+
+```
+
+| id               | title            | speaker_id       | estimated_length | session_timeslot |
+|------------------|------------------|------------------|------------------|------------------|
+| 1                | NULL             | NULL             | 30               | NULL             |
+
+With PostgreSQL, we can choose to reject inserts and updates that don’t include data for specific columns by adding a **NOT NULL** constraint on those columns. With this constraint in place, PostgreSQL will reject the insert statement that contains incomplete data. PostgreSQL will raise an error alerting us that these rows violate the constraint and that our insert or update couldn’t be completed.
+
+```
+CREATE TABLE talks (
+    id integer,
+    title varchar NOT NULL,
+    speaker_id integer NOT NULL,
+    estimated_length integer,
+    session_timeslot timestamp NOT NULL
+);
+
+```
+
+Now this statement
+
+```
+INSERT INTO talks (id, estimated_length)
+VALUES (1, 30);
+
+```
+
+Returns the error
+
+```
+ERROR: null value in column "title"  violates not-null constraint
+Detail: Failing row contains (1, null, null, 30, null).
+
+```
+
+The error message lets us know our constraint is working! We even get a helpful message that shows information about the contents of the failing row.
+
+## **Improving Tables with Constraints after its creation**
+Sometimes we’ve planned out a data model and inserted data before realizing that our model could benefit from the addition of a constraint. In PostgreSQL, we can use ALTER TABLE statements to add or remove constraints from existing tables. In fact, all of the constraints we’ll cover throughout this lesson can be added to an existing table by writing an ALTER TABLE statement!
+Let’s add a NOT NULL constraint on session_timeslot with the following statement.
+
+```
+ALTER TABLE talks
+ALTER COLUMN session_timeslot SET NOT NULL;
+
+```
+
+However, if a column contains a row data with a NULL value, an error is returned
+
+```
+SQL Error [23502]: ERROR: column "title" contains null values
+
+```
+
+If the table we’re attempting to add a constraint on doesn’t meet the constraint, we can *backfill* the table so that it does adhere to the constraint. *Backfilling* is a term occasionally used in DB engineering to refer to the process of adding or updating past values. In this case, we can fill our target column’s NULL values with a placeholder value using the query below.
+
+```
+UPDATE talks
+SET title = 'TBD'
+WHERE title IS NULL;
+
+```
+
+If we later decide we no longer need this constraint, we can drop a NOT NULL constraint from an existing table with the following statement:
+
+```
+ALTER TABLE talks
+ALTER COLUMN session_timeslot DROP NOT NULL
+
+```
+
+
+## **CHECK Constraints**
+In some situations, we might want to establish specific rules to determine what makes a row valid. For example, In our  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     talks
+ </span> table, we might want to ensure that the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     estimated_length
+ </span> column is:
+* An integer
+* NOT NULL
+* Positive
+The first two rules can be implemented with a data type and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     NOT NULL
+ </span> constraint respectively, but the third will require additional logic to enforce. We can use  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     CHECK
+ </span> statements to implement more precise constraints on our table. A  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     CHECK
+ </span> constraint can be written into a  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     CREATE TABLE
+ </span> statement, or added to an existing table with  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     ALTER TABLE
+ </span>.
+To use a check constraint, we list CHECK (...) following the data type in a CREATE TABLE statement and write the condition we’d like to test for inside the parentheses.
+The condition tested for inside of parentheses of a CHECK statement must be a SQL statement that can be **evaluated as either true or false**. These statements are similar to the statements you may be familiar with in WHERE clauses when filtering rows from a table.
+
+```
+ALTER TABLE talks 
+ADD CHECK (estimated_length > 0);
+
+```
+
+We can add additional constraints on a column with multiple ALTER TABLE statements.
+Alternatively, If we know the constraints we’d like to include as we’re creating a table, we can list following the column name and datatype in a CREATE TABLE statement.
+
+## **Advanced Constraints**
+Inside a  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     CHECK
+ </span> statement we can use a wide array of SQL syntax to create our conditions. For example, within our check constraint we can:
+* Make comparisons between columns within the table
+* Use logical <u>[operators](https://www.codecademy.com/resources/docs/postgresql/operators)</u> like AND and OR
+* Use other SQL operators you may be familiar with (IN, LIKE)
+As a general rule, any logic that you might use in a WHERE statement to filter individual rows from an existing table can be applied within a CHECK, including logic that involves multiple columns or conditions.
+
+```
+ALTER TABLE talks 
+ADD CHECK (estimated_length > 0 AND estimated_length < 120);
+
+```
+
+We can also apply constraints that apply to multiple columns.
+We could do this by adding separate checks on each of the columns. Alternatively, we could add a single CHECK constraint that checks both conditions as shown below.
+
+```
+ALTER TABLE talks
+ADD CHECK (estimated_length < 120 AND date_part('year', session_timeslot) = 2020);
+
+```
+
+
+## **UNIQUE Constraints**
+When designing a PostgreSQL data model, it’s a good practice to structure tables such that rows are uniquely identifiable by some combination of attributes. Structuring your tables in this way leads to a few benefits:
+* The structure of your data model and the contents of individual tables are more easily interpreted.
+* Queries to access information from the table can be simpler. For example, if we’d like to query our attendees table to find out how many tickets an attendee has reserved, having a unique 
+* <u>[identifier](https://www.codecademy.com/resources/docs/postgresql/identifers)</u> for each attendee allows us to get a result without any intermediate aggregation.
+* Identifying and implementing a PRIMARY KEY is easier on tables with UNIQUE 
+* <u>[constraints](https://www.codecademy.com/resources/docs/postgresql/constraints)</u> already in place.
+To implement this constraint we could include it in our CREATE TABLE statement. To identify values in a single column as unique, we specify UNIQUE following the column name and datatype definitions, in this case we’d write email varchar UNIQUE in our CREATE TABLE statement.
+Alternatively, we can add the constraint to an existing table using the following:
+
+```
+ALTER TABLE attendees 
+ADD UNIQUE (email);
+
+```
+
+To create a composite unique constraint, we can add a UNIQUE (speaker_id, session_timeslot) on it’s own line in the CREATE TABLE statement.
+Just as with single column unique constraints, we can also and add the constraint with an ALTER TABLE statement.
+
+```
+ALTER TABLE talks
+ADD UNIQUE (speaker_id, session_timeslot)
+
+```
+
+
+## Primary keys
+Having unique constraints is useful, but an important part of building a relational data model requires defining relationships between tables. *Primary keys* are essential to defining these relationships.
+A primary key is a column (or set of columns) that **uniquely identifies a row within a database table**. A table can only have one primary key, and in order to be selected as a primary key a column (or set of columns) should:
+* Uniquely identify that row in the table (like a UNIQUE constraint)
+* Contain no null values (like a NOT NULL constraint)
+Implementing a  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     PRIMARY KEY
+ </span> constraint is similar to simultaneously enforcing a  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     UNIQUE
+ </span> and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     NOT NULL
+ </span> constraints on a column (or set of columns). Although  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     UNIQUE NOT NULL
+ </span> and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     PRIMARY KEY
+ </span> constraints function very similarly, tables are limited to one  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     PRIMARY KEY
+ </span>, but not limited in how many columns can have both  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     UNIQUE
+ </span> and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     NOT NULL
+ </span> constraints.
+In addition to defining relationships between tables, primary keys also improve your data model in several other ways:
+* Many joins will use the primary key from one table to join data with another table
+* Primary keys can improve query performance
+* Primary keys help to enforce data integrity within a table by ensuring that rows can be uniquely identified
+
+```
+ALTER TABLE attendees
+ADD PRIMARY KEY (id);
+
+```
+
+Even with a primary key, there’s still good reason to use a combination of UNIQUE and NOT NULL constraints to enforce data integrity on other columns.
+
+## **Foreign Keys**
+When discussing relations between tables, you may see the terms *parent table* and *child table* to describe two tables that are related. More specifically, values inserted into *child table* must be validated by data that’s already present in a *parent table*.
+Formally, this property that ensures data can be validated by referencing another table in the data model is called *referential integrity*. Referential integrity can be enforced by adding a FOREIGN KEY on the child table that references the primary key of a parent table.
+If the parent table doesn’t contain the data a user is attempting to insert, PostgreSQL will reject the insert or update and throw an error.
+
+```
+ALTER TABLE registrations
+ADD FOREIGN KEY (talk_id)
+REFERENCES talks (id);
+
+```
+
+Alternatively, if we’re creating a table from scratch, we can include the following line in the CREATE TABLE statement , FOREIGN KEY (talk_id) REFERENCES talks (id)
+Suppose we now want to enter a registration for talk_id = 100, which does not yet exist in the talks table. Trying to insert a registration for this talk yields an error because there is not a corresponding entry in talks to reference yet. The error below lets us know the constraint is working and provides a helpful error message that indicates we need to add an entry to talks before this insert will succeed.
+
+```
+INSERT INTO registrations VALUES (100, 1, '2020-08-15 9:00:00', 1);
+
+```
+
+Returns the error
+
+```
+SQL Error [23503]: ERROR: insert or update on table "registrations" violates foreign key constraint "registrations_id_fkey"
+Detail: Key (talk_id)=(100) is not present in table "talks".
+
+```
+
+
+### **Cascading Changes**
+By default, a foreign key constraint will prevent an engineer from deleting or updating a row of a parent table that is referenced by some child table. This behavior is sometimes explicitly specified in a CREATE TABLE statement using REFERENCES talks (id) ON DELETE RESTRICT or REFERENCES talks (id) ON UPDATE RESTRICT.
+However, another strategy you may consider is adding a CASCADE clause. Rather than preventing changes, CASCADE clauses (ON UPDATE CASCADE, ON DELETE CASCADE) **cause the updates or deletes to automatically be applied to any child tables**.
+For example, suppose we’d like to set up our database to automatically unregister attendees from a talk that’s been cancelled. To do this we could apply ON DELETE CASCADE to our foreign key constraint.
+
+```
+ALTER TABLE registrations
+ADD FOREIGN KEY (talk_id)
+REFERENCES talks (id) ON DELETE CASCADE
+
+```
+
+When we try to delete a value from talks, we also notice that all registrations for talk_id = 1 are removed as well. This preserves referential integrity by removing any row associated with this talk. To demonstrate, let’s first return the rows in registrations for talk_id = 1.
+
+Example
+| id                 | attendee_id        | session_timelot    | talk_id            |
+|--------------------|--------------------|--------------------|--------------------|
+| 8                  | 2                  | 2020-08-15 9:00:00 | 1                  |
+| 9                  | 5                  | 2020-08-15 9:00:00 | 1                  |
+| 10                 | 8                  | 2020-08-15 9:00:00 | 1                  |
+| 11                 | 9                  | 2020-08-15 9:00:00 | 1                  |
+| 12                 | 10                 | 2020-08-15 9:00:00 | 1                  |
+| 13                 | 11                 | 2020-08-15 9:00:00 | 1                  |
+| 14                 | 3                  | 2020-08-15 9:00:00 | 1                  |
+
+Great, we observe 7 registrations for talk_id = 1 in registrations. Now, let’s use the following code to delete the talk with id = 1:
+
+```
+DELETE FROM talks 
+WHERE id = 1;
+
+```
+
+Because we’ve specified ON DELETE CASCADE on our foreign key, the DELETE statement ran successfully even though there were still rows in registrations that referenced talk_id = 1. Let’s check to see what affect this statement had on registrations.
+As expected, records that correspond to talk_id = 1 have been removed. In effect, ON DELETE CASCADE runs the required deletes on the child table behind the scenes and allows the user to simply run a single command to update a data model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

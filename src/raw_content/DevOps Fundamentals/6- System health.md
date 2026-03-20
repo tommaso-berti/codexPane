@@ -1,0 +1,154 @@
+# 6. System health
+
+
+# **Monitoring**
+In <u>[DevOps culture](https://www.codecademy.com/content-items/a8655c2140cc2a7357864b6c0299846e?preview=true)</u>, feedback loops are critical to improving processes and fixing issues. Monitoring is feedback coming from our code deployment environments.
+**Monitoring** refers to the set of technical practices and tools that tell us what is happening in a system. Monitoring is achieved by defining and exposing the measurements we want to see while the system is running. As a result:
+* We gain deeper insights into our systems’ operations.
+* We can identify issues sooner.
+* We can provide longer-lasting solutions.
+Throughout this article we will describe some of the core concepts of monitoring:
+* What are monitoring and observability?
+* Why implement monitoring?
+* What aspects of our infrastructure should we monitor?
+* How do we measure the quality of our monitoring?
+
+## **Goals of Monitoring**
+Metrics can provide all sorts of business value. Monitoring is a critical way of learning that something is wrong with the health of the system. Without monitoring, the company might not know of a problem until customers complain. Orders not going through cost the company money. Monitoring can inform the engineering team as soon as a problem starts.
+Monitoring also helps determine *why* a system is failing. Using logs and metrics, engineers can investigate what is happening within the system. The ability to see inside a system leads to more informed solutions.
+Monitoring can help stop problems before they cause a failure. Through monitoring our systems, we can detect strains early and implement automation to respond as necessary. 
+
+## **What Should We Measure?**
+**Request Metrics** focus on the traffic flowing through the system:
+* **Number of incoming requests** helps estimate load and plan infrastructure capacity.
+* **Response time** indicates system performance; slow responses often signal bottlenecks or failures.
+* **Error responses (4xx and 5xx)** provide insight into failures.
+	* *4xx errors* usually indicate client-side issues.
+	* *5xx errors* indicate server-side problems and require immediate attention.
+**Server Metrics** describe the health of the infrastructure itself:
+* **Hardware usage (CPU, RAM, disk space)** shows available capacity and supports scaling decisions (add servers when high, reduce when low).
+* **Uptime** measures availability — many systems aim for 99%+ uptime to ensure reliability.
+**Observability** measures how effectively monitoring helps detect and resolve issues. A system is observable if its data allows teams to quickly locate and fix problems.
+Key observability indicators:
+* **Time to detect issues** (ideally before users notice).
+* **Time to identify root cause** (logs and metrics should clearly point to the problem).
+* **Alert quality**, minimizing:
+	* **False negatives** (real issues with no alert),
+	* **False positives** (alerts without real issues),
+	* **Unactionable alerts** (alerts that don’t require action).
+Strong monitoring combines meaningful metrics, fast detection, clear diagnostics, and high-quality alerts to maintain system reliability.
+
+# **Resiliency**
+A system’s ability to continue to perform despite experiencing problems is called **resiliency**. Creating a resilient system allows our services to be *highly-available*, which means our customers can access our functionality a vast majority of the time.
+
+## **System threats**
+Infrastructure can fail in a variety of ways. It is impossible to prevent any failure within such a system. Instead, we can only predict how it might fail and design the system to respond acceptably. Let’s discuss some common types of failures.
+
+### **Internal failures**
+Over time, infrastructure becomes more prone to failure. Some reasons for this include:
+* Hardware failures: disk drives, <u>[RAM](https://www.codecademy.com/resources/docs/general/ram)</u>, <u>[CPU](https://www.codecademy.com/resources/docs/general/computer-hardware/cpu)</u> breakage over time.
+* Firmware becomes outdated over time, hardware support ends.
+
+### **External Failures**
+Systems dependent on external services require the resiliency of those external services. We can’t control whether a service or <u>[API](https://www.codecademy.com/resources/docs/general/api)</u> we use will stop being supported or be shut down.
+## 
+### **Attack**
+Cyberattacks are attempts to disrupt system services or steal an organization’s data. They can happen to businesses of all different sizes and types. Some common types of cyberattacks include:
+* Distributed Denial of Service (DDoS) attacks try to crash a target by overwhelming it with requests.
+* SQL injections try to run malicious database code to reveal internal information.
+*Learn more about cyberattacks in our* <u>*[Introduction to Cybersecurity course](https://www.codecademy.com/learn/introduction-to-cybersecurity)*</u>*!*
+We now have an understanding of some of the main threats to our systems. Let’s discuss how we can protect ourselves against them.
+
+## **Methods for resiliency**
+Failures will always happen. Resiliency is about making our systems able to handle failure well. Two strategies for doing this are:
+1. Reducing the workload.
+2. Spreading the work around.
+Let’s discuss how we might implement each of these strategies.
+## 
+### **Reducing workload**
+We can start by reducing the requests our system needs to process. We can minimize system work via two mechanisms: input validation and caching.
+## 
+### **Input validation**
+*Input validation* involves running checks on requests coming into the system. These checks will allow us to “throw away” malformed or malicious requests. Validation prevents these “bad” requests from reaching our inner systems.
+## 
+### **Caching**
+Some of the regular requests that come into our system might return the same results again and again. *Caching* stores the commonly requested results, reducing the work necessary to resolve similar requests. Caching separates requests into two types:
+* Cache hits: those that are already in the <u>[cache](https://www.codecademy.com/resources/docs/general/cache)</u>.
+* Cache misses: which need work from the application server.
+
+## **Spreading The Work Around**
+We need our system to be able to handle varying levels of workload. The amount of work will vary in a system over time, and during high traffic events, it needs to be more distributed. Below are some mechanisms for accomplishing this, which work hand in hand.
+
+### **Automatic scaling**
+Automatic scaling allows us to use more or fewer servers based on need. Monitoring can detect when our system is encountering a high or low amount of traffic. When monitoring detects a high amount of traffic, our system can add more servers. Upon low traffic level detection, automatic scaling can reduce the number of servers.
+Adding or removing servers isn’t enough. We need a system to direct the appropriate amount of traffic to any servers we have. Let’s discuss the mechanism for doing so, load balancing.
+
+**Load balancing**
+A *load balancer* distributes requests across many resources. With two servers, a load balancer might send every other request to each server.
+
+## **Measuring resiliency**
+We want to be able to estimate how our systems will perform under adverse conditions. There are three approaches we can use to measure the resiliency of our systems. Each approach provides a different degree of accuracy.
+
+### **Analysis of infrastructure**
+Static infrastructure analysis is the easiest but least accurate method of measuring resiliency. We make assumptions about system performance based on our infrastructure specifications.
+Imagine we have three servers, each capable of handling 3000 requests per second. We then reason that our system can handle 9000 requests per second. But when we connect everything, we find our system starts to struggle at 8000 requests per second.
+Unfortunately, the conditions our systems can handle on paper often differ from reality. While this kind of analysis can produce a ballpark figure, we shouldn’t rely on it for exact amounts.
+### 
+### **Controlled chaos**
+Remember, we want to know how our system will perform under difficult circumstances. It makes sense then to create some problems on purpose, to see how our system responds. Let’s take a look at some ways engineers test the resiliency of their systems.
+
+### **Penetration testing**
+<u>*[Penetration testing](https://www.codecademy.com/article/pen-testing)*</u> involves trying to exploit security vulnerabilities by simulating cyberattacks. Penetration testing gives us a chance to see how our system might respond to a malicious user. Using penetration testing allows us to identify holes in our security that we need to fix.
+
+### **Load testing**
+*Load testing* seeks to replicate situations in which the system is under heavy use. Load testing might simulate millions of customers trying to access our site all at once. Load testing can help us identify areas in which the system will break under real-world conditions.
+
+### **Chaos engineering**
+Engineers practicing *chaos engineering* will purposely cause system failures. The engineers might unplug a server, take down a critical API, or disconnect storage. These actions reveal how our system will respond in failure scenarios. We can use these insights to identify weaknesses and strategies for these situations.
+
+## **The Real World**
+The most accurate predictor of how systems react to problems is how they respond to real problems. We can use aspects of monitoring to measure our system’s responses to problems. Some important metrics might include:
+* **Uptime**: what percentage of the time is our system available?
+* **Recovery speed**: when an outage occurs, how long does it take for the system to become available?
+* **Request resolution time** - how fast are incoming requests able to be processed?
+* **Request failures** - how many requests are failing to resolve?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

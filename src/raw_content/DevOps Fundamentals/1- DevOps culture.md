@@ -1,0 +1,93 @@
+# 1. DevOps culture
+
+
+A traditional software company often has a Development and Operations team. The Development team writes an application’s features. The Operation team creates and maintains the <u>[infrastructure](https://www.codecademy.com/content-items/6e0d6d1d574bfb5537c019eebf62e245?preview=true)</u> that the application runs on. The Development team sends its code to the Operations team, who deploys it on the infrastructure.
+Developers sending new features to the Operations team creates a conflict. Developers want to produce new functionality as fast as possible. Operations members want the infrastructure to be stable and reliable. New changes are the biggest threat to the stability of a system. This difference in goals puts Development and Operations at odds with each other.
+DevOps seeks to integrate Development and Operations, by having them work together. By integrating Development and Operations teams, we can have:
+* Consistent development, testing, and production environments 
+* Fewer hand-offs and shared information and context
+* Management of infrastructure with development tools
+
+## **DevOps Culture**
+The culture of DevOps is the most critical factor to its success. Collaboration cannot occur only from applying a set of practices and tools. It requires a culture in which collaboration can thrive. The central pillars of a DevOps culture include:
+* Thinking about the whole production system, rather than a single department or part.
+* Feedback loops allowing each part of the process to receive information and improve.
+* A culture of continuous experimentation and learning.
+
+## **DevOps Practices**
+Some of the important practices that DevOps uses include:
+* <u>[Automation](https://www.codecademy.com/content-items/75e6e31b981af485a621a35f4c9ab66a?preview=true)</u>: making manual processes occur automatically instead.
+* <u>[Continuous Integration](https://www.codecademy.com/content-items/ab1b2d382917cf7160ba9398770b563b?preview=true)</u>: the regular merging of contributor code into a central repository.
+* <u>[Continuous Deployment and Delivery](https://www.codecademy.com/content-items/8c3d59057c4b82820597959cf5625d21?preview=true)</u>: automatically preparing code changes for release.
+* <u>[Infrastructure as Code](https://www.codecademy.com/content-items/98ec91fdb22cf99c80d711548c7bb629?preview=true)</u>: representing aspects of infrastructure within source code files.
+* <u>[Microservices](https://www.codecademy.com/content-items/c2a72d7debd1ed82435cac67da8932b1?preview=true)</u>: dividing up a business application into many small independent services.
+* <u>[Monitoring](https://www.codecademy.com/content-items/0b411641ff87ac8b5b191ebec014a9b1?preview=true)</u>: gathering information about the state of the system during runtime.
+## 
+## **Systems-Level Thinking**
+Developers might concentrate on the code without considering infrastructure or testing needs. The Operations team might only consider infrastructure needs without considering impacts on functionality. DevOps seeks to have each member of the team consider the entire development process. All members share responsibility for the final result. Thinking about the whole process, or **systems-level thinking**, requires the involvement of many perspectives.
+To achieve systems-level thinking, the DevOps culture creates teams comprised of people from many domains. A team might have several developers but also at least one Operations member. The goal is to have a diversified skill-set across the team. Development members will pick up aspects of Operations, and Operations members will gain knowledge of development work. These knowledge gains allow members to make better decisions at each development stage.
+
+## **Continuous Learning and Experimentation**
+DevOps seeks to include process improvement as a part of everyday work. Combining Development and Operations teams should expose a variety of inefficiencies. The team should identify ways to simplify and <u>[automate](https://www.codecademy.com/content-items/75e6e31b981af485a621a35f4c9ab66a?bypass_cache=true&_gl=1*qxdyqw*_ga*NTYyMjU2NTI0MS4xNjU1ODQwNjI4)</u> their production processes.
+Though we intend to make improvements, making changes will result in new problems. These problems are an expected part of DevOps. Failure is an opportunity to learn rather than something to punish. One method DevOps uses to normalize failure is through **blameless retrospectives** (a.k.a. “post-mortems”). Teams hold retrospectives at the end of a sprint, project, or issue resolution. Here, team members discuss what went well as well as things to improve.
+Members should base improvements on information coming from the system. DevOps requires information to flow throughout the development process. Let’s discuss the way DevOps creates these feedback loops.
+
+## **Feedback Loops**
+DevOps employs a variety of strategies to incorporate feedback into its processes on an ongoing basis. Let’s take a look at a few of these **feedback loops**.
+## 
+## **Metrics**
+DevOps seeks to use **metrics** from each stage of the development process to improve and adapt. Operations members can help developers build monitoring into their application’s build processes and deployments. This information will better inform developers on code quality and reveal defects.
+Adding metrics to the software can be very helpful, but having too many can produce unwanted noise. We must focus on metrics that affect the customer. Some of these include:
+* Time to load a website page
+* Time to issue/outage resolution
+* Time to new feature release
+
+## **Shifting Left**
+A defect, or problem, becomes more expensive to fix as it moves along the development process. A defect with someone’s idea is cheap to resolve. When that defect has made its way onto thousands of servers, fixing it is much more expensive. DevOps seeks to discover defects as early as possible, a strategy known as **shifting left**. 
+
+## **Building Quality In**
+Involving even more teams can lead to further improvement. Teams like Security and Accessibility can integrate with Development teams as well. Considering aspects like these throughout the development process is what DevOps refers to as **“building quality in.**“
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

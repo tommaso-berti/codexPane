@@ -16,8 +16,7 @@ db.products.find({ price: { $gt: 50 } })
 // Dates
 db.orders.find({ createdAt: { $gte: ISODate("2025-01-01") } })
 
-// Strings (lexicographic)
-db.users.find({ lastName: { $lt: "M" } })
+// Strings (lexicographic) db.users.find({ lastName: { $lt: "M" } })
 ~~~
 
 > Tip: String comparisons are **lexicographic** and case sensitive by default unless using collation.

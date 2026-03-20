@@ -67,8 +67,7 @@ Extract the public key from the private key, then install it on the server:
 # Extract the public key
 ssh-keygen -y -f my_vps_key.pem > my_vps_key.pub
 
-# Copy the public key (preferred)
-ssh-copy-id -i my_vps_key.pub root@INDIRIZZO_IP
+# Copy the public key (preferred) ssh-copy-id -i my_vps_key.pub root@INDIRIZZO_IP
 ~~~
 
 If `ssh-copy-id` is unavailable, copy it manually:

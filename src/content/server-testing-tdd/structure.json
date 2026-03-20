@@ -1,0 +1,24 @@
+{
+  "id": "server-testing-tdd",
+  "title": "Server Testing TDD",
+  "slug": "server-testing-tdd",
+  "icon": "ApiIcon",
+  "items": [
+    {
+      "id": "testing-framework-chai",
+      "type": "section",
+      "title": "Testing Framework: Chai",
+      "slug": "server-testing-tdd/testing-framework-chai",
+      "order": 1,
+      "items": []
+    },
+    {
+      "id": "server-testing-patterns",
+      "type": "section",
+      "title": "Server testing patterns",
+      "slug": "server-testing-tdd/server-testing-patterns",
+      "order": 2,
+      "items": []
+    }
+  ]
+}

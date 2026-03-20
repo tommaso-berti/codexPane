@@ -1,0 +1,61 @@
+# 4. Three Tier Architecture
+
+# 4. **Three Tier Architecture**
+
+When discussing a new application or program that will be built, the number of tiers an application will need is going to likely be discussed. A *tier* is used to help separate the different processes that will be used within an application. This can be through the use of different tech stacks or by simply dividing into separate teams for each tier. These tiers are easier to understand after viewing a few examples which will be seen later in the article.
+Now that we know what a tier is, we can look at a *three tier application*. In this framework, the three tiers are the presentation tier, application tier, and data tier. These tiers will be discussed in more detail later, but for now, we just need to understand that these tiers can run on their own infrastructure. This allows for easier scalability when expanding the application. This will be detailed later as well.
+
+## **The Presentation Tier**
+The first tier we will be looking at will be the *presentation tier*. This tier is the one most people will be familiar with as it represents items such as the user interface or GUI. It represents how the user will interact with the application.
+This tier consists mostly of markup languages including HTML, JavaScript, and CSS. This is because this tier is mainly for presenting and gathering information from the user, and less about processing the data in this tier.
+
+## **The Data Tier**
+The next tier that we will be discussing is the data tier. This is the tier that stores all of the data. Data at this level is not manipulated and is strictly for storage. This is usually just a database to store the data on. The data tier can only interact with the application tier, and is unable to communicate directly to the presentation tier. This is because of the fact that the data tier is strictly for storage and not manipulation.
+The data tier of applications is usually a database, meaning that services like SQL, MongoDB, and PostgreSQL are used to create the database and assist with querying later. However, any querying done to the database is not considered to be a part of the data tier and is instead a part of the application tier.
+
+## **The Application Tier**
+The final tier that will be looked at will be the application tier. This is where the bulk of the application will go. This tier will deal with processing data gathered from the presentation tier and modifies the data within the data tier. It acts like a bridge connecting the two other tiers.
+Most of the work performed inside of the application tier will be done in programming languages such as Java, Python, Perl, and other popular programming languages. This is because they are best at manipulating the data into a number of different forms.
+
+## **Why use tiered architecture?**
+Tiered architecture is beneficial in development for a number of reasons. The biggest being the added assistance in designing and development and the ease of scaling up programs as use grows over time. The added assistance with designing and development makes it easier to create separate teams to focus on individual parts of the project. A project can be split into a number of teams each focusing on a different tier within the application.
+This also assists with scaling for when the project starts to gather larger users. These layers are typically on their own tech stacks, meaning that when it comes time to upgrade a server, change the user interface, or modify how data is handled, it can all be modified without having to make too many changes to the other tiers. For instance, if Codecademy decided to change the user interface, it would not need to make major changes to the application tier and data tier.
+
+## **Other tiered architectures**
+A three tiered architecture is not the only choice when it comes to deciding the number of tiers inside of an application. Two tiered architecture exists within the development world and contains only a presentation tier and a data tier. This means data is directly displayed to the user, and also means that the logic and data manipulation is limited. This means that two tiered applications are usually very simple in their operations.
+Applications can also contain more than three tiers as well. In fact, an application can contain as many tiers as necessary and is usually referenced as an *n tier application* due to the fact that there is no true limit to the number of tiers an application can contain. As more tiers are added though, it can become harder to maintain the project and can even slow it down due to all of the tiers the project has to manage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

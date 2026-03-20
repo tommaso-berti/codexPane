@@ -1,0 +1,168 @@
+# 6. Indexes
+
+
+An index is an organization of the data in a table to help with performance when searching and filtering records. A table can have zero, one, or many indexes. There are some costs when using indexes, which we will cover later in this lesson.
+Let’s start by learning how to see what indexes already exist on a table. Say you want to see what indexes exist on your products table you would run the following query:
+
+```
+SELECT *
+FROM pg_Indexes
+WHERE tablename = 'products';
+
+```
+
+pg_Indexes is a built-in view in PostgreSQL
+
+## **What is the benefit of an Index?**
+Indexing allows you to organize your database structure in such a way that it makes finding specific records much faster. By default it divides the possible matching records in half, then half, then half, and so on until the specific match you are searching for is found. This is known as a Binary Tree, or B-Tree.
+Let’s consider an example to expand on this concept. Say you had a sales department where you ranked your clients from number 1 to 100 in order of loyalty. If you wanted to search the database for your most loyal client, who would have a loyalty score of 100, you would have to search every record (the highest loyalty score could be anywhere in the data set). If you created an index on loyality_score, you could now use the B-Tree structure to speed up that search. The search would divide all results in half, so in this case, the first check would be if the record you are searching for is greater than or less than 50.
+If you are familiar with logarithms, the worst-case speed for a B-Tree to find a record is log2n, where without it you would have to check every record, so the read time would be n.
+In small databases this is negligible, but as the datasets get larger this becomes more significant. To highlight this, let us say you were searching 1,000,000 records. Without an index on the column you were searching, you would need to look through all 1,000,000 records (assuming its a non-unique column). With a B-Tree index, in the worst case, you would have to search 20 comparisons (log2n).
+
+## **Impact of Indexes**
+To get insight into how PostgreSQL breaks down your statements into runnable parts, we can investigate the query plan by adding EXPLAIN ANALYZE before your query. Rather than returning the results of the query, it will return information *about* the query.
+
+```
+EXPLAIN ANALYZE SELECT *
+FROM customers;
+
+```
+
+This would return the plan that the server will use to give you every row from every record from the customers table.
+The first is the planner will specifically tell you how it is searching. If you see “Seq Scan” this means that the system is scanning every record to find the specific records you are looking for. If you see “Index” (in our examples more specifically “Bitmap Index Scan”) you know that the server is taking advantage of an index to improve the speed of your search.
+The other part to take note of is the “Planning time” and “Execution time”. The planning time is the amount of time the server spends deciding the best way to solve your query, should it use an index, or do a full scan of the table(s) for instance. The execution time is the amount of time the actual query takes to run after the server has decided on a plan of attack. You need to take both of these into consideration, and when examining your own indexes these are critical to understanding how effective your indexes are.
+Scanning each records:
+| QUERY PLAN                                                                                                |
+|-----------------------------------------------------------------------------------------------------------|
+| Seq Scan on customers (cost=0.00..2614.00 rows=500 width=466) (actual time=0.024..9.845 rows=538 loops=1) |
+| Filter: ((first_name)::text = 'David'::text)                                                              |
+| Rows Removed by Filter: 99462                                                                             |
+| Planning time: 6.611 ms                                                                                   |
+| Execution time: 9.889 ms                                                                                  |
+
+Index scan:
+ <span style="font-size: 12.0;">
+     | QUERY PLAN                                                                                                                       |
+|----------------------------------------------------------------------------------------------------------------------------------|
+| Bitmap Heap Scan on customers (cost=12.29..1003.86 rows=500 width=466) (actual time=0.266..0.867 rows=1008 loops=1)              |
+| Recheck Cond: ((last_name)::text = 'Jones'::text)                                                                                |
+| Heap Blocks: exact=714                                                                                                           |
+| -> Bitmap Index Scan on customers_last_name_idx (cost=0.00..12.17 rows=500 width=0) (actual time=0.190..0.191 rows=1008 loops=1) |
+| Index Cond: ((last_name)::text = 'Jones'::text)                                                                                  |
+| Planning time: 0.060 ms                                                                                                          |
+| Execution time: 0.924 ms                                                                                                         |
+
+ </span>
+
+## **How to Build an Index**
+In PostgreSQL, the CREATE INDEX keywords can be used to create an index on a column of a table. Say you wanted to create an index called customers_user_name_idx on the customers table on the user_name column, this is how you would do that:
+
+```
+CREATE INDEX customers_user_name_idx ON customers (user_name);
+
+```
+
+Keep in mind that indexes are great for searching but like everything in life, nothing comes without a cost. In the case of indexes, it comes at the cost of increased runtime for any modification to the table data impacting the user_name column. Another cost is the space that the index takes up.
+The naming convention for the index is <table_name>_<column>_idx.
+
+## **Index Filtering**
+Queries that filter data often use WHERE and ON clauses. If an index is created on the columns referenced in these clauses, the database server will examine the index to see if it will improve the speed of the query.
+Say you were asked to get the number of orders placed by each person with the last name of 'Smith' or 'Jones', you could get that by running the following query.
+
+```
+SELECT
+    c.first_name,
+    c.last_name,
+    COUNT(o.order_id) AS NumOforders
+FROM customers       AS c
+INNER JOIN orders    AS o    
+ON o.customer_id = c.customer_id
+WHERE c.last_name IN ('Smith', 'Jones')
+GROUP BY c.first_name, c.last_name;
+```
+
+
+```
+
+
+```
+
+In this script, the WHERE clause is filtering the possible customers by the last_name. If there is an index on customers.last_name the database server will use this to quickly find the specific customers to examine.
+Another filter in this query is the INNER JOIN between orders and customers on the customer_id. If there are indexes on these columns (one on orders.customer_id and another for customers.customer_id) they could also be searched faster using the respective indexes.
+
+## **Multicolumn Indexes**
+When using multicolumn indexes, the search structure will be based on the values found in all of the columns.
+For example, an index on First and Last Name might be a good idea if it is common to search by both together in your situation. Consider a table where the last names 'Smith' and 'Johnson' appear many times. Having another filter for the first name can help you find someone named 'Sarah Smith' much faster.
+The index is built in the specific order listed at creation, so (last_name, first_name) is different from (first_name, last_name). Keep this in mind when you are building your indexes as the order will impact the efficiency of your searches.
+If there is a good use for it, you could create both indexes as well! If both are present, when you run your script, the database server will determine which index to use based on your query. But remember, indexes take up space, so you shouldn’t always create every index you can think of.
+For a multicolumn index you only need to list out each of the columns in the order you wish them to be used. So if we wanted to create an index called customers_last_name_first_name_idx for the customers table for the combination of last_name and first_name it would be written like this
+
+```
+CREATE INDEX customers_last_name_first_name_idx ON customers (last_name, first_name);
+
+```
+
+
+## **Drop an Index**
+In PostgreSQL, the DROP INDEX command can be used to drop an existing index. We will soon go over why you might want to drop an index you have built, but for now, let’s learn the syntax to drop an index.
+Say we want to drop the index customers_city_idx, Note that we pair the DROP statement with the optional IF EXISTS to protect from execution errors.
+
+```
+DROP INDEX IF EXISTS customers_city_idx;
+```
+
+
+```
+
+
+```
+
+
+## **Why not Index every Column?**
+ The short answer is that everything has a cost. Indexes speed up searching and filtering, however, they slow down insert, update, and delete statements.
+When you insert a record into a non-indexed table the database server simply adds the record(s) onto the end of the table. However, when we add a record to a table that has an index, the index itself must be modified by the server as well. Recall that at its core, an index is an organization of the data in a table. When new data is added, the index will be reshaped to fit that new data into its organization. This means that when you write a single statement to modify the records, the server will have to modify every index that would be impacted by this change. If you are adding a large amount of data to an existing table, it may be better to drop the index, add the data, and then recreate the index rather than having to update the index on each insertion.
+Keep in mind that these drawbacks are for each index you have on your table. If you have multiple indexes on a single table and you insert a record, you will need to update each index associated with the table. This can make indexes very costly.
+Updates and deletes have similar drawbacks. When deleting a record that is associated with an index, it might be faster to find the record — by leveraging the index’s ability to search. However, once the record is found, removing or editing it will result in the same issue as inserting a new record. The index itself will need to be redone. Note that if you’re updating a non-indexed column, that update will be unaffected by the index. So if you are updating a non-indexed column while filtering by one with an index, an update statement can actually be faster with an index.
+The key to indexes is to plan on when an index will help you and stay away from them when they will get in the way.
+## 
+### Index size
+Another place where an index falls short of perfection is that indexes take up space. The index data structures can sometimes take up as much space as the table itself. If you have not worked with large databases before you might be thinking to yourself, “who cares, storage space is cheap nowadays”. However, databases of decent size can easily get into the gigabyte size range quickly.
+This means every time your Database Administrator does a full backup, all of that information, indexes included, are copied. Also consider copying the database to a different environment for testing/development, or running your database on different servers and at different physical locations.
+To see the size of a database table
+
+```
+SELECT pg_size_pretty (pg_total_relation_size('<table_name>'));
+
+```
+
+
+## **When should I add an Index?**
+You may be asking “When should I add an index to my database?” The simple answer is when the benefits of searching outweigh the burdens of storage size and Insert/Update/Delete speed. One thing to consider is whether searching will occur often enough to make the advantages worth the time and effort.
+- As a very rough rule of thumb, think carefully about any index on a table that gets regular Insert/Update/Delete. In contrast, a table that is fairly stable but is searched regularly might be a good candidate for an index.
+- The higher the percentage of a table you are returning the less useful an index becomes. If we’re only searching for 1 record in 1,000,000, an index could be incredibly useful. However, if we are searching for 900,000 out of that same 1,000,000 the advantages of an index become useless. At higher percentages, the query planner might completely ignore your index and do a full table scan, making your index only a burden on the system.
+- Along this same line, if you are combining filtering conditions be aware of what you will be searching on. AND statements are normally fine and the query planner will try to use an indexed field before non-indexed fields to cut down on the total number of records needed to be searched. OR on the other hand, can be very dangerous; even if you have a single non-indexed condition, if it’s in an OR, the system will still have to check every record in your table, making your index useless.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

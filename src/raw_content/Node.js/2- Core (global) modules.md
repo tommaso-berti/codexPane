@@ -1,0 +1,245 @@
+# 2. Core (global) modules
+
+## 
+**Modularity** is a software design technique where one program has distinct parts, each providing a single piece of the overall functionality. These separate **modules** come together to build a cohesive whole. Modularity is essential for creating scalable programs that incorporate libraries and frameworks and separate the program’s concerns into manageable chunks. Essentially, a module is a collection of code located in a file. These files can then be imported into other files by using the require() function
+To save developers from reinventing the wheel each time, Node.js has several built-in modules to perform common tasks efficiently. These are known as the **core modules**. The core modules are defined within Node.js’s source code and are located in the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     lib/
+ </span> folder.
+
+```
+const events = require('events');
+
+```
+
+Some core modules are actually used inside other core modules. For instance, the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     util
+ </span> module can be used by the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     console
+ </span> module to format messages. We’ll cover these two modules in this lesson, as well as two other commonly used core modules:  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     process
+ </span> and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     os
+ </span>.
+Once in the REPL, a complete list of core modules can be accessed by typing the command:
+
+```
+require('module').builtinModules
+
+```
+
+### 
+## **The Console Module**
+One of the most commonly used Node.js core modules is the <u>[console](https://nodejs.org/api/console.html)</u> module. In Node.js, the terminal is used to send and receive text feedback to and from a program, often for debugging purposes.
+The  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     console
+ </span> object provides many of the same familiar methods, such as:
+* log — prints messages to the terminal
+* table — prints out a table in the terminal from an object or array
+* assert — prints a message to the terminal if the value is falsy (i.e., if the assertion fails)
+Since  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     console
+ </span> is a global module, its methods can be accessed from anywhere, and the  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     require()
+ </span> function is not necessary. 
+
+## The Process Module
+In computer science, a **process** is the instance of a computer program that is being executed. You can open Task Manager if you’re on a Windows machine or Activity Monitor from a Mac to see information about the various processes running on your computer right now. Node has a global <u>[process](https://nodejs.org/api/process.html)</u> object with useful methods and information about the current process.
+
+### process.argv
+The  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     process.argv
+ </span> property holds an array of command-line values provided when the current process was initiated. The first element in the array is the absolute path to where Node is installed on the machine. The second element in the array is the path to the file that was executed to start the process.
+Given the following in myProgram.js:
+
+```
+console.log(process.argv);
+
+```
+
+If we execute this command:
+
+```
+node myProgram.js testing several features
+
+```
+
+The output will be like:
+
+```
+[
+  '/usr/bin/node',
+  '/path/to/file/myProgram.js',
+  'testing',
+  'several',
+  'features'
+]
+
+```
+
+### 
+### process.env
+The process.env property is an object that stores and controls information about the environment in which the process is currently running. For example, the process.env object contains a PWD property, which holds a string indicating the absolute path of the directory from which the current process was executed.
+One convention is to add a property to process.env with the key NODE_ENV and a value of either production or development. First, we can use a command-line argument to set the NODE_ENV property:
+
+```
+if (process.argv[2] && process.argv[2] === 'dev') {
+  process.env.NODE_ENV === 'development'
+} else {
+  process.env.NODE_ENV === 'production'
+}
+
+```
+
+
+### process.memoryUsage()
+The process.memoryUsage() method returns information on the CPU demands of the current process. It returns a property that looks similar to this:
+
+```
+{
+  rss: 59510784,
+  heapTotal: 8753152,
+  heapUsed: 5725128,
+  external: 2362673,
+  arrayBuffers: 10529
+}
+
+```
+
+## 
+## 
+## **User Input/Output**
+When we use console.log(), we prompt the computer to *output* information to the console. In the Node environment, the console is the terminal, and the console.log() method is a “thin wrapper” on the .stdout.write() method of the process object. stdout stands for “standard output”.
+In Node, we can also receive *input* from a user through the terminal using the stdin.on() method (stdin stands for “standard input”) on the process object:
+
+```
+process.stdin.on('data', (userInput) => {
+  let input = userInput.toString()
+  console.log(input)
+});
+
+```
+
+Here, we were able to use .on() because under the hood, process.stdin is an instance of EventEmitter. When a user enters text into the terminal and hits Enter, a 'data' event will be fired and our anonymous listener callback will be invoked. The userInput we receive is an instance of the Node <u>[Buffer class](https://nodejs.org/api/buffer.html#buffer_buffer)</u>, so we convert it to a string before printing. We’ll learn more about buffers in a later exercise.
+
+## **Errors**
+The Node environment supports all the standard JavaScript errors, such as EvalError, SyntaxError, RangeError, ReferenceError, TypeError, and URIError, as well as the JavaScript Crror class for creating new error instances.
+Within our own code, we can generate errors and throw them. With synchronous code in Node, we can use <u>[error handling](https://www.codecademy.com/learn/javascript-errors-debugging/modules/errors-and-error-handling)</u> techniques such as try...catch statements.
+Many asynchronous Node APIs use *error-first callback functions* — callback functions that take an error as the first argument and the data as the second argument. If the asynchronous task results in an error, it will be passed in as the first argument to the callback function. If no error was thrown, the first argument will be undefined
+
+```
+const errorFirstCallback = (err, data)  => {
+  if (err) {
+    console.log(`There WAS an error: ${err}`);
+  } else {
+    // err was falsy
+    console.log(`There was NO error. Event data: ${data}`);
+  }
+}
+
+```
+
+
+## **The Timers Module**
+There are times when we want some of our code to be executed at some point in the future. This is what the <u>[timers module](https://nodejs.org/api/timers.html#timers_class_immediate)</u> is used for.
+You may already be familiar with some timer functions, such as setTimeout() and setInterval(), which exist in the browser runtime environment.
+Timer functions in Node.js behave similarly to their browser-based counterparts, but the difference is that they are added to the Node.js <u>[event loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)</u>. This means that the timer functions are scheduled and put into a queue. This queue is processed at every iteration of the event loop.
+
+### setImmediate()
+The setImmediate() function is often compared with the setTimeout() function. When setImmediate() is called, it executes the specified callback function after the current <u>[poll phase](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout)</u> of the event loop is completed.
+ <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     setImmediate()
+ </span> accepts one to many parameters:
+* callback (required): the function that will be executed once the poll phase is complete
+* arguments (optional): zero or more arguments that will be passed, in order, to the callback when it is called
+If you instantiate multiple setImmediate() functions in a row, they will be queued for execution in the order that they were created.
+
+```
+setImmediate(() => {
+  console.log('Hello! My name is Codey.');
+});
+
+console.log('Will this line print before or after?');
+
+```
+
+
+### setTimeout() and setInterval()
+ <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     setTimeout()
+ </span> and  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     setInterval()
+ </span> work similarly to each other and accept the same parameters:
+* callback (required): the function that will be executed after the delay is complete
+* delay (optional): the amount of time, in milliseconds, to wait before executing the callback function — defaults to 1
+* arguments (optional): zero or more arguments that will be passed, in order, to the callback when it is called
+Both functions will execute their callback function once the delay is complete. setTimeout() will only execute the delay and callback function once, while setInterval() will continuously reset the delay and execute the callback function.
+*Note: In Node.js, timer callbacks may only be executed during designated phases of the event loop. Each time the loop iterates, it will check any existing timers to see if their delays have elapsed and execute them if so. But because other phases of the event can be blocking, there is no guarantee that a timer callback will execute exactly after its delay period, only that it will execute at some time after the delay period, the next time the appropriate phase is reached.*
+
+```
+setTimeout(() => {
+  console.log('I get called once after 1 second.');
+}, 1000);
+
+setInterval(() => {
+  console.log('I get called every 5 seconds.');
+}, 5000);
+
+```
+
+Here, the callback for setTimeout() will execute once after a single second has elapsed. On the other hand, the callback for setInterval() will continuously execute every five seconds.
+
+### clearImmediate() and clearTimeout()
+What if we need to stop an interval, though, or cancel a timeout or immediate before it executes? For each of the timer functions, there is a corresponding clearing function, which allows us to cancel the timer. Let’s inspect an example:
+
+```
+let iterations = 0;
+
+const interval = setInterval(() => {
+  console.log('I get called every 1 second.');
+  iterations++;
+  if (iterations >= 3) {
+    console.log('Canceling interval.')
+    clearInterval(interval);
+  }
+}, 1000);
+
+```
+
+Here, we create an interval using setInterval(), which executes its callback function every second. We save the result of calling setInterval() into a variable called interval. We also declare a variable called iterations to keep track of how many times the interval’s callback has been executed.
+Once the value of iterations is 3 or greater, we call clearInterval(), passing interval as the argument. This cancels the timer, preventing any additional iterations. After a few seconds, the output of this example would be:
+
+```
+I get called every 1 second.
+I get called every 1 second.
+I get called every 1 second.
+Canceling interval.
+
+```
+
+To cancel a timer created using setImmediate() or setTimeout(), we would use the clearImmediate() or clearTimeout() functions, respectively.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

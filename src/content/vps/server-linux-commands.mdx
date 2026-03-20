@@ -48,8 +48,7 @@ sudo ufw allow OpenSSH
 sudo ufw enable
 sudo ufw status
 
-# Allow web traffic (HTTP/HTTPS)
-sudo ufw allow 80/tcp
+# Allow web traffic (HTTP/HTTPS) sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 ~~~
 
@@ -138,8 +137,7 @@ top
 # Real-time CPU/RAM with a friendlier UI
 htop
 
-# System logs (most recent with context)
-sudo journalctl -xe
+# System logs (most recent with context) sudo journalctl -xe
 
 # Last SSH logins
 sudo grep "sshd" /var/log/auth.log
@@ -175,6 +173,5 @@ sudo reboot
 # Force reboot
 sudo reboot -f
 
-# Power off (you will need to power it back on from your provider panel, e.g., IONOS)
-sudo poweroff
+# Power off (you will need to power it back on from your provider panel, e.g., IONOS) sudo poweroff
 ~~~

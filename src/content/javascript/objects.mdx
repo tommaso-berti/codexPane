@@ -24,9 +24,7 @@ let spaceship = {
   numCrew: 5
 };
 
-console.log(spaceship.numCrew);      // 5  (dot)
-console.log(spaceship['Active Mission']); // true (bracket)
-console.log(spaceship['Fuel Type']); // 'Turbo Fuel'
+console.log(spaceship.numCrew);      // 5  (dot) console.log(spaceship['Active Mission']); // true (bracket) console.log(spaceship['Fuel Type']); // 'Turbo Fuel'
 console.log(spaceship['!!!!!!!!!!!!!!!']); // undefined
 ~~~
 
@@ -44,9 +42,7 @@ const spaceship = {
   type: 'Shuttle'
 };
 
-// spaceship = { type: 'alien' }; // ❌ TypeError (reassignment)
-
-spaceship.type = 'alien';          // ✅ mutate property
+// spaceship = { type: 'alien' }; // ❌ TypeError (reassignment) spaceship.type = 'alien';          // ✅ mutate property
 spaceship.speed = 'Mach 5';        // ✅ add new property
 spaceship['Active Duty'] = false;  // ✅ bracket notation
 spaceship.numCrew = 6;             // ✅ update number

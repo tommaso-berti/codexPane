@@ -16,16 +16,14 @@ Modules are reusable pieces of code in a file that can be exported and then impo
 In Node.js (CommonJS), export values from a file and require them elsewhere.
 
 ~~~js
-// math.js (Node/CommonJS)
-function add(a, b) { return a + b; }
+// math.js (Node/CommonJS) function add(a, b) { return a + b; }
 const PI = 3.14159;
 
 module.exports = { add, PI };
 ~~~
 
 ~~~js
-// app.js (Node/CommonJS)
-const { add, PI } = require("./math.js");
+// app.js (Node/CommonJS) const { add, PI } = require("./math.js");
 console.log(add(2, 3), PI);
 ~~~
 
@@ -186,8 +184,7 @@ export const PI = 3.14159;
 export function area(r) { return PI * r * r; }
 export class Circle { constructor(r) { this.r = r; } }
 
-// Default export inline (only one per module)
-export default function clamp(n, min, max) {
+// Default export inline (only one per module) export default function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 ~~~

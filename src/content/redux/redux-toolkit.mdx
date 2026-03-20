@@ -36,8 +36,7 @@ const todos = (state = [], action) => {
 Example:
 ~~~
 /* todosSlice.js */
-// Configuration object for createSlice()
-const options = {
+// Configuration object for createSlice() const options = {
   name: 'todos', // Name of slice
   initialState: [], // Initial state of slice
   reducers: {
@@ -116,8 +115,7 @@ const todosSlice = createSlice({
       })
     },
     toggleTodo: (state, action) => {
-      const todo = state.find(todo => todo.id === action.payload.id)
-      if (todo) {
+      const todo = state.find(todo => todo.id === action.payload.id) if (todo) {
         todo.completed = !todo.completed
       }
     }
@@ -141,8 +139,7 @@ const todosSlice = createSlice({
       state.push({ id, text, completed: false })
     },
     toggleTodo(state, action) {
-      const todo = state.find(todo => todo.id === action.payload)
-      if (todo) {
+      const todo = state.find(todo => todo.id === action.payload) if (todo) {
         todo.completed = !todo.completed
       }
     }
@@ -228,9 +225,7 @@ const store = configureStore({
     todos: todosReducer,
     filters: filtersReducer
   }
-})
-
-export default store
+}) export default store
 ~~~
 
 * **Reducer**: It combines `todosReducer` and `filtersReducer` into the root reducer function, which will handle a root state that looks like `{todos, filters}`, removing the need to call `combineReducers()`. This lowers the amount of boilerplate code we need to write.

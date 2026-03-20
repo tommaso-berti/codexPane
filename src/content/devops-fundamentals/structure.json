@@ -1,0 +1,64 @@
+{
+  "id": "devops-fundamentals",
+  "title": "DevOps Fundamentals",
+  "slug": "devops-fundamentals",
+  "icon": "DnsIcon",
+  "items": [
+    {
+      "id": "devops-culture",
+      "type": "section",
+      "title": "DevOps culture",
+      "slug": "devops-fundamentals/devops-culture",
+      "order": 1,
+      "items": []
+    },
+    {
+      "id": "infrastructure-traditional-infrastructure",
+      "type": "section",
+      "title": "Infrastructure Traditional Infrastructure",
+      "slug": "devops-fundamentals/infrastructure-traditional-infrastructure",
+      "order": 2,
+      "items": []
+    },
+    {
+      "id": "traditional-infrastructure",
+      "type": "section",
+      "title": "Traditional Infrastructure",
+      "slug": "devops-fundamentals/traditional-infrastructure",
+      "order": 3,
+      "items": []
+    },
+    {
+      "id": "infrastructure-configuration",
+      "type": "section",
+      "title": "Infrastructure Configuration",
+      "slug": "devops-fundamentals/infrastructure-configuration",
+      "order": 4,
+      "items": []
+    },
+    {
+      "id": "application-architectures",
+      "type": "section",
+      "title": "Application Architectures",
+      "slug": "devops-fundamentals/application-architectures",
+      "order": 5,
+      "items": []
+    },
+    {
+      "id": "system-health",
+      "type": "section",
+      "title": "System health",
+      "slug": "devops-fundamentals/system-health",
+      "order": 6,
+      "items": []
+    },
+    {
+      "id": "devops-automation",
+      "type": "section",
+      "title": "DevOps Automation",
+      "slug": "devops-fundamentals/devops-automation",
+      "order": 7,
+      "items": []
+    }
+  ]
+}

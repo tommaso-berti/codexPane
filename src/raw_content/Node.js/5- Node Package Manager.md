@@ -1,0 +1,165 @@
+# 5. Node Package Manager
+
+
+As you may have learned, when developing <u>[Node.js](https://www.codecademy.com/resources/docs/general/node-js)</u> applications, developers have access to a number of core modules that come preshipped when you install Node.js onto your machine.
+In addition to these core Node.js modules, developers can also take advantage of modules created by other developers, many of which are <u>[shared freely](https://en.wikipedia.org/wiki/MIT_License)</u>. These third-party modules often solve common problems and simplify the development process. When we use these modules in our code, they are referred to as **dependencies**.
+
+## **How does a package manager help in Node.js**
+So, where do you go to find these dependencies? Most of the time, these dependencies are installed in **packages** handled by a **package manager**. A package is simply a third-party module wrapped up with the list of that module’s own dependencies.However, managing modules that are dependent on other modules that are dependent on even further modules can be quite cumbersome to handle on your own.
+We avoid these troubles by using a package manager, an indispensable tool that:
+* downloads and installs the packages to be used as dependencies on a project
+* checks the packages to make sure they don’t have any known vulnerabilities
+* checks if packages can be updated to a newer version
+* handles all of the packages’ sub-dependencies
+* cleanly removes all the files of a package when it’s no longer needed
+* provides a repeatable and consistent process of installing dependencies for you and your teammates
+
+## npm
+The most popular package manager is **N**ode **P**ackage **M**anager, or <u>[npm](https://www.codecademy.com/resources/docs/javascript/npm)</u>, which is the default package manager for Node.js. Its command-line tool,  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;">
+     npm
+ </span>, is even included in the Node.js installation process. This tool enables developers to download and manage packages via the terminal.
+
+## **How to initialize a Node.js project using npm**
+Initializing a Node.js app that utilizes npm is a relatively straightforward process. To initialize a Node.js app, we open up a terminal and enter the command:
+
+```
+npm init
+
+```
+
+This will result in a series of prompts asking us for <u>[information about our project](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)</u>, including our project’s name, version number, and description. Once the prompts have been completed, a package.json file will be generated with the information listed in JSON format:
+
+```
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "a basic project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Super Coder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+}
+
+```
+
+*Quick tip: If you’re looking to get initialized quickly, you can add the flag* -y *to the end of the initialization command to skip the prompts like so:* npm init -y*.*
+Direct your attention to the "dependencies" dictionary in the file above. This section lists all of the project’s dependencies alongside their version numbers. Importantly, as you install new dependencies using npm, this file will be automatically updated to maintain the most up-to-date picture of the packages used in the application. As you can see, this project already has the popular routing package <u>[express](https://www.npmjs.com/package/express)</u> listed as a dependency.
+
+## **How to install a package using npm**
+There are over 1 million packages in the npm registry created by developers just like you, and you can explore the collection on the <u>[official npm website](https://www.npmjs.com/)</u>.
+Another popular Node.js package is nodemon, a tool used to automatically restart a program when a file changes, alleviating the need to do so manually each time you save a file. You can enter “nodemon” in the search bar of the npm website, or just Google “nodemon npm” to get to the <u>[official package page](https://www.npmjs.com/package/nodemon)</u>.
+Each package’s npm page includes information on using the package, stats about the package, and a link to the GitHub repository. At the top of the right sidebar, you’ll see the install command.
+The npm i <package name> command installs a package *locally* in a folder called node_modules/ which is created in the project directory that you ran the command from. Additionally, the newly installed package will be added to the package.json file:
+
+```
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "a basic project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Super Coder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.1.10"
+  }
+}
+
+```
+
+
+## **How to install devDependencies in npm**
+While most dependencies play a direct role in the functionality of your application, **development dependencies** are used for the purpose of making development easier or more efficient.
+In fact, the nodemon package is actually better suited as a development dependency since it makes developers’ lives easier, but makes no changes to the app itself. To install nodemon as a development dependency, we can add the flag --save-dev, or its -D alias.
+
+```
+npm install nodemon --save-dev
+
+```
+
+Development dependencies are listed in the "devDependencies" property of package.json. This indicates that the package is being used specifically for development and will not be included in a production release of the project.
+
+```
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "a basic project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
+
+```
+
+
+## **How to install global packages in npm**
+Some packages can be installed *globally*, meaning they are available system-wide, without the need to install them each time you create a new application. Typically, packages installed this way will be used in the command-line rather than imported into a project’s code. One such example is the <u>[http-server package](https://www.npmjs.com/package/http-server)</u> which allows you to spin up a zero-configuration server from anywhere in the command-line.
+To install a package globally, use the -g flag with the installation command:
+
+```
+npm install http-server -g
+
+```
+
+http-server is a good package to install globally since it is a general command-line utility, and its purpose is not linked to any specific functionality within an app.
+Unlike local package dependencies or development dependencies, packages installed globally will not be listed in a project’s package.json, and they will be stored in <u>[a separate, global node_modules/ folder](https://docs.npmjs.com/cli/v7/configuring-npm/folders)</u>.
+
+## **How to install all project dependencies at once**
+You may have noticed that, as we install third-party packages from npm, we are creating a package.json file for our own project. Doing so turns our own project into a package, just one that isn’t published in the npm registry (yet).
+While you may never end up publishing your project as a public package, having this package.json file enables you to easily collaborate with other developers. Anyone who wishes to work with you on your project can simply download your project, including the package.json, and run the command:
+
+```
+npm i
+
+```
+
+Running this command will automatically install all packages listed as dependencies or development dependencies. If you wish to leave out development dependencies, you can run the command with the --production flag.
+
+```
+npm i --production
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

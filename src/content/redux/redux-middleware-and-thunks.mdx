@@ -59,10 +59,7 @@ const messageReducer = (state = '', action) => {
 
 // Paste the logger function here.
 const logger = storeAPI => next => action => {
-  console.log(storeAPI.getState())
-  const nextState = next(action)
-  console.log(nextState)
-  return nextState;
+  console.log(storeAPI.getState()) const nextState = next(action) console.log(nextState) return nextState;
 };
 
 const store = createStore(messageReducer, '', applyMiddleware(logger));
@@ -85,8 +82,7 @@ const add = (x,y) => {
 
 Note that calling `add()` does not cause the addition to happen – it merely returns a function that will perform the addition when called. To perform the addition, we must call `delayedAddition()`.
 ~~~
-const delayedAddition = add(2,2)
-delayedAddition() // => 4
+const delayedAddition = add(2,2) delayedAddition() // => 4
 ~~~
 
 Example:
@@ -101,9 +97,7 @@ const remindMeLater = (task) => {
   }
 }
 
-console.log(remindMeTo('call mom'))
-const reminder = remindMeLater('get groceries')
-console.log(reminder())
+console.log(remindMeTo('call mom')) const reminder = remindMeLater('get groceries') console.log(reminder())
 ~~~
 
 ## Promise lifecycle actions
@@ -151,8 +145,7 @@ import { fetchUser } from './api'
 const fetchUserById = createAsyncThunk(
     'users/fetchUserById', // action type
     async (userId, thunkAPI) => { // payload creator
-        const response = await fetchUser(userId)
-        return response.data
+        const response = await fetchUser(userId) return response.data
     }
 )
 ~~~
@@ -174,8 +167,7 @@ import { fetchUser } from './api'
 const fetchUserById = createAsyncThunk(
   'users/fetchUserById', // action type
   async (userId, thunkAPI) => { // payload creator
-    const response = await fetchUser(userId)
-    return response.data
+    const response = await fetchUser(userId) return response.data
   }
 )
 ~~~

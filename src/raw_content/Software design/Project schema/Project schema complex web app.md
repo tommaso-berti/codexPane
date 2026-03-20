@@ -1,0 +1,92 @@
+# Project schema complex web app
+
+## Generic
+/myapp
+│── /backend                 # Backend (Node.js, Express, NestJS, etc.)
+│   ├── /src                 # Source code
+│   │   ├── /config          # Configuration files (DB, Auth0, environment)
+│   │   ├── /controllers     # API controllers (handling HTTP requests)
+│   │   ├── /models          # MongoDB schemas (Mongoose models)
+│   │   ├── /routes          # API routes (Express/NestJS endpoints)
+│   │   ├── /services        # Business logic (Auth0, payments, external APIs)
+│   │   ├── /middlewares     # Middleware functions (Auth0, logging, etc.)
+│   │   ├── /utils           # Utility functions/helpers
+│   │   ├── /tests           # Unit & integration tests
+│   │   ├── app.js           # Main Express/NestJS app file
+│   │   ├── server.js        # Entry point for the backend
+│   ├── package.json         # Backend dependencies
+│   ├── .env                 # Environment variables (MongoDB URI, Auth0 keys)
+│
+│── /frontend                # Frontend (React, Next.js, Vue)
+│   ├── /src                 # Source code
+│   │   ├── /components      # Reusable UI components
+│   │   ├── /pages           # Page-based routing (Next.js or React Router)
+│   │   ├── /context         # Global state (Auth0, user session)
+│   │   ├── /hooks           # Custom React hooks
+│   │   ├── /services        # API calls (fetching data from the backend)
+│   │   ├── /styles          # CSS styles, Tailwind, Styled Components
+│   │   ├── /tests           # Frontend tests (Jest, Cypress)
+│   │   ├── App.js           # Main app component (React)
+│   │   ├── index.js         # Entry point (React) or `_app.js` (Next.js)
+│   ├── package.json         # Frontend dependencies
+│   ├── .env                 # Frontend environment variables (Auth0 domain, client ID)
+│
+│── /database                # MongoDB setup and seed scripts
+│   ├── /migrations          # Database migration scripts (if needed)
+│   ├── seed.js              # Seed database with initial data
+│
+│── /auth                    # Auth0 integration setup
+│   ├── auth0.js             # Auth0 SDK setup for frontend & backend
+│   ├── authMiddleware.js     # Middleware to secure API routes
+│
+│── /tests                   # End-to-end and unit tests
+│   ├── /e2e                 # Cypress or Playwright tests
+│   ├── /unit                # Jest tests for backend & frontend
+│
+│── /scripts                 # Deployment & automation scripts
+│   ├── start.sh             # Start the app
+│   ├── deploy.sh            # Deployment automation
+│
+│── .gitignore               # Files to ignore in Git
+│── docker-compose.yml       # Docker setup for local development
+│── README.md                # Project documentation
+
+## React/Next.js
+/frontend
+│── /public
+│   ├── index.html   # The main HTML file
+│   ├── favicon.ico  # The app icon
+│── /src
+│   ├── main.js      # Entry point for React
+│   ├── App.js       # Root component
+
+### Media
+/frontend
+│── /public              # Publicly accessible static files (not processed by Webpack/Vite)
+│   ├── /images         # Static images (logos, icons)
+│   ├── /videos         # Static videos
+│   ├── /uploads        # User-uploaded content (if frontend handles uploads)
+│   ├── favicon.ico     # Website icon
+│   ├── robots.txt      # SEO-related file
+│   ├── index.html      # Main HTML file (if React/Vite)
+
+## Node.js
+/frontend
+│── /pages
+│   ├── _app.js     # Wrapper for all pages
+│   ├── index.js    # Home page (served dynamically)
+│── /public
+│   ├── index.html  # Optional, mostly for static sites
+
+### Media
+/backend
+│── /public              # Publicly accessible assets (served by Express)
+│   ├── /uploads        # User-uploaded images/files
+│   ├── /static         # Static files (logos, PDFs, CSS)
+│── /src
+│   ├── /controllers    # Handles file uploads
+│   ├── /routes         # API routes
+│   ├── /services       # Business logic (Auth0, DB, file handling)
+│── /storage            # Internal storage (if not using cloud services)
+│   ├── /images        # User profile pictures
+│   ├── /videos        # User-uploaded videos

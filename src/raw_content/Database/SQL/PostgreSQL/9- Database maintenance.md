@@ -1,0 +1,143 @@
+# 9. Database maintenance
+
+
+Because PostgreSQL stores data on disk, you should take care to manage that storage like any other set of files. Just as you might only want to keep the most recent version of a large .csv file on your computer, you’ll want to keep your PostgreSQL database consuming only the disk space it needs.
+The space PostgreSQL uses on disk can grow in several ways. Some ways are easier to predict, for example, the addition of new tables or the addition of more data to a table. However, there are some properties of the PostgreSQL data storage system that cause disk usage to increase in non-intuitive ways. For example, table size can increase after UPDATE statements, or a DELETE statement that removes millions of rows can result in no change in total table size.
+
+## **Object Size**
+In order to manage database disk utilization, you should first be able to measure disk utilization. As a database user, you can use the following functions to check the size of a relation in a database.
+* **pg_total_relation_size** will return the size of the table and all its indexes in bytes. These values are often in the millions or billions and thus hard to read.
+* **pg_table_size** and **pg_indexes_size** return the size of the table’s data and table’s indexes in bytes. The sum of these two functions is equal to pg_total_relation_size
+* **pg_size_pretty** can be used with the functions above to format a number in bytes as KB, MB, or GB.
+All of the logic to get the table or index size is in the function itself, although PostgreSQL does store table size in specific internal tables, you can simply write a statement like  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     SELECT pg_table_size(table_name);
+ </span> to get a table’s size. Let’s look into an example using the table  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     time_series
+ </span>.
+
+```
+SELECT 
+    pg_size_pretty(pg_table_size('time_series')) as tbl_size, 
+    pg_size_pretty(pg_indexes_size('time_series')) as idx_size,
+    pg_size_pretty(pg_total_relation_size('time_series')) as total_size;
+
+```
+
+| tbl_size   | idx_size   | total_size |
+|------------|------------|------------|
+| 352KB      | 184KB      | 536KB      |
+
+Because indexes are relations in their own right, you can also call  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     pg_total_relation_size
+ </span> on a single index to get the size of the index. For example, if we know that  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     time_series
+ </span> has an index named  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     pk_mocked_data
+ </span>, we can check the total relation size of that index with the following.
+
+```
+SELECT pg_size_pretty(
+     pg_total_relation_size('pk_mocked_data')
+) as idx_size;
+
+```
+
+| idx_size |
+|----------|
+| 184 kB   |
+
+## 
+## **Updates and Table Size**
+Each row in a PostgreSQL table is stored in a file on the disk of the host machine. When an UPDATE or DELETE is called, PostgreSQL doesn’t physically delete the content from the disk. Instead, the database engine marks those rows so that they aren’t returned in user queries. These rows are called **dead tuples**, and although they aren’t referenced in the current version of databases’ tables, they still occupy space on disk and can affect performance.
+Keeping millions of unneeded rows could have a significant impact on query performance!
+
+## **Introduction to VACUUM**
+In PostgreSQL there is an operation called VACUUM that can be used to manage storage space. Running VACUUM <table name>; will vacuum a specific table, while a VACUUM statement without a table name will run on the entire database.
+VACUUM will only clear tables’ dead tuples where possible. Depending on which rows in your table are updated, this can clear anywhere between 0 and 100% of dead tuples. If VACUUM cannot clear the dead tuples, PostgreSQL will mark the space occupied by dead tuples for reuse when new data is inserted into the table. Later in this lesson, we’ll discuss parameters that can be passed along with VACUUM that promise to return more space to disk.
+
+## **Analyze and Autovacuum**
+To ensure that vacuuming isn’t left completely to the database users, PostgreSQL has a feature called  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     autovacuum
+ </span> enabled on most databases by default. When using autovacuum, PostgreSQL periodically checks for tables that have had a large number of inserted, updated or deleted tuples that could be vacuumed to improve performance. When  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     autovacuum
+ </span> is enabled and finds such a table, a  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     VACUUM ANALYZE
+ </span> command is run. This statement is a combination of two separate operations.
+* VACUUM, which manages the dead tuples in a database table
+* ANALYZE, which is a statement that allows PostgreSQL to look at a table and gather information about contents. PostgreSQL then stores this data internally and uses it to ensure that queries are planned in the most efficient way given the structure of the table.
+You can leave running VACUUM and ANALYZE statements to the autovacuum process if you like. However, you can also run it yourself with VACUUM ANALYZE <table name>; or just ANALYZE <table name> if you haven’t made large inserts or updates and would like to update pg_stat_all_tables.
+You can monitor the last vacuum or autovacuum by querying the table pg_stat_all_tables for vacuum and analyze statistics. pg_stat_all_tables is a table that contains internal PostgreSQL statistics; you can query for a specific table’s statistics by filtering on the column relname (i.e. relation name).
+
+## **Deletes and Table Size**
+As you saw in a previous exercises with UPDATE, even when the total number of rows stored in the table is unchanged, disk utilization can increase. The behavior for DELETE operations is slightly different. Unlike updates, deletes don’t add space to a table. However, a DELETE statement will create dead tuples and leave the size of the table unchanged.
+The size of a table alone doesn’t give us all the information we need about maintenance status. We can query pg_stat_all_tables to help us understand the status of tuples in a table. Specifically, we can use the columns n_dead_tup, and n_live_tup from this table to assess the status of the table.
+
+```
+SELECT schemaname, relname, n_dead_tup, n_live_tup
+FROM pg_stat_all_tables LIMIT 3
+
+```
+
+| schemaname      | relname         | n_dead_tup      | n_live_tup      |
+|-----------------|-----------------|-----------------|-----------------|
+| promotions      | contest_entries | 1000            | 99000           |
+| promotions      | contests        | 0               | 25000           |
+| promotions      | prizes          | 0               | 100             |
+
+We can see that the update created 1000 dead tuples, the same as the number of rows we deleted. We can also use the column n_live_tup to determine that only 99,000 rows are being displayed (meaning that the 1000 deleted rows have been marked dead)
+
+## **Vacuum Full**
+There is an alternative VACUUM method, VACUUM FULL which rewrites all the data from a table into a “new” location on disk and only copies the required data (excluding dead tuples). This allows PostgreSQL to fully clear the space the table occupied. One of the significant drawbacks from VACUUM FULL is that it’s a slow operation that blocks other operations on the table while it’s working. If you’ve got a large table, this could mean a VACUUM FULL operation might block other user’s or application’s queries. In a local setting, this may seem trivial, but for production databases, preventing reads and writes on a table for even a few seconds can have lasting effects.
+Although a plain VACUUM won’t reduce table size, plain VACUUM is designed to be able to run in parallel with normal reading and writing of the table. Let’s work through an example to demonstrate how VACUUM FULL can aggressively reduce table size.
+VACUUM FULL is quite a heavy operation that should be used sparingly. The best strategy when designing a database maintenance plan is to make sure that VACUUM runs frequently and autovacuum is enabled. These measures will ensure that table sizes are relatively stable over time.
+
+## **Truncate**
+However, in some special cases, a VACUUM FULL can be avoided.
+Occasionally, you may need to remove all the rows, but retain the structure of a table. In this situation, it wouldn’t be ideal to drop the table and re-populate it with data, so you might opt for what’s called an unqualified delete — a DELETE that affects all rows (e.g. DELETE * FROM table WHERE true;).
+In these situations, one common solution is to use TRUNCATE. TRUNCATE quickly removes all rows from a table. It has the same effect as an unqualified delete, but since PostgreSQL doesn’t scan through the table first, TRUNCATE runs much faster on large tables. Finally, TRUNCATE simultaneously reclaims disk space immediately, rather than requiring a subsequent VACUUM or VACUUM FULL operation.
+We’re left with the same result using both TRUNCATE and DELETE, however the TRUNCATE statement used far fewer system resources and completed far faster than the DELETE.
+ <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     TRUNCATE
+ </span> is very fast because it removes all rows from a table at once, without checking each row. However, there are some limitations:
+* You can’t use WHERE to filter: it always deletes all rows.
+* It can cause issues with tables linked by foreign keys.
+* It does not fire ON DELETE triggers for each row.
+Use  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     DELETE
+ </span> if you need to remove only some rows or need triggers to run. Use  <span style="font-family: .AppleSystemUIFontMonospaced-Regular; font-size: 12.0;text-align: left;">
+     TRUNCATE
+ </span> only when you want to quickly empty the entire table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

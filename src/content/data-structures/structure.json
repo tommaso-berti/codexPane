@@ -1,0 +1,1292 @@
+{
+  "id": "data-structures",
+  "title": "Data Structures",
+  "slug": "data-structures",
+  "icon": "DataObjectIcon",
+  "items": [
+    {
+      "id": "complex-data-structure-hash-maps",
+      "type": "section",
+      "title": "Hash Maps",
+      "slug": "data-structures/complex-data-structure-hash-maps",
+      "order": 1,
+      "items": [
+        {
+          "id": "hash-map-methodology",
+          "type": "subSection",
+          "title": "Hash Map Methodology",
+          "slug": "data-structures/complex-data-structure-hash-maps#hash-map-methodology",
+          "order": 1
+        },
+        {
+          "id": "hash-functions",
+          "type": "subSection",
+          "title": "Hash Functions",
+          "slug": "data-structures/complex-data-structure-hash-maps#hash-functions",
+          "order": 2
+        },
+        {
+          "id": "how-to-write-a-hash-function",
+          "type": "subSection",
+          "title": "How to Write a Hash Function",
+          "slug": "data-structures/complex-data-structure-hash-maps#how-to-write-a-hash-function",
+          "order": 3
+        },
+        {
+          "id": "basic-hash-maps",
+          "type": "subSection",
+          "title": "Basic Hash Maps",
+          "slug": "data-structures/complex-data-structure-hash-maps#basic-hash-maps",
+          "order": 4
+        },
+        {
+          "id": "interactive-playground-hash-collision-strategies",
+          "type": "subSection",
+          "title": "Interactive Playground: Hash Collision Strategies",
+          "slug": "data-structures/complex-data-structure-hash-maps#interactive-playground-hash-collision-strategies",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-why-data-structures",
+      "type": "section",
+      "title": "Why Data Structures?",
+      "slug": "data-structures/linear-data-structure-why-data-structures",
+      "order": 2,
+      "items": []
+    },
+    {
+      "id": "complex-data-structure-collisions",
+      "type": "section",
+      "title": "1. Collisions",
+      "slug": "data-structures/complex-data-structure-collisions",
+      "order": 3,
+      "items": [
+        {
+          "id": "separate-chaining",
+          "type": "subSection",
+          "title": "Separate Chaining",
+          "slug": "data-structures/complex-data-structure-collisions#separate-chaining",
+          "order": 1
+        },
+        {
+          "id": "saving-keys",
+          "type": "subSection",
+          "title": "Saving Keys",
+          "slug": "data-structures/complex-data-structure-collisions#saving-keys",
+          "order": 2
+        },
+        {
+          "id": "open-addressing-linear-probing",
+          "type": "subSection",
+          "title": "Open Addressing: Linear Probing",
+          "slug": "data-structures/complex-data-structure-collisions#open-addressing-linear-probing",
+          "order": 3
+        },
+        {
+          "id": "other-open-addressing-techniques",
+          "type": "subSection",
+          "title": "Other Open Addressing Techniques",
+          "slug": "data-structures/complex-data-structure-collisions#other-open-addressing-techniques",
+          "order": 4
+        },
+        {
+          "id": "clustering",
+          "type": "subSection",
+          "title": "Clustering",
+          "slug": "data-structures/complex-data-structure-collisions#clustering",
+          "order": 5
+        },
+        {
+          "id": "alternative-probing-strategies",
+          "type": "subSection",
+          "title": "Alternative Probing Strategies",
+          "slug": "data-structures/complex-data-structure-collisions#alternative-probing-strategies",
+          "order": 6
+        },
+        {
+          "id": "quadratic-probing",
+          "type": "subSection",
+          "title": "Quadratic Probing",
+          "slug": "data-structures/complex-data-structure-collisions#quadratic-probing",
+          "order": 7
+        },
+        {
+          "id": "why-quadratic-probing-helps",
+          "type": "subSection",
+          "title": "Why Quadratic Probing Helps",
+          "slug": "data-structures/complex-data-structure-collisions#why-quadratic-probing-helps",
+          "order": 8
+        },
+        {
+          "id": "key-insight",
+          "type": "subSection",
+          "title": "Key Insight",
+          "slug": "data-structures/complex-data-structure-collisions#key-insight",
+          "order": 9
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-js-hash-maps",
+      "type": "section",
+      "title": "2. Js hash maps",
+      "slug": "data-structures/complex-data-structure-js-hash-maps",
+      "order": 4,
+      "items": [
+        {
+          "id": "imports",
+          "type": "subSection",
+          "title": "Imports",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#imports",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "Constructor",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#constructor",
+          "order": 2
+        },
+        {
+          "id": "hash-function",
+          "type": "subSection",
+          "title": "Hash Function",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#hash-function",
+          "order": 3
+        },
+        {
+          "id": "assign-insert-update",
+          "type": "subSection",
+          "title": "Assign (Insert / Update)",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#assign-insert-update",
+          "order": 4
+        },
+        {
+          "id": "retrieve",
+          "type": "subSection",
+          "title": "Retrieve",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#retrieve",
+          "order": 5
+        },
+        {
+          "id": "collision-handling",
+          "type": "subSection",
+          "title": "Collision Handling",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#collision-handling",
+          "order": 6
+        },
+        {
+          "id": "time-complexity",
+          "type": "subSection",
+          "title": "Time Complexity",
+          "slug": "data-structures/complex-data-structure-js-hash-maps#time-complexity",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-trees",
+      "type": "section",
+      "title": "Trees",
+      "slug": "data-structures/complex-data-structure-trees",
+      "order": 5,
+      "items": [
+        {
+          "id": "binary-search-tree",
+          "type": "subSection",
+          "title": "Binary Search Tree",
+          "slug": "data-structures/complex-data-structure-trees#binary-search-tree",
+          "order": 1
+        },
+        {
+          "id": "interactive-playground-tree-bfs-vs-dfs-trace",
+          "type": "subSection",
+          "title": "Interactive Playground: Tree BFS vs DFS Trace",
+          "slug": "data-structures/complex-data-structure-trees#interactive-playground-tree-bfs-vs-dfs-trace",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-data-structure-apis",
+      "type": "section",
+      "title": "Data Structure APIs",
+      "slug": "data-structures/linear-data-structure-data-structure-apis",
+      "order": 6,
+      "items": [
+        {
+          "id": "choosing-the-right-data-structure",
+          "type": "subSection",
+          "title": "Choosing the Right Data Structure",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#choosing-the-right-data-structure",
+          "order": 1
+        },
+        {
+          "id": "arrays-in-javascript",
+          "type": "subSection",
+          "title": "Arrays in JavaScript",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#arrays-in-javascript",
+          "order": 2
+        },
+        {
+          "id": "example-storing-and-checking-numbers-using-an-array",
+          "type": "subSection",
+          "title": "Example: Storing and Checking Numbers (Using an Array)",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#example-storing-and-checking-numbers-using-an-array",
+          "order": 3
+        },
+        {
+          "id": "alternative-implementation-using-an-object",
+          "type": "subSection",
+          "title": "Alternative Implementation: Using an Object",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#alternative-implementation-using-an-object",
+          "order": 4
+        },
+        {
+          "id": "what-is-an-api",
+          "type": "subSection",
+          "title": "What Is an API?",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#what-is-an-api",
+          "order": 5
+        },
+        {
+          "id": "creating-your-own-apis",
+          "type": "subSection",
+          "title": "Creating Your Own APIs",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#creating-your-own-apis",
+          "order": 6
+        },
+        {
+          "id": "example-implementing-a-stack",
+          "type": "subSection",
+          "title": "Example: Implementing a Stack",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#example-implementing-a-stack",
+          "order": 7
+        },
+        {
+          "id": "key-concept-api-vs-implementation",
+          "type": "subSection",
+          "title": "Key Concept: API vs Implementation",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#key-concept-api-vs-implementation",
+          "order": 8
+        },
+        {
+          "id": "final-takeaways",
+          "type": "subSection",
+          "title": "Final Takeaways",
+          "slug": "data-structures/linear-data-structure-data-structure-apis#final-takeaways",
+          "order": 9
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-js-trees",
+      "type": "section",
+      "title": "1. Js trees",
+      "slug": "data-structures/complex-data-structure-js-trees",
+      "order": 7,
+      "items": [
+        {
+          "id": "treenode-class",
+          "type": "subSection",
+          "title": "TreeNode Class",
+          "slug": "data-structures/complex-data-structure-js-trees#treenode-class",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "Constructor",
+          "slug": "data-structures/complex-data-structure-js-trees#constructor",
+          "order": 2
+        },
+        {
+          "id": "addchild",
+          "type": "subSection",
+          "title": "addChild()",
+          "slug": "data-structures/complex-data-structure-js-trees#addchild",
+          "order": 3
+        },
+        {
+          "id": "removechild",
+          "type": "subSection",
+          "title": "removeChild()",
+          "slug": "data-structures/complex-data-structure-js-trees#removechild",
+          "order": 4
+        },
+        {
+          "id": "remove-from-current-node",
+          "type": "subSection",
+          "title": "Remove from current node",
+          "slug": "data-structures/complex-data-structure-js-trees#remove-from-current-node",
+          "order": 5
+        },
+        {
+          "id": "recursive-search",
+          "type": "subSection",
+          "title": "Recursive search",
+          "slug": "data-structures/complex-data-structure-js-trees#recursive-search",
+          "order": 6
+        },
+        {
+          "id": "print",
+          "type": "subSection",
+          "title": "print()",
+          "slug": "data-structures/complex-data-structure-js-trees#print",
+          "order": 7
+        },
+        {
+          "id": "depth-first-traversal-dfs",
+          "type": "subSection",
+          "title": "Depth-First Traversal (DFS)",
+          "slug": "data-structures/complex-data-structure-js-trees#depth-first-traversal-dfs",
+          "order": 8
+        },
+        {
+          "id": "breadth-first-traversal-bfs",
+          "type": "subSection",
+          "title": "Breadth-First Traversal (BFS)",
+          "slug": "data-structures/complex-data-structure-js-trees#breadth-first-traversal-bfs",
+          "order": 9
+        },
+        {
+          "id": "bfs-vs-dfs",
+          "type": "subSection",
+          "title": "BFS vs DFS",
+          "slug": "data-structures/complex-data-structure-js-trees#bfs-vs-dfs",
+          "order": 10
+        },
+        {
+          "id": "time-complexity",
+          "type": "subSection",
+          "title": "Time Complexity",
+          "slug": "data-structures/complex-data-structure-js-trees#time-complexity",
+          "order": 11
+        },
+        {
+          "id": "export",
+          "type": "subSection",
+          "title": "Export",
+          "slug": "data-structures/complex-data-structure-js-trees#export",
+          "order": 12
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-heaps",
+      "type": "section",
+      "title": "Heaps",
+      "slug": "data-structures/complex-data-structure-heaps",
+      "order": 8,
+      "items": [
+        {
+          "id": "heap-representations",
+          "type": "subSection",
+          "title": "Heap Representations",
+          "slug": "data-structures/complex-data-structure-heaps#heap-representations",
+          "order": 1
+        },
+        {
+          "id": "adding-an-element-heapify-up",
+          "type": "subSection",
+          "title": "Adding an Element: Heapify Up",
+          "slug": "data-structures/complex-data-structure-heaps#adding-an-element-heapify-up",
+          "order": 2
+        },
+        {
+          "id": "removing-an-element-heapify-down",
+          "type": "subSection",
+          "title": "Removing an Element: Heapify Down",
+          "slug": "data-structures/complex-data-structure-heaps#removing-an-element-heapify-down",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-nodes",
+      "type": "section",
+      "title": "Nodes",
+      "slug": "data-structures/linear-data-structure-nodes",
+      "order": 9,
+      "items": [
+        {
+          "id": "nodes-detail",
+          "type": "subSection",
+          "title": "Nodes Detail",
+          "slug": "data-structures/linear-data-structure-nodes#nodes-detail",
+          "order": 1
+        },
+        {
+          "id": "node-linking",
+          "type": "subSection",
+          "title": "Node Linking",
+          "slug": "data-structures/linear-data-structure-nodes#node-linking",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-js-heaps",
+      "type": "section",
+      "title": "1. Js heaps",
+      "slug": "data-structures/complex-data-structure-js-heaps",
+      "order": 10,
+      "items": [
+        {
+          "id": "internal-structure",
+          "type": "subSection",
+          "title": "Internal Structure",
+          "slug": "data-structures/complex-data-structure-js-heaps#internal-structure",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "Constructor",
+          "slug": "data-structures/complex-data-structure-js-heaps#constructor",
+          "order": 2
+        },
+        {
+          "id": "add-value",
+          "type": "subSection",
+          "title": "add(value)",
+          "slug": "data-structures/complex-data-structure-js-heaps#add-value",
+          "order": 3
+        },
+        {
+          "id": "bubbleup",
+          "type": "subSection",
+          "title": "bubbleUp()",
+          "slug": "data-structures/complex-data-structure-js-heaps#bubbleup",
+          "order": 4
+        },
+        {
+          "id": "popmin",
+          "type": "subSection",
+          "title": "popMin()",
+          "slug": "data-structures/complex-data-structure-js-heaps#popmin",
+          "order": 5
+        },
+        {
+          "id": "heapify",
+          "type": "subSection",
+          "title": "heapify()",
+          "slug": "data-structures/complex-data-structure-js-heaps#heapify",
+          "order": 6
+        },
+        {
+          "id": "exists-index",
+          "type": "subSection",
+          "title": "exists(index)",
+          "slug": "data-structures/complex-data-structure-js-heaps#exists-index",
+          "order": 7
+        },
+        {
+          "id": "canswap",
+          "type": "subSection",
+          "title": "canSwap()",
+          "slug": "data-structures/complex-data-structure-js-heaps#canswap",
+          "order": 8
+        },
+        {
+          "id": "swap-a-b",
+          "type": "subSection",
+          "title": "swap(a,b)",
+          "slug": "data-structures/complex-data-structure-js-heaps#swap-a-b",
+          "order": 9
+        },
+        {
+          "id": "index-helper-functions",
+          "type": "subSection",
+          "title": "Index Helper Functions",
+          "slug": "data-structures/complex-data-structure-js-heaps#index-helper-functions",
+          "order": 10
+        },
+        {
+          "id": "parent",
+          "type": "subSection",
+          "title": "Parent",
+          "slug": "data-structures/complex-data-structure-js-heaps#parent",
+          "order": 11
+        },
+        {
+          "id": "left-child",
+          "type": "subSection",
+          "title": "Left child",
+          "slug": "data-structures/complex-data-structure-js-heaps#left-child",
+          "order": 12
+        },
+        {
+          "id": "right-child",
+          "type": "subSection",
+          "title": "Right child",
+          "slug": "data-structures/complex-data-structure-js-heaps#right-child",
+          "order": 13
+        },
+        {
+          "id": "complexity",
+          "type": "subSection",
+          "title": "Complexity",
+          "slug": "data-structures/complex-data-structure-js-heaps#complexity",
+          "order": 14
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-nodes-in-javascript",
+      "type": "section",
+      "title": "1. Nodes in JavaScript",
+      "slug": "data-structures/linear-data-structure-nodes-in-javascript",
+      "order": 11,
+      "items": [
+        {
+          "id": "how-this-node-works",
+          "type": "subSection",
+          "title": "How This Node Works",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#how-this-node-works",
+          "order": 1
+        },
+        {
+          "id": "structure-of-the-node",
+          "type": "subSection",
+          "title": "Structure of the Node",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#structure-of-the-node",
+          "order": 2
+        },
+        {
+          "id": "setnextnode-node",
+          "type": "subSection",
+          "title": "setNextNode(node)",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#setnextnode-node",
+          "order": 3
+        },
+        {
+          "id": "getnextnode",
+          "type": "subSection",
+          "title": "getNextNode()",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#getnextnode",
+          "order": 4
+        },
+        {
+          "id": "how-the-nodes-are-used-in-the-example",
+          "type": "subSection",
+          "title": "How the Nodes Are Used in the Example",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#how-the-nodes-are-used-in-the-example",
+          "order": 5
+        },
+        {
+          "id": "step-1-create-nodes",
+          "type": "subSection",
+          "title": "Step 1: Create Nodes",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#step-1-create-nodes",
+          "order": 6
+        },
+        {
+          "id": "step-2-link-the-nodes",
+          "type": "subSection",
+          "title": "Step 2: Link the Nodes",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#step-2-link-the-nodes",
+          "order": 7
+        },
+        {
+          "id": "step-3-traverse-the-nodes",
+          "type": "subSection",
+          "title": "Step 3: Traverse the Nodes",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#step-3-traverse-the-nodes",
+          "order": 8
+        },
+        {
+          "id": "how-traversal-works",
+          "type": "subSection",
+          "title": "How Traversal Works",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#how-traversal-works",
+          "order": 9
+        },
+        {
+          "id": "what-this-represents",
+          "type": "subSection",
+          "title": "What This Represents",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#what-this-represents",
+          "order": 10
+        },
+        {
+          "id": "why-this-is-useful",
+          "type": "subSection",
+          "title": "Why This Is Useful",
+          "slug": "data-structures/linear-data-structure-nodes-in-javascript#why-this-is-useful",
+          "order": 11
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-graphs",
+      "type": "section",
+      "title": "Graphs",
+      "slug": "data-structures/complex-data-structure-graphs",
+      "order": 12,
+      "items": [
+        {
+          "id": "directed-graphs",
+          "type": "subSection",
+          "title": "Directed Graphs",
+          "slug": "data-structures/complex-data-structure-graphs#directed-graphs",
+          "order": 1
+        },
+        {
+          "id": "representing-graphs",
+          "type": "subSection",
+          "title": "Representing Graphs",
+          "slug": "data-structures/complex-data-structure-graphs#representing-graphs",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-singly-linked-lists",
+      "type": "section",
+      "title": "Singly Linked Lists",
+      "slug": "data-structures/linear-data-structure-singly-linked-lists",
+      "order": 13,
+      "items": [
+        {
+          "id": "adding-a-new-node",
+          "type": "subSection",
+          "title": "Adding a new node",
+          "slug": "data-structures/linear-data-structure-singly-linked-lists#adding-a-new-node",
+          "order": 1
+        },
+        {
+          "id": "removing-a-node",
+          "type": "subSection",
+          "title": "Removing a node",
+          "slug": "data-structures/linear-data-structure-singly-linked-lists#removing-a-node",
+          "order": 2
+        },
+        {
+          "id": "interactive-playground-singly-linked-list-head-operations",
+          "type": "subSection",
+          "title": "Interactive Playground: Singly Linked List Head Operations",
+          "slug": "data-structures/linear-data-structure-singly-linked-lists#interactive-playground-singly-linked-list-head-operations",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "complex-data-structure-js-graphs",
+      "type": "section",
+      "title": "1. Js graphs",
+      "slug": "data-structures/complex-data-structure-js-graphs",
+      "order": 14,
+      "items": [
+        {
+          "id": "graph",
+          "type": "subSection",
+          "title": "Graph",
+          "slug": "data-structures/complex-data-structure-js-graphs#graph",
+          "order": 1
+        },
+        {
+          "id": "vertex",
+          "type": "subSection",
+          "title": "Vertex",
+          "slug": "data-structures/complex-data-structure-js-graphs#vertex",
+          "order": 2
+        },
+        {
+          "id": "graph-structure-overview",
+          "type": "subSection",
+          "title": "Graph Structure Overview",
+          "slug": "data-structures/complex-data-structure-js-graphs#graph-structure-overview",
+          "order": 3
+        },
+        {
+          "id": "graph-class",
+          "type": "subSection",
+          "title": "Graph Class",
+          "slug": "data-structures/complex-data-structure-js-graphs#graph-class",
+          "order": 4
+        },
+        {
+          "id": "addvertex",
+          "type": "subSection",
+          "title": "addVertex()",
+          "slug": "data-structures/complex-data-structure-js-graphs#addvertex",
+          "order": 5
+        },
+        {
+          "id": "example",
+          "type": "subSection",
+          "title": "Example",
+          "slug": "data-structures/complex-data-structure-js-graphs#example",
+          "order": 6
+        },
+        {
+          "id": "removevertex",
+          "type": "subSection",
+          "title": "removeVertex()",
+          "slug": "data-structures/complex-data-structure-js-graphs#removevertex",
+          "order": 7
+        },
+        {
+          "id": "addedge",
+          "type": "subSection",
+          "title": "addEdge()",
+          "slug": "data-structures/complex-data-structure-js-graphs#addedge",
+          "order": 8
+        },
+        {
+          "id": "removeedge",
+          "type": "subSection",
+          "title": "removeEdge()",
+          "slug": "data-structures/complex-data-structure-js-graphs#removeedge",
+          "order": 9
+        },
+        {
+          "id": "print",
+          "type": "subSection",
+          "title": "print()",
+          "slug": "data-structures/complex-data-structure-js-graphs#print",
+          "order": 10
+        },
+        {
+          "id": "vertex-class",
+          "type": "subSection",
+          "title": "Vertex Class",
+          "slug": "data-structures/complex-data-structure-js-graphs#vertex-class",
+          "order": 11
+        },
+        {
+          "id": "vertex-addedge",
+          "type": "subSection",
+          "title": "Vertex addEdge()",
+          "slug": "data-structures/complex-data-structure-js-graphs#vertex-addedge",
+          "order": 12
+        },
+        {
+          "id": "vertex-print",
+          "type": "subSection",
+          "title": "Vertex print()",
+          "slug": "data-structures/complex-data-structure-js-graphs#vertex-print",
+          "order": 13
+        },
+        {
+          "id": "example-graph-creation",
+          "type": "subSection",
+          "title": "Example Graph Creation",
+          "slug": "data-structures/complex-data-structure-js-graphs#example-graph-creation",
+          "order": 14
+        },
+        {
+          "id": "internal-representation",
+          "type": "subSection",
+          "title": "Internal Representation",
+          "slug": "data-structures/complex-data-structure-js-graphs#internal-representation",
+          "order": 15
+        },
+        {
+          "id": "summary",
+          "type": "subSection",
+          "title": "Summary",
+          "slug": "data-structures/complex-data-structure-js-graphs#summary",
+          "order": 16
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-js-singly-linked-lists",
+      "type": "section",
+      "title": "1. Js Singly Linked Lists",
+      "slug": "data-structures/linear-data-structure-js-singly-linked-lists",
+      "order": 15,
+      "items": [
+        {
+          "id": "general-structure",
+          "type": "subSection",
+          "title": "General Structure",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#general-structure",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "Constructor",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#constructor",
+          "order": 2
+        },
+        {
+          "id": "addtohead-data",
+          "type": "subSection",
+          "title": "addToHead(data)",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#addtohead-data",
+          "order": 3
+        },
+        {
+          "id": "addtotail-data",
+          "type": "subSection",
+          "title": "addToTail(data)",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#addtotail-data",
+          "order": 4
+        },
+        {
+          "id": "removehead",
+          "type": "subSection",
+          "title": "removeHead()",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#removehead",
+          "order": 5
+        },
+        {
+          "id": "printlist",
+          "type": "subSection",
+          "title": "printList()",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#printlist",
+          "order": 6
+        },
+        {
+          "id": "overall-summary",
+          "type": "subSection",
+          "title": "Overall Summary",
+          "slug": "data-structures/linear-data-structure-js-singly-linked-lists#overall-summary",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-swapping-elements-in-a-linked-list",
+      "type": "section",
+      "title": "2. Swapping Elements in a Linked List",
+      "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list",
+      "order": 16,
+      "items": [
+        {
+          "id": "goal",
+          "type": "subSection",
+          "title": "Goal",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#goal",
+          "order": 1
+        },
+        {
+          "id": "overall-strategy",
+          "type": "subSection",
+          "title": "Overall Strategy",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#overall-strategy",
+          "order": 2
+        },
+        {
+          "id": "step-1-find-both-nodes-and-their-previous-nodes",
+          "type": "subSection",
+          "title": "Step 1 - Find Both Nodes and Their Previous Nodes",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#step-1-find-both-nodes-and-their-previous-nodes",
+          "order": 3
+        },
+        {
+          "id": "step-2-handle-missing-nodes-edge-case",
+          "type": "subSection",
+          "title": "Step 2 - Handle Missing Nodes (Edge Case)",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#step-2-handle-missing-nodes-edge-case",
+          "order": 4
+        },
+        {
+          "id": "step-3-handle-identical-values-edge-case",
+          "type": "subSection",
+          "title": "Step 3 - Handle Identical Values (Edge Case)",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#step-3-handle-identical-values-edge-case",
+          "order": 5
+        },
+        {
+          "id": "step-4-update-the-previous-nodes-pointers",
+          "type": "subSection",
+          "title": "Step 4 - Update the Previous Nodes' Pointers",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#step-4-update-the-previous-nodes-pointers",
+          "order": 6
+        },
+        {
+          "id": "step-5-swap-the-next-pointers",
+          "type": "subSection",
+          "title": "Step 5 - Swap the Next Pointers",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#step-5-swap-the-next-pointers",
+          "order": 7
+        },
+        {
+          "id": "final-complete-function",
+          "type": "subSection",
+          "title": "Final Complete Function",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#final-complete-function",
+          "order": 8
+        },
+        {
+          "id": "time-and-space-complexity",
+          "type": "subSection",
+          "title": "Time and Space Complexity",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#time-and-space-complexity",
+          "order": 9
+        },
+        {
+          "id": "time-complexity",
+          "type": "subSection",
+          "title": "Time Complexity",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#time-complexity",
+          "order": 10
+        },
+        {
+          "id": "space-complexity",
+          "type": "subSection",
+          "title": "Space Complexity",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#space-complexity",
+          "order": 11
+        },
+        {
+          "id": "key-concepts-to-remember",
+          "type": "subSection",
+          "title": "Key Concepts to Remember",
+          "slug": "data-structures/linear-data-structure-swapping-elements-in-a-linked-list#key-concepts-to-remember",
+          "order": 12
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-two-pointer-linked-list-techniques",
+      "type": "section",
+      "title": "3. Two-Pointer Linked List Techniques",
+      "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques",
+      "order": 17,
+      "items": [
+        {
+          "id": "two-pointers-moving-in-parallel",
+          "type": "subSection",
+          "title": "Two Pointers Moving in Parallel",
+          "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#two-pointers-moving-in-parallel",
+          "order": 1
+        },
+        {
+          "id": "two-pointers-at-different-speeds",
+          "type": "subSection",
+          "title": "Two Pointers at Different Speeds",
+          "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#two-pointers-at-different-speeds",
+          "order": 2
+        },
+        {
+          "id": "alternate-middle-solution-half-speed",
+          "type": "subSection",
+          "title": "Alternate Middle Solution (Half-Speed)",
+          "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#alternate-middle-solution-half-speed",
+          "order": 3
+        },
+        {
+          "id": "key-takeaways",
+          "type": "subSection",
+          "title": "Key Takeaways",
+          "slug": "data-structures/linear-data-structure-two-pointer-linked-list-techniques#key-takeaways",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-doubly-linked-lists",
+      "type": "section",
+      "title": "Doubly Linked Lists",
+      "slug": "data-structures/linear-data-structure-doubly-linked-lists",
+      "order": 18,
+      "items": [
+        {
+          "id": "adding-to-the-head",
+          "type": "subSection",
+          "title": "Adding to the Head",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#adding-to-the-head",
+          "order": 1
+        },
+        {
+          "id": "adding-to-the-tail",
+          "type": "subSection",
+          "title": "Adding to the Tail",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#adding-to-the-tail",
+          "order": 2
+        },
+        {
+          "id": "removing-the-head",
+          "type": "subSection",
+          "title": "Removing the Head",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#removing-the-head",
+          "order": 3
+        },
+        {
+          "id": "removing-the-tail",
+          "type": "subSection",
+          "title": "Removing the Tail",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#removing-the-tail",
+          "order": 4
+        },
+        {
+          "id": "removing-from-the-middle-of-the-list",
+          "type": "subSection",
+          "title": "Removing from the Middle of the List",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#removing-from-the-middle-of-the-list",
+          "order": 5
+        },
+        {
+          "id": "interactive-playground-doubly-linked-list-pointer-updates",
+          "type": "subSection",
+          "title": "Interactive Playground: Doubly Linked List Pointer Updates",
+          "slug": "data-structures/linear-data-structure-doubly-linked-lists#interactive-playground-doubly-linked-list-pointer-updates",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-js-doubly-linked-lists",
+      "type": "section",
+      "title": "1 Js Doubly Linked Lists",
+      "slug": "data-structures/linear-data-structure-js-doubly-linked-lists",
+      "order": 19,
+      "items": [
+        {
+          "id": "general-concept",
+          "type": "subSection",
+          "title": "General concept",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#general-concept",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "constructor()",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#constructor",
+          "order": 2
+        },
+        {
+          "id": "addtohead-data",
+          "type": "subSection",
+          "title": "addToHead(data)",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#addtohead-data",
+          "order": 3
+        },
+        {
+          "id": "addtotail-data",
+          "type": "subSection",
+          "title": "addToTail(data)",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#addtotail-data",
+          "order": 4
+        },
+        {
+          "id": "removehead",
+          "type": "subSection",
+          "title": "removeHead()",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#removehead",
+          "order": 5
+        },
+        {
+          "id": "removetail",
+          "type": "subSection",
+          "title": "removeTail()",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#removetail",
+          "order": 6
+        },
+        {
+          "id": "removebydata-data-current-state",
+          "type": "subSection",
+          "title": "removeByData(data) (current state)",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#removebydata-data-current-state",
+          "order": 7
+        },
+        {
+          "id": "printlist",
+          "type": "subSection",
+          "title": "printList()",
+          "slug": "data-structures/linear-data-structure-js-doubly-linked-lists#printlist",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-queues",
+      "type": "section",
+      "title": "Queues",
+      "slug": "data-structures/linear-data-structure-queues",
+      "order": 20,
+      "items": [
+        {
+          "id": "interactive-playground-queue-flow-fifo",
+          "type": "subSection",
+          "title": "Interactive Playground: Queue Flow (FIFO)",
+          "slug": "data-structures/linear-data-structure-queues#interactive-playground-queue-flow-fifo",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-js-queues",
+      "type": "section",
+      "title": "1. Js Queues",
+      "slug": "data-structures/linear-data-structure-js-queues",
+      "order": 21,
+      "items": [
+        {
+          "id": "general-concept",
+          "type": "subSection",
+          "title": "General concept",
+          "slug": "data-structures/linear-data-structure-js-queues#general-concept",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "constructor()",
+          "slug": "data-structures/linear-data-structure-js-queues#constructor",
+          "order": 2
+        },
+        {
+          "id": "isempty",
+          "type": "subSection",
+          "title": "isEmpty()",
+          "slug": "data-structures/linear-data-structure-js-queues#isempty",
+          "order": 3
+        },
+        {
+          "id": "hasroom",
+          "type": "subSection",
+          "title": "hasRoom()",
+          "slug": "data-structures/linear-data-structure-js-queues#hasroom",
+          "order": 4
+        },
+        {
+          "id": "enqueue-data",
+          "type": "subSection",
+          "title": "enqueue(data)",
+          "slug": "data-structures/linear-data-structure-js-queues#enqueue-data",
+          "order": 5
+        },
+        {
+          "id": "dequeue",
+          "type": "subSection",
+          "title": "dequeue()",
+          "slug": "data-structures/linear-data-structure-js-queues#dequeue",
+          "order": 6
+        },
+        {
+          "id": "error-case",
+          "type": "subSection",
+          "title": "Error case",
+          "slug": "data-structures/linear-data-structure-js-queues#error-case",
+          "order": 7
+        },
+        {
+          "id": "module-exports",
+          "type": "subSection",
+          "title": "module.exports",
+          "slug": "data-structures/linear-data-structure-js-queues#module-exports",
+          "order": 8
+        },
+        {
+          "id": "example-usage",
+          "type": "subSection",
+          "title": "Example usage",
+          "slug": "data-structures/linear-data-structure-js-queues#example-usage",
+          "order": 9
+        },
+        {
+          "id": "key-ideas-to-remember",
+          "type": "subSection",
+          "title": "Key ideas to remember",
+          "slug": "data-structures/linear-data-structure-js-queues#key-ideas-to-remember",
+          "order": 10
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-stacks",
+      "type": "section",
+      "title": "Stacks",
+      "slug": "data-structures/linear-data-structure-stacks",
+      "order": 22,
+      "items": [
+        {
+          "id": "interactive-playground-stack-operations",
+          "type": "subSection",
+          "title": "Interactive Playground: Stack Operations",
+          "slug": "data-structures/linear-data-structure-stacks#interactive-playground-stack-operations",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "linear-data-structure-js-stacks",
+      "type": "section",
+      "title": "1. Js stacks",
+      "slug": "data-structures/linear-data-structure-js-stacks",
+      "order": 23,
+      "items": [
+        {
+          "id": "general-concept",
+          "type": "subSection",
+          "title": "General concept",
+          "slug": "data-structures/linear-data-structure-js-stacks#general-concept",
+          "order": 1
+        },
+        {
+          "id": "constructor",
+          "type": "subSection",
+          "title": "constructor()",
+          "slug": "data-structures/linear-data-structure-js-stacks#constructor",
+          "order": 2
+        },
+        {
+          "id": "hasroom",
+          "type": "subSection",
+          "title": "hasRoom()",
+          "slug": "data-structures/linear-data-structure-js-stacks#hasroom",
+          "order": 3
+        },
+        {
+          "id": "isempty",
+          "type": "subSection",
+          "title": "isEmpty()",
+          "slug": "data-structures/linear-data-structure-js-stacks#isempty",
+          "order": 4
+        },
+        {
+          "id": "push-value",
+          "type": "subSection",
+          "title": "push(value)",
+          "slug": "data-structures/linear-data-structure-js-stacks#push-value",
+          "order": 5
+        },
+        {
+          "id": "pop",
+          "type": "subSection",
+          "title": "pop()",
+          "slug": "data-structures/linear-data-structure-js-stacks#pop",
+          "order": 6
+        },
+        {
+          "id": "peek",
+          "type": "subSection",
+          "title": "peek()",
+          "slug": "data-structures/linear-data-structure-js-stacks#peek",
+          "order": 7
+        },
+        {
+          "id": "module-exports",
+          "type": "subSection",
+          "title": "module.exports",
+          "slug": "data-structures/linear-data-structure-js-stacks#module-exports",
+          "order": 8
+        },
+        {
+          "id": "example-usage",
+          "type": "subSection",
+          "title": "Example usage",
+          "slug": "data-structures/linear-data-structure-js-stacks#example-usage",
+          "order": 9
+        },
+        {
+          "id": "key-ideas-to-remember",
+          "type": "subSection",
+          "title": "Key ideas to remember",
+          "slug": "data-structures/linear-data-structure-js-stacks#key-ideas-to-remember",
+          "order": 10
+        }
+      ]
+    }
+  ]
+}

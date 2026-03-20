@@ -1,0 +1,186 @@
+---
+title: Two-Pointer Linked List Techniques
+order: 17
+---
+
+# Two-Pointer Linked List Techniques
+
+Many singly linked list problems can be solved using **two pointers**.
+This approach is often called:
+* The **runner technique**The **fast and slow pointer technique**The main idea:
+Instead of creating extra data structures (like arrays), use two references that move through the list in a smart way.
+This keeps:
+* Time complexity efficient
+* Space complexity constant
+
+## Two Pointers Moving in Parallel
+### Problem
+Return the **nth last element** of a singly linked list.
+Example:
+If n = 4, return the 4th element from the end.
+
+### Naive Approach (Bad)
+* Convert the linked list into an array
+* Return array[length - n]
+Problem:
+* Requires O(n) extra space
+* Duplicates data unnecessarily
+
+### Efficient Approach - Two Pointers
+We use:
+* tailSeeker → moves through the entire list
+* current → follows behind, delayed by n steps
+
+### Core Logic
+1. Start both pointers at the head.
+2. Move tailSeeker forward.
+3. Once tailSeeker has moved n steps,
+4. start moving current as well.
+5. When tailSeeker reaches the end,
+6. current will be at the nth last node.
+
+### Implementation
+
+```
+const nthLastNode = (linkedList, n) => {
+  let current = null;
+  let tailSeeker = linkedList.head;
+  let count = 0;
+
+  while (tailSeeker) {
+    tailSeeker = tailSeeker.next;
+
+    if (count >= n) {
+      if (!current) {
+        current = linkedList.head;
+      }
+      current = current.next;
+    }
+
+    count++;
+  }
+
+  return current;
+};
+
+```
+
+### Why This Works
+The gap between
+     tailSeeker
+  and
+     current
+  stays exactly
+     n
+  nodes.
+When
+     tailSeeker
+  reaches
+     null
+ ,
+
+     current
+  is pointing at the correct node.
+
+### Complexity
+Time: O(n) Space: O(1) Only two pointers and one counter are used.
+
+## Two Pointers at Different Speeds
+### Problem
+Find the **middle node** of a linked list.
+For even-length lists:
+Return the **right-weighted middle**.
+Example:
+1 → 2 → 3 → 4
+Return 3.
+
+### Naive Approach (Bad)
+* Convert list into array
+* Return array[length / 2]
+Problem:
+* Uses O(n) extra space
+
+### Efficient Approach - Fast and Slow Pointer
+We use:
+* fast pointer → moves 2 steps at a time
+* slow pointer → moves 1 step at a time
+
+### Core Idea
+When the fast pointer reaches the end,
+the slow pointer will be in the middle.
+
+### Implementation
+
+```
+const findMiddle = linkedList => {
+  let fast = linkedList.head;
+  let slow = linkedList.head;
+
+  while (fast !== null) {
+    fast = fast.getNextNode();
+
+    if (fast !== null) {
+      fast = fast.getNextNode();
+      slow = slow.getNextNode();
+    }
+  }
+
+  return slow;
+};
+
+```
+
+### Why This Works
+Fast moves twice as fast as slow.
+So when fast reaches the end:
+* Slow has moved half the distance.
+* Therefore slow is at the middle.
+
+### Complexity
+Time: O(n) Space: O(1) Only two pointers are used.
+
+## Alternate Middle Solution (Half-Speed) Another valid solution:
+* Move fast every loop.
+* Move slow every second loop.
+
+```
+const findMiddleAlternate = linkedList => {
+  let count = 0;
+  let fast = linkedList.head;
+  let slow = linkedList.head;
+
+  while (fast !== null) {
+    fast = fast.getNextNode();
+
+    if (count % 2 !== 0) {
+      slow = slow.getNextNode();
+    }
+
+    count++;
+  }
+
+  return slow;
+};
+
+```
+
+### When Should You Use Two Pointers?
+Use this technique when:
+* You need to track two positions in the list.
+* You want to avoid creating extra data structures.
+* You need O(1) space.
+* The problem involves distance from the end or finding the middle.
+
+### Other Problems That Use This Technique
+The two-pointer approach can also be used to:
+* Detect cycles in a linked list
+* Rotate a linked list
+* Find intersections between two lists
+* Remove the nth node from the end
+
+## Key Takeaways
+1. Two-pointer techniques improve space efficiency.
+2. They often reduce memory from O(n) to O(1).
+3. They are extremely common in interviews.
+4. Always think:
+5. "Can I solve this with two moving references instead of extra memory?"
