@@ -11945,6 +11945,69 @@
           "order": 4
         },
         {
+          "id": "release-notes-and-static-data",
+          "title": "Release Notes and Static Data",
+          "slug": "vps/release-notes-and-static-data",
+          "filePath": "../../content/vps/release-notes-and-static-data.mdx",
+          "subSections": [
+            {
+              "id": "quick-start-copypaste",
+              "title": "Quick start copy/paste",
+              "slug": "vps/release-notes-and-static-data#quick-start-copypaste",
+              "order": 1
+            },
+            {
+              "id": "where-the-deploy-script-is",
+              "title": "Where the deploy script is",
+              "slug": "vps/release-notes-and-static-data#where-the-deploy-script-is",
+              "order": 2
+            },
+            {
+              "id": "pipeline-roles",
+              "title": "Pipeline roles",
+              "slug": "vps/release-notes-and-static-data#pipeline-roles",
+              "order": 3
+            },
+            {
+              "id": "which-action-to-run",
+              "title": "Which action to run",
+              "slug": "vps/release-notes-and-static-data#which-action-to-run",
+              "order": 4
+            },
+            {
+              "id": "scripts-and-when-to-use-them",
+              "title": "Scripts and when to use them",
+              "slug": "vps/release-notes-and-static-data#scripts-and-when-to-use-them",
+              "order": 5
+            },
+            {
+              "id": "recommended-operational-flow",
+              "title": "Recommended operational flow",
+              "slug": "vps/release-notes-and-static-data#recommended-operational-flow",
+              "order": 6
+            },
+            {
+              "id": "pre-flight-checks",
+              "title": "Pre-flight checks",
+              "slug": "vps/release-notes-and-static-data#pre-flight-checks",
+              "order": 7
+            },
+            {
+              "id": "verification-checklist",
+              "title": "Verification checklist",
+              "slug": "vps/release-notes-and-static-data#verification-checklist",
+              "order": 8
+            },
+            {
+              "id": "quick-troubleshooting",
+              "title": "Quick troubleshooting",
+              "slug": "vps/release-notes-and-static-data#quick-troubleshooting",
+              "order": 9
+            }
+          ],
+          "order": 5
+        },
+        {
           "id": "static-site-deploy",
           "title": "Static Website Deployment",
           "slug": "vps/static-site-deploy",
@@ -11987,7 +12050,7 @@
               "order": 6
             }
           ],
-          "order": 5
+          "order": 6
         },
         {
           "id": "react-spa-deploy",
@@ -12038,7 +12101,7 @@
               "order": 7
             }
           ],
-          "order": 6
+          "order": 7
         }
       ],
       "order": 28

@@ -9,7 +9,7 @@ It renders MDX content from the repository, has client-side navigation and searc
 - React 19
 - Vite (rolldown-vite)
 - React Router
-- Redux Toolkit + React Redux (theme state)
+- Redux Toolkit + React Redux (theme + UI preferences state)
 - Material UI + Tailwind CSS v4
 - MDX (`@mdx-js/rollup`, `@mdx-js/react`)
 - MiniSearch (in-memory search index)
@@ -18,7 +18,7 @@ It renders MDX content from the repository, has client-side navigation and searc
 
 - Content is file-based (`src/content/**`) and versioned in Git.
 - Routes are slug-based and resolved entirely on the client.
-- Docs navigation/search metadata is generated from MDX files into a single manifest.
+- Docs navigation/search metadata is generated from MDX files into index + per-topic manifests.
 - No backend and no persistence beyond browser storage for UI preferences.
 
 ## Project Structure
@@ -111,6 +111,8 @@ src/content/react/
 
 Generated file:
 - `src/content/docs-manifest.generated.json`
+- `src/content/docs-index.generated.json`
+- `src/content/docs-topics/docs-topic-<id>.generated.json`
 
 ### Add docs in 60 seconds
 
@@ -158,18 +160,24 @@ Search is client-side and powered by MiniSearch.
 
 - Source: generated docs manifest (`src/content/docs-manifest.generated.json`)
 - Indexed fields: titles (section/subsection)
-- Query options: prefix + fuzzy match
+- Query options: prefix + conditional fuzzy match (`fuzzy` disabled for short queries, enabled for longer queries)
 - Result behavior: clicking a result navigates to the matching page/anchor
 
 ## Theme and UI State
 
-Theme preference is managed in Redux and persisted to `localStorage` key `mui-mode`.
+Theme and UI preferences are managed in Redux and persisted in browser storage.
 
 Supported modes:
 
 - Light
 - Dark
 - System (resolved from `prefers-color-scheme`)
+
+Additional docs-oriented UI preferences include:
+- typography/layout density controls
+- code block options (line numbers, copy button, compact/spacious)
+- advanced reading modes (focus / zen / presentation)
+- accent palette and reading time toggle
 
 ## Build and Deployment
 
@@ -186,6 +194,7 @@ Production deploy is handled by GitHub Actions with a versioned release layout o
   - `/srv/www/<www-domain>/current` (symlink to active release)
 - Workflow file: `.github/workflows/deploy.yml`
 - Canonical docs procedure: [`src/content/vps/deploy-golden-path.mdx`](./src/content/vps/deploy-golden-path.mdx)
+- Release notes + static payload runbook: [`src/content/vps/release-notes-and-static-data.mdx`](./src/content/vps/release-notes-and-static-data.mdx)
 
 ### CI/CD Deploy Logic
 
@@ -238,5 +247,5 @@ Notes:
 
 - App version is read from [`VERSION`](./VERSION)
 - CI/CD release notes artifacts are generated in [`release-notes/`](./release-notes)
-- In-app modal currently reads notes from [`CHANGELOG.md`](./CHANGELOG.md)
+- In-app modal reads static payload from [`public/data/release-notes.json`](./public/data/release-notes.json)
 - Footer exposes a modal with notes for the current version

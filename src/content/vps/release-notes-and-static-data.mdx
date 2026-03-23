@@ -1,0 +1,148 @@
+# Release Notes and Static Data Runbook
+
+This runbook documents how this project handles deployment metadata, release notes, and static release payloads.
+
+## Quick start copy/paste
+
+Use this when you want to update release notes safely and verify everything locally before publishing.
+
+~~~bash
+# 1) Sync tags first (required for correct history and dates)
+git fetch --tags --force
+
+# 2) Generate/refresh one release notes file
+scripts/release-notes/run.sh --tag vX.Y.Z
+
+# 3) Rebuild static payload consumed by the modal
+npm run data:refresh
+
+# 4) Validate docs/build
+npm run docs:validate
+npm run build
+~~~
+
+Expected artifacts:
+- `release-notes/vX.Y.Z.md`
+- `public/data/release-notes.json`
+
+## Where the deploy script is
+
+Main deploy helper script:
+- [`scripts/deploy-vps-unified.sh`](/Users/tberti/WebstormProjects/codexPane/scripts/deploy-vps-unified.sh)
+
+Primary CI deploy workflow:
+- [`/.github/workflows/deploy.yml`](/Users/tberti/WebstormProjects/codexPane/.github/workflows/deploy.yml)
+
+Quick usage:
+
+~~~bash
+bash scripts/deploy-vps-unified.sh --help
+~~~
+
+## Pipeline roles
+
+These workflows have different responsibilities:
+
+- [`deploy.yml`](/Users/tberti/WebstormProjects/codexPane/.github/workflows/deploy.yml): main deploy/version writer for production flow.
+- [`release-notes.yml`](/Users/tberti/WebstormProjects/codexPane/.github/workflows/release-notes.yml): manual tool to generate/update `release-notes/<tag>.md` and GitHub release body.
+- [`refresh-static-data.yml`](/Users/tberti/WebstormProjects/codexPane/.github/workflows/refresh-static-data.yml): manual utility to regenerate `public/data/release-notes.json`.
+
+## Which action to run
+
+- **I need a new production deploy with versioning**: run `deploy.yml` (main writer flow).
+- **I need to regenerate one release note body for a tag**: run `release-notes.yml` or local `scripts/release-notes/run.sh`.
+- **I need the modal JSON aligned with tags/notes**: run `refresh-static-data.yml` or local `npm run data:refresh`.
+- **I changed release notes and want to verify before publish**: run local `docs:validate` + `build`.
+
+## Scripts and when to use them
+
+### Generate release notes markdown
+
+Use [`scripts/release-notes/run.sh`](/Users/tberti/WebstormProjects/codexPane/scripts/release-notes/run.sh) when you need to create or refresh one release notes file.
+
+~~~bash
+# Default range resolution for a tag
+scripts/release-notes/run.sh --tag vX.Y.Z
+
+# Explicit range
+scripts/release-notes/run.sh --tag vX.Y.Z --from <from-ref> --to <to-ref>
+~~~
+
+Related internals:
+- [`collect_changes.sh`](/Users/tberti/WebstormProjects/codexPane/scripts/release-notes/collect_changes.sh)
+- [`generate_notes.mjs`](/Users/tberti/WebstormProjects/codexPane/scripts/release-notes/generate_notes.mjs)
+
+### Regenerate static release payload
+
+Use [`refresh-static-data.mjs`](/Users/tberti/WebstormProjects/codexPane/scripts/static-data/refresh-static-data.mjs) to rebuild the UI payload consumed by the release notes modal.
+
+~~~bash
+# Full refresh using latest available SemVer tags
+npm run data:refresh
+
+# Refresh for a specific tag
+node scripts/static-data/refresh-static-data.mjs --tag vX.Y.Z
+~~~
+
+Output target:
+- `public/data/release-notes.json`
+
+## Recommended operational flow
+
+1. Complete version/tagging through the deploy flow (`deploy.yml`).
+2. Generate or refresh notes via `release-notes.yml` (or local `scripts/release-notes/run.sh`).
+3. Refresh static payload (`refresh-static-data.yml` or `npm run data:refresh`).
+4. Verify Release Notes modal in app: latest version, history ordering, per-release date, and markdown content.
+
+## Pre-flight checks
+
+Run these before saying a release note update is complete:
+
+~~~bash
+git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 10
+test -f release-notes/vX.Y.Z.md && echo "notes file ok"
+test -f public/data/release-notes.json && echo "static payload ok"
+~~~
+
+## Verification checklist
+
+- `release-notes/vX.Y.Z.md` exists and contains expected content.
+- `public/data/release-notes.json` includes updated `latestTag` and correct `history`.
+- UI modal shows the right version and historical entries.
+- Dates are coherent per release (not all identical).
+
+## Quick troubleshooting
+
+### Same date shown for multiple releases
+
+Run static refresh again after fetching tags:
+
+~~~bash
+git fetch --tags --force
+npm run data:refresh
+~~~
+
+If needed, rerun `release-notes.yml` for specific tags and refresh static data again.
+
+### Missing tags locally or in CI
+
+Symptoms:
+- older/newer releases missing in history
+- wrong `latestTag` in `release-notes.json`
+
+Fix:
+
+~~~bash
+git fetch --tags --force
+git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 20
+~~~
+
+### Mismatch between latest tag and static payload
+
+Symptoms:
+- tag exists in git but modal still shows older version
+
+Fix sequence:
+1. verify tag exists
+2. run `npm run data:refresh`
+3. commit/publish updated `public/data/release-notes.json` in your release process
