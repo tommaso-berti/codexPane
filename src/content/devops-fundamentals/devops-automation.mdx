@@ -109,6 +109,67 @@ To use CD in a project, we can do the following:
 5. Configure the CD server to deploy to a production environment if no issues occur.
 Since CD is often implemented along with CI, many CI tools also contain CD capabilities. If CI is set up for a project, the same tool can likely be used when setting up the CD servers.
 
+## Pattern: background job deploy with systemd and github actions
+Some automation workloads are not web apps. A common pattern is a scheduled job (for example: report generation, notifications, data sync) deployed to a VPS and run by `systemd` timers.
+
+### Server setup (one-time)
+~~~bash
+sudo apt update
+sudo apt install -y git python3 python3-venv python3-pip tzdata
+sudo timedatectl set-timezone Europe/Rome
+
+sudo mkdir -p /opt/<job-name>/app /opt/<job-name>/run
+sudo chown -R deploy:deploy /opt/<job-name>
+~~~
+
+### Service and timer units
+~~~ini
+# /etc/systemd/system/<job-name>.service
+[Unit]
+Description=Background automation job
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/<job-name>/app
+EnvironmentFile=/opt/<job-name>/.env
+ExecStart=/opt/<job-name>/app/.venv/bin/python /opt/<job-name>/app/main.py
+~~~
+
+~~~ini
+# /etc/systemd/system/<job-name>.timer
+[Unit]
+Description=Run automation job daily
+
+[Timer]
+OnCalendar=*-*-* 22:30:00
+Persistent=true
+Unit=<job-name>.service
+
+[Install]
+WantedBy=timers.target
+~~~
+
+~~~bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now <job-name>.timer
+~~~
+
+### CI deploy essentials
+- Keep credentials in repository secrets (for example `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`).
+- Pull latest code on the VPS, refresh virtualenv dependencies, write `.env`, then restart or run the service.
+- Validate with:
+~~~bash
+sudo systemctl start <job-name>.service
+journalctl -u <job-name>.service -n 100 --no-pager
+systemctl list-timers | grep <job-name>
+~~~
+
+> Tip: allow only specific `systemctl` commands via sudoers instead of full passwordless sudo.
+
 ## Interactive Playground: Delivery Pipeline Gates
 **Why this matters:** automation gates prevent risky releases caused by manual shortcuts.
 

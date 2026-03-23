@@ -180,34 +180,17 @@ npm run build
 ```
 
 Production deploy is handled by GitHub Actions with a versioned release layout on VPS:
-- Target domain: `www.codexpane.tommasoberti.com`
+- Target domain: `<www-domain>`
 - Remote structure:
-  - `/srv/www/www.codexpane.tommasoberti.com/releases/vX.Y.Z`
-  - `/srv/www/www.codexpane.tommasoberti.com/current` (symlink to active release)
+  - `/srv/www/<www-domain>/releases/vX.Y.Z`
+  - `/srv/www/<www-domain>/current` (symlink to active release)
 - Workflow file: `.github/workflows/deploy.yml`
+- Canonical docs procedure: [`src/content/vps/deploy-golden-path.mdx`](./src/content/vps/deploy-golden-path.mdx)
 
-### CI/CD Deploy Logic (same procedure as portfolio)
+### CI/CD Deploy Logic
 
-Triggers:
-- `push` on `main`
-- `push` on tags `v*`
-- `pull_request` `closed` on `main`
-- manual `workflow_dispatch`
-
-Version bump policy from commit/PR text:
-- `#major` or `[major]` -> major bump
-- `#minor` or `[minor]` -> minor bump
-- `#patch` or `[patch]` -> patch bump
-- `#skip-deploy` or `[skip-deploy]` -> skip deploy steps
-
-Behavior:
-1. Resolve release version/tag.
-2. Build app and upload `dist/` to `/releases/vX.Y.Z`.
-3. Update `current` symlink.
-4. Prune old releases (keep last 5).
-5. Generate `release-notes/vX.Y.Z.md`.
-6. Publish GitHub Release body from that file.
-7. Commit release notes artifact to `main` (`docs(release): vX.Y.Z artifacts #skip-deploy [skip ci]`).
+The deploy workflow resolves a versioned release, uploads build artifacts to `/releases/vX.Y.Z`, updates `current`, reloads the web server, and then handles release-note artifacts.  
+For the full operational procedure, use the VPS docs golden path above to avoid duplicate instructions.
 
 ### Release Notes Pipeline
 

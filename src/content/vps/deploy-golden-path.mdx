@@ -1,0 +1,146 @@
+# VPS Deploy Golden Path (Caddy + Versioned Releases)
+
+This is the canonical deployment flow for this repo. Use it as the baseline for both static websites and React SPAs.
+
+> Note: The source of truth for production deploy logic is [`/Users/tberti/WebstormProjects/codexPane/.github/workflows/deploy.yml`](/Users/tberti/WebstormProjects/codexPane/.github/workflows/deploy.yml).
+
+## Minimum prerequisites
+
+- Debian/Ubuntu VPS with SSH access.
+- Non-root deploy user (for example `deploy`) with sudo.
+- Domain configured with DNS records pointing to the VPS.
+- Repository secrets configured in GitHub Actions: `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`.
+
+## Release layout and symlink strategy
+
+Use a release folder per version and keep `current` as a symlink:
+
+~~~text
+/srv/www/<www-domain>/
+├── releases/
+│   ├── v1.2.0/
+│   └── v1.2.1/
+└── current -> /srv/www/<www-domain>/releases/v1.2.1
+~~~
+
+Why this layout:
+- predictable rollback
+- atomic activation (`ln -sfn`)
+- easier deploy diagnostics
+
+## Caddy baseline configuration
+
+~~~caddy
+{
+  email <admin-email>
+}
+
+import sites-enabled/*
+~~~
+
+Create `/etc/caddy/sites-enabled/<app-name>.conf`:
+
+~~~caddy
+<www-domain> {
+  encode zstd gzip
+  root * /srv/www/<www-domain>/current
+
+  header /assets/* Cache-Control "public, max-age=31536000, immutable"
+
+  @spa {
+    not file
+    path /*
+  }
+  rewrite @spa /index.html
+  file_server
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+  }
+}
+
+<domain> {
+  redir https://<www-domain>{uri} 301
+}
+~~~
+
+Apply:
+
+~~~bash
+sudo caddy fmt --overwrite /etc/caddy/Caddyfile
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+~~~
+
+## CI artifact deploy flow
+
+High-level flow:
+1. Build in CI (`npm run build`).
+2. Upload artifact to `/releases/vX.Y.Z`.
+3. Activate release by updating `current` symlink.
+4. Reload Caddy.
+5. Run sanity checks.
+
+Example snippet:
+
+~~~yaml
+- name: Resolve version
+  run: |
+    V=$( [ -f VERSION ] && tr -d ' \n\r' < VERSION || node -p "require('./package.json').version" )
+    V=${V#v}
+    echo "VERSION=$V" >> $GITHUB_ENV
+    echo "RELEASE_DIR=v$V" >> $GITHUB_ENV
+
+- name: Upload artifact to release dir
+  run: |
+    RR="/srv/www/<www-domain>/releases/${RELEASE_DIR}"
+    ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" "mkdir -p \"$RR\""
+    rsync -az --delete -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" dist/ "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${RR}/"
+
+- name: Activate release and reload caddy
+  run: |
+    RB="/srv/www/<www-domain>"
+    ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+      "ln -sfn \"$RB/releases/${RELEASE_DIR}\" \"$RB/current\" && sudo -n systemctl reload caddy"
+~~~
+
+## Rollback and sanity checks
+
+Rollback:
+
+~~~bash
+cd /srv/www/<www-domain>
+ls -1 releases
+ln -sfn releases/<previous-version> current
+sudo systemctl reload caddy
+~~~
+
+Sanity checks:
+
+~~~bash
+cd /srv/www/<www-domain>
+ls -l current
+readlink -f current
+test -f current/index.html
+~~~
+
+## Unified script for setup and deploy helpers
+
+Use [`/Users/tberti/WebstormProjects/codexPane/scripts/deploy-vps-unified.sh`](/Users/tberti/WebstormProjects/codexPane/scripts/deploy-vps-unified.sh) as the operational entrypoint.
+
+~~~bash
+# Show options
+bash scripts/deploy-vps-unified.sh --help
+
+# Canonical setup (React, Caddy, CI artifact)
+sudo bash scripts/deploy-vps-unified.sh \
+  --app-type react \
+  --server caddy \
+  --strategy ci-artifact \
+  --app-name <app-name> \
+  --domain <domain> \
+  --www-domain <www-domain> \
+  --deploy-user <deploy-user>
+~~~

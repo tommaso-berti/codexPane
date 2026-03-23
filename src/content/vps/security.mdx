@@ -2,7 +2,7 @@
 
 This section explains RSA keys in plain English and shows how to create and use a PEM-formatted SSH key to connect to your VPS without a password.
 
-> Note: Commands assume OpenSSH on Linux/macOS. Replace placeholders like `INDIRIZZO_IP` (server IP) and filenames with your own.
+> Note: Commands assume OpenSSH on Linux/macOS. Replace placeholders like `<vps-host-or-ip>` and filenames with your own.
 
 ## What is a rsa key
 
@@ -67,31 +67,87 @@ Extract the public key from the private key, then install it on the server:
 # Extract the public key
 ssh-keygen -y -f my_vps_key.pem > my_vps_key.pub
 
-# Copy the public key (preferred) ssh-copy-id -i my_vps_key.pub root@INDIRIZZO_IP
+# Copy the public key (preferred)
+ssh-copy-id -i my_vps_key.pub root@<vps-host-or-ip>
 ~~~
 
 If `ssh-copy-id` is unavailable, copy it manually:
 
 ~~~bash
-cat my_vps_key.pub | ssh root@INDIRIZZO_IP "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+cat my_vps_key.pub | ssh root@<vps-host-or-ip> "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 ~~~
 
-When prompted:
-
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
-
-php-template
-Copia codice
-
-Type `yes`, then enter the **root** password when asked (first-time only).
+When prompted with `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes`, then enter the **root** password (first-time only).
 
 ### 4. Connect using the pem key
 
 ~~~bash
-ssh -i my_vps_key.pem root@INDIRIZZO_IP
+ssh -i my_vps_key.pem root@<vps-host-or-ip>
 ~~~
 
 > Note: Consider creating a non-root sudo user and disabling password logins after confirming key-based access works.
+
+## Cockpit behind caddy (secure admin panel)
+
+Use this setup when you want Cockpit web administration without exposing port `9090` publicly.
+
+### 1. Install cockpit and create an admin user
+
+~~~bash
+sudo apt update
+sudo apt install -y cockpit
+sudo systemctl enable --now cockpit.socket
+
+sudo adduser cockpitadmin
+sudo usermod -aG sudo cockpitadmin
+~~~
+
+### 2. Bind cockpit only to localhost
+
+~~~bash
+sudo systemctl edit cockpit.socket
+~~~
+
+Add:
+
+~~~ini
+[Socket]
+ListenStream=
+ListenStream=127.0.0.1:9090
+~~~
+
+Apply and verify:
+
+~~~bash
+sudo systemctl daemon-reload
+sudo systemctl restart cockpit.socket
+ss -tulpn | grep 9090
+~~~
+
+### 3. Reverse proxy through caddy
+
+~~~caddy
+cockpit.<domain> {
+  reverse_proxy 127.0.0.1:9090
+}
+~~~
+
+### 4. SSH hardening baseline
+
+~~~bash
+sudo tee /etc/ssh/sshd_config.d/90-hardening.conf >/dev/null <<'EOF'
+PermitRootLogin prohibit-password
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+UsePAM yes
+EOF
+
+sudo sshd -t
+sudo systemctl reload ssh
+~~~
+
+> Attention: test key-based SSH in a second session before disabling password login.
 
 ## Interactive Playground: SSH keygen command builder
 

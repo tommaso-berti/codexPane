@@ -2830,10 +2830,16 @@
               "order": 14
             },
             {
+              "id": "pattern-background-job-deploy-with-systemd-and-github-actions",
+              "title": "Pattern: background job deploy with systemd and github actions",
+              "slug": "devops-fundamentals/devops-automation#pattern-background-job-deploy-with-systemd-and-github-actions",
+              "order": 15
+            },
+            {
               "id": "interactive-playground-delivery-pipeline-gates",
               "title": "Interactive Playground: Delivery Pipeline Gates",
               "slug": "devops-fundamentals/devops-automation#interactive-playground-delivery-pipeline-gates",
-              "order": 15
+              "order": 16
             }
           ],
           "order": 7
@@ -11879,13 +11885,64 @@
               "order": 6
             },
             {
+              "id": "cockpit-behind-caddy-secure-admin-panel",
+              "title": "Cockpit behind caddy (secure admin panel)",
+              "slug": "vps/security#cockpit-behind-caddy-secure-admin-panel",
+              "order": 7
+            },
+            {
               "id": "interactive-playground-ssh-keygen-command-builder",
               "title": "Interactive Playground: SSH keygen command builder",
               "slug": "vps/security#interactive-playground-ssh-keygen-command-builder",
-              "order": 7
+              "order": 8
             }
           ],
           "order": 3
+        },
+        {
+          "id": "deploy-golden-path",
+          "title": "Deploy Golden Path",
+          "slug": "vps/deploy-golden-path",
+          "filePath": "../../content/vps/deploy-golden-path.mdx",
+          "subSections": [
+            {
+              "id": "minimum-prerequisites",
+              "title": "Minimum prerequisites",
+              "slug": "vps/deploy-golden-path#minimum-prerequisites",
+              "order": 1
+            },
+            {
+              "id": "release-layout-and-symlink-strategy",
+              "title": "Release layout and symlink strategy",
+              "slug": "vps/deploy-golden-path#release-layout-and-symlink-strategy",
+              "order": 2
+            },
+            {
+              "id": "caddy-baseline-configuration",
+              "title": "Caddy baseline configuration",
+              "slug": "vps/deploy-golden-path#caddy-baseline-configuration",
+              "order": 3
+            },
+            {
+              "id": "ci-artifact-deploy-flow",
+              "title": "CI artifact deploy flow",
+              "slug": "vps/deploy-golden-path#ci-artifact-deploy-flow",
+              "order": 4
+            },
+            {
+              "id": "rollback-and-sanity-checks",
+              "title": "Rollback and sanity checks",
+              "slug": "vps/deploy-golden-path#rollback-and-sanity-checks",
+              "order": 5
+            },
+            {
+              "id": "unified-script-for-setup-and-deploy-helpers",
+              "title": "Unified script for setup and deploy helpers",
+              "slug": "vps/deploy-golden-path#unified-script-for-setup-and-deploy-helpers",
+              "order": 6
+            }
+          ],
+          "order": 4
         },
         {
           "id": "static-site-deploy",
@@ -11894,91 +11951,43 @@
           "filePath": "../../content/vps/static-site-deploy.mdx",
           "subSections": [
             {
-              "id": "repository-and-vps-structure",
-              "title": "Repository and vps structure",
-              "slug": "vps/static-site-deploy#repository-and-vps-structure",
+              "id": "when-to-use-this-variant",
+              "title": "When to use this variant",
+              "slug": "vps/static-site-deploy#when-to-use-this-variant",
               "order": 1
             },
             {
-              "id": "static-site-deploy-prerequisites",
-              "title": "Static site deploy prerequisites",
-              "slug": "vps/static-site-deploy#static-site-deploy-prerequisites",
+              "id": "what-changes-compared-to-the-golden-path",
+              "title": "What changes compared to the golden path",
+              "slug": "vps/static-site-deploy#what-changes-compared-to-the-golden-path",
               "order": 2
             },
             {
-              "id": "prepare-the-vps-packages-firewall-user",
-              "title": "Prepare the vps packages firewall user",
-              "slug": "vps/static-site-deploy#prepare-the-vps-packages-firewall-user",
+              "id": "recommended-flow",
+              "title": "Recommended flow",
+              "slug": "vps/static-site-deploy#recommended-flow",
               "order": 3
             },
             {
-              "id": "create-the-directory-layout",
-              "title": "Create the directory layout",
-              "slug": "vps/static-site-deploy#create-the-directory-layout",
+              "id": "minimal-ci-example-static-artifact",
+              "title": "Minimal CI example (static artifact)",
+              "slug": "vps/static-site-deploy#minimal-ci-example-static-artifact",
               "order": 4
             },
             {
-              "id": "clone-your-website-from-github",
-              "title": "Clone your website from github",
-              "slug": "vps/static-site-deploy#clone-your-website-from-github",
+              "id": "unified-script-usage-for-static-mode",
+              "title": "Unified script usage for static mode",
+              "slug": "vps/static-site-deploy#unified-script-usage-for-static-mode",
               "order": 5
             },
             {
-              "id": "configure-nginx",
-              "title": "Configure nginx",
-              "slug": "vps/static-site-deploy#configure-nginx",
+              "id": "optional-nginx-mode",
+              "title": "Optional NGINX mode",
+              "slug": "vps/static-site-deploy#optional-nginx-mode",
               "order": 6
-            },
-            {
-              "id": "static-site-deploy-point-dns-on-aruba",
-              "title": "Static site deploy point dns on aruba",
-              "slug": "vps/static-site-deploy#static-site-deploy-point-dns-on-aruba",
-              "order": 7
-            },
-            {
-              "id": "static-site-deploy-enable-https-with-certbot",
-              "title": "Static site deploy enable https with certbot",
-              "slug": "vps/static-site-deploy#static-site-deploy-enable-https-with-certbot",
-              "order": 8
-            },
-            {
-              "id": "static-site-deploy-fix-permissions",
-              "title": "Static site deploy fix permissions",
-              "slug": "vps/static-site-deploy#static-site-deploy-fix-permissions",
-              "order": 9
-            },
-            {
-              "id": "optional-one-shot-provisioning-script",
-              "title": "Optional one shot provisioning script",
-              "slug": "vps/static-site-deploy#optional-one-shot-provisioning-script",
-              "order": 10
-            },
-            {
-              "id": "ci-cd-with-github-actions-over-ssh",
-              "title": "Ci cd with github actions over ssh",
-              "slug": "vps/static-site-deploy#ci-cd-with-github-actions-over-ssh",
-              "order": 11
-            },
-            {
-              "id": "static-site-deploy-optional-nginx-enhancements",
-              "title": "Static site deploy optional nginx enhancements",
-              "slug": "vps/static-site-deploy#static-site-deploy-optional-nginx-enhancements",
-              "order": 12
-            },
-            {
-              "id": "static-site-deploy-troubleshooting",
-              "title": "Static site deploy troubleshooting",
-              "slug": "vps/static-site-deploy#static-site-deploy-troubleshooting",
-              "order": 13
-            },
-            {
-              "id": "deployment-checklist-playground",
-              "title": "Deployment checklist playground",
-              "slug": "vps/static-site-deploy#deployment-checklist-playground",
-              "order": 14
             }
           ],
-          "order": 4
+          "order": 5
         },
         {
           "id": "react-spa-deploy",
@@ -11987,85 +11996,49 @@
           "filePath": "../../content/vps/react-spa-deploy.mdx",
           "subSections": [
             {
-              "id": "recommended-vps-structure",
-              "title": "Recommended vps structure",
-              "slug": "vps/react-spa-deploy#recommended-vps-structure",
+              "id": "when-to-use-this-variant",
+              "title": "When to use this variant",
+              "slug": "vps/react-spa-deploy#when-to-use-this-variant",
               "order": 1
             },
             {
-              "id": "prerequisites",
-              "title": "Prerequisites",
-              "slug": "vps/react-spa-deploy#prerequisites",
+              "id": "build-strategy-decision",
+              "title": "Build strategy decision",
+              "slug": "vps/react-spa-deploy#build-strategy-decision",
               "order": 2
             },
             {
-              "id": "prepare-the-vps-node-nginx-firewall",
-              "title": "Prepare the vps node nginx firewall",
-              "slug": "vps/react-spa-deploy#prepare-the-vps-node-nginx-firewall",
+              "id": "react-specific-notes",
+              "title": "React-specific notes",
+              "slug": "vps/react-spa-deploy#react-specific-notes",
               "order": 3
             },
             {
-              "id": "clone-and-build-the-react-app",
-              "title": "Clone and build the react app",
-              "slug": "vps/react-spa-deploy#clone-and-build-the-react-app",
+              "id": "ci-artifact-strategy-recommended",
+              "title": "CI artifact strategy (recommended)",
+              "slug": "vps/react-spa-deploy#ci-artifact-strategy-recommended",
               "order": 4
             },
             {
-              "id": "configure-nginx-for-spa-routing",
-              "title": "Configure nginx for spa routing",
-              "slug": "vps/react-spa-deploy#configure-nginx-for-spa-routing",
+              "id": "build-on-vps-strategy",
+              "title": "Build on VPS strategy",
+              "slug": "vps/react-spa-deploy#build-on-vps-strategy",
               "order": 5
             },
             {
-              "id": "point-dns-on-aruba",
-              "title": "Point dns on aruba",
-              "slug": "vps/react-spa-deploy#point-dns-on-aruba",
+              "id": "unified-script-usage-for-react-mode",
+              "title": "Unified script usage for React mode",
+              "slug": "vps/react-spa-deploy#unified-script-usage-for-react-mode",
               "order": 6
             },
             {
-              "id": "enable-https-with-certbot",
-              "title": "Enable https with certbot",
-              "slug": "vps/react-spa-deploy#enable-https-with-certbot",
+              "id": "reference-workflow",
+              "title": "Reference workflow",
+              "slug": "vps/react-spa-deploy#reference-workflow",
               "order": 7
-            },
-            {
-              "id": "fix-permissions",
-              "title": "Fix permissions",
-              "slug": "vps/react-spa-deploy#fix-permissions",
-              "order": 8
-            },
-            {
-              "id": "all-in-one-deploy-script",
-              "title": "All in one deploy script",
-              "slug": "vps/react-spa-deploy#all-in-one-deploy-script",
-              "order": 9
-            },
-            {
-              "id": "build-on-the-vps",
-              "title": "Build on the vps",
-              "slug": "vps/react-spa-deploy#build-on-the-vps",
-              "order": 10
-            },
-            {
-              "id": "build-in-ci-upload-artifacts",
-              "title": "Build in ci upload artifacts",
-              "slug": "vps/react-spa-deploy#build-in-ci-upload-artifacts",
-              "order": 11
-            },
-            {
-              "id": "optional-nginx-enhancements",
-              "title": "Optional nginx enhancements",
-              "slug": "vps/react-spa-deploy#optional-nginx-enhancements",
-              "order": 12
-            },
-            {
-              "id": "troubleshooting",
-              "title": "Troubleshooting",
-              "slug": "vps/react-spa-deploy#troubleshooting",
-              "order": 13
             }
           ],
-          "order": 5
+          "order": 6
         }
       ],
       "order": 28

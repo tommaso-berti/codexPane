@@ -1,292 +1,62 @@
-# Static Website Deployment — VPS + NGINX + HTTPS + GitHub Actions
+# Static Website Deployment (Variant)
 
-This guide explains how to host and automatically deploy a **static website** (HTML, CSS, JS) on a **Linux VPS** using **NGINX**, **Certbot**, **Aruba DNS**, and **GitHub Actions** for CI/CD via SSH.
-Follow steps in order and replace placeholders like `<project-name>`, `<domain>`, `<VPS-IP>`, `<deploy-user>`, `<your-user>`, `<repo>`.
+Use this page only for static-site specifics. For the shared deploy procedure, follow the golden path:
 
-> Tip: Commands assume Debian/Ubuntu and `sudo` privileges. Run from a non-root user unless stated otherwise.
+- [`VPS Deploy Golden Path (Caddy + Versioned Releases)`](/Users/tberti/WebstormProjects/codexPane/src/content/vps/deploy-golden-path.mdx)
 
-## Repository and vps structure
+## When to use this variant
 
-**On GitHub**
-~~~
-my-cheat-sheet/
-├── deploy/
-│   └── update-my-cheat-sheet.sh
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-~~~
+Choose this variant when your app is plain HTML/CSS/JS and does not require a Node build step.
 
-**On VPS**
-~~~
-/srv/www/sites/my-cheat-sheet/public/        # GitHub project clone
-~~~
+## What changes compared to the golden path
 
-**Recommended VPS Structure (Static Website)**
-~~~
-/srv/www/
-├── sites/
-│   └── example-site/
-│       └── public/           ← Contains index.html, CSS, JS files
-├── logs/
-│   └── example-site/
-│       ├── access.log
-│       └── error.log
-├── configs/
-    └── nginx/
-        └── example.conf
-~~~
+- Build step in CI can be skipped.
+- Artifact source is the repo content (or pre-built static bundle).
+- Caddy root still points to `/srv/www/<www-domain>/current`.
 
-## Static site deploy prerequisites
+## Recommended flow
 
-- Linux VPS (Ubuntu/Debian) with public IP
-- Non-root user with `sudo` (e.g., `<deploy-user>`)
-- GitHub repo with your static site (`index.html` required)
-- Domain or subdomain on Aruba (e.g., `www.example.com`)
+1. Keep the same release layout (`releases/current`).
+2. Sync static files to `/releases/vX.Y.Z`.
+3. Switch `current` symlink.
+4. Reload Caddy.
 
-## Prepare the vps packages firewall user
-
-~~~bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y nginx git curl ufw
-
-# Create a non-root deploy user (if needed) sudo adduser <deploy-user>
-sudo usermod -aG sudo <deploy-user>
-
-# Open firewall for SSH + HTTP/HTTPS
-sudo ufw allow OpenSSH
-sudo ufw allow 'Nginx Full'   # opens 80 + 443
-sudo ufw --force enable
-sudo ufw status
-~~~
-
-## Create the directory layout
-
-~~~bash
-sudo mkdir -p /srv/www/sites/<project-name>/public
-sudo mkdir -p /srv/www/logs/<project-name>
-sudo mkdir -p /srv/www/configs/nginx
-~~~
-
-## Clone your website from github
-
-~~~bash
-cd /srv/www/sites/<project-name>/public
-sudo git clone https://github.com/<your-user>/<repo>.git .
-~~~
-
-> Note: The trailing `.` prevents creating an extra folder.
-
-## Configure nginx
-
-Create `/srv/www/configs/nginx/<project-name>.conf`:
-
-~~~nginx
-server {
-    listen 80;
-    server_name <domain>;  # e.g. www.example.com
-
-    root /srv/www/sites/<project-name>/public;
-    index index.html;
-
-    access_log /srv/www/logs/<project-name>/access.log;
-    error_log  /srv/www/logs/<project-name>/error.log;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-~~~
-
-Enable and reload:
-
-~~~bash
-sudo ln -s /srv/www/configs/nginx/<project-name>.conf /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-~~~
-
-## Static site deploy point dns on aruba
-
-Create an **A** record:
-
-| Type | Host (Name)   | Value (IP) |
-|-----:|----------------|------------|
-|  A   | `www.example`  | `<VPS-IP>` |
-
-Result: `www.example.yourdomain.com` → `<VPS-IP>`.
-
-> Note: DNS propagation can take time. Verify with `dig +short <domain>` or `nslookup <domain>`.
-
-## Static site deploy enable https with certbot
-
-~~~bash
-sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d <domain>   # e.g. -d www.example.com
-~~~
-
-> Note: Certbot installs auto-renewal via systemd timers. Check with `systemctl list-timers | grep certbot`.
-
-## Static site deploy fix permissions
-
-~~~bash
-sudo chown -R www-data:www-data /srv/www/sites/<project-name>/public
-sudo chmod -R 755 /srv/www/sites/<project-name>/public
-~~~
-
-## Optional one shot provisioning script
-
-Create `setup-static-site.sh` to automate steps 2–7:
-
-~~~bash
-#!/bin/bash
-set -euo pipefail
-
-PROJECT_NAME="<project-name>"
-REPO_GITHUB="https://github.com/<your-user>/<repo>.git"
-DOMAIN="<domain>"  # e.g. www.example.com
-ROOT_DIR="/srv/www/sites/$PROJECT_NAME/public"
-LOG_DIR="/srv/www/logs/$PROJECT_NAME"
-CONF_DIR="/srv/www/configs/nginx"
-CONF_FILE="$CONF_DIR/$PROJECT_NAME.conf"
-
-echo "Creating folders..."
-sudo mkdir -p "$ROOT_DIR" "$LOG_DIR" "$CONF_DIR"
-
-echo "Cloning repository..."
-cd "$ROOT_DIR"
-if [[ ! -d .git ]]; then
-  sudo git clone "$REPO_GITHUB" .
-else
-  sudo git pull --ff-only
-fi
-
-echo "Setting permissions..."
-sudo chown -R www-data:www-data "$ROOT_DIR"
-sudo chmod -R 755 "$ROOT_DIR"
-
-echo "Writing NGINX config..."
-sudo tee "$CONF_FILE" >/dev/null <<EOF
-server {
-    listen 80;
-    server_name $DOMAIN;
-
-    root $ROOT_DIR;
-    index index.html;
-
-    access_log $LOG_DIR/access.log;
-    error_log  $LOG_DIR/error.log;
-
-    location / { try_files \$uri \$uri/ =404; }
-}
-EOF
-
-echo "Enable site & reload NGINX..."
-sudo ln -sf "$CONF_FILE" /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-
-read -p "Enable HTTPS with Certbot for $DOMAIN? (y/n): " RESP
-[[ "$RESP" =~ ^[Yy]$ ]] && sudo certbot --nginx -d "$DOMAIN" || echo "HTTPS not enabled."
-
-echo "✅ Static site ready at: http://$DOMAIN"
-~~~
-
-Make it executable:
-
-~~~bash
-chmod +x setup-static-site.sh
-~~~
-
-## Ci cd with github actions over ssh
-
-**Generate a deploy SSH key (local machine):**
-
-~~~bash
-ssh-keygen -t rsa -b 4096 -C "github-deploy" -f ~/.ssh/id_rsa_github -N ""
-ssh-copy-id -i ~/.ssh/id_rsa_github.pub <deploy-user>@<VPS-IP>
-~~~
-
-**Add GitHub repository secrets:**
-
-- `SSH_PRIVATE_KEY` → content of `~/.ssh/id_rsa_github`
-- `VPS_HOST` → `<VPS-IP>`
-- `VPS_USER` → `<deploy-user>`
-
-**Add a repo-local deployment script (executed on VPS):** create `deploy/update-site.sh` in your repo:
-
-~~~bash
-#!/bin/bash
-set -euo pipefail
-echo "Pulling latest changes..."; git pull origin main
-echo "Fixing permissions..."; chown -R www-data:www-data .
-echo "Reloading NGINX..."; systemctl reload nginx
-echo "✅ Deploy complete."
-~~~
-
-On the VPS (first time):
-
-~~~bash
-chmod +x /srv/www/sites/<project-name>/public/deploy/update-site.sh
-~~~
-
-**GitHub Actions workflow** `.github/workflows/deploy.yml`:
+## Minimal CI example (static artifact)
 
 ~~~yaml
-name: Deploy Static Site to VPS
-on:
-  push:
-    branches: [ main ]
-concurrency: deploy-static
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run deployment script on VPS
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            set -e
-            cd /srv/www/sites/<project-name>/public
-            bash deploy/update-site.sh
+- name: Resolve version
+  run: |
+    V=$( [ -f VERSION ] && tr -d ' \n\r' < VERSION || echo "0.1.0" )
+    V=${V#v}
+    echo "RELEASE_DIR=v$V" >> $GITHUB_ENV
+
+- name: Upload static files
+  run: |
+    RR="/srv/www/<www-domain>/releases/${RELEASE_DIR}"
+    ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" "mkdir -p \"$RR\""
+    rsync -az --delete -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key" ./ "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${RR}/" \
+      --exclude .git --exclude .github --exclude node_modules
+
+- name: Activate release and reload caddy
+  run: |
+    RB="/srv/www/<www-domain>"
+    ssh -o IdentitiesOnly=yes -i ~/.ssh/deploy_key "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+      "ln -sfn \"$RB/releases/${RELEASE_DIR}\" \"$RB/current\" && sudo -n systemctl reload caddy"
 ~~~
 
-**Test:** push to `main` and verify the workflow updates your site.
+## Unified script usage for static mode
 
-> Attention: The action connects over SSH as your deploy user. Ensure the public key is present in `~/.ssh/authorized_keys` on the VPS and that the firewall allows SSH.
-
-## Static site deploy optional nginx enhancements
-
-**http to https redirect**
-~~~nginx
-server {
-  listen 80;
-  server_name <domain>;
-  return 301 https://$host$request_uri;
-}
+~~~bash
+sudo bash scripts/deploy-vps-unified.sh \
+  --app-type static \
+  --server caddy \
+  --strategy ci-artifact \
+  --app-name <app-name> \
+  --domain <domain> \
+  --www-domain <www-domain> \
+  --deploy-user <deploy-user>
 ~~~
 
-**Caching and gzip**
-~~~nginx
-gzip on;
-gzip_types text/plain text/css application/javascript application/json image/svg+xml;
-location ~* \.(js|css|png|jpg|svg|woff2?)$ { expires 30d; access_log off; }
-~~~
+## Optional NGINX mode
 
-## Static site deploy troubleshooting
-
-| Symptom                              | Likely cause and fix                                      |
-|-------------------------------------|------------------------------------------------------------|
-| `403 Forbidden`                      | Wrong permissions or missing `index.html`.                |
-| `nginx: bind() to 0.0.0.0:80 failed`| Port 80 in use (Traefik/Docker). Check `ss -lntp`.        |
-| Certbot NXDOMAIN                     | DNS not propagated or wrong host at Aruba.                |
-| Actions SSH fails                    | Bad secrets, missing pubkey in `authorized_keys`, port.   |
-
-## Deployment checklist playground
-
-import DeploymentChecklist from "./components/static-site-deploy/DeploymentChecklist.jsx"
-
-<DeploymentChecklist />
+NGINX remains supported by the unified script, but Caddy + versioned releases is the primary recommended flow.
