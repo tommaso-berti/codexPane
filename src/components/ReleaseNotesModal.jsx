@@ -34,6 +34,11 @@ function formatDate(value) {
     return date.toLocaleDateString();
 }
 
+function resolveReleaseDate(item) {
+    const entryDate = item?.entries?.find((entry) => entry?.date)?.date;
+    return entryDate || item?.publishedAt || "";
+}
+
 function extractLanguageSection(markdown, language) {
     const source = `${markdown ?? ""}`.trim();
     if (!source) return "";
@@ -212,7 +217,7 @@ export default function ReleaseNotesModal({ open, onClose }) {
                             {historyWithContent.map((item) => {
                                 const hasMarkdown = Boolean(item.filteredMarkdown);
                                 const hasEntries = Array.isArray(item.entries) && item.entries.length > 0;
-                                const headerDate = formatDate(item.publishedAt);
+                                const headerDate = formatDate(resolveReleaseDate(item));
                                 return (
                                     <Accordion
                                         key={item.tag}

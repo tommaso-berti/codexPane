@@ -77,7 +77,21 @@ function mapEntriesFromPayload(payload, repoUrl) {
     }));
 }
 
-function resolvePublishedAt(markdownPath, fallback) {
+function resolveTagCreatedAt(tag) {
+    try {
+        return execSync(`git log -1 --format=%cI ${tag}`, { encoding: "utf8" }).trim();
+    } catch {
+        return "";
+    }
+}
+
+function resolvePublishedAt({ tag, markdownPath, entries, fallback }) {
+    const tagCreatedAt = resolveTagCreatedAt(tag);
+    if (tagCreatedAt) return tagCreatedAt;
+
+    const firstEntryDate = (entries || []).find((item) => item?.date)?.date;
+    if (firstEntryDate) return firstEntryDate;
+
     try {
         const stat = fs.statSync(markdownPath);
         return stat.mtime.toISOString();
@@ -98,7 +112,12 @@ function buildHistoryItem({ tag, tags, repoRoot, repoUrl, fallbackPublishedAt })
 
     const payload = readJsonIfExists(payloadPath);
     const entries = mapEntriesFromPayload(payload, repoUrl);
-    const publishedAt = resolvePublishedAt(markdownPath, fallbackPublishedAt);
+    const publishedAt = resolvePublishedAt({
+        tag,
+        markdownPath,
+        entries,
+        fallback: fallbackPublishedAt,
+    });
 
     return {
         tag,
