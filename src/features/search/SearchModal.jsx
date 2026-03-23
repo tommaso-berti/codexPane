@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -45,10 +45,10 @@ export default function SearchModal() {
     }
     const [searchString, setSearchString] = useState('');
 
-    const { search } = useMiniSearchFromDocs();
+    const { search, isLoadingIndex } = useMiniSearchFromDocs(open);
     const navigate = useNavigate();
-
-    const results = useMemo(() => search(searchString), [search, searchString]);
+    const deferredQuery = useDeferredValue(searchString);
+    const results = useMemo(() => search(deferredQuery), [search, deferredQuery]);
     const isMac = /mac|iphone|ipad/i.test(navigator.platform);
 
     useEffect(() => {
@@ -131,6 +131,11 @@ export default function SearchModal() {
                             <CloseIcon />
                         </IconButton>
                     </Box>
+                    {isLoadingIndex ? (
+                        <Typography variant="body2" color="text.secondary" sx={{ px: 0.5, py: 1 }}>
+                            Loading search index...
+                        </Typography>
+                    ) : null}
                     <SearchResults results={results} onItemClick={handleClick} />
                 </Box>
             </Modal>

@@ -58,7 +58,7 @@ export default function Home() {
                                 {item.title}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
-                                {item.sections?.length || 0} sections
+                                {item.sectionCount ?? item.sections?.length ?? 0} sections
                             </Typography>
                         </Paper>
                     ))}

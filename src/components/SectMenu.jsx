@@ -9,10 +9,11 @@ import Switch from '@mui/material/Switch';
 import SearchIcon from '@mui/icons-material/Search';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import SectionMenuItem from './SectMenuItem.jsx';
 import { useDocs } from '../contexts/useDocs.js';
 import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useActiveSection } from '../features/docs/useActiveSection.js';
 
 const SIDEBAR_OPTIONS_STORAGE_KEY = 'codexpane.sidebar.options.v1';
@@ -66,7 +67,8 @@ function sectionHasPlayground(section) {
 export default function SectMenu() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const { docs = [] } = useDocs();
+    const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+    const { docs = [], ensureTopicLoaded } = useDocs();
     const { docs: docsParam, section: sectionParam } = useParams();
     const { pathname, hash } = useLocation();
     const { activeSectionId } = useActiveSection();
@@ -81,6 +83,11 @@ export default function SectMenu() {
     const [searchQuery, setSearchQuery] = useState('');
     const [showOnlyPlaygroundPages, setShowOnlyPlaygroundPages] = useState(false);
     const [openSectionsByTopic, setOpenSectionsByTopic] = useState({});
+    const listRef = useRef(null);
+
+    useEffect(() => {
+        ensureTopicLoaded(docsParam);
+    }, [docsParam, ensureTopicLoaded]);
 
     useEffect(() => {
         try {
@@ -113,7 +120,7 @@ export default function SectMenu() {
         return Array.isArray(topicOpenSections) ? topicOpenSections : [];
     }, [openSectionsByTopic, docsParam]);
 
-    const setOpenSections = (updater) => {
+    const setOpenSections = useCallback((updater) => {
         if (!docsParam) return;
         setOpenSectionsByTopic((previous) => {
             const currentValue = Array.isArray(previous[docsParam]) ? previous[docsParam] : [];
@@ -123,7 +130,7 @@ export default function SectMenu() {
                 [docsParam]: nextValue,
             };
         });
-    };
+    }, [docsParam]);
 
     const selected = useMemo(() => {
         const currentSection = currentSections.find((section) => {
@@ -162,7 +169,8 @@ export default function SectMenu() {
         return null;
     }, [anchor, normalizedAnchor, currentSections, pathname, sectionParam]);
 
-    const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+    const deferredSearchQuery = useDeferredValue(searchQuery);
+    const normalizedSearchQuery = deferredSearchQuery.trim().toLowerCase();
     const isPlaygroundFilterEnabled = !isMobile && showOnlyPlaygroundPages;
     const visibleSections = useMemo(() => {
         return currentSections.reduce((accumulator, section) => {
@@ -206,7 +214,36 @@ export default function SectMenu() {
         setOpenSections((previous) =>
             previous.includes(selected.sectionId) ? previous : [...previous, selected.sectionId]
         );
-    }, [selected?.sectionId, currentSections]);
+    }, [selected?.sectionId, currentSections, setOpenSections]);
+
+    useEffect(() => {
+        const listNode = listRef.current;
+        if (!listNode) return;
+        if (!selected) return;
+        if (!normalizedSearchQuery) return;
+
+        const targetBySelected =
+            selected.type === 'subsection'
+                ? listNode.querySelector(`[data-sidebar-subsection-id="${selected.value}"]`)
+                : listNode.querySelector(`[data-sidebar-section-id="${selected.value}"]`);
+        const fallbackTarget = selected.sectionId
+            ? listNode.querySelector(`[data-sidebar-section-id="${selected.sectionId}"]`)
+            : null;
+        const activeItem = targetBySelected || fallbackTarget || listNode.querySelector('[data-sidebar-active="true"]');
+        if (!activeItem) return;
+
+        const raf = window.requestAnimationFrame(() => {
+            const containerRect = listNode.getBoundingClientRect();
+            const itemRect = activeItem.getBoundingClientRect();
+            const topOffset = 10;
+            const targetTop = listNode.scrollTop + (itemRect.top - containerRect.top) - topOffset;
+            listNode.scrollTo({
+                top: Math.max(0, targetTop),
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            });
+        });
+        return () => window.cancelAnimationFrame(raf);
+    }, [selected, visibleSections, openSections, prefersReducedMotion, normalizedSearchQuery]);
 
     const handleToggle = (sectionId, hasSubsections) => {
         if (!hasSubsections) return;
@@ -249,7 +286,22 @@ export default function SectMenu() {
             }}
         >
             {hasSelectedTopic ? (
-                <Stack spacing={1} sx={{ px: 0.3 }}>
+                <Stack
+                    spacing={1}
+                    sx={{
+                        px: 0.3,
+                        position: 'sticky',
+                        top: 0,
+                        zIndex: 2,
+                        backgroundColor: 'background.paper',
+                        pb: 0.8,
+                        opacity: 1,
+                        transform: 'translateY(0)',
+                        transition: prefersReducedMotion
+                            ? 'none'
+                            : 'opacity 150ms ease-out, transform 150ms ease-out',
+                    }}
+                >
                     <TextField
                         size="small"
                         value={searchQuery}
@@ -294,6 +346,7 @@ export default function SectMenu() {
             ) : null}
 
             <List
+                ref={listRef}
                 dense
                 disablePadding
                 sx={{
@@ -304,6 +357,7 @@ export default function SectMenu() {
                     py: 0.1,
                     display: 'grid',
                     gap: 0.65,
+                    transition: prefersReducedMotion ? 'none' : 'opacity 120ms ease-out',
                 }}
             >
             {visibleSections.map((section) => {
@@ -318,9 +372,19 @@ export default function SectMenu() {
                         selected={selected}
                         open={isOpen}
                         onToggle={() => handleToggle(section.id, hasSubsections)}
+                        animationEnabled={!prefersReducedMotion}
                     />
                 );
             })}
+            {hasSelectedTopic && visibleSections.length === 0 ? (
+                <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ px: 1.8, py: 1.2 }}
+                >
+                    No matching sections.
+                </Typography>
+            ) : null}
             </List>
         </Box>
     );

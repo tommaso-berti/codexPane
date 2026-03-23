@@ -66,10 +66,14 @@ export function useDocContentPath({ docs, section }) {
     return useMemo(() => {
         if (!docs) return null;
         const docNode = docsTree.find((docItem) => docItem.id === docs);
-        if (!docNode) return null;
+        if (!docNode) {
+            return section
+                ? `../../content/${docs}/${section}.mdx`
+                : `../../content/${docs}/introduction.mdx`;
+        }
         if (!section) return docNode.introPath || `../../content/${docs}/introduction.mdx`;
         const sectionNode = docNode.sections?.find((sectionItem) => sectionItem.id === section);
-        if (!sectionNode) return null;
+        if (!sectionNode) return `../../content/${docs}/${section}.mdx`;
         return sectionNode.filePath || `../../content/${docs}/${section}.mdx`;
     }, [docs, section, docsTree]);
 }

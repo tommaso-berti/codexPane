@@ -5,6 +5,8 @@ import GithubSlugger from 'github-slugger';
 
 const CONTENT_ROOT = path.resolve(process.cwd(), 'src/content');
 const OUTPUT_FILE = path.resolve(CONTENT_ROOT, 'docs-manifest.generated.json');
+const OUTPUT_INDEX_FILE = path.resolve(CONTENT_ROOT, 'docs-index.generated.json');
+const OUTPUT_TOPICS_DIR = path.resolve(CONTENT_ROOT, 'docs-topics');
 const FRONTMATTER_RE = /^---\n([\s\S]*?)\n---\n?/;
 
 function toPosix(value) {
@@ -119,6 +121,7 @@ function listTopicDirectories() {
     return fs
         .readdirSync(CONTENT_ROOT, { withFileTypes: true })
         .filter((entry) => entry.isDirectory())
+        .filter((entry) => fs.existsSync(path.join(CONTENT_ROOT, entry.name, 'introduction.mdx')))
         .map((entry) => entry.name);
 }
 
@@ -272,6 +275,34 @@ function serializeManifest(manifest) {
     return `${JSON.stringify(manifest, null, 2)}\n`;
 }
 
+function serializeTopicManifest(topic) {
+    return `${JSON.stringify({ version: 1, topic }, null, 2)}\n`;
+}
+
+function serializeIndexManifest(docs) {
+    const indexDocs = docs.map((doc) => ({
+        id: doc.id,
+        title: doc.title,
+        icon: doc.icon,
+        slug: doc.slug,
+        order: doc.order,
+        introPath: doc.introPath,
+        sectionCount: doc.sections?.length || 0,
+        sections: [],
+    }));
+    return `${JSON.stringify({ version: 1, docs: indexDocs }, null, 2)}\n`;
+}
+
+function ensureTopicsDir() {
+    if (!fs.existsSync(OUTPUT_TOPICS_DIR)) {
+        fs.mkdirSync(OUTPUT_TOPICS_DIR, { recursive: true });
+    }
+}
+
+function getTopicManifestPath(topicId) {
+    return path.resolve(OUTPUT_TOPICS_DIR, `docs-topic-${topicId}.generated.json`);
+}
+
 function run() {
     const validateOnly = process.argv.includes('--validate');
     const { manifest, errors } = buildManifest();
@@ -284,12 +315,49 @@ function run() {
         process.exit(1);
     }
 
-    const serialized = serializeManifest(manifest);
-    const existing = fs.existsSync(OUTPUT_FILE) ? fs.readFileSync(OUTPUT_FILE, 'utf8') : null;
+    const serializedFull = serializeManifest(manifest);
+    const serializedIndex = serializeIndexManifest(manifest.docs);
+    const serializedTopics = manifest.docs.map((topic) => ({
+        id: topic.id,
+        filePath: getTopicManifestPath(topic.id),
+        content: serializeTopicManifest(topic),
+    }));
+
+    const existingFull = fs.existsSync(OUTPUT_FILE) ? fs.readFileSync(OUTPUT_FILE, 'utf8') : null;
+    const existingIndex = fs.existsSync(OUTPUT_INDEX_FILE) ? fs.readFileSync(OUTPUT_INDEX_FILE, 'utf8') : null;
+    const existingTopicFiles = fs.existsSync(OUTPUT_TOPICS_DIR)
+        ? fs
+              .readdirSync(OUTPUT_TOPICS_DIR, { withFileTypes: true })
+              .filter((entry) => entry.isFile() && entry.name.endsWith('.generated.json'))
+              .map((entry) => entry.name)
+        : [];
+    const expectedTopicFiles = new Set(serializedTopics.map((topic) => path.basename(topic.filePath)));
 
     if (validateOnly) {
-        if (existing !== serialized) {
+        if (existingFull !== serializedFull) {
             console.error(`Docs manifest is out of date: ${toPosix(OUTPUT_FILE)}`);
+            console.error('Run: npm run docs:build-manifest');
+            process.exit(1);
+        }
+        if (existingIndex !== serializedIndex) {
+            console.error(`Docs index manifest is out of date: ${toPosix(OUTPUT_INDEX_FILE)}`);
+            console.error('Run: npm run docs:build-manifest');
+            process.exit(1);
+        }
+        for (const topic of serializedTopics) {
+            const existingTopic = fs.existsSync(topic.filePath) ? fs.readFileSync(topic.filePath, 'utf8') : null;
+            if (existingTopic !== topic.content) {
+                console.error(`Docs topic manifest is out of date: ${toPosix(topic.filePath)}`);
+                console.error('Run: npm run docs:build-manifest');
+                process.exit(1);
+            }
+        }
+        const staleTopicFiles = existingTopicFiles.filter((fileName) => !expectedTopicFiles.has(fileName));
+        if (staleTopicFiles.length) {
+            console.error(`Docs topic manifests contain stale files in ${toPosix(OUTPUT_TOPICS_DIR)}:`);
+            for (const fileName of staleTopicFiles) {
+                console.error(`- ${fileName}`);
+            }
             console.error('Run: npm run docs:build-manifest');
             process.exit(1);
         }
@@ -297,8 +365,20 @@ function run() {
         return;
     }
 
-    fs.writeFileSync(OUTPUT_FILE, serialized, 'utf8');
+    ensureTopicsDir();
+    fs.writeFileSync(OUTPUT_FILE, serializedFull, 'utf8');
+    fs.writeFileSync(OUTPUT_INDEX_FILE, serializedIndex, 'utf8');
+    for (const fileName of existingTopicFiles) {
+        if (!expectedTopicFiles.has(fileName)) {
+            fs.unlinkSync(path.resolve(OUTPUT_TOPICS_DIR, fileName));
+        }
+    }
+    for (const topic of serializedTopics) {
+        fs.writeFileSync(topic.filePath, topic.content, 'utf8');
+    }
     console.log(`Wrote docs manifest: ${toPosix(OUTPUT_FILE)}`);
+    console.log(`Wrote docs index: ${toPosix(OUTPUT_INDEX_FILE)}`);
+    console.log(`Wrote docs topic manifests: ${serializedTopics.length} files in ${toPosix(OUTPUT_TOPICS_DIR)}`);
 }
 
 run();

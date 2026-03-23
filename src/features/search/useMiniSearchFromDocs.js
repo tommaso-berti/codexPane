@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import MiniSearch from 'minisearch';
-import { useDocs } from '../../contexts/useDocs.js';
 
 function flattenDocs(docs) {
     const out = [];
@@ -38,25 +37,68 @@ function flattenDocs(docs) {
     return out;
 }
 
-export function useMiniSearchFromDocs() {
-    const { docs } = useDocs();
+let cachedMiniSearch = null;
+let loadingPromise = null;
 
-    const mini = useMemo(() => {
-        if (!docs.length) return null;
-        const flat = flattenDocs(docs);
-        const ms = new MiniSearch({
-            fields: ['title', 'body'],
-            storeFields: ['title', 'path', 'breadcrumb', 'topictitle'],
-            searchOptions: { prefix: true, fuzzy: 0.2, boost: { title: 3, body: 1 } },
+async function loadMiniSearchIndex() {
+    if (cachedMiniSearch) return cachedMiniSearch;
+    if (loadingPromise) return loadingPromise;
+
+    loadingPromise = import('../../content/docs-manifest.generated.json')
+        .then((module) => {
+            const docs = module?.default?.docs || [];
+            const flat = flattenDocs(docs);
+            const ms = new MiniSearch({
+                fields: ['title', 'body'],
+                storeFields: ['title', 'path', 'breadcrumb', 'topictitle'],
+                searchOptions: { prefix: true, fuzzy: 0.2, boost: { title: 3, body: 1 } },
+            });
+            ms.addAll(flat);
+            cachedMiniSearch = ms;
+            return ms;
+        })
+        .finally(() => {
+            loadingPromise = null;
         });
-        ms.addAll(flat);
-        return ms;
-    }, [docs]);
+
+    return loadingPromise;
+}
+
+export function useMiniSearchFromDocs(enabled = false) {
+    const [mini, setMini] = useState(() => cachedMiniSearch);
+    const [isLoadingIndex, setIsLoadingIndex] = useState(false);
+    const mountedRef = useRef(true);
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!enabled || mini) return;
+        let cancelled = false;
+        setIsLoadingIndex(true);
+        loadMiniSearchIndex()
+            .then((resolved) => {
+                if (cancelled || !mountedRef.current) return;
+                setMini(resolved);
+            })
+            .finally(() => {
+                if (cancelled || !mountedRef.current) return;
+                setIsLoadingIndex(false);
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [enabled, mini]);
 
     const search = useMemo(() => {
         if (!mini) return () => [];
         return (query) => (query ? mini.search(query) : []);
     }, [mini]);
 
-    return { search };
+    return { search, isLoadingIndex };
 }

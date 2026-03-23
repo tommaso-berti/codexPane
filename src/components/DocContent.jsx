@@ -130,7 +130,7 @@ export default function DocContent({ status, Content, error }) {
         const subtitle = docSection
             ? `Part of ${doc?.title || 'this topic'}`
             : doc
-                ? `${doc.sections?.length || 0} sections available`
+                ? `${doc.sectionCount ?? doc.sections?.length ?? 0} sections available`
                 : 'Developer documentation and guides';
         return { title, subtitle, hasDocs: Boolean(doc || docSection) };
     }, [docs, docsParam, sectionParam]);

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { useDocs } from '../contexts/useDocs.js';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -15,7 +15,11 @@ function toAbsolute(slug) {
 export default function Breadcrumb({ inHeader = false }) {
     const params = useParams();
 
-    const { docs } = useDocs() || [];
+    const { docs, ensureTopicLoaded } = useDocs() || [];
+    useEffect(() => {
+        ensureTopicLoaded(params.docs);
+    }, [params.docs, ensureTopicLoaded]);
+
     const doc = docs.find(d => d.id === params.docs) || null;
     const docSection = doc?.sections?.find(s => s.id === params.section) || null;
     const crumbs = useMemo(() => {

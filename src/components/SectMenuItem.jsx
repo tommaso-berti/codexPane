@@ -21,7 +21,7 @@ function parseSlugDestination(slug) {
     };
 }
 
-export default function SectMenuItem({ section, subsections, selected, open, onToggle }) {
+export default function SectMenuItem({ section, subsections, selected, open, onToggle, animationEnabled = true }) {
     const navigate = useNavigate();
     const location = useLocation();
     const { setActiveSectionId } = useActiveSection();
@@ -57,6 +57,8 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
         <>
             <ListItemButton
                 onClick={() => handleSelect(section.slug)}
+                data-sidebar-active={isSectionActive ? 'true' : undefined}
+                data-sidebar-section-id={section.id}
                 sx={{
                     py: 0.78,
                     px: 1.2,
@@ -85,6 +87,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                             color: 'text.primary',
                         },
                     },
+                    transition: animationEnabled ? 'background-color 120ms ease-out' : 'none',
                 }}
             >
                 <ListItemText
@@ -123,7 +126,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                     </Box>
                 ) : null}
             </ListItemButton>
-            <Collapse in={hasSubsections && open} timeout="auto" unmountOnExit>
+            <Collapse in={hasSubsections && open} timeout={animationEnabled ? 160 : 0} unmountOnExit>
                 <List dense={true} component="div" disablePadding sx={{ overflowX: 'hidden' }}>
                     {subsections?.map((subsection) => {
                         const isSubsectionActive =
@@ -132,6 +135,9 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                         <ListItemButton
                             key={subsection.id}
                             onClick={() => handleSelect(subsection.slug)}
+                            data-sidebar-active={isSubsectionActive ? 'true' : undefined}
+                            data-sidebar-subsection-id={subsection.id}
+                            data-sidebar-parent-section-id={section.id}
                             sx={{
                                 pl: 3.85,
                                 pr: 1.1,
@@ -165,6 +171,7 @@ export default function SectMenuItem({ section, subsections, selected, open, onT
                                         color: 'text.primary',
                                     },
                                 },
+                                transition: animationEnabled ? 'background-color 120ms ease-out' : 'none',
                             }}
                             selected={false}
                         >
