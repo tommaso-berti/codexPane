@@ -28,7 +28,7 @@ function buildTreeResults(results) {
 }
 
 
-export default function SearchResults({ results, onItemClick }) {
+export default function SearchResults({ results, onItemClick, query = '' }) {
     const groups = useMemo(() => buildTreeResults(results || []), [results]);
     if (!results?.length || !groups.length) return null;
 
@@ -57,6 +57,7 @@ export default function SearchResults({ results, onItemClick }) {
                             <SearchResultItem
                                 key={item.id}
                                 result={item}
+                                query={query}
                                 siblings={isSubSection ? sectionChildren : group.items}
                                 index={isSubSection ? sectionChildIndex : index}
                                 onClick={(path) => onItemClick(path)}

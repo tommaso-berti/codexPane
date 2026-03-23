@@ -4,11 +4,12 @@ import ArticleIcon from "@mui/icons-material/Article";
 import Typography from "@mui/material/Typography";
 import TagIcon from "@mui/icons-material/Tag";
 import ListItemButton from "@mui/material/ListItemButton";
+import HighlightedText from "./highlightQueryParts.jsx";
 
-export default function SearchResultItem({result, onClick, branch = 'single', siblings = [], index}) {
+export default function SearchResultItem({ result, onClick, branch = 'single', siblings = [], index, query = '' }) {
     const breadcrumb = result.breadcrumb;
     const isParent = breadcrumb.length === 2;
-    const isChild  = breadcrumb.length === 3;
+    const isChild = breadcrumb.length === 3;
 
     const previous = index > 0 ? siblings[index - 1] : null;
     const prevSameSection =
@@ -17,7 +18,6 @@ export default function SearchResultItem({result, onClick, branch = 'single', si
         (previous.breadcrumb.length === 2 || previous.breadcrumb.length === 3);
 
     const showGutter = isChild && prevSameSection;
-
     let gutter = null;
     if (showGutter) {
         const symbols = { start: '┌', middle: '├', end: '└', single: '-' };
@@ -61,7 +61,7 @@ export default function SearchResultItem({result, onClick, branch = 'single', si
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                             <ArticleIcon fontSize="small" color="action" />
                             <Typography variant="h6">
-                                {breadcrumb[1]}
+                                <HighlightedText text={breadcrumb[1]} query={query} />
                             </Typography>
                         </Box>
                     }
@@ -76,13 +76,10 @@ export default function SearchResultItem({result, onClick, branch = 'single', si
                                 {gutter}
                                 <TagIcon fontSize="small" color="action" />
                                 <Typography variant="h6">
-                                    {breadcrumb[2]}
+                                    <HighlightedText text={breadcrumb[2]} query={query} />
                                 </Typography>
                             </Box>
                         }
-                    />
-                    <ListItemText
-                        primary={<Typography variant="subtitle2">{breadcrumb[1]}</Typography>}
                     />
                 </>
             )}

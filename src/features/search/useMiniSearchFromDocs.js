@@ -97,7 +97,17 @@ export function useMiniSearchFromDocs(enabled = false) {
 
     const search = useMemo(() => {
         if (!mini) return () => [];
-        return (query) => (query ? mini.search(query) : []);
+        return (query) => {
+            if (!query) return [];
+            const normalizedQuery = String(query).trim();
+            if (!normalizedQuery) return [];
+            const useFuzzy = normalizedQuery.length >= 5;
+            return mini.search(normalizedQuery, {
+                prefix: true,
+                fuzzy: useFuzzy ? 0.2 : false,
+                boost: { title: 3, body: 1 },
+            });
+        };
     }, [mini]);
 
     return { search, isLoadingIndex };

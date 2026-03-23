@@ -49,7 +49,8 @@ export default function SearchModal() {
     const { search, isLoadingIndex } = useMiniSearchFromDocs(open);
     const navigate = useNavigate();
     const deferredQuery = useDeferredValue(searchString);
-    const results = useMemo(() => search(deferredQuery), [search, deferredQuery]);
+    const normalizedQuery = useMemo(() => String(deferredQuery || '').trim(), [deferredQuery]);
+    const results = useMemo(() => search(normalizedQuery), [search, normalizedQuery]);
     const isMac = /mac|iphone|ipad/i.test(navigator.platform);
 
     useEffect(() => {
@@ -151,7 +152,7 @@ export default function SearchModal() {
                             Loading search index...
                         </Typography>
                     ) : null}
-                    <SearchResults results={results} onItemClick={handleClick} />
+                    <SearchResults results={results} query={normalizedQuery} onItemClick={handleClick} />
                 </Box>
             </Modal>
         </>
