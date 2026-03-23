@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-03-23T11:41:51.892Z",
+  "repositoryPath": "/home/runner/work/codexPane/codexPane",
+  "version": "v3.0.2",
+  "releaseType": "patch",
+  "fromRef": "v3.0.1",
+  "toRef": "v3.0.2",
+  "range": "v3.0.1..v3.0.2",
+  "compareUrl": "https://github.com/tommaso-berti/codexPane/compare/v3.0.1...v3.0.2",
+  "commits": [
+    {
+      "sha": "bcbcc4f45d7aad6f4c99e82d1475938b7e267ab1",
+      "shortSha": "bcbcc4f",
+      "subject": "Merge remote-tracking branch 'origin/main'",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-23T12:40:28+01:00"
+    },
+    {
+      "sha": "4e744bd455c356a4ac2a018da52470c48eabc455",
+      "shortSha": "4e744bd",
+      "subject": "feat: add release notes and static data runbook with deployment guidelines #patch",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-23T12:39:38+01:00"
+    },
+    {
+      "sha": "9ffcb12965c5588022743b84d04cebbc8d487e9e",
+      "shortSha": "9ffcb12",
+      "subject": "docs(release): v3.0.1 artifacts #skip-deploy [skip ci]",
+      "body": "",
+      "author": "github-actions[bot]",
+      "date": "2026-03-23T11:30:42Z"
+    }
+  ],
+  "changedFiles": [
+    "GPT_CUSTOM_DOCS_INSTRUCTIONS.md",
+    "README.md",
+    "public/data/release-notes.json",
+    "release-notes/.payload-v3.0.1.json",
+    "release-notes/v2.0.0.md",
+    "release-notes/v3.0.1.md",
+    "src/content/docs-index.generated.json",
+    "src/content/docs-manifest.generated.json",
+    "src/content/docs-topics/docs-topic-vps.generated.json",
+    "src/content/vps/deploy-golden-path.mdx",
+    "src/content/vps/release-notes-and-static-data.mdx",
+    "src/content/vps/structure.json"
+  ]
+}
