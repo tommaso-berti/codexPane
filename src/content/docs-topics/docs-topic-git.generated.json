@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "git",
+    "title": "Git",
+    "icon": "CustomGitIcon",
+    "slug": "git",
+    "introPath": "../../content/git/introduction.mdx",
+    "sections": [
+      {
+        "id": "overview-basic-flow",
+        "title": "Overview basic flow",
+        "slug": "git/overview-basic-flow",
+        "filePath": "../../content/git/overview-basic-flow.mdx",
+        "subSections": [
+          {
+            "id": "initialize-a-repository",
+            "title": "Initialize a repository",
+            "slug": "git/overview-basic-flow#initialize-a-repository",
+            "order": 1
+          },
+          {
+            "id": "check-changes",
+            "title": "Check changes",
+            "slug": "git/overview-basic-flow#check-changes",
+            "order": 2
+          },
+          {
+            "id": "stage-files",
+            "title": "Stage files",
+            "slug": "git/overview-basic-flow#stage-files",
+            "order": 3
+          },
+          {
+            "id": "view-differences",
+            "title": "View differences",
+            "slug": "git/overview-basic-flow#view-differences",
+            "order": 4
+          },
+          {
+            "id": "commit-changes",
+            "title": "Commit changes",
+            "slug": "git/overview-basic-flow#commit-changes",
+            "order": 5
+          },
+          {
+            "id": "view-history",
+            "title": "View history",
+            "slug": "git/overview-basic-flow#view-history",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-git-workflow",
+            "title": "Interactive Playground: Git Workflow",
+            "slug": "git/overview-basic-flow#interactive-playground-git-workflow",
+            "order": 7
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "backtrack",
+        "title": "Backtrack",
+        "slug": "git/backtrack",
+        "filePath": "../../content/git/backtrack.mdx",
+        "subSections": [
+          {
+            "id": "inspect-head-changes",
+            "title": "Inspect head changes",
+            "slug": "git/backtrack#inspect-head-changes",
+            "order": 1
+          },
+          {
+            "id": "checkout-file",
+            "title": "Checkout file",
+            "slug": "git/backtrack#checkout-file",
+            "order": 2
+          },
+          {
+            "id": "reset-staging-file",
+            "title": "Reset staging file",
+            "slug": "git/backtrack#reset-staging-file",
+            "order": 3
+          },
+          {
+            "id": "reset-to-commit",
+            "title": "Reset to commit",
+            "slug": "git/backtrack#reset-to-commit",
+            "order": 4
+          },
+          {
+            "id": "checkout-working-directory",
+            "title": "Checkout working directory",
+            "slug": "git/backtrack#checkout-working-directory",
+            "order": 5
+          },
+          {
+            "id": "safety-notes",
+            "title": "Safety notes",
+            "slug": "git/backtrack#safety-notes",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-undo-safely",
+            "title": "Interactive Playground: Undo Safely",
+            "slug": "git/backtrack#interactive-playground-undo-safely",
+            "order": 7
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "stash",
+        "title": "Stash",
+        "slug": "git/stash",
+        "filePath": "../../content/git/stash.mdx",
+        "subSections": [
+          {
+            "id": "save-work-in-progress",
+            "title": "Save work in progress",
+            "slug": "git/stash#save-work-in-progress",
+            "order": 1
+          },
+          {
+            "id": "list-stashes",
+            "title": "List stashes",
+            "slug": "git/stash#list-stashes",
+            "order": 2
+          },
+          {
+            "id": "apply-and-pop",
+            "title": "Apply and pop",
+            "slug": "git/stash#apply-and-pop",
+            "order": 3
+          },
+          {
+            "id": "partial-stash",
+            "title": "Partial stash",
+            "slug": "git/stash#partial-stash",
+            "order": 4
+          },
+          {
+            "id": "include-untracked-files",
+            "title": "Include untracked files",
+            "slug": "git/stash#include-untracked-files",
+            "order": 5
+          },
+          {
+            "id": "clean-up",
+            "title": "Clean up",
+            "slug": "git/stash#clean-up",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-stash-workflow",
+            "title": "Interactive Playground: Stash Workflow",
+            "slug": "git/stash#interactive-playground-stash-workflow",
+            "order": 7
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "advanced-commands",
+        "title": "Advanced commands",
+        "slug": "git/advanced-commands",
+        "filePath": "../../content/git/advanced-commands.mdx",
+        "subSections": [
+          {
+            "id": "log",
+            "title": "Log",
+            "slug": "git/advanced-commands#log",
+            "order": 1
+          },
+          {
+            "id": "commit",
+            "title": "Commit",
+            "slug": "git/advanced-commands#commit",
+            "order": 2
+          },
+          {
+            "id": "alias",
+            "title": "Alias",
+            "slug": "git/advanced-commands#alias",
+            "order": 3
+          },
+          {
+            "id": "interactive-playground-history-and-amend",
+            "title": "Interactive Playground: History And Amend",
+            "slug": "git/advanced-commands#interactive-playground-history-and-amend",
+            "order": 4
+          }
+        ],
+        "order": 4
+      }
+    ],
+    "order": 18
+  }
+}

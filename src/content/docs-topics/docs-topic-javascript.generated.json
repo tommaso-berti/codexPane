@@ -1,0 +1,1240 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "javascript",
+    "title": "Javascript",
+    "icon": "CustomJavascriptIcon",
+    "slug": "javascript",
+    "introPath": "../../content/javascript/introduction.mdx",
+    "sections": [
+      {
+        "id": "runtime-environment",
+        "title": "Runtime Environment",
+        "slug": "javascript/runtime-environment",
+        "filePath": "../../content/javascript/runtime-environment.mdx",
+        "subSections": [
+          {
+            "id": "browser-console",
+            "title": "Browser console",
+            "slug": "javascript/runtime-environment#browser-console",
+            "order": 1
+          },
+          {
+            "id": "what-is-a-runtime-environment",
+            "title": "What is a runtime environment",
+            "slug": "javascript/runtime-environment#what-is-a-runtime-environment",
+            "order": 2
+          },
+          {
+            "id": "a-browsers-runtime-environment",
+            "title": "A browsers runtime environment",
+            "slug": "javascript/runtime-environment#a-browsers-runtime-environment",
+            "order": 3
+          },
+          {
+            "id": "node-runtime-environment",
+            "title": "Node runtime environment",
+            "slug": "javascript/runtime-environment#node-runtime-environment",
+            "order": 4
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "variables",
+        "title": "Variables",
+        "slug": "javascript/variables",
+        "filePath": "../../content/javascript/variables.mdx",
+        "subSections": [
+          {
+            "id": "var",
+            "title": "Var",
+            "slug": "javascript/variables#var",
+            "order": 1
+          },
+          {
+            "id": "let",
+            "title": "Let",
+            "slug": "javascript/variables#let",
+            "order": 2
+          },
+          {
+            "id": "const",
+            "title": "Const",
+            "slug": "javascript/variables#const",
+            "order": 3
+          },
+          {
+            "id": "difference-between-let-and-var",
+            "title": "Difference between let and var",
+            "slug": "javascript/variables#difference-between-let-and-var",
+            "order": 4
+          },
+          {
+            "id": "scope",
+            "title": "Scope",
+            "slug": "javascript/variables#scope",
+            "order": 5
+          },
+          {
+            "id": "interpolation",
+            "title": "Interpolation",
+            "slug": "javascript/variables#interpolation",
+            "order": 6
+          },
+          {
+            "id": "truthy-and-falsy",
+            "title": "Truthy and falsy",
+            "slug": "javascript/variables#truthy-and-falsy",
+            "order": 7
+          },
+          {
+            "id": "ternary-operators",
+            "title": "Ternary operators",
+            "slug": "javascript/variables#ternary-operators",
+            "order": 8
+          },
+          {
+            "id": "switch",
+            "title": "Switch",
+            "slug": "javascript/variables#switch",
+            "order": 9
+          },
+          {
+            "id": "hoisting",
+            "title": "Hoisting",
+            "slug": "javascript/variables#hoisting",
+            "order": 10
+          },
+          {
+            "id": "interactive-playground-scope-and-hoisting-checks",
+            "title": "Interactive Playground: Scope and Hoisting Checks",
+            "slug": "javascript/variables#interactive-playground-scope-and-hoisting-checks",
+            "order": 11
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "arrays",
+        "title": "Arrays",
+        "slug": "javascript/arrays",
+        "filePath": "../../content/javascript/arrays.mdx",
+        "subSections": [
+          {
+            "id": "array-literals",
+            "title": "Array literals",
+            "slug": "javascript/arrays#array-literals",
+            "order": 1
+          },
+          {
+            "id": "indexing-and-strings",
+            "title": "Indexing and strings",
+            "slug": "javascript/arrays#indexing-and-strings",
+            "order": 2
+          },
+          {
+            "id": "mutability-with-const",
+            "title": "Mutability with const",
+            "slug": "javascript/arrays#mutability-with-const",
+            "order": 3
+          },
+          {
+            "id": "properties",
+            "title": "Properties",
+            "slug": "javascript/arrays#properties",
+            "order": 4
+          },
+          {
+            "id": "methods-destructive",
+            "title": "Methods destructive",
+            "slug": "javascript/arrays#methods-destructive",
+            "order": 5
+          },
+          {
+            "id": "methods-non-destructive",
+            "title": "Methods non destructive",
+            "slug": "javascript/arrays#methods-non-destructive",
+            "order": 6
+          },
+          {
+            "id": "array-pass-by-reference",
+            "title": "Array pass by reference",
+            "slug": "javascript/arrays#array-pass-by-reference",
+            "order": 7
+          },
+          {
+            "id": "interactive-playground-array-mutation-vs-copy",
+            "title": "Interactive Playground: Array Mutation vs Copy",
+            "slug": "javascript/arrays#interactive-playground-array-mutation-vs-copy",
+            "order": 8
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "loops",
+        "title": "Loops",
+        "slug": "javascript/loops",
+        "filePath": "../../content/javascript/loops.mdx",
+        "subSections": [
+          {
+            "id": "for-loop",
+            "title": "For loop",
+            "slug": "javascript/loops#for-loop",
+            "order": 1
+          },
+          {
+            "id": "for-of-loop",
+            "title": "For of loop",
+            "slug": "javascript/loops#for-of-loop",
+            "order": 2
+          },
+          {
+            "id": "while-loop",
+            "title": "While loop",
+            "slug": "javascript/loops#while-loop",
+            "order": 3
+          },
+          {
+            "id": "do-while",
+            "title": "Do while",
+            "slug": "javascript/loops#do-while",
+            "order": 4
+          },
+          {
+            "id": "break",
+            "title": "Break",
+            "slug": "javascript/loops#break",
+            "order": 5
+          },
+          {
+            "id": "continue",
+            "title": "Continue",
+            "slug": "javascript/loops#continue",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-loop-traversal-trace",
+            "title": "Interactive Playground: Loop Traversal Trace",
+            "slug": "javascript/loops#interactive-playground-loop-traversal-trace",
+            "order": 7
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "functions",
+        "title": "Functions",
+        "slug": "javascript/functions",
+        "filePath": "../../content/javascript/functions.mdx",
+        "subSections": [
+          {
+            "id": "function-declaration",
+            "title": "Function declaration",
+            "slug": "javascript/functions#function-declaration",
+            "order": 1
+          },
+          {
+            "id": "parameters",
+            "title": "Parameters",
+            "slug": "javascript/functions#parameters",
+            "order": 2
+          },
+          {
+            "id": "default-parameters",
+            "title": "Default parameters",
+            "slug": "javascript/functions#default-parameters",
+            "order": 3
+          },
+          {
+            "id": "return-values",
+            "title": "Return values",
+            "slug": "javascript/functions#return-values",
+            "order": 4
+          },
+          {
+            "id": "helper-functions",
+            "title": "Helper functions",
+            "slug": "javascript/functions#helper-functions",
+            "order": 5
+          },
+          {
+            "id": "function-expressions",
+            "title": "Function expressions",
+            "slug": "javascript/functions#function-expressions",
+            "order": 6
+          },
+          {
+            "id": "arrow-functions",
+            "title": "Arrow functions",
+            "slug": "javascript/functions#arrow-functions",
+            "order": 7
+          },
+          {
+            "id": "higher-order-functions",
+            "title": "Higher order functions",
+            "slug": "javascript/functions#higher-order-functions",
+            "order": 8
+          },
+          {
+            "id": "functions-as-data",
+            "title": "Functions as data",
+            "slug": "javascript/functions#functions-as-data",
+            "order": 9
+          },
+          {
+            "id": "functions-as-parameters",
+            "title": "Functions as parameters",
+            "slug": "javascript/functions#functions-as-parameters",
+            "order": 10
+          },
+          {
+            "id": "interactive-playground-function-forms-equivalence",
+            "title": "Interactive Playground: Function Forms Equivalence",
+            "slug": "javascript/functions#interactive-playground-function-forms-equivalence",
+            "order": 11
+          },
+          {
+            "id": "interactive-playground-callback-invocation-trace",
+            "title": "Interactive Playground: Callback Invocation Trace",
+            "slug": "javascript/functions#interactive-playground-callback-invocation-trace",
+            "order": 12
+          },
+          {
+            "id": "currying",
+            "title": "Currying",
+            "slug": "javascript/functions#currying",
+            "order": 13
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "objects",
+        "title": "Objects",
+        "slug": "javascript/objects",
+        "filePath": "../../content/javascript/objects.mdx",
+        "subSections": [
+          {
+            "id": "object-literals",
+            "title": "Object literals",
+            "slug": "javascript/objects#object-literals",
+            "order": 1
+          },
+          {
+            "id": "access-properties",
+            "title": "Access properties",
+            "slug": "javascript/objects#access-properties",
+            "order": 2
+          },
+          {
+            "id": "update-properties",
+            "title": "Update properties",
+            "slug": "javascript/objects#update-properties",
+            "order": 3
+          },
+          {
+            "id": "delete-properties",
+            "title": "Delete properties",
+            "slug": "javascript/objects#delete-properties",
+            "order": 4
+          },
+          {
+            "id": "custom-methods",
+            "title": "Custom methods",
+            "slug": "javascript/objects#custom-methods",
+            "order": 5
+          },
+          {
+            "id": "nested-objects",
+            "title": "Nested objects",
+            "slug": "javascript/objects#nested-objects",
+            "order": 6
+          },
+          {
+            "id": "pass-by-reference",
+            "title": "Pass by reference",
+            "slug": "javascript/objects#pass-by-reference",
+            "order": 7
+          },
+          {
+            "id": "for-in-loop",
+            "title": "For in loop",
+            "slug": "javascript/objects#for-in-loop",
+            "order": 8
+          },
+          {
+            "id": "this-keyword",
+            "title": "This keyword",
+            "slug": "javascript/objects#this-keyword",
+            "order": 9
+          },
+          {
+            "id": "arrow-function-with-this",
+            "title": "Arrow function with this",
+            "slug": "javascript/objects#arrow-function-with-this",
+            "order": 10
+          },
+          {
+            "id": "privacy",
+            "title": "Privacy",
+            "slug": "javascript/objects#privacy",
+            "order": 11
+          },
+          {
+            "id": "getter",
+            "title": "Getter",
+            "slug": "javascript/objects#getter",
+            "order": 12
+          },
+          {
+            "id": "setter",
+            "title": "Setter",
+            "slug": "javascript/objects#setter",
+            "order": 13
+          },
+          {
+            "id": "factory-functions",
+            "title": "Factory functions",
+            "slug": "javascript/objects#factory-functions",
+            "order": 14
+          },
+          {
+            "id": "property-value-shorthand",
+            "title": "Property value shorthand",
+            "slug": "javascript/objects#property-value-shorthand",
+            "order": 15
+          },
+          {
+            "id": "destructured-assignment",
+            "title": "Destructured assignment",
+            "slug": "javascript/objects#destructured-assignment",
+            "order": 16
+          },
+          {
+            "id": "object-methods",
+            "title": "Object methods",
+            "slug": "javascript/objects#object-methods",
+            "order": 17
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "iterators-array",
+        "title": "Iterators array",
+        "slug": "javascript/iterators-array",
+        "filePath": "../../content/javascript/iterators-array.mdx",
+        "subSections": [
+          {
+            "id": "foreach",
+            "title": "Foreach",
+            "slug": "javascript/iterators-array#foreach",
+            "order": 1
+          },
+          {
+            "id": "map",
+            "title": "Map",
+            "slug": "javascript/iterators-array#map",
+            "order": 2
+          },
+          {
+            "id": "filter",
+            "title": "Filter",
+            "slug": "javascript/iterators-array#filter",
+            "order": 3
+          },
+          {
+            "id": "find-index",
+            "title": "Find index",
+            "slug": "javascript/iterators-array#find-index",
+            "order": 4
+          },
+          {
+            "id": "reduce",
+            "title": "Reduce",
+            "slug": "javascript/iterators-array#reduce",
+            "order": 5
+          },
+          {
+            "id": "some",
+            "title": "Some",
+            "slug": "javascript/iterators-array#some",
+            "order": 6
+          },
+          {
+            "id": "every",
+            "title": "Every",
+            "slug": "javascript/iterators-array#every",
+            "order": 7
+          },
+          {
+            "id": "split",
+            "title": "Split",
+            "slug": "javascript/iterators-array#split",
+            "order": 8
+          },
+          {
+            "id": "join",
+            "title": "Join",
+            "slug": "javascript/iterators-array#join",
+            "order": 9
+          },
+          {
+            "id": "sort",
+            "title": "Sort",
+            "slug": "javascript/iterators-array#sort",
+            "order": 10
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "interactive-website",
+        "title": "Interactive Website",
+        "slug": "javascript/interactive-website",
+        "filePath": "../../content/javascript/interactive-website.mdx",
+        "subSections": [
+          {
+            "id": "script-tag",
+            "title": "Script tag",
+            "slug": "javascript/interactive-website#script-tag",
+            "order": 1
+          },
+          {
+            "id": "external-script",
+            "title": "External script",
+            "slug": "javascript/interactive-website#external-script",
+            "order": 2
+          },
+          {
+            "id": "script-loading",
+            "title": "Script loading",
+            "slug": "javascript/interactive-website#script-loading",
+            "order": 3
+          },
+          {
+            "id": "defer-attribute",
+            "title": "Defer attribute",
+            "slug": "javascript/interactive-website#defer-attribute",
+            "order": 4
+          },
+          {
+            "id": "async-attribute",
+            "title": "Async attribute",
+            "slug": "javascript/interactive-website#async-attribute",
+            "order": 5
+          },
+          {
+            "id": "dom",
+            "title": "Dom",
+            "slug": "javascript/interactive-website#dom",
+            "order": 6
+          },
+          {
+            "id": "document-object",
+            "title": "Document object",
+            "slug": "javascript/interactive-website#document-object",
+            "order": 7
+          },
+          {
+            "id": "innerhtml",
+            "title": "Innerhtml",
+            "slug": "javascript/interactive-website#innerhtml",
+            "order": 8
+          },
+          {
+            "id": "queryselector",
+            "title": "Queryselector",
+            "slug": "javascript/interactive-website#queryselector",
+            "order": 9
+          },
+          {
+            "id": "getelementbyid",
+            "title": "Getelementbyid",
+            "slug": "javascript/interactive-website#getelementbyid",
+            "order": 10
+          },
+          {
+            "id": "getelementsbyclassname-and-getelementsbytagname",
+            "title": "Getelementsbyclassname and getelementsbytagname",
+            "slug": "javascript/interactive-website#getelementsbyclassname-and-getelementsbytagname",
+            "order": 11
+          },
+          {
+            "id": "style",
+            "title": "Style",
+            "slug": "javascript/interactive-website#style",
+            "order": 12
+          },
+          {
+            "id": "parentnode-and-children",
+            "title": "Parentnode and children",
+            "slug": "javascript/interactive-website#parentnode-and-children",
+            "order": 13
+          },
+          {
+            "id": "createelement",
+            "title": "Createelement",
+            "slug": "javascript/interactive-website#createelement",
+            "order": 14
+          },
+          {
+            "id": "appendchild",
+            "title": "Appendchild",
+            "slug": "javascript/interactive-website#appendchild",
+            "order": 15
+          },
+          {
+            "id": "removechild",
+            "title": "Removechild",
+            "slug": "javascript/interactive-website#removechild",
+            "order": 16
+          },
+          {
+            "id": "hidden",
+            "title": "Hidden",
+            "slug": "javascript/interactive-website#hidden",
+            "order": 17
+          },
+          {
+            "id": "add-event-listener",
+            "title": "Add event listener",
+            "slug": "javascript/interactive-website#add-event-listener",
+            "order": 18
+          },
+          {
+            "id": "onevent",
+            "title": "Onevent",
+            "slug": "javascript/interactive-website#onevent",
+            "order": 19
+          },
+          {
+            "id": "onclick",
+            "title": "Onclick",
+            "slug": "javascript/interactive-website#onclick",
+            "order": 20
+          },
+          {
+            "id": "removeeventlistener",
+            "title": "Removeeventlistener",
+            "slug": "javascript/interactive-website#removeeventlistener",
+            "order": 21
+          },
+          {
+            "id": "event-object-properties",
+            "title": "Event object properties",
+            "slug": "javascript/interactive-website#event-object-properties",
+            "order": 22
+          },
+          {
+            "id": "event-types",
+            "title": "Event types",
+            "slug": "javascript/interactive-website#event-types",
+            "order": 23
+          },
+          {
+            "id": "mouse-events",
+            "title": "Mouse events",
+            "slug": "javascript/interactive-website#mouse-events",
+            "order": 24
+          },
+          {
+            "id": "keyboard-events",
+            "title": "Keyboard events",
+            "slug": "javascript/interactive-website#keyboard-events",
+            "order": 25
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "classes",
+        "title": "Classes",
+        "slug": "javascript/classes",
+        "filePath": "../../content/javascript/classes.mdx",
+        "subSections": [
+          {
+            "id": "constructor",
+            "title": "Constructor",
+            "slug": "javascript/classes#constructor",
+            "order": 1
+          },
+          {
+            "id": "instance",
+            "title": "Instance",
+            "slug": "javascript/classes#instance",
+            "order": 2
+          },
+          {
+            "id": "methods",
+            "title": "Methods",
+            "slug": "javascript/classes#methods",
+            "order": 3
+          },
+          {
+            "id": "inheritance",
+            "title": "Inheritance",
+            "slug": "javascript/classes#inheritance",
+            "order": 4
+          },
+          {
+            "id": "static-methods",
+            "title": "Static methods",
+            "slug": "javascript/classes#static-methods",
+            "order": 5
+          }
+        ],
+        "order": 9
+      },
+      {
+        "id": "modules-export-import",
+        "title": "Modules Export Import",
+        "slug": "javascript/modules-export-import",
+        "filePath": "../../content/javascript/modules-export-import.mdx",
+        "subSections": [
+          {
+            "id": "modules",
+            "title": "Modules",
+            "slug": "javascript/modules-export-import#modules",
+            "order": 1
+          },
+          {
+            "id": "node-modules-require-and-module-exports",
+            "title": "Node modules: require and module exports",
+            "slug": "javascript/modules-export-import#node-modules-require-and-module-exports",
+            "order": 2
+          },
+          {
+            "id": "es6-named-export-syntax",
+            "title": "ES6 named export syntax",
+            "slug": "javascript/modules-export-import#es6-named-export-syntax",
+            "order": 3
+          },
+          {
+            "id": "script-type-module",
+            "title": "Script type module",
+            "slug": "javascript/modules-export-import#script-type-module",
+            "order": 4
+          },
+          {
+            "id": "renaming-imports",
+            "title": "Renaming imports",
+            "slug": "javascript/modules-export-import#renaming-imports",
+            "order": 5
+          },
+          {
+            "id": "default-export-and-import",
+            "title": "Default export and import",
+            "slug": "javascript/modules-export-import#default-export-and-import",
+            "order": 6
+          },
+          {
+            "id": "export-and-import-example",
+            "title": "Export and import example",
+            "slug": "javascript/modules-export-import#export-and-import-example",
+            "order": 7
+          },
+          {
+            "id": "inline-export",
+            "title": "Inline export",
+            "slug": "javascript/modules-export-import#inline-export",
+            "order": 8
+          },
+          {
+            "id": "interactive-playground-importexport-resolution",
+            "title": "Interactive Playground: Import/Export Resolution",
+            "slug": "javascript/modules-export-import#interactive-playground-importexport-resolution",
+            "order": 9
+          }
+        ],
+        "order": 10
+      },
+      {
+        "id": "errors-management",
+        "title": "Errors Management",
+        "slug": "javascript/errors-management",
+        "filePath": "../../content/javascript/errors-management.mdx",
+        "subSections": [
+          {
+            "id": "error-stack-traces",
+            "title": "Error stack traces",
+            "slug": "javascript/errors-management#error-stack-traces",
+            "order": 1
+          },
+          {
+            "id": "error-types",
+            "title": "Error types",
+            "slug": "javascript/errors-management#error-types",
+            "order": 2
+          },
+          {
+            "id": "throw-errors",
+            "title": "Throw errors",
+            "slug": "javascript/errors-management#throw-errors",
+            "order": 3
+          },
+          {
+            "id": "try-catch",
+            "title": "Try catch",
+            "slug": "javascript/errors-management#try-catch",
+            "order": 4
+          },
+          {
+            "id": "additional-resources",
+            "title": "Additional resources",
+            "slug": "javascript/errors-management#additional-resources",
+            "order": 5
+          }
+        ],
+        "order": 11
+      },
+      {
+        "id": "the-event-loop",
+        "title": "The Event Loop",
+        "slug": "javascript/the-event-loop",
+        "filePath": "../../content/javascript/the-event-loop.mdx",
+        "subSections": [
+          {
+            "id": "what-is-synchronous-code",
+            "title": "What is synchronous code",
+            "slug": "javascript/the-event-loop#what-is-synchronous-code",
+            "order": 1
+          },
+          {
+            "id": "what-is-asynchronous-code",
+            "title": "What is asynchronous code",
+            "slug": "javascript/the-event-loop#what-is-asynchronous-code",
+            "order": 2
+          },
+          {
+            "id": "asynchronous-callbacks",
+            "title": "Asynchronous callbacks",
+            "slug": "javascript/the-event-loop#asynchronous-callbacks",
+            "order": 3
+          },
+          {
+            "id": "set-timeout",
+            "title": "Set timeout",
+            "slug": "javascript/the-event-loop#set-timeout",
+            "order": 4
+          },
+          {
+            "id": "set-interval",
+            "title": "Set interval",
+            "slug": "javascript/the-event-loop#set-interval",
+            "order": 5
+          },
+          {
+            "id": "concurrency-model-and-event-loop-in-javascript",
+            "title": "Concurrency model and event loop in javascript",
+            "slug": "javascript/the-event-loop#concurrency-model-and-event-loop-in-javascript",
+            "order": 6
+          },
+          {
+            "id": "what-is-the-event-loop",
+            "title": "What is the event loop",
+            "slug": "javascript/the-event-loop#what-is-the-event-loop",
+            "order": 7
+          },
+          {
+            "id": "components-of-the-event-loop",
+            "title": "Components of the event loop",
+            "slug": "javascript/the-event-loop#components-of-the-event-loop",
+            "order": 8
+          },
+          {
+            "id": "heap",
+            "title": "Heap",
+            "slug": "javascript/the-event-loop#heap",
+            "order": 9
+          },
+          {
+            "id": "the-call-stack",
+            "title": "The call stack",
+            "slug": "javascript/the-event-loop#the-call-stack",
+            "order": 10
+          },
+          {
+            "id": "the-event-queue",
+            "title": "The event queue",
+            "slug": "javascript/the-event-loop#the-event-queue",
+            "order": 11
+          },
+          {
+            "id": "the-event-loop-in-action",
+            "title": "The event loop in action",
+            "slug": "javascript/the-event-loop#the-event-loop-in-action",
+            "order": 12
+          },
+          {
+            "id": "example",
+            "title": "Example",
+            "slug": "javascript/the-event-loop#example",
+            "order": 13
+          },
+          {
+            "id": "microtasks-and-macrotasks",
+            "title": "Microtasks and macrotasks",
+            "slug": "javascript/the-event-loop#microtasks-and-macrotasks",
+            "order": 14
+          },
+          {
+            "id": "interactive-playground-event-loop-ordering",
+            "title": "Interactive Playground: Event Loop Ordering",
+            "slug": "javascript/the-event-loop#interactive-playground-event-loop-ordering",
+            "order": 15
+          },
+          {
+            "id": "memory-management",
+            "title": "Memory management",
+            "slug": "javascript/the-event-loop#memory-management",
+            "order": 16
+          },
+          {
+            "id": "the-stack-and-the-heap",
+            "title": "The stack and the heap",
+            "slug": "javascript/the-event-loop#the-stack-and-the-heap",
+            "order": 17
+          },
+          {
+            "id": "memory-life-cycle",
+            "title": "Memory life cycle",
+            "slug": "javascript/the-event-loop#memory-life-cycle",
+            "order": 18
+          },
+          {
+            "id": "garbage-collection",
+            "title": "Garbage collection",
+            "slug": "javascript/the-event-loop#garbage-collection",
+            "order": 19
+          },
+          {
+            "id": "memory-leaks",
+            "title": "Memory leaks",
+            "slug": "javascript/the-event-loop#memory-leaks",
+            "order": 20
+          },
+          {
+            "id": "messy-closures",
+            "title": "Messy closures",
+            "slug": "javascript/the-event-loop#messy-closures",
+            "order": 21
+          },
+          {
+            "id": "dangling-timers-and-event-listeners",
+            "title": "Dangling timers and event listeners",
+            "slug": "javascript/the-event-loop#dangling-timers-and-event-listeners",
+            "order": 22
+          },
+          {
+            "id": "circular-references",
+            "title": "Circular references",
+            "slug": "javascript/the-event-loop#circular-references",
+            "order": 23
+          },
+          {
+            "id": "declaring-variables-on-the-global-object",
+            "title": "Declaring variables on the global object",
+            "slug": "javascript/the-event-loop#declaring-variables-on-the-global-object",
+            "order": 24
+          },
+          {
+            "id": "out-of-memory-errors",
+            "title": "Out of memory errors",
+            "slug": "javascript/the-event-loop#out-of-memory-errors",
+            "order": 25
+          },
+          {
+            "id": "memory-behavior-and-performance",
+            "title": "Memory behavior and performance",
+            "slug": "javascript/the-event-loop#memory-behavior-and-performance",
+            "order": 26
+          },
+          {
+            "id": "interactive-playground-memory-reachability",
+            "title": "Interactive Playground: Memory Reachability",
+            "slug": "javascript/the-event-loop#interactive-playground-memory-reachability",
+            "order": 27
+          }
+        ],
+        "order": 12
+      },
+      {
+        "id": "promises",
+        "title": "Promises",
+        "slug": "javascript/promises",
+        "filePath": "../../content/javascript/promises.mdx",
+        "subSections": [
+          {
+            "id": "states",
+            "title": "States",
+            "slug": "javascript/promises#states",
+            "order": 1
+          },
+          {
+            "id": "constructing-a-promise-object",
+            "title": "Constructing a promise object",
+            "slug": "javascript/promises#constructing-a-promise-object",
+            "order": 2
+          },
+          {
+            "id": "then",
+            "title": "Then",
+            "slug": "javascript/promises#then",
+            "order": 3
+          },
+          {
+            "id": "catch",
+            "title": "Catch",
+            "slug": "javascript/promises#catch",
+            "order": 4
+          },
+          {
+            "id": "chaining-multiple-promises",
+            "title": "Chaining multiple promises",
+            "slug": "javascript/promises#chaining-multiple-promises",
+            "order": 5
+          },
+          {
+            "id": "promise-all",
+            "title": "Promise all",
+            "slug": "javascript/promises#promise-all",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-promise-state-flow",
+            "title": "Interactive Playground: Promise State Flow",
+            "slug": "javascript/promises#interactive-playground-promise-state-flow",
+            "order": 7
+          }
+        ],
+        "order": 13
+      },
+      {
+        "id": "async-await-es8",
+        "title": "Async…await (ES8)",
+        "slug": "javascript/async-await-es8",
+        "filePath": "../../content/javascript/async-await-es8.mdx",
+        "subSections": [
+          {
+            "id": "async-operator",
+            "title": "Async operator",
+            "slug": "javascript/async-await-es8#async-operator",
+            "order": 1
+          },
+          {
+            "id": "await-operator",
+            "title": "Await operator",
+            "slug": "javascript/async-await-es8#await-operator",
+            "order": 2
+          },
+          {
+            "id": "errors",
+            "title": "Errors",
+            "slug": "javascript/async-await-es8#errors",
+            "order": 3
+          },
+          {
+            "id": "independent-promises",
+            "title": "Independent promises",
+            "slug": "javascript/async-await-es8#independent-promises",
+            "order": 4
+          },
+          {
+            "id": "await-promise-all",
+            "title": "Await promise all",
+            "slug": "javascript/async-await-es8#await-promise-all",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-async-await-execution-flow",
+            "title": "Interactive Playground: Async Await Execution Flow",
+            "slug": "javascript/async-await-es8#interactive-playground-async-await-execution-flow",
+            "order": 6
+          }
+        ],
+        "order": 14
+      },
+      {
+        "id": "design-patterns",
+        "title": "Design patterns",
+        "slug": "javascript/design-patterns",
+        "filePath": "../../content/javascript/design-patterns.mdx",
+        "subSections": [
+          {
+            "id": "design-patterns-overview",
+            "title": "Design patterns overview",
+            "slug": "javascript/design-patterns#design-patterns-overview",
+            "order": 1
+          },
+          {
+            "id": "creational-category",
+            "title": "Creational category",
+            "slug": "javascript/design-patterns#creational-category",
+            "order": 2
+          },
+          {
+            "id": "factory-pattern",
+            "title": "Factory pattern",
+            "slug": "javascript/design-patterns#factory-pattern",
+            "order": 3
+          },
+          {
+            "id": "singleton-pattern",
+            "title": "Singleton pattern",
+            "slug": "javascript/design-patterns#singleton-pattern",
+            "order": 4
+          },
+          {
+            "id": "structural-category",
+            "title": "Structural category",
+            "slug": "javascript/design-patterns#structural-category",
+            "order": 5
+          },
+          {
+            "id": "proxy-pattern",
+            "title": "Proxy pattern",
+            "slug": "javascript/design-patterns#proxy-pattern",
+            "order": 6
+          },
+          {
+            "id": "facade-pattern",
+            "title": "Facade pattern",
+            "slug": "javascript/design-patterns#facade-pattern",
+            "order": 7
+          },
+          {
+            "id": "behavioral-category",
+            "title": "Behavioral category",
+            "slug": "javascript/design-patterns#behavioral-category",
+            "order": 8
+          },
+          {
+            "id": "observer-pattern",
+            "title": "Observer pattern",
+            "slug": "javascript/design-patterns#observer-pattern",
+            "order": 9
+          },
+          {
+            "id": "mediator-pattern",
+            "title": "Mediator pattern",
+            "slug": "javascript/design-patterns#mediator-pattern",
+            "order": 10
+          },
+          {
+            "id": "how-to-select-the-right-design-pattern",
+            "title": "How to select the right design pattern",
+            "slug": "javascript/design-patterns#how-to-select-the-right-design-pattern",
+            "order": 11
+          },
+          {
+            "id": "design-patterns-in-architecture",
+            "title": "Design patterns in architecture",
+            "slug": "javascript/design-patterns#design-patterns-in-architecture",
+            "order": 12
+          },
+          {
+            "id": "using-the-proxy-pattern-to-implement-a-proxy-server",
+            "title": "Using the proxy pattern to implement a proxy server",
+            "slug": "javascript/design-patterns#using-the-proxy-pattern-to-implement-a-proxy-server",
+            "order": 13
+          },
+          {
+            "id": "using-the-facade-pattern-to-implement-microservices",
+            "title": "Using the facade pattern to implement microservices",
+            "slug": "javascript/design-patterns#using-the-facade-pattern-to-implement-microservices",
+            "order": 14
+          },
+          {
+            "id": "anti-patterns",
+            "title": "Anti patterns",
+            "slug": "javascript/design-patterns#anti-patterns",
+            "order": 15
+          },
+          {
+            "id": "interactive-playground-proxy-cache-interception",
+            "title": "Interactive Playground: Proxy Cache Interception",
+            "slug": "javascript/design-patterns#interactive-playground-proxy-cache-interception",
+            "order": 16
+          }
+        ],
+        "order": 15
+      },
+      {
+        "id": "libraries-and-runtime-utilities",
+        "title": "Libraries and runtime utilities",
+        "slug": "javascript/libraries-and-runtime-utilities",
+        "filePath": "../../content/javascript/libraries-and-runtime-utilities.mdx",
+        "subSections": [
+          {
+            "id": "uuid-generation",
+            "title": "UUID generation",
+            "slug": "javascript/libraries-and-runtime-utilities#uuid-generation",
+            "order": 1
+          },
+          {
+            "id": "node-fs-module-basics",
+            "title": "Node fs module basics",
+            "slug": "javascript/libraries-and-runtime-utilities#node-fs-module-basics",
+            "order": 2
+          },
+          {
+            "id": "choosing-external-vs-built-in-utilities",
+            "title": "Choosing external vs built-in utilities",
+            "slug": "javascript/libraries-and-runtime-utilities#choosing-external-vs-built-in-utilities",
+            "order": 3
+          }
+        ],
+        "order": 16
+      },
+      {
+        "id": "testing-foundations",
+        "title": "Testing foundations",
+        "slug": "javascript/testing-foundations",
+        "filePath": "../../content/javascript/testing-foundations.mdx",
+        "subSections": [
+          {
+            "id": "why-automated-testing",
+            "title": "Why automated testing",
+            "slug": "javascript/testing-foundations#why-automated-testing",
+            "order": 1
+          },
+          {
+            "id": "test-levels",
+            "title": "Test levels",
+            "slug": "javascript/testing-foundations#test-levels",
+            "order": 2
+          },
+          {
+            "id": "coverage-concepts",
+            "title": "Coverage concepts",
+            "slug": "javascript/testing-foundations#coverage-concepts",
+            "order": 3
+          },
+          {
+            "id": "mocking-strategy",
+            "title": "Mocking strategy",
+            "slug": "javascript/testing-foundations#mocking-strategy",
+            "order": 4
+          },
+          {
+            "id": "tdd-loop",
+            "title": "TDD loop",
+            "slug": "javascript/testing-foundations#tdd-loop",
+            "order": 5
+          },
+          {
+            "id": "jest-and-mocha-in-practice",
+            "title": "Jest and Mocha in practice",
+            "slug": "javascript/testing-foundations#jest-and-mocha-in-practice",
+            "order": 6
+          }
+        ],
+        "order": 17
+      }
+    ],
+    "order": 22
+  }
+}

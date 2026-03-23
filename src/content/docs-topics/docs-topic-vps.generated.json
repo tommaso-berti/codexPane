@@ -1,0 +1,391 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "vps",
+    "title": "VPS",
+    "icon": "PublicIcon",
+    "slug": "vps",
+    "introPath": "../../content/vps/introduction.mdx",
+    "sections": [
+      {
+        "id": "server-linux-commands",
+        "title": "Server Linux Commands",
+        "slug": "vps/server-linux-commands",
+        "filePath": "../../content/vps/server-linux-commands.mdx",
+        "subSections": [
+          {
+            "id": "check-system-info",
+            "title": "Check system info",
+            "slug": "vps/server-linux-commands#check-system-info",
+            "order": 1
+          },
+          {
+            "id": "update-your-system",
+            "title": "Update your system",
+            "slug": "vps/server-linux-commands#update-your-system",
+            "order": 2
+          },
+          {
+            "id": "user-management",
+            "title": "User management",
+            "slug": "vps/server-linux-commands#user-management",
+            "order": 3
+          },
+          {
+            "id": "set-up-a-firewall-ufw",
+            "title": "Set up a firewall ufw",
+            "slug": "vps/server-linux-commands#set-up-a-firewall-ufw",
+            "order": 4
+          },
+          {
+            "id": "secure-ssh-disable-password-login",
+            "title": "Secure ssh disable password login",
+            "slug": "vps/server-linux-commands#secure-ssh-disable-password-login",
+            "order": 5
+          },
+          {
+            "id": "install-a-web-server",
+            "title": "Install a web server",
+            "slug": "vps/server-linux-commands#install-a-web-server",
+            "order": 6
+          },
+          {
+            "id": "install-a-database-server",
+            "title": "Install a database server",
+            "slug": "vps/server-linux-commands#install-a-database-server",
+            "order": 7
+          },
+          {
+            "id": "set-up-wordpress-quick-install",
+            "title": "Set up wordpress quick install",
+            "slug": "vps/server-linux-commands#set-up-wordpress-quick-install",
+            "order": 8
+          },
+          {
+            "id": "secure-your-ssh-keys",
+            "title": "Secure your ssh keys",
+            "slug": "vps/server-linux-commands#secure-your-ssh-keys",
+            "order": 9
+          },
+          {
+            "id": "monitor-your-vps",
+            "title": "Monitor your vps",
+            "slug": "vps/server-linux-commands#monitor-your-vps",
+            "order": 10
+          },
+          {
+            "id": "server-basic-commands",
+            "title": "Server basic commands",
+            "slug": "vps/server-linux-commands#server-basic-commands",
+            "order": 11
+          },
+          {
+            "id": "reboot-and-power-controls",
+            "title": "Reboot and power controls",
+            "slug": "vps/server-linux-commands#reboot-and-power-controls",
+            "order": 12
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "linux-ubuntu-basics",
+        "title": "Linux Ubuntu Basics",
+        "slug": "vps/linux-ubuntu-basics",
+        "filePath": "../../content/vps/linux-ubuntu-basics.mdx",
+        "subSections": [
+          {
+            "id": "what-is-linux-and-ubuntu",
+            "title": "What is linux and ubuntu",
+            "slug": "vps/linux-ubuntu-basics#what-is-linux-and-ubuntu",
+            "order": 1
+          },
+          {
+            "id": "navigation-and-help",
+            "title": "Navigation and help",
+            "slug": "vps/linux-ubuntu-basics#navigation-and-help",
+            "order": 2
+          },
+          {
+            "id": "file-system-and-paths",
+            "title": "File system and paths",
+            "slug": "vps/linux-ubuntu-basics#file-system-and-paths",
+            "order": 3
+          },
+          {
+            "id": "permissions-and-ownership",
+            "title": "Permissions and ownership",
+            "slug": "vps/linux-ubuntu-basics#permissions-and-ownership",
+            "order": 4
+          },
+          {
+            "id": "processes-and-services",
+            "title": "Processes and services",
+            "slug": "vps/linux-ubuntu-basics#processes-and-services",
+            "order": 5
+          },
+          {
+            "id": "networking-basics",
+            "title": "Networking basics",
+            "slug": "vps/linux-ubuntu-basics#networking-basics",
+            "order": 6
+          },
+          {
+            "id": "package-management-apt",
+            "title": "Package management apt",
+            "slug": "vps/linux-ubuntu-basics#package-management-apt",
+            "order": 7
+          },
+          {
+            "id": "files-search-and-edit",
+            "title": "Files search and edit",
+            "slug": "vps/linux-ubuntu-basics#files-search-and-edit",
+            "order": 8
+          },
+          {
+            "id": "compression-and-archives",
+            "title": "Compression and archives",
+            "slug": "vps/linux-ubuntu-basics#compression-and-archives",
+            "order": 9
+          },
+          {
+            "id": "disk-usage-and-partitions",
+            "title": "Disk usage and partitions",
+            "slug": "vps/linux-ubuntu-basics#disk-usage-and-partitions",
+            "order": 10
+          },
+          {
+            "id": "system-logs-and-journald",
+            "title": "System logs and journald",
+            "slug": "vps/linux-ubuntu-basics#system-logs-and-journald",
+            "order": 11
+          },
+          {
+            "id": "environment-variables",
+            "title": "Environment variables",
+            "slug": "vps/linux-ubuntu-basics#environment-variables",
+            "order": 12
+          },
+          {
+            "id": "bash-scripting-basics",
+            "title": "Bash scripting basics",
+            "slug": "vps/linux-ubuntu-basics#bash-scripting-basics",
+            "order": 13
+          },
+          {
+            "id": "cheatsheet-commands",
+            "title": "Cheatsheet commands",
+            "slug": "vps/linux-ubuntu-basics#cheatsheet-commands",
+            "order": 14
+          },
+          {
+            "id": "interactive-playground-chmod-converter",
+            "title": "Interactive Playground: chmod converter",
+            "slug": "vps/linux-ubuntu-basics#interactive-playground-chmod-converter",
+            "order": 15
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "security",
+        "title": "Security",
+        "slug": "vps/security",
+        "filePath": "../../content/vps/security.mdx",
+        "subSections": [
+          {
+            "id": "what-is-a-rsa-key",
+            "title": "What is a rsa key",
+            "slug": "vps/security#what-is-a-rsa-key",
+            "order": 1
+          },
+          {
+            "id": "types-of-rsa-keys",
+            "title": "Types of rsa keys",
+            "slug": "vps/security#types-of-rsa-keys",
+            "order": 2
+          },
+          {
+            "id": "how-does-rsa-work",
+            "title": "How does rsa work",
+            "slug": "vps/security#how-does-rsa-work",
+            "order": 3
+          },
+          {
+            "id": "where-is-rsa-used",
+            "title": "Where is rsa used",
+            "slug": "vps/security#where-is-rsa-used",
+            "order": 4
+          },
+          {
+            "id": "key-length-and-future",
+            "title": "Key length and future",
+            "slug": "vps/security#key-length-and-future",
+            "order": 5
+          },
+          {
+            "id": "create-an-ssh-connection-with-pem-certification",
+            "title": "Create an ssh connection with pem certification",
+            "slug": "vps/security#create-an-ssh-connection-with-pem-certification",
+            "order": 6
+          },
+          {
+            "id": "cockpit-behind-caddy-secure-admin-panel",
+            "title": "Cockpit behind caddy (secure admin panel)",
+            "slug": "vps/security#cockpit-behind-caddy-secure-admin-panel",
+            "order": 7
+          },
+          {
+            "id": "interactive-playground-ssh-keygen-command-builder",
+            "title": "Interactive Playground: SSH keygen command builder",
+            "slug": "vps/security#interactive-playground-ssh-keygen-command-builder",
+            "order": 8
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "deploy-golden-path",
+        "title": "Deploy Golden Path",
+        "slug": "vps/deploy-golden-path",
+        "filePath": "../../content/vps/deploy-golden-path.mdx",
+        "subSections": [
+          {
+            "id": "minimum-prerequisites",
+            "title": "Minimum prerequisites",
+            "slug": "vps/deploy-golden-path#minimum-prerequisites",
+            "order": 1
+          },
+          {
+            "id": "release-layout-and-symlink-strategy",
+            "title": "Release layout and symlink strategy",
+            "slug": "vps/deploy-golden-path#release-layout-and-symlink-strategy",
+            "order": 2
+          },
+          {
+            "id": "caddy-baseline-configuration",
+            "title": "Caddy baseline configuration",
+            "slug": "vps/deploy-golden-path#caddy-baseline-configuration",
+            "order": 3
+          },
+          {
+            "id": "ci-artifact-deploy-flow",
+            "title": "CI artifact deploy flow",
+            "slug": "vps/deploy-golden-path#ci-artifact-deploy-flow",
+            "order": 4
+          },
+          {
+            "id": "rollback-and-sanity-checks",
+            "title": "Rollback and sanity checks",
+            "slug": "vps/deploy-golden-path#rollback-and-sanity-checks",
+            "order": 5
+          },
+          {
+            "id": "unified-script-for-setup-and-deploy-helpers",
+            "title": "Unified script for setup and deploy helpers",
+            "slug": "vps/deploy-golden-path#unified-script-for-setup-and-deploy-helpers",
+            "order": 6
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "static-site-deploy",
+        "title": "Static Website Deployment",
+        "slug": "vps/static-site-deploy",
+        "filePath": "../../content/vps/static-site-deploy.mdx",
+        "subSections": [
+          {
+            "id": "when-to-use-this-variant",
+            "title": "When to use this variant",
+            "slug": "vps/static-site-deploy#when-to-use-this-variant",
+            "order": 1
+          },
+          {
+            "id": "what-changes-compared-to-the-golden-path",
+            "title": "What changes compared to the golden path",
+            "slug": "vps/static-site-deploy#what-changes-compared-to-the-golden-path",
+            "order": 2
+          },
+          {
+            "id": "recommended-flow",
+            "title": "Recommended flow",
+            "slug": "vps/static-site-deploy#recommended-flow",
+            "order": 3
+          },
+          {
+            "id": "minimal-ci-example-static-artifact",
+            "title": "Minimal CI example (static artifact)",
+            "slug": "vps/static-site-deploy#minimal-ci-example-static-artifact",
+            "order": 4
+          },
+          {
+            "id": "unified-script-usage-for-static-mode",
+            "title": "Unified script usage for static mode",
+            "slug": "vps/static-site-deploy#unified-script-usage-for-static-mode",
+            "order": 5
+          },
+          {
+            "id": "optional-nginx-mode",
+            "title": "Optional NGINX mode",
+            "slug": "vps/static-site-deploy#optional-nginx-mode",
+            "order": 6
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "react-spa-deploy",
+        "title": "React SPA Deployment",
+        "slug": "vps/react-spa-deploy",
+        "filePath": "../../content/vps/react-spa-deploy.mdx",
+        "subSections": [
+          {
+            "id": "when-to-use-this-variant",
+            "title": "When to use this variant",
+            "slug": "vps/react-spa-deploy#when-to-use-this-variant",
+            "order": 1
+          },
+          {
+            "id": "build-strategy-decision",
+            "title": "Build strategy decision",
+            "slug": "vps/react-spa-deploy#build-strategy-decision",
+            "order": 2
+          },
+          {
+            "id": "react-specific-notes",
+            "title": "React-specific notes",
+            "slug": "vps/react-spa-deploy#react-specific-notes",
+            "order": 3
+          },
+          {
+            "id": "ci-artifact-strategy-recommended",
+            "title": "CI artifact strategy (recommended)",
+            "slug": "vps/react-spa-deploy#ci-artifact-strategy-recommended",
+            "order": 4
+          },
+          {
+            "id": "build-on-vps-strategy",
+            "title": "Build on VPS strategy",
+            "slug": "vps/react-spa-deploy#build-on-vps-strategy",
+            "order": 5
+          },
+          {
+            "id": "unified-script-usage-for-react-mode",
+            "title": "Unified script usage for React mode",
+            "slug": "vps/react-spa-deploy#unified-script-usage-for-react-mode",
+            "order": 6
+          },
+          {
+            "id": "reference-workflow",
+            "title": "Reference workflow",
+            "slug": "vps/react-spa-deploy#reference-workflow",
+            "order": 7
+          }
+        ],
+        "order": 6
+      }
+    ],
+    "order": 28
+  }
+}

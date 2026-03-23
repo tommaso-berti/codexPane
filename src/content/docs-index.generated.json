@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "docs": [
+    {
+      "id": "algorithms",
+      "title": "Algorithms",
+      "icon": "AccountTreeIcon",
+      "slug": "algorithms",
+      "order": 1,
+      "introPath": "../../content/algorithms/introduction.mdx",
+      "sectionCount": 19,
+      "sections": []
+    },
+    {
+      "id": "api",
+      "title": "API",
+      "icon": "ApiIcon",
+      "slug": "api",
+      "order": 2,
+      "introPath": "../../content/api/introduction.mdx",
+      "sectionCount": 8,
+      "sections": []
+    },
+    {
+      "id": "authentication",
+      "title": "User Authentication",
+      "icon": "SecurityIcon",
+      "slug": "authentication",
+      "order": 3,
+      "introPath": "../../content/authentication/introduction.mdx",
+      "sectionCount": 9,
+      "sections": []
+    },
+    {
+      "id": "data-structures",
+      "title": "Data Structures",
+      "icon": "DataObjectIcon",
+      "slug": "data-structures",
+      "order": 4,
+      "introPath": "../../content/data-structures/introduction.mdx",
+      "sectionCount": 23,
+      "sections": []
+    },
+    {
+      "id": "database",
+      "title": "Database Fundamentals",
+      "icon": "StorageIcon",
+      "slug": "database",
+      "order": 5,
+      "introPath": "../../content/database/introduction.mdx",
+      "sectionCount": 4,
+      "sections": []
+    },
+    {
+      "id": "devops-fundamentals",
+      "title": "DevOps Fundamentals",
+      "icon": "DnsIcon",
+      "slug": "devops-fundamentals",
+      "order": 6,
+      "introPath": "../../content/devops-fundamentals/introduction.mdx",
+      "sectionCount": 7,
+      "sections": []
+    },
+    {
+      "id": "express",
+      "title": "Express.js",
+      "icon": "CustomJavascriptIcon",
+      "slug": "express",
+      "order": 7,
+      "introPath": "../../content/express/introduction.mdx",
+      "sectionCount": 6,
+      "sections": []
+    },
+    {
+      "id": "node",
+      "title": "Node.js",
+      "icon": "CustomJavascriptIcon",
+      "slug": "node",
+      "order": 8,
+      "introPath": "../../content/node/introduction.mdx",
+      "sectionCount": 6,
+      "sections": []
+    },
+    {
+      "id": "operating-systems",
+      "title": "Operating Systems",
+      "icon": "DnsIcon",
+      "slug": "operating-systems",
+      "order": 9,
+      "introPath": "../../content/operating-systems/introduction.mdx",
+      "sectionCount": 9,
+      "sections": []
+    },
+    {
+      "id": "postgresql",
+      "title": "PostgreSQL",
+      "icon": "DnsIcon",
+      "slug": "postgresql",
+      "order": 10,
+      "introPath": "../../content/postgresql/introduction.mdx",
+      "sectionCount": 11,
+      "sections": []
+    },
+    {
+      "id": "server-testing-tdd",
+      "title": "Server Testing TDD",
+      "icon": "ApiIcon",
+      "slug": "server-testing-tdd",
+      "order": 11,
+      "introPath": "../../content/server-testing-tdd/introduction.mdx",
+      "sectionCount": 2,
+      "sections": []
+    },
+    {
+      "id": "software-design",
+      "title": "Software Design",
+      "icon": "PublicIcon",
+      "slug": "software-design",
+      "order": 12,
+      "introPath": "../../content/software-design/introduction.mdx",
+      "sectionCount": 25,
+      "sections": []
+    },
+    {
+      "id": "sql",
+      "title": "SQL",
+      "icon": "TableChartIcon",
+      "slug": "sql",
+      "order": 13,
+      "introPath": "../../content/sql/introduction.mdx",
+      "sectionCount": 10,
+      "sections": []
+    },
+    {
+      "id": "tech-interview",
+      "title": "Tech Interview",
+      "icon": "PublicIcon",
+      "slug": "tech-interview",
+      "order": 14,
+      "introPath": "../../content/tech-interview/introduction.mdx",
+      "sectionCount": 3,
+      "sections": []
+    },
+    {
+      "id": "bash",
+      "title": "Bash",
+      "icon": "CustomBashIcon",
+      "slug": "bash",
+      "order": 15,
+      "introPath": "../../content/bash/introduction.mdx",
+      "sectionCount": 5,
+      "sections": []
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "icon": "CustomCssIcon",
+      "slug": "css",
+      "order": 16,
+      "introPath": "../../content/css/introduction.mdx",
+      "sectionCount": 16,
+      "sections": []
+    },
+    {
+      "id": "demo",
+      "title": "Demo",
+      "icon": "PublicIcon",
+      "slug": "demo",
+      "order": 17,
+      "introPath": "../../content/demo/introduction.mdx",
+      "sectionCount": 1,
+      "sections": []
+    },
+    {
+      "id": "git",
+      "title": "Git",
+      "icon": "CustomGitIcon",
+      "slug": "git",
+      "order": 18,
+      "introPath": "../../content/git/introduction.mdx",
+      "sectionCount": 4,
+      "sections": []
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "icon": "GitHubIcon",
+      "slug": "github",
+      "order": 19,
+      "introPath": "../../content/github/introduction.mdx",
+      "sectionCount": 7,
+      "sections": []
+    },
+    {
+      "id": "html",
+      "title": "HTML",
+      "icon": "CustomHtmlIcon",
+      "slug": "html",
+      "order": 20,
+      "introPath": "../../content/html/introduction.mdx",
+      "sectionCount": 7,
+      "sections": []
+    },
+    {
+      "id": "http",
+      "title": "HTTP",
+      "icon": "HttpIcon",
+      "slug": "http",
+      "order": 21,
+      "introPath": "../../content/http/introduction.mdx",
+      "sectionCount": 6,
+      "sections": []
+    },
+    {
+      "id": "javascript",
+      "title": "Javascript",
+      "icon": "CustomJavascriptIcon",
+      "slug": "javascript",
+      "order": 22,
+      "introPath": "../../content/javascript/introduction.mdx",
+      "sectionCount": 17,
+      "sections": []
+    },
+    {
+      "id": "jquery",
+      "title": "jQuery",
+      "icon": "CustomjQueryIcon",
+      "slug": "jquery",
+      "order": 23,
+      "introPath": "../../content/jquery/introduction.mdx",
+      "sectionCount": 1,
+      "sections": []
+    },
+    {
+      "id": "mongodb",
+      "title": "MongoDB",
+      "icon": "CustomMongoDbIcon",
+      "slug": "mongodb",
+      "order": 24,
+      "introPath": "../../content/mongodb/introduction.mdx",
+      "sectionCount": 4,
+      "sections": []
+    },
+    {
+      "id": "mui",
+      "title": "MUI",
+      "icon": "CustomMuiIcon",
+      "slug": "mui",
+      "order": 25,
+      "introPath": "../../content/mui/introduction.mdx",
+      "sectionCount": 8,
+      "sections": []
+    },
+    {
+      "id": "react",
+      "title": "React",
+      "icon": "CustomReactIcon",
+      "slug": "react",
+      "order": 26,
+      "introPath": "../../content/react/introduction.mdx",
+      "sectionCount": 14,
+      "sections": []
+    },
+    {
+      "id": "redux",
+      "title": "Redux",
+      "icon": "CustomReduxIcon",
+      "slug": "redux",
+      "order": 27,
+      "introPath": "../../content/redux/introduction.mdx",
+      "sectionCount": 6,
+      "sections": []
+    },
+    {
+      "id": "vps",
+      "title": "VPS",
+      "icon": "PublicIcon",
+      "slug": "vps",
+      "order": 28,
+      "introPath": "../../content/vps/introduction.mdx",
+      "sectionCount": 6,
+      "sections": []
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "tech-interview",
+    "title": "Tech Interview",
+    "icon": "PublicIcon",
+    "slug": "tech-interview",
+    "introPath": "../../content/tech-interview/introduction.mdx",
+    "sections": [
+      {
+        "id": "acing-the-technical-interview",
+        "title": "Acing the Technical Interview",
+        "slug": "tech-interview/acing-the-technical-interview",
+        "filePath": "../../content/tech-interview/acing-the-technical-interview.mdx",
+        "subSections": [
+          {
+            "id": "what-is-a-technical-interview",
+            "title": "What is a technical interview?",
+            "slug": "tech-interview/acing-the-technical-interview#what-is-a-technical-interview",
+            "order": 1
+          },
+          {
+            "id": "preparing-for-a-technical-interview",
+            "title": "Preparing for a technical interview",
+            "slug": "tech-interview/acing-the-technical-interview#preparing-for-a-technical-interview",
+            "order": 2
+          },
+          {
+            "id": "how-to-pass-a-technical-interview",
+            "title": "How to pass a technical interview",
+            "slug": "tech-interview/acing-the-technical-interview#how-to-pass-a-technical-interview",
+            "order": 3
+          },
+          {
+            "id": "technical-interview-tips",
+            "title": "Technical Interview Tips",
+            "slug": "tech-interview/acing-the-technical-interview#technical-interview-tips",
+            "order": 4
+          },
+          {
+            "id": "the-essential-guide-to-take-home-coding-challenges",
+            "title": "The Essential Guide to Take Home Coding Challenges",
+            "slug": "tech-interview/acing-the-technical-interview#the-essential-guide-to-take-home-coding-challenges",
+            "order": 5
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "technical-interviews-whiteboarding",
+        "title": "Technical interviews - Whiteboarding",
+        "slug": "tech-interview/technical-interviews-whiteboarding",
+        "filePath": "../../content/tech-interview/technical-interviews-whiteboarding.mdx",
+        "subSections": [
+          {
+            "id": "clarifying-the-problem",
+            "title": "Clarifying the Problem",
+            "slug": "tech-interview/technical-interviews-whiteboarding#clarifying-the-problem",
+            "order": 1
+          },
+          {
+            "id": "producing-inputs-and-finding-edge-cases",
+            "title": "Producing Inputs and Finding Edge Cases",
+            "slug": "tech-interview/technical-interviews-whiteboarding#producing-inputs-and-finding-edge-cases",
+            "order": 2
+          },
+          {
+            "id": "writing-the-outline",
+            "title": "Writing the Outline",
+            "slug": "tech-interview/technical-interviews-whiteboarding#writing-the-outline",
+            "order": 3
+          },
+          {
+            "id": "coding-the-solution",
+            "title": "Coding the Solution",
+            "slug": "tech-interview/technical-interviews-whiteboarding#coding-the-solution",
+            "order": 4
+          },
+          {
+            "id": "testing-with-inputs",
+            "title": "Testing with Inputs",
+            "slug": "tech-interview/technical-interviews-whiteboarding#testing-with-inputs",
+            "order": 5
+          },
+          {
+            "id": "analyzing-time-and-space-complexity",
+            "title": "Analyzing Time and Space Complexity",
+            "slug": "tech-interview/technical-interviews-whiteboarding#analyzing-time-and-space-complexity",
+            "order": 6
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "behavioral-interview",
+        "title": "Behavioral Interview",
+        "slug": "tech-interview/behavioral-interview",
+        "filePath": "../../content/tech-interview/behavioral-interview.mdx",
+        "subSections": [
+          {
+            "id": "before-the-interview",
+            "title": "Before the Interview",
+            "slug": "tech-interview/behavioral-interview#before-the-interview",
+            "order": 1
+          },
+          {
+            "id": "during-the-interview",
+            "title": "During the Interview",
+            "slug": "tech-interview/behavioral-interview#during-the-interview",
+            "order": 2
+          },
+          {
+            "id": "after-the-interview",
+            "title": "After the Interview",
+            "slug": "tech-interview/behavioral-interview#after-the-interview",
+            "order": 3
+          }
+        ],
+        "order": 3
+      }
+    ],
+    "order": 14
+  }
+}

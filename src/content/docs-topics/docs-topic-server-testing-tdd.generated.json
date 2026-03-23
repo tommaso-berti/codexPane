@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "server-testing-tdd",
+    "title": "Server Testing TDD",
+    "icon": "ApiIcon",
+    "slug": "server-testing-tdd",
+    "introPath": "../../content/server-testing-tdd/introduction.mdx",
+    "sections": [
+      {
+        "id": "testing-framework-chai",
+        "title": "Testing Framework: Chai",
+        "slug": "server-testing-tdd/testing-framework-chai",
+        "filePath": "../../content/server-testing-tdd/testing-framework-chai.mdx",
+        "subSections": [
+          {
+            "id": "testing-html-responses",
+            "title": "Testing HTML Responses",
+            "slug": "server-testing-tdd/testing-framework-chai#testing-html-responses",
+            "order": 1
+          },
+          {
+            "id": "async--await",
+            "title": "Async / Await",
+            "slug": "server-testing-tdd/testing-framework-chai#async--await",
+            "order": 2
+          },
+          {
+            "id": "supertest",
+            "title": "SuperTest",
+            "slug": "server-testing-tdd/testing-framework-chai#supertest",
+            "order": 3
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "server-testing-patterns",
+        "title": "Server testing patterns",
+        "slug": "server-testing-tdd/server-testing-patterns",
+        "filePath": "../../content/server-testing-tdd/server-testing-patterns.mdx",
+        "subSections": [
+          {
+            "id": "status-codes",
+            "title": "Status Codes",
+            "slug": "server-testing-tdd/server-testing-patterns#status-codes",
+            "order": 1
+          },
+          {
+            "id": "response-content",
+            "title": "Response Content",
+            "slug": "server-testing-tdd/server-testing-patterns#response-content",
+            "order": 2
+          },
+          {
+            "id": "refactoring-route-parameters",
+            "title": "Refactoring: Route Parameters",
+            "slug": "server-testing-tdd/server-testing-patterns#refactoring-route-parameters",
+            "order": 3
+          },
+          {
+            "id": "refactoring-handlebars",
+            "title": "Refactoring: Handlebars",
+            "slug": "server-testing-tdd/server-testing-patterns#refactoring-handlebars",
+            "order": 4
+          },
+          {
+            "id": "api-errors",
+            "title": "API Errors",
+            "slug": "server-testing-tdd/server-testing-patterns#api-errors",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-test-scope-planner",
+            "title": "Interactive Playground: Test Scope Planner",
+            "slug": "server-testing-tdd/server-testing-patterns#interactive-playground-test-scope-planner",
+            "order": 6
+          }
+        ],
+        "order": 2
+      }
+    ],
+    "order": 11
+  }
+}

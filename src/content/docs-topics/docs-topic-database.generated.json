@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "database",
+    "title": "Database Fundamentals",
+    "icon": "StorageIcon",
+    "slug": "database",
+    "introPath": "../../content/database/introduction.mdx",
+    "sections": [
+      {
+        "id": "what-is-a-relational-database-management-system",
+        "title": "What is a Relational Database Management System",
+        "slug": "database/what-is-a-relational-database-management-system",
+        "filePath": "../../content/database/what-is-a-relational-database-management-system.mdx",
+        "subSections": [
+          {
+            "id": "tables-rows-and-columns",
+            "title": "Tables: Rows and Columns",
+            "slug": "database/what-is-a-relational-database-management-system#tables-rows-and-columns",
+            "order": 1
+          },
+          {
+            "id": "rdbms",
+            "title": "RDBMS",
+            "slug": "database/what-is-a-relational-database-management-system#rdbms",
+            "order": 2
+          },
+          {
+            "id": "what-is-sql",
+            "title": "What is SQL?",
+            "slug": "database/what-is-a-relational-database-management-system#what-is-sql",
+            "order": 3
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "nosql",
+        "title": "NoSQL",
+        "slug": "database/nosql",
+        "filePath": "../../content/database/nosql.mdx",
+        "subSections": [
+          {
+            "id": "relational-vs-non-relational-databases",
+            "title": "Relational vs Non relational databases",
+            "slug": "database/nosql#relational-vs-non-relational-databases",
+            "order": 1
+          },
+          {
+            "id": "types-of-nosql-databases",
+            "title": "Types of NoSQL Databases",
+            "slug": "database/nosql#types-of-nosql-databases",
+            "order": 2
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "designing-a-relational-databases",
+        "title": "Designing a Relational Databases",
+        "slug": "database/designing-a-relational-databases",
+        "filePath": "../../content/database/designing-a-relational-databases.mdx",
+        "subSections": [
+          {
+            "id": "what-is-a-schema",
+            "title": "What is a schema?",
+            "slug": "database/designing-a-relational-databases#what-is-a-schema",
+            "order": 1
+          },
+          {
+            "id": "whats-an-entity-relationship-diagram",
+            "title": "What's an Entity Relationship Diagram?",
+            "slug": "database/designing-a-relational-databases#whats-an-entity-relationship-diagram",
+            "order": 2
+          },
+          {
+            "id": "other-schema-types",
+            "title": "Other Schema Types",
+            "slug": "database/designing-a-relational-databases#other-schema-types",
+            "order": 3
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "three-tier-architecture",
+        "title": "Three Tier Architecture",
+        "slug": "database/three-tier-architecture",
+        "filePath": "../../content/database/three-tier-architecture.mdx",
+        "subSections": [
+          {
+            "id": "the-presentation-tier",
+            "title": "The Presentation Tier",
+            "slug": "database/three-tier-architecture#the-presentation-tier",
+            "order": 1
+          },
+          {
+            "id": "the-data-tier",
+            "title": "The Data Tier",
+            "slug": "database/three-tier-architecture#the-data-tier",
+            "order": 2
+          },
+          {
+            "id": "the-application-tier",
+            "title": "The Application Tier",
+            "slug": "database/three-tier-architecture#the-application-tier",
+            "order": 3
+          },
+          {
+            "id": "why-use-tiered-architecture",
+            "title": "Why use tiered architecture?",
+            "slug": "database/three-tier-architecture#why-use-tiered-architecture",
+            "order": 4
+          },
+          {
+            "id": "other-tiered-architectures",
+            "title": "Other tiered architectures",
+            "slug": "database/three-tier-architecture#other-tiered-architectures",
+            "order": 5
+          }
+        ],
+        "order": 4
+      }
+    ],
+    "order": 5
+  }
+}

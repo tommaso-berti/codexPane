@@ -1,0 +1,523 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "algorithms",
+    "title": "Algorithms",
+    "icon": "AccountTreeIcon",
+    "slug": "algorithms",
+    "introPath": "../../content/algorithms/introduction.mdx",
+    "sections": [
+      {
+        "id": "recursion",
+        "title": "Recursion",
+        "slug": "algorithms/recursion",
+        "filePath": "../../content/algorithms/recursion.mdx",
+        "subSections": [
+          {
+            "id": "call-stacks-and-execution-frames",
+            "title": "Call Stacks and Execution Frames",
+            "slug": "algorithms/recursion#call-stacks-and-execution-frames",
+            "order": 1
+          },
+          {
+            "id": "interactive-playground-recursion-trace",
+            "title": "Interactive Playground: Recursion Trace",
+            "slug": "algorithms/recursion#interactive-playground-recursion-trace",
+            "order": 2
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "recursion-in-javascript",
+        "title": "Recursion in JavaScript",
+        "slug": "algorithms/recursion-in-javascript",
+        "filePath": "../../content/algorithms/recursion-in-javascript.mdx",
+        "subSections": [
+          {
+            "id": "recursive-vs-iterative-traversal",
+            "title": "Recursive VS. Iterative Traversal",
+            "slug": "algorithms/recursion-in-javascript#recursive-vs-iterative-traversal",
+            "order": 1
+          },
+          {
+            "id": "recursive",
+            "title": "Recursive",
+            "slug": "algorithms/recursion-in-javascript#recursive",
+            "order": 2
+          },
+          {
+            "id": "iterative",
+            "title": "Iterative",
+            "slug": "algorithms/recursion-in-javascript#iterative",
+            "order": 3
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "asymptotic-notation",
+        "title": "Asymptotic Notation",
+        "slug": "algorithms/asymptotic-notation",
+        "filePath": "../../content/algorithms/asymptotic-notation.mdx",
+        "subSections": [
+          {
+            "id": "big-theta-θ",
+            "title": "Big theta (Θ)",
+            "slug": "algorithms/asymptotic-notation#big-theta-θ",
+            "order": 1
+          },
+          {
+            "id": "big-omega-ω-and-big-o-o",
+            "title": "Big omega (Ω) and big O (O)",
+            "slug": "algorithms/asymptotic-notation#big-omega-ω-and-big-o-o",
+            "order": 2
+          },
+          {
+            "id": "adding-runtimes",
+            "title": "Adding runtimes",
+            "slug": "algorithms/asymptotic-notation#adding-runtimes",
+            "order": 3
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "js-asymptotic-notation",
+        "title": "Js Asymptotic Notation",
+        "slug": "algorithms/js-asymptotic-notation",
+        "filePath": "../../content/algorithms/js-asymptotic-notation.mdx",
+        "subSections": [
+          {
+            "id": "analyzing-algorithm-runtime",
+            "title": "Analyzing algorithm runtime",
+            "slug": "algorithms/js-asymptotic-notation#analyzing-algorithm-runtime",
+            "order": 1
+          },
+          {
+            "id": "example-dividing-by-two",
+            "title": "Example: Dividing by Two",
+            "slug": "algorithms/js-asymptotic-notation#example-dividing-by-two",
+            "order": 2
+          },
+          {
+            "id": "linked-list-example---finding-maximum",
+            "title": "Linked list example - finding maximum",
+            "slug": "algorithms/js-asymptotic-notation#linked-list-example---finding-maximum",
+            "order": 3
+          },
+          {
+            "id": "sorting-a-linked-list",
+            "title": "Sorting a linked list",
+            "slug": "algorithms/js-asymptotic-notation#sorting-a-linked-list",
+            "order": 4
+          },
+          {
+            "id": "queue-vs-stack-runtime",
+            "title": "Queue vs stack runtime",
+            "slug": "algorithms/js-asymptotic-notation#queue-vs-stack-runtime",
+            "order": 5
+          },
+          {
+            "id": "queue-fifo---first-in-first-out",
+            "title": "Queue (FIFO - First In First Out)",
+            "slug": "algorithms/js-asymptotic-notation#queue-fifo---first-in-first-out",
+            "order": 6
+          },
+          {
+            "id": "stack-filo---first-in-last-out",
+            "title": "Stack (FILO - First In Last Out)",
+            "slug": "algorithms/js-asymptotic-notation#stack-filo---first-in-last-out",
+            "order": 7
+          },
+          {
+            "id": "linked-list-vs-hash-map-search",
+            "title": "Linked list vs hash map search",
+            "slug": "algorithms/js-asymptotic-notation#linked-list-vs-hash-map-search",
+            "order": 8
+          },
+          {
+            "id": "linked-list-search",
+            "title": "Linked list search",
+            "slug": "algorithms/js-asymptotic-notation#linked-list-search",
+            "order": 9
+          },
+          {
+            "id": "hash-map-search",
+            "title": "Hash map search",
+            "slug": "algorithms/js-asymptotic-notation#hash-map-search",
+            "order": 10
+          },
+          {
+            "id": "hash-collisions",
+            "title": "Hash collisions",
+            "slug": "algorithms/js-asymptotic-notation#hash-collisions",
+            "order": 11
+          },
+          {
+            "id": "separate-chaining",
+            "title": "Separate chaining",
+            "slug": "algorithms/js-asymptotic-notation#separate-chaining",
+            "order": 12
+          },
+          {
+            "id": "open-addressing-linear-probing",
+            "title": "Open addressing (linear probing)",
+            "slug": "algorithms/js-asymptotic-notation#open-addressing-linear-probing",
+            "order": 13
+          },
+          {
+            "id": "key-big-o-patterns",
+            "title": "Key Big-O patterns",
+            "slug": "algorithms/js-asymptotic-notation#key-big-o-patterns",
+            "order": 14
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "space-complexity",
+        "title": "Space Complexity",
+        "slug": "algorithms/space-complexity",
+        "filePath": "../../content/algorithms/space-complexity.mdx",
+        "subSections": [],
+        "order": 5
+      },
+      {
+        "id": "algorithms",
+        "title": "Algorithms",
+        "slug": "algorithms/algorithms",
+        "filePath": "../../content/algorithms/algorithms.mdx",
+        "subSections": [],
+        "order": 6
+      },
+      {
+        "id": "bubble-sort",
+        "title": "Bubble Sort",
+        "slug": "algorithms/bubble-sort",
+        "filePath": "../../content/algorithms/bubble-sort.mdx",
+        "subSections": [
+          {
+            "id": "algorithm-analysis",
+            "title": "Algorithm Analysis",
+            "slug": "algorithms/bubble-sort#algorithm-analysis",
+            "order": 1
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "js-bubble-sort",
+        "title": "Js bubble sort",
+        "slug": "algorithms/js-bubble-sort",
+        "filePath": "../../content/algorithms/js-bubble-sort.mdx",
+        "subSections": [],
+        "order": 8
+      },
+      {
+        "id": "merge-sort",
+        "title": "Merge Sort",
+        "slug": "algorithms/merge-sort",
+        "filePath": "../../content/algorithms/merge-sort.mdx",
+        "subSections": [
+          {
+            "id": "algorithm-analysis",
+            "title": "Algorithm Analysis",
+            "slug": "algorithms/merge-sort#algorithm-analysis",
+            "order": 1
+          }
+        ],
+        "order": 9
+      },
+      {
+        "id": "js-merge-sort",
+        "title": "Js Merge Sort",
+        "slug": "algorithms/js-merge-sort",
+        "filePath": "../../content/algorithms/js-merge-sort.mdx",
+        "subSections": [
+          {
+            "id": "splitting-base-case",
+            "title": "Splitting: base case",
+            "slug": "algorithms/js-merge-sort#splitting-base-case",
+            "order": 1
+          },
+          {
+            "id": "splitting-recursive-case",
+            "title": "Splitting: recursive case",
+            "slug": "algorithms/js-merge-sort#splitting-recursive-case",
+            "order": 2
+          },
+          {
+            "id": "call-merge-from-mergesort",
+            "title": "Call merge() from mergeSort()",
+            "slug": "algorithms/js-merge-sort#call-merge-from-mergesort",
+            "order": 3
+          },
+          {
+            "id": "merging",
+            "title": "Merging",
+            "slug": "algorithms/js-merge-sort#merging",
+            "order": 4
+          }
+        ],
+        "order": 10
+      },
+      {
+        "id": "quicksort",
+        "title": "Quicksort",
+        "slug": "algorithms/quicksort",
+        "filePath": "../../content/algorithms/quicksort.mdx",
+        "subSections": [
+          {
+            "id": "algorithm-analysis",
+            "title": "Algorithm Analysis",
+            "slug": "algorithms/quicksort#algorithm-analysis",
+            "order": 1
+          }
+        ],
+        "order": 11
+      },
+      {
+        "id": "js-quicksort",
+        "title": "Js Quicksort",
+        "slug": "algorithms/js-quicksort",
+        "filePath": "../../content/algorithms/js-quicksort.mdx",
+        "subSections": [
+          {
+            "id": "partitioning---the-pivot-element",
+            "title": "Partitioning - The Pivot Element",
+            "slug": "algorithms/js-quicksort#partitioning---the-pivot-element",
+            "order": 1
+          },
+          {
+            "id": "partitioning---the-left-and-right-indices",
+            "title": "Partitioning - The Left and Right Indices",
+            "slug": "algorithms/js-quicksort#partitioning---the-left-and-right-indices",
+            "order": 2
+          },
+          {
+            "id": "partitioning---swapping",
+            "title": "Partitioning - Swapping",
+            "slug": "algorithms/js-quicksort#partitioning---swapping",
+            "order": 3
+          },
+          {
+            "id": "recursive-quicksort",
+            "title": "Recursive Quicksort",
+            "slug": "algorithms/js-quicksort#recursive-quicksort",
+            "order": 4
+          }
+        ],
+        "order": 12
+      },
+      {
+        "id": "search-and-graph-search-algorithms-learn-binary-search",
+        "title": "Learn Binary Search",
+        "slug": "algorithms/search-and-graph-search-algorithms-learn-binary-search",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-learn-binary-search.mdx",
+        "subSections": [
+          {
+            "id": "time-complexity-of-binary-search",
+            "title": "Time Complexity of Binary Search",
+            "slug": "algorithms/search-and-graph-search-algorithms-learn-binary-search#time-complexity-of-binary-search",
+            "order": 1
+          }
+        ],
+        "order": 13
+      },
+      {
+        "id": "search-and-graph-search-algorithms-js-binary-search",
+        "title": "Js Binary search",
+        "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-js-binary-search.mdx",
+        "subSections": [
+          {
+            "id": "finding-the-middle-index",
+            "title": "Finding the Middle Index",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search#finding-the-middle-index",
+            "order": 1
+          },
+          {
+            "id": "checking-the-middle-index",
+            "title": "Checking the Middle Index",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search#checking-the-middle-index",
+            "order": 2
+          },
+          {
+            "id": "iterative-checking",
+            "title": "Iterative Checking",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search#iterative-checking",
+            "order": 3
+          },
+          {
+            "id": "interactive-playground-binary-search-trace",
+            "title": "Interactive Playground: Binary Search Trace",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search#interactive-playground-binary-search-trace",
+            "order": 4
+          }
+        ],
+        "order": 14
+      },
+      {
+        "id": "search-and-graph-search-algorithms-js-binary-search-trees",
+        "title": "Js Binary search trees",
+        "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search-trees",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-js-binary-search-trees.mdx",
+        "subSections": [
+          {
+            "id": "inserting-a-value",
+            "title": "Inserting a Value",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search-trees#inserting-a-value",
+            "order": 1
+          },
+          {
+            "id": "retrieve-a-node-by-value",
+            "title": "Retrieve a Node by Value",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search-trees#retrieve-a-node-by-value",
+            "order": 2
+          },
+          {
+            "id": "traversing-a-binary-tree",
+            "title": "Traversing a Binary Tree",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search-trees#traversing-a-binary-tree",
+            "order": 3
+          },
+          {
+            "id": "code-challenges",
+            "title": "Code Challenges:",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-binary-search-trees#code-challenges",
+            "order": 4
+          }
+        ],
+        "order": 15
+      },
+      {
+        "id": "search-and-graph-search-algorithms-graph-traversals",
+        "title": "Graph Traversals",
+        "slug": "algorithms/search-and-graph-search-algorithms-graph-traversals",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-graph-traversals.mdx",
+        "subSections": [
+          {
+            "id": "depth-first-search-dfs-conceptual",
+            "title": "Depth-First Search (DFS) Conceptual",
+            "slug": "algorithms/search-and-graph-search-algorithms-graph-traversals#depth-first-search-dfs-conceptual",
+            "order": 1
+          },
+          {
+            "id": "breadth-first-search-bfs-conceptual",
+            "title": "Breadth-First Search (BFS) Conceptual",
+            "slug": "algorithms/search-and-graph-search-algorithms-graph-traversals#breadth-first-search-bfs-conceptual",
+            "order": 2
+          },
+          {
+            "id": "graph-search-traversal-order",
+            "title": "Graph Search Traversal Order",
+            "slug": "algorithms/search-and-graph-search-algorithms-graph-traversals#graph-search-traversal-order",
+            "order": 3
+          }
+        ],
+        "order": 16
+      },
+      {
+        "id": "search-and-graph-search-algorithms-js-graph-traversals",
+        "title": "Js Graph Traversals",
+        "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-js-graph-traversals.mdx",
+        "subSections": [
+          {
+            "id": "depth-first-traversal-one-path",
+            "title": "Depth-first traversal (one path)",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-one-path",
+            "order": 1
+          },
+          {
+            "id": "depth-first-traversal-all-paths",
+            "title": "Depth-first traversal (all paths)",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-all-paths",
+            "order": 2
+          },
+          {
+            "id": "depth-first-traversal-callbacks",
+            "title": "Depth-first traversal (callbacks)",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#depth-first-traversal-callbacks",
+            "order": 3
+          },
+          {
+            "id": "breadth-first-traversal-first-layer",
+            "title": "Breadth-first traversal (first layer)",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-first-layer",
+            "order": 4
+          },
+          {
+            "id": "breadth-first-traversal-all-layers",
+            "title": "Breadth-first traversal (all layers)",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#breadth-first-traversal-all-layers",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-graph-traversal-order",
+            "title": "Interactive Playground: Graph Traversal Order",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-graph-traversals#interactive-playground-graph-traversal-order",
+            "order": 6
+          }
+        ],
+        "order": 17
+      },
+      {
+        "id": "search-and-graph-search-algorithms-dijkstra-s-algorithm",
+        "title": "Dijkstra's Algorithm",
+        "slug": "algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm.mdx",
+        "subSections": [
+          {
+            "id": "complexity",
+            "title": "Complexity",
+            "slug": "algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm#complexity",
+            "order": 1
+          },
+          {
+            "id": "interactive-playground-dijkstra-relaxation-trace",
+            "title": "Interactive Playground: Dijkstra Relaxation Trace",
+            "slug": "algorithms/search-and-graph-search-algorithms-dijkstra-s-algorithm#interactive-playground-dijkstra-relaxation-trace",
+            "order": 2
+          }
+        ],
+        "order": 18
+      },
+      {
+        "id": "search-and-graph-search-algorithms-js-dijkstra-s-algorithm",
+        "title": "Js Dijkstra's Algorithm",
+        "slug": "algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm",
+        "filePath": "../../content/algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm.mdx",
+        "subSections": [
+          {
+            "id": "evaluate-paths-to-starting-vertexs-neighbors",
+            "title": "Evaluate Paths to Starting Vertex's Neighbors",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm#evaluate-paths-to-starting-vertexs-neighbors",
+            "order": 1
+          },
+          {
+            "id": "evaluate-all-paths",
+            "title": "Evaluate All Paths",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm#evaluate-all-paths",
+            "order": 2
+          },
+          {
+            "id": "shortest-path-to-a-target-vertex",
+            "title": "Shortest Path to a Target Vertex",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm#shortest-path-to-a-target-vertex",
+            "order": 3
+          },
+          {
+            "id": "review",
+            "title": "Review",
+            "slug": "algorithms/search-and-graph-search-algorithms-js-dijkstra-s-algorithm#review",
+            "order": 4
+          }
+        ],
+        "order": 19
+      }
+    ],
+    "order": 1
+  }
+}

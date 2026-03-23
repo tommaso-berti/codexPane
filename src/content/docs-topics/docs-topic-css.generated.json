@@ -1,0 +1,985 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "css",
+    "title": "CSS",
+    "icon": "CustomCssIcon",
+    "slug": "css",
+    "introPath": "../../content/css/introduction.mdx",
+    "sections": [
+      {
+        "id": "styling",
+        "title": "Styling",
+        "slug": "css/styling",
+        "filePath": "../../content/css/styling.mdx",
+        "subSections": [
+          {
+            "id": "inline-styling",
+            "title": "Inline styling",
+            "slug": "css/styling#inline-styling",
+            "order": 1
+          },
+          {
+            "id": "external-stylesheet",
+            "title": "External stylesheet",
+            "slug": "css/styling#external-stylesheet",
+            "order": 2
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "selectors",
+        "title": "Selectors",
+        "slug": "css/selectors",
+        "filePath": "../../content/css/selectors.mdx",
+        "subSections": [
+          {
+            "id": "tag-selector",
+            "title": "Tag selector",
+            "slug": "css/selectors#tag-selector",
+            "order": 1
+          },
+          {
+            "id": "universal-selector",
+            "title": "Universal selector",
+            "slug": "css/selectors#universal-selector",
+            "order": 2
+          },
+          {
+            "id": "class-selector",
+            "title": "Class selector",
+            "slug": "css/selectors#class-selector",
+            "order": 3
+          },
+          {
+            "id": "id-selector",
+            "title": "ID selector",
+            "slug": "css/selectors#id-selector",
+            "order": 4
+          },
+          {
+            "id": "attribute-selectors",
+            "title": "Attribute selectors",
+            "slug": "css/selectors#attribute-selectors",
+            "order": 5
+          },
+          {
+            "id": "pseudo-class-selectors",
+            "title": "Pseudo class selectors",
+            "slug": "css/selectors#pseudo-class-selectors",
+            "order": 6
+          },
+          {
+            "id": "descendant-and-child-combinators",
+            "title": "Descendant and child combinators",
+            "slug": "css/selectors#descendant-and-child-combinators",
+            "order": 7
+          },
+          {
+            "id": "grouping-selectors",
+            "title": "Grouping selectors",
+            "slug": "css/selectors#grouping-selectors",
+            "order": 8
+          },
+          {
+            "id": "sibling-combinators-and-pseudo-elements",
+            "title": "Sibling combinators and pseudo elements",
+            "slug": "css/selectors#sibling-combinators-and-pseudo-elements",
+            "order": 9
+          },
+          {
+            "id": "interactive-playground-selector-matching",
+            "title": "Interactive Playground: Selector Matching",
+            "slug": "css/selectors#interactive-playground-selector-matching",
+            "order": 10
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "specificity",
+        "title": "Specificity",
+        "slug": "css/specificity",
+        "filePath": "../../content/css/specificity.mdx",
+        "subSections": [
+          {
+            "id": "specificity-basics",
+            "title": "Specificity basics",
+            "slug": "css/specificity#specificity-basics",
+            "order": 1
+          },
+          {
+            "id": "multiple-classes",
+            "title": "Multiple classes",
+            "slug": "css/specificity#multiple-classes",
+            "order": 2
+          },
+          {
+            "id": "chaining",
+            "title": "Chaining",
+            "slug": "css/specificity#chaining",
+            "order": 3
+          },
+          {
+            "id": "descendant",
+            "title": "Descendant",
+            "slug": "css/specificity#descendant",
+            "order": 4
+          },
+          {
+            "id": "interactive-playground-specificity-winner",
+            "title": "Interactive Playground: Specificity Winner",
+            "slug": "css/specificity#interactive-playground-specificity-winner",
+            "order": 5
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "box-model",
+        "title": "Box model",
+        "slug": "css/box-model",
+        "filePath": "../../content/css/box-model.mdx",
+        "subSections": [
+          {
+            "id": "border",
+            "title": "Border",
+            "slug": "css/box-model#border",
+            "order": 1
+          },
+          {
+            "id": "border-radius",
+            "title": "Border radius",
+            "slug": "css/box-model#border-radius",
+            "order": 2
+          },
+          {
+            "id": "padding",
+            "title": "Padding",
+            "slug": "css/box-model#padding",
+            "order": 3
+          },
+          {
+            "id": "margin",
+            "title": "Margin",
+            "slug": "css/box-model#margin",
+            "order": 4
+          },
+          {
+            "id": "margin-collapse",
+            "title": "Margin collapse",
+            "slug": "css/box-model#margin-collapse",
+            "order": 5
+          },
+          {
+            "id": "min-and-max-dimensions",
+            "title": "Min and max dimensions",
+            "slug": "css/box-model#min-and-max-dimensions",
+            "order": 6
+          },
+          {
+            "id": "overflow",
+            "title": "Overflow",
+            "slug": "css/box-model#overflow",
+            "order": 7
+          },
+          {
+            "id": "reset-defaults",
+            "title": "Reset defaults",
+            "slug": "css/box-model#reset-defaults",
+            "order": 8
+          },
+          {
+            "id": "visibility",
+            "title": "Visibility",
+            "slug": "css/box-model#visibility",
+            "order": 9
+          },
+          {
+            "id": "content-box",
+            "title": "Content box",
+            "slug": "css/box-model#content-box",
+            "order": 10
+          },
+          {
+            "id": "box-sizing-border-box",
+            "title": "Box sizing border box",
+            "slug": "css/box-model#box-sizing-border-box",
+            "order": 11
+          },
+          {
+            "id": "interactive-playground-box-sizing",
+            "title": "Interactive Playground: Box Sizing",
+            "slug": "css/box-model#interactive-playground-box-sizing",
+            "order": 12
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "flow-of-html",
+        "title": "Flow of HTML",
+        "slug": "css/flow-of-html",
+        "filePath": "../../content/css/flow-of-html.mdx",
+        "subSections": [
+          {
+            "id": "position",
+            "title": "Position",
+            "slug": "css/flow-of-html#position",
+            "order": 1
+          },
+          {
+            "id": "relative",
+            "title": "Relative",
+            "slug": "css/flow-of-html#relative",
+            "order": 2
+          },
+          {
+            "id": "absolute",
+            "title": "Absolute",
+            "slug": "css/flow-of-html#absolute",
+            "order": 3
+          },
+          {
+            "id": "fixed",
+            "title": "Fixed",
+            "slug": "css/flow-of-html#fixed",
+            "order": 4
+          },
+          {
+            "id": "sticky",
+            "title": "Sticky",
+            "slug": "css/flow-of-html#sticky",
+            "order": 5
+          },
+          {
+            "id": "z-index",
+            "title": "Z index",
+            "slug": "css/flow-of-html#z-index",
+            "order": 6
+          },
+          {
+            "id": "display",
+            "title": "Display",
+            "slug": "css/flow-of-html#display",
+            "order": 7
+          },
+          {
+            "id": "inline",
+            "title": "Inline",
+            "slug": "css/flow-of-html#inline",
+            "order": 8
+          },
+          {
+            "id": "block",
+            "title": "Block",
+            "slug": "css/flow-of-html#block",
+            "order": 9
+          },
+          {
+            "id": "inline-block",
+            "title": "Inline block",
+            "slug": "css/flow-of-html#inline-block",
+            "order": 10
+          },
+          {
+            "id": "float",
+            "title": "Float",
+            "slug": "css/flow-of-html#float",
+            "order": 11
+          },
+          {
+            "id": "clear",
+            "title": "Clear",
+            "slug": "css/flow-of-html#clear",
+            "order": 12
+          },
+          {
+            "id": "interactive-playground-positioning",
+            "title": "Interactive Playground: Positioning",
+            "slug": "css/flow-of-html#interactive-playground-positioning",
+            "order": 13
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "fonts",
+        "title": "Fonts",
+        "slug": "css/fonts",
+        "filePath": "../../content/css/fonts.mdx",
+        "subSections": [
+          {
+            "id": "web-fonts-using-link",
+            "title": "Web fonts using link",
+            "slug": "css/fonts#web-fonts-using-link",
+            "order": 1
+          },
+          {
+            "id": "web-fonts-using-font-face",
+            "title": "Web fonts using font face",
+            "slug": "css/fonts#web-fonts-using-font-face",
+            "order": 2
+          },
+          {
+            "id": "fallback-fonts-and-font-stacks",
+            "title": "Fallback fonts and font stacks",
+            "slug": "css/fonts#fallback-fonts-and-font-stacks",
+            "order": 3
+          },
+          {
+            "id": "serif-and-sans-serif",
+            "title": "Serif and sans serif",
+            "slug": "css/fonts#serif-and-sans-serif",
+            "order": 4
+          },
+          {
+            "id": "font-weight",
+            "title": "Font weight",
+            "slug": "css/fonts#font-weight",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-font-stack-readability",
+            "title": "Interactive Playground: Font Stack Readability",
+            "slug": "css/fonts#interactive-playground-font-stack-readability",
+            "order": 6
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "colors",
+        "title": "Colors",
+        "slug": "css/colors",
+        "filePath": "../../content/css/colors.mdx",
+        "subSections": [
+          {
+            "id": "hsl",
+            "title": "hsl",
+            "slug": "css/colors#hsl",
+            "order": 1
+          },
+          {
+            "id": "hsla",
+            "title": "hsla",
+            "slug": "css/colors#hsla",
+            "order": 2
+          },
+          {
+            "id": "rgba",
+            "title": "rgba",
+            "slug": "css/colors#rgba",
+            "order": 3
+          },
+          {
+            "id": "interactive-playground-hsl-controls",
+            "title": "Interactive Playground: HSL Controls",
+            "slug": "css/colors#interactive-playground-hsl-controls",
+            "order": 4
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "responsive-design",
+        "title": "Responsive design",
+        "slug": "css/responsive-design",
+        "filePath": "../../content/css/responsive-design.mdx",
+        "subSections": [
+          {
+            "id": "relative-measurements",
+            "title": "Relative measurements",
+            "slug": "css/responsive-design#relative-measurements",
+            "order": 1
+          },
+          {
+            "id": "em",
+            "title": "em",
+            "slug": "css/responsive-design#em",
+            "order": 2
+          },
+          {
+            "id": "rem",
+            "title": "rem",
+            "slug": "css/responsive-design#rem",
+            "order": 3
+          },
+          {
+            "id": "percentages-width-and-height",
+            "title": "Percentages width and height",
+            "slug": "css/responsive-design#percentages-width-and-height",
+            "order": 4
+          },
+          {
+            "id": "percentages-padding-and-margin",
+            "title": "Percentages padding and margin",
+            "slug": "css/responsive-design#percentages-padding-and-margin",
+            "order": 5
+          },
+          {
+            "id": "max-width-and-height",
+            "title": "Max width and height",
+            "slug": "css/responsive-design#max-width-and-height",
+            "order": 6
+          },
+          {
+            "id": "scaling-images-and-videos",
+            "title": "Scaling images and videos",
+            "slug": "css/responsive-design#scaling-images-and-videos",
+            "order": 7
+          },
+          {
+            "id": "scaling-background-images",
+            "title": "Scaling background images",
+            "slug": "css/responsive-design#scaling-background-images",
+            "order": 8
+          },
+          {
+            "id": "viewport-meta-tag",
+            "title": "Viewport meta tag",
+            "slug": "css/responsive-design#viewport-meta-tag",
+            "order": 9
+          },
+          {
+            "id": "media-queries",
+            "title": "Media queries",
+            "slug": "css/responsive-design#media-queries",
+            "order": 10
+          },
+          {
+            "id": "media-rule",
+            "title": "Media rule",
+            "slug": "css/responsive-design#media-rule",
+            "order": 11
+          },
+          {
+            "id": "dots-per-inch-dpi",
+            "title": "Dots per inch dpi",
+            "slug": "css/responsive-design#dots-per-inch-dpi",
+            "order": 12
+          },
+          {
+            "id": "and-operator",
+            "title": "and operator",
+            "slug": "css/responsive-design#and-operator",
+            "order": 13
+          },
+          {
+            "id": "comma-operator",
+            "title": "comma operator",
+            "slug": "css/responsive-design#comma-operator",
+            "order": 14
+          },
+          {
+            "id": "breakpoints",
+            "title": "Breakpoints",
+            "slug": "css/responsive-design#breakpoints",
+            "order": 15
+          },
+          {
+            "id": "interactive-playground-relative-units",
+            "title": "Interactive Playground: Relative Units",
+            "slug": "css/responsive-design#interactive-playground-relative-units",
+            "order": 16
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "flexbox",
+        "title": "Flexbox",
+        "slug": "css/flexbox",
+        "filePath": "../../content/css/flexbox.mdx",
+        "subSections": [
+          {
+            "id": "display-flex",
+            "title": "display flex",
+            "slug": "css/flexbox#display-flex",
+            "order": 1
+          },
+          {
+            "id": "gap-column-gap-and-row-gap",
+            "title": "gap column gap and row gap",
+            "slug": "css/flexbox#gap-column-gap-and-row-gap",
+            "order": 2
+          },
+          {
+            "id": "display-inline-flex",
+            "title": "display inline flex",
+            "slug": "css/flexbox#display-inline-flex",
+            "order": 3
+          },
+          {
+            "id": "justify-content",
+            "title": "justify content",
+            "slug": "css/flexbox#justify-content",
+            "order": 4
+          },
+          {
+            "id": "align-items",
+            "title": "align items",
+            "slug": "css/flexbox#align-items",
+            "order": 5
+          },
+          {
+            "id": "flex-grow",
+            "title": "flex grow",
+            "slug": "css/flexbox#flex-grow",
+            "order": 6
+          },
+          {
+            "id": "flex-shrink",
+            "title": "flex shrink",
+            "slug": "css/flexbox#flex-shrink",
+            "order": 7
+          },
+          {
+            "id": "flex-basis",
+            "title": "flex basis",
+            "slug": "css/flexbox#flex-basis",
+            "order": 8
+          },
+          {
+            "id": "flex-shorthand",
+            "title": "flex shorthand",
+            "slug": "css/flexbox#flex-shorthand",
+            "order": 9
+          },
+          {
+            "id": "flex-wrap",
+            "title": "flex wrap",
+            "slug": "css/flexbox#flex-wrap",
+            "order": 10
+          },
+          {
+            "id": "align-content",
+            "title": "align content",
+            "slug": "css/flexbox#align-content",
+            "order": 11
+          },
+          {
+            "id": "flex-direction",
+            "title": "flex direction",
+            "slug": "css/flexbox#flex-direction",
+            "order": 12
+          },
+          {
+            "id": "flex-flow",
+            "title": "flex flow",
+            "slug": "css/flexbox#flex-flow",
+            "order": 13
+          },
+          {
+            "id": "nested-flexboxes",
+            "title": "Nested flexboxes",
+            "slug": "css/flexbox#nested-flexboxes",
+            "order": 14
+          },
+          {
+            "id": "review",
+            "title": "Review",
+            "slug": "css/flexbox#review",
+            "order": 15
+          },
+          {
+            "id": "interactive-playground-flex-axes",
+            "title": "Interactive Playground: Flex Axes",
+            "slug": "css/flexbox#interactive-playground-flex-axes",
+            "order": 16
+          }
+        ],
+        "order": 9
+      },
+      {
+        "id": "transitions",
+        "title": "Transitions",
+        "slug": "css/transitions",
+        "filePath": "../../content/css/transitions.mdx",
+        "subSections": [
+          {
+            "id": "duration",
+            "title": "Duration",
+            "slug": "css/transitions#duration",
+            "order": 1
+          },
+          {
+            "id": "timing-function",
+            "title": "Timing function",
+            "slug": "css/transitions#timing-function",
+            "order": 2
+          },
+          {
+            "id": "delay",
+            "title": "Delay",
+            "slug": "css/transitions#delay",
+            "order": 3
+          },
+          {
+            "id": "transition",
+            "title": "Transition",
+            "slug": "css/transitions#transition",
+            "order": 4
+          },
+          {
+            "id": "combination",
+            "title": "Combination",
+            "slug": "css/transitions#combination",
+            "order": 5
+          },
+          {
+            "id": "all",
+            "title": "All",
+            "slug": "css/transitions#all",
+            "order": 6
+          },
+          {
+            "id": "animation-tips",
+            "title": "Animation tips",
+            "slug": "css/transitions#animation-tips",
+            "order": 7
+          },
+          {
+            "id": "interactive-playground-transition-timing",
+            "title": "Interactive Playground: Transition Timing",
+            "slug": "css/transitions#interactive-playground-transition-timing",
+            "order": 8
+          }
+        ],
+        "order": 10
+      },
+      {
+        "id": "favicons-and-resize-images",
+        "title": "Favicons And Resize Images",
+        "slug": "css/favicons-and-resize-images",
+        "filePath": "../../content/css/favicons-and-resize-images.mdx",
+        "subSections": [
+          {
+            "id": "image-formats",
+            "title": "Image formats",
+            "slug": "css/favicons-and-resize-images#image-formats",
+            "order": 1
+          },
+          {
+            "id": "favicon",
+            "title": "Favicon",
+            "slug": "css/favicons-and-resize-images#favicon",
+            "order": 2
+          },
+          {
+            "id": "add-the-favicon-to-your-web-page",
+            "title": "Add the favicon to your web page",
+            "slug": "css/favicons-and-resize-images#add-the-favicon-to-your-web-page",
+            "order": 3
+          },
+          {
+            "id": "editing-images",
+            "title": "Editing images",
+            "slug": "css/favicons-and-resize-images#editing-images",
+            "order": 4
+          },
+          {
+            "id": "converting-to-scalable-vector-format",
+            "title": "Converting to scalable vector format",
+            "slug": "css/favicons-and-resize-images#converting-to-scalable-vector-format",
+            "order": 5
+          },
+          {
+            "id": "resizing-images-with-css",
+            "title": "Resizing images with css",
+            "slug": "css/favicons-and-resize-images#resizing-images-with-css",
+            "order": 6
+          },
+          {
+            "id": "responsive-images-with-srcset",
+            "title": "Responsive images with srcset",
+            "slug": "css/favicons-and-resize-images#responsive-images-with-srcset",
+            "order": 7
+          }
+        ],
+        "order": 11
+      },
+      {
+        "id": "buttons",
+        "title": "Buttons",
+        "slug": "css/buttons",
+        "filePath": "../../content/css/buttons.mdx",
+        "subSections": [
+          {
+            "id": "skeuomorphic-styling",
+            "title": "Skeuomorphic styling",
+            "slug": "css/buttons#skeuomorphic-styling",
+            "order": 1
+          },
+          {
+            "id": "flat-design",
+            "title": "Flat design",
+            "slug": "css/buttons#flat-design",
+            "order": 2
+          },
+          {
+            "id": "hover-states",
+            "title": "Hover states",
+            "slug": "css/buttons#hover-states",
+            "order": 3
+          },
+          {
+            "id": "affordances-signifiers-and-clickability",
+            "title": "Affordances signifiers and clickability",
+            "slug": "css/buttons#affordances-signifiers-and-clickability",
+            "order": 4
+          },
+          {
+            "id": "interactive-playground-button-states",
+            "title": "Interactive Playground: Button States",
+            "slug": "css/buttons#interactive-playground-button-states",
+            "order": 5
+          }
+        ],
+        "order": 12
+      },
+      {
+        "id": "breadcrumb-navigation",
+        "title": "Breadcrumb Navigation",
+        "slug": "css/breadcrumb-navigation",
+        "filePath": "../../content/css/breadcrumb-navigation.mdx",
+        "subSections": [
+          {
+            "id": "breadcrumbs-basics",
+            "title": "Breadcrumbs basics",
+            "slug": "css/breadcrumb-navigation#breadcrumbs-basics",
+            "order": 1
+          },
+          {
+            "id": "pseudo-element",
+            "title": "Pseudo element",
+            "slug": "css/breadcrumb-navigation#pseudo-element",
+            "order": 2
+          },
+          {
+            "id": "arrow-style",
+            "title": "Arrow style",
+            "slug": "css/breadcrumb-navigation#arrow-style",
+            "order": 3
+          },
+          {
+            "id": "abbreviated-breadcrumb",
+            "title": "Abbreviated breadcrumb",
+            "slug": "css/breadcrumb-navigation#abbreviated-breadcrumb",
+            "order": 4
+          },
+          {
+            "id": "interactive-playground-breadcrumb-patterns",
+            "title": "Interactive Playground: Breadcrumb Patterns",
+            "slug": "css/breadcrumb-navigation#interactive-playground-breadcrumb-patterns",
+            "order": 5
+          }
+        ],
+        "order": 13
+      },
+      {
+        "id": "grid",
+        "title": "Grid",
+        "slug": "css/grid",
+        "filePath": "../../content/css/grid.mdx",
+        "subSections": [
+          {
+            "id": "creating-a-grid",
+            "title": "Creating a grid",
+            "slug": "css/grid#creating-a-grid",
+            "order": 1
+          },
+          {
+            "id": "creating-columns",
+            "title": "Creating columns",
+            "slug": "css/grid#creating-columns",
+            "order": 2
+          },
+          {
+            "id": "creating-rows",
+            "title": "Creating rows",
+            "slug": "css/grid#creating-rows",
+            "order": 3
+          },
+          {
+            "id": "grid-template",
+            "title": "Grid template",
+            "slug": "css/grid#grid-template",
+            "order": 4
+          },
+          {
+            "id": "fraction",
+            "title": "Fraction",
+            "slug": "css/grid#fraction",
+            "order": 5
+          },
+          {
+            "id": "repeat-function",
+            "title": "Repeat function",
+            "slug": "css/grid#repeat-function",
+            "order": 6
+          },
+          {
+            "id": "minmax-function",
+            "title": "Minmax function",
+            "slug": "css/grid#minmax-function",
+            "order": 7
+          },
+          {
+            "id": "row-gap-and-column-gap",
+            "title": "Row gap and column gap",
+            "slug": "css/grid#row-gap-and-column-gap",
+            "order": 8
+          },
+          {
+            "id": "multiple-row-items",
+            "title": "Multiple row items",
+            "slug": "css/grid#multiple-row-items",
+            "order": 9
+          },
+          {
+            "id": "multiple-column-items",
+            "title": "Multiple column items",
+            "slug": "css/grid#multiple-column-items",
+            "order": 10
+          },
+          {
+            "id": "grid-area",
+            "title": "Grid area",
+            "slug": "css/grid#grid-area",
+            "order": 11
+          },
+          {
+            "id": "grid-template-areas",
+            "title": "Grid template areas",
+            "slug": "css/grid#grid-template-areas",
+            "order": 12
+          },
+          {
+            "id": "overlap-elements",
+            "title": "Overlap elements",
+            "slug": "css/grid#overlap-elements",
+            "order": 13
+          },
+          {
+            "id": "justify-items",
+            "title": "Justify items",
+            "slug": "css/grid#justify-items",
+            "order": 14
+          },
+          {
+            "id": "justify-content",
+            "title": "Justify content",
+            "slug": "css/grid#justify-content",
+            "order": 15
+          },
+          {
+            "id": "align-items",
+            "title": "Align items",
+            "slug": "css/grid#align-items",
+            "order": 16
+          },
+          {
+            "id": "align-content",
+            "title": "Align content",
+            "slug": "css/grid#align-content",
+            "order": 17
+          },
+          {
+            "id": "justify-self-and-align-self",
+            "title": "Justify self and align self",
+            "slug": "css/grid#justify-self-and-align-self",
+            "order": 18
+          },
+          {
+            "id": "implicit-grid",
+            "title": "Implicit grid",
+            "slug": "css/grid#implicit-grid",
+            "order": 19
+          },
+          {
+            "id": "grid-auto-rows-and-columns",
+            "title": "Grid auto rows and columns",
+            "slug": "css/grid#grid-auto-rows-and-columns",
+            "order": 20
+          },
+          {
+            "id": "grid-auto-flow",
+            "title": "Grid auto flow",
+            "slug": "css/grid#grid-auto-flow",
+            "order": 21
+          },
+          {
+            "id": "interactive-playground-grid-templates",
+            "title": "Interactive Playground: Grid Templates",
+            "slug": "css/grid#interactive-playground-grid-templates",
+            "order": 22
+          }
+        ],
+        "order": 14
+      },
+      {
+        "id": "animations-tips",
+        "title": "Animations tips",
+        "slug": "css/animations-tips",
+        "filePath": "../../content/css/animations-tips.mdx",
+        "subSections": [
+          {
+            "id": "slide-down-and-fade-in",
+            "title": "Slide-down and fade-in",
+            "slug": "css/animations-tips#slide-down-and-fade-in",
+            "order": 1
+          },
+          {
+            "id": "practical-guidance",
+            "title": "Practical guidance",
+            "slug": "css/animations-tips#practical-guidance",
+            "order": 2
+          },
+          {
+            "id": "when-to-avoid-motion",
+            "title": "When to avoid motion",
+            "slug": "css/animations-tips#when-to-avoid-motion",
+            "order": 3
+          }
+        ],
+        "order": 15
+      },
+      {
+        "id": "visual-rules-to-do",
+        "title": "Visual rules",
+        "slug": "css/visual-rules-to-do",
+        "filePath": "../../content/css/visual-rules-to-do.mdx",
+        "subSections": [
+          {
+            "id": "font-family",
+            "title": "Font family",
+            "slug": "css/visual-rules-to-do#font-family",
+            "order": 1
+          },
+          {
+            "id": "opacity",
+            "title": "Opacity",
+            "slug": "css/visual-rules-to-do#opacity",
+            "order": 2
+          },
+          {
+            "id": "background-image",
+            "title": "Background image",
+            "slug": "css/visual-rules-to-do#background-image",
+            "order": 3
+          },
+          {
+            "id": "box-shadow",
+            "title": "Box shadow",
+            "slug": "css/visual-rules-to-do#box-shadow",
+            "order": 4
+          }
+        ],
+        "order": 16
+      }
+    ],
+    "order": 16
+  }
+}

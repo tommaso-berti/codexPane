@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "express",
+    "title": "Express.js",
+    "icon": "CustomJavascriptIcon",
+    "slug": "express",
+    "introPath": "../../content/express/introduction.mdx",
+    "sections": [
+      {
+        "id": "what-is-a-server-side-framework",
+        "title": "What is a Server-Side Framework",
+        "slug": "express/what-is-a-server-side-framework",
+        "filePath": "../../content/express/what-is-a-server-side-framework.mdx",
+        "subSections": [
+          {
+            "id": "why-use-a-server-side-framework",
+            "title": "Why Use a Server-Side Framework?",
+            "slug": "express/what-is-a-server-side-framework#why-use-a-server-side-framework",
+            "order": 1
+          },
+          {
+            "id": "nodejs-and-expressjs",
+            "title": "Node.js and Express.js",
+            "slug": "express/what-is-a-server-side-framework#nodejs-and-expressjs",
+            "order": 2
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "express-js",
+        "title": "Express.js",
+        "slug": "express/express-js",
+        "filePath": "../../content/express/express-js.mdx",
+        "subSections": [
+          {
+            "id": "starting-a-server",
+            "title": "Starting A Server",
+            "slug": "express/express-js#starting-a-server",
+            "order": 1
+          },
+          {
+            "id": "writing-a-route",
+            "title": "Writing a Route",
+            "slug": "express/express-js#writing-a-route",
+            "order": 2
+          },
+          {
+            "id": "sending-a-response",
+            "title": "Sending A Response",
+            "slug": "express/express-js#sending-a-response",
+            "order": 3
+          },
+          {
+            "id": "matching-route-paths",
+            "title": "Matching Route Paths",
+            "slug": "express/express-js#matching-route-paths",
+            "order": 4
+          },
+          {
+            "id": "getting-a-single-expression",
+            "title": "Getting A Single Expression",
+            "slug": "express/express-js#getting-a-single-expression",
+            "order": 5
+          },
+          {
+            "id": "setting-status-codes",
+            "title": "Setting Status Codes",
+            "slug": "express/express-js#setting-status-codes",
+            "order": 6
+          },
+          {
+            "id": "matching-longer-paths",
+            "title": "Matching Longer Paths",
+            "slug": "express/express-js#matching-longer-paths",
+            "order": 7
+          },
+          {
+            "id": "other-http-methods",
+            "title": "Other HTTP Methods",
+            "slug": "express/express-js#other-http-methods",
+            "order": 8
+          },
+          {
+            "id": "matching-by-http-verb",
+            "title": "Matching By HTTP Verb",
+            "slug": "express/express-js#matching-by-http-verb",
+            "order": 9
+          },
+          {
+            "id": "response-status",
+            "title": "Response status",
+            "slug": "express/express-js#response-status",
+            "order": 10
+          },
+          {
+            "id": "methods",
+            "title": "Methods",
+            "slug": "express/express-js#methods",
+            "order": 11
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "routers",
+        "title": "Routers",
+        "slug": "express/routers",
+        "filePath": "../../content/express/routers.mdx",
+        "subSections": [
+          {
+            "id": "expressrouter",
+            "title": "Express.Router",
+            "slug": "express/routers#expressrouter",
+            "order": 1
+          },
+          {
+            "id": "using-multiple-router-files",
+            "title": "Using multiple router files",
+            "slug": "express/routers#using-multiple-router-files",
+            "order": 2
+          },
+          {
+            "id": "matching-in-nested-routers",
+            "title": "Matching in nested routers",
+            "slug": "express/routers#matching-in-nested-routers",
+            "order": 3
+          },
+          {
+            "id": "control-flow-with-next",
+            "title": "Control flow with next()",
+            "slug": "express/routers#control-flow-with-next",
+            "order": 4
+          },
+          {
+            "id": "route-level-appuse---multiple-paths",
+            "title": "Route-level app.use() - multiple paths",
+            "slug": "express/routers#route-level-appuse---multiple-paths",
+            "order": 5
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "middleware",
+        "title": "Middleware",
+        "slug": "express/middleware",
+        "filePath": "../../content/express/middleware.mdx",
+        "subSections": [
+          {
+            "id": "drying-code-with-functions",
+            "title": "DRYing code with functions",
+            "slug": "express/middleware#drying-code-with-functions",
+            "order": 1
+          },
+          {
+            "id": "drying-routes-with-appuse",
+            "title": "DRYing routes with app.use()",
+            "slug": "express/middleware#drying-routes-with-appuse",
+            "order": 2
+          },
+          {
+            "id": "next",
+            "title": "next()",
+            "slug": "express/middleware#next",
+            "order": 3
+          },
+          {
+            "id": "route-level-appuse---single-path",
+            "title": "Route-level app.use() - single path",
+            "slug": "express/middleware#route-level-appuse---single-path",
+            "order": 4
+          },
+          {
+            "id": "middleware-stacks",
+            "title": "Middleware stacks",
+            "slug": "express/middleware#middleware-stacks",
+            "order": 5
+          },
+          {
+            "id": "open-source-middleware-logging-morgan",
+            "title": "Open-source middleware: logging (Morgan)",
+            "slug": "express/middleware#open-source-middleware-logging-morgan",
+            "order": 6
+          },
+          {
+            "id": "open-source-middleware-body-parsing",
+            "title": "Open-source middleware: body parsing",
+            "slug": "express/middleware#open-source-middleware-body-parsing",
+            "order": 7
+          },
+          {
+            "id": "error-handling-middleware",
+            "title": "Error-handling middleware",
+            "slug": "express/middleware#error-handling-middleware",
+            "order": 8
+          },
+          {
+            "id": "discovering-open-source-middleware",
+            "title": "Discovering open-source middleware",
+            "slug": "express/middleware#discovering-open-source-middleware",
+            "order": 9
+          },
+          {
+            "id": "complete-code",
+            "title": "Complete code",
+            "slug": "express/middleware#complete-code",
+            "order": 10
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "router-parameters",
+        "title": "Router parameters",
+        "slug": "express/router-parameters",
+        "filePath": "../../content/express/router-parameters.mdx",
+        "subSections": [
+          {
+            "id": "merge-parameters",
+            "title": "Merge Parameters",
+            "slug": "express/router-parameters#merge-parameters",
+            "order": 1
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "cors",
+        "title": "CORS",
+        "slug": "express/cors",
+        "filePath": "../../content/express/cors.mdx",
+        "subSections": [
+          {
+            "id": "what-is-cors",
+            "title": "What is CORS?",
+            "slug": "express/cors#what-is-cors",
+            "order": 1
+          },
+          {
+            "id": "cors-cross-origin-resource-sharing",
+            "title": "CORS (cross-origin resource sharing)",
+            "slug": "express/cors#cors-cross-origin-resource-sharing",
+            "order": 2
+          },
+          {
+            "id": "pre-flight-requests",
+            "title": "Pre-flight requests",
+            "slug": "express/cors#pre-flight-requests",
+            "order": 3
+          },
+          {
+            "id": "how-to-implement-cors",
+            "title": "How to implement CORS?",
+            "slug": "express/cors#how-to-implement-cors",
+            "order": 4
+          }
+        ],
+        "order": 6
+      }
+    ],
+    "order": 7
+  }
+}

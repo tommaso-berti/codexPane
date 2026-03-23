@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "demo",
+    "title": "Demo",
+    "icon": "PublicIcon",
+    "slug": "demo",
+    "introPath": "../../content/demo/introduction.mdx",
+    "sections": [
+      {
+        "id": "style-showcase",
+        "title": "MDX Style Guide (Demo)",
+        "slug": "demo/style-showcase",
+        "filePath": "../../content/demo/style-showcase.mdx",
+        "subSections": [
+          {
+            "id": "text-and-emphasis",
+            "title": "Text and emphasis",
+            "slug": "demo/style-showcase#text-and-emphasis",
+            "order": 1
+          },
+          {
+            "id": "lists",
+            "title": "Lists",
+            "slug": "demo/style-showcase#lists",
+            "order": 2
+          },
+          {
+            "id": "headings",
+            "title": "Headings",
+            "slug": "demo/style-showcase#headings",
+            "order": 3
+          },
+          {
+            "id": "h2--subsection-title-recognized-as-a-subsection",
+            "title": "H2 — Subsection title (recognized as a subSection)",
+            "slug": "demo/style-showcase#h2--subsection-title-recognized-as-a-subsection",
+            "order": 4
+          },
+          {
+            "id": "links",
+            "title": "Links",
+            "slug": "demo/style-showcase#links",
+            "order": 5
+          },
+          {
+            "id": "tables",
+            "title": "Tables",
+            "slug": "demo/style-showcase#tables",
+            "order": 6
+          },
+          {
+            "id": "code-blocks",
+            "title": "Code blocks",
+            "slug": "demo/style-showcase#code-blocks",
+            "order": 7
+          },
+          {
+            "id": "collapsible-details",
+            "title": "Collapsible details",
+            "slug": "demo/style-showcase#collapsible-details",
+            "order": 8
+          },
+          {
+            "id": "inline-html",
+            "title": "Inline HTML",
+            "slug": "demo/style-showcase#inline-html",
+            "order": 9
+          },
+          {
+            "id": "footnotes",
+            "title": "Footnotes",
+            "slug": "demo/style-showcase#footnotes",
+            "order": 10
+          },
+          {
+            "id": "horizontal-rule",
+            "title": "Horizontal rule",
+            "slug": "demo/style-showcase#horizontal-rule",
+            "order": 11
+          },
+          {
+            "id": "ascii-diagrams",
+            "title": "ASCII diagrams",
+            "slug": "demo/style-showcase#ascii-diagrams",
+            "order": 12
+          },
+          {
+            "id": "callout-patterns",
+            "title": "Callout patterns",
+            "slug": "demo/style-showcase#callout-patterns",
+            "order": 13
+          },
+          {
+            "id": "minimal-section-skeleton",
+            "title": "Minimal section skeleton",
+            "slug": "demo/style-showcase#minimal-section-skeleton",
+            "order": 14
+          },
+          {
+            "id": "subsection-a",
+            "title": "Subsection A",
+            "slug": "demo/style-showcase#subsection-a",
+            "order": 15
+          },
+          {
+            "id": "subsection-b",
+            "title": "Subsection B",
+            "slug": "demo/style-showcase#subsection-b",
+            "order": 16
+          }
+        ],
+        "order": 1
+      }
+    ],
+    "order": 17
+  }
+}

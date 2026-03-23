@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "authentication",
+    "title": "User Authentication",
+    "icon": "SecurityIcon",
+    "slug": "authentication",
+    "introPath": "../../content/authentication/introduction.mdx",
+    "sections": [
+      {
+        "id": "authentication-vs-authorization-vs-encryption",
+        "title": "Authentication vs Authorization vs Encryption",
+        "slug": "authentication/authentication-vs-authorization-vs-encryption",
+        "filePath": "../../content/authentication/authentication-vs-authorization-vs-encryption.mdx",
+        "subSections": [
+          {
+            "id": "authentication",
+            "title": "Authentication",
+            "slug": "authentication/authentication-vs-authorization-vs-encryption#authentication",
+            "order": 1
+          },
+          {
+            "id": "authorization",
+            "title": "Authorization",
+            "slug": "authentication/authentication-vs-authorization-vs-encryption#authorization",
+            "order": 2
+          },
+          {
+            "id": "encryption",
+            "title": "Encryption",
+            "slug": "authentication/authentication-vs-authorization-vs-encryption#encryption",
+            "order": 3
+          },
+          {
+            "id": "interactive-playground-security-decision-map",
+            "title": "Interactive Playground: Security Decision Map",
+            "slug": "authentication/authentication-vs-authorization-vs-encryption#interactive-playground-security-decision-map",
+            "order": 4
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "web-sessions",
+        "title": "Web Sessions",
+        "slug": "authentication/web-sessions",
+        "filePath": "../../content/authentication/web-sessions.mdx",
+        "subSections": [
+          {
+            "id": "sessions-and-cookies",
+            "title": "Sessions and Cookies",
+            "slug": "authentication/web-sessions#sessions-and-cookies",
+            "order": 1
+          },
+          {
+            "id": "what-is-localstorage",
+            "title": "What is localStorage?",
+            "slug": "authentication/web-sessions#what-is-localstorage",
+            "order": 2
+          },
+          {
+            "id": "cookies-vs-localstorage-vs-sessionstorage",
+            "title": "Cookies vs. localStorage vs. sessionStorage",
+            "slug": "authentication/web-sessions#cookies-vs-localstorage-vs-sessionstorage",
+            "order": 3
+          },
+          {
+            "id": "more-on-session-security",
+            "title": "More On Session Security",
+            "slug": "authentication/web-sessions#more-on-session-security",
+            "order": 4
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "security-related-http-headers",
+        "title": "Security-Related HTTP Headers",
+        "slug": "authentication/security-related-http-headers",
+        "filePath": "../../content/authentication/security-related-http-headers.mdx",
+        "subSections": [
+          {
+            "id": "common-security-headers",
+            "title": "Common security headers",
+            "slug": "authentication/security-related-http-headers#common-security-headers",
+            "order": 1
+          },
+          {
+            "id": "content-security-policy",
+            "title": "Content-Security-Policy",
+            "slug": "authentication/security-related-http-headers#content-security-policy",
+            "order": 2
+          },
+          {
+            "id": "x-frame-options",
+            "title": "X-Frame-Options",
+            "slug": "authentication/security-related-http-headers#x-frame-options",
+            "order": 3
+          },
+          {
+            "id": "how-to-add-security-headers",
+            "title": "How to add security headers",
+            "slug": "authentication/security-related-http-headers#how-to-add-security-headers",
+            "order": 4
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "sessions-in-express",
+        "title": "Sessions in Express",
+        "slug": "authentication/sessions-in-express",
+        "filePath": "../../content/authentication/sessions-in-express.mdx",
+        "subSections": [
+          {
+            "id": "installing-express-session",
+            "title": "Installing express-session",
+            "slug": "authentication/sessions-in-express#installing-express-session",
+            "order": 1
+          },
+          {
+            "id": "interactive-playground-session-lifecycle-in-express",
+            "title": "Interactive Playground: Session Lifecycle in Express",
+            "slug": "authentication/sessions-in-express#interactive-playground-session-lifecycle-in-express",
+            "order": 2
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "json-web-tokens-jwts",
+        "title": "JSON Web Tokens (JWTs) order: 5",
+        "slug": "authentication/json-web-tokens-jwts",
+        "filePath": "../../content/authentication/json-web-tokens-jwts.mdx",
+        "subSections": [
+          {
+            "id": "jwt-header",
+            "title": "JWT Header",
+            "slug": "authentication/json-web-tokens-jwts#jwt-header",
+            "order": 1
+          },
+          {
+            "id": "jwt-payload",
+            "title": "JWT Payload",
+            "slug": "authentication/json-web-tokens-jwts#jwt-payload",
+            "order": 2
+          },
+          {
+            "id": "jwt-signature",
+            "title": "JWT Signature",
+            "slug": "authentication/json-web-tokens-jwts#jwt-signature",
+            "order": 3
+          },
+          {
+            "id": "our-final-jwt",
+            "title": "Our Final JWT",
+            "slug": "authentication/json-web-tokens-jwts#our-final-jwt",
+            "order": 4
+          },
+          {
+            "id": "how-do-we-use-a-jwt",
+            "title": "How Do We Use a JWT?",
+            "slug": "authentication/json-web-tokens-jwts#how-do-we-use-a-jwt",
+            "order": 5
+          },
+          {
+            "id": "improperly-storing-a-jwt",
+            "title": "Improperly Storing a JWT",
+            "slug": "authentication/json-web-tokens-jwts#improperly-storing-a-jwt",
+            "order": 6
+          },
+          {
+            "id": "why-use-jwts",
+            "title": "Why Use JWTs?",
+            "slug": "authentication/json-web-tokens-jwts#why-use-jwts",
+            "order": 7
+          },
+          {
+            "id": "nodejs-jwt-libraries",
+            "title": "Node.js JWT Libraries",
+            "slug": "authentication/json-web-tokens-jwts#nodejs-jwt-libraries",
+            "order": 8
+          },
+          {
+            "id": "interactive-playground-jwt-lifecycle",
+            "title": "Interactive Playground: JWT Lifecycle",
+            "slug": "authentication/json-web-tokens-jwts#interactive-playground-jwt-lifecycle",
+            "order": 9
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "hashing-vs-encryption-vs-encoding-vs-obfuscation",
+        "title": "Hashing vs. Encryption vs. Encoding vs. Obfuscation",
+        "slug": "authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation",
+        "filePath": "../../content/authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation.mdx",
+        "subSections": [
+          {
+            "id": "encryption",
+            "title": "Encryption",
+            "slug": "authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation#encryption",
+            "order": 1
+          },
+          {
+            "id": "hashing",
+            "title": "Hashing",
+            "slug": "authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation#hashing",
+            "order": 2
+          },
+          {
+            "id": "encoding",
+            "title": "Encoding",
+            "slug": "authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation#encoding",
+            "order": 3
+          },
+          {
+            "id": "obfuscation",
+            "title": "Obfuscation",
+            "slug": "authentication/hashing-vs-encryption-vs-encoding-vs-obfuscation#obfuscation",
+            "order": 4
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "passport-js",
+        "title": "Passport.js",
+        "slug": "authentication/passport-js",
+        "filePath": "../../content/authentication/passport-js.mdx",
+        "subSections": [
+          {
+            "id": "configuring-passportjs",
+            "title": "Configuring Passport.js",
+            "slug": "authentication/passport-js#configuring-passportjs",
+            "order": 1
+          },
+          {
+            "id": "passports-local-strategy",
+            "title": "Passport's Local Strategy",
+            "slug": "authentication/passport-js#passports-local-strategy",
+            "order": 2
+          },
+          {
+            "id": "serializing-and-deserializing-users",
+            "title": "Serializing and Deserializing Users",
+            "slug": "authentication/passport-js#serializing-and-deserializing-users",
+            "order": 3
+          },
+          {
+            "id": "logging-in",
+            "title": "Logging In",
+            "slug": "authentication/passport-js#logging-in",
+            "order": 4
+          },
+          {
+            "id": "user-registration",
+            "title": "User Registration",
+            "slug": "authentication/passport-js#user-registration",
+            "order": 5
+          },
+          {
+            "id": "logging-out",
+            "title": "Logging Out",
+            "slug": "authentication/passport-js#logging-out",
+            "order": 6
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "bcrypt",
+        "title": "BCRYPT",
+        "slug": "authentication/bcrypt",
+        "filePath": "../../content/authentication/bcrypt.mdx",
+        "subSections": [
+          {
+            "id": "hash-functions",
+            "title": "Hash Functions",
+            "slug": "authentication/bcrypt#hash-functions",
+            "order": 1
+          },
+          {
+            "id": "salts-and-rainbow-table-attacks",
+            "title": "Salts and Rainbow Table Attacks",
+            "slug": "authentication/bcrypt#salts-and-rainbow-table-attacks",
+            "order": 2
+          },
+          {
+            "id": "using-bcrypt-to-hash-passwords",
+            "title": "Using bcrypt to Hash Passwords",
+            "slug": "authentication/bcrypt#using-bcrypt-to-hash-passwords",
+            "order": 3
+          },
+          {
+            "id": "verifying-passwords",
+            "title": "Verifying Passwords",
+            "slug": "authentication/bcrypt#verifying-passwords",
+            "order": 4
+          },
+          {
+            "id": "bcrypt-in-a-crud-app",
+            "title": "Bcrypt in a CRUD App",
+            "slug": "authentication/bcrypt#bcrypt-in-a-crud-app",
+            "order": 5
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "oauth-2-0",
+        "title": "OAuth 2.0",
+        "slug": "authentication/oauth-2-0",
+        "filePath": "../../content/authentication/oauth-2-0.mdx",
+        "subSections": [
+          {
+            "id": "http-basic-auth",
+            "title": "HTTP Basic Auth",
+            "slug": "authentication/oauth-2-0#http-basic-auth",
+            "order": 1
+          },
+          {
+            "id": "api-keys",
+            "title": "API Keys",
+            "slug": "authentication/oauth-2-0#api-keys",
+            "order": 2
+          },
+          {
+            "id": "oauth",
+            "title": "OAuth",
+            "slug": "authentication/oauth-2-0#oauth",
+            "order": 3
+          },
+          {
+            "id": "access-tokens",
+            "title": "Access Tokens",
+            "slug": "authentication/oauth-2-0#access-tokens",
+            "order": 4
+          },
+          {
+            "id": "oauth-20-grant-types",
+            "title": "OAuth 2.0 Grant Types",
+            "slug": "authentication/oauth-2-0#oauth-20-grant-types",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-oauth-grant-flow-simulator",
+            "title": "Interactive Playground: OAuth Grant Flow Simulator",
+            "slug": "authentication/oauth-2-0#interactive-playground-oauth-grant-flow-simulator",
+            "order": 6
+          },
+          {
+            "id": "threats-to-oauth",
+            "title": "Threats to OAuth",
+            "slug": "authentication/oauth-2-0#threats-to-oauth",
+            "order": 7
+          },
+          {
+            "id": "installing-oauth2-server",
+            "title": "Installing oauth2-server",
+            "slug": "authentication/oauth-2-0#installing-oauth2-server",
+            "order": 8
+          },
+          {
+            "id": "creating-an-oauth-20-server-instance",
+            "title": "Creating an OAuth 2.0 Server Instance",
+            "slug": "authentication/oauth-2-0#creating-an-oauth-20-server-instance",
+            "order": 9
+          },
+          {
+            "id": "registering-client-to-application",
+            "title": "Registering Client to Application",
+            "slug": "authentication/oauth-2-0#registering-client-to-application",
+            "order": 10
+          },
+          {
+            "id": "getclient",
+            "title": "getClient()",
+            "slug": "authentication/oauth-2-0#getclient",
+            "order": 11
+          },
+          {
+            "id": "savetoken",
+            "title": "saveToken()",
+            "slug": "authentication/oauth-2-0#savetoken",
+            "order": 12
+          },
+          {
+            "id": "getuserfromclient",
+            "title": "getUserFromClient()",
+            "slug": "authentication/oauth-2-0#getuserfromclient",
+            "order": 13
+          },
+          {
+            "id": "obtaining-token-handler",
+            "title": "Obtaining Token Handler",
+            "slug": "authentication/oauth-2-0#obtaining-token-handler",
+            "order": 14
+          },
+          {
+            "id": "getaccesstoken",
+            "title": "getAccessToken()",
+            "slug": "authentication/oauth-2-0#getaccesstoken",
+            "order": 15
+          },
+          {
+            "id": "authentication-middleware",
+            "title": "Authentication Middleware",
+            "slug": "authentication/oauth-2-0#authentication-middleware",
+            "order": 16
+          },
+          {
+            "id": "testing-endpoints-with-http",
+            "title": "Testing Endpoints with HTTP",
+            "slug": "authentication/oauth-2-0#testing-endpoints-with-http",
+            "order": 17
+          }
+        ],
+        "order": 9
+      }
+    ],
+    "order": 3
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "devops-fundamentals",
+    "title": "DevOps Fundamentals",
+    "icon": "DnsIcon",
+    "slug": "devops-fundamentals",
+    "introPath": "../../content/devops-fundamentals/introduction.mdx",
+    "sections": [
+      {
+        "id": "devops-culture",
+        "title": "DevOps culture",
+        "slug": "devops-fundamentals/devops-culture",
+        "filePath": "../../content/devops-fundamentals/devops-culture.mdx",
+        "subSections": [
+          {
+            "id": "devops-culture",
+            "title": "DevOps Culture",
+            "slug": "devops-fundamentals/devops-culture#devops-culture",
+            "order": 1
+          },
+          {
+            "id": "devops-practices",
+            "title": "DevOps Practices",
+            "slug": "devops-fundamentals/devops-culture#devops-practices",
+            "order": 2
+          },
+          {
+            "id": "systems-level-thinking",
+            "title": "Systems-Level Thinking",
+            "slug": "devops-fundamentals/devops-culture#systems-level-thinking",
+            "order": 3
+          },
+          {
+            "id": "continuous-learning-and-experimentation",
+            "title": "Continuous Learning and Experimentation",
+            "slug": "devops-fundamentals/devops-culture#continuous-learning-and-experimentation",
+            "order": 4
+          },
+          {
+            "id": "feedback-loops",
+            "title": "Feedback Loops",
+            "slug": "devops-fundamentals/devops-culture#feedback-loops",
+            "order": 5
+          },
+          {
+            "id": "metrics",
+            "title": "Metrics",
+            "slug": "devops-fundamentals/devops-culture#metrics",
+            "order": 6
+          },
+          {
+            "id": "shifting-left",
+            "title": "Shifting Left",
+            "slug": "devops-fundamentals/devops-culture#shifting-left",
+            "order": 7
+          },
+          {
+            "id": "building-quality-in",
+            "title": "Building Quality In",
+            "slug": "devops-fundamentals/devops-culture#building-quality-in",
+            "order": 8
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "infrastructure-traditional-infrastructure",
+        "title": "Infrastructure Traditional Infrastructure",
+        "slug": "devops-fundamentals/infrastructure-traditional-infrastructure",
+        "filePath": "../../content/devops-fundamentals/infrastructure-traditional-infrastructure.mdx",
+        "subSections": [
+          {
+            "id": "infrastructure",
+            "title": "Infrastructure",
+            "slug": "devops-fundamentals/infrastructure-traditional-infrastructure#infrastructure",
+            "order": 1
+          },
+          {
+            "id": "problems-with-traditional-infrastructure",
+            "title": "Problems with Traditional Infrastructure",
+            "slug": "devops-fundamentals/infrastructure-traditional-infrastructure#problems-with-traditional-infrastructure",
+            "order": 2
+          },
+          {
+            "id": "the-role-of-the-operations-team",
+            "title": "The Role of the Operations Team",
+            "slug": "devops-fundamentals/infrastructure-traditional-infrastructure#the-role-of-the-operations-team",
+            "order": 3
+          },
+          {
+            "id": "environments",
+            "title": "Environments",
+            "slug": "devops-fundamentals/infrastructure-traditional-infrastructure#environments",
+            "order": 4
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "traditional-infrastructure",
+        "title": "Traditional Infrastructure",
+        "slug": "devops-fundamentals/traditional-infrastructure",
+        "filePath": "../../content/devops-fundamentals/traditional-infrastructure.mdx",
+        "subSections": [
+          {
+            "id": "traditional-infrastructure",
+            "title": "Traditional Infrastructure",
+            "slug": "devops-fundamentals/traditional-infrastructure#traditional-infrastructure",
+            "order": 1
+          },
+          {
+            "id": "virtualization",
+            "title": "Virtualization",
+            "slug": "devops-fundamentals/traditional-infrastructure#virtualization",
+            "order": 2
+          },
+          {
+            "id": "containerization",
+            "title": "Containerization",
+            "slug": "devops-fundamentals/traditional-infrastructure#containerization",
+            "order": 3
+          },
+          {
+            "id": "cloud-based-infrastructure",
+            "title": "Cloud-Based Infrastructure",
+            "slug": "devops-fundamentals/traditional-infrastructure#cloud-based-infrastructure",
+            "order": 4
+          },
+          {
+            "id": "serverless",
+            "title": "Serverless",
+            "slug": "devops-fundamentals/traditional-infrastructure#serverless",
+            "order": 5
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "infrastructure-configuration",
+        "title": "Infrastructure Configuration",
+        "slug": "devops-fundamentals/infrastructure-configuration",
+        "filePath": "../../content/devops-fundamentals/infrastructure-configuration.mdx",
+        "subSections": [
+          {
+            "id": "provisioning",
+            "title": "Provisioning",
+            "slug": "devops-fundamentals/infrastructure-configuration#provisioning",
+            "order": 1
+          },
+          {
+            "id": "configuration",
+            "title": "Configuration",
+            "slug": "devops-fundamentals/infrastructure-configuration#configuration",
+            "order": 2
+          },
+          {
+            "id": "modern-infrastructure-configuration",
+            "title": "Modern Infrastructure configuration",
+            "slug": "devops-fundamentals/infrastructure-configuration#modern-infrastructure-configuration",
+            "order": 3
+          },
+          {
+            "id": "infrastructure-as-code",
+            "title": "Infrastructure as Code",
+            "slug": "devops-fundamentals/infrastructure-configuration#infrastructure-as-code",
+            "order": 4
+          },
+          {
+            "id": "benefits-of-iac",
+            "title": "Benefits of IaC",
+            "slug": "devops-fundamentals/infrastructure-configuration#benefits-of-iac",
+            "order": 5
+          },
+          {
+            "id": "iac-tools",
+            "title": "IaC tools",
+            "slug": "devops-fundamentals/infrastructure-configuration#iac-tools",
+            "order": 6
+          },
+          {
+            "id": "declarative-vs-imperative-approach",
+            "title": "Declarative vs imperative approach",
+            "slug": "devops-fundamentals/infrastructure-configuration#declarative-vs-imperative-approach",
+            "order": 7
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "application-architectures",
+        "title": "Application Architectures",
+        "slug": "devops-fundamentals/application-architectures",
+        "filePath": "../../content/devops-fundamentals/application-architectures.mdx",
+        "subSections": [
+          {
+            "id": "monolithic-architecture",
+            "title": "Monolithic Architecture",
+            "slug": "devops-fundamentals/application-architectures#monolithic-architecture",
+            "order": 1
+          },
+          {
+            "id": "n-tier-architecture",
+            "title": "N-Tier Architecture",
+            "slug": "devops-fundamentals/application-architectures#n-tier-architecture",
+            "order": 2
+          },
+          {
+            "id": "microservices-architecture",
+            "title": "Microservices Architecture",
+            "slug": "devops-fundamentals/application-architectures#microservices-architecture",
+            "order": 3
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "system-health",
+        "title": "System health",
+        "slug": "devops-fundamentals/system-health",
+        "filePath": "../../content/devops-fundamentals/system-health.mdx",
+        "subSections": [
+          {
+            "id": "monitoring",
+            "title": "Monitoring",
+            "slug": "devops-fundamentals/system-health#monitoring",
+            "order": 1
+          },
+          {
+            "id": "goals-of-monitoring",
+            "title": "Goals of Monitoring",
+            "slug": "devops-fundamentals/system-health#goals-of-monitoring",
+            "order": 2
+          },
+          {
+            "id": "what-should-we-measure",
+            "title": "What Should We Measure?",
+            "slug": "devops-fundamentals/system-health#what-should-we-measure",
+            "order": 3
+          },
+          {
+            "id": "resiliency",
+            "title": "Resiliency",
+            "slug": "devops-fundamentals/system-health#resiliency",
+            "order": 4
+          },
+          {
+            "id": "system-threats",
+            "title": "System threats",
+            "slug": "devops-fundamentals/system-health#system-threats",
+            "order": 5
+          },
+          {
+            "id": "methods-for-resiliency",
+            "title": "Methods for resiliency",
+            "slug": "devops-fundamentals/system-health#methods-for-resiliency",
+            "order": 6
+          },
+          {
+            "id": "spreading-the-work-around",
+            "title": "Spreading The Work Around",
+            "slug": "devops-fundamentals/system-health#spreading-the-work-around",
+            "order": 7
+          },
+          {
+            "id": "measuring-resiliency",
+            "title": "Measuring resiliency",
+            "slug": "devops-fundamentals/system-health#measuring-resiliency",
+            "order": 8
+          },
+          {
+            "id": "the-real-world",
+            "title": "The Real World",
+            "slug": "devops-fundamentals/system-health#the-real-world",
+            "order": 9
+          },
+          {
+            "id": "interactive-playground-system-health-budget",
+            "title": "Interactive Playground: System Health Budget",
+            "slug": "devops-fundamentals/system-health#interactive-playground-system-health-budget",
+            "order": 10
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "devops-automation",
+        "title": "DevOps Automation",
+        "slug": "devops-fundamentals/devops-automation",
+        "filePath": "../../content/devops-fundamentals/devops-automation.mdx",
+        "subSections": [
+          {
+            "id": "planning",
+            "title": "Planning",
+            "slug": "devops-fundamentals/devops-automation#planning",
+            "order": 1
+          },
+          {
+            "id": "building-testing-and-deploying",
+            "title": "Building, testing, and deploying",
+            "slug": "devops-fundamentals/devops-automation#building-testing-and-deploying",
+            "order": 2
+          },
+          {
+            "id": "monitoring",
+            "title": "Monitoring",
+            "slug": "devops-fundamentals/devops-automation#monitoring",
+            "order": 3
+          },
+          {
+            "id": "popular-automation-tools",
+            "title": "Popular automation tools",
+            "slug": "devops-fundamentals/devops-automation#popular-automation-tools",
+            "order": 4
+          },
+          {
+            "id": "continuous-integration",
+            "title": "Continuous Integration",
+            "slug": "devops-fundamentals/devops-automation#continuous-integration",
+            "order": 5
+          },
+          {
+            "id": "feature-branch-development",
+            "title": "Feature branch development",
+            "slug": "devops-fundamentals/devops-automation#feature-branch-development",
+            "order": 6
+          },
+          {
+            "id": "trunk-based-development",
+            "title": "Trunk-based development",
+            "slug": "devops-fundamentals/devops-automation#trunk-based-development",
+            "order": 7
+          },
+          {
+            "id": "ci-with-trunk-based-development",
+            "title": "CI with trunk-based development",
+            "slug": "devops-fundamentals/devops-automation#ci-with-trunk-based-development",
+            "order": 8
+          },
+          {
+            "id": "popular-ci-tools",
+            "title": "Popular CI tools",
+            "slug": "devops-fundamentals/devops-automation#popular-ci-tools",
+            "order": 9
+          },
+          {
+            "id": "implementing-ci",
+            "title": "Implementing CI",
+            "slug": "devops-fundamentals/devops-automation#implementing-ci",
+            "order": 10
+          },
+          {
+            "id": "continuous-delivery-and-deployment",
+            "title": "Continuous Delivery and Deployment",
+            "slug": "devops-fundamentals/devops-automation#continuous-delivery-and-deployment",
+            "order": 11
+          },
+          {
+            "id": "continuous-delivery",
+            "title": "Continuous delivery",
+            "slug": "devops-fundamentals/devops-automation#continuous-delivery",
+            "order": 12
+          },
+          {
+            "id": "continuous-deployment",
+            "title": "Continuous deployment",
+            "slug": "devops-fundamentals/devops-automation#continuous-deployment",
+            "order": 13
+          },
+          {
+            "id": "the-cicd-pipeline",
+            "title": "The CI/CD pipeline",
+            "slug": "devops-fundamentals/devops-automation#the-cicd-pipeline",
+            "order": 14
+          },
+          {
+            "id": "pattern-background-job-deploy-with-systemd-and-github-actions",
+            "title": "Pattern: background job deploy with systemd and github actions",
+            "slug": "devops-fundamentals/devops-automation#pattern-background-job-deploy-with-systemd-and-github-actions",
+            "order": 15
+          },
+          {
+            "id": "interactive-playground-delivery-pipeline-gates",
+            "title": "Interactive Playground: Delivery Pipeline Gates",
+            "slug": "devops-fundamentals/devops-automation#interactive-playground-delivery-pipeline-gates",
+            "order": 16
+          }
+        ],
+        "order": 7
+      }
+    ],
+    "order": 6
+  }
+}

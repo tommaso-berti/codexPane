@@ -1,0 +1,466 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "html",
+    "title": "HTML",
+    "icon": "CustomHtmlIcon",
+    "slug": "html",
+    "introPath": "../../content/html/introduction.mdx",
+    "sections": [
+      {
+        "id": "html-document",
+        "title": "HTML Document",
+        "slug": "html/html-document",
+        "filePath": "../../content/html/html-document.mdx",
+        "subSections": [
+          {
+            "id": "doctype",
+            "title": "Doctype",
+            "slug": "html/html-document#doctype",
+            "order": 1
+          },
+          {
+            "id": "website-common-document-hierarchy",
+            "title": "Website Common Document Hierarchy",
+            "slug": "html/html-document#website-common-document-hierarchy",
+            "order": 2
+          },
+          {
+            "id": "document-structure",
+            "title": "Document Structure",
+            "slug": "html/html-document#document-structure",
+            "order": 3
+          },
+          {
+            "id": "elements-overview",
+            "title": "Elements Overview",
+            "slug": "html/html-document#elements-overview",
+            "order": 4
+          },
+          {
+            "id": "interactive-playground-document-structure",
+            "title": "Interactive Playground: Document Structure",
+            "slug": "html/html-document#interactive-playground-document-structure",
+            "order": 5
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "element-tags",
+        "title": "Element Tags",
+        "slug": "html/element-tags",
+        "filePath": "../../content/html/element-tags.mdx",
+        "subSections": [
+          {
+            "id": "images",
+            "title": "Images",
+            "slug": "html/element-tags#images",
+            "order": 1
+          },
+          {
+            "id": "image-alt",
+            "title": "Image Alt",
+            "slug": "html/element-tags#image-alt",
+            "order": 2
+          },
+          {
+            "id": "video",
+            "title": "Video",
+            "slug": "html/element-tags#video",
+            "order": 3
+          },
+          {
+            "id": "links",
+            "title": "Links",
+            "slug": "html/element-tags#links",
+            "order": 4
+          },
+          {
+            "id": "anchor-links",
+            "title": "Anchor Links",
+            "slug": "html/element-tags#anchor-links",
+            "order": 5
+          },
+          {
+            "id": "title-attribute",
+            "title": "Title Attribute",
+            "slug": "html/element-tags#title-attribute",
+            "order": 6
+          },
+          {
+            "id": "tables",
+            "title": "Tables",
+            "slug": "html/element-tags#tables",
+            "order": 7
+          },
+          {
+            "id": "rowspan-and-colspan",
+            "title": "Rowspan And Colspan",
+            "slug": "html/element-tags#rowspan-and-colspan",
+            "order": 8
+          },
+          {
+            "id": "multiple-classes",
+            "title": "Multiple Classes",
+            "slug": "html/element-tags#multiple-classes",
+            "order": 9
+          },
+          {
+            "id": "table-sections",
+            "title": "Table Sections",
+            "slug": "html/element-tags#table-sections",
+            "order": 10
+          },
+          {
+            "id": "interactive-playground-table-semantics",
+            "title": "Interactive Playground: Table Semantics",
+            "slug": "html/element-tags#interactive-playground-table-semantics",
+            "order": 11
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "form-input",
+        "title": "Form Input",
+        "slug": "html/form-input",
+        "filePath": "../../content/html/form-input.mdx",
+        "subSections": [
+          {
+            "id": "form",
+            "title": "Form",
+            "slug": "html/form-input#form",
+            "order": 1
+          },
+          {
+            "id": "input",
+            "title": "Input",
+            "slug": "html/form-input#input",
+            "order": 2
+          },
+          {
+            "id": "default-value",
+            "title": "Default Value",
+            "slug": "html/form-input#default-value",
+            "order": 3
+          },
+          {
+            "id": "label",
+            "title": "Label",
+            "slug": "html/form-input#label",
+            "order": 4
+          },
+          {
+            "id": "text",
+            "title": "Text",
+            "slug": "html/form-input#text",
+            "order": 5
+          },
+          {
+            "id": "password",
+            "title": "Password",
+            "slug": "html/form-input#password",
+            "order": 6
+          },
+          {
+            "id": "number",
+            "title": "Number",
+            "slug": "html/form-input#number",
+            "order": 7
+          },
+          {
+            "id": "range",
+            "title": "Range",
+            "slug": "html/form-input#range",
+            "order": 8
+          },
+          {
+            "id": "checkbox",
+            "title": "Checkbox",
+            "slug": "html/form-input#checkbox",
+            "order": 9
+          },
+          {
+            "id": "radio-buttons",
+            "title": "Radio Buttons",
+            "slug": "html/form-input#radio-buttons",
+            "order": 10
+          },
+          {
+            "id": "dropdown",
+            "title": "Dropdown",
+            "slug": "html/form-input#dropdown",
+            "order": 11
+          },
+          {
+            "id": "datalist",
+            "title": "Datalist",
+            "slug": "html/form-input#datalist",
+            "order": 12
+          },
+          {
+            "id": "textarea",
+            "title": "Textarea",
+            "slug": "html/form-input#textarea",
+            "order": 13
+          },
+          {
+            "id": "submit",
+            "title": "Submit",
+            "slug": "html/form-input#submit",
+            "order": 14
+          },
+          {
+            "id": "interactive-playground-form-namevalue-mapping",
+            "title": "Interactive Playground: Form Name/Value Mapping",
+            "slug": "html/form-input#interactive-playground-form-namevalue-mapping",
+            "order": 15
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "form-validation",
+        "title": "Form Validation",
+        "slug": "html/form-validation",
+        "filePath": "../../content/html/form-validation.mdx",
+        "subSections": [
+          {
+            "id": "required",
+            "title": "Required",
+            "slug": "html/form-validation#required",
+            "order": 1
+          },
+          {
+            "id": "text-length",
+            "title": "Text Length",
+            "slug": "html/form-validation#text-length",
+            "order": 2
+          },
+          {
+            "id": "matching-a-pattern",
+            "title": "Matching A Pattern",
+            "slug": "html/form-validation#matching-a-pattern",
+            "order": 3
+          },
+          {
+            "id": "client-side-validation",
+            "title": "Client Side Validation",
+            "slug": "html/form-validation#client-side-validation",
+            "order": 4
+          },
+          {
+            "id": "back-end-validation",
+            "title": "Back End Validation",
+            "slug": "html/form-validation#back-end-validation",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-native-constraints",
+            "title": "Interactive Playground: Native Constraints",
+            "slug": "html/form-validation#interactive-playground-native-constraints",
+            "order": 6
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "semantic-html",
+        "title": "Semantic Html",
+        "slug": "html/semantic-html",
+        "filePath": "../../content/html/semantic-html.mdx",
+        "subSections": [
+          {
+            "id": "why-use-semantic-html",
+            "title": "Why Use Semantic Html",
+            "slug": "html/semantic-html#why-use-semantic-html",
+            "order": 1
+          },
+          {
+            "id": "header",
+            "title": "Header",
+            "slug": "html/semantic-html#header",
+            "order": 2
+          },
+          {
+            "id": "nav",
+            "title": "Nav",
+            "slug": "html/semantic-html#nav",
+            "order": 3
+          },
+          {
+            "id": "main",
+            "title": "Main",
+            "slug": "html/semantic-html#main",
+            "order": 4
+          },
+          {
+            "id": "footer",
+            "title": "Footer",
+            "slug": "html/semantic-html#footer",
+            "order": 5
+          },
+          {
+            "id": "section",
+            "title": "Section",
+            "slug": "html/semantic-html#section",
+            "order": 6
+          },
+          {
+            "id": "article",
+            "title": "Article",
+            "slug": "html/semantic-html#article",
+            "order": 7
+          },
+          {
+            "id": "aside",
+            "title": "Aside",
+            "slug": "html/semantic-html#aside",
+            "order": 8
+          },
+          {
+            "id": "figure",
+            "title": "Figure",
+            "slug": "html/semantic-html#figure",
+            "order": 9
+          },
+          {
+            "id": "figcaption",
+            "title": "Figcaption",
+            "slug": "html/semantic-html#figcaption",
+            "order": 10
+          },
+          {
+            "id": "audio",
+            "title": "Audio",
+            "slug": "html/semantic-html#audio",
+            "order": 11
+          },
+          {
+            "id": "interactive-playground-semantic-landmarks",
+            "title": "Interactive Playground: Semantic Landmarks",
+            "slug": "html/semantic-html#interactive-playground-semantic-landmarks",
+            "order": 12
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "digital-accessibility",
+        "title": "Digital Accessibility",
+        "slug": "html/digital-accessibility",
+        "filePath": "../../content/html/digital-accessibility.mdx",
+        "subSections": [
+          {
+            "id": "contrast",
+            "title": "Contrast",
+            "slug": "html/digital-accessibility#contrast",
+            "order": 1
+          },
+          {
+            "id": "headings",
+            "title": "Headings",
+            "slug": "html/digital-accessibility#headings",
+            "order": 2
+          },
+          {
+            "id": "font-accessibility",
+            "title": "Font Accessibility",
+            "slug": "html/digital-accessibility#font-accessibility",
+            "order": 3
+          },
+          {
+            "id": "color-accessibility",
+            "title": "Color Accessibility",
+            "slug": "html/digital-accessibility#color-accessibility",
+            "order": 4
+          },
+          {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "slug": "html/digital-accessibility#best-practices",
+            "order": 5
+          },
+          {
+            "id": "semantic-html-elements",
+            "title": "Semantic Html Elements",
+            "slug": "html/digital-accessibility#semantic-html-elements",
+            "order": 6
+          },
+          {
+            "id": "aria-role",
+            "title": "Aria Role",
+            "slug": "html/digital-accessibility#aria-role",
+            "order": 7
+          },
+          {
+            "id": "aria-properties",
+            "title": "Aria Properties",
+            "slug": "html/digital-accessibility#aria-properties",
+            "order": 8
+          },
+          {
+            "id": "alt-attribute",
+            "title": "Alt Attribute",
+            "slug": "html/digital-accessibility#alt-attribute",
+            "order": 9
+          },
+          {
+            "id": "screen-readers",
+            "title": "Screen Readers",
+            "slug": "html/digital-accessibility#screen-readers",
+            "order": 10
+          },
+          {
+            "id": "tools-and-resources",
+            "title": "Tools And Resources",
+            "slug": "html/digital-accessibility#tools-and-resources",
+            "order": 11
+          },
+          {
+            "id": "interactive-playground-contrast-checker",
+            "title": "Interactive Playground: Contrast Checker",
+            "slug": "html/digital-accessibility#interactive-playground-contrast-checker",
+            "order": 12
+          },
+          {
+            "id": "interactive-playground-text-quality",
+            "title": "Interactive Playground: Text Quality",
+            "slug": "html/digital-accessibility#interactive-playground-text-quality",
+            "order": 13
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "font-awesome",
+        "title": "Font Awesome",
+        "slug": "html/font-awesome",
+        "filePath": "../../content/html/font-awesome.mdx",
+        "subSections": [
+          {
+            "id": "link-font-awesome",
+            "title": "Link Font Awesome",
+            "slug": "html/font-awesome#link-font-awesome",
+            "order": 1
+          },
+          {
+            "id": "add-font-awesome-icon",
+            "title": "Add Font Awesome Icon",
+            "slug": "html/font-awesome#add-font-awesome-icon",
+            "order": 2
+          },
+          {
+            "id": "icon-sizing",
+            "title": "Icon Sizing",
+            "slug": "html/font-awesome#icon-sizing",
+            "order": 3
+          }
+        ],
+        "order": 7
+      }
+    ],
+    "order": 20
+  }
+}

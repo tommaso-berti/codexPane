@@ -1,0 +1,355 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "http",
+    "title": "HTTP",
+    "icon": "HttpIcon",
+    "slug": "http",
+    "introPath": "../../content/http/introduction.mdx",
+    "sections": [
+      {
+        "id": "http-https",
+        "title": "HTTP/HTTPS",
+        "slug": "http/http-https",
+        "filePath": "../../content/http/http-https.mdx",
+        "subSections": [
+          {
+            "id": "http-basics",
+            "title": "Http basics",
+            "slug": "http/http-https#http-basics",
+            "order": 1
+          },
+          {
+            "id": "url-and-dns",
+            "title": "Url and dns",
+            "slug": "http/http-https#url-and-dns",
+            "order": 2
+          },
+          {
+            "id": "requests-and-methods",
+            "title": "Requests and methods",
+            "slug": "http/http-https#requests-and-methods",
+            "order": 3
+          },
+          {
+            "id": "responses-and-status-codes",
+            "title": "Responses and status codes",
+            "slug": "http/http-https#responses-and-status-codes",
+            "order": 4
+          },
+          {
+            "id": "http-versions",
+            "title": "Http versions",
+            "slug": "http/http-https#http-versions",
+            "order": 5
+          },
+          {
+            "id": "https-and-certificates",
+            "title": "Https and certificates",
+            "slug": "http/http-https#https-and-certificates",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-http-connection-reuse",
+            "title": "Interactive Playground: HTTP Connection Reuse",
+            "slug": "http/http-https#interactive-playground-http-connection-reuse",
+            "order": 7
+          },
+          {
+            "id": "additional-examples",
+            "title": "Additional examples",
+            "slug": "http/http-https#additional-examples",
+            "order": 8
+          },
+          {
+            "id": "glossary",
+            "title": "Glossary",
+            "slug": "http/http-https#glossary",
+            "order": 9
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "web-apis-and-rest",
+        "title": "Web apis and rest",
+        "slug": "http/web-apis-and-rest",
+        "filePath": "../../content/http/web-apis-and-rest.mdx",
+        "subSections": [
+          {
+            "id": "web-apis",
+            "title": "Web apis",
+            "slug": "http/web-apis-and-rest#web-apis",
+            "order": 1
+          },
+          {
+            "id": "types-of-apis",
+            "title": "Types of apis",
+            "slug": "http/web-apis-and-rest#types-of-apis",
+            "order": 2
+          },
+          {
+            "id": "browser-apis",
+            "title": "Browser apis",
+            "slug": "http/web-apis-and-rest#browser-apis",
+            "order": 3
+          },
+          {
+            "id": "third-party-apis",
+            "title": "Third party apis",
+            "slug": "http/web-apis-and-rest#third-party-apis",
+            "order": 4
+          },
+          {
+            "id": "rules-and-requirements",
+            "title": "Rules and requirements",
+            "slug": "http/web-apis-and-rest#rules-and-requirements",
+            "order": 5
+          },
+          {
+            "id": "making-requests",
+            "title": "Making requests",
+            "slug": "http/web-apis-and-rest#making-requests",
+            "order": 6
+          },
+          {
+            "id": "response-data",
+            "title": "Response data",
+            "slug": "http/web-apis-and-rest#response-data",
+            "order": 7
+          },
+          {
+            "id": "rest",
+            "title": "Rest",
+            "slug": "http/web-apis-and-rest#rest",
+            "order": 8
+          },
+          {
+            "id": "separation-of-client-and-server",
+            "title": "Separation of client and server",
+            "slug": "http/web-apis-and-rest#separation-of-client-and-server",
+            "order": 9
+          },
+          {
+            "id": "communication-between-client-and-server",
+            "title": "Communication between client and server",
+            "slug": "http/web-apis-and-rest#communication-between-client-and-server",
+            "order": 10
+          },
+          {
+            "id": "request-parts",
+            "title": "Request parts",
+            "slug": "http/web-apis-and-rest#request-parts",
+            "order": 11
+          },
+          {
+            "id": "http-verbs",
+            "title": "Http verbs",
+            "slug": "http/web-apis-and-rest#http-verbs",
+            "order": 12
+          },
+          {
+            "id": "headers-and-accept-parameters",
+            "title": "Headers and accept parameters",
+            "slug": "http/web-apis-and-rest#headers-and-accept-parameters",
+            "order": 13
+          },
+          {
+            "id": "paths",
+            "title": "Paths",
+            "slug": "http/web-apis-and-rest#paths",
+            "order": 14
+          },
+          {
+            "id": "sending-responses",
+            "title": "Sending responses",
+            "slug": "http/web-apis-and-rest#sending-responses",
+            "order": 15
+          },
+          {
+            "id": "response-codes",
+            "title": "Response codes",
+            "slug": "http/web-apis-and-rest#response-codes",
+            "order": 16
+          },
+          {
+            "id": "restful-api-example-customer-management",
+            "title": "Restful api example customer management",
+            "slug": "http/web-apis-and-rest#restful-api-example-customer-management",
+            "order": 17
+          },
+          {
+            "id": "interactive-playground-rest-request-outcomes",
+            "title": "Interactive Playground: REST Request Outcomes",
+            "slug": "http/web-apis-and-rest#interactive-playground-rest-request-outcomes",
+            "order": 18
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "json",
+        "title": "JSON",
+        "slug": "http/json",
+        "filePath": "../../content/http/json.mdx",
+        "subSections": [
+          {
+            "id": "json-syntax",
+            "title": "Json syntax",
+            "slug": "http/json#json-syntax",
+            "order": 1
+          },
+          {
+            "id": "json-data-types",
+            "title": "Json data types",
+            "slug": "http/json#json-data-types",
+            "order": 2
+          },
+          {
+            "id": "json-object-vs-javascript-object",
+            "title": "Json object vs javascript object",
+            "slug": "http/json#json-object-vs-javascript-object",
+            "order": 3
+          },
+          {
+            "id": "reading-a-json-string",
+            "title": "Reading a json string",
+            "slug": "http/json#reading-a-json-string",
+            "order": 4
+          },
+          {
+            "id": "writing-a-json-string",
+            "title": "Writing a json string",
+            "slug": "http/json#writing-a-json-string",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-json-parse-and-stringify",
+            "title": "Interactive Playground: JSON Parse and Stringify",
+            "slug": "http/json#interactive-playground-json-parse-and-stringify",
+            "order": 6
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "fetch-with-then",
+        "title": "Fetch with then",
+        "slug": "http/fetch-with-then",
+        "filePath": "../../content/http/fetch-with-then.mdx",
+        "subSections": [
+          {
+            "id": "fetch-get",
+            "title": "Fetch get",
+            "slug": "http/fetch-with-then#fetch-get",
+            "order": 1
+          },
+          {
+            "id": "fetch-post",
+            "title": "Fetch post",
+            "slug": "http/fetch-with-then#fetch-post",
+            "order": 2
+          },
+          {
+            "id": "error-handling",
+            "title": "Error handling",
+            "slug": "http/fetch-with-then#error-handling",
+            "order": 3
+          },
+          {
+            "id": "parsing-json",
+            "title": "Parsing json",
+            "slug": "http/fetch-with-then#parsing-json",
+            "order": 4
+          },
+          {
+            "id": "tips-and-pitfalls",
+            "title": "Tips and pitfalls",
+            "slug": "http/fetch-with-then#tips-and-pitfalls",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-fetch-promise-chain-flow",
+            "title": "Interactive Playground: Fetch Promise Chain Flow",
+            "slug": "http/fetch-with-then#interactive-playground-fetch-promise-chain-flow",
+            "order": 6
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "fetch-with-await-and-async",
+        "title": "Fetch with await and async",
+        "slug": "http/fetch-with-await-and-async",
+        "filePath": "../../content/http/fetch-with-await-and-async.mdx",
+        "subSections": [
+          {
+            "id": "async-await-get",
+            "title": "Async await get",
+            "slug": "http/fetch-with-await-and-async#async-await-get",
+            "order": 1
+          },
+          {
+            "id": "async-await-post",
+            "title": "Async await post",
+            "slug": "http/fetch-with-await-and-async#async-await-post",
+            "order": 2
+          },
+          {
+            "id": "await-async-error-handling",
+            "title": "Await Async error handling",
+            "slug": "http/fetch-with-await-and-async#await-async-error-handling",
+            "order": 3
+          },
+          {
+            "id": "tips-and-pitfalls",
+            "title": "Tips and pitfalls",
+            "slug": "http/fetch-with-await-and-async#tips-and-pitfalls",
+            "order": 4
+          },
+          {
+            "id": "additional-resources",
+            "title": "Additional resources",
+            "slug": "http/fetch-with-await-and-async#additional-resources",
+            "order": 5
+          },
+          {
+            "id": "interactive-playground-async-await-error-guard",
+            "title": "Interactive Playground: Async Await Error Guard",
+            "slug": "http/fetch-with-await-and-async#interactive-playground-async-await-error-guard",
+            "order": 6
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "api-call",
+        "title": "API call",
+        "slug": "http/api-call",
+        "filePath": "../../content/http/api-call.mdx",
+        "subSections": [
+          {
+            "id": "query-strings",
+            "title": "Query strings",
+            "slug": "http/api-call#query-strings",
+            "order": 1
+          },
+          {
+            "id": "examples",
+            "title": "Examples",
+            "slug": "http/api-call#examples",
+            "order": 2
+          },
+          {
+            "id": "interactive-playground-query-string-mapping",
+            "title": "Interactive Playground: Query String Mapping",
+            "slug": "http/api-call#interactive-playground-query-string-mapping",
+            "order": 3
+          }
+        ],
+        "order": 6
+      }
+    ],
+    "order": 21
+  }
+}

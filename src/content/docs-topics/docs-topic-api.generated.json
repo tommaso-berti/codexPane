@@ -1,0 +1,301 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "api",
+    "title": "API",
+    "icon": "ApiIcon",
+    "slug": "api",
+    "introPath": "../../content/api/introduction.mdx",
+    "sections": [
+      {
+        "id": "api-development-lifecycle",
+        "title": "API development lifecycle",
+        "slug": "api/api-development-lifecycle",
+        "filePath": "../../content/api/api-development-lifecycle.mdx",
+        "subSections": [
+          {
+            "id": "planning-and-designing-the-api",
+            "title": "Planning and Designing the API",
+            "slug": "api/api-development-lifecycle#planning-and-designing-the-api",
+            "order": 1
+          },
+          {
+            "id": "developing-the-api",
+            "title": "Developing the API",
+            "slug": "api/api-development-lifecycle#developing-the-api",
+            "order": 2
+          },
+          {
+            "id": "testing-the-api",
+            "title": "Testing the API",
+            "slug": "api/api-development-lifecycle#testing-the-api",
+            "order": 3
+          },
+          {
+            "id": "deploying-and-managing-the-api",
+            "title": "Deploying and Managing the API",
+            "slug": "api/api-development-lifecycle#deploying-and-managing-the-api",
+            "order": 4
+          },
+          {
+            "id": "retiring-the-api",
+            "title": "Retiring the API",
+            "slug": "api/api-development-lifecycle#retiring-the-api",
+            "order": 5
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "api-design-guide",
+        "title": "API Design Guide",
+        "slug": "api/api-design-guide",
+        "filePath": "../../content/api/api-design-guide.mdx",
+        "subSections": [
+          {
+            "id": "characteristics-of-a-well-designed-api",
+            "title": "Characteristics of a Well-Designed API",
+            "slug": "api/api-design-guide#characteristics-of-a-well-designed-api",
+            "order": 1
+          },
+          {
+            "id": "collections-resources-and-their-urls",
+            "title": "Collections, Resources, and Their URLs",
+            "slug": "api/api-design-guide#collections-resources-and-their-urls",
+            "order": 2
+          },
+          {
+            "id": "responses",
+            "title": "Responses",
+            "slug": "api/api-design-guide#responses",
+            "order": 3
+          },
+          {
+            "id": "requests",
+            "title": "Requests",
+            "slug": "api/api-design-guide#requests",
+            "order": 4
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "api-documentation",
+        "title": "API Documentation",
+        "slug": "api/api-documentation",
+        "filePath": "../../content/api/api-documentation.mdx",
+        "subSections": [
+          {
+            "id": "benefits",
+            "title": "Benefits",
+            "slug": "api/api-documentation#benefits",
+            "order": 1
+          },
+          {
+            "id": "documentation-best-practices",
+            "title": "Documentation Best Practices",
+            "slug": "api/api-documentation#documentation-best-practices",
+            "order": 2
+          },
+          {
+            "id": "arm-documentation-with-resources",
+            "title": "Arm Documentation with Resources",
+            "slug": "api/api-documentation#arm-documentation-with-resources",
+            "order": 3
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "design-first-vs-code-first",
+        "title": "Design First vs Code First",
+        "slug": "api/design-first-vs-code-first",
+        "filePath": "../../content/api/design-first-vs-code-first.mdx",
+        "subSections": [
+          {
+            "id": "design-first-approach",
+            "title": "Design First Approach",
+            "slug": "api/design-first-vs-code-first#design-first-approach",
+            "order": 1
+          },
+          {
+            "id": "code-first-approach",
+            "title": "Code First Approach",
+            "slug": "api/design-first-vs-code-first#code-first-approach",
+            "order": 2
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "yaml",
+        "title": "YAML",
+        "slug": "api/yaml",
+        "filePath": "../../content/api/yaml.mdx",
+        "subSections": [
+          {
+            "id": "yaml-structure",
+            "title": "YAML Structure",
+            "slug": "api/yaml#yaml-structure",
+            "order": 1
+          },
+          {
+            "id": "sequences",
+            "title": "Sequences",
+            "slug": "api/yaml#sequences",
+            "order": 2
+          },
+          {
+            "id": "scalars",
+            "title": "Scalars",
+            "slug": "api/yaml#scalars",
+            "order": 3
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "openapi-specification",
+        "title": "OpenAPI Specification",
+        "slug": "api/openapi-specification",
+        "filePath": "../../content/api/openapi-specification.mdx",
+        "subSections": [
+          {
+            "id": "designing-an-api-using-oas-30",
+            "title": "Designing an API using OAS 3.0",
+            "slug": "api/openapi-specification#designing-an-api-using-oas-30",
+            "order": 1
+          },
+          {
+            "id": "info--openapi",
+            "title": "Info & OpenAPI",
+            "slug": "api/openapi-specification#info--openapi",
+            "order": 2
+          },
+          {
+            "id": "servers",
+            "title": "Servers",
+            "slug": "api/openapi-specification#servers",
+            "order": 3
+          },
+          {
+            "id": "paths",
+            "title": "Paths",
+            "slug": "api/openapi-specification#paths",
+            "order": 4
+          },
+          {
+            "id": "external-docs",
+            "title": "External Docs",
+            "slug": "api/openapi-specification#external-docs",
+            "order": 5
+          },
+          {
+            "id": "components",
+            "title": "Components",
+            "slug": "api/openapi-specification#components",
+            "order": 6
+          },
+          {
+            "id": "authentication",
+            "title": "Authentication",
+            "slug": "api/openapi-specification#authentication",
+            "order": 7
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "swagger-tooling",
+        "title": "Swagger Tooling",
+        "slug": "api/swagger-tooling",
+        "filePath": "../../content/api/swagger-tooling.mdx",
+        "subSections": [
+          {
+            "id": "swagger-editor",
+            "title": "Swagger Editor",
+            "slug": "api/swagger-tooling#swagger-editor",
+            "order": 1
+          },
+          {
+            "id": "swagger-codegen",
+            "title": "Swagger Codegen",
+            "slug": "api/swagger-tooling#swagger-codegen",
+            "order": 2
+          },
+          {
+            "id": "swagger-ui",
+            "title": "Swagger UI",
+            "slug": "api/swagger-tooling#swagger-ui",
+            "order": 3
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "server-side-api-calls-to-external-apis",
+        "title": "Server-Side API Calls to External APIs",
+        "slug": "api/server-side-api-calls-to-external-apis",
+        "filePath": "../../content/api/server-side-api-calls-to-external-apis.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "api/server-side-api-calls-to-external-apis#overview",
+            "order": 1
+          },
+          {
+            "id": "environment-configuration",
+            "title": "Environment Configuration",
+            "slug": "api/server-side-api-calls-to-external-apis#environment-configuration",
+            "order": 2
+          },
+          {
+            "id": "supabase-provider-database-client",
+            "title": "Supabase Provider (Database Client)",
+            "slug": "api/server-side-api-calls-to-external-apis#supabase-provider-database-client",
+            "order": 3
+          },
+          {
+            "id": "steps-performed",
+            "title": "Steps performed",
+            "slug": "api/server-side-api-calls-to-external-apis#steps-performed",
+            "order": 4
+          },
+          {
+            "id": "database-structure",
+            "title": "Database Structure",
+            "slug": "api/server-side-api-calls-to-external-apis#database-structure",
+            "order": 5
+          },
+          {
+            "id": "backend-api-behavior",
+            "title": "Backend API Behavior",
+            "slug": "api/server-side-api-calls-to-external-apis#backend-api-behavior",
+            "order": 6
+          },
+          {
+            "id": "why-this-architecture-matters",
+            "title": "Why This Architecture Matters",
+            "slug": "api/server-side-api-calls-to-external-apis#why-this-architecture-matters",
+            "order": 7
+          },
+          {
+            "id": "what-changed-from-the-original-project",
+            "title": "What Changed From the Original Project",
+            "slug": "api/server-side-api-calls-to-external-apis#what-changed-from-the-original-project",
+            "order": 8
+          },
+          {
+            "id": "key-takeaway",
+            "title": "Key Takeaway",
+            "slug": "api/server-side-api-calls-to-external-apis#key-takeaway",
+            "order": 9
+          }
+        ],
+        "order": 8
+      }
+    ],
+    "order": 2
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "node",
+    "title": "Node.js",
+    "icon": "CustomJavascriptIcon",
+    "slug": "node",
+    "introPath": "../../content/node/introduction.mdx",
+    "sections": [
+      {
+        "id": "the-node-repl",
+        "title": "The Node REPL",
+        "slug": "node/the-node-repl",
+        "filePath": "../../content/node/the-node-repl.mdx",
+        "subSections": [
+          {
+            "id": "running-a-program-with-node",
+            "title": "Running a Program with Node",
+            "slug": "node/the-node-repl#running-a-program-with-node",
+            "order": 1
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "core-global-modules",
+        "title": "Core (global) modules",
+        "slug": "node/core-global-modules",
+        "filePath": "../../content/node/core-global-modules.mdx",
+        "subSections": [
+          {
+            "id": "the-console-module",
+            "title": "The console module",
+            "slug": "node/core-global-modules#the-console-module",
+            "order": 1
+          },
+          {
+            "id": "the-process-module",
+            "title": "The process module",
+            "slug": "node/core-global-modules#the-process-module",
+            "order": 2
+          },
+          {
+            "id": "user-inputoutput",
+            "title": "User input/output",
+            "slug": "node/core-global-modules#user-inputoutput",
+            "order": 3
+          },
+          {
+            "id": "errors",
+            "title": "Errors",
+            "slug": "node/core-global-modules#errors",
+            "order": 4
+          },
+          {
+            "id": "the-timers-module",
+            "title": "The timers module",
+            "slug": "node/core-global-modules#the-timers-module",
+            "order": 5
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "imported-modules",
+        "title": "Imported modules",
+        "slug": "node/imported-modules",
+        "filePath": "../../content/node/imported-modules.mdx",
+        "subSections": [
+          {
+            "id": "the-os-module",
+            "title": "The OS module",
+            "slug": "node/imported-modules#the-os-module",
+            "order": 1
+          },
+          {
+            "id": "the-util-module",
+            "title": "The util module",
+            "slug": "node/imported-modules#the-util-module",
+            "order": 2
+          },
+          {
+            "id": "the-events-module",
+            "title": "The events module",
+            "slug": "node/imported-modules#the-events-module",
+            "order": 3
+          },
+          {
+            "id": "the-buffer-module",
+            "title": "The buffer module",
+            "slug": "node/imported-modules#the-buffer-module",
+            "order": 4
+          },
+          {
+            "id": "the-fs-module",
+            "title": "The FS module",
+            "slug": "node/imported-modules#the-fs-module",
+            "order": 5
+          },
+          {
+            "id": "readable-streams",
+            "title": "Readable Streams",
+            "slug": "node/imported-modules#readable-streams",
+            "order": 6
+          },
+          {
+            "id": "writeable-streams",
+            "title": "Writeable Streams",
+            "slug": "node/imported-modules#writeable-streams",
+            "order": 7
+          },
+          {
+            "id": "the-prompt-sync-module",
+            "title": "The prompt-sync module",
+            "slug": "node/imported-modules#the-prompt-sync-module",
+            "order": 8
+          },
+          {
+            "id": "interactive-playground-node-core-module-selector",
+            "title": "Interactive Playground: Node Core Module Selector",
+            "slug": "node/imported-modules#interactive-playground-node-core-module-selector",
+            "order": 9
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "modules",
+        "title": "Modules",
+        "slug": "node/modules",
+        "filePath": "../../content/node/modules.mdx",
+        "subSections": [
+          {
+            "id": "implementations-of-modules-in-javascript-commonjs-vs-es6",
+            "title": "Implementations of modules in JavaScript: CommonJS vs ES6",
+            "slug": "node/modules#implementations-of-modules-in-javascript-commonjs-vs-es6",
+            "order": 1
+          },
+          {
+            "id": "implementing-commonjs-modules",
+            "title": "Implementing CommonJS modules",
+            "slug": "node/modules#implementing-commonjs-modules",
+            "order": 2
+          },
+          {
+            "id": "interactive-playground-commonjs-module-wiring",
+            "title": "Interactive Playground: CommonJS Module Wiring",
+            "slug": "node/modules#interactive-playground-commonjs-module-wiring",
+            "order": 3
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "node-package-manager",
+        "title": "Node Package Manager",
+        "slug": "node/node-package-manager",
+        "filePath": "../../content/node/node-package-manager.mdx",
+        "subSections": [
+          {
+            "id": "how-does-a-package-manager-help-in-nodejs",
+            "title": "How does a package manager help in Node.js?",
+            "slug": "node/node-package-manager#how-does-a-package-manager-help-in-nodejs",
+            "order": 1
+          },
+          {
+            "id": "npm",
+            "title": "npm",
+            "slug": "node/node-package-manager#npm",
+            "order": 2
+          },
+          {
+            "id": "how-to-initialize-a-nodejs-project-using-npm",
+            "title": "How to initialize a Node.js project using npm",
+            "slug": "node/node-package-manager#how-to-initialize-a-nodejs-project-using-npm",
+            "order": 3
+          },
+          {
+            "id": "how-to-install-a-package-using-npm",
+            "title": "How to install a package using npm",
+            "slug": "node/node-package-manager#how-to-install-a-package-using-npm",
+            "order": 4
+          },
+          {
+            "id": "how-to-install-dev-dependencies-in-npm",
+            "title": "How to install dev dependencies in npm",
+            "slug": "node/node-package-manager#how-to-install-dev-dependencies-in-npm",
+            "order": 5
+          },
+          {
+            "id": "how-to-install-global-packages-in-npm",
+            "title": "How to install global packages in npm",
+            "slug": "node/node-package-manager#how-to-install-global-packages-in-npm",
+            "order": 6
+          },
+          {
+            "id": "how-to-install-all-project-dependencies-at-once",
+            "title": "How to install all project dependencies at once",
+            "slug": "node/node-package-manager#how-to-install-all-project-dependencies-at-once",
+            "order": 7
+          },
+          {
+            "id": "interactive-playground-npm-lifecycle-commands",
+            "title": "Interactive Playground: npm Lifecycle Commands",
+            "slug": "node/node-package-manager#interactive-playground-npm-lifecycle-commands",
+            "order": 8
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "console-commands",
+        "title": "Console commands",
+        "slug": "node/console-commands",
+        "filePath": "../../content/node/console-commands.mdx",
+        "subSections": [
+          {
+            "id": "processargv",
+            "title": "process.argv",
+            "slug": "node/console-commands#processargv",
+            "order": 1
+          },
+          {
+            "id": "typical-use-case",
+            "title": "Typical use case",
+            "slug": "node/console-commands#typical-use-case",
+            "order": 2
+          }
+        ],
+        "order": 6
+      }
+    ],
+    "order": 8
+  }
+}

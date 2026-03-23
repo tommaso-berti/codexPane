@@ -1,0 +1,433 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "sql",
+    "title": "SQL",
+    "icon": "TableChartIcon",
+    "slug": "sql",
+    "introPath": "../../content/sql/introduction.mdx",
+    "sections": [
+      {
+        "id": "introduction-section",
+        "title": "Introduction",
+        "slug": "sql/introduction-section",
+        "filePath": "../../content/sql/introduction-section.mdx",
+        "subSections": [
+          {
+            "id": "relational-database",
+            "title": "Relational database",
+            "slug": "sql/introduction-section#relational-database",
+            "order": 1
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "statements",
+        "title": "Statements",
+        "slug": "sql/statements",
+        "filePath": "../../content/sql/statements.mdx",
+        "subSections": [
+          {
+            "id": "create",
+            "title": "Create",
+            "slug": "sql/statements#create",
+            "order": 1
+          },
+          {
+            "id": "insert",
+            "title": "Insert",
+            "slug": "sql/statements#insert",
+            "order": 2
+          },
+          {
+            "id": "select",
+            "title": "Select",
+            "slug": "sql/statements#select",
+            "order": 3
+          },
+          {
+            "id": "alter",
+            "title": "Alter",
+            "slug": "sql/statements#alter",
+            "order": 4
+          },
+          {
+            "id": "update",
+            "title": "Update",
+            "slug": "sql/statements#update",
+            "order": 5
+          },
+          {
+            "id": "delete",
+            "title": "Delete",
+            "slug": "sql/statements#delete",
+            "order": 6
+          },
+          {
+            "id": "constraints",
+            "title": "Constraints",
+            "slug": "sql/statements#constraints",
+            "order": 7
+          },
+          {
+            "id": "interactive-playground-statement-builder",
+            "title": "Interactive Playground: Statement Builder",
+            "slug": "sql/statements#interactive-playground-statement-builder",
+            "order": 8
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "keywords",
+        "title": "Keywords",
+        "slug": "sql/keywords",
+        "filePath": "../../content/sql/keywords.mdx",
+        "subSections": [
+          {
+            "id": "as-select",
+            "title": "As (select)",
+            "slug": "sql/keywords#as-select",
+            "order": 1
+          },
+          {
+            "id": "distinct",
+            "title": "Distinct",
+            "slug": "sql/keywords#distinct",
+            "order": 2
+          },
+          {
+            "id": "where",
+            "title": "Where",
+            "slug": "sql/keywords#where",
+            "order": 3
+          },
+          {
+            "id": "like",
+            "title": "Like",
+            "slug": "sql/keywords#like",
+            "order": 4
+          },
+          {
+            "id": "null-is",
+            "title": "NULL (is)",
+            "slug": "sql/keywords#null-is",
+            "order": 5
+          },
+          {
+            "id": "between-where",
+            "title": "Between (where)",
+            "slug": "sql/keywords#between-where",
+            "order": 6
+          },
+          {
+            "id": "and-where",
+            "title": "AND (where)",
+            "slug": "sql/keywords#and-where",
+            "order": 7
+          },
+          {
+            "id": "or-where",
+            "title": "OR (where)",
+            "slug": "sql/keywords#or-where",
+            "order": 8
+          },
+          {
+            "id": "order-by-only-after-where",
+            "title": "Order By (only after where)",
+            "slug": "sql/keywords#order-by-only-after-where",
+            "order": 9
+          },
+          {
+            "id": "limit",
+            "title": "Limit",
+            "slug": "sql/keywords#limit",
+            "order": 10
+          },
+          {
+            "id": "case-select",
+            "title": "Case (select)",
+            "slug": "sql/keywords#case-select",
+            "order": 11
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "aggregate-functions",
+        "title": "Aggregate functions",
+        "slug": "sql/aggregate-functions",
+        "filePath": "../../content/sql/aggregate-functions.mdx",
+        "subSections": [
+          {
+            "id": "count",
+            "title": "Count",
+            "slug": "sql/aggregate-functions#count",
+            "order": 1
+          },
+          {
+            "id": "sum",
+            "title": "Sum",
+            "slug": "sql/aggregate-functions#sum",
+            "order": 2
+          },
+          {
+            "id": "max--min",
+            "title": "Max / Min",
+            "slug": "sql/aggregate-functions#max--min",
+            "order": 3
+          },
+          {
+            "id": "average",
+            "title": "Average",
+            "slug": "sql/aggregate-functions#average",
+            "order": 4
+          },
+          {
+            "id": "round",
+            "title": "Round",
+            "slug": "sql/aggregate-functions#round",
+            "order": 5
+          },
+          {
+            "id": "group-by",
+            "title": "Group By",
+            "slug": "sql/aggregate-functions#group-by",
+            "order": 6
+          },
+          {
+            "id": "having",
+            "title": "Having",
+            "slug": "sql/aggregate-functions#having",
+            "order": 7
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "multiple-tables",
+        "title": "Multiple tables",
+        "slug": "sql/multiple-tables",
+        "filePath": "../../content/sql/multiple-tables.mdx",
+        "subSections": [
+          {
+            "id": "combining-tables-with-sql---join",
+            "title": "Combining Tables with SQL - JOIN",
+            "slug": "sql/multiple-tables#combining-tables-with-sql---join",
+            "order": 1
+          },
+          {
+            "id": "inner-joins",
+            "title": "Inner Joins",
+            "slug": "sql/multiple-tables#inner-joins",
+            "order": 2
+          },
+          {
+            "id": "left-joins",
+            "title": "Left Joins",
+            "slug": "sql/multiple-tables#left-joins",
+            "order": 3
+          },
+          {
+            "id": "cross-join",
+            "title": "Cross Join",
+            "slug": "sql/multiple-tables#cross-join",
+            "order": 4
+          },
+          {
+            "id": "union",
+            "title": "Union",
+            "slug": "sql/multiple-tables#union",
+            "order": 5
+          },
+          {
+            "id": "with",
+            "title": "With",
+            "slug": "sql/multiple-tables#with",
+            "order": 6
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "keys",
+        "title": "Keys",
+        "slug": "sql/keys",
+        "filePath": "../../content/sql/keys.mdx",
+        "subSections": [
+          {
+            "id": "create-a-primary-key",
+            "title": "Create a primary key",
+            "slug": "sql/keys#create-a-primary-key",
+            "order": 1
+          },
+          {
+            "id": "key-validation",
+            "title": "Key Validation",
+            "slug": "sql/keys#key-validation",
+            "order": 2
+          },
+          {
+            "id": "composite-primary-key",
+            "title": "Composite Primary Key",
+            "slug": "sql/keys#composite-primary-key",
+            "order": 3
+          },
+          {
+            "id": "foreign-key",
+            "title": "Foreign Key",
+            "slug": "sql/keys#foreign-key",
+            "order": 4
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "relationships",
+        "title": "Relationships",
+        "slug": "sql/relationships",
+        "filePath": "../../content/sql/relationships.mdx",
+        "subSections": [
+          {
+            "id": "one-to-one-relationship",
+            "title": "One-to-One Relationship",
+            "slug": "sql/relationships#one-to-one-relationship",
+            "order": 1
+          },
+          {
+            "id": "one-to-many-relationship",
+            "title": "One-to-Many Relationship",
+            "slug": "sql/relationships#one-to-many-relationship",
+            "order": 2
+          },
+          {
+            "id": "many-to-many-relationship",
+            "title": "Many-to-Many Relationship",
+            "slug": "sql/relationships#many-to-many-relationship",
+            "order": 3
+          },
+          {
+            "id": "complete-example",
+            "title": "Complete example",
+            "slug": "sql/relationships#complete-example",
+            "order": 4
+          },
+          {
+            "id": "interactive-playground-relationship-modeling",
+            "title": "Interactive Playground: Relationship Modeling",
+            "slug": "sql/relationships#interactive-playground-relationship-modeling",
+            "order": 5
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "triggers",
+        "title": "Triggers",
+        "slug": "sql/triggers",
+        "filePath": "../../content/sql/triggers.mdx",
+        "subSections": [
+          {
+            "id": "before-and-after",
+            "title": "BEFORE AND AFTER",
+            "slug": "sql/triggers#before-and-after",
+            "order": 1
+          },
+          {
+            "id": "for-each-rowstatement",
+            "title": "FOR EACH ROW/STATEMENT",
+            "slug": "sql/triggers#for-each-rowstatement",
+            "order": 2
+          },
+          {
+            "id": "focus-a-trigger",
+            "title": "Focus a trigger",
+            "slug": "sql/triggers#focus-a-trigger",
+            "order": 3
+          },
+          {
+            "id": "trigger-cascade",
+            "title": "Trigger cascade",
+            "slug": "sql/triggers#trigger-cascade",
+            "order": 4
+          },
+          {
+            "id": "visualize-triggers",
+            "title": "Visualize triggers",
+            "slug": "sql/triggers#visualize-triggers",
+            "order": 5
+          },
+          {
+            "id": "removing-triggers",
+            "title": "Removing Triggers",
+            "slug": "sql/triggers#removing-triggers",
+            "order": 6
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "seek-vs-scan",
+        "title": "Seek vs Scan",
+        "slug": "sql/seek-vs-scan",
+        "filePath": "../../content/sql/seek-vs-scan.mdx",
+        "subSections": [
+          {
+            "id": "scan",
+            "title": "Scan",
+            "slug": "sql/seek-vs-scan#scan",
+            "order": 1
+          },
+          {
+            "id": "seek",
+            "title": "Seek",
+            "slug": "sql/seek-vs-scan#seek",
+            "order": 2
+          },
+          {
+            "id": "when-does-the-server-decide-to-use-one-over-the-other",
+            "title": "When does the server decide to use one over the other?",
+            "slug": "sql/seek-vs-scan#when-does-the-server-decide-to-use-one-over-the-other",
+            "order": 3
+          },
+          {
+            "id": "what-is-out-of-your-hands",
+            "title": "What is out of your hands",
+            "slug": "sql/seek-vs-scan#what-is-out-of-your-hands",
+            "order": 4
+          },
+          {
+            "id": "speeding-up-queries",
+            "title": "Speeding up queries",
+            "slug": "sql/seek-vs-scan#speeding-up-queries",
+            "order": 5
+          }
+        ],
+        "order": 9
+      },
+      {
+        "id": "functions",
+        "title": "Functions",
+        "slug": "sql/functions",
+        "filePath": "../../content/sql/functions.mdx",
+        "subSections": [
+          {
+            "id": "strftime",
+            "title": "strftime()",
+            "slug": "sql/functions#strftime",
+            "order": 1
+          },
+          {
+            "id": "date_part",
+            "title": "date_part()",
+            "slug": "sql/functions#date_part",
+            "order": 2
+          }
+        ],
+        "order": 10
+      }
+    ],
+    "order": 13
+  }
+}

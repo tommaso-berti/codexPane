@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "jquery",
+    "title": "jQuery",
+    "icon": "CustomjQueryIcon",
+    "slug": "jquery",
+    "introPath": "../../content/jquery/introduction.mdx",
+    "sections": [
+      {
+        "id": "manipulating-dom",
+        "title": "Manipulating DOM",
+        "slug": "jquery/manipulating-dom",
+        "filePath": "../../content/jquery/manipulating-dom.mdx",
+        "subSections": [
+          {
+            "id": "selecting-elements",
+            "title": "Selecting elements",
+            "slug": "jquery/manipulating-dom#selecting-elements",
+            "order": 1
+          },
+          {
+            "id": "reading-and-updating-content",
+            "title": "Reading and updating content",
+            "slug": "jquery/manipulating-dom#reading-and-updating-content",
+            "order": 2
+          },
+          {
+            "id": "classes-and-style-updates",
+            "title": "Classes and style updates",
+            "slug": "jquery/manipulating-dom#classes-and-style-updates",
+            "order": 3
+          },
+          {
+            "id": "dom-insertion-and-removal",
+            "title": "DOM insertion and removal",
+            "slug": "jquery/manipulating-dom#dom-insertion-and-removal",
+            "order": 4
+          },
+          {
+            "id": "event-handling",
+            "title": "Event handling",
+            "slug": "jquery/manipulating-dom#event-handling",
+            "order": 5
+          }
+        ],
+        "order": 1
+      }
+    ],
+    "order": 23
+  }
+}

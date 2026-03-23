@@ -1,0 +1,814 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "software-design",
+    "title": "Software Design",
+    "icon": "PublicIcon",
+    "slug": "software-design",
+    "introPath": "../../content/software-design/introduction.mdx",
+    "sections": [
+      {
+        "id": "client-vs-server",
+        "title": "Client vs server",
+        "slug": "software-design/client-vs-server",
+        "filePath": "../../content/software-design/client-vs-server.mdx",
+        "subSections": [
+          {
+            "id": "client-side-rendering",
+            "title": "Client-Side Rendering",
+            "slug": "software-design/client-vs-server#client-side-rendering",
+            "order": 1
+          },
+          {
+            "id": "server-side-rendering",
+            "title": "Server-Side Rendering",
+            "slug": "software-design/client-vs-server#server-side-rendering",
+            "order": 2
+          },
+          {
+            "id": "summary",
+            "title": "Summary",
+            "slug": "software-design/client-vs-server#summary",
+            "order": 3
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "create-a-website-wireframe",
+        "title": "Wireframe",
+        "slug": "software-design/create-a-website-wireframe",
+        "filePath": "../../content/software-design/create-a-website-wireframe.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/create-a-website-wireframe#overview",
+            "order": 1
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "create-a-website-design-system",
+        "title": "Design system",
+        "slug": "software-design/create-a-website-design-system",
+        "filePath": "../../content/software-design/create-a-website-design-system.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/create-a-website-design-system#overview",
+            "order": 1
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "create-a-website-ui-kit",
+        "title": "UI Kit",
+        "slug": "software-design/create-a-website-ui-kit",
+        "filePath": "../../content/software-design/create-a-website-ui-kit.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/create-a-website-ui-kit#overview",
+            "order": 1
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "create-a-website-design-guide",
+        "title": "Design guide",
+        "slug": "software-design/create-a-website-design-guide",
+        "filePath": "../../content/software-design/create-a-website-design-guide.mdx",
+        "subSections": [
+          {
+            "id": "colors",
+            "title": "Colors",
+            "slug": "software-design/create-a-website-design-guide#colors",
+            "order": 1
+          },
+          {
+            "id": "fonts",
+            "title": "Fonts",
+            "slug": "software-design/create-a-website-design-guide#fonts",
+            "order": 2
+          },
+          {
+            "id": "structure",
+            "title": "Structure",
+            "slug": "software-design/create-a-website-design-guide#structure",
+            "order": 3
+          },
+          {
+            "id": "examples",
+            "title": "Examples",
+            "slug": "software-design/create-a-website-design-guide#examples",
+            "order": 4
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "create-a-website-mockup",
+        "title": "Mockup",
+        "slug": "software-design/create-a-website-mockup",
+        "filePath": "../../content/software-design/create-a-website-mockup.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/create-a-website-mockup#overview",
+            "order": 1
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "create-a-website-grid-layout",
+        "title": "Grid layout",
+        "slug": "software-design/create-a-website-grid-layout",
+        "filePath": "../../content/software-design/create-a-website-grid-layout.mdx",
+        "subSections": [
+          {
+            "id": "grid-columns",
+            "title": "Grid columns",
+            "slug": "software-design/create-a-website-grid-layout#grid-columns",
+            "order": 1
+          },
+          {
+            "id": "grid-rows",
+            "title": "Grid rows",
+            "slug": "software-design/create-a-website-grid-layout#grid-rows",
+            "order": 2
+          },
+          {
+            "id": "grid-gutters",
+            "title": "Grid gutters",
+            "slug": "software-design/create-a-website-grid-layout#grid-gutters",
+            "order": 3
+          },
+          {
+            "id": "responsive-design",
+            "title": "Responsive design",
+            "slug": "software-design/create-a-website-grid-layout#responsive-design",
+            "order": 4
+          },
+          {
+            "id": "whitespace",
+            "title": "Whitespace",
+            "slug": "software-design/create-a-website-grid-layout#whitespace",
+            "order": 5
+          },
+          {
+            "id": "passive-whitespace",
+            "title": "Passive whitespace",
+            "slug": "software-design/create-a-website-grid-layout#passive-whitespace",
+            "order": 6
+          },
+          {
+            "id": "active-whitespace",
+            "title": "Active Whitespace",
+            "slug": "software-design/create-a-website-grid-layout#active-whitespace",
+            "order": 7
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "deploying-web-applications-deployment",
+        "title": "Deployment",
+        "slug": "software-design/deploying-web-applications-deployment",
+        "filePath": "../../content/software-design/deploying-web-applications-deployment.mdx",
+        "subSections": [
+          {
+            "id": "deployment-in-the-software-development-life-cycle-sdlc",
+            "title": "Deployment in the Software Development Life Cycle (SDLC)",
+            "slug": "software-design/deploying-web-applications-deployment#deployment-in-the-software-development-life-cycle-sdlc",
+            "order": 1
+          },
+          {
+            "id": "typical-deployment-process",
+            "title": "Typical deployment process",
+            "slug": "software-design/deploying-web-applications-deployment#typical-deployment-process",
+            "order": 2
+          },
+          {
+            "id": "interactive-playground-deployment-readiness",
+            "title": "Interactive Playground: Deployment Readiness",
+            "slug": "software-design/deploying-web-applications-deployment#interactive-playground-deployment-readiness",
+            "order": 3
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "deploying-web-applications-deployment-with-render",
+        "title": "Deployment with Render",
+        "slug": "software-design/deploying-web-applications-deployment-with-render",
+        "filePath": "../../content/software-design/deploying-web-applications-deployment-with-render.mdx",
+        "subSections": [
+          {
+            "id": "platform-as-a-service-paas",
+            "title": "Platform as a service (PaaS)",
+            "slug": "software-design/deploying-web-applications-deployment-with-render#platform-as-a-service-paas",
+            "order": 1
+          },
+          {
+            "id": "render",
+            "title": "Render",
+            "slug": "software-design/deploying-web-applications-deployment-with-render#render",
+            "order": 2
+          }
+        ],
+        "order": 9
+      },
+      {
+        "id": "mvc-model-view-controller-mvc",
+        "title": "Model View Controller MVC",
+        "slug": "software-design/mvc-model-view-controller-mvc",
+        "filePath": "../../content/software-design/mvc-model-view-controller-mvc.mdx",
+        "subSections": [
+          {
+            "id": "the-model",
+            "title": "The Model",
+            "slug": "software-design/mvc-model-view-controller-mvc#the-model",
+            "order": 1
+          },
+          {
+            "id": "the-view",
+            "title": "The View",
+            "slug": "software-design/mvc-model-view-controller-mvc#the-view",
+            "order": 2
+          },
+          {
+            "id": "the-controller",
+            "title": "The Controller",
+            "slug": "software-design/mvc-model-view-controller-mvc#the-controller",
+            "order": 3
+          },
+          {
+            "id": "benefits",
+            "title": "Benefits",
+            "slug": "software-design/mvc-model-view-controller-mvc#benefits",
+            "order": 4
+          },
+          {
+            "id": "disadvantages",
+            "title": "Disadvantages",
+            "slug": "software-design/mvc-model-view-controller-mvc#disadvantages",
+            "order": 5
+          }
+        ],
+        "order": 10
+      },
+      {
+        "id": "mvc-implementing-mvc-architecture-in-a-full-stack-app",
+        "title": "Implementing MVC Architecture in a Full-Stack App",
+        "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app",
+        "filePath": "../../content/software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app.mdx",
+        "subSections": [
+          {
+            "id": "implementing-mvc-architecture-in-a-full-stack-app",
+            "title": "Implementing MVC architecture in a full-stack app",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#implementing-mvc-architecture-in-a-full-stack-app",
+            "order": 1
+          },
+          {
+            "id": "architecture-overview",
+            "title": "Architecture overview",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#architecture-overview",
+            "order": 2
+          },
+          {
+            "id": "data-flow",
+            "title": "Data flow",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#data-flow",
+            "order": 3
+          },
+          {
+            "id": "project-structure",
+            "title": "Project structure",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#project-structure",
+            "order": 4
+          },
+          {
+            "id": "database-layer-model",
+            "title": "Database layer (model)",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#database-layer-model",
+            "order": 5
+          },
+          {
+            "id": "controller-layer",
+            "title": "Controller layer",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#controller-layer",
+            "order": 6
+          },
+          {
+            "id": "view-layer-react",
+            "title": "View layer (React)",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#view-layer-react",
+            "order": 7
+          },
+          {
+            "id": "why-mvc-matters",
+            "title": "Why MVC matters",
+            "slug": "software-design/mvc-implementing-mvc-architecture-in-a-full-stack-app#why-mvc-matters",
+            "order": 8
+          }
+        ],
+        "order": 11
+      },
+      {
+        "id": "project-schema-basic-schema-website",
+        "title": "Basic schema website",
+        "slug": "software-design/project-schema-basic-schema-website",
+        "filePath": "../../content/software-design/project-schema-basic-schema-website.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/project-schema-basic-schema-website#overview",
+            "order": 1
+          }
+        ],
+        "order": 12
+      },
+      {
+        "id": "project-schema-project-schema-react",
+        "title": "Project schema React",
+        "slug": "software-design/project-schema-project-schema-react",
+        "filePath": "../../content/software-design/project-schema-project-schema-react.mdx",
+        "subSections": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "slug": "software-design/project-schema-project-schema-react#overview",
+            "order": 1
+          }
+        ],
+        "order": 13
+      },
+      {
+        "id": "project-schema-project-schema-complex-web-app",
+        "title": "Project schema complex web app",
+        "slug": "software-design/project-schema-project-schema-complex-web-app",
+        "filePath": "../../content/software-design/project-schema-project-schema-complex-web-app.mdx",
+        "subSections": [
+          {
+            "id": "generic",
+            "title": "Generic",
+            "slug": "software-design/project-schema-project-schema-complex-web-app#generic",
+            "order": 1
+          },
+          {
+            "id": "reactnextjs",
+            "title": "React/Next.js",
+            "slug": "software-design/project-schema-project-schema-complex-web-app#reactnextjs",
+            "order": 2
+          },
+          {
+            "id": "nodejs",
+            "title": "Node.js",
+            "slug": "software-design/project-schema-project-schema-complex-web-app#nodejs",
+            "order": 3
+          }
+        ],
+        "order": 14
+      },
+      {
+        "id": "security-web-security-fundamentals",
+        "title": "Web Security Fundamentals",
+        "slug": "software-design/security-web-security-fundamentals",
+        "filePath": "../../content/software-design/security-web-security-fundamentals.mdx",
+        "subSections": [
+          {
+            "id": "security-principles",
+            "title": "Security Principles",
+            "slug": "software-design/security-web-security-fundamentals#security-principles",
+            "order": 1
+          },
+          {
+            "id": "interactive-playground-threat-to-mitigation-mapping",
+            "title": "Interactive Playground: Threat-to-Mitigation Mapping",
+            "slug": "software-design/security-web-security-fundamentals#interactive-playground-threat-to-mitigation-mapping",
+            "order": 2
+          }
+        ],
+        "order": 15
+      },
+      {
+        "id": "security-defensive-coding-in-javascript",
+        "title": "Defensive coding in JavaScript",
+        "slug": "software-design/security-defensive-coding-in-javascript",
+        "filePath": "../../content/software-design/security-defensive-coding-in-javascript.mdx",
+        "subSections": [
+          {
+            "id": "the-eval-method-dangers-and-alternatives",
+            "title": "The eval method: Dangers and Alternatives",
+            "slug": "software-design/security-defensive-coding-in-javascript#the-eval-method-dangers-and-alternatives",
+            "order": 1
+          },
+          {
+            "id": "the-exec-method-dangers-and-alternatives",
+            "title": "The exec method: Dangers and Alternatives",
+            "slug": "software-design/security-defensive-coding-in-javascript#the-exec-method-dangers-and-alternatives",
+            "order": 2
+          },
+          {
+            "id": "dangers-and-secure-use-of-the-fs-module",
+            "title": "Dangers and Secure Use of the fs Module",
+            "slug": "software-design/security-defensive-coding-in-javascript#dangers-and-secure-use-of-the-fs-module",
+            "order": 3
+          },
+          {
+            "id": "dangers-and-secure-use-of-regular-expressions",
+            "title": "Dangers and Secure Use of Regular Expressions",
+            "slug": "software-design/security-defensive-coding-in-javascript#dangers-and-secure-use-of-regular-expressions",
+            "order": 4
+          },
+          {
+            "id": "secure-your-code-strict-mode",
+            "title": "Secure Your Code: Strict Mode",
+            "slug": "software-design/security-defensive-coding-in-javascript#secure-your-code-strict-mode",
+            "order": 5
+          },
+          {
+            "id": "secure-your-code-static-code-analysis",
+            "title": "Secure Your Code: Static Code Analysis",
+            "slug": "software-design/security-defensive-coding-in-javascript#secure-your-code-static-code-analysis",
+            "order": 6
+          }
+        ],
+        "order": 16
+      },
+      {
+        "id": "security-remediation-and-incident-response",
+        "title": "Remediation and Incident Response",
+        "slug": "software-design/security-remediation-and-incident-response",
+        "filePath": "../../content/software-design/security-remediation-and-incident-response.mdx",
+        "subSections": [
+          {
+            "id": "remediation",
+            "title": "Remediation",
+            "slug": "software-design/security-remediation-and-incident-response#remediation",
+            "order": 1
+          },
+          {
+            "id": "incident-response",
+            "title": "Incident Response",
+            "slug": "software-design/security-remediation-and-incident-response#incident-response",
+            "order": 2
+          }
+        ],
+        "order": 17
+      },
+      {
+        "id": "security-owasp-top-10",
+        "title": "OWASP TOP 10",
+        "slug": "software-design/security-owasp-top-10",
+        "filePath": "../../content/software-design/security-owasp-top-10.mdx",
+        "subSections": [
+          {
+            "id": "injection",
+            "title": "Injection",
+            "slug": "software-design/security-owasp-top-10#injection",
+            "order": 1
+          },
+          {
+            "id": "broken-authentication",
+            "title": "Broken Authentication",
+            "slug": "software-design/security-owasp-top-10#broken-authentication",
+            "order": 2
+          },
+          {
+            "id": "sensitive-data-exposure",
+            "title": "Sensitive Data Exposure",
+            "slug": "software-design/security-owasp-top-10#sensitive-data-exposure",
+            "order": 3
+          },
+          {
+            "id": "xml-external-entities-xxe",
+            "title": "XML External Entities (XXE)",
+            "slug": "software-design/security-owasp-top-10#xml-external-entities-xxe",
+            "order": 4
+          },
+          {
+            "id": "broken-access-control",
+            "title": "Broken Access Control",
+            "slug": "software-design/security-owasp-top-10#broken-access-control",
+            "order": 5
+          },
+          {
+            "id": "security-misconfiguration",
+            "title": "Security Misconfiguration",
+            "slug": "software-design/security-owasp-top-10#security-misconfiguration",
+            "order": 6
+          },
+          {
+            "id": "cross-site-scripting-xss",
+            "title": "Cross-Site Scripting (XSS)",
+            "slug": "software-design/security-owasp-top-10#cross-site-scripting-xss",
+            "order": 7
+          },
+          {
+            "id": "insecure-deserialization",
+            "title": "Insecure Deserialization",
+            "slug": "software-design/security-owasp-top-10#insecure-deserialization",
+            "order": 8
+          },
+          {
+            "id": "using-components-with-known-vulnerabilities",
+            "title": "Using Components with Known Vulnerabilities",
+            "slug": "software-design/security-owasp-top-10#using-components-with-known-vulnerabilities",
+            "order": 9
+          },
+          {
+            "id": "insufficient-logging-and-monitoring",
+            "title": "Insufficient Logging and Monitoring",
+            "slug": "software-design/security-owasp-top-10#insufficient-logging-and-monitoring",
+            "order": 10
+          }
+        ],
+        "order": 18
+      },
+      {
+        "id": "security-transport-layer-security-tls",
+        "title": "Transport Layer Security (TLS) order: 19",
+        "slug": "software-design/security-transport-layer-security-tls",
+        "filePath": "../../content/software-design/security-transport-layer-security-tls.mdx",
+        "subSections": [
+          {
+            "id": "tls-vs-ssl",
+            "title": "TLS vs SSL",
+            "slug": "software-design/security-transport-layer-security-tls#tls-vs-ssl",
+            "order": 1
+          },
+          {
+            "id": "how-tls-works",
+            "title": "How TLS works",
+            "slug": "software-design/security-transport-layer-security-tls#how-tls-works",
+            "order": 2
+          },
+          {
+            "id": "authentication",
+            "title": "Authentication",
+            "slug": "software-design/security-transport-layer-security-tls#authentication",
+            "order": 3
+          }
+        ],
+        "order": 19
+      },
+      {
+        "id": "security-role-based-access-control",
+        "title": "Role-Based Access Control",
+        "slug": "software-design/security-role-based-access-control",
+        "filePath": "../../content/software-design/security-role-based-access-control.mdx",
+        "subSections": [
+          {
+            "id": "the-principle-of-least-privilege",
+            "title": "The Principle of Least Privilege",
+            "slug": "software-design/security-role-based-access-control#the-principle-of-least-privilege",
+            "order": 1
+          },
+          {
+            "id": "interactive-playground-rbac-matrix-check",
+            "title": "Interactive Playground: RBAC Matrix Check",
+            "slug": "software-design/security-role-based-access-control#interactive-playground-rbac-matrix-check",
+            "order": 2
+          }
+        ],
+        "order": 20
+      },
+      {
+        "id": "security-managing-environment-variables-api-keys-and-files-in-node-js",
+        "title": "Managing Environment Variables, API Keys, and Files in Node.js",
+        "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js",
+        "filePath": "../../content/software-design/security-managing-environment-variables-api-keys-and-files-in-node-js.mdx",
+        "subSections": [
+          {
+            "id": "managing-environment-variables-api-keys-and-files-in-nodejs",
+            "title": "Managing Environment Variables, API Keys, and Files in Node.js",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#managing-environment-variables-api-keys-and-files-in-nodejs",
+            "order": 1
+          },
+          {
+            "id": "environment-variables",
+            "title": "Environment Variables",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#environment-variables",
+            "order": 2
+          },
+          {
+            "id": "environment-variables-vs-config-variables",
+            "title": "Environment Variables vs Config Variables",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#environment-variables-vs-config-variables",
+            "order": 3
+          },
+          {
+            "id": "create-an-environment-variable",
+            "title": "Create an Environment Variable",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#create-an-environment-variable",
+            "order": 4
+          },
+          {
+            "id": "import-environment-variables-using-dotenv",
+            "title": "Import Environment Variables using dotenv",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#import-environment-variables-using-dotenv",
+            "order": 5
+          },
+          {
+            "id": "windows-os-file",
+            "title": "Windows OS file",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#windows-os-file",
+            "order": 6
+          },
+          {
+            "id": "macos-os-metafile",
+            "title": "macOS OS metafile",
+            "slug": "software-design/security-managing-environment-variables-api-keys-and-files-in-node-js#macos-os-metafile",
+            "order": 7
+          }
+        ],
+        "order": 21
+      },
+      {
+        "id": "security-cross-site-scripting-xss-attacks",
+        "title": "Cross-Site Scripting (XSS) Attacks",
+        "slug": "software-design/security-cross-site-scripting-xss-attacks",
+        "filePath": "../../content/software-design/security-cross-site-scripting-xss-attacks.mdx",
+        "subSections": [
+          {
+            "id": "stored-xss",
+            "title": "Stored XSS",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#stored-xss",
+            "order": 1
+          },
+          {
+            "id": "reflected-xss",
+            "title": "Reflected XSS",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#reflected-xss",
+            "order": 2
+          },
+          {
+            "id": "dom-based-xss",
+            "title": "DOM-Based XSS",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#dom-based-xss",
+            "order": 3
+          },
+          {
+            "id": "dom-based-precautions",
+            "title": "DOM-Based Precautions",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#dom-based-precautions",
+            "order": 4
+          },
+          {
+            "id": "identifying-xss-vulnerabilities",
+            "title": "Identifying XSS Vulnerabilities",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#identifying-xss-vulnerabilities",
+            "order": 5
+          },
+          {
+            "id": "preventing-xss-vulnerabilities---sanitization",
+            "title": "Preventing XSS Vulnerabilities - Sanitization",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#preventing-xss-vulnerabilities---sanitization",
+            "order": 6
+          },
+          {
+            "id": "securing-cookies-and-headers",
+            "title": "Securing Cookies and Headers",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#securing-cookies-and-headers",
+            "order": 7
+          },
+          {
+            "id": "data-validation-and-sanitization",
+            "title": "Data Validation and Sanitization",
+            "slug": "software-design/security-cross-site-scripting-xss-attacks#data-validation-and-sanitization",
+            "order": 8
+          }
+        ],
+        "order": 22
+      },
+      {
+        "id": "security-cors",
+        "title": "CORS",
+        "slug": "software-design/security-cors",
+        "filePath": "../../content/software-design/security-cors.mdx",
+        "subSections": [
+          {
+            "id": "cors",
+            "title": "CORS",
+            "slug": "software-design/security-cors#cors",
+            "order": 1
+          },
+          {
+            "id": "how-does-cors-manage-requests-from-external-resources",
+            "title": "How does CORS manage requests from external resources?",
+            "slug": "software-design/security-cors#how-does-cors-manage-requests-from-external-resources",
+            "order": 2
+          },
+          {
+            "id": "pre-flight-requests",
+            "title": "Pre-flight Requests",
+            "slug": "software-design/security-cors#pre-flight-requests",
+            "order": 3
+          },
+          {
+            "id": "how-do-i-implement-cors",
+            "title": "How do I implement CORS?",
+            "slug": "software-design/security-cors#how-do-i-implement-cors",
+            "order": 4
+          }
+        ],
+        "order": 23
+      },
+      {
+        "id": "security-cross-site-request-forgery-csrf-attacks",
+        "title": "Cross-Site Request Forgery (CSRF) Attacks",
+        "slug": "software-design/security-cross-site-request-forgery-csrf-attacks",
+        "filePath": "../../content/software-design/security-cross-site-request-forgery-csrf-attacks.mdx",
+        "subSections": [
+          {
+            "id": "preventing-csrf",
+            "title": "Preventing CSRF",
+            "slug": "software-design/security-cross-site-request-forgery-csrf-attacks#preventing-csrf",
+            "order": 1
+          },
+          {
+            "id": "csurf",
+            "title": "csurf",
+            "slug": "software-design/security-cross-site-request-forgery-csrf-attacks#csurf",
+            "order": 2
+          }
+        ],
+        "order": 24
+      },
+      {
+        "id": "security-sql-injection",
+        "title": "SQL Injection",
+        "slug": "software-design/security-sql-injection",
+        "filePath": "../../content/software-design/security-sql-injection.mdx",
+        "subSections": [
+          {
+            "id": "union-based-injections",
+            "title": "Union-Based Injections",
+            "slug": "software-design/security-sql-injection#union-based-injections",
+            "order": 1
+          },
+          {
+            "id": "error-based-injections",
+            "title": "Error-Based Injections",
+            "slug": "software-design/security-sql-injection#error-based-injections",
+            "order": 2
+          },
+          {
+            "id": "boolean-based-injections",
+            "title": "Boolean-Based Injections",
+            "slug": "software-design/security-sql-injection#boolean-based-injections",
+            "order": 3
+          },
+          {
+            "id": "time-based-injections",
+            "title": "Time-Based Injections",
+            "slug": "software-design/security-sql-injection#time-based-injections",
+            "order": 4
+          },
+          {
+            "id": "out-of-band-sql-injections",
+            "title": "Out-of-Band SQL Injections",
+            "slug": "software-design/security-sql-injection#out-of-band-sql-injections",
+            "order": 5
+          },
+          {
+            "id": "sql-injection-prevention",
+            "title": "SQL Injection Prevention",
+            "slug": "software-design/security-sql-injection#sql-injection-prevention",
+            "order": 6
+          },
+          {
+            "id": "input-sanitization--validatorjs",
+            "title": "Input Sanitization & Validator.js",
+            "slug": "software-design/security-sql-injection#input-sanitization--validatorjs",
+            "order": 7
+          },
+          {
+            "id": "prepared-statements-placeholders",
+            "title": "Prepared Statements: Placeholders",
+            "slug": "software-design/security-sql-injection#prepared-statements-placeholders",
+            "order": 8
+          },
+          {
+            "id": "prepared-statements-named-placeholders",
+            "title": "Prepared Statements: Named Placeholders",
+            "slug": "software-design/security-sql-injection#prepared-statements-named-placeholders",
+            "order": 9
+          }
+        ],
+        "order": 25
+      }
+    ],
+    "order": 12
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "version": 1,
+  "topic": {
+    "id": "operating-systems",
+    "title": "Operating Systems",
+    "icon": "DnsIcon",
+    "slug": "operating-systems",
+    "introPath": "../../content/operating-systems/introduction.mdx",
+    "sections": [
+      {
+        "id": "how-does-a-computer-work",
+        "title": "How does a computer work?",
+        "slug": "operating-systems/how-does-a-computer-work",
+        "filePath": "../../content/operating-systems/how-does-a-computer-work.mdx",
+        "subSections": [
+          {
+            "id": "input",
+            "title": "Input",
+            "slug": "operating-systems/how-does-a-computer-work#input",
+            "order": 1
+          },
+          {
+            "id": "processing",
+            "title": "Processing",
+            "slug": "operating-systems/how-does-a-computer-work#processing",
+            "order": 2
+          },
+          {
+            "id": "memory",
+            "title": "Memory",
+            "slug": "operating-systems/how-does-a-computer-work#memory",
+            "order": 3
+          },
+          {
+            "id": "output",
+            "title": "Output",
+            "slug": "operating-systems/how-does-a-computer-work#output",
+            "order": 4
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "the-computer-hardware",
+        "title": "The computer hardware",
+        "slug": "operating-systems/the-computer-hardware",
+        "filePath": "../../content/operating-systems/the-computer-hardware.mdx",
+        "subSections": [
+          {
+            "id": "cpu",
+            "title": "CPU",
+            "slug": "operating-systems/the-computer-hardware#cpu",
+            "order": 1
+          },
+          {
+            "id": "control-unit",
+            "title": "Control Unit",
+            "slug": "operating-systems/the-computer-hardware#control-unit",
+            "order": 2
+          },
+          {
+            "id": "alu",
+            "title": "ALU",
+            "slug": "operating-systems/the-computer-hardware#alu",
+            "order": 3
+          },
+          {
+            "id": "registers",
+            "title": "Registers",
+            "slug": "operating-systems/the-computer-hardware#registers",
+            "order": 4
+          },
+          {
+            "id": "memory",
+            "title": "Memory",
+            "slug": "operating-systems/the-computer-hardware#memory",
+            "order": 5
+          },
+          {
+            "id": "buses",
+            "title": "Buses",
+            "slug": "operating-systems/the-computer-hardware#buses",
+            "order": 6
+          },
+          {
+            "id": "hard-disks",
+            "title": "Hard Disks",
+            "slug": "operating-systems/the-computer-hardware#hard-disks",
+            "order": 7
+          },
+          {
+            "id": "the-mainboard",
+            "title": "The Mainboard",
+            "slug": "operating-systems/the-computer-hardware#the-mainboard",
+            "order": 8
+          },
+          {
+            "id": "ports",
+            "title": "Ports",
+            "slug": "operating-systems/the-computer-hardware#ports",
+            "order": 9
+          }
+        ],
+        "order": 2
+      },
+      {
+        "id": "operating-systems",
+        "title": "Operating Systems",
+        "slug": "operating-systems/operating-systems",
+        "filePath": "../../content/operating-systems/operating-systems.mdx",
+        "subSections": [
+          {
+            "id": "process-management",
+            "title": "Process Management",
+            "slug": "operating-systems/operating-systems#process-management",
+            "order": 1
+          },
+          {
+            "id": "memory-management",
+            "title": "Memory Management",
+            "slug": "operating-systems/operating-systems#memory-management",
+            "order": 2
+          },
+          {
+            "id": "file-system-management",
+            "title": "File System Management",
+            "slug": "operating-systems/operating-systems#file-system-management",
+            "order": 3
+          },
+          {
+            "id": "io-management",
+            "title": "IO Management",
+            "slug": "operating-systems/operating-systems#io-management",
+            "order": 4
+          }
+        ],
+        "order": 3
+      },
+      {
+        "id": "processes-and-threads",
+        "title": "Processes and Threads",
+        "slug": "operating-systems/processes-and-threads",
+        "filePath": "../../content/operating-systems/processes-and-threads.mdx",
+        "subSections": [
+          {
+            "id": "lifecycle-of-a-process",
+            "title": "Lifecycle of a Process",
+            "slug": "operating-systems/processes-and-threads#lifecycle-of-a-process",
+            "order": 1
+          },
+          {
+            "id": "process-layout-and-process-control-block",
+            "title": "Process Layout and Process Control Block",
+            "slug": "operating-systems/processes-and-threads#process-layout-and-process-control-block",
+            "order": 2
+          },
+          {
+            "id": "introduction-to-threads",
+            "title": "Introduction to Threads",
+            "slug": "operating-systems/processes-and-threads#introduction-to-threads",
+            "order": 3
+          },
+          {
+            "id": "multithreading",
+            "title": "Multithreading",
+            "slug": "operating-systems/processes-and-threads#multithreading",
+            "order": 4
+          },
+          {
+            "id": "kernel-threads-vs-user-threads",
+            "title": "Kernel Threads vs User Threads",
+            "slug": "operating-systems/processes-and-threads#kernel-threads-vs-user-threads",
+            "order": 5
+          }
+        ],
+        "order": 4
+      },
+      {
+        "id": "process-scheduling",
+        "title": "Process Scheduling",
+        "slug": "operating-systems/process-scheduling",
+        "filePath": "../../content/operating-systems/process-scheduling.mdx",
+        "subSections": [
+          {
+            "id": "processing-states-and-queues",
+            "title": "Processing States and Queues",
+            "slug": "operating-systems/process-scheduling#processing-states-and-queues",
+            "order": 1
+          },
+          {
+            "id": "long-term-schedulers",
+            "title": "Long-Term Schedulers",
+            "slug": "operating-systems/process-scheduling#long-term-schedulers",
+            "order": 2
+          },
+          {
+            "id": "first-come-first-served",
+            "title": "First Come First Served",
+            "slug": "operating-systems/process-scheduling#first-come-first-served",
+            "order": 3
+          },
+          {
+            "id": "priority-scheduling-algorithms",
+            "title": "Priority Scheduling Algorithms",
+            "slug": "operating-systems/process-scheduling#priority-scheduling-algorithms",
+            "order": 4
+          },
+          {
+            "id": "round-robin",
+            "title": "Round Robin",
+            "slug": "operating-systems/process-scheduling#round-robin",
+            "order": 5
+          },
+          {
+            "id": "multiple-level-queues-scheduling",
+            "title": "Multiple-level Queues Scheduling",
+            "slug": "operating-systems/process-scheduling#multiple-level-queues-scheduling",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-scheduling-policy-comparison",
+            "title": "Interactive Playground: Scheduling Policy Comparison",
+            "slug": "operating-systems/process-scheduling#interactive-playground-scheduling-policy-comparison",
+            "order": 7
+          }
+        ],
+        "order": 5
+      },
+      {
+        "id": "synchronization",
+        "title": "Synchronization",
+        "slug": "operating-systems/synchronization",
+        "filePath": "../../content/operating-systems/synchronization.mdx",
+        "subSections": [
+          {
+            "id": "the-increment-a-number-problem",
+            "title": "The increment-a-number problem",
+            "slug": "operating-systems/synchronization#the-increment-a-number-problem",
+            "order": 1
+          },
+          {
+            "id": "locking-mutex",
+            "title": "Locking (mutex)",
+            "slug": "operating-systems/synchronization#locking-mutex",
+            "order": 2
+          },
+          {
+            "id": "condition-variables",
+            "title": "Condition variables",
+            "slug": "operating-systems/synchronization#condition-variables",
+            "order": 3
+          },
+          {
+            "id": "atomic-variables",
+            "title": "Atomic variables",
+            "slug": "operating-systems/synchronization#atomic-variables",
+            "order": 4
+          },
+          {
+            "id": "semaphores",
+            "title": "Semaphores",
+            "slug": "operating-systems/synchronization#semaphores",
+            "order": 5
+          },
+          {
+            "id": "deadlocks",
+            "title": "Deadlocks",
+            "slug": "operating-systems/synchronization#deadlocks",
+            "order": 6
+          }
+        ],
+        "order": 6
+      },
+      {
+        "id": "memory-management",
+        "title": "Memory management",
+        "slug": "operating-systems/memory-management",
+        "filePath": "../../content/operating-systems/memory-management.mdx",
+        "subSections": [
+          {
+            "id": "the-memory-hierarchy",
+            "title": "The Memory Hierarchy",
+            "slug": "operating-systems/memory-management#the-memory-hierarchy",
+            "order": 1
+          },
+          {
+            "id": "segmentation",
+            "title": "Segmentation",
+            "slug": "operating-systems/memory-management#segmentation",
+            "order": 2
+          },
+          {
+            "id": "fragmentation",
+            "title": "Fragmentation",
+            "slug": "operating-systems/memory-management#fragmentation",
+            "order": 3
+          },
+          {
+            "id": "virtual-memory-and-privilege-separation",
+            "title": "Virtual Memory and Privilege Separation",
+            "slug": "operating-systems/memory-management#virtual-memory-and-privilege-separation",
+            "order": 4
+          },
+          {
+            "id": "paging",
+            "title": "Paging",
+            "slug": "operating-systems/memory-management#paging",
+            "order": 5
+          },
+          {
+            "id": "linkers-and-loaders",
+            "title": "Linkers and Loaders",
+            "slug": "operating-systems/memory-management#linkers-and-loaders",
+            "order": 6
+          },
+          {
+            "id": "interactive-playground-paging-capacity-estimator",
+            "title": "Interactive Playground: Paging Capacity Estimator",
+            "slug": "operating-systems/memory-management#interactive-playground-paging-capacity-estimator",
+            "order": 7
+          }
+        ],
+        "order": 7
+      },
+      {
+        "id": "file-system",
+        "title": "File system",
+        "slug": "operating-systems/file-system",
+        "filePath": "../../content/operating-systems/file-system.mdx",
+        "subSections": [
+          {
+            "id": "file-metadata-permissions-and-attributes",
+            "title": "File Metadata, Permissions, and Attributes",
+            "slug": "operating-systems/file-system#file-metadata-permissions-and-attributes",
+            "order": 1
+          },
+          {
+            "id": "file-permissions-overview",
+            "title": "File Permissions Overview",
+            "slug": "operating-systems/file-system#file-permissions-overview",
+            "order": 2
+          },
+          {
+            "id": "hardware-representation-of-data",
+            "title": "Hardware Representation of Data",
+            "slug": "operating-systems/file-system#hardware-representation-of-data",
+            "order": 3
+          },
+          {
+            "id": "the-layers-of-a-filesystem",
+            "title": "The Layers of a Filesystem",
+            "slug": "operating-systems/file-system#the-layers-of-a-filesystem",
+            "order": 4
+          },
+          {
+            "id": "file-operations",
+            "title": "File Operations",
+            "slug": "operating-systems/file-system#file-operations",
+            "order": 5
+          },
+          {
+            "id": "directory-operations",
+            "title": "Directory Operations",
+            "slug": "operating-systems/file-system#directory-operations",
+            "order": 6
+          }
+        ],
+        "order": 8
+      },
+      {
+        "id": "i-o-systems",
+        "title": "I/O systems",
+        "slug": "operating-systems/i-o-systems",
+        "filePath": "../../content/operating-systems/i-o-systems.mdx",
+        "subSections": [
+          {
+            "id": "io-hardware",
+            "title": "IO Hardware",
+            "slug": "operating-systems/i-o-systems#io-hardware",
+            "order": 1
+          },
+          {
+            "id": "drivers--controllers",
+            "title": "Drivers & Controllers",
+            "slug": "operating-systems/i-o-systems#drivers--controllers",
+            "order": 2
+          },
+          {
+            "id": "transferring-data",
+            "title": "Transferring Data",
+            "slug": "operating-systems/i-o-systems#transferring-data",
+            "order": 3
+          },
+          {
+            "id": "blocking-vs-non-blocking",
+            "title": "Blocking vs. Non-blocking",
+            "slug": "operating-systems/i-o-systems#blocking-vs-non-blocking",
+            "order": 4
+          },
+          {
+            "id": "interrupts--polling",
+            "title": "Interrupts & Polling",
+            "slug": "operating-systems/i-o-systems#interrupts--polling",
+            "order": 5
+          },
+          {
+            "id": "memory-mapped-io-vs-direct-memory-access",
+            "title": "Memory-mapped IO vs Direct-Memory Access",
+            "slug": "operating-systems/i-o-systems#memory-mapped-io-vs-direct-memory-access",
+            "order": 6
+          },
+          {
+            "id": "io-software",
+            "title": "IO Software",
+            "slug": "operating-systems/i-o-systems#io-software",
+            "order": 7
+          },
+          {
+            "id": "user-space-kernel-space--hardware",
+            "title": "User-space, Kernel-space, & Hardware",
+            "slug": "operating-systems/i-o-systems#user-space-kernel-space--hardware",
+            "order": 8
+          },
+          {
+            "id": "layers-of-io-systems",
+            "title": "Layers of IO Systems",
+            "slug": "operating-systems/i-o-systems#layers-of-io-systems",
+            "order": 9
+          }
+        ],
+        "order": 9
+      }
+    ],
+    "order": 9
+  }
+}
