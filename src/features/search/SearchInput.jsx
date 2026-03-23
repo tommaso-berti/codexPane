@@ -2,7 +2,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 
-export default function SearchInput({value, onChange}) {
+export default function SearchInput({ value, onChange, inputRef, autoFocus = false }) {
     return (
         <Box
             sx={{
@@ -24,7 +24,8 @@ export default function SearchInput({value, onChange}) {
                 size="small"
                 variant="outlined"
                 autoComplete="off"
-                autoFocus
+                autoFocus={autoFocus}
+                inputRef={inputRef}
                 value={value}
                 onChange={onChange}
                 sx={{

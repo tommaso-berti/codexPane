@@ -2,7 +2,7 @@ import SectMenu from './SectMenu.jsx';
 import Footer from './Footer';
 import Box from '@mui/material/Box';
 
-export default function Sidebar({ headerHeight }) {
+export default function Sidebar({ headerHeight, hideFooter = false }) {
     return (
         <Box
             component="aside"
@@ -18,7 +18,7 @@ export default function Sidebar({ headerHeight }) {
             <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
                 <SectMenu />
             </Box>
-            <Footer />
+            {!hideFooter ? <Footer /> : null}
         </Box>
     );
 }

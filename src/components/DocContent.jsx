@@ -1,5 +1,6 @@
-import { Children, cloneElement, isValidElement, useMemo, useState } from 'react';
+import { Children, cloneElement, isValidElement, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -123,6 +124,8 @@ function HeadingAnchor({ as = 'h2', id, children, ...props }) {
 export default function DocContent({ status, Content, error }) {
     const { docs: docsParam, section: sectionParam } = useParams();
     const { docs = [] } = useDocs();
+    const showReadingTime = useSelector((state) => state.uiPrefs?.showReadingTime !== false);
+    const [readingTimeMinutes, setReadingTimeMinutes] = useState(0);
     const pageMeta = useMemo(() => {
         const doc = docs.find((item) => item.id === docsParam);
         const docSection = doc?.sections?.find((item) => item.id === sectionParam);
@@ -134,6 +137,18 @@ export default function DocContent({ status, Content, error }) {
                 : 'Developer documentation and guides';
         return { title, subtitle, hasDocs: Boolean(doc || docSection) };
     }, [docs, docsParam, sectionParam]);
+
+    useEffect(() => {
+        if (status !== 'ready') return;
+        const timer = window.setTimeout(() => {
+            const container = document.querySelector('[data-doc-content="true"]');
+            const rawText = container?.textContent || '';
+            const words = rawText.trim().split(/\s+/).filter(Boolean).length;
+            const minutes = words > 0 ? Math.max(1, Math.ceil(words / 220)) : 0;
+            setReadingTimeMinutes(minutes);
+        }, 0);
+        return () => window.clearTimeout(timer);
+    }, [status, docsParam, sectionParam, Content]);
 
     if (status === 'loading') {
         return (
@@ -172,6 +187,11 @@ export default function DocContent({ status, Content, error }) {
                     <Typography variant="body2" color="text.secondary">
                         {pageMeta.subtitle}
                     </Typography>
+                    {showReadingTime && readingTimeMinutes > 0 ? (
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.25 }}>
+                            {readingTimeMinutes} min read
+                        </Typography>
+                    ) : null}
                 </Box>
             )}
             <div

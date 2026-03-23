@@ -11,7 +11,8 @@ import Home from "./components/Home.jsx";
 
 function App() {
     const mode = useSelector((state) => state.theme.mode);
-    const theme = useMemo(() => makeTheme(mode), [mode]);
+    const accentPalette = useSelector((state) => state.uiPrefs?.accentPalette || 'blue');
+    const theme = useMemo(() => makeTheme(mode, accentPalette), [mode, accentPalette]);
 
     return (
         <ThemeProvider theme={theme}>

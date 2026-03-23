@@ -31,8 +31,35 @@ const tokens = {
     },
 };
 
-export const makeTheme = (mode) => {
-    const t = mode === 'dark' ? tokens.dark : tokens.light;
+const accentVariants = {
+    blue: {
+        light: { primary: '#2563EB', primaryHover: '#1D4ED8', primarySoft: '#DBEAFE', accent: '#38BDF8' },
+        dark: { primary: '#60A5FA', primaryHover: '#3B82F6', primarySoft: '#1E3A5F', accent: '#38BDF8' },
+    },
+    teal: {
+        light: { primary: '#0F766E', primaryHover: '#0E5F59', primarySoft: '#CCFBF1', accent: '#14B8A6' },
+        dark: { primary: '#2DD4BF', primaryHover: '#14B8A6', primarySoft: '#134E4A', accent: '#5EEAD4' },
+    },
+    indigo: {
+        light: { primary: '#4F46E5', primaryHover: '#4338CA', primarySoft: '#E0E7FF', accent: '#6366F1' },
+        dark: { primary: '#818CF8', primaryHover: '#6366F1', primarySoft: '#312E81', accent: '#A5B4FC' },
+    },
+    slate: {
+        light: { primary: '#334155', primaryHover: '#1F2937', primarySoft: '#E2E8F0', accent: '#64748B' },
+        dark: { primary: '#94A3B8', primaryHover: '#CBD5E1', primarySoft: '#1E293B', accent: '#CBD5E1' },
+    },
+};
+
+export const makeTheme = (mode, accentPalette = 'blue') => {
+    const base = mode === 'dark' ? tokens.dark : tokens.light;
+    const variant = accentVariants[accentPalette]?.[mode] || accentVariants.blue[mode];
+    const t = {
+        ...base,
+        primary: variant.primary,
+        primaryHover: variant.primaryHover,
+        primarySoft: variant.primarySoft,
+        accent: variant.accent,
+    };
     return createTheme({
         palette: {
             mode,
@@ -83,6 +110,7 @@ export const makeTheme = (mode) => {
                         '--code-fg': t.codeText,
                         '--surface-soft': t.surfaceSoft,
                         '--focus-ring': t.accent,
+                        '--link-color': t.primary,
                         '--callout-code-bg': mode === 'dark' ? '#334155' : '#1e293b',
                         '--callout-code-fg': '#ffffff',
                         '--callout-code-border': mode === 'dark' ? '#94a3b8' : '#475569',

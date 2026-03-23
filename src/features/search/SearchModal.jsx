@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -44,6 +44,7 @@ export default function SearchModal() {
         setSearchString('');
     }
     const [searchString, setSearchString] = useState('');
+    const inputRef = useRef(null);
 
     const { search, isLoadingIndex } = useMiniSearchFromDocs(open);
     const navigate = useNavigate();
@@ -68,6 +69,15 @@ export default function SearchModal() {
         window.addEventListener('keydown', onKeyDown);
         return () => window.removeEventListener('keydown', onKeyDown);
     }, []);
+
+    useEffect(() => {
+        if (!open) return;
+        const timerId = window.requestAnimationFrame(() => {
+            inputRef.current?.focus();
+            inputRef.current?.select();
+        });
+        return () => window.cancelAnimationFrame(timerId);
+    }, [open]);
 
     const handleClick = (path) => {
         handleClose()
@@ -126,7 +136,12 @@ export default function SearchModal() {
             >
                 <Box sx={style}>
                     <Box sx={{ display: 'flex', gap:2, mb: 0.5 }}>
-                        <SearchInput value={searchString} onChange={(e) => setSearchString(e.target.value)} />
+                        <SearchInput
+                            inputRef={inputRef}
+                            autoFocus
+                            value={searchString}
+                            onChange={(e) => setSearchString(e.target.value)}
+                        />
                         <IconButton aria-label="delete" color="primary" onClick={() => handleClose()}>
                             <CloseIcon />
                         </IconButton>

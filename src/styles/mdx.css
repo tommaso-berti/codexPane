@@ -10,8 +10,8 @@
     background: transparent;
     max-width: 100%;
     font-family: var(--font-family), sans-serif;
-    line-height: 1.78;
-    font-size: 1.02rem;
+    line-height: var(--docs-line-height, 1.78);
+    font-size: calc(1.02rem * var(--docs-font-scale, 1));
 }
 
 .markdown-body--hide-first-h1 > h1:first-of-type,
@@ -86,7 +86,7 @@
 }
 
 .markdown-body a {
-    color: #2563eb;
+    color: var(--link-color, #2563eb);
     text-underline-offset: 0.16em;
 }
 
@@ -101,6 +101,8 @@
 
 .markdown-body pre {
     margin: 1.2rem 0 1.5rem;
+    --pre-pad-y: var(--docs-code-padding-y, 0.94rem);
+    --pre-pad-x: var(--docs-code-padding-x, 1.02rem);
 }
 
 .markdown-body blockquote {

@@ -1,3 +1,5 @@
+import { isValidElement } from 'react';
+import { useSelector } from 'react-redux';
 import {
     Alert,
     Box,
@@ -26,10 +28,32 @@ export default function PlaygroundShell({
     output,
     code
 }) {
+    const uiPrefs = useSelector((state) => state.uiPrefs);
+    const interactiveEnabled = uiPrefs?.enableInteractiveExamples !== false;
+    const codeBlockStyle = uiPrefs?.codeBlockStyle || 'compact';
+    const snippetLanguagePreference = uiPrefs?.snippetLanguagePreference || 'js';
     const statusColor = status?.color || "default";
     const tone = ["success", "warning", "error", "info", "primary", "secondary"].includes(statusColor)
         ? statusColor
         : "info";
+    let resolvedCode = code;
+    if (
+        code &&
+        typeof code === 'object' &&
+        !Array.isArray(code) &&
+        !isValidElement(code) &&
+        code[snippetLanguagePreference]
+    ) {
+        resolvedCode = code[snippetLanguagePreference];
+    }
+
+    if (!interactiveEnabled) {
+        return (
+            <Alert severity="info" variant="outlined" sx={{ mt: 2, borderRadius: 2 }}>
+                Interactive examples are disabled in Settings.
+            </Alert>
+        );
+    }
 
     return (
         <Card variant="outlined" sx={{ borderRadius: 3, mt: 2 }}>
@@ -83,7 +107,7 @@ export default function PlaygroundShell({
                         <Box sx={{ mt: 0.75 }}>{output}</Box>
                     </Box>
 
-                    {code ? (
+                    {resolvedCode ? (
                         <Box>
                             <Typography variant="overline" color="text.secondary">
                                 {codeLabel}
@@ -92,7 +116,7 @@ export default function PlaygroundShell({
                                 variant="outlined"
                                 sx={(theme) => ({
                                     mt: 0.75,
-                                    p: 1.25,
+                                    p: codeBlockStyle === 'spacious' ? 1.6 : 1.1,
                                     borderRadius: 2,
                                     borderColor:
                                         theme.palette.mode === "dark"
@@ -106,8 +130,8 @@ export default function PlaygroundShell({
                                         m: 0,
                                         overflowX: "auto",
                                         fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
-                                        fontSize: 12.5,
-                                        lineHeight: 1.6,
+                                        fontSize: codeBlockStyle === 'spacious' ? 13.2 : 12.4,
+                                        lineHeight: codeBlockStyle === 'spacious' ? 1.72 : 1.56,
                                         color: "text.primary"
                                     },
                                     "& code": {
@@ -116,7 +140,7 @@ export default function PlaygroundShell({
                                     }
                                 })}
                             >
-                                {code}
+                                {resolvedCode}
                             </Paper>
                         </Box>
                     ) : null}

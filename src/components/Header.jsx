@@ -7,15 +7,17 @@ import Typography from '@mui/material/Typography';
 import ICONS from '../../icons.js';
 import { useMatch } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb.jsx';
-import { HEADER_HEIGHT_DEFAULT, getHeaderHeight } from '../lib/layout.js';
+import { HEADER_HEIGHT_DEFAULT, HEADER_HEIGHT_DOCS } from '../lib/layout.js';
 
 const GitHubIcon = ICONS.GitHubIcon;
 
-export default function Header({onOpenDrawer}) {
+export default function Header({ onOpenDrawer, showDocsBreadcrumb = true, advancedMode = 'default' }) {
     const docsRouteMatch = useMatch('/:docs');
     const sectionRouteMatch = useMatch('/:docs/:section');
     const isDocsPage = Boolean(docsRouteMatch || sectionRouteMatch);
-    const headerHeight = getHeaderHeight(isDocsPage);
+    const headerHeight = showDocsBreadcrumb && isDocsPage ? HEADER_HEIGHT_DOCS : HEADER_HEIGHT_DEFAULT;
+    const hideSecondaryActions =
+        isDocsPage && (advancedMode === 'focus' || advancedMode === 'presentation' || advancedMode === 'zen');
 
     return (
         <Box
@@ -59,24 +61,26 @@ export default function Header({onOpenDrawer}) {
                 </Box>
                 <Box sx={{ ml: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
                     <SearchModal />
-                    <IconButton
-                        aria-label="github"
-                        size="large"
-                        href="https://github.com/tommaso-berti/codexPane"
-                        target="_blank"
-                        sx={{
-                            width: 48,
-                            height: 48,
-                            color: 'primary.main',
-                            borderRadius: 2.5,
-                            backgroundColor: 'background.paper',
-                            '&:hover': {
-                                backgroundColor: 'action.hover',
-                            },
-                        }}
-                    >
-                        <GitHubIcon fontSize="medium" />
-                    </IconButton>
+                    {!hideSecondaryActions ? (
+                        <IconButton
+                            aria-label="github"
+                            size="large"
+                            href="https://github.com/tommaso-berti/codexPane"
+                            target="_blank"
+                            sx={{
+                                width: 48,
+                                height: 48,
+                                color: 'primary.main',
+                                borderRadius: 2.5,
+                                backgroundColor: 'background.paper',
+                                '&:hover': {
+                                    backgroundColor: 'action.hover',
+                                },
+                            }}
+                        >
+                            <GitHubIcon fontSize="medium" />
+                        </IconButton>
+                    ) : null}
                     <IconButton
                         aria-label="settings"
                         onClick={onOpenDrawer}
@@ -96,7 +100,7 @@ export default function Header({onOpenDrawer}) {
                     </IconButton>
                 </Box>
             </Box>
-            {isDocsPage && (
+            {showDocsBreadcrumb && isDocsPage && (
                 <Box
                     sx={{
                         height: `${headerHeight - HEADER_HEIGHT_DEFAULT}px`,
