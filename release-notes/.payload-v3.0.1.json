@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-03-23T11:30:02.593Z",
+  "repositoryPath": "/home/runner/work/codexPane/codexPane",
+  "version": "v3.0.1",
+  "releaseType": "patch",
+  "fromRef": "v3.0.0",
+  "toRef": "v3.0.1",
+  "range": "v3.0.0..v3.0.1",
+  "compareUrl": "https://github.com/tommaso-berti/codexPane/compare/v3.0.0...v3.0.1",
+  "commits": [
+    {
+      "sha": "93cceb78cae4f008719368db03a178dd3fc65c4f",
+      "shortSha": "93cceb7",
+      "subject": "fix: enhance release date resolution in static data refresh and release notes modal #patch",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-23T12:20:36+01:00"
+    },
+    {
+      "sha": "611d84e0052e10de3baa9a855991d7783d2e4ea8",
+      "shortSha": "611d84e",
+      "subject": "feat: add HighlightedText component for query-based text highlighting #minor",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-23T12:17:05+01:00"
+    },
+    {
+      "sha": "7fc09d0ad1431362c45bbe3ddb473464009a5fe5",
+      "shortSha": "7fc09d0",
+      "subject": "feat: improve search functionality with query normalization and highlighting #minor",
+      "body": "",
+      "author": "Tommaso Berti",
+      "date": "2026-03-23T12:16:31+01:00"
+    },
+    {
+      "sha": "62ad8ca0b4b45b36ba2e310cd9f3e17560733eb6",
+      "shortSha": "62ad8ca",
+      "subject": "docs(release): v3.0.0 artifacts #skip-deploy [skip ci]",
+      "body": "",
+      "author": "github-actions[bot]",
+      "date": "2026-03-23T10:40:02Z"
+    }
+  ],
+  "changedFiles": [
+    "public/data/release-notes.json",
+    "release-notes/.payload-v3.0.0.json",
+    "release-notes/v3.0.0.md",
+    "scripts/static-data/refresh-static-data.mjs",
+    "src/components/ReleaseNotesModal.jsx",
+    "src/features/search/SearchModal.jsx",
+    "src/features/search/SearchResultItem.jsx",
+    "src/features/search/SearchResults.jsx",
+    "src/features/search/highlightQueryParts.jsx",
+    "src/features/search/useMiniSearchFromDocs.js"
+  ]
+}
